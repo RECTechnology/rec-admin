@@ -1,9 +1,0 @@
-module.exports = {
-  "production": __production__,
-  "url": "__url__",
-  "clientID": "__clientID__",
-  "clientSecret": "__clientSecret__",
-  "captchaKey": "__captchaKey__",
-  "beta": __beta__,
-  "version": "__version__",
-}
