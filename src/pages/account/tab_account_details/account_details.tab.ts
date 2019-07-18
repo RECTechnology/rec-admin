@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { EditAccountData } from '../../../pages/dialogs/edit-account/edit-account.dia';
@@ -17,7 +17,7 @@ import { MatDialog } from '@angular/material';
 export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
   public loading = false;
   public account_id = null;
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
   public address = '';
 
   constructor(
@@ -81,6 +81,10 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
     // dialogRef.afterClosed().subscribe(result => {
     //   dialogRef = null;
     // });
+  }
+
+  public expelUser() {
+    return;
   }
 
   public ngOnDestroy() {

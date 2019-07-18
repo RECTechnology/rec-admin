@@ -10,9 +10,10 @@ import BaseDialog from '../../../bases/dialog-base';
 })
 export class TwoFaDia extends BaseDialog {
 
-  private code = '';
-  private has2FAActivated = false;
-  private sentOTP = false;
+  public code = '';
+  public has2FAActivated = false;
+  public sentOTP = false;
+  public date_timestamp: any;
 
   constructor(
     public dialogRef: MatDialogRef<TwoFaDia>,
@@ -22,7 +23,7 @@ export class TwoFaDia extends BaseDialog {
     this.has2FAActivated = this.us.userData.two_factor_authentication;
   }
 
-  public close(confirmed): void {
+  public close(confirmed?): void {
     this.dialogRef.close({ code: this.code, confirmed });
   }
 

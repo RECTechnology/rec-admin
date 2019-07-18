@@ -20,13 +20,15 @@ import { forkJoin } from 'rxjs';
 export class EditUserData {
   public user: any = {};
   public userCopy: any = {};
+  public loading = false;
+  public error = '';
 
   constructor(
     public dialogRef: MatDialogRef<EditUserData>,
     public snackBar: MySnackBarSevice,
-    private us: UserService,
-    private companyService: CompanyService,
-    private adminService: AdminService,
+    public us: UserService,
+    public companyService: CompanyService,
+    public adminService: AdminService,
     public utils: UtilsService,
     public dialog: MatDialog,
   ) { }

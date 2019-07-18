@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, AfterContentInit } from '@angular/core';
 import { Sort, SortDirection } from '@angular/material';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 
 export interface TlHeader {
@@ -43,10 +43,10 @@ export class TableListTable implements AfterContentInit {
     @Output() public onSort: EventEmitter<Sort>;
     @Output() public onChangePage: EventEmitter<Sort>;
 
-    public Brand = Brand;
+    public Brand: any = environment.Brand;
 
-    private sortDir: string;
-    private sortId: string;
+    public sortDir: string;
+    public sortId: string;
 
     constructor(
         public router: Router,
@@ -88,7 +88,7 @@ export class TableListTable implements AfterContentInit {
 
     public sortData(sort: Sort): void {
         if (!sort.active || sort.direction === '') {
-            this.router.navigate([], { queryParams: { sort: 'id', dir: 'DESC' } });
+            this.router.navigate([], { queryParams: { sort: 'id', dir: 'desc' } });
         } else {
             this.router.navigate([], {
                 queryParams: { sort: sort.active, dir: sort.direction },
@@ -102,7 +102,7 @@ export class TableListTable implements AfterContentInit {
         this.onChangePage.emit($event);
     }
 
-    public getOptionText(option, el) {
+    public getOptionText(option, el?) {
         if (typeof option.text === 'function') {
             return option.text(el);
         } else if (typeof option.text === 'string') {

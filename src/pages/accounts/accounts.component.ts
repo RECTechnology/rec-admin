@@ -9,7 +9,7 @@ import { CompanyService } from '../../services/company/company.service';
 import { ControlesService } from '../../services/controles/controles.service';
 import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
-import { Brand } from '../../environment/brand';
+import { environment } from '../../environments/environment';
 import { TlHeader, TlItemOption } from '../../components/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from '../../components/table-list/tl-header/tl-header.component';
 import { AdminService } from '../../services/admin/admin.service';
@@ -34,7 +34,7 @@ export class AccountsPage implements AfterContentInit {
   public accounts: any[] = [];
   public openDetails = false;
 
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
   public sortID: string = 'id';
   public sortDir: string = 'desc';
   public active = true;
@@ -101,12 +101,12 @@ export class AccountsPage implements AfterContentInit {
   public isPriv = false;
 
   constructor(
-    private titleService: Title,
-    private route: ActivatedRoute,
-    private dialog: MatDialog,
-    private us: UserService,
-    private companyService: CompanyService,
-    private utils: UtilsService,
+    public titleService: Title,
+    public route: ActivatedRoute,
+    public dialog: MatDialog,
+    public us: UserService,
+    public companyService: CompanyService,
+    public utils: UtilsService,
     public router: Router,
     public controles: ControlesService,
     public ws: WalletService,
@@ -246,10 +246,10 @@ export class AccountsPage implements AfterContentInit {
     if (!sort.active || sort.direction === '') {
       this.sortedData = this.companyService.companies.slice();
       this.sortID = 'id';
-      this.sortDir = 'DESC';
+      this.sortDir = 'desc';
     } else {
       this.sortID = sort.active;
-      this.sortDir = sort.direction.toUpperCase();
+      this.sortDir = sort.direction;
     }
     this.search();
   }

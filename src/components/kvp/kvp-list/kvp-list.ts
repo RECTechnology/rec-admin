@@ -27,7 +27,14 @@ export class KeyValuePair implements OnInit {
   @Input() public items: Array<{ key: string, value: string, active: boolean }> = [];
   @Input() public hidden: boolean = false;
   @Output('onChange') public onChange: EventEmitter<any> = new EventEmitter();
+  @Output('onReset') public onReset: EventEmitter<any> = new EventEmitter();
   @Output('hiddenChange') public hiddenChange: EventEmitter<any> = new EventEmitter();
+
+  public loading = false;
+
+  public reset() {
+    this.onReset.emit();
+  }
 
   public ngOnInit() {
     console.log('KeyValuePair', this.items);

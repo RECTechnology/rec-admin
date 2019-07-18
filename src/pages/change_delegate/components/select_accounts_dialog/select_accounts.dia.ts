@@ -37,6 +37,8 @@ export class SelectAccountsDia extends BaseDialog implements OnInit {
   public sortIDUnsorted = 'id';
   public sortDirUnsorted = 'desc';
   public selectedIDs = [];
+  public searchSelectedQwery: string = '';
+  public searchSelected: any = '';
 
   constructor(
     public currencies: CurrenciesService,
@@ -85,7 +87,7 @@ export class SelectAccountsDia extends BaseDialog implements OnInit {
     this.dialogRef.close();
   }
 
-  public select(opts: {}): void {
+  public select(opts = {}): void {
     this.dialogRef.close({ accounts: this.newSelectedAccounts, ...opts });
   }
 

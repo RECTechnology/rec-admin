@@ -1,7 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ControlesService } from '../../../services/controles/controles.service';
-import { Brand } from '../../../environment/brand';
-import { environment } from '../../../environment/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 
 export interface TableListHeaderOptions {

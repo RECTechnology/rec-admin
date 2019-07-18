@@ -33,4 +33,8 @@ export class FilterComponent {
       this.dateToChanged.emit(event.target.value);
     }
   }
+
+  public trackByFn(i) {
+    return i;
+  }
 }

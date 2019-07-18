@@ -9,16 +9,15 @@ import { WalletService } from '../../../../services/wallet/wallet.service';
   selector: 'tx-details',
   templateUrl: '../../../../pages/wallet/dialogs/tx_details/tx-details.html',
 })
-
 export class TxDetails extends BaseDialog implements OnInit {
   public transaction: any = {};
-  private showRefund = false;
+  public showRefund = false;
 
   constructor(
     public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<TxDetails>,
-    private us: UserService,
-    private ws: WalletService,
+    public us: UserService,
+    public ws: WalletService,
   ) {
     super();
   }

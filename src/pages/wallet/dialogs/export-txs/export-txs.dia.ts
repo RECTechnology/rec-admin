@@ -32,15 +32,15 @@ export class ExportTxsDia extends BaseDialog {
   public offset = 0;
   public limit = 3500;
 
-  private preview = '';
+  public preview = '';
 
   constructor(
     public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<ExportTxsDia>,
-    private us: UserService,
-    private cs: CompanyService,
-    private ws: WalletService,
-    private txService: TransactionService,
+    public us: UserService,
+    public cs: CompanyService,
+    public ws: WalletService,
+    public txService: TransactionService,
   ) {
     super();
     this.filter = new TxFilter();

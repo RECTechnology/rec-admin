@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { UserService } from '../../../services/user.service';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 import BaseDialog from '../../../bases/dialog-base';
 
 @Component({
@@ -17,7 +17,7 @@ import BaseDialog from '../../../bases/dialog-base';
 export class BussinessDetailsDia extends BaseDialog implements OnInit {
   public bussiness: any = null;
   public address = '';
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
   constructor(
     public dialogRef: MatDialogRef<BussinessDetailsDia>,
     public route: ActivatedRoute,

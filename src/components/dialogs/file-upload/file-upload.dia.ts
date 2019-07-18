@@ -1,7 +1,7 @@
 import { Component, AfterContentInit, NgZone } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { UserService } from '../../../services/user.service';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
 
 @Component({
@@ -10,7 +10,7 @@ import { MySnackBarSevice } from '../../../bases/snackbar-base';
 })
 
 export class FileUpload {
-  public brand = Brand;
+  public brand = environment.Brand;
   public error = '';
   public title: string = '';
   public selectedImageName: string = 'none';

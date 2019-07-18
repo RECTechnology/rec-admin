@@ -4,8 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { LoginService, AppAuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
-import { environment } from '../../environment/environment';
-import { Brand } from '../../environment/brand';
+import { environment } from '../../environments/environment';
 import { DevOptions } from './dev-options/dev-options.dia';
 import { BetaTerms } from './beta-terms/beta-terms.dia';
 import { DataProtection } from './data-protection/data-protection.dia';
@@ -20,7 +19,6 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: '../../components/login/login.html',
 })
 export class LoginComponent implements OnInit {
-  public env_checked = !environment.test;
   public errorMessage = '';
   public loading = false;
   public disabled = false;
@@ -36,7 +34,7 @@ export class LoginComponent implements OnInit {
   public environment = environment;
   public date_timestamp = Date.now();
   public needs_two_fa = false;
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
   public recaptchaResponse = '';
   public captchaErrorMsg = '';
 
@@ -53,7 +51,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this.titleService.setTitle(Brand.title + ' | Login');
+    this.titleService.setTitle(this.Brand.title + ' | Login');
 
     /* This is actually not needed, but is a good way of checking if API is working */
     this.aas.doAuth((response, error) => {
@@ -83,12 +81,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public capthaError(evt) {
+  public capthaError() {
     this.errorMessage = 'There has been an error with the reCAPTCHA, please try again later.';
   }
 
   // Does login
-  public doLogin(event) {
+  public doLogin() {
     if (this.validFields()) {
       this.loading = true;
       this.disabled = true;

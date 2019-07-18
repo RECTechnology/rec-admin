@@ -11,7 +11,7 @@ import { ControlesService } from '../../../services/controles/controles.service'
 import { EditUserData } from '../../dialogs/edit-user/edit-user.dia';
 import { AddUser } from '../../dialogs/add-user/add-user.dia';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 import { AdminService } from '../../../services/admin/admin.service';
 
 @Component({
@@ -30,16 +30,16 @@ export class AccountUsersTab implements AfterContentInit {
   public account_id = null;
   public items: any[] = [];
   public sortedData: any[] = [];
-  public brand = Brand;
+  public brand = environment.Brand;
 
   constructor(
-    private titleService: Title,
-    private route: ActivatedRoute,
-    private dialog: MatDialog,
-    private us: UserService,
-    private companyService: CompanyService,
-    private adminService: AdminService,
-    private utils: UtilsService,
+    public titleService: Title,
+    public route: ActivatedRoute,
+    public dialog: MatDialog,
+    public us: UserService,
+    public companyService: CompanyService,
+    public adminService: AdminService,
+    public utils: UtilsService,
     public router: Router,
     public controles: ControlesService,
     public ws: WalletService,
@@ -60,7 +60,7 @@ export class AccountUsersTab implements AfterContentInit {
   }
 
   // Opens add user modal
-  public openViewDetails(user) {
+  public openViewDetails(elem?, i?) {
     return;
   }
 
@@ -73,7 +73,7 @@ export class AccountUsersTab implements AfterContentInit {
     });
   }
 
-  public openEditUser(user) {
+  public openEditUser(user, i?) {
     let dialogRef = this.dialog.open(EditUserData);
     dialogRef.componentInstance.user = user;
     // dialogRef.componentInstance.title = 'Edit account';
@@ -131,7 +131,7 @@ export class AccountUsersTab implements AfterContentInit {
     this.getUsers();
   }
 
-  private getUsers() {
+  public getUsers() {
     console.log('Offset: ', this.offset);
     console.log('Limit: ', this.limit);
     console.log('Query: ', this.searchQuery);
@@ -147,7 +147,7 @@ export class AccountUsersTab implements AfterContentInit {
         (error) => { this.loading = false; });
   }
 
-  private removeUser(user) {
+  public removeUser(user) {
     const userIndex = this.companyService.companyUsers.indexOf(user);
     this.adminService.removeUserFromAccount(this.account_id, user.id)
       .subscribe(

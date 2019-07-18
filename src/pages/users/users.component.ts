@@ -9,7 +9,7 @@ import { ConfirmationMessage } from '../../components/dialogs/confirmation-messa
 import { CompanyService } from '../../services/company/company.service';
 import { ViewDetails } from '../dialogs/view-details/view-details.dia';
 import { EditUserData } from '../dialogs/edit-user/edit-user.dia';
-import { Brand } from '../../environment/brand';
+import { environment } from '../../environments/environment';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { ControlesService } from '../../services/controles/controles.service';
 import { AdminService } from '../../services/admin/admin.service';
@@ -30,7 +30,7 @@ export class UsersPage implements OnInit {
   public limit = 10;
   public showingUsers = 0;
   public totalUsers = 0;
-  public brand = Brand;
+  public brand = environment.Brand;
   public sortedData: any[] = [];
 
   public sortID: string = 'id';
@@ -91,15 +91,15 @@ export class UsersPage implements OnInit {
   ];
 
   constructor(
-    private titleService: Title,
-    private route: ActivatedRoute,
-    private dialog: MatDialog,
-    private us: UserService,
-    private companyService: CompanyService,
+    public titleService: Title,
+    public route: ActivatedRoute,
+    public dialog: MatDialog,
+    public us: UserService,
+    public companyService: CompanyService,
     public snackbar: MySnackBarSevice,
     public utils: UtilsService,
     public as: AdminService,
-    private controles: ControlesService,
+    public controles: ControlesService,
   ) { }
 
   public ngOnInit() {
@@ -201,7 +201,7 @@ export class UsersPage implements OnInit {
     if (!sort.active || sort.direction === '') {
       this.sortedData = this.companyService.companyUsers.slice();
       this.sortID = 'id';
-      this.sortDir = 'DESC';
+      this.sortDir = 'desc';
     } else {
       this.sortID = sort.active;
       this.sortDir = sort.direction.toUpperCase();

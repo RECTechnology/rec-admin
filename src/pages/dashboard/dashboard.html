@@ -31,7 +31,7 @@
 </header-nav>
 <sidemenu></sidemenu>
 
-<error-report-btn *ngIf="environment.beta"></error-report-btn>
+
 <div class="page padd-x20" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
   <div class="row">
     <div class="col-lg-2 padd-right-x10">
@@ -84,7 +84,7 @@
     <div class="col-lg-12">
       <div class="group-row-left center v">
         <h4 style="padding: 10px 0">{{'SYSTEM_STATUS'|translate}}</h4>
-        <button md-icon-button (click)="getStatus()"><i class="fa fa-refresh" [ngClass]="{'fa-spin': loadingStatus}"></i></button>
+        <button mat-icon-button (click)="getStatus()"><i class="fa fa-refresh" [ngClass]="{'fa-spin': loadingStatus}"></i></button>
       </div>
       <div class="group-row-left">
         <div class="status-badge marg-right-x10">

@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { environment } from '../../environment/environment';
+import { environment } from '../../environments/environment';
 import { ErrorManager } from '../error-manager/error-manager';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -204,15 +204,10 @@ export abstract class BaseService2 {
   }
 
   public extractData(res: any) {
-    const body: any = res.json();
-    return body || {};
+    return res;
   }
 
   public handleError(error: Response | any) {
-    if ('_body' in error && typeof error._body === 'string') {
-      error._body = JSON.parse(error._body);
-    }
-    this.errMan.addError(error);
     return throwError(error);
   }
 }

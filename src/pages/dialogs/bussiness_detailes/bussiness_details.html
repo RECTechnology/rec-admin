@@ -1,7 +1,7 @@
 <div class="modal-header bg-blue">
   {{'BUSSINES_DETAILS'|translate}}
 
-  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
     <span class="center h v">
       <i class="fa fa-times col-white"></i>
     </span>
@@ -13,11 +13,13 @@
   <div class="bussiness-details">
     <div class="bussiness-bg">
       <div class="overlay"></div>
-      <img src="{{bussiness.public_image || 'https://www.oxforduniversityimages.com/images/rotate/Image_Spring_17_4.gif'}}"
+      <img
+        src="{{bussiness.public_image || 'https://www.oxforduniversityimages.com/images/rotate/Image_Spring_17_4.gif'}}"
         alt="">
     </div>
     <div class="bussiness-info">
-      <img src="{{Brand.profile_default_image}}" alt="" style="margin-right: 10px; width: 60px; height: 60px; border-radius: 50%;background: #666">
+      <img src="{{Brand.profile_default_image}}" alt=""
+        style="margin-right: 10px; width: 60px; height: 60px; border-radius: 50%;background: #666">
       <div>
         <h2 class="name">{{bussiness.name}}</h2>
         <p class="address">{{address}}</p>
@@ -144,7 +146,7 @@
 
     <b style="margin-top: 15px">{{'OFFERS'|translate}}</b>
     <div *ngIf="bussiness.offers.length" style="width: 100%">
-      <div *ngFor="let offer of offers">
+      <div *ngFor="let offer of bussiness.offers">
 
       </div>
     </div>

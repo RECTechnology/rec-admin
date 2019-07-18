@@ -39,27 +39,27 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
 
   public sortID: string = 'id';
   public sortDir: string = 'desc';
-  private currencies: any[] = [];
-  private notUsedMethods: any[] = [];
-  private cryptoCurrencies: any[] = ['CREA', 'ETH', 'BTC', 'FAIR', 'FAC'];
-  private cash_in_methods: any[] = [];
-  private cash_out_methods: any[] = [];
-  private exchange_methods: any[] = [];
-  private wallet2wallet_methods: any[] = [];
-  private loadingTransactions: boolean = false;
-  private reloadingCurrency: boolean = false;
-  private showZeroBalances: boolean = localStorage.getItem('showZeroBalances') === 'hide' ? false : true;
-  private default_currency: string = '';
-  private refreshInterval: number = 25e3; // Miliseconds
-  private totalWalletTransactions: number = 0;
-  private transactions: any = {};
-  private sortedData;
-  private refreshObs;
-  private filter;
-  private userFavs = [];
-  private dateTo = getDateDMY(new Date(), '-');
-  private dateFrom = getDateDMY(new Date(Date.now() - (30 * 2 * 24 * 60 * 60 * 1000 * 4)), '-');
-  private querySub: any;
+  public currencies: any[] = [];
+  public notUsedMethods: any[] = [];
+  public cryptoCurrencies: any[] = ['CREA', 'ETH', 'BTC', 'FAIR', 'FAC'];
+  public cash_in_methods: any[] = [];
+  public cash_out_methods: any[] = [];
+  public exchange_methods: any[] = [];
+  public wallet2wallet_methods: any[] = [];
+  public loadingTransactions: boolean = false;
+  public reloadingCurrency: boolean = false;
+  public showZeroBalances: boolean = localStorage.getItem('showZeroBalances') === 'hide' ? false : true;
+  public default_currency: string = '';
+  public refreshInterval: number = 25e3; // Miliseconds
+  public totalWalletTransactions: number = 0;
+  public transactions: any = {};
+  public sortedData;
+  public refreshObs;
+  public filter;
+  public userFavs = [];
+  public dateTo = getDateDMY(new Date(), '-');
+  public dateFrom = getDateDMY(new Date(Date.now() - (30 * 2 * 24 * 60 * 60 * 1000 * 4)), '-');
+  public querySub: any;
 
   constructor(
     public titleService: Title,
@@ -67,16 +67,16 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     public router: Router,
 
     public controles: ControlesService,
-    private us: UserService,
-    private txService: TransactionService,
-    private currenciesService: CurrenciesService,
-    private dialog: MatDialog,
-    private ws: WalletService,
-    private utils: UtilsService,
+    public us: UserService,
+    public txService: TransactionService,
+    public currenciesService: CurrenciesService,
+    public dialog: MatDialog,
+    public ws: WalletService,
+    public utils: UtilsService,
     public ls: LoginService,
-    private translate: TranslateService,
-    private companyService: CompanyService,
-    private snackbar: MySnackBarSevice,
+    public translate: TranslateService,
+    public companyService: CompanyService,
+    public snackbar: MySnackBarSevice,
   ) {
     super();
     this.filter = new TxFilter(this.router);
@@ -207,7 +207,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       this.sortID = 'id';
-      this.sortDir = 'DESC';
+      this.sortDir ='desc';
       return;
     }
 
@@ -232,18 +232,18 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
 
   // This is to bypass webpack throwing errors if using dinamic image naming, ie: src="img/images/{{imgname}}.png"
   // As 'img/images/{{imgname}}.png' is not a valid image path until rendered by angular
-  private getImage(type) {
+  public getImage(type) {
     return `../../resources/img/${type}.png`;
   }
 
-  private getCurrencySmallImage(curr) {
+  public getCurrencySmallImage(curr) {
     return `../../resources/currencies/${curr}-small.png`;
   }
 
   /**
    * @param {String} currency - The currency to set as default
    */
-  private changeCurrency(currency: string): void {
+  public changeCurrency(currency: string): void {
     this.reloadingCurrency = true;
     this.currenciesService.updateCurrency(currency)
       .subscribe((resp) => {
@@ -256,7 +256,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
   }
 
   // Gets tickers for default currency
-  private getTickers(): void {
+  public getTickers(): void {
     this.currenciesService.getTickers(this.us.getDefaultCurrency())
       .subscribe((resp) => {
         const tickers = resp.data;
@@ -268,13 +268,13 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
   }
 
   // Gets methods and filters them by 'in' or 'out', also sets methods_in/out filters
-  private getMethods(): void {
+  public getMethods(): void {
     this.filter.filterOptions.methods_in = ['rec', 'eur'];
     this.filter.filterOptions.methods_out = ['rec', 'eur'];
   }
 
   // Gets the transactions with filter data and calculates buy/sell price if its an exchange
-  private async getTransactions() {
+  public async getTransactions() {
     this.loading = true;
     this.loadingTransactions = true;
 
@@ -293,7 +293,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
   }
 
   // Refreshes data each 'this.refreshInterval'
-  private setRefresh(): void {
+  public setRefresh(): void {
     // this.refreshObs = setInterval(_ => {
     //   this.getTickers();
     // }, this.refreshInterval);
@@ -305,7 +305,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
    * @param { Object } data - Properties to override in the component
    * @returns { afterClose: Observable, instance: Component instance}
   */
-  private createModal(component: any, data = {}): any {
+  public createModal(component: any, data = {}): any {
     let dialogRef: any = this.dialog.open(component);
     dialogRef.componentInstance.setReference(dialogRef);
 

@@ -1,9 +1,8 @@
-import { environment } from '../environment/environment';
-import { Brand } from '../environment/brand';
+import { environment } from '../environments/environment';
 
 export class BaseComponent {
   public environment = environment;
-  public brand = Brand;
+  public brand = environment.Brand;
   public loading: boolean = false;
   public offset: number = 0;
   public limit: number = 10;

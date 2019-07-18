@@ -76,7 +76,7 @@ export class CompanyService extends BaseService {
   public getCompanies(
     offset = 0, limit = 10,
     query = null, sort = 'id',
-    order = 'DESC',
+    order ='desc',
     active: boolean | number = true, type = null,
   ) {
     return this.get(null, { offset, limit, search: query, order, sort, active, type }, `${API_URL}/manager/v2/groups`)
@@ -116,7 +116,7 @@ export class CompanyService extends BaseService {
     return this.delete(null, `${API_URL}/manager/v1/users/${id}`);
   }
 
-  public getAllUsers(query, offset = 0, limit = 10, sort = 'id', order = 'DESC') {
+  public getAllUsers(query, offset = 0, limit = 10, sort = 'id', order ='desc') {
     return this.get(null, { search: query, offset, limit, sort, order }, `${API_URL}/manager/v2/users`).pipe(
       map((resp) => {
         resp.data.elements.map(async (u) => {

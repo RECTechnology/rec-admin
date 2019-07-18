@@ -74,7 +74,7 @@
             <button [disabled]="loading || disabled || !credentials.username || !credentials.password " type="button" (click)="doLogin()"
               name="button" id="login-btn">
               <div class="center v h">
-                <mat-progress-spinner color="primary" mode="indeterminate" style="width: 20px; height: 20px" *ngIf="loading">
+                <mat-progress-spinner [diameter]="20" color="primary" mode="indeterminate" style="width: 20px; height: 20px" *ngIf="loading">
                 </mat-progress-spinner>
                 <span style="margin-left: 10px">{{'SIGN_IN'|translate}}</span>
               </div>

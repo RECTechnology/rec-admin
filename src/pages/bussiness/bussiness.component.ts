@@ -279,7 +279,7 @@ export class BussinessComponent extends PageBase {
     if (!sort.active || sort.direction === '') {
       this.sortedData = this.bussinessList.slice();
       this.sortID = 'id';
-      this.sortDir = 'DESC';
+      this.sortDir ='desc';
     } else {
       this.sortID = sort.active;
       this.sortDir = sort.direction.toUpperCase();

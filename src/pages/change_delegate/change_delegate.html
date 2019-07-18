@@ -1,7 +1,7 @@
 <header-nav></header-nav>
 <sidemenu></sidemenu>
 
-<error-report-btn *ngIf="environment.beta"></error-report-btn>
+
 <div class="page padd-x20" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
   <!-- <in-development></in-development> -->
   <div class="wallet-transactions bg-white" style="margin-top: 0">
@@ -79,7 +79,7 @@
                 {{'Cancel'|translate}}
               </button>
 
-              <button md-icon-button [matMenuTriggerFor]="actions" *ngIf="change.status == 'draft'">
+              <button mat-icon-button [matMenuTriggerFor]="actions" *ngIf="change.status == 'draft'">
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
@@ -104,7 +104,7 @@
         <p class="small-text-2">{{'NO_DELEGATE_CHANGES_YET'|translate}}</p>
       </div>
       <div class="abs-center center h v bg-white-opaque" style="width: 100%;height: 100%" *ngIf="loadingList">
-        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
         </mat-progress-spinner>
       </div>
       <mat-paginator [length]="total" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"

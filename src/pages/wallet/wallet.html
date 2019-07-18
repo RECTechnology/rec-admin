@@ -9,18 +9,18 @@
         <input type="text" class="input border-radius-2" style="width: 85%"
           placeholder="{{'Search by id i.e: 5c1929ea5a5c980c8a3ded33'|translate}}..." [(ngModel)]="filter.search"
           (keyup.enter)="search();" (keyup)="filter.filterModified = true;">
-        <button md-icon-button style="margin-left: 8px" (click)="getTransactions()">
+        <button mat-icon-button style="margin-left: 8px" (click)="getTransactions()">
           <span class="center h v">
             <i class="fa fa-search small-text-2"></i>
           </span>
         </button>
-        <button md-icon-button style="margin-left: 8px" (click)="exportCSV()"
+        <button mat-icon-button style="margin-left: 8px" (click)="exportCSV()"
           matTooltip="{{'EXPORT_TXS_AS_CSV'|translate}}">
           <span class="center h v">
             <i class="fa fa-download small-text-2"></i>
           </span>
         </button>
-        <button md-icon-button style="margin-left: 8px" title="Clear filters" (click)="filter.clearFilter()"
+        <button mat-icon-button style="margin-left: 8px" title="Clear filters" (click)="filter.clearFilter()"
           *ngIf="filter.filterModified">
           <span class="center h v">
             <i class="fa fa-times col-error small-text-2"></i>
@@ -90,7 +90,7 @@
                 [ngClass]="{'col-blue': tx.receiver_type === 'PRIVATE', 'col-orange': tx.receiver_type === 'COMPANY'}">{{tx.receiver_type}}</span>
             </td>
             <td>
-              <code>{{tx.amount|number}} Ɍ</code> 
+              <code>{{tx.amount|number}} Ɍ</code>
             </td>
             <td>
               <span class="badge bg-gray small-text" style="text-transform: capitalize; min-width: 100px">
@@ -98,8 +98,8 @@
               </span>
             </td>
             <td>
-              <span class="fas fa-check col-success" *ngIf="internal"></span>
-              <span class="fas fa-times col-gray-light" *ngIf="!internal"></span>
+              <span class="fas fa-check col-success" *ngIf="tx.internal"></span>
+              <span class="fas fa-times col-gray-light" *ngIf="!tx.internal"></span>
               <!-- {{tx.internal ? 'Internal': 'Not Internal'}} -->
             </td>
             <td>
@@ -112,7 +112,7 @@
               <span class="circle bg-{{tx.status}}" *ngIf="utils.isMobileDevice"></span>
             </td>
             <td>
-              <button mat-button [matMenuTriggerFor]="actions" class="icon-btn-small" md-icon-button>
+              <button mat-button [matMenuTriggerFor]="actions" class="icon-btn-small" mat-icon-button>
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
@@ -126,7 +126,7 @@
           </tr>
         </tbody>
         <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-          <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+          <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
           </mat-progress-spinner>
         </div>
       </table>

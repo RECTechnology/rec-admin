@@ -1,7 +1,7 @@
 <div class="modal-header bg-blue">
     <span>{{('EXPORT'|translate) + '  ' + (entityName|translate)}}</span>
 
-    <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
+    <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
         <span class="center h v">
             <i class="fa fa-times col-white"></i>
         </span>
@@ -10,7 +10,7 @@
 
 <div class="group-col-left padd-x20" style="position: relative; max-height: 80vh; overflow-y: auto;">
     <div class="overlay center v h" *ngIf="loading">
-        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
         </mat-progress-spinner>
     </div>
 

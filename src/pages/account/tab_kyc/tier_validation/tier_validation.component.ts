@@ -19,18 +19,21 @@ export class Tier1Form implements OnInit {
   public tierPendingSince: string;
   public tierStatus: string;
   public kycData: any = {};
+
+  public kycFormOpen: any = false;
+
   @Input() public tier: number = 0;
   @Input() public parent: any = {};
   @Input() public uploadButtons: boolean = true;
   @Input() public showRequirementsList: boolean = true;
-  private loading = false;
+  public loading = false;
   constructor(
-    private dialog: MatDialog,
-    private titleService: Title,
-    private route: ActivatedRoute,
-    private us: UserService,
-    private companyService: CompanyService,
-    private snackBar: MySnackBarSevice,
+    public dialog: MatDialog,
+    public titleService: Title,
+    public route: ActivatedRoute,
+    public us: UserService,
+    public companyService: CompanyService,
+    public snackBar: MySnackBarSevice,
   ) { }
 
   public setupKYCdata() {
@@ -113,5 +116,9 @@ export class Tier1Form implements OnInit {
 
   public returnBack() {
     this.parent.closeKycValidation();
+  }
+
+  public changedPage($evt?) {
+    return;
   }
 }

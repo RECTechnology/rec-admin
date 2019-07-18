@@ -17,6 +17,7 @@ export class VoteWithdrawal {
   public withdrawal: any = {};
   public validation: any = {};
   public decision: boolean = false;
+  public loading: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<VoteWithdrawal>,

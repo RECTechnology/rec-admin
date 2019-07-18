@@ -17,10 +17,10 @@
         <div class="group-row-left">
             <input type="date" class="input border-radius-2" [(ngModel)]="date" (keyup.enter)="newChange()">
             <input type="time" class="input border-radius-2" [(ngModel)]="time" (keyup.enter)="newChange()">
-            <button md-icon-button title="{{'CREATE_CHANGE'|translate}}" (click)="newChange()">
+            <button mat-icon-button title="{{'CREATE_CHANGE'|translate}}" (click)="newChange()">
                 <i class="fa fa-plus"></i>
             </button>
-            <button md-icon-button title="{{'DISCARD_CHANGE'|translate}}" (click)="hideNewChange()">
+            <button mat-icon-button title="{{'DISCARD_CHANGE'|translate}}" (click)="hideNewChange()">
                 <i class="fa fa-times"></i>
             </button>
         </div>

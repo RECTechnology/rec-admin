@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserService } from '../user.service';
-import { environment } from '../../environment/environment';
+import { environment } from '../../environments/environment';
 import { ErrorManager } from '../error-manager/error-manager';
 import { XHR } from '../xhr/xhr';
 import { API_URL } from '../../data/consts';
@@ -73,23 +73,24 @@ export class BaseService {
       ...overwriteHeaders,
     });
 
-    const searchParams: URLSearchParams = new URLSearchParams();
+    let searchParams: HttpParams = new HttpParams();
 
     if (params instanceof Array) {
       for (const param of params) {
         if (String(param.value).toString() === '[object Object]') {
           param.value = JSON.stringify(param.value);
         }
-        searchParams.append(param.key, param.value);
+        searchParams = searchParams.append(param.key, param.value);
       }
     } else if (params) {
       for (const key in params) {
         if (key) {
+          console.log('adding param', key);
           let param = params[key];
           if (String(param).toString() === '[object Object]') {
             param = JSON.stringify(param);
           }
-          searchParams.append(key, param);
+          searchParams = searchParams.append(key, param);
         }
       }
     }
@@ -98,8 +99,7 @@ export class BaseService {
 
     const options = {
       headers,
-      method: 'GET',
-      search: searchParams,
+      params: searchParams,
       ...overwriteOptions,
     };
 
@@ -160,13 +160,13 @@ export class BaseService {
 
     let params = data;
     if (content_type === 'application/x-www-form-urlencoded') {
-      params = new URLSearchParams();
+      params = new HttpParams();
       for (const key in data) {
         if (key !== 'grant_types') { params.set(key, data[key]); }
       }
       if (data.grant_types) {
         for (const gtype of data.grant_types) {
-          params.append('allowed_grant_types[]', gtype);
+          params = params.append('allowed_grant_types[]', gtype);
         }
       }
       params = params.toString();
@@ -233,13 +233,13 @@ export class BaseService {
 
     let params = null;
     if (content_type === 'application/x-www-form-urlencoded') {
-      params = new URLSearchParams();
+      params = new HttpParams();
       for (const key in data) {
         if (key !== 'grant_types') { params.set(key, data[key]); }
       }
       if (data.grant_types) {
         for (const gtype of data.grant_types) {
-          params.append('allowed_grant_types[]', gtype);
+          params = params.append('allowed_grant_types[]', gtype);
         }
       }
     }
@@ -264,24 +264,10 @@ export class BaseService {
   }
 
   public extractData(res: any) {
-    try {
-      const bodyJson: any = res.json();
-      return bodyJson || {};
-    } catch (error) {
-      const bodyText: any = res.text();
-      return bodyText || '';
-    }
+    return res;
   }
 
   public handleError(error: Response | any) {
-    if ('_body' in error && typeof error._body === 'string') {
-      error._body = JSON.parse(error._body);
-    }
-    if (error._body.error === 'invalid_grant') {
-      this.us.logout();
-    }
-
-    this.errMan.addError(error);
     return throwError(error);
   }
 }

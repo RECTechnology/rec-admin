@@ -25,11 +25,11 @@ export class CompaniesComponent extends PageBase implements AfterContentInit {
   public pageName = 'Companies';
 
   constructor(
-    private controles: ControlesService,
-    private us: UserService,
-    private dialog: MatDialog,
+    public controles: ControlesService,
+    public us: UserService,
+    public dialog: MatDialog,
     public titleService: Title,
-    private snackbar: MySnackBarSevice,
+    public snackbar: MySnackBarSevice,
     public ls: LoginService,
   ) {
     super();
@@ -65,6 +65,10 @@ export class CompaniesComponent extends PageBase implements AfterContentInit {
         this.removeAccount(account, index);
       }
     });
+  }
+
+  public changedPage($evt?) {
+    return;
   }
 
   private removeAccount(account, index) {

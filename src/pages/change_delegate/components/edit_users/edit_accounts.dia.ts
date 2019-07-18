@@ -28,6 +28,7 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
   public exchangerQuery = '';
   public exchangers: any[] = [];
   public filtered: any[] = [];
+  public isSingleEdit: boolean = false;
 
   constructor(
     public currencies: CurrenciesService,

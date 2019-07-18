@@ -1,7 +1,7 @@
 <header-nav></header-nav>
 <sidemenu></sidemenu>
 
-<error-report-btn *ngIf="environment.beta"></error-report-btn>
+
 <div class="page padd-x20" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
   <div class="header" style="border: none; height: auto">
     <div class="center v h column" style="width: 100%; padding: 15px 0">
@@ -45,7 +45,7 @@
                 <b>{{acc.name}}</b>
               </td>
               <td>
-                <button md-icon-button [matMenuTriggerFor]="options" class="icon-btn-small">
+                <button mat-icon-button [matMenuTriggerFor]="options" class="icon-btn-small">
                   <p class="small-text center v h">
                     <i class="fa fa-ellipsis-v"></i>
                   </p>
@@ -60,7 +60,7 @@
               </td>
             </tr>
             <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-              <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+              <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
               </mat-progress-spinner>
             </div>
           </table>

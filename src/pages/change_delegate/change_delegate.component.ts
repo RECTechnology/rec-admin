@@ -36,6 +36,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
   public validationErrors: any[] = [];
   public loadingList = true;
 
+
   constructor(
     public titleService: Title,
     public ls: LoginService,
@@ -142,6 +143,10 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
       .subscribe((resp) => {
         this.search();
       });
+  }
+
+  public cancelChange() {
+    return;
   }
 
   public sortData(sort: Sort): void {

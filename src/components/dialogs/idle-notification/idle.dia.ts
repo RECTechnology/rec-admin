@@ -10,7 +10,7 @@ import { UtilsService } from '../../../services/utils/utils.service';
 export class IdleNotification {
   constructor(
     public dialogRef: MatDialogRef<IdleNotification>,
-    private utils: UtilsService,
+    public utils: UtilsService,
   ) { }
 
   public resetCounter() {
@@ -19,7 +19,7 @@ export class IdleNotification {
     this.close();
   }
 
-  public close(): void {
+  public close(e?): void {
     this.utils._idleSecondsCounter = 0;
     localStorage.setItem('session_status', 'active');
     this.dialogRef.close();

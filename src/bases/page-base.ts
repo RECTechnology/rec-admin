@@ -2,7 +2,7 @@ import { BaseComponent } from './base-component';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AfterContentInit, OnInit } from '@angular/core';
-import { Brand } from '../environment/brand';
+import { environment } from '../environments/environment';
 import { LoginService } from '../services/auth.service';
 
 export interface PageBase {
@@ -39,7 +39,7 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   public abstract titleService: Title;
   public abstract pageName: string;
   public abstract ls: LoginService;
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
 
   constructor() {
     super();
@@ -65,7 +65,7 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
     }
 
     this.loading = false;
-    this.setTitle(Brand.title + ' | ' + this.pageName);
+    this.setTitle(this.Brand.title + ' | ' + this.pageName);
   }
 
   public setTitle(title): void {

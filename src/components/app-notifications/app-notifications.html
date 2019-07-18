@@ -1,11 +1,10 @@
 <div>
-  <button [matMenuTriggerFor]="notifMenu" type="button" mat-icon-button style="margin-right: 10px" matBadge="4"
-    matBadgeOverlap="false">
-    <span class="center h v">
+  <button [matMenuTriggerFor]="notifMenu" type="button" mat-icon-button style="margin-right: 20px">
+    <span class="center h v" matBadge="{{ns.count}}" matBadgeOverlap="true" color="primary">
       <i *ngIf="ns.hasNotifications" class="fa fa-bell"></i>
       <i *ngIf="!ns.hasNotifications" class="fa fa-bell" style="opacity: 0.4"></i>
     </span>
-    <span *ngIf="ns.hasNotifications" class="badge badge-pill badge-danger abs-top-right small-text">{{ns.count}}</span>
+    <!-- <span *ngIf="ns.hasNotifications" class="badge badge-pill badge-danger abs-top-right small-text">{{ns.count}}</span> -->
   </button>
   <mat-menu #notifMenu="matMenu" y-position="below" overlapTrigger="false">
     <div mat-menu-item disabled *ngIf="!ns.hasNotifications">

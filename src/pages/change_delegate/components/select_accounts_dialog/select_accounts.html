@@ -1,6 +1,6 @@
 <div class="modal-header bg-blue">
   <span>{{'SELECT_ACCOUNTS'|translate}}</span>
-  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
     <span class="center h v">
       <i class="fa fa-times col-white"></i>
     </span>
@@ -39,7 +39,7 @@
         </tbody>
       </table>
       <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
         </mat-progress-spinner>
       </div>
       <div class="group-col-left center h v" style="width: 100%; padding: 15px 0;border-top: 1px solid #ddd"

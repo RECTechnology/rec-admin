@@ -1,6 +1,6 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'beta-terms',
@@ -9,7 +9,7 @@ import { Brand } from '../../../environment/brand';
 
 export class BetaTerms {
 
-  public brand = Brand;
+  public brand = environment.Brand;
 
   constructor(
     public dialogRef: MatDialogRef<BetaTerms>,

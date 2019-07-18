@@ -1,8 +1,8 @@
 <div style="position: relative">
     <table class="left-align" matSort [matSortDirection]="sortDir" [matSortActive]="sortId"
         (matSortChange)="sortData($event)">
-        <tr>
-            <th *ngFor="let header of headers" style="color: #555!important" mat-sort-header="{{header.sort}}">
+        <tr class="bordered-bottom">
+            <th *ngFor="let header of headers" mat-sort-header="{{header.sort}}">
                 {{header.title|translate}}</th>
             <th *ngIf="itemOptions"></th>
         </tr>
@@ -51,14 +51,14 @@
         </tr>
     </table>
     <div *ngIf="showLoader && loading" class="abs-center center h v bg-white-opaque" style="width: 100%;">
-        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
         </mat-progress-spinner>
     </div>
 
     <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="!loading && data.length <= 0">
         <p class="small-text-2">{{noItemsMessage|translate}}</p>
     </div>
-    <mat-paginator *ngIf="showPaginator" [length]="total" [(pageSize)]="limit" (page)="changedPage($event)"
-        [pageSizeOptions]="[5, 10, 25, 100]">
+    <mat-paginator *ngIf="showPaginator && data.length" [length]="total" [(pageSize)]="limit"
+        (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
 </div>

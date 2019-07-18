@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { environment } from '../environment/environment';
+import { environment } from '../environments/environment';
 let api_url;
 let client_id;
 let client_secret;

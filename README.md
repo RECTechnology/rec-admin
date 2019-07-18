@@ -1,27 +1,59 @@
-# RecAdmin
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+[ng-img]: https://img.shields.io/badge/Version-v4.3.3-blue.svg
+[node-img]: https://img.shields.io/badge/Version-v6.11.2-blue.svg
+[wp-img]: https://img.shields.io/badge/Version-v5.3.0-blue.svg
+[npm-img]: https://img.shields.io/badge/Version-v2.2.1-blue.svg
 
-## Development server
+# [<img src="https://rec.barcelona/wp-content/uploads/2018/04/Group-3151.png" width="25" />](https://admin.rec.barcelona) [REC Barcelona (Admin Panel)](https://admin.rec.barcelona)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Panel de administracion para [rec.barcelona](https://rec.barcelona)
 
-## Code scaffolding
+## Information
+### Build Status
+[![CircleCI](https://circleci.com/gh/QbitArtifacts/rec-admin.svg?style=svg&circle-token=de5e8c8c8e7506b96c5c73f933530bb69b6ea988)](https://circleci.com/gh/QbitArtifacts/rec-admin)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Project Dependencies versions
+| Angular                  | Node                       | Npm                        | Webpack                  |
+| ------------------------ | -------------------------- | -------------------------- | ------------------------ |
+| [![ngVersion][ng-img]]() | [![ngVersion][node-img]]() | [![ngVersion][node-img]]() | [![ngVersion][wp-img]]() |
 
-## Build
+### Usefull Links
+* [Angular](https://angular.io)
+* [Angular Material](https://material.angular.io)
+* [Theming](https://material.angular.io/guide/theming)
+* [Webpack](https://webpack.js.org/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Development
+Please check [this wiki](https://github.com/QbitArtifacts/bootstrap/wiki/Development) out for internal documentation on how we develop.
 
-## Running unit tests
+### Setting Up
+1. Install dependecies `npm install`
+2. Run dev server `npm serve` will start a server at `http://127.0.0.1:8080`
+3. App starts at `app/main.ts`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Building App
+#### Development
+1. Run `npm run build:dev`
+2. App is available at: `/prod/index.html`
+3. It's ready
+   
+#### Production
+1. Run `npm run build:prod`
+2. App is available at: `/prod/index.html`
+3. It's ready
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Package Scripts
+* `build:dev`  - Build dev app, with dev credentials
+* `build:prod` - Build production app, minified and compressed
 
-## Further help
+* `serve` - Serves with current environment
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* `last-tag` - Returns the lastest tag
+* `e2e` - runs e2e tests with protractor
+* `e2e:headless` - runs e2e tests in headless mode with protractor
+
+* `sass:theme` - Compile the theme
+* `sass:theme:w` - Compile the theme and watches
+  * Compiles: `/resources/css/theme.scss`
+  * Outputs to: `/resources/css/theme.css`

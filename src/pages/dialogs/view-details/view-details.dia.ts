@@ -3,7 +3,7 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import BaseDialog from '../../../bases/dialog-base';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 import { SmsService } from '../../../services/sms/sms.service';
 import { ConfirmationMessage } from '../../../components/dialogs/confirmation-message/confirmation.dia';
 import { ManageSms } from '../manage-sms/manage-sms.dia';
@@ -18,7 +18,7 @@ import { AdminService } from '../../../services/admin/admin.service';
 export class ViewDetails extends BaseDialog implements OnInit {
   public user: any = {};
   public parent: any;
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
   constructor(
     public dialogRef: MatDialogRef<ViewDetails>,
     public snackBar: MySnackBarSevice,

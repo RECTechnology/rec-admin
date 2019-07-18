@@ -154,7 +154,7 @@ export class AdminService extends BaseService {
         return this.get(null, null, `${API_URL}/admin/v1/delegated_changes`);
     }
 
-    public getChangeDelegateDataList(id, offset = 0, limit = 10, sort = 'id', order = 'DESC', search = '') {
+    public getChangeDelegateDataList(id, offset = 0, limit = 10, sort = 'id', order ='desc', search = '') {
         return this.get(null, {
             delegated_change_id: id,
             limit, offset, order, search, sort,

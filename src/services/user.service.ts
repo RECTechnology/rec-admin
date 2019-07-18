@@ -2,7 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { XHR } from './xhr/xhr';
 import { API_URL } from '../data/consts';
 import { ErrorManager } from './error-manager/error-manager';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -154,7 +154,7 @@ export class UserService {
       'content-type': 'application/x-www-form-urlencoded',
     });
     const options = ({ headers });
-    const params = new URLSearchParams();
+    const params = new HttpParams();
 
     params.set('user_dni', email);
     params.set('role', role);
@@ -181,7 +181,7 @@ export class UserService {
       'content-type': 'application/x-www-form-urlencoded',
     });
     const options = ({ headers, method: 'POST' });
-    const params = new URLSearchParams();
+    const params = new HttpParams();
 
     for (const key in data) {
       if (key) {
@@ -236,42 +236,19 @@ export class UserService {
   public getCurrency() {
     return this.userData.group_data.default_currency;
   }
-
-  public searchMap(search, filter, offset = 0, limit = 10, sort = 'id', order = 'DESC', rect_box = [-90, -90, 90, 90]) {
-    const headers = this.getHeaders();
-    const options: any = ({ headers });
-
-    const searchParams = new URLSearchParams();
-    searchParams.set('query', JSON.stringify({
-      rect_box,
-      search,
-    }));
-    searchParams.set('only_with_offers', filter.only_offers);
-    searchParams.set('subtype', filter.retailer ? 'retailer' : (filter.wholesale ? 'wholesale' : null));
-    searchParams.set('offset', String(offset));
-    searchParams.set('limit', String(limit || 10));
-    searchParams.set('order', order);
-    searchParams.set('sort', sort);
-
-    options.search = searchParams;
-
-    return this.http.get(`${API_URL}/public/v2/map`, options)
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this)),
-      );
-  }
-
   // /map/v1/visibility
   public getListOfRecSellers(offset, limit, search, sort = 'id', dir = 'desc') {
     const headers = this.getHeaders();
     const options: any = ({ headers, method: 'GET' });
-    options.search = new URLSearchParams();
-    options.search.set('offset', String(offset));
-    options.search.set('limit', String(limit));
-    options.search.set('search', String(search));
-    options.search.set('sort', String(sort));
-    options.search.set('dir', String(dir));
+    options.search = new HttpParams({
+      fromObject: {
+        dir,
+        limit,
+        offset,
+        search,
+        sort,
+      },
+    });
 
     return this.http.get(`${API_URL}/user/v1/wallet/exchangers`, options)
       .pipe(
@@ -283,14 +260,14 @@ export class UserService {
   public listMap(search, filter) {
     const headers = this.getHeaders();
     const options: any = ({ headers, method: 'GET' });
-    options.search = new URLSearchParams();
+    let params = new HttpParams();
 
     if (search) {
-      options.search.set('search', search);
+      params = params.set('search', search);
     }
-    if (filter.only_offers) { options.search.set('only_offers', filter.only_offers); }
-    if (filter.retailer) { options.search.set('retailer', filter.retailer); }
-    if (filter.wholesale) { options.search.set('wholesale', filter.wholesale); }
+    if (filter.only_offers) { params = params.set('only_offers', filter.only_offers); }
+    if (filter.retailer) { params = params.set('retailer', filter.retailer); }
+    if (filter.wholesale) { params = params.set('wholesale', filter.wholesale); }
 
     // /public/map/v1/list
     return this.http.get(`${API_URL}/public/map/v1/list`, options)
@@ -310,7 +287,7 @@ export class UserService {
     ).pipe(
       map((res: any) => {
         console.log('res', res);
-        const body = res.json();
+        const body = res;
         body.data.group_data.wallets[0].available = body.data.group_data.wallets[0].available / 100000000;
         body.data.group_data.wallets[0].balance = body.data.group_data.wallets[0].balance / 100000000;
 
@@ -349,17 +326,10 @@ export class UserService {
       'content-type': 'application/x-www-form-urlencoded',
     });
     const options = ({ headers, method: 'POST' });
-    const params = new URLSearchParams();
-
-    for (const key in data) {
-      if (key) {
-        params.set(key, data[key]);
-      }
-    }
 
     return this.http.post(
       `${API_URL}/user/v1/save_kyc`,
-      params.toString(),
+      data,
       options,
     ).pipe(
       map(this.extractData),
@@ -419,12 +389,9 @@ export class UserService {
     });
     const options = ({ headers, method: 'POST' });
 
-    const params = new URLSearchParams();
-    params.append('pin', code);
-
     return this.http.post(
       `${API_URL}/user/v1/show2fa`,
-      params.toString(),
+      { pin: code },
       options,
     ).pipe(
       map(this.extractData),
@@ -486,13 +453,11 @@ export class UserService {
     });
     const options = ({ headers, method: 'PUT' });
 
-    const params = new URLSearchParams();
-
-    params.set('profile_image', src);
+    const params = new HttpParams().set('profile_image', src);
 
     return this.http.put(
       `${API_URL}/user/v1/profile_image`,
-      params.toString(),
+      { profile_image: src },
       options,
     ).pipe(
       map(this.extractData),
@@ -536,17 +501,11 @@ export class UserService {
     this.onLogout.emit();
   }
 
-  private extractData(res: any) {
-    console.log(res);
-    const body = res.json();
-    return body ? body.data : (body || {});
+  public extractData(res: any) {
+    return res;
   }
 
-  private handleError(error: Response | any) {
-    if ('_body' in error) {
-      error._body = JSON.parse(error._body);
-    }
-    this.errMan.addError(error);
+  public handleError(error: Response | any) {
     return throwError(error);
   }
 }

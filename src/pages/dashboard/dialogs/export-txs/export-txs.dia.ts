@@ -12,7 +12,6 @@ import { TxFilter } from '../../../../components/filter/filter';
   selector: 'export-txs',
   templateUrl: './export-txs.html',
 })
-
 export class ExportTxsDia extends BaseDialog {
   public data: any = {};
   public dateFrom: Date | any = null;
@@ -26,9 +25,9 @@ export class ExportTxsDia extends BaseDialog {
   constructor(
     public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<ExportTxsDia>,
-    private us: UserService,
-    private ws: WalletService,
-    private txService: TransactionService,
+    public us: UserService,
+    public ws: WalletService,
+    public txService: TransactionService,
   ) {
     super();
     this.filter = new TxFilter();
@@ -119,7 +118,7 @@ export class ExportTxsDia extends BaseDialog {
     this.dialogRef.close();
   }
 
-  private getTransactions(): void {
+  public getTransactions(): void {
     this.loading = true;
     const filterData = this.filter.getFilterData(0, 100000, this.dateFrom, this.dateTo);
 

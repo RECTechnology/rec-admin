@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import BaseDialog from '../../../bases/dialog-base';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 import { UtilsService } from '../../../services/utils/utils.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { UtilsService } from '../../../services/utils/utils.service';
 export class ViewDetailsAccount extends BaseDialog implements OnInit {
   public account: any = {};
   public parent: any;
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
 
   public address = '';
 
@@ -33,4 +33,6 @@ export class ViewDetailsAccount extends BaseDialog implements OnInit {
   public openEditAccount() {
     this.parent.openEditAccount(this.account);
   }
+
+  public expelUser() { return; }
 }

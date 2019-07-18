@@ -365,14 +365,12 @@ export class RegisterService {
       catchError(this.handleError.bind(this)),
     );
   }
-  private extractData(res: any) {
-    return res.json() || {};
+
+  public extractData(res: any) {
+    return res;
   }
-  private handleError(error: Response | any) {
-    if ('_body' in error) {
-      error._body = JSON.parse(error._body);
-    }
-    this.errMan.addError(error);
+
+  public handleError(error: Response | any) {
     return throwError(error);
   }
 }
@@ -399,15 +397,12 @@ export class ValidateService {
     );
   }
 
-  private extractData(res: Response) {
-    const body = res.json();
-    return body || {};
+
+  public extractData(res: any) {
+    return res;
   }
-  private handleError(error: Response | any) {
-    if ('_body' in error) {
-      error._body = JSON.parse(error._body);
-    }
-    this.errMan.addError(error);
+
+  public handleError(error: Response | any) {
     return throwError(error);
   }
 }
@@ -440,15 +435,12 @@ export class ForgotPassService {
     );
   }
 
-  private extractData(res: Response) {
-    const body = res.json();
-    return body || {};
+
+  public extractData(res: any) {
+    return res;
   }
-  private handleError(error: Response | any) {
-    if ('_body' in error) {
-      error._body = JSON.parse(error._body);
-    }
-    this.errMan.addError(error);
+
+  public handleError(error: Response | any) {
     return throwError(error);
   }
 }

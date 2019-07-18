@@ -1,7 +1,7 @@
 <header-nav></header-nav>
 <sidemenu></sidemenu>
 
-<error-report-btn *ngIf="environment.beta"></error-report-btn>
+
 <div class="page padd-x20" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
   <div class="new-delegate bg-white" style="margin-top: 0; position: relative;">
 
@@ -13,14 +13,14 @@
         <div *ngIf="changeScheduled" class="group-row-left center v">
           <input class="input border-radius-2" type="date" [(ngModel)]="dateScheduled">
           <input class="input border-radius-2" type="time" [(ngModel)]="timeScheduled">
-          <button md-icon-button (click)="saveScheduled()">
+          <button mat-icon-button (click)="saveScheduled()">
             <span class="fa fa-save"></span>
           </button>
         </div>
-        <button *ngIf="!changeScheduled" md-icon-button (click)="editScheduledAt()">
+        <button *ngIf="!changeScheduled" mat-icon-button (click)="editScheduledAt()">
           <span class="fa fa-edit"></span>
         </button>
-        <button *ngIf="changeScheduled" md-icon-button (click)="closeScheduledAt()">
+        <button *ngIf="changeScheduled" mat-icon-button (click)="closeScheduledAt()">
           <span class="fa fa-times"></span>
         </button>
 
@@ -104,7 +104,7 @@
               <b *ngIf="data.cvv2">{{data.cvv2}}</b>
             </td>
             <td>
-              <button md-icon-button [matMenuTriggerFor]="actions">
+              <button mat-icon-button [matMenuTriggerFor]="actions">
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
@@ -137,7 +137,7 @@
       </div>
 
       <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
         </mat-progress-spinner>
       </div>
     </div>
@@ -185,7 +185,7 @@
               <b *ngIf="data.cvv2">{{data.cvv2}}</b>
             </td>
             <td>
-              <button md-icon-button [matMenuTriggerFor]="actions">
+              <button mat-icon-button [matMenuTriggerFor]="actions">
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
@@ -210,7 +210,7 @@
       </div>
 
       <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
         </mat-progress-spinner>
       </div>
     </div>
@@ -240,7 +240,7 @@
 
     <!-- Loader -->
     <div class="overlay group-col-left center h v" *ngIf="savingEntries">
-      <mat-progress-spinner color="primary" mode="determinate" [value]="percentageSent"
+      <mat-progress-spinner [diameter]="40" color="primary" mode="determinate" [value]="percentageSent"
         style="width: 40px; height: 40px"></mat-progress-spinner>
       <p class="small-text-1">
         Sending: <b>{{objectsSent}} of {{objectsToSend}}</b>

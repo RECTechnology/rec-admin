@@ -2,7 +2,7 @@
   <b class="small-text">{{label|translate}}: </b>
   <div class="group-row-left" style="width: 100%">
     <input type="{{type}}" class="user-input small no-margin" style="margin-right: 10px!important" [(ngModel)]="value" [disabled]="disabled"
-      placeholder="{{(placeHolder || label)|translate}}" [ngClass]="{'col-error': badValue}" (input)="changed()" step="0.000000001">
+      placeholder="{{(placeholder || label)|translate}}" [ngClass]="{'col-error': badValue}" (input)="changed()" step="0.000000001">
     <ng-content></ng-content>
   </div>
 </div>

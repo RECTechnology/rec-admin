@@ -1,11 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UserService } from '../../services/user.service';
-import { Brand } from '../../environment/brand';
-import { ErrorReporter } from '../dialogs/error-report/error-report.dia';
+import { environment } from '../../environments/environment';
 import { MatDialog } from '@angular/material';
 import { UtilsService } from '../../services/utils/utils.service';
-import { environment } from '../../environment/environment';
 
 @Component({
   selector: 'sidemenu',
@@ -13,7 +11,7 @@ import { environment } from '../../environment/environment';
   templateUrl: '../../components/sidemenu/sidemenu.html',
 })
 export class SidemenuComponent implements OnInit {
-  public brand = Brand;
+  public brand = environment.Brand;
   public environment = environment;
   public loadEnded = false;
   @Input() public collapsed = null;
@@ -25,10 +23,10 @@ export class SidemenuComponent implements OnInit {
   };
 
   constructor(
-    private contrService: ControlesService,
-    private us: UserService,
-    private dialog: MatDialog,
-    private utils: UtilsService,
+    public contrService: ControlesService,
+    public us: UserService,
+    public dialog: MatDialog,
+    public utils: UtilsService,
   ) { }
 
   public ngOnInit() {
@@ -46,13 +44,5 @@ export class SidemenuComponent implements OnInit {
       this.contrService.toggleSidemenu();
     }
     this.contrService.toggleProfileDropDown(false);
-  }
-
-  public openErrorReporter(): void {
-    this.clickedItem();
-    let dialogRef = this.dialog.open(ErrorReporter);
-    dialogRef.afterClosed().subscribe((resp) => {
-      dialogRef = null;
-    });
   }
 }

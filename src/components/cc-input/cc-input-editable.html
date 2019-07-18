@@ -2,5 +2,5 @@
   <p class="label" style="min-width: 150px" sandbox-test-data>{{label|translate}}</p>
   <p class="label_value name" *ngIf="!edit">{{value ||('Not filled in yet'|translate)}}</p>
   <input type="{{type}}" *ngIf="edit" class="user-input small no-margin width-auto" style="margin-right: 10px!important" [(ngModel)]="value"
-    [disabled]="disabled" placeholder="{{(placeHolder || label) | translate}}" [ngClass]="{'col-error': badValue}" (input)="changed()" step="0.000000001">
+    [disabled]="disabled" placeholder="{{(placeholder || label) | translate}}" [ngClass]="{'col-error': badValue}" (input)="changed()" step="0.000000001">
 </div>

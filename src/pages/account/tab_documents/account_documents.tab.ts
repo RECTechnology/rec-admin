@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { EditAccountData } from '../../dialogs/edit-account/edit-account.dia';
@@ -20,7 +20,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
   public loading = false;
   public account_id = null;
   public owner = null;
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
   public address = '';
   public type = '';
   public alreadyValidated = false;

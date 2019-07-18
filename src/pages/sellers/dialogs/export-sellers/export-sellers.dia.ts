@@ -32,7 +32,7 @@ export class ExportExchangersDia extends BaseDialog {
     'city', 'street', 'street_type', 'address_number', 'zip', 'cif', 'tier',
   ];
 
-  private preview = '';
+  public preview = '';
 
   constructor(
     public currencies: CurrenciesService,

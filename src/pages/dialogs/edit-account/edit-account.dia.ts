@@ -31,6 +31,8 @@ export class EditAccountData {
   public viewManageOffers = false;
 
   public schedule = '';
+  public error: string;
+  public loading: boolean;
 
   public langMap = {
     cat: 'cat',
@@ -42,11 +44,11 @@ export class EditAccountData {
     public dialogRef: MatDialogRef<EditAccountData>,
     public snackBar: MySnackBarSevice,
     public utils: UtilsService,
-    private us: UserService,
+    public us: UserService,
     public dialog: MatDialog,
     public translate: TranslateService,
-    private companyService: CompanyService,
-    private adminService: AdminService,
+    public companyService: CompanyService,
+    public adminService: AdminService,
   ) {
     this.lang = this.langMap[us.lang];
     this.companyService.listCategories()
@@ -63,7 +65,7 @@ export class EditAccountData {
     delete this.accountCopy.kyc_validations;
   }
 
-  public close(account): void {
+  public close(account = {}): void {
     this.dialogRef.close(JSON.stringify(account));
   }
 

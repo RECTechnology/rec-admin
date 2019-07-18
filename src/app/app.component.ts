@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, AfterContentInit, HostListener, AfterView
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { AppService } from 'src/services/app.service';
-import { environment } from 'src/environment/environment';
+import { environment } from 'src/environments/environment';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { CompanyService } from 'src/services/company/company.service';
@@ -13,7 +13,6 @@ import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { IdleNotification } from 'src/components/dialogs/idle-notification/idle.dia';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material';
-import { Brand } from 'src/environment/brand';
 import { interval } from 'rxjs';
 
 @Component({
@@ -29,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public initedIdle = false;
   public idleObs: any = null;
   public environment: any = environment;
+  public Brand: any = environment.Brand;
   public refreshObs: any = null;
   public idleModal: any = null;
 
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.aas.doAuth((response, error) => { return; });
 
-    this.title.setTitle(Brand.name);
+    this.title.setTitle(this.Brand.name);
 
     /* Check if device is movile and open/close sidemenu based on that */
     this.isMobile = this.utils.isMobileDevice = this.utils.isMobile();

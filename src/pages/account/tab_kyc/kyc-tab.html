@@ -26,7 +26,8 @@
               </div>
               <div class="tier-info-line">
                 <p class="small-text" style="width: 120px;margin-right: 8px">{{'Deposit crypto' | translate}}: </p>
-                <b class="small-text" style="font-family: monospace">{{currentTier.daily.deposit.crypto == 'No Limit' ? 'No Limit': (currentTier.daily.deposit.crypto | number)}}€</b>
+                <b class="small-text"
+                  style="font-family: monospace">{{currentTier.daily.deposit.crypto == 'No Limit' ? 'No Limit': (currentTier.daily.deposit.crypto | number)}}€</b>
               </div>
               <div class="tier-info-line">
                 <p class="small-text" style="width: 120px;margin-right: 8px">{{'Withdraw fiat' | translate}}: </p>
@@ -49,7 +50,8 @@
               </div>
               <div class="tier-info-line">
                 <p class="small-text" style="width: 120px;margin-right: 8px">{{'Deposit crypto' | translate}}: </p>
-                <b class="small-text" style="font-family: monospace">{{currentTier.monthly.deposit.crypto == 'No Limit' ? 'No Limit': (currentTier.monthly.deposit.crypto|number)}}€</b>
+                <b class="small-text"
+                  style="font-family: monospace">{{currentTier.monthly.deposit.crypto == 'No Limit' ? 'No Limit': (currentTier.monthly.deposit.crypto|number)}}€</b>
               </div>
               <div class="tier-info-line">
                 <p class="small-text" style="width: 120px;margin-right: 8px">{{'Withdraw fiat' | translate}}: </p>
@@ -93,7 +95,8 @@
               </div>
               <div class="tier-info-line">
                 <p class="small-text" style="width: 120px;margin-right: 8px">{{'Deposit crypto' | translate}}: </p>
-                <b class="small-text" style="font-family: monospace">{{tier.daily.deposit.crypto == 'No Limit' ? 'No Limit': (tier.daily.deposit.crypto | number)}}€</b>
+                <b class="small-text"
+                  style="font-family: monospace">{{tier.daily.deposit.crypto == 'No Limit' ? 'No Limit': (tier.daily.deposit.crypto | number)}}€</b>
               </div>
               <div class="tier-info-line">
                 <p class="small-text" style="width: 120px;margin-right: 8px">{{'Withdraw fiat' | translate}}: </p>
@@ -116,7 +119,8 @@
               </div>
               <div class="tier-info-line">
                 <p class="small-text" style="width: 120px;margin-right: 8px">{{'Deposit crypto' | translate}}: </p>
-                <b class="small-text" style="font-family: monospace">{{tier.monthly.deposit.crypto == 'No Limit' ? 'No Limit': (tier.monthly.deposit.crypto | number)}}€</b>
+                <b class="small-text"
+                  style="font-family: monospace">{{tier.monthly.deposit.crypto == 'No Limit' ? 'No Limit': (tier.monthly.deposit.crypto | number)}}€</b>
               </div>
               <div class="tier-info-line">
                 <p class="small-text" style="width: 120px;margin-right: 8px">{{'Withdraw fiat' | translate}}: </p>
@@ -134,10 +138,13 @@
             <b class="small-text-2">
               {{'Requirements'|translate}}
             </b>
-            <p class="small-text-2 col-gray" style="margin-left: 8px !important" *ngIf="!tier.canValidate && tier.level == us.userData.group_data.tier+1">
-              * {{'Please fill in all of the fields listed below, before you can request a tier upgrade from'|translate}}
+            <p class="small-text-2 col-gray" style="margin-left: 8px !important"
+              *ngIf="!tier.canValidate && tier.level == us.userData.group_data.tier+1">
+              *
+              {{'Please fill in all of the fields listed below, before you can request a tier upgrade from'|translate}}
               <a routerLink="/user" [queryParams]="{tab: 'profile'}" class="col-blue">{{'here'|translate}}</a>.
-              <br> * {{'Once filled you will be able to upload your Identity Document to finish the validation'|translate}}
+              <br> *
+              {{'Once filled you will be able to upload your Identity Document to finish the validation'|translate}}
             </p>
             <p class="small-text-2 col-success" *ngIf="tier.canValidate && tier.level == us.userData.group_data.tier+1">
               * {{'You are ready to verify next TIER'|translate}}
@@ -146,18 +153,22 @@
               <ul style="list-style: default">
                 <li *ngFor="let requirement of tier.requirements.items">
                   <p class="small-text">
-                    <i class="small-text fa fa-check col-success marg-r-10" *ngIf="tier.requirements.filled_props && tier.requirements.filled_props[requirement]"></i>
-                    <i class="small-text fa fa-check col-gray-light marg-r-10" *ngIf="tier.requirements.filled_props && !tier.requirements.filled_props[requirement]"></i>
+                    <i class="small-text fa fa-check col-success marg-r-10"
+                      *ngIf="tier.requirements.filled_props && tier.requirements.filled_props[requirement]"></i>
+                    <i class="small-text fa fa-check col-gray-light marg-r-10"
+                      *ngIf="tier.requirements.filled_props && !tier.requirements.filled_props[requirement]"></i>
                     {{requirement|translate}}
                   </p>
                 </li>
               </ul>
               <div class="group-row-left center v">
-                <button class="marg-r-10 validate-btn" (click)="openTierValidation(tier.level)" [disabled]="tier.level != us.userData.group_data.tier+1 || !tier.canValidate"
+                <button class="marg-r-10 validate-btn" (click)="openTierValidation(tier.level)"
+                  [disabled]="tier.level != us.userData.group_data.tier+1 || !tier.canValidate"
                   *ngIf="us.userData.group_data.tier < tier.level">
                   {{((tierPendingSince && tier.level == us.userData.group_data.tier+1)? 'Check Status': 'Verify')|translate}}
                 </button>
-                <i class="small-text-2" *ngIf="tierPendingSince && tier.level == us.userData.group_data.tier+1 && tierStatus !== 'denied'">{{'Waiting validation since'|translate}}:
+                <i class="small-text-2"
+                  *ngIf="tierPendingSince && tier.level == us.userData.group_data.tier+1 && tierStatus !== 'denied'">{{'Waiting validation since'|translate}}:
                   <b>{{tierPendingSince | date: 'medium'}}</b>
                 </i>
               </div>
@@ -195,7 +206,8 @@
   </p>
 </kyc-tier-validation>
 
-<kyc-tier-validation [parent]="this" [tier]="3" [uploadButtons]="false" [showRequirementsList]="false" *ngIf="kycFormOpen && kycLevel == 3">
+<kyc-tier-validation [parent]="this" [tier]="3" [uploadButtons]="false" [showRequirementsList]="false"
+  *ngIf="kycFormOpen && kycLevel == 3">
   <p class="small-text-2" [innerHTML]="'KYC_3_DESC' | translate">
     <!-- In order to achieve <b>KYC level 3</b> please write us to <a href="mailto:info@chip-chap.com">info@chip-chap.com</a> and we will arrange an skype meeting. -->
   </p>

@@ -60,7 +60,7 @@
           <td>{{user.email}}</td>
           <td *ngIf="!utils.isMobileDevice">{{user.roles[0]}}</td>
           <td>
-            <button md-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
+            <button mat-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
               <span class="center h v">
                 <i class="fa fa-ellipsis-v"></i>
               </span>
@@ -80,11 +80,11 @@
           </td>
         </tr>
         <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-          <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+          <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
           </mat-progress-spinner>
         </div>
       </table>
-      <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="!loading && total_users <= 0">
+      <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="!loading && totalUsers <= 0">
         <p class="small-text-2">{{'There are no users yet'|translate}}</p>
       </div>
       <mat-paginator [length]="companyService.totalAccounts" [pageSize]="limit" (page)="changedPage($event)"

@@ -18,10 +18,10 @@ export class ExportDialog implements OnInit {
   public fn: ((v?: any) => Observable<any>) = () => new Observable();
 
   // tslint:disable-next-line: member-ordering
-  private csvData: string = null;
+  public csvData: string = null;
 
   // tslint:disable-next-line: member-ordering
-  private loading = false;
+  public loading = false;
 
   // tslint:disable-next-line: member-ordering
   constructor(

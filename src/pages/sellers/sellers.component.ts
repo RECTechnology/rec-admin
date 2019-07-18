@@ -62,6 +62,8 @@ export class SellersComponent extends PageBase {
     { key: 'name', value: '$.name', active: true },
   ];
 
+  public itemOptions: any = {};
+
   constructor(
     public titleService: Title,
     public route: ActivatedRoute,
@@ -102,7 +104,7 @@ export class SellersComponent extends PageBase {
     if (!sort.active || sort.direction === '') {
       this.sortedData = this.sellerList.slice();
       this.sortID = 'id';
-      this.sortDir = 'DESC';
+      this.sortDir = 'desc';
     } else {
       this.sortID = sort.active;
       this.sortDir = sort.direction.toUpperCase();

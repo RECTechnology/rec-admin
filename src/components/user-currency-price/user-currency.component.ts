@@ -13,9 +13,9 @@ import { CurrenciesService } from '../../services/currencies/currencies.service'
 export class UserCurrencyPrice {
   @Input() public currency: string = '';
   @Input() public amount: number = 0;
-  private userCurrency = 'EUR';
+  public userCurrency = 'EUR';
 
-  constructor(private us: UserService, private ws: WalletService, private cs: CurrenciesService) {
+  constructor(public us: UserService, public ws: WalletService, public cs: CurrenciesService) {
     this.userCurrency = this.us.getCurrency();
   }
 

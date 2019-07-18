@@ -468,7 +468,7 @@ wallet .mat-expansion-panel-body {
   justify-content: space-between;
   width: 100%;
   /* margin-bottom: 15px; */
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
 }
 
 .amount_label {
@@ -1304,11 +1304,11 @@ table td {
 }
 
 table tr:nth-child(even) {
-  background: #f0f1f4 !important;
+  /* background: #f0f1f4 !important; */
 }
 
 table tr:nth-child(odd) {
-  background: #fff !important;
+  /* background: #fff !important; */
 }
 
 table th.ui-state-active {
@@ -1316,14 +1316,14 @@ table th.ui-state-active {
 }
 
 table thead {
-  border-bottom: 1px solid #ddd;
-  background: #fbfbfb !important;
+  /* border-bottom: 1px solid #ddd; */
+  /* background: #fbfbfb !important; */
   box-shadow: 0 1px 0 #ddd;
 }
 
 table th {
-  border-bottom: 1px solid #ddd;
-  color: #777 !important;
+  /* border-bottom: 1px solid #ddd; */
+  /* color: #777 !important;ƒ */
   font-weight: 200 !important;
   /*text-transform: uppercase;*/
   font-size: 12px;
@@ -1663,19 +1663,18 @@ table th {
   text-align: center;
   font-size: 13px;
   font-weight: 600 !important;
-  color: #fff !important;
   text-transform: uppercase;
 }
 
 table tr:nth-child(even) {
-  background: #eee;
+  /* background: #eee; */
 }
 
 table td {
   text-align: center;
   font-size: 13px;
   font-weight: 500 !important;
-  color: #555 !important;
+  /* color: #555 !important;ƒ */
 }
 
 .tier-level {
@@ -2278,6 +2277,7 @@ error-report-btn {
   font-size: 13px;
   display: inline-block;
 }
+
 
 .input:disabled,
 input:disabled {

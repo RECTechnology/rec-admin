@@ -14,13 +14,16 @@ export class ChangePhone extends BaseDialog implements OnInit {
   constructor(
     public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<ChangePhone>,
-    private us: UserService,
-    private ws: WalletService,
+    public us: UserService,
+    public ws: WalletService,
   ) {
     super();
   }
 
   public ngOnInit() {
+    return;
+  }
+  public changePhone() {
     return;
   }
 }

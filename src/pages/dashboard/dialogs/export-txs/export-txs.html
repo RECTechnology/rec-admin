@@ -1,6 +1,6 @@
 <div class="modal-header bg-blue">
   <span>{{'EXPORT_TXS_AS_CSV'|translate}}</span>
-  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
     <span class="center h v">
       <i class="fa fa-times col-white"></i>
     </span>
@@ -21,13 +21,13 @@
       <button mat-raised-button color="primary" (click)="getTransactions()">
         {{'SEARCH_FOR_TX'|translate}}
       </button>
-      <button md-icon-button class="icon-btn-small" style="margin-left: 8px" title="Clear filters" (click)="filter.clearFilter()"
+      <button mat-icon-button class="icon-btn-small" style="margin-left: 8px" title="Clear filters" (click)="filter.clearFilter()"
         *ngIf="filter.filterModified && !loading">
         <span class="center h v">
           <i class="fa fa-times col-error small-text-2"></i>
         </span>
       </button>
-      <mat-progress-spinner mode="indeterminate" color="primary" class="icon-btn-small" *ngIf="loading" style="margin-left: 10px"></mat-progress-spinner>
+      <mat-progress-spinner [diameter]="40" mode="indeterminate" color="primary" class="icon-btn-small" *ngIf="loading" style="margin-left: 10px"></mat-progress-spinner>
       <p class="small-text-2 col-{{foundTxs > 0 ? 'success': 'error'}}" style="margin-left: 10px!important" *ngIf="foundTxs !== null">
         {{'FOUND_X_TX'|translate:({amount: foundTxs})}}
       </p>

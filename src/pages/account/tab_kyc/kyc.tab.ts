@@ -24,16 +24,16 @@ export class KycTab {
   public tiers: any[] = TIERS;
   public kycFormOpen = false;
   public kycLevel = 0;
-  public currentTier = {};
-  public kycData = {};
+  public currentTier: any = {};
+  public kycData: any = {};
   public tierStatus;
   public tierPendingSince;
 
   constructor(
-    private titleService: Title,
-    private route: ActivatedRoute,
-    private us: UserService,
-    private ls: LoginService,
+    public titleService: Title,
+    public route: ActivatedRoute,
+    public us: UserService,
+    public ls: LoginService,
   ) {
     const tier = this.us.userData.group_data.tier;
     this.currentTier = this.tiers[tier];

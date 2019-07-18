@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LANGS, LANG_MAP } from '../../data/consts';
 import { UserService } from '../../services/user.service';
 import { LoginService } from '../../services/auth.service';
 import { CompanyService } from '../../services/company/company.service';
 import BaseDialog from '../../bases/dialog-base';
 import { MatDialogRef } from '@angular/material';
-import { Brand } from '../../environment/brand';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'account-selector',
@@ -14,12 +13,12 @@ import { Brand } from '../../environment/brand';
 })
 export class AccountSelector extends BaseDialog {
   public currentAccount;
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
   constructor(
-    private translate: TranslateService,
-    private us: UserService,
-    private ls: LoginService,
-    private companyService: CompanyService,
+    public translate: TranslateService,
+    public us: UserService,
+    public ls: LoginService,
+    public companyService: CompanyService,
     public dialogRef: MatDialogRef<AccountSelector>,
   ) {
     super();

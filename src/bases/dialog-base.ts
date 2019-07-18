@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { ConfirmationMessage } from '../components/dialogs/confirmation-message/confirmation.dia';
-import { environment } from '../environment/environment';
-import { Brand } from '../environment/brand-wl';
+import { environment } from '../environments/environment';
 
 export default abstract class BaseDialog {
   public abstract dialogRef: MatDialogRef<any>;
@@ -12,7 +11,7 @@ export default abstract class BaseDialog {
   public mainAction = Function;
   public disabled: boolean = false;
   public environment = environment;
-  public brand = Brand;
+  public brand = environment.Brand;
 
   constructor(dialog?: MatDialog) {
     this.dialog = dialog;

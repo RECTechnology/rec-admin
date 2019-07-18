@@ -1,0 +1,376 @@
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+// Define the default theme (same as the example above).
+$candy-app-primary: mat-palette($mat-blue-grey);
+$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
+
+// Include the default theme styles.
+@include angular-material-theme($candy-app-theme);
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+}
+
+$main-color: #0098db; // the color of your brand
+$main-color-dark: #0098db; // the dark color of your brand
+
+$main-color-sbox: #c9b400; // the color of your brand
+$main-color-dark-sbox: #a89600; // the dark color of your brand
+
+$sidemenu-color: $main-color; // the color of your brand
+$sidemenu-color-dark: #222d31; // the dark color of your brand
+
+.col-orange {
+  color: #e05206;
+}
+
+code {
+  color: $main-color-dark;
+}
+.bg-black {
+  background: #222;
+}
+.validate-btn {
+  width: auto;
+  height: 30px;
+  padding: 0 25px;
+  border-radius: 15px;
+  background: $main-color-dark;
+  font-size: 13px;
+  border: none;
+}
+
+.validate-btn:disabled {
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+}
+
+.company.selected .company-card {
+  border-color: #e05206 !important;
+  .company-checked {
+    background: #e05206 !important;
+  }
+}
+
+.sidemenu.company {
+  background: #e05206 !important;
+}
+
+.company-border {
+  border: 2px solid #e05206;
+}
+
+.private-border {
+  border: 2px solid $main-color;
+}
+
+.sidemenu.collapsed.company .collapse-menu {
+  background: #e05206 !important;
+}
+.sidemenu.collapsed .collapse-menu {
+  background: $main-color !important;
+}
+
+.reseller-developers .item.active,
+.dropdown-developers .item.active,
+.menu-list .item.active {
+  background: transparent !important;
+  cursor: pointer !important;
+  color: $main-color !important;
+}
+
+.warn-well {
+  background: #fbf5e5;
+  border-left: 3px solid #f4b04f;
+  padding: 10px 15px;
+  margin: 20px 0 15px 0;
+  width: 100%;
+}
+
+.info-well {
+  background: #e5f4fb;
+  border-left: 3px solid $main-color;
+  padding: 10px 15px;
+  margin: 20px 0 15px 0;
+  width: 100%;
+}
+
+label .mat-button.mat-primary {
+  background: #eaeaea !important;
+}
+.chat-window {
+  background: #0098db;
+  color: #fff;
+}
+.chat-window:hover {
+  background: #0098db;
+}
+
+.company-checked {
+  background: $main-color;
+  color: #fff;
+}
+.alert-icon {
+  border: 3px solid $main-color;
+  color: $main-color;
+}
+.login-form .input-group input {
+  border: none;
+  border-bottom: 1px solid $main-color !important;
+}
+.sidemenu {
+  background: $sidemenu-color;
+}
+.sidemenu.collapsed {
+  background: $sidemenu-color-dark;
+}
+
+a {
+  color: $main-color;
+}
+.selected .company-card {
+  border: 2px solid $main-color !important;
+}
+.user-input:active,
+.user-input:focus {
+  border-color: $main-color;
+}
+.search-input {
+  border-bottom: 1px solid $main-color;
+}
+
+.loading_screen {
+  color: $main-color;
+}
+
+.col-warning,
+.col-expired {
+  color: #f4b04f !important;
+}
+.col-white {
+  color: #fff !important;
+}
+.col-info,
+.col-started {
+  color: #1f52ce !important;
+}
+
+.col-def {
+  color: #ededed !important;
+}
+.col-blue {
+  color: $main-color;
+}
+.col-blue.hoverable:hover {
+  color: #0098db;
+}
+.col-blue-dark {
+  color: #0098db;
+}
+
+.col-gray {
+  color: #666;
+}
+
+.col-gray-light {
+  color: #838282 !important;
+}
+.col-gray-lighter {
+  color: #8a8a8a !important;
+}
+
+.status-launched,
+.status-created,
+.status-pending,
+.status-refunded,
+.status-draft,
+.amount {
+  color: #1976d2 !important;
+}
+.col-success,
+.col-completed,
+.status-success,
+.status-enabled,
+.status-verified {
+  color: #66bb6a !important;
+}
+.col-teal {
+  color: #4db6ac !important;
+}
+.col-error,
+.col-cancelled,
+.status-error,
+.status-failed,
+.status-stopped,
+.status-disabled,
+.status-cancelled {
+  color: #ef5350 !important;
+}
+.bg-error {
+  background: #ef5350 !important;
+  color: #fff;
+}
+
+.bg-blue,
+.bg-sending,
+.bg-created {
+  background: $main-color !important;
+  color: #fff;
+}
+.bg-blue.hoverable:hover {
+  background: $main-color-dark;
+}
+.bg-blue.hoverable:disabled {
+  background: #e9ecef !important;
+  color: #787878;
+  cursor: default !important;
+}
+.bg-blue-dark {
+  background: $main-color-dark;
+}
+
+.selected-wallet {
+  /* border: 2px solid red; */
+  border: 1px dashed lighten($main-color, 30%);
+  background: rgba(lighten($main-color, 30%), 0.2);
+}
+
+.sandbox {
+  .sidemenu.collapsed .collapse-menu,
+  .chat-window,
+  .company-checked {
+    background: $main-color-sbox !important;
+  }
+  .reseller-developers .item.active,
+  .dropdown-developers .item.active,
+  .menu-list .item.active {
+    color: $main-color-sbox !important;
+  }
+  .info-well {
+    border-color: $main-color-sbox;
+  }
+  .loading_screen {
+    color: $main-color-sbox;
+  }
+  .col-info,
+  .col-started {
+    color: $main-color-sbox !important;
+  }
+  .col-blue {
+    color: $main-color-sbox;
+  }
+  .col-blue.hoverable:hover {
+    color: $main-color-dark-sbox;
+  }
+  .col-blue-dark {
+    color: $main-color-dark-sbox;
+  }
+  .bg-blue,
+  .bg-sending,
+  .bg-created {
+    background: $main-color-sbox !important;
+    color: #fff;
+  }
+  .bg-blue.hoverable:hover {
+    background: $main-color-dark-sbox;
+  }
+  .bg-blue-dark {
+    background: $main-color-dark-sbox;
+  }
+
+  .selected-wallet {
+    /* border: 2px solid red; */
+    border: 1px dashed lighten($main-color-sbox, 30%);
+    background: rgba(lighten($main-color-sbox, 30%), 0.2);
+  }
+  .sidemenu,
+  .bg-blue {
+    background: $main-color-sbox !important;
+  }
+}
+
+.box {
+  width: 100%;
+  height: auto;
+  padding: 15px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+.bg-black {
+  background: #222;
+}
+.accounts .mat-radio-label {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.dark-theme .input {
+  background: darken($color: #424242, $amount: 10);
+  border: 1px solid lighten($color: #424242, $amount: 10);
+  color: #fff;
+}
+
+table {
+  color: #666;
+}
+
+table tr:nth-child(even) {
+  background: #eee;
+}
+
+table tr:nth-child(odd) {
+  background: #fff;
+}
+
+.dark-theme {
+  table {
+    color: #fff;
+
+    tr:nth-child(even) {
+      background: lighten($color: #424242, $amount: 10);
+    }
+
+    tr:nth-child(odd) {
+      background: lighten($color: #424242, $amount: 0);
+    }
+  }
+}
+
+.bordered {
+  border: 1px solid #ddd !important;
+}
+.bordered-bottom {
+  border-bottom: 1px solid #ddd !important;
+}
+.bordered-top {
+  border-top: 1px solid #ddd !important;
+}
+
+.dark-theme .bordered {
+  border: 1px solid lighten($color: #424242, $amount: 10);
+}
+
+.dark-theme .bordered-bottom {
+  border-bottom: 1px solid lighten($color: #424242, $amount: 10);
+}
+
+.dark-theme .bordered-top {
+  border-top: 1px solid lighten($color: #424242, $amount: 10);
+}

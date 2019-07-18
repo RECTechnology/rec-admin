@@ -51,9 +51,20 @@ import { MdI18n } from 'src/shared/md-i18n';
 import { MaterialModule } from 'src/shared/md-module';
 import { MatPaginatorIntl } from '@angular/material';
 
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import localeEn from '@angular/common/locales/en';
+import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
+import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
+import { TableListModule } from 'src/components/table-list/table-list-module';
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
+
+registerLocaleData(localeCat);
+registerLocaleData(localeEn);
+registerLocaleData(localeEs);
 
 const LOCALE = navigator.languages[1];
 
@@ -64,7 +75,9 @@ const imports = [
   BrowserAnimationsModule,
   SharedModule, // Contains shared imports and Routes
   AccountModule,
+  DashboardModule,
   WalletModule,
+  TableListModule,
   ChangeDelegateModule,
   CompaniesModule,
   TranslateModule.forRoot({
@@ -87,7 +100,6 @@ const imports = [
 const declarations = [
   AppComponent,
   LoginComponent,
-  DashboardComponent,
   DevOptions,
   BetaTerms,
   DataProtection,

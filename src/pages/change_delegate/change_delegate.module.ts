@@ -12,6 +12,7 @@ import { SelectAccountsDia } from './components/select_accounts_dialog/select_ac
 import { CsvUpload } from './components/csv-upload/csv-upload.dia';
 import { EditAccountsDia } from './components/edit_users/edit_accounts.dia';
 import { ActivateResume } from './components/activate-resume/activate-resume.dia';
+import { TableListModule } from 'src/components/table-list/table-list-module';
 
 const profileRoutes: Routes = [
   {
@@ -51,6 +52,7 @@ const profileRoutes: Routes = [
     BrowserModule,
     FormsModule,
     TranslateModule.forRoot(),
+    TableListModule,
   ],
 
 })

@@ -179,4 +179,11 @@ export class TreasureAccount implements AfterContentInit {
     dialogRef.afterClosed()
       .subscribe((result) => { return; });
   }
+
+  public changedPage($evt) {
+    return;
+  }
+  public sortData($evt?) {
+    return;
+  }
 }

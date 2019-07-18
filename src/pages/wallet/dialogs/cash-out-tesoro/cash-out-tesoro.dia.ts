@@ -22,4 +22,8 @@ export class CashOutTesoroDia extends BaseDialog {
     public txService: TransactionService,
     private snackBar: MySnackBarSevice,
   ) { super(); }
+
+  public makeTx() {
+    return;
+  }
 }

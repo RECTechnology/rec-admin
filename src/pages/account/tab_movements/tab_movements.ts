@@ -5,7 +5,7 @@ import { ControlesService } from '../../../services/controles/controles.service'
 import { TxFilter } from '../../../components/filter/filter';
 import { TransactionService } from '../../../services/transactions/transactions.service';
 import { TxDetails } from '../../../pages/wallet/dialogs/tx_details/tx_details.dia';
-import { Brand } from '../../../environment/brand';
+import { environment } from '../../../environments/environment';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { CashOutDia } from '../../../pages/wallet/dialogs/cash-out/cash-out.dia';
 import { getDateDMY } from '../../../shared/utils.fns';
@@ -29,17 +29,17 @@ export class MovementsTab implements AfterContentInit {
   public elements = [];
   public filter: TxFilter;
   public account_id: string;
-  public Brand = Brand;
+  public Brand: any = environment.Brand;
 
   public sortID: string = 'id';
   public sortDir: string = 'desc';
 
-  private dateTo = getDateDMY(new Date(), '-');
-  private dateFrom = getDateDMY(new Date(Date.now() - (30 * 2 * 24 * 60 * 60 * 1000 * 4)), '-');
+  public dateTo = getDateDMY(new Date(), '-');
+  public dateFrom = getDateDMY(new Date(Date.now() - (30 * 2 * 24 * 60 * 60 * 1000 * 4)), '-');
 
   constructor(
-    private route: ActivatedRoute,
-    private dialog: MatDialog,
+    public route: ActivatedRoute,
+    public dialog: MatDialog,
     public txService: TransactionService,
     public router: Router,
     public controles: ControlesService,
@@ -151,5 +151,9 @@ export class MovementsTab implements AfterContentInit {
     this.offset = this.limit * ($event.pageIndex);
 
     this.search();
+  }
+
+  public trackByFn(i) {
+    return i;
   }
 }
