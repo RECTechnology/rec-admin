@@ -1,0 +1,156 @@
+<div class="modal-header bg-blue">
+  {{'BUSSINES_DETAILS'|translate}}
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+
+<div class="modal-body no-padd" style="min-height: 300px; padding: 0!important">
+  <div class="bussiness-details">
+    <div class="bussiness-bg">
+      <div class="overlay"></div>
+      <img src="{{bussiness.public_image || 'https://www.oxforduniversityimages.com/images/rotate/Image_Spring_17_4.gif'}}"
+        alt="">
+    </div>
+    <div class="bussiness-info">
+      <img src="{{Brand.profile_default_image}}" alt="" style="margin-right: 10px; width: 60px; height: 60px; border-radius: 50%;background: #666">
+      <div>
+        <h2 class="name">{{bussiness.name}}</h2>
+        <p class="address">{{address}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="group-col-left padd-x20">
+    <p>{{bussiness.description || 'NO_DESCRIPTION'}}</p>
+
+    <b style="margin-top: 15px">{{'SCHEDULE'|translate}}</b>
+    <div *ngIf="bussiness.schedule" style="width: 100%;">
+      <table>
+        <tr>
+          <th style="color: #555!important">{{'Day'|translate}}</th>
+          <th style="color: #555!important">{{'Open'|translate}}</th>
+          <th style="color: #555!important">{{'Morning'|translate}}</th>
+          <th style="color: #555!important">{{'Evening'|translate}}</th>
+        </tr>
+
+        <tr>
+          <td>
+            {{'MONDAY'|translate}}
+          </td>
+          <td>
+            <md-checkbox disabled color="primary" checked="true"></md-checkbox>
+          </td>
+          <td>
+            <b>08:00</b> <b>14:00</b>
+          </td>
+          <td>
+            <b>17:00</b> <b>22:00</b>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{'TUESDAY'|translate}}
+          </td>
+          <td>
+            <md-checkbox disabled color="primary" checked="true"></md-checkbox>
+          </td>
+          <td>
+            <b>08:00</b> <b>14:00</b>
+          </td>
+          <td>
+            <b>17:00</b> <b>22:00</b>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{'WEDNESDAY'|translate}}
+          </td>
+          <td>
+            <md-checkbox disabled color="primary" checked="true"></md-checkbox>
+          </td>
+          <td>
+            <b>08:00</b> <b>14:00</b>
+          </td>
+          <td>
+            <b>17:00</b> <b>22:00</b>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{'THURSDAY'|translate}}
+          </td>
+          <td>
+            <md-checkbox disabled color="primary" checked="true"></md-checkbox>
+          </td>
+          <td>
+            <b>08:00</b> <b>14:00</b>
+          </td>
+          <td>
+            <b>17:00</b> <b>22:00</b>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{'FRIDAY'|translate}}
+          </td>
+          <td>
+            <md-checkbox disabled color="primary" checked="true"></md-checkbox>
+          </td>
+          <td>
+            <b>08:00</b> <b>14:00</b>
+          </td>
+          <td>
+            <b>17:00</b> <b>22:00</b>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{'SATURDAY'|translate}}
+          </td>
+          <td>
+            <md-checkbox disabled color="primary"></md-checkbox>
+          </td>
+          <td>
+            <b>...</b> <b>...</b>
+          </td>
+          <td>
+            <b>...</b> <b>...</b>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{'SUNDAY'|translate}}
+          </td>
+          <td>
+            <md-checkbox disabled color="primary"></md-checkbox>
+          </td>
+          <td>
+            <b>...</b> <b>...</b>
+          </td>
+          <td>
+            <b>...</b> <b>...</b>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngIf="!bussiness.schedule" style="width: 100%; margin-top: 15px">
+      <i>{{'NO_SCHEDULE'|translate}}</i>
+    </div>
+
+    <b style="margin-top: 15px">{{'OFFERS'|translate}}</b>
+    <div *ngIf="bussiness.offers.length" style="width: 100%">
+      <div *ngFor="let offer of offers">
+
+      </div>
+    </div>
+
+    <div *ngIf="!bussiness.offers.length" style="width: 100%; margin-top: 15px">
+      <i>{{'NO_OFFERS'|translate}}</i>
+    </div>
+  </div>
+</div>

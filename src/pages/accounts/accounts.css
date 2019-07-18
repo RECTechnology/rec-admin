@@ -1,0 +1,35 @@
+/**{
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif
+}*/
+.section-header {
+  width: 100%;
+  height: 45px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #555;
+  padding: 0;
+}
+.section-header p {
+  font-size: 13px;
+}
+.info-section {
+  padding: 20px 0;
+}
+.info-section .info {
+  margin-bottom: 25px;
+}
+
+.info-section .label {
+  font-weight: 600;
+  color: #555;
+  font-size: 13px;
+  margin: 0;
+}
+.info-section .label_value {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+}
+

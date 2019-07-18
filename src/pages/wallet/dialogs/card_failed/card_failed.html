@@ -1,0 +1,52 @@
+<div class="modal-header bg-warning">
+  <span>{{'ERROR WITH YOUR CARD'|translate}}</span>
+
+  <!-- <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button> -->
+</div>
+
+<div class="group-col-left padd-x20 modal-body">
+  <p class="col-gray">
+    <i class="fa fa-warning col-warning"></i> It seem like there is some problem with the card:
+    <b>{{card.alias || card.id_card}}</b>.
+  </p>
+  <br>
+  <b class="small-text-3" style="margin: 10px 0">
+    What should yo do?
+  </b>
+  <ul>
+    <li class="small-text-3">
+      Make sure you read the
+      <b>instructions on the back of the envelope</b> the card was received in.
+    </li>
+    <li class="small-text-3">
+      Make sure you have
+      <a href="https://www.tarjetaspark.es/activa/" target="_blank">
+        <b>validated the card</b>
+      </a> as explained in the envelope.
+    </li>
+    <li class="small-text-3">
+      Make sure the
+      <b>limits</b> of the card have not been exceeded. Info on how to increase limits
+      <a href="https://www.tarjetaspark.es/niveles/" target="_blank">here</a>.
+    </li>
+  </ul>
+
+  <div class="group-col-left">
+    <md-checkbox color="primary" [(ngModel)]="checked">
+      <p class="text-small no-margin">
+        I accept that I have read the above information
+      </p>
+    </md-checkbox>
+    <button (click)="close()" [disabled]="!checked" style="min-width: 150px" type="button" md-raised-button color="primary" name="button">
+      <div class="center h v">
+        <p class="text-small no-margin" style="margin: 0px 6px!important">
+          {{'Accept' | translate}}
+        </p>
+      </div>
+    </button>
+  </div>
+</div>

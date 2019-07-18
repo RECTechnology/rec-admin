@@ -1,0 +1,6 @@
+<md-select *ngIf="!error" [(ngModel)]="value" (ngModelChange)="valueChange.emit(value)">
+    <md-option *ngFor="let c of countries" value="{{c.cca3}}">{{c.name.common}}</md-option>
+</md-select>
+<p *ngIf="error" class="small-text col-error">
+    {{error}}
+</p>

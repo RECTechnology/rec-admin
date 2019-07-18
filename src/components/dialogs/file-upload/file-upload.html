@@ -1,0 +1,39 @@
+<div class="modal-header bg-blue">
+  <span>{{title|translate}}</span>
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="group-col-left padd-x20" style="">
+
+  <div class="group-row-left" style="width: 100%; align-items: flex-start">
+    <div class="" style="height: 150px; width: 150px">
+      <img src="{{selectedImage || brand[noImageName]}}" alt="" style="width: 150px; height: auto">
+    </div>
+
+    <div class="group-col-left" style="overflow: visible; height: auto;width: 100%;">
+      <div class="">
+        <label class="cta-btn bg-blue hoverable" for="image" style="margin-left: 15px">
+          <p class="small-text-2">{{'Select File'|translate}}</p>
+        </label>
+        <span class="small-text" style="margin-left: 10px">{{selectedImageName|translate}}</span>
+        <input type="file" name="" value="" id="image" style="display: none" (change)="changedImage($event)">
+      </div>
+      <div class="" *ngIf="hasSelectedImage" style="width: 100%;">
+        <button (click)="uploadFile()" type="button" md-raised-button color="primary" name="button" style="margin-top: 15px; margin-left: 15px; width: 100%">
+          {{'Upload'|translate}}
+        </button>
+        <p class="text-danger small-text" *ngIf="error">{{error|translate}}</p>
+        <div class="group-row-left center v" style="margin-top: 15px; margin-left: 15px; width: 100%" *ngIf="progress > 0">
+          <md-progress-bar mode="determinate" color="primary" [value]="progress"></md-progress-bar>
+          <span class="small-text">
+            <b>{{ progress }}</b>% </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

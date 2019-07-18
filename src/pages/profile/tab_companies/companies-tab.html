@@ -1,0 +1,21 @@
+<div style="height: 100%">
+  <div class="row" style="margin: 0; padding: 20px">
+    <div class="col-lg-12 bg-white" style="min-height: 200px; padding: 15px 20px">
+      <p class="small-text-2 col-blue" sandbox-test-data>{{'Selected Account'|translate}}</p>
+      <div class="row" *ngIf="companyService.companies.length">
+        <div class="col-lg-3 hoverable" *ngFor="let company of companyService.companies" [ngClass]="{
+          'selected': company.company.id == us.userData.group_data.id,
+          'company': company.company.type === 'COMPANY'}" style="padding-top: 30px" (click)="selectCompany(company.company, true)">
+          <div class="bg-white company-card">
+            <h2 style="max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap" title="{{company.company.name}}">{{company.company.name}}</h2>
+            <p>{{company.roles[0]}}</p>
+            <div class="company-checked" *ngIf="company.company.id == us.userData.group_data.id">
+              <i class="fa fa-check"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <page-footer></page-footer>
+</div>

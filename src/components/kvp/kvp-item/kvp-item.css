@@ -1,0 +1,52 @@
+.kvp-item {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  padding: 0 10px;
+}
+
+:host:last-child {
+  border-bottom: none;
+}
+
+.kvp-item.inactive {
+  opacity: 0.6;
+}
+
+.input {
+  /* border: 1px solid #ddd; */
+  width: 100%;
+  /* border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px; */
+  margin-bottom: 0;
+  max-width: 100000px;
+  border: none;
+}
+
+.kvp-checkbox {
+  width: 5%;
+}
+
+.kvp-key {
+  width: 40%;
+  border-right: 1px solid #ddd;
+}
+
+.kvp-key .input {
+  border-right: none;
+}
+
+.kvp-value {
+  width: 40%;
+}
+
+.kvp-actions {
+  width: 20%;
+}
+
+.kvp-actions button {
+  width: 25px;
+  height: 25px;
+}

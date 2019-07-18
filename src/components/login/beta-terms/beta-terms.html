@@ -1,0 +1,30 @@
+<div class="modal-header bg-blue">
+  <span>{{'Beta Terms'|translate}}</span>
+</div>
+
+<div class="group-col-left padd-x20" style="max-width: 100%">
+  <div class="group-col-left">
+    <div class="warn-well" style="width: 100%">
+      <b class="col-warning" style="margin-bottom: 10px">
+        {{'Disclaimer'|translate}}
+      </b>
+      <p class="small-text-2">
+        <b>
+          {{'This panel is in Beta.'|translate}}
+        </b>
+      </p>
+      <p class="small-text" [innerHTML]="'DONT_ACCEPT'|translate"></p>
+    </div>
+
+    <p class="small-text-2" [innerHTML]="'IF_ACCEPT'|translate"></p>
+    <!-- <p class="small-text">
+      {{'BETA_TERMS'|translate}}
+    </p> -->
+  </div>
+
+  <div class="group-row-right" style="width: 100%; margin-top: 20px">
+    <button type="button" name="button" md-raised-button (click)="close(true)" color="primary">
+      <p class="small-text">{{'Accept'|translate}}</p>
+    </button>
+  </div>
+</div>

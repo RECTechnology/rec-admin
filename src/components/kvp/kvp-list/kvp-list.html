@@ -1,0 +1,39 @@
+<div class="kvp">
+    <div>
+        <p class="small-text">{{'KVP_DESC'|translate}}</p>
+        <p class="small-text">{{'KVP_DESC_JSON'|translate}} <a target="_blank"
+                href="https://github.com/Galbar/JsonPath-PHP#jsonpath-example">JsonPath</a></p>
+    </div>
+    <div *ngIf="hidden" class="kvp-hidden-items padd-x10 center v">
+        <p class="small-text">{{'KVP_ITEMS_HIDDEN'|translate}}</p>
+        <button md-button md-tooltip="Show and edit items" (click)="unhide()" style="margin-right: 10px">
+            <span class="center h v">
+                <i class="fas fa-edit"></i><span class="small-text">{{'EDIT'|translate}}</span>
+            </span>
+        </button>
+    </div>
+    <div *ngIf="!hidden" class="kvp-list-container">
+        <div style="border-bottom: 1px solid #ddd" class="center v padd-x10">
+            <p class="small-text">{{'KVP_ITEMS_SHOWN'|translate}}</p>
+            <button md-button md-tooltip="Show and edit items" (click)="hide()" style="margin-right: 10px">
+                <span class="center h v">
+                    <i class="fas fa-eye-slash"></i><span class="small-text">{{'HIDE'|translate}}</span>
+                </span>
+            </button>
+        </div>
+        <kvp-item *ngFor="let item of items; let i = index; trackBy: trackByFn" [key]="item.key" [value]="item.value"
+            [active]="item.active" (onChange)="changed(i, $event)" (onRemove)="removeItem(i)" (onUp)="moveItem(i, -1)"
+            (onDown)="moveItem(i, 1)" [canRemove]="items.length > 1" [canMoveDown]="i < items.length-1"
+            [canMoveUp]="i > 0">
+        </kvp-item>
+        <div class="center v">
+            <button md-button (click)="reset()" [disabled]="loading"
+                style="height: 100%;width: 50%; padding: 10px 0; margin:0">
+                <span class="center h v">{{'RESET_DEFAULTS'|translate}}</span>
+            </button>
+            <button md-button (click)="newItem()" style="height: 100%;width: 50%; padding: 10px 0; margin:0">
+                <span class="center h v"><i class="fas fa-plus"></i> {{'ADD'|translate}}</span>
+            </button>
+        </div>
+    </div>
+</div>

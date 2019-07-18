@@ -1,0 +1,9 @@
+:host {
+  margin-bottom: 20px;
+  display: block;
+}
+
+.chart-parent {
+  height: 180px;
+  width: 100%;
+}

@@ -1,0 +1,120 @@
+<div style="height: 100%; padding: 20px">
+  <md-card style="padding: 0">
+    <div class="fill-size center v space-between" style="padding: 10px 15px; border-bottom: 1px solid #e6e6e6;">
+      <p class="small-text col-blue" style="margin-right: 15px!important">{{'TRANSACTIONS'|translate}}</p>
+      <input type="text" class="input border-radius-2" style="width: 75%" placeholder="{{'Search'|translate}}..."
+        [(ngModel)]="filter.search" (keyup.enter)="getTransactions();" (keyup)="filter.filterModified = true;">
+      <button md-icon-button style="margin-left: 8px" title="Clear filters" (click)="filter.clearFilter()"
+        *ngIf="filter.filterModified">
+        <span class="center h v">
+          <i class="fa fa-times col-error small-text-2"></i>
+        </span>
+      </button>
+      <button md-icon-button style="margin-left: 8px" (click)="search()">
+        <span class="center h v">
+          <i class="fa fa-search small-text-2"></i>
+        </span>
+      </button>
+      <button md-icon-button style="margin-left: 8px" (click)="exportCSV()"
+        mdTooltip="{{'EXPORT_TXS_AS_CSV'|translate}}">
+        <span class="center h v">
+          <i class="fa fa-download small-text-2"></i>
+        </span>
+      </button>
+      <button type="button" style="margin-left: 8px" color="primary" md-raised-button (click)="sendRecs()"
+        name="button">
+        <p class="text-small">
+          <i class="fa fa-plus"></i>
+          {{'NEW_TX'|translate}}
+        </p>
+      </button>
+    </div>
+    <tx-filters style="border-top: 1px solid #e6e6e6;" [filter]="this.filter" [dateFrom]="dateFrom"
+      (dateFromChanged)="dateFrom = $event" [dateTo]="dateTo" (dateToChanged)="dateTo = $event"></tx-filters>
+    <div class="group-col-left" style="width: 100%;">
+      <table mdSort (mdSortChange)="sortData($event)" class="left-align">
+        <thead class="bordered stripped">
+          <tr>
+            <th md-sort-header="created" sandbox-test-data *ngIf="!utils.isMobileDevice" style="color: #555!important">
+              {{'Date'|translate}}
+            </th>
+            <th md-sort-header="amount" sandbox-test-data style="color: #555!important">
+              {{'Amount'|translate}}
+            </th>
+            <th md-sort-header="method" sandbox-test-data *ngIf="!utils.isMobileDevice" style="color: #555!important">
+              {{'Service'|translate}}
+            </th>
+            <th md-sort-header="status" sandbox-test-data style="color: #555!important">
+              {{'Status'|translate}}
+            </th>
+            <th md-sort-header="concept" sandbox-test-data style="color: #555!important">
+              {{'Concept'|translate}}
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tx of sortedData; let i = index; trackBy: trackByFn">
+            <!-- Date -->
+            <td *ngIf="!utils.isMobileDevice">
+              <i>
+                <span>{{tx.created | date:'medium'}}</span>
+              </i>
+            </td>
+
+            <!-- Amount -->
+            <td>
+              <span *ngIf="tx.status == 'expired'" class="col-gray-lighter">
+                {{tx.isIn ? '+': '-'}} {{tx.scaled | number:'1.0-6'}} {{tx.currency}}</span>
+              <span *ngIf="tx.status != 'expired'" [ngClass]="{'col-success': tx.isIn, 'col-error': !tx.isIn}">
+                {{tx.isIn ? '+': '-'}} {{tx.scaled | number:'1.0-6'}} {{tx.currency}}</span>
+            </td>
+
+            <!-- Service -->
+            <td *ngIf="!utils.isMobileDevice">
+              <span class="badge bg-gray small-text" style="text-transform: capitalize; min-width: 100px">
+                {{tx.method}} {{tx.type}}
+              </span>
+            </td>
+
+            <!-- Status -->
+            <td>
+              <span class="status-{{tx.status}}" *ngIf="!utils.isMobileDevice">{{tx.status}}</span>
+              <span class="circle bg-{{tx.status}}" *ngIf="utils.isMobileDevice"></span>
+            </td>
+
+            <!-- Concept -->
+            <td>
+              <span *ngIf="tx.isIn">
+                {{'RECEIVED_CONCEPT_1' | translate}} <b>{{tx.pay_in_info.name_sender}}</b> {{'CONCEPT_2' | translate}}
+                <b>"{{tx.data_in.concept || '...'}}"</b>
+              </span>
+              <span *ngIf="!tx.isIn">
+                {{'PAYMENT_CONCEPT_1' | translate}} <b>{{tx.pay_out_info.name_sender}}</b> {{'CONCEPT_2' | translate}}
+                <b>"{{tx.data_in.concept || '...'}}"</b>
+              </span>
+            </td>
+
+            <!-- Actions -->
+            <td>
+              <button md-icon-button class="icon-btn-small" (click)="openTxDetails(tx)"
+                title="{{'View Details'|translate}}">
+                <p class="small-text"><i class="fa fa-eye"></i></p>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
+          <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+          </md-progress-spinner>
+        </div>
+      </table>
+      <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !loading">
+        <p class="small-text-2">{{'NO_TRANSACTIONS_YET'|translate}}</p>
+      </div>
+      <md-paginator [length]="totalMovements" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+      </md-paginator>
+    </div>
+  </md-card>
+</div>

@@ -1,0 +1,44 @@
+<div class="modal-header bg-blue">
+  <span>{{'ACTIVATE_CHANGE'|translate}}</span>
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+<div class="row" style="margin: 0;">
+  <div class="col-lg-12">
+    <div style="padding: 10px">
+      <p class="small-text-2">{{'ACTIVATE_CHANGE_DESC'|translate: change}}</p>
+
+      <div class="group-col-left">
+        <div style="margin-bottom: 10px" class="group-row-left">
+          <b class="small-text-2" style="margin-right: 8px">{{'Date'|translate}} </b>
+          <span class="small-text-2">{{datePassed ? 'Immediately' : (change.scheduled_at|date)}}</span>
+          <i class="small-text col-warning" *ngIf="datePassed">
+            {{'ACTIVATE_CHANGE_IMMEDIATE'|translate}}
+          </i>
+        </div>
+
+        <div style="margin-bottom: 10px" class="group-row-left">
+          <b class="small-text-2" style="margin-right: 8px">{{'IMPORT_TOTAL'|translate}} </b>
+          <span class="small-text-2">{{change.statistics.scheduled.rec_to_be_issued/1e8}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+    style="border-bottom: 1px solid #ddd; width: 100%" [validationName]="validationErrorName"></validation-errors>
+
+  <div class="col-lg-12" style="margin: 0!important; height: 70px;border-top: 1px solid #ddd">
+    <div class="group-row-left padd-x20" style="justify-content: flex-end">
+      <button type="button" md-raised-button color="primary" name="button" (click)="proceed()">
+        <p class="small-text-2">{{'Confirm'|translate}}</p>
+      </button>
+      <button type="button" md-raised-button color="primary" name="button" (click)="close()">
+        <p class="small-text-2">{{'Close'|translate}}</p>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="modal-header bg-blue">
+  {{'2FA QR code'|translate}}
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+
+<div class="group-col-left padd-x20">
+  <div class="fill-size group-col-left center h v padd-x20">
+    <div class="qr-code" style="width: 150px; height: 150px">
+      <div id="twofa_qr"></div>
+    </div>
+    <md-progress-spinner mode="indeterminate" class="wh-40" *ngIf="requesting" color="primary"></md-progress-spinner>
+  </div>
+</div>

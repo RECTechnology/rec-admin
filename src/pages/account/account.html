@@ -1,0 +1,42 @@
+<header-nav>
+  <button md-icon-button routerLink="/accounts" class="icon-btn-small">
+    <div class="center h v">
+      <i class="fa fa-angle-left"></i>
+    </div>
+  </button>
+
+  <div class="group-row-left center v" *ngIf="companyService.selectedCompany && companyService.selectedCompany.id">
+    <div class="user-image center h column" style="height: auto" [ngClass]="{
+        'company-border': companyService.selectedCompany.type == 'COMPANY',
+        'private-border': companyService.selectedCompany.type == 'PRIVATE'
+      }" routerLink="/account/{{companyService.selectedCompany.id}}">
+      <img src="{{companyService.selectedCompany.company_image || Brand.account_default_image}}" alt="">
+    </div>
+    <span style="margin-left: 10px">{{companyService.selectedCompany.name}}</span>
+    <code class="small-text">
+      {{companyService.selectedCompany.available}} REC
+    </code>
+    <code class="small-text">
+      {{companyService.selectedCompany.available_eur}} EUR
+    </code>
+  </div>
+</header-nav>
+<sidemenu></sidemenu>
+
+<div class="page account" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+  <md-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)">
+    <md-tab label="{{'DETAILS'|translate}}">
+      <account-details-tab></account-details-tab>
+    </md-tab>
+    <md-tab label="{{'USERS'|translate}}">
+      <account-users-tab></account-users-tab>
+    </md-tab>
+    <md-tab label="{{'MOVEMENTS'|translate}}">
+      <movements-tab></movements-tab>
+    </md-tab>
+    <md-tab label="{{'DOCUMENTS'|translate}}">
+      <documents-tab></documents-tab>
+    </md-tab>
+  </md-tab-group>
+  <page-footer style="margin-top: 30px"></page-footer>
+</div>

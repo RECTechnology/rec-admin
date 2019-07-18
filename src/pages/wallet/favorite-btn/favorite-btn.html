@@ -1,0 +1,5 @@
+<div style="width: 100px; z-index: 999999; position: fixed" class="abs-right-center hoverable" (click)="ws.selectFavorite(method.cname, type, dir, method)">
+  <span class="center h v">
+    <i class="fa fa-star-o" [ngClass]="{'fa-star col-blue': ws.isFavorite(method.cname, dir), 'fa-star-o col-gray': !ws.isFavorite(method.cname, dir)}"></i>
+  </span>
+</div>

@@ -1,0 +1,224 @@
+<div class="modal-header bg-blue">
+  {{'Edit User'|translate}}
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="group-col-left modal-body" style="width: auto; padding: 0!important">
+  <md-tab-group class="profile-tabs">
+    <md-tab label="{{'BASIC_INFO'|translate}}">
+      <div class="row padd-x20">
+        <div class="col-lg-12">
+          <b class="small-text-3" style="margin: 15px 0 10px 0">{{'BASIC_INFO'|translate}}</b>
+          <p class="small-text col-gray-light">{{'BASIC_INFO_DESC'|translate}}</p>
+        </div>
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Name'|translate}}</span>
+            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.name"
+              placeholder="{{'Name'|translate}}">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Lastname'|translate}}</span>
+            <input type="text" class="user-input small" style="max-width: 300px"
+              [(ngModel)]="userCopy.kyc_validations.last_name" placeholder="{{'Lastname'|translate}}">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Username'|translate}}</span>
+            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.username"
+              placeholder="{{'Username'|translate}}">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Email'|translate}}</span>
+            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.email"
+              placeholder="{{'Email'|translate}}">
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <div class="group-row-left space-between" style="width :100%">
+              <span class="small-text-2">{{'Phone'|translate}}</span>
+              <md-checkbox color="primary" [(ngModel)]="userCopy.public_phone">
+                <span class="small-text-2">{{'Public'|translate}}</span>
+              </md-checkbox>
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.prefix"
+                  placeholder="Phone prefix">
+              </div>
+              <div class="col-lg-8">
+                <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.phone"
+                  placeholder="Phone number">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Birth Date'|translate}}</span>
+            <input type="date" class="user-input small" style="max-width: 300px"
+              [(ngModel)]="userCopy.kyc_validations.date_birth" placeholder="Email">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Identity Document'|translate}}</span>
+            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.username"
+              placeholder="Username">
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Gender'|translate}}</span>
+            <md-select [(ngModel)]="userCopy.kyc_validations.gender">
+              <md-option value="M">{{'MALE'|translate}}</md-option>
+              <md-option value="F">{{'FEMALE'|translate}}</md-option>
+              <!-- <md-option value="">{{'NON-BINARY'|translate}}</md-option> -->
+            </md-select>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="group-col-left">
+            <b class="small-text-3" style="margin: 15px 0 10px 0">{{'Address'|translate}}</b>
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Country'|translate}}</span>
+                  <country-selector [(value)]="userCopy.kyc_validations.country"></country-selector>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Street'|translate}}</span>
+                  <input type="text" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="userCopy.kyc_validations.street_name" placeholder="{{'Street'|translate}}">
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Street Number'|translate}}</span>
+                  <input type="text" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="userCopy.kyc_validations.street_number" placeholder="{{'Street Number'|translate}}">
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Street Type'|translate}}</span>
+                  <input type="text" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="userCopy.kyc_validations.street_type" placeholder="{{'Street Type'|translate}}">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'BARRIO'|translate}}</span>
+                  <input type="text" class="user-input small" [(ngModel)]="userCopy.kyc_validations.neighborhood">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'NATIONALITY'|translate}}</span>
+                  <!-- <md-select [(ngModel)]="userCopy.kyc_validations.nationality">
+                    <md-option *ngFor="let c of countries" value="{{c.cca3}}">{{c.name.common}}</md-option>
+                  </md-select> -->
+                  <country-selector [(value)]="userCopy.kyc_validations.nationality"></country-selector>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-12">
+          <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
+            <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+            </btn-loader>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+    <md-tab label="{{'PROFILE_APEARANCE'|translate}}">
+      <div class="row padd-x20">
+        <div class="col-lg-12" style="height: auto">
+          <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'PROFILE_APEARANCE' | translate}}</b>
+          <p class="small-text col-gray-light">
+            {{'PROFILE_APEARANCE_DESC'|translate}}
+          </p>
+        </div>
+        <div class="col-lg-12">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Profile Image'|translate}}</span>
+            <div class="row">
+              <div class="col-lg-12">
+                <div style="height: 100px; width: 100px; background: #ddd">
+                  <img style="height: 100px; width: 100px;" src="{{userCopy.profile_image}}" alt="" class="user-image">
+                </div>
+              </div>
+            </div>
+            <button md-raised-button (click)="selectProfileImage()" class="marg-top-x10">
+              {{'CHANGE'|translate}}
+            </button>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Document Front'|translate}}</span>
+            <div class="row">
+              <div class="col-lg-12">
+                <div style="height: 100px; width: 100px; background: #ddd">
+                  <img style="height: 100px; width: 100px;" src="{{userCopy.kyc_validations.document_front}}" alt=""
+                    class="user-image">
+                </div>
+              </div>
+            </div>
+            <button md-raised-button (click)="selectDocFront()" class="marg-top-x10">
+              {{'CHANGE'|translate}}
+            </button>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Document Rear'|translate}}</span>
+            <div class="row">
+              <div class="col-lg-12">
+                <div style="height: 100px; width: 100px; background: #ddd">
+                  <img style="height: 100px; width: 100px;" src="{{userCopy.kyc_validations.document_rear}}" alt=""
+                    class="user-image">
+                </div>
+              </div>
+            </div>
+            <button md-raised-button (click)="selectDocRear()" class="marg-top-x10">
+              {{'CHANGE'|translate}}
+            </button>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
+            <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+            </btn-loader>
+            <p *ngIf="error">{{error}}</p>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+  </md-tab-group>
+</div>

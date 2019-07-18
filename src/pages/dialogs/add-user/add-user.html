@@ -1,0 +1,94 @@
+<div class="modal-header bg-blue">
+  {{'Add User'|translate}}
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="padd-x20" style="height: 300px">
+  <div class="row" style="max-width: 600px; width: 600px">
+    <div class="col-lg-12">
+      <p>
+        {{'ADD_USER_TO_ACCOUNT'|translate}}
+      </p>
+    </div>
+    <div class="col-lg-7">
+      <div class="group-col-left">
+        <p class="small-text">{{'Username/DNI'|translate}}: </p>
+        <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="existingUser.email">
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="group-col-left">
+        <p class="small-text">{{'Role'|translate}}: </p>
+        <button md-button [matMenuTriggerFor]="roleMenu" class="md-button-menu" style="width: 100%">
+          <span class="center space-between">
+            <span class="small-text">{{existingUser.role}}</span>
+            <i class="fa fa-caret-right"></i>
+          </span>
+        </button>
+        <md-menu #roleMenu="mdMenu">
+          <button md-menu-item *ngFor="let role of roles" (click)="existingUser.role = role" style="">
+            <p class="small-text">{{role}}</p>
+          </button>
+        </md-menu>
+      </div>
+    </div>
+  </div>
+  <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
+    <p class="col-error small-text" *ngIf="error" style="margin-right: 10px!important">{{error}}</p>
+    <p class="col-warning small-text" *ngIf="existingUser.role === 'ROLE_SUPER_ADMIN'" style="margin-right: 10px!important">
+      You are about to add a user as SUPER_ADMIN, please be cautious!
+    </p>
+    <btn-loader (click)="addUser(false)" [disabled]="loading" [loading]="loading" [text]="'ADD'">
+    </btn-loader>
+  </div>
+</div>
+
+<div class="padd-x20 modal-body" style="height: 300px" *ngIf="!showCreateNewUser">
+
+  <p class="small-text-2" *ngIf="addReseller">
+    You are about to request to be
+    <b>reseller</b> of a user, so they become refered by you, and you
+    <b>start wining money</b> every time they pay a fee.
+    <br> Enter the
+    <b>email</b> of the user you want to be reseller of, and set the role (permissions) that you want to give the user.
+    <br> If user does not exist it will send an invitation to the user, so they can register in the platform.
+  </p>
+
+  <p class="small-text-2" *ngIf="!addReseller">
+    You are about to add a user to you company. Enter the
+    <b>email</b> of the user you want to add. And set a the role the user will have.
+  </p>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-lg-7">
+      <cc-input [(value)]="existingUser.email" [label]="'DNI'" [disabled]="disabled" [type]="'text'" [placeholder]="'000000000x'"
+        style="max-width: 300px"></cc-input>
+    </div>
+    <div class="col-lg-5">
+      <div class="group-col-left">
+        <p class="small-text">{{'Role'|translate}}: </p>
+        <button md-button [matMenuTriggerFor]="roleMenu" class="md-button-menu" style="width: 100%">
+          <span class="center space-between">
+            <span class="small-text">{{existingUser.role}}</span>
+            <i class="fa fa-caret-right"></i>
+          </span>
+        </button>
+        <md-menu #roleMenu="mdMenu">
+          <button md-menu-item *ngFor="let role of roles" (click)="existingUser.role = role" style="">
+            <p class="small-text">{{role}}</p>
+          </button>
+        </md-menu>
+      </div>
+    </div>
+  </div>
+  <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
+    <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
+    <btn-loader (click)="addUser(false)" [disabled]="!existingUser.email || loading" [loading]="loading" [text]="'ADD'">
+    </btn-loader>
+  </div>
+</div>

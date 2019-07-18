@@ -1,0 +1,53 @@
+<div class="modal-header bg-blue">
+  <span>{{'DATA_PROTECTION_POLICY'|translate}}</span>
+</div>
+
+<div class="group-col-left padd-x20" style="max-width: 100%">
+  <div class="group-col-left">
+
+    <div class="warn-well" style="width: 100%">
+      <p class="small-text-2">
+        {{'DATA_PROTECTION_POLICY_DESC'|translate}}
+      </p>
+    </div>
+    <p class="small-text-3" style="margin: 10px 0 0!important">
+      {{'PLEASE_CHECK_NEW_TERMS'|translate}} <a href="https://chip-chap.com/legal.html">{{'here'|translate}}</a>.
+    </p>
+    <p class="small-text-3" style="margin: 10px 0 0!important">
+      {{'MUST_ACCEPT'|translate}}
+    </p>
+    <div class="padd-x15 group-col-left">
+      <md-checkbox [(ngModel)]="dataProtectionAccepted" color="primary">
+        <p class="small-text-2">
+          {{'accept:data_policy'|translate}}
+        </p>
+      </md-checkbox>
+      <md-checkbox [(ngModel)]="tosAccepted" color="primary">
+        <p class="small-text-2">
+          {{'accept:terms'|translate}}
+        </p>
+      </md-checkbox>
+    </div>
+
+    <p class="small-text-3" style="margin: 10px 0 0!important">
+      {{'RECEIVE_MAIL'|translate}}
+      <i class="col-gray-light"># {{'NOT_REQUIRED'|translate}}</i>
+    </p>
+    <div class="padd-x15 group-col-left">
+      <md-checkbox [(ngModel)]="notifAccepted" color="primary">
+        <p class="small-text-2">
+          {{'accept:notifications:mail'|translate}}
+        </p>
+      </md-checkbox>
+    </div>
+  </div>
+
+  <div class="group-row-right" style="width: 100%; margin-top: 20px">
+    <button type="button" name="button" md-raised-button (click)="decline()" color="default" style="margin-right: 10px">
+      <p class="small-text">{{'DECLINE'|translate}}</p>
+    </button>
+    <button type="button" name="button" md-raised-button (click)="close()" color="primary">
+      <p class="small-text">{{'Accept'|translate}}</p>
+    </button>
+  </div>
+</div>

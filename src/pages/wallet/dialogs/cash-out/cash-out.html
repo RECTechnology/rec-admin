@@ -1,0 +1,57 @@
+<div class="modal-header bg-blue">
+  <span>{{'Send To Address'|translate}}</span>
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="modal-body group-col-left padd-x20" style="width: auto">
+  <div class="row" style="width: 100%">
+    <div class="col-lg-12">
+      <p style="margin-bottom: 15px">{{'Send RECs'|translate}}</p>
+    </div>
+    <div class="col-lg-12">
+      <div class="group-col-left">
+        <p class="small-text-2">{{'Sender ID'|translate}}: </p>
+        <input type="text" class="user-input small" [(ngModel)]="tx.sender" style="margin-bottom: 0">
+        <p class="small-text">
+          * {{'The address of the account you want to send the recs from'|translate}}
+        </p>
+      </div>
+      <div class="group-col-left">
+        <p class="small-text-2">{{'Amount'|translate}}: </p>
+        <input type="text" class="user-input small" [(ngModel)]="tx.amount" placeholder="{{'Amount to pay'|translate}}">
+      </div>
+      <div class="group-col-left">
+        <p class="small-text-2">{{'Concept'|translate}}: </p>
+        <input type="text" class="user-input small" [(ngModel)]="tx.concept"
+          placeholder="{{'Concept for the payment'|translate}}">
+      </div>
+
+      <div class="group-col-left">
+        <p class="small-text-2">{{'Receiver ID'|translate}}: </p>
+        <input type="text" class="user-input small" [(ngModel)]="tx.receiver" style="margin-bottom: 0">
+        <p class="small-text">
+          * {{'The id of the account you want to send the recs to'|translate}}
+        </p>
+      </div>
+
+      <div class="group-col-left">
+        <p class="small-text-2">{{'2FA Code'|translate}}: </p>
+        <input type="text" class="user-input small" [(ngModel)]="tx.sms_code" style="margin-bottom: 0">
+        <p class="small-text">
+          * {{'A 2fa code generated from your auth application'|translate}}
+        </p>
+      </div>
+
+      <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
+        <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
+        <btn-loader (click)="makeTx()" [loading]="loading" [text]="'SEND'">
+        </btn-loader>
+      </div>
+    </div>
+  </div>
+</div>

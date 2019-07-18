@@ -1,0 +1,60 @@
+<div class="cash-in-method collapse-card bg-white" (click)="collapse()">
+  <div class="group-row-left space-between" style="align-items: center">
+    <div class="group-row-left center v">
+      <img src="{{method.image}}" alt="" class="image" style="width: auto; height: 35px;">
+      <p style="margin-left: 15px!important" class="small-text-2">{{method.cname}}-{{method.type}}</p>
+    </div>
+    <i class="fa fa-{{opened ? 'angle-down': 'angle-right'}}"></i>
+  </div>
+
+  <div class="content" [ngClass]="{'opened': opened}">
+    <div class="row">
+      <div class="col-lg-5">
+        <p class="text-small" style="margin-bottom: 10px">
+          <b>Method: </b>
+          {{method.cname}}-{{method.type}}
+        </p>
+        <p class="text-small" style="margin-bottom: 10px">
+          <b>Currency: </b>
+          {{method.currency}}
+        </p>
+        <div class="text-small">
+          <b>Fees: </b>
+          <span *ngIf="method.fees.map">
+            <div class="group-col-left">
+              <span *ngFor="let fee of method.fees">
+                <span *ngIf="fee">
+                  <b> #{{fee.id}} </b>
+                </span>
+                <span>(
+                  <b>{{fee.fixed}}</b> / {{fee.variable}} % )</span>
+              </span>
+            </div>
+          </span>
+          <span *ngIf="!method.fees.map">
+            {{method.fees}}
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <p class="text-small" style="margin-bottom: 8px">
+          <b>Limits</b>
+        </p>
+        <div class="group-col-left" style="margin-bottom: 15px">
+          <p class="text-small" style="margin-bottom: 8px!important">- Day-
+            <b>0 / {{method.limits.day
+              < 0 ? 0: method.limits.day}}</b>
+          </p>
+          <md-progress-bar class="progress" color="primary" mode="determinate" [value]="method.limits.limit_day"></md-progress-bar>
+        </div>
+        <div class="group-col-left">
+          <p class="text-small" style="margin-bottom: 8px!important">- Month-
+            <b>0 / {{method.limits.month
+              < 0 ? 0: method.limits.month}}</b>
+          </p>
+          <md-progress-bar class="progress" color="primary" mode="determinate" [value]="method.limits.limit_month"></md-progress-bar>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

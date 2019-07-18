@@ -1,0 +1,68 @@
+<div class="group-row-left fill-size center v" style="width: 100%; padding: 10px 15px; background: #fafafa">
+  <div class="row" style="width: 100%">
+    <div class="col-lg-6 col-md-12 col-sm-12" style="margin-top: 10px">
+      <div class="fill-size group-row-left space-between center v">
+        <div class="group-row-left  center v" style="width: 40%">
+          <b class="small-text-2 capitalize"
+            style="margin-right: 10px!important; white-space: nowrap;">{{'from'|translate}}: </b>
+          <input type="date" style="min-width: 160px" class="input border-radius-2" [value]="dateFrom"
+            (change)="changedDate('from', $event)">
+        </div>
+        <div class="group-row-left center v" style="width: 40%">
+          <b class="small-text-2 capitalize"
+            style="margin-right: 10px!important; white-space: nowrap;">{{'to'|translate}}: </b>
+          <input type="date" style="min-width: 160px" class="input border-radius-2" [value]="dateTo"
+            (change)="changedDate('to', $event)">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters Menus -->
+  <md-menu #filterTypes="mdMenu">
+    <button md-menu-item *ngFor="let filter_ of filter.filtertypes; trackBy: trackByFn"
+      (click)="filter.selectFilter(filter_)">
+      <p class="small-text">
+        <i class="fa fa-check col-blue" *ngIf="filter.selectedFilter.name === filter_.name"
+          style="margin-right: 10px"></i>
+        <i class="fa fa-check col-blue" *ngIf="filter.selectedFilter.name !== filter_.name"
+          style="opacity: 0; margin-right: 10px"></i>
+        {{filter_.title|translate}}
+      </p>
+    </button>
+  </md-menu>
+  <md-menu #subFilter="mdMenu">
+    <button md-menu-item [disabled]="!option.length"
+      *ngFor="let option of filter.selectedFilterOptions; trackBy: trackByFn"
+      (click)="filter.addFilter(filter.selectedFilter.name, option, filter.selectedFilter)">
+      <p class="small-text">
+        <i class="fa fa-check col-blue" *ngIf="filter.hasFilter(option, filter.selectedFilter)"
+          style="margin-right: 10px"></i>
+        <i class="fa fa-check col-blue" *ngIf="!filter.hasFilter(option, filter.selectedFilter)"
+          style="opacity: 0; margin-right: 10px"></i>
+        <span class="capitalize" *ngIf="option != 'Spark/Opex'">{{option}}</span>
+        <span class="capitalize" *ngIf="option == 'Spark/Opex'">Spark</span>
+      </p>
+    </button>
+    <button md-menu-item
+      (click)="filter.addFilter(filter.selectedFilter.name, filter.FILTER_NONE.name, filter.selectedFilter)">
+      <p class="small-text">
+        <i class="fa fa-check col-blue" *ngIf="filter.selectedFilter.name === filter.FILTER_NONE.name"
+          style="margin-right: 10px"></i>
+        <i class="fa fa-check col-blue" *ngIf="filter.selectedFilter.name !== filter.FILTER_NONE.name"
+          style="opacity: 0; margin-right: 10px"></i>
+        <span class="capitalize">{{filter.FILTER_NONE.name|translate}}</span>
+      </p>
+    </button>
+    <button md-menu-item
+      (click)="filter.addFilter(filter.selectedFilter.name, filter.FILTER_ALL.name, filter.selectedFilter)">
+      <p class="small-text">
+        <i class="fa fa-check col-blue" *ngIf="filter.selectedFilter.name === filter.FILTER_ALL.name"
+          style="margin-right: 10px"></i>
+        <i class="fa fa-check col-blue" *ngIf="filter.selectedFilter.name !== filter.FILTER_ALL.name"
+          style="opacity: 0; margin-right: 10px"></i>
+        <span class="capitalize">{{filter.FILTER_ALL.name|translate}}</span>
+      </p>
+    </button>
+  </md-menu>
+</div>

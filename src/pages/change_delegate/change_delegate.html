@@ -1,0 +1,117 @@
+<header-nav></header-nav>
+<sidemenu></sidemenu>
+
+<error-report-btn *ngIf="environment.beta"></error-report-btn>
+<div class="page padd-x20" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+  <!-- <in-development></in-development> -->
+  <div class="wallet-transactions bg-white" style="margin-top: 0">
+
+    <!-- Header -->
+    <!-- Search, new change, import from file -->
+    <delegate-header (onSearch)="search($event)" (onNewChange)="newChange($event)" (onImport)="newImport($event)">
+    </delegate-header>
+    <validation-errors style="border-top: 1px solid #ddd" [errors]="validationErrors"
+      *ngIf="validationErrors.length > 0"></validation-errors>
+
+    <!-- List of changes -->
+    <div class="group-col-left" style="width: 100%; position: relative;">
+      <table mdSort (mdSortChange)="sortData($event)" class="left-align" style="min-height: 100px">
+        <thead class="bordered stripped">
+          <tr>
+            <th md-sort-header="id" style="color: #555!important">
+              {{'ID'|translate}}
+            </th>
+            <th md-sort-header="import" style="color: #555!important">
+              {{'IMPORT_TOTAL'|translate}}
+            </th>
+            <th md-sort-header="recs_distributed" style="color: #555!important">
+              {{'RECS_DISTRIBUTED'|translate}}
+            </th>
+            <th md-sort-header="tx_success" style="color: #555!important">
+              {{'TX_RATE'|translate}}
+            </th>
+            <th md-sort-header="entries" style="color: #555!important">
+              {{'ENTRIES'|translate}}
+            </th>
+            <th md-sort-header="created" style="color: #555!important">
+              {{'CREATED'|translate}}
+            </th>
+            <th md-sort-header="scheduled_at" style="color: #555!important">
+              {{'SCHEDULED_AT'|translate}}
+            </th>
+            <th md-sort-header="status" style="color: #555!important">
+              {{'STATUS'|translate}}
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let change of sortedData; let i = index; trackBy: trackByFn">
+            <td>
+              {{change.id}}
+            </td>
+            <td>
+              <code>{{change.statistics.scheduled.rec_to_be_issued/1e8}} rec</code>
+            </td>
+            <td>
+              {{change.statistics.result.issued_rec}}
+            </td>
+            <td>
+              <span class="col-success">{{change.statistics.result.success_tx || 0}}</span>/<span
+                class="col-error">{{change.statistics.result.error_tx|| 0}}</span>
+            </td>
+            <td>
+              {{change.data ? change.data.length : 0}}
+            </td>
+            <td>
+              <i>{{change.created | date: 'medium'}}</i>
+            </td>
+            <td>
+              <i>{{change.scheduled_at | date: 'medium'}}</i>
+            </td>
+            <td>
+              <span class="status-{{change.status}}" *ngIf="!utils.isMobileDevice">{{change.status}}</span>
+              <span class="circle bg-{{change.status}}" *ngIf="utils.isMobileDevice"></span>
+            </td>
+            <td>
+
+              <button md-button *ngIf="change.status == 'scheduled'" (click)="cancelChange()">
+                {{'Cancel'|translate}}
+              </button>
+
+              <button md-icon-button [mdMenuTriggerFor]="actions" *ngIf="change.status == 'draft'">
+                <span class="center h v">
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+              </button>
+              <md-menu #actions="mdMenu">
+                <button md-menu-item (click)="navigateToChange(change.id)">
+                  <p class="small-text"><i class="fa fa-edit"></i> {{'View/Edit'|translate}}</p>
+                </button>
+                <button md-menu-item (click)="activateChange(change)">
+                  <p class="small-text"><i class="fa fa-file"></i> {{'Activate'|translate}}</p>
+                </button>
+                <hr>
+                <button md-menu-item (click)="deleteChange(change)">
+                  <p class="small-text col-error"><i class="fa fa-trash"></i> {{'DELETE'|translate}}</p>
+                </button>
+              </md-menu>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !loadingList">
+        <p class="small-text-2">{{'NO_DELEGATE_CHANGES_YET'|translate}}</p>
+      </div>
+      <div class="abs-center center h v bg-white-opaque" style="width: 100%;height: 100%" *ngIf="loadingList">
+        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </md-progress-spinner>
+      </div>
+      <md-paginator [length]="total" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+      </md-paginator>
+    </div>
+
+  </div>
+  <page-footer></page-footer>
+</div>

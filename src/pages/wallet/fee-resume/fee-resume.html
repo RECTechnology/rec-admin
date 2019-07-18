@@ -1,0 +1,23 @@
+<!-- <div class="group-col-left" style="width: 100%; margin: 15px 0; min-height: 85px" *ngIf="removeFromAmount">
+  <p class="small-text" style="margin-bottom: 8px!important">{{'Fee Resume'|translate}}: </p>
+  <code style="width: 100%; border: 1px solid #ddd;">  
+    <span class="minw-120 col-gray">{{'Amount'|translate}}:</span><span style="margin-left: 15px">{{amount}}</span><br>
+    <span *ngIf="fixedFee"><span class="minw-120 col-gray">{{'Fee'|translate}}:</span>- {{fixedFee}}</span><br *ngIf="fixedFee">
+    <span *ngIf="variableFee"><span class="minw-120 col-gray">{{'Variable'|translate}}:</span><span style="margin-left: 9px">-{{variableFee}}</span></span>
+    <span style="width: 100%; border-top: 1px solid #ddd; margin: 6px 0; display: block"></span>
+    <span class="minw-120 col-gray">{{'Total'|translate}} ({{curr}}):</span><span style="margin-left: 12px">{{(amount - fixedFee - variableFee).toFixed(8)}}</span>
+    <user-price [currency]="curr" [amount]="(amount - fixedFee - variableFee).toFixed(8)"></user-price>
+  </code>
+</div>
+
+<div class="group-col-left" style="width: 100%; margin: 15px 0; min-height: 85px" *ngIf="!removeFromAmount">
+  <p class="small-text" style="margin-bottom: 8px!important">{{'Fee Resume'|translate}}: </p>
+  <code style="width: 100%; border: 1px solid #ddd;">  
+    <span class="minw-120 col-gray">{{'Amount'|translate}}:</span><span style="margin-left: 15px">{{amount}}</span><br>
+    <span *ngIf="fixedFee"><span class="minw-120 col-gray">{{'Fee'|translate}}:</span>+ {{fixedFee}}</span><br *ngIf="fixedFee">
+    <span *ngIf="variableFee"><span class="minw-120 col-gray">{{'Variable'|translate}}:</span><span style="margin-left: 9px">+{{variableFee}}</span></span>
+    <span style="width: 100%; border-top: 1px solid #ddd; margin: 6px 0; display: block"></span>
+    <span class="minw-120 col-gray">{{'Total'|translate}} ({{curr}}):</span><span style="margin-left: 12px">{{(amount + fixedFee + variableFee).toFixed(8)}}</span>
+    <user-price [currency]="curr" [amount]="(amount + fixedFee + variableFee).toFixed(8)"></user-price>
+  </code>
+</div> -->

@@ -1,0 +1,21 @@
+<div class="modal-header bg-blue">
+  <span>{{title|translate}}</span>
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="group-col-left padd-x20">
+  <pre *ngIf="code" id="code" style="width: 100%; height: auto; background: #dedede; border: 1px solid #eee">
+    <code>
+      {{message|translate}}
+    </code>
+  </pre>
+  <div *ngIf="!code && sanitized_message" [innerHtml]="message"></div>
+  <div class="center h padd-x20" style="width: 100%; justify-content: flex-end" *ngIf="btnText && btnAction">
+    <button type="button" md-raised-button color="primary" (click)="btnAction()" name="button">{{btnText|translate}}</button>
+  </div>
+</div>

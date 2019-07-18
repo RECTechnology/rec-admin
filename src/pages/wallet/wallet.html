@@ -1,0 +1,142 @@
+<header-nav></header-nav>
+<sidemenu></sidemenu>
+
+<div class="page wallet" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+  <div class="wallet-transactions bg-white" style="margin-top: 0">
+    <div class="group-col-left" style="margin: 0">
+      <div class="fill-size center v space-between" style="padding: 10px 15px">
+        <p class="small-text col-blue" style="margin-right: 15px!important">{{'TRANSACTIONS'|translate}}</p>
+        <input type="text" class="input border-radius-2" style="width: 85%"
+          placeholder="{{'Search by id i.e: 5c1929ea5a5c980c8a3ded33'|translate}}..." [(ngModel)]="filter.search"
+          (keyup.enter)="search();" (keyup)="filter.filterModified = true;">
+        <button md-icon-button style="margin-left: 8px" (click)="getTransactions()">
+          <span class="center h v">
+            <i class="fa fa-search small-text-2"></i>
+          </span>
+        </button>
+        <button md-icon-button style="margin-left: 8px" (click)="exportCSV()"
+          mdTooltip="{{'EXPORT_TXS_AS_CSV'|translate}}">
+          <span class="center h v">
+            <i class="fa fa-download small-text-2"></i>
+          </span>
+        </button>
+        <button md-icon-button style="margin-left: 8px" title="Clear filters" (click)="filter.clearFilter()"
+          *ngIf="filter.filterModified">
+          <span class="center h v">
+            <i class="fa fa-times col-error small-text-2"></i>
+          </span>
+        </button>
+        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-raised-button
+          (click)="sendRecs()" name="button">
+          <p class="text-small">
+            <i class="fa fa-plus"></i>
+            {{'NEW_TX'|translate}}
+          </p>
+        </button>
+      </div>
+      <tx-filters style="border-top: 1px solid #e6e6e6;" [filter]="this.filter" [dateFrom]="dateFrom"
+        (dateFromChanged)="dateFrom = $event" [dateTo]="dateTo" (dateToChanged)="dateTo = $event"></tx-filters>
+    </div>
+    <div class="group-col-left" style="width: 100%;">
+      <table mdSort (mdSortChange)="sortData($event)" class="left-align">
+        <thead class="bordered stripped">
+          <tr>
+            <th md-sort-header="sender_id" sandbox-test-data style="color: #555!important">
+              {{'Sender Id'|translate}}
+            </th>
+            <th md-sort-header="sender_type" sandbox-test-data style="color: #555!important">
+              {{'Sender type'|translate}}
+            </th>
+
+            <th md-sort-header="receiver_id" sandbox-test-data style="color: #555!important">
+              {{'Receiver Id'|translate}}
+            </th>
+            <th md-sort-header="receiver_type" sandbox-test-data style="color: #555!important">
+              {{'Receiver type'|translate}}
+            </th>
+
+            <th sandbox-test-data style="color: #555!important">
+              {{'Amount'|translate}}
+            </th>
+            <th md-sort-header="method" sandbox-test-data style="color: #555!important">
+              {{'Service'|translate}}
+            </th>
+            <th md-sort-header="internal" sandbox-test-data style="color: #555!important">
+              {{'Internal'|translate}}
+            </th>
+            <th md-sort-header="created" sandbox-test-data style="color: #555!important">
+              {{'Date'|translate}}
+            </th>
+            <th md-sort-header="status" sandbox-test-data style="color: #555!important">
+              {{'Status'|translate}}
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tx of sortedData; let i = index; trackBy: trackByFn">
+            <td>
+              {{tx.sender_id}}
+            </td>
+            <td>
+              <span
+                [ngClass]="{'col-blue': tx.sender_type === 'PRIVATE', 'col-orange': tx.sender_type === 'COMPANY'}">{{tx.sender_type}}</span>
+            </td>
+            <td>
+              {{tx.receiver_id}}
+            </td>
+            <td>
+              <span
+                [ngClass]="{'col-blue': tx.receiver_type === 'PRIVATE', 'col-orange': tx.receiver_type === 'COMPANY'}">{{tx.receiver_type}}</span>
+            </td>
+            <td>
+              <code>{{tx.amount|number}} Ɍ</code> 
+            </td>
+            <td>
+              <span class="badge bg-gray small-text" style="text-transform: capitalize; min-width: 100px">
+                {{tx.service}}
+              </span>
+            </td>
+            <td>
+              <span class="fas fa-check col-success" *ngIf="internal"></span>
+              <span class="fas fa-times col-gray-light" *ngIf="!internal"></span>
+              <!-- {{tx.internal ? 'Internal': 'Not Internal'}} -->
+            </td>
+            <td>
+              <i>
+                <span>{{tx.date | date:'medium'}}</span>
+              </i>
+            </td>
+            <td>
+              <span class="status-{{tx.status}}" *ngIf="!utils.isMobileDevice">{{tx.status}}</span>
+              <span class="circle bg-{{tx.status}}" *ngIf="utils.isMobileDevice"></span>
+            </td>
+            <td>
+              <button md-button [mdMenuTriggerFor]="actions" class="icon-btn-small" md-icon-button>
+                <span class="center h v">
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+              </button>
+              <md-menu #actions="mdMenu">
+                <button md-menu-item (click)="openTxDetails(tx.id)">
+                  <p class="small-text">{{'View Details'|translate}}</p>
+                </button>
+              </md-menu>
+            </td>
+          </tr>
+        </tbody>
+        <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
+          <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+          </md-progress-spinner>
+        </div>
+      </table>
+      <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !loading">
+        <p class="small-text-2">{{'NO_TRANSACTIONS_YET'|translate}}</p>
+      </div>
+      <md-paginator [length]="totalWalletTransactions" style="width: 100%" [pageSize]="limit"
+        (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]">
+      </md-paginator>
+    </div>
+  </div>
+  <page-footer></page-footer>
+</div>

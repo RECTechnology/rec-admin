@@ -1,14 +1,242 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>RecAdmin</title>
-  <base href="/">
+<!DOCTYPE html>
+<html>
 
+<head>
+  <base href="/">
+  <title>$PANEL_TITLE</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="title" content="Chip Chap">
+  <meta name="theme-color" content="#0098db">
+  <link rel="shortcut icon" href="$PANEL_FAVICON_URL" />
+  <!-- <link rel="stylesheet" href="resources/vendor/font-awesome-4.7.0/css/font-awesome.min.css"> -->
+  <script src="https://kit.fontawesome.com/a05603364f.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/json2csv@4.2.1"></script> -->
+
+  <style>
+    .loading_screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999999;
+    }
+
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+      height: 120px;
+    }
+
+    .slider {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      border-radius: 2px;
+      min-height: 200px;
+      width: 400px;
+      min-width: 400px;
+      background: #fff;
+      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+      border: 1px solid #eaeaea;
+      color: #666;
+      padding: 20px;
+      font-size: 13px;
+      position: relative;
+      transition: all 0.3s ease-in-out
+    }
+
+    @media(min-width: 800px) {
+      .slider {
+        width: 600px;
+        min-width: 600px;
+      }
+    }
+
+    @media(max-width: 400px) {
+      .slider {
+        width: 300px;
+        min-width: 300px;
+      }
+
+      .img-bg {
+        height: 30px !important;
+      }
+    }
+
+    .animated {
+      animation: animatedLogo 4s ease-in-out infinite;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      -ms-transform: translateZ(0) scale(1) translateY(0);
+      -webkit-transform: translateZ(0) scale(1) translateY(0);
+      transform: translateZ(0) scale(1) translateY(0);
+      animation-fill-mode: forwards;
+      opacity: 1;
+    }
+
+    .circles {
+      margin-left: -24px;
+      margin-top: 20px;
+      color: #0098db
+    }
+
+    .arrows {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -40px;
+      right: -40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 20px;
+    }
+
+    .arrows .fa {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .slider-circles {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      font-size: 15px;
+      color: #7c7c7c;
+    }
+
+    .slider-circle {
+      cursor: pointer
+    }
+
+    .slider-circles .fa-circle.selected {
+      color: #0098db
+    }
+
+    .d1 {
+      animation-delay: 0ms;
+    }
+
+    .d2 {
+      animation-delay: 150ms;
+    }
+
+    .d3 {
+      animation-delay: 300ms;
+    }
+
+
+    .animate {
+      animation: slide 3s ease-in backwards;
+      transform: translateZ(0);
+    }
+
+    #slider {
+      margin-right: 40px;
+      display: block;
+      opacity: 1;
+    }
+
+    #slider .title {
+      margin-bottom: 10px !important;
+      color: #0098db !important;
+      font-size: 16px;
+      display: block;
+      text-align: left
+    }
+
+    #slider .description {
+      font-size: 14px;
+      color: #666;
+      text-align: left
+    }
+
+    .img-bg {
+      width: auto;
+      height: 80px;
+      margin-right: 10px;
+    }
+
+
+    @keyframes animatedLogo {
+      0% {
+        transform: scale(1) translateZ(0) translateY(0);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(0.92) translateZ(0) translateY(-20px);
+        opacity: 0.8;
+      }
+
+      99% {
+        transform: scale(1) translateZ(0) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateZ(0);
+        /* opacity: 1!important; */
+      }
+
+      50% {
+        transform: translateZ(10px);
+      }
+
+      99% {
+        transform: translateZ(-6px);
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-  <app-root></app-root>
+
+<body touch-action="none" style="overflow-y: hidden">
+  <app-rec-admin>
+    <div class="loading_screen">
+      <div class="loading">
+        <img src="resources/logo_round.png" alt="" id="logo" style="height: 100px;margin-right: 20px">
+        <div class="circles">
+          <i class="fa fa-circle animated d3"></i>
+          <i class="fa fa-circle animated d2"></i>
+          <i class="fa fa-circle animated d1"></i>
+        </div>
+      </div>
+    </div>
+  </app-rec-admin>
+  <script defer src="../resources/vendor/raphael.min.js"></script>
+  <script defer src="../resources/vendor/jquery.min.js"></script>
+  <script defer src="../resources/vendor/morris.min.js"></script>
+  <script defer src="../resources/vendor/underscore-min.js"></script>
+  <script defer src="../resources/vendor/qrcode.min.js"></script>
+  <script defer src="../resources/vendor/html2canvas.min.js"></script>
+  <script defer src="../resources/vendor/charting_library/charting_library.min.js"></script>
+  <script defer src="../resources/vendor/charting_library/datafeed/udf/datafeed.js"></script>
 </body>
+
 </html>
+<!-- Stylesheets -->
+<link rel="stylesheet" defer href="../resources/css/morris.css">
+<link rel="stylesheet" defer href="../resources/css/bootstrap.min.css">
+<link rel="stylesheet" defer href="../resources/vendor/flag-icon-css/css/flag-icon.css">
+<link rel="stylesheet" defer href="../resources/css/theme.css">
+<link rel="stylesheet" href="../resources/css/main.css">

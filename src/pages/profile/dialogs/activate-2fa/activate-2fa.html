@@ -1,0 +1,48 @@
+<div class="modal-header bg-blue">
+  {{'Activate 2FA'|translate}}
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+
+<div class="group-col-left padd-x20">
+  <h4>
+    {{'Activate 2FA'|translate}}
+  </h4>
+  <p class="small-text-2 text-info">{{'AUTH_APP_INSTALLED'|translate}}</p>
+  <p class="small-text-2 col-gray" *ngIf="qrcode">
+    {{'SCAN_QR'|translate}}
+    <a style="color: #1976CE" href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">{{'Google\'s one'|translate}}</a>, {{'and enter it below'|translate}}:
+  </p>
+  <p class="small-text-2 col-gray" *ngIf="!qrcode">
+    {{'REQUEST_CODE'|translate}}
+  </p>
+  <br>
+  <div class="row" style="width: 100%">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="fill-size group-col-left center h v padd-x20">
+        <div class="qr-code" style="width: 150px; height: 150px">
+          <div id="twofa_qr"></div>
+          <button md-raised-button (click)="requestCode()" *ngIf="!qrcode && !requesting">
+            {{'Request Code'|translate}}
+          </button>
+          <md-progress-spinner mode="indeterminate" class="wh-40" *ngIf="requesting" color="primary"></md-progress-spinner>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="group-col-left padd-x20">
+        <p class="small-text">{{'ENTER_2FA_CODE'|translate}}: </p>
+        <input placeholder="{{'OTP Code'|translate}}" type="text" name="" value="" class="user-input" [(ngModel)]="two_fa_code" [disabled]="loading || requesting">
+        <button md-raised-button (click)="validate2fa()" color="primary" [disabled]="loading || requesting">
+          {{'VALIDATE_CODE'|translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

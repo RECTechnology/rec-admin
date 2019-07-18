@@ -1,0 +1,104 @@
+<div class="modal-header bg-blue">
+  {{'USER_DETAILS'|translate}}
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+<div class="padd-x20 modal-body" style="height: auto">
+  <div class="group-col-left" [ngClass]="{'alert-warning': user.locked}">
+    <div class="group-row-left center h v">
+      <img src="{{user.profile_image || Brand.profile_default_image}}" alt=""
+        style="margin-right: 10px; width: 40px; height: 40px; border-radius: 50%;">
+      <div class="group-col-left">
+        <b class="small-text-3">{{user.name}}</b>
+        <i class="col-gray-light">{{user.email || user.dni}}</i>
+      </div>
+    </div>
+    <p class="small-text" *ngIf="user.locked">
+      {{'USER_DISABLED_DESC'|translate}}
+    </p>
+  </div>
+  <div class="group-col-left" style="margin-top: 15px; border-top: 1px solid #ddd">
+    <div class="group-col-left" style="padding-top: 15px">
+      <b>{{'Details'|translate}}: </b>
+      <div class="row" style="padding: 0 15px">
+        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
+          <b class="small-text-2" style="margin-right: 8px">{{'Name'|translate}} </b>
+          <span class="small-text-2">{{user.name}}</span>
+        </div>
+        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
+          <b class="small-text-2" style="margin-right: 8px">{{'Last Name'|translate}} </b>
+          <span class="small-text-2">{{user.kyc_validations ? user.kyc_validations.last_name: 'Not filled'}}</span>
+        </div>
+        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
+          <b class="small-text-2" style="margin-right: 8px">{{'Email'|translate}} </b>
+          <span class="small-text-2">{{user.email || 'Not filled'}}</span>
+        </div>
+        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
+          <b class="small-text-2" style="margin-right: 8px">
+            {{'Phone'|translate}}
+            <span class="col-success" title="Phone is validated">
+              <i class="fa fa-check"></i>
+            </span>
+          </b>
+          <span class="small-text-2">+{{user.prefix}} {{user.phone ? user.phone: 'Not filled'}}</span>
+        </div>
+        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
+          <b class="small-text-2" style="margin-right: 8px">{{'Created'|translate}} </b>
+          <span class="small-text-2">{{user.created | date}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
+    <div class="group-col-left" style="padding-top: 15px">
+      <b>{{'Accounts'|translate}}: </b>
+      <div class="group-row-left" style="flex-wrap: wrap; padding: 4px 15px"
+        *ngIf="user.companies && user.companies.length">
+        <md-chip *ngFor="let comp of user.companies" style="margin-bottom: 8px; overflow: hidden;width: 140px"
+          routerLink="/account/{{comp.id}}" (click)="close()">
+          <div class="group-row-left center h v">
+            <img src="{{comp.company_image || Brand.account_default_image}}" alt="" height="25px" width="25px"
+              style="border-radius: 50%; display: inline-block; min-width: 25px; margin-right: 8px">
+            <div class="group-col-left">
+              <span
+                style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden; max-width: 80px;">{{comp.name}}</span>
+              <span class="col-info" style="font-size: 10px;"
+                *ngIf="comp.user_roles && comp.user_roles.length">{{comp.user_roles[0]}}</span>
+            </div>
+          </div>
+
+        </md-chip>
+        <!-- <span class="small-text-2 badge badge-gray" style="margin-right: 8px">{{user.roles ? user.roles[0] : 'ROLE_READONLY'}}</span> -->
+      </div>
+    </div>
+  </div>
+  <div class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
+    <div class="group-col-left" style="padding-top: 15px">
+      <b>{{'Actions'|translate}}: </b>
+      <div style="margin-left: 10px">
+        <button md-button color="primary" (click)="editRoles()">
+          {{'Edit'|translate}}
+        </button>
+        <button md-button color="primary" (click)="viewSMSCode()">
+          {{'View SMS'|translate}}
+        </button>
+        <button md-button color="primary" (click)="resendSMSCode()">
+          {{'Resend SMS'|translate}}
+        </button>
+        <button md-button color="primary" (click)="validatePhone()">
+          {{'Validate Phone'|translate}}
+        </button>
+        <button md-button color="primary" (click)="disableUser()" *ngIf="!user.locked">
+          <span class="col-error">{{'Disable'|translate}}</span>
+        </button>
+        <button md-button color="primary" (click)="enableUser()" *ngIf="user.locked">
+          <span class="col-error">{{'Enable'|translate}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

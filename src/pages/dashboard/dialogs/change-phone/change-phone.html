@@ -1,0 +1,25 @@
+<div class="modal-header bg-blue">
+  <span>{{'CHANGE_PHONE'|translate}}</span>
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+<div class="row" style="margin:0; max-height: 80vh; overflow-y: auto; overflow-x: hidden">
+  <div class="col-lg-12 padd-x20" style="margin: 0!important">
+    <div class="group-row-left">
+      <div class="group-col-left">
+        <p>Prefix</p>
+        <input type="number" class="user-input" [(ngModel)]="user.prefix" placeholder="Phone prefix">
+      </div>
+      <div class="group-col-left" style="margin-left: 10px">
+        <p>Number</p>
+        <input class="user-input" type="tel" [(ngModel)]="user.phone" placeholder="Phone number">
+      </div>
+    </div>
+    <button md-raised-button (click)="changePhone()" color="primary">
+      {{'Change'|translate}}
+    </button>
+  </div>
+</div>

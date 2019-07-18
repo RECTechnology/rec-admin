@@ -1,0 +1,18 @@
+.delegate_status {
+  width: 100%;
+  background: whitesmoke;
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  margin-top: 10px;
+}
+
+.delegate_status .fa {
+  font-size: 30px;
+  margin-right: 10px;
+}
+
+.delegate_status .segment {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}

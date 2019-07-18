@@ -1,0 +1,4 @@
+<div *ngIf="currency != userCurrency">
+  <span title="value in your prefered currency" class="minw-120 col-gray">{{'Total'|translate}} ({{userCurrency}}):</span>
+  <span style="margin-left: 4px">{{scaleAmount()}}</span>
+</div>

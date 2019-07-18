@@ -1,0 +1,31 @@
+<div class="modal-header bg-blue">
+  <span>{{'VIEW_SMS'|translate}}</span>
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="group-col-left padd-x20">
+
+  <div>
+    <p>
+      Code for user <b>{{user.name}}</b>
+    </p>
+    <hr>
+    <p>Phone <code>+{{user.prefix || '--'}} {{user.phone}}</code></p>
+    <p>Code: <code>{{code.code}}</code></p>
+    <p class="small-text col-gray-light">Tried <code>{{code.tries}}</code> times.</p>
+  </div>
+
+  <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">
+    <button type="button" md-button name="button" (click)="close()" style="margin-right: 10px">
+      {{'CANCEL'|translate}}
+    </button>
+    <button type="button" md-raised-button color="primary" name="button" (click)="close()">
+      <b>{{'OK'|translate}}</b>
+    </button>
+  </div>
+</div>

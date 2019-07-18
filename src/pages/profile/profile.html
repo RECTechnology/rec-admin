@@ -1,0 +1,36 @@
+<header-nav></header-nav>
+<sidemenu></sidemenu>
+
+<error-report-btn *ngIf="environment.beta"></error-report-btn>
+<div class="page" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+
+  <div class="header">
+    <h2 class="col-blue fw-light">{{us.userData.name}}</h2>
+  </div>
+
+  <md-tab-group class="profile-tabs" [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)">
+    <md-tab label="{{'Accounts'|translate}}">
+      <companies-tab *ngIf="currentTab == 0"></companies-tab>
+    </md-tab>
+    <!-- <md-tab label="{{'Profile'|translate}}">
+      <profile-tab *ngIf="currentTab == 1"></profile-tab>
+    </md-tab>
+    <md-tab label="{{'Security'|translate}}">
+      <security-tab *ngIf="currentTab == 2"></security-tab>
+    </md-tab> -->
+  </md-tab-group>
+</div>
+
+<div id="changingAccount" *ngIf="compService.changingAccount">
+  <div class="fill-size center h v">
+    <div class="center h v column">
+      <img src="{{compService.changingTo.company_image || brand.profile_default_image}}" alt="" class="account-image">
+      <b class="col-gray">{{compService.changingTo.name}}</b>
+    </div>
+    <i class="fa fa-refresh fa-spin fa-3x fa-fw" style="margin: 0 20px"></i>
+    <div class="center h v column" *ngIf="compService.changingFrom">
+      <img src="{{compService.changingFrom.company_image || brand.profile_default_image}}" alt="" class="account-image">
+      <b class="col-gray">{{compService.changingFrom.name}}</b>
+    </div>
+  </div>
+</div>

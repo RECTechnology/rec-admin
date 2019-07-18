@@ -1,0 +1,27 @@
+<div class="header" style="padding: 10px 15px">
+    <p class="no-margin no-padding small-text col-blue" style="width: auto; margin: 0 !important">
+        {{title|translate}}</p>
+
+    <input *ngIf="options.input" type="text" class="{{inputClass}}" style="max-width: 70%;margin: 0 15px"
+        placeholder="{{searchPlaceholder|translate}}..." [(ngModel)]="query" (ngModelChange)="searchChanged()" (keyup.enter)="search();">
+
+    <div *ngIf="options.input">
+        <button type="button" color="primary" md-raised-button (click)="search();" name="button">
+            <p class="text-small">
+                <i class="fa fa-search"></i>
+                {{searchPlaceholder|translate}}
+            </p>
+        </button>
+    </div>
+
+    <div *ngIf="options.newItem">
+        <button type="button" color="primary" md-raised-button (click)="addItem();" name="button">
+            <p class="text-small">
+                <i class="fa {{newItemIcon}}"></i>
+                {{newItemText|translate}}
+            </p>
+        </button>
+    </div>
+
+    <ng-content></ng-content>
+</div>

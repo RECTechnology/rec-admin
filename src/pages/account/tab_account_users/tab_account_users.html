@@ -1,0 +1,95 @@
+<div style="height: 100%">
+  <div class="row" style="margin: 0; padding: 20px;">
+    <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
+      <div class="header" style="padding: 10px 15px">
+        <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important" sandbox-test-data>{{'ACCOUNT_USERS'|translate}}</p>
+
+        <input type="text" class="input border-radius-2" style="width: 70%; margin: 0 15px" placeholder="{{'Search'|translate}}..."
+          [(ngModel)]="searchQuery" (keyup.enter)="search();">
+
+        <div>
+          <button type="button" color="primary" md-raised-button (click)="search()" name="button">
+            <p class="text-small">
+              <i class="fa fa-search"></i>
+              {{'Search'|translate}}
+            </p>
+          </button>
+          <button type="button" color="primary" md-raised-button (click)="openAddUser()" name="button">
+            <p class="text-small">
+              <i class="fa fa-plus"></i>
+              {{'Add User'|translate}}
+            </p>
+          </button>
+        </div>
+      </div>
+      <div class="group-row-left center v" style="padding: 8px 15px; border-bottom: 1px solid #ddd; position: relative;">
+        <md-checkbox color="primary" class="small-text" style="margin-right: 10px">
+          {{'Active'|translate}}
+        </md-checkbox>
+        <md-checkbox color="primary" class="small-text" style="margin-right: 10px">
+          {{'Inactive'|translate}}
+        </md-checkbox>
+        <md-checkbox color="primary" class="small-text" style="margin-right: 10px">
+          {{'Profesional'|translate}}
+        </md-checkbox>
+        <md-checkbox color="primary" class="small-text" style="margin-right: 10px">
+          {{'Particular'|translate}}
+        </md-checkbox>
+
+        <div class="abs-center-right small-text " style="padding: 8px 15px;">
+          {{'Total'|translate}}: {{showingAccounts}} of {{companyService.totalAccounts}}
+        </div>
+      </div>
+      <table class="left-align" mdSort (mdSortChange)="sortData($event)">
+        <tr>
+          <th md-sort-header="id" sandbox-test-data style="color: #555!important">ID</th>
+          <th md-sort-header="name" sandbox-test-data *ngIf="!utils.isMobileDevice" style="color: #555!important">{{'Name'|translate}}</th>
+          <th md-sort-header="username" sandbox-test-data style="color: #555!important">{{'Username'|translate}}</th>
+          <th md-sort-header="email" sandbox-test-data style="color: #555!important">{{'Email'|translate}}</th>
+          <th md-sort-header="roles" sandbox-test-data style="color: #555!important" *ngIf="!utils.isMobileDevice">{{'Role'|translate}}</th>
+          <th></th>
+        </tr>
+
+        <tr *ngFor="let user of sortedData; let i = index" (focus)="keyPressed($event, user)">
+          <td>{{user.id}}</td>
+          <td *ngIf="!utils.isMobileDevice">
+            <img src="{{user.profile_image || brand.profile_default_image}}" alt="" style="width: 30px; height: 30px; border-radius: 50%">
+            {{user.name}}
+          </td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td *ngIf="!utils.isMobileDevice">{{user.roles[0]}}</td>
+          <td>
+            <button md-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
+              <span class="center h v">
+                <i class="fa fa-ellipsis-v"></i>
+              </span>
+            </button>
+            <md-menu #optsMenu="mdMenu">
+              <button md-menu-item (click)="openViewDetails(user, i)">
+                <p class="small-text">{{'View Details'|translate}}</p>
+              </button>
+              <button md-menu-item (click)="openEditUser(user, i)">
+                <p class="small-text">{{'Edit'|translate}}</p>
+              </button>
+              <hr>
+              <button md-menu-item (click)="openDeleteUser(user)">
+                <p class="small-text col-error">{{'EXPEL'|translate}}</p>
+              </button>
+            </md-menu>
+          </td>
+        </tr>
+        <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
+          <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+          </md-progress-spinner>
+        </div>
+      </table>
+      <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="!loading && total_users <= 0">
+        <p class="small-text-2">{{'There are no users yet'|translate}}</p>
+      </div>
+      <md-paginator [length]="companyService.totalAccounts" [pageSize]="limit" (page)="changedPage($event)"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+      </md-paginator>
+    </div>
+  </div>
+</div>

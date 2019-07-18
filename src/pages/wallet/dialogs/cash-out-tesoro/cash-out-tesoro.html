@@ -1,0 +1,35 @@
+<div class="modal-header bg-blue">
+  <span>{{'Receive From Treasure'|translate}}</span>
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+<div class="modal-body group-col-left padd-x20" style="width: auto">
+  <div class="row" style="width: 100%">
+    <div class="col-lg-12">
+      <p class="small-text-3" style="margin-bottom: 15px">{{'Receive REC from the treasure account'|translate}}</p>
+      <p class="small-text">
+        {{'Request to receive recs from the treasure account, three validations will be needed to complete the transaction.'|translate}}
+      </p>
+    </div>
+    <div class="col-lg-12">
+      <div class="group-col-left">
+        <p class="small-text-2">{{'Amount'|translate}}: </p>
+        <input type="text" class="user-input small" [(ngModel)]="tx.amount" placeholder="Amount to receive">
+      </div>
+      <div class="group-col-left">
+        <p class="small-text-2">{{'Concept'|translate}}: </p>
+        <input type="text" class="user-input small" [(ngModel)]="tx.concept" placeholder="Concept for the payment">
+      </div>
+
+      <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
+        <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
+        <btn-loader (click)="makeTx()" [disabled]="loading" [loading]="loading" [text]="'REQUEST'">
+        </btn-loader>
+      </div>
+    </div>
+  </div>
+</div>

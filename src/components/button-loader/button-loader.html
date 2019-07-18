@@ -1,0 +1,8 @@
+<button type="button" md-raised-button color="primary" name="button" [disabled]="loading || disabled" style="min-width: 150px">
+  <div class="center h v">
+    <md-progress-spinner color="primary" style="width: 20px; height: 20px" mode="indeterminate" *ngIf="loading"></md-progress-spinner>
+    <p class="text-small no-margin" style="margin: 0px 6px!important">
+      {{text | translate}}
+    </p>
+  </div>
+</button>

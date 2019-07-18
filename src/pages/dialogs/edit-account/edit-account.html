@@ -1,0 +1,448 @@
+<div class="modal-header bg-blue">
+  {{title | translate}}
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="group-col-left modal-body" style="width: auto; padding: 0!important">
+  <md-tab-group class="profile-tabs" [(selectedIndex)]="currentTab" (selectedIndexChange)="currentTab = $event"
+    style="width: 100%">
+    <md-tab label="{{'BASIC_INFO'|translate}}" style="height: 400px">
+      <div class="row padd-x20">
+        <div class="col-lg-12  marg-bottom-x15">
+          <b class="small-text-3" style="margin: 15px 0 10px 0">{{'BASIC_INFO'|translate}}</b>
+          <p class="small-text col-gray-light">
+            {{'BASIC_INFO_DESC'|translate}}
+          </p>
+        </div>
+
+        <!-- name -->
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Name'|translate}}</span>
+            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.name"
+              placeholder="Name">
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Phone'|translate}}</span>
+            <div class="row">
+              <div class="col-lg-4">
+                <input type="tel" class="user-input small" style="max-width: 100%" [(ngModel)]="accountCopy.prefix"
+                  placeholder="Phone prefix">
+              </div>
+              <div class="col-lg-8">
+                <input type="tel" class="user-input small" style="max-width: 100%" [(ngModel)]="accountCopy.phone"
+                  placeholder="Phone number">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Email'|translate}}</span>
+            <input type="email" class="user-input small" [(ngModel)]="accountCopy.email" placeholder="Email address">
+          </div>
+        </div>
+
+        <!-- Nif -->
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'NIF'|translate}}</span>
+            <input type="tel" class="user-input small" [(ngModel)]="accountCopy.cif" placeholder="NIF">
+          </div>
+        </div>
+
+        <!-- Types -->
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="group-col-left">
+                <span class="small-text-2">{{'Type'|translate}}</span>
+                <button md-button [matMenuTriggerFor]="typeMenu" class="md-button-menu"
+                  style="width: 100%; margin-bottom: 10px">
+                  <span class="center space-between">
+                    <span class="small-text">{{accountCopy.type}}</span>
+                    <i class="fa fa-caret-right"></i>
+                  </span>
+                </button>
+                <md-menu #typeMenu="mdMenu">
+                  <button md-menu-item *ngFor="let type of ACCOUNT_TYPES" (click)="setType(type)">
+                    <p class="small-text">{{type}}</p>
+                  </button>
+                </md-menu>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="group-col-left" *ngIf="accountCopy.type === 'COMPANY'">
+                <span class="small-text-2">{{'Sub Type'|translate}}</span>
+                <button md-button [matMenuTriggerFor]="subTypeMenu" class="md-button-menu"
+                  style="width: 100%; margin-bottom: 10px">
+                  <span class="center space-between">
+                    <span class="small-text">{{accountCopy.subtype}}</span>
+                    <i class="fa fa-caret-right"></i>
+                  </span>
+                </button>
+                <md-menu #subTypeMenu="mdMenu">
+                  <button md-menu-item *ngFor="let stype of ACCOUNT_SUB_TYPES_COMPANY"
+                    (click)="accountCopy.subtype = stype">
+                    <p class="small-text">{{stype}}</p>
+                  </button>
+                </md-menu>
+              </div>
+              <div class="group-col-left" *ngIf="accountCopy.type === 'PRIVATE'">
+                <span class="small-text-2">{{'Sub Type'|translate}}</span>
+                <button md-button [matMenuTriggerFor]="subTypeMenu" class="md-button-menu"
+                  style="width: 100%; margin-bottom: 10px">
+                  <span class="center space-between">
+                    <span class="small-text">{{accountCopy.subtype}}</span>
+                    <i class="fa fa-caret-right"></i>
+                  </span>
+                </button>
+                <md-menu #subTypeMenu="mdMenu">
+                  <button md-menu-item *ngFor="let stype of ACCOUNT_SUB_TYPES_PRIVATE"
+                    (click)="accountCopy.subtype = stype">
+                    <p class="small-text">{{stype}}</p>
+                  </button>
+                </md-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="col-lg-3">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Organization Image'|translate}}</span>
+            <div class="row">
+              <div class="col-lg-12">
+                <div style="height: 100px; width: 100px; background: #ddd">
+                  <img style="height: 100px; width: 100px;" src="{{accountCopy.company_image}}" alt=""
+                    class="user-image">
+                </div>
+              </div>
+            </div>
+            <button md-raised-button (click)="selectOrgImage()" style="margin-top: 10px">
+              {{'CHANGE'|translate}}
+            </button>
+          </div>
+        </div>
+
+        <!-- Active -->
+        <div class="col-lg-3">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Account Active'|translate}}</span>
+            <md-checkbox color="primary" [(ngModel)]="accountCopy.active">
+              <span class="small-text-2">{{(accountCopy.active ? 'Active': 'Inactive')|translate}}</span>
+            </md-checkbox>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
+            <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+            </btn-loader>
+            <p *ngIf="error">{{error}}</p>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+    <md-tab label="{{'LOCALIZATION'|translate}}" style="height: 400px">
+      <div class="row padd-x20">
+        <div class="col-lg-12">
+          <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'LOCALIZATION'|translate}}</b>
+          <p class="small-text col-gray-light">
+            {{'ORG_INFO_DESC'|translate}}
+          </p>
+        </div>
+
+        <!-- Address -->
+        <div class="col-lg-12">
+          <div class="group-col-left">
+            <b class="small-text-3" style="margin: 15px 0 10px 0">{{'Address'|translate}}</b>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Country'|translate}}</span>
+                  <country-selector [(value)]="accountCopy.country"></country-selector>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'City'|translate}}</span>
+                  <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.city"
+                    placeholder="{{'City'|translate}}">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Street'|translate}}</span>
+                  <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.street"
+                    placeholder="{{'Street'|translate}}">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Number'|translate}}</span>
+                  <input type="tel" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="accountCopy.address_number" placeholder="{{'Number'|translate}}">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Street Type'|translate}}</span>
+                  <input type="tel" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="accountCopy.street_type" placeholder="{{'Street Type'|translate}}">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'ZIP'|translate}}</span>
+                  <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.zip"
+                    placeholder="{{'Zip code'|translate}}">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'BARRIO'|translate}}</span>
+                  <input type="text" class="user-input small" [(ngModel)]="accountCopy.neighborhood">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coordenates -->
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <b class="small-text-3" style="margin: 15px 0 10px 0">{{'Coordenates'|translate}}</b>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Latitude'|translate}}</span>
+                  <input type="number" class="user-input small" [(ngModel)]="accountCopy.latitude">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="group-col-left">
+                  <span class="small-text-2">{{'Longitude'|translate}}</span>
+                  <input type="number" class="user-input small" [(ngModel)]="accountCopy.longitude">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
+            <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+            </btn-loader>
+            <p *ngIf="error">{{error}}</p>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+    <md-tab label="{{'MARKETING'|translate}}" style="height: 400px" [disabled]="type === 'PRIVATE'">
+      <div class="row padd-x20" style="width: 100%">
+        <div class="col-lg-12" style="height: auto">
+          <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'MARKETING' | translate}}</b>
+          <p class="small-text col-gray-light">
+            {{'MARKETING_DESC'|translate}}
+          </p>
+        </div>
+
+        <!-- Public image -->
+        <div class="col-lg-12" style="margin-bottom: 15px!important; ">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Public Image'|translate}}</span>
+            <div style="height: auto; min-height: 90px; width: 60%; background: #ddd">
+              <img style="width: 100%;" src="{{accountCopy.public_image}}" alt="">
+            </div>
+            <button md-raised-button (click)="selectPublicImage()" class="marg-top-x10">
+              {{'CHANGE'|translate}}
+            </button>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="col-lg-6 " style="margin-bottom: 15px!important">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Description'|translate}}</span>
+            <textarea type="text" class="user-input small" [(ngModel)]="accountCopy.description"
+              placeholder="Description"></textarea>
+          </div>
+        </div>
+
+        <!-- Activity -->
+        <div class="col-lg-6 " style="margin-bottom: 15px!important">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Activity'|translate}}</span>
+            <md-select style="width: 100%" [(ngModel)]="accountCopy.categoryId">
+              <md-option [value]="category.id" *ngFor="let category of companyService.categories">
+                {{category[lang]}}
+              </md-option>
+            </md-select>
+          </div>
+        </div>
+
+
+        <!-- Products -->
+        <div class="col-lg-12 " style="margin-bottom: 15px!important">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Products'|translate}}</span>
+            <textarea type="text" class="user-input small" [(ngModel)]="accountCopy.offered_products"
+              placeholder="PRODUCTS_DESC"></textarea>
+          </div>
+        </div>
+
+        <!-- Schedule -->
+        <div class="col-lg-6 " style="margin-bottom: 15px!important">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Schedule'|translate}}</span>
+            <button md-raised-button (click)="manageSchedule()">{{'MANAGE_SCHEDULE'|translate}}</button>
+          </div>
+        </div>
+
+        <!-- Offers -->
+        <div class="col-lg-6 " style="margin-bottom: 15px!important">
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Offers'|translate}}</span>
+            <button md-raised-button (click)="manageOffers()">{{'MANAGE_OFFERS'|translate}}</button>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
+            <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+            </btn-loader>
+            <p *ngIf="error">{{error}}</p>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+
+    <md-tab label="{{'Schedule'|translate}}" style="height: 400px" *ngIf="viewManageSchedule">
+      <div class="row padd-x20">
+        <div class="col-lg-12" style="height: auto">
+          <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'SCHEDULE' | translate}}</b>
+          <p class="small-text col-gray-light">
+            {{'SCHEDULE_DESC'|translate}}
+          </p>
+        </div>
+        <div class="col-lg-12" style="margin-top: 15px;">
+          <table>
+            <tr>
+              <th style="color: #555!important">{{'Day'|translate}}</th>
+              <th style="color: #555!important">{{'Open'|translate}}</th>
+              <th style="color: #555!important">{{'Morning'|translate}}</th>
+              <th style="color: #555!important">{{'Evening'|translate}}</th>
+            </tr>
+
+            <tr *ngFor="let day of schedule">
+              <td>
+                {{day.name|translate}}
+              </td>
+              <td>
+                <md-checkbox color="primary" [(ngModel)]="day.open"></md-checkbox>
+              </td>
+              <td>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.morning.open">
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.morning.close">
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.evening.open">
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.evening.close">
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-lg-12">
+          <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
+            <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+            </btn-loader>
+            <p *ngIf="error">{{error}}</p>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+
+    <md-tab label="{{'OFFERS'|translate}}" style="height: 400px" *ngIf="viewManageOffers">
+      <div class="row padd-x20" style="width: 100%">
+        <div class="col-lg-12" style="height: auto">
+          <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'OFFERS' | translate}}</b>
+          <p class="small-text col-gray-light">
+            {{'OFFERS_DESC'|translate}}
+          </p>
+        </div>
+        <div class="col-lg-12" style="margin-top: 15px">
+          <!-- active: false
+            created: "2018-08-03T11:53:53+00:00"
+            description: "Cena fin de año"
+            discount: "35.12"
+            end: "2018-12-31T00:00:00+00:00"
+            id: 88
+            image: "https://prefilesbm.blockroot.com/5b6426319ded7.jpeg"
+            start: "2018-12-03T00:00:00+00:00" -->
+          <div class="row">
+            <div class="col-lg-6" *ngFor="let offer of account.offers">
+              <md-card>
+                <img md-card-image src="{{'https://material.angular.io/assets/img/examples/shiba2.jpg'}}"
+                  alt="Photo of a the offer">
+                <md-card-content>
+                  <div class="group-row-left space-between" *ngIf="offer.active">
+                    <div>
+                      {{'Start'|translate}}: <code>{{offer.start | date}}</code>
+                    </div>
+                    <div>
+                      {{'End'|translate}}: <code>{{offer.end | date}}</code>
+                    </div>
+                  </div>
+                  <div class="group-row-left space-between" *ngIf="!offer.active">
+                    <p class="col-warn">
+                      {{'OFFER_NOT_ACTIVE'|translate}}
+                    </p>
+                  </div>
+                  <div>
+                    {{'Discount'|translate}} <code>{{offer.discount}}</code>
+                  </div>
+
+                  <p class="small-text col-gray-light">
+                    {{offer.description}}
+                  </p>
+                </md-card-content>
+              </md-card>
+            </div>
+
+            <div class="col-lg-12" style="margin-top: 20px">
+              <button md-raised-button>
+                {{'ADD_OFFER'|translate}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </md-tab>
+  </md-tab-group>
+</div>

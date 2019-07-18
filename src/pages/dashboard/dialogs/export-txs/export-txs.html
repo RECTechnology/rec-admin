@@ -1,0 +1,63 @@
+<div class="modal-header bg-blue">
+  <span>{{'EXPORT_TXS_AS_CSV'|translate}}</span>
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+<div class="group-col-left padd-x20 modal-body" style="max-width: 80vw; min-width: 60vw; width: auto">
+
+  <p class="col-gray small-text-2">
+    {{'EXPORT_TXS_AS_CSV'|translate}}
+  </p>
+
+  <div class="w-100" style="background: #fafafa; border: 1px solid #ddd;">
+    <div class="group-row-left w-100">
+      <tx-filters [filter]="this.filter" [dateFrom]="dateFrom" (dateFromChanged)="dateFrom = $event" [dateTo]="dateTo" (dateToChanged)="dateTo = $event"></tx-filters>
+    </div>
+
+    <div class="group-row-left center v w-100 padd-x10" style="padding-top: 10px">
+      <button md-raised-button color="primary" (click)="getTransactions()">
+        {{'SEARCH_FOR_TX'|translate}}
+      </button>
+      <button md-icon-button class="icon-btn-small" style="margin-left: 8px" title="Clear filters" (click)="filter.clearFilter()"
+        *ngIf="filter.filterModified && !loading">
+        <span class="center h v">
+          <i class="fa fa-times col-error small-text-2"></i>
+        </span>
+      </button>
+      <md-progress-spinner mode="indeterminate" color="primary" class="icon-btn-small" *ngIf="loading" style="margin-left: 10px"></md-progress-spinner>
+      <p class="small-text-2 col-{{foundTxs > 0 ? 'success': 'error'}}" style="margin-left: 10px!important" *ngIf="foundTxs !== null">
+        {{'FOUND_X_TX'|translate:({amount: foundTxs})}}
+      </p>
+    </div>
+
+    <div class="group-col-left padd-x10" style="padding-top: 15px">
+      <p class="small-text-2 col-gray">
+        {{'EXPORT_FILENAME'|translate}}:
+      </p>
+      <div class="group-row-left w-100 center v" style="margin-top: 10px">
+        <div style="position: relative;width: 80%">
+          <input type="text" id="fileName" class="input border-radius-2 w-100" style="max-width: 100%; padding-right: 80px" placeholder="{{'Enter a filename'|translate}}..."
+            [(ngModel)]="fileName">
+
+          <button md-button [mdMenuTriggerFor]="exportFormat" id="fileNameLabel" style="margin-right: 0!important">
+            <span>.{{exportType}}</span>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <md-menu #exportFormat="mdMenu">
+            <button md-menu-item *ngFor="let type of exportTypes" (click)="exportType = type">
+              <p class="small-text">
+                {{type}}
+              </p>
+            </button>
+          </md-menu>
+        </div>
+        <button md-raised-button (click)="export(exportType)" [disabled]="!fileName || !foundTxs" style="margin-left: 8px!important; padding-right: 10px!important">
+          <i class="fa fa-download"></i> {{'EXPORT'|translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,251 @@
+<header-nav></header-nav>
+<sidemenu></sidemenu>
+
+<error-report-btn *ngIf="environment.beta"></error-report-btn>
+<div class="page padd-x20" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+  <div class="new-delegate bg-white" style="margin-top: 0; position: relative;">
+
+    <!-- Header -->
+    <tl-header [options]="{ input: false }" title="{{isNew ? 'NEW_CHANGE_DELEGATE': 'EDIT_CHANGE_DELEGATE'|translate}}">
+      <div class="group-row-left center v" style="padding: 0 15px; position: relative;">
+        <p class="small-text" style="margin-right: 10px!important">{{'SCHEDULED_FOR'|translate}}:</p>
+        <b class="small-text" *ngIf="!changeScheduled">{{dataPassed ? 'Immediate': delegate.scheduled_at | date}}</b>
+        <div *ngIf="changeScheduled" class="group-row-left center v">
+          <input class="input border-radius-2" type="date" [(ngModel)]="dateScheduled">
+          <input class="input border-radius-2" type="time" [(ngModel)]="timeScheduled">
+          <button md-icon-button (click)="saveScheduled()">
+            <span class="fa fa-save"></span>
+          </button>
+        </div>
+        <button *ngIf="!changeScheduled" md-icon-button (click)="editScheduledAt()">
+          <span class="fa fa-edit"></span>
+        </button>
+        <button *ngIf="changeScheduled" md-icon-button (click)="closeScheduledAt()">
+          <span class="fa fa-times"></span>
+        </button>
+
+        <span class="small-text status-{{delegate.status}}">{{delegate.status}}</span>
+      </div>
+    </tl-header>
+
+    <tl-subheader>
+      <div class="group-row-left center v" style="padding: 10px 15px!important;">
+        <p class="small-text">
+          <b>{{sortedData.length}}</b> {{'SELECTED_ACCOUNTS_COUNT'|translate}}
+        </p>
+        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-button name="button"
+          (click)="openSelectAccounts()">
+          <p class="text-small">
+            <i class="fa fa-plus"></i>
+            {{'ADD_ACCOUNTS'|translate}}
+          </p>
+        </button>
+
+        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-button name="button"
+          (click)="newImport()">
+          <p class="text-small">
+            <i class="fa fa-file"></i>
+            {{'Import'|translate}}
+          </p>
+        </button>
+
+        <button type="button" [disabled]="selectedAccountsCount <= 0" style="margin-right: 10px; padding-right: 10px"
+          color="primary" md-button name="button" (click)="openEditAccounts()">
+          <p class="text-small">
+            <i class="fa fa-edit"></i>
+            {{'EDIT_ACCOUNTS'|translate}}
+          </p>
+        </button>
+      </div>
+    </tl-subheader>
+
+    <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+      style="border-bottom: 1px solid #ddd; width: 100%" [validationName]="validationErrorName"></validation-errors>
+
+    <!-- Table -->
+    <div class="fill-size"
+      style="max-height: 350px; overflow-y: auto; position: relative;border-bottom: 1px solid #ddd!important">
+      <table *ngIf="!loading && notSavedItems.length" class="left-align" style="min-height: 100px">
+        <thead class="bordered stripped">
+          <tr>
+            <th>
+              <md-checkbox color="primary" [(ngModel)]="allSelected" (ngModelChange)="selectAll()"></md-checkbox>
+            </th>
+            <th style="color: #555!important">
+              {{'#'|translate}}
+            </th>
+            <th style="color: #555!important">
+              {{'Account'|translate}}
+            </th>
+            <th style="color: #555!important">
+              {{'Exchanger'|translate}}
+            </th>
+            <th style="color: #555!important">
+              {{'Amount'|translate}}
+            </th>
+            <th style="color: #555!important">
+              {{'Card Info'|translate}}
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of notSavedItems; let i = index; trackBy: trackByFn">
+            <td>
+              <md-checkbox color="primary" [(ngModel)]="data.selected" (ngModelChange)="changed()"></md-checkbox>
+            </td>
+            <td>{{data.id}}</td>
+            <td>{{data.account.id}} <i>({{data.account.name}})</i></td>
+            <td>{{data.exchanger.id}}</td>
+            <td>{{data.amount}}</td>
+            <td>
+              <b *ngIf="data.pan">{{data.pan}}</b>
+              <b *ngIf="data.expiry_date">{{data.expiry_date}}</b>
+              <b *ngIf="data.cvv2">{{data.cvv2}}</b>
+            </td>
+            <td>
+              <button md-icon-button [mdMenuTriggerFor]="actions">
+                <span class="center h v">
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+              </button>
+              <md-menu #actions="mdMenu">
+                <button md-menu-item (click)="openEditAccount(data, i)">
+                  <p class="small-text"><i class="fa fa-edit"></i> {{'Edit'|translate}}</p>
+                </button>
+                <hr>
+                <button md-menu-item (click)="deleteData(data, i)">
+                  <p class="small-text col-error"><i class="fa fa-trash"></i> {{'DELETE'|translate}}</p>
+                </button>
+              </md-menu>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="group-col-left center h v" style="width: 100%; padding: 15px 0;"
+        *ngIf="!loading && !notSavedItems.length">
+        <b class="small-text-2">{{'NO_ACCOUNTS_SELECTED'|translate}}</b>
+        <p class="small-text">{{'SELECT_ACCOUNTS'|translate}}!</p>
+        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-raised-button
+          name="button" (click)="openSelectAccounts()">
+          <p class="text-small">
+            <i class="fa fa-plus"></i>
+            {{'ADD_ACCOUNTS'|translate}}
+          </p>
+        </button>
+      </div>
+
+      <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
+        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </md-progress-spinner>
+      </div>
+    </div>
+
+    <tl-header [options]="{ input: false }" title="Saved items"></tl-header>
+    <!-- Selected Items -->
+    <div class="fill-size" style="max-height: 350px; overflow-y: auto; position: relative;">
+      <table mdSort (mdSortChange)="sortData($event)" class="left-align" style="min-height: 100px">
+        <thead class="bordered stripped">
+          <tr>
+            <th>
+              <md-checkbox color="primary" [(ngModel)]="allSelectedSaved" (ngModelChange)="selectAllSaved()">
+              </md-checkbox>
+            </th>
+            <th md-sort-header="id" style="color: #555!important">
+              {{'#'|translate}}
+            </th>
+            <th md-sort-header="account_id" style="color: #555!important">
+              {{'Account'|translate}}
+            </th>
+            <th md-sort-header="exchanger_id" style="color: #555!important">
+              {{'Exchanger'|translate}}
+            </th>
+            <th md-sort-header="amount" style="color: #555!important">
+              {{'Amount'|translate}}
+            </th>
+            <th style="color: #555!important">
+              {{'Card Info'|translate}}
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of savedItems; let i = index; trackBy: trackByFn">
+            <td>
+              <md-checkbox color="primary" [(ngModel)]="data.selected" (ngModelChange)="changed()"></md-checkbox>
+            </td>
+            <td>{{data.id}}</td>
+            <td>{{data.account.id}} <i>({{data.account.name}})</i></td>
+            <td>{{data.exchanger.id}}</td>
+            <td><code>{{data.amount/100}} €</code></td>
+            <td>
+              <b *ngIf="data.pan">{{data.pan}}</b>
+              <b *ngIf="data.expiry_date">{{data.expiry_date}}</b>
+              <b *ngIf="data.cvv2">{{data.cvv2}}</b>
+            </td>
+            <td>
+              <button md-icon-button [mdMenuTriggerFor]="actions">
+                <span class="center h v">
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+              </button>
+              <md-menu #actions="mdMenu">
+                <button md-menu-item (click)="openEditAccount(data, i, true)">
+                  <p class="small-text"><i class="fa fa-edit"></i> {{'Edit'|translate}}</p>
+                </button>
+                <hr>
+                <button md-menu-item (click)="deleteData(data, i, true)">
+                  <p class="small-text col-error"><i class="fa fa-trash"></i> {{'DELETE'|translate}}</p>
+                </button>
+              </md-menu>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="group-col-left center h v" style="width: 100%; padding: 15px 0;"
+        *ngIf="!loading && !savedItems.length">
+        <b class="small-text-2">{{'NO_ENTRIES'|translate}}</b>
+      </div>
+
+      <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
+        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </md-progress-spinner>
+      </div>
+    </div>
+
+    <!-- Paginator -->
+    <div class="fill-size">
+      <md-paginator [length]="totalSaved" style="width: 100%" [pageSize]="limitSaved" (page)="changedPageSaved($event)"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+      </md-paginator>
+    </div>
+
+    <!-- Footer -->
+    <div class="fill-size" style="padding: 10px 15px; border-top: 1px solid #ddd">
+      <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
+        [disabled]="!saved && !notSavedItems.length" md-button name="button" (click)="saveEntries()">
+        <p class="text-small">
+          {{'SAVE'|translate}}
+        </p>
+      </button>
+      <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-raised-button name="button"
+        (click)="activateChange()">
+        <p class="text-small">
+          {{'Activate'|translate}}
+        </p>
+      </button>
+    </div>
+
+    <!-- Loader -->
+    <div class="overlay group-col-left center h v" *ngIf="savingEntries">
+      <md-progress-spinner color="primary" mode="determinate" [value]="percentageSent"
+        style="width: 40px; height: 40px"></md-progress-spinner>
+      <p class="small-text-1">
+        Sending: <b>{{objectsSent}} of {{objectsToSend}}</b>
+      </p>
+    </div>
+  </div>
+  <page-footer></page-footer>
+</div>

@@ -1,0 +1,102 @@
+<div class="modal-header bg-blue">
+  <span>{{'SELECT_ACCOUNTS'|translate}}</span>
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+<div class="row" style="margin: 0; height: calc(100% - 100px); overflow: hidden">
+  <!-- Un-Selected -->
+  <div class="col-lg-6" style="height: calc(100% - 55px)">
+    <div class="group-col-left" style="padding: 10px;border-bottom: 1px solid #ddd">
+      <input type="text" class="input border-radius-2" style="width: 100%"
+        placeholder="{{'Unselected Accounts'|translate}}..." [(ngModel)]="unselectedSearch"
+        (keyup.enter)="getAccounts();">
+    </div>
+
+    <div class="group-col-left" style="height: 100%; overflow-y: auto">
+      <table class="left-align" style="height: 160px" mdSort (mdSortChange)="sortDataUnselected($event)">
+        <thead class="stripped">
+          <tr>
+            <th md-sort-header="id" style="color: #555!important">
+              {{'ID'|translate}}
+            </th>
+            <th md-sort-header="name" style="color: #555!important">
+              {{'Name'|translate}}
+            </th>
+            <th md-sort-header="type" style="color: #555!important">
+              {{'Type'|translate}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let account of sortedUnselectedAccounts" class="user-select" (click)="selectAccount(account)">
+            <td>{{account.id}}</td>
+            <td>{{account.name}}</td>
+            <td style="position: relative">{{account.type}} <i class="icon fa fa-arrow-right"></i></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
+        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </md-progress-spinner>
+      </div>
+      <div class="group-col-left center h v" style="width: 100%; padding: 15px 0;border-top: 1px solid #ddd"
+        *ngIf="!sortedUnselectedAccounts.length && !loading">
+        <b class="small-text-2">{{'ALL_USERS_SELECTED'|translate}}</b>
+      </div>
+      <md-paginator [length]="totalAccountsUnsorted" style="width: 100%" [pageSize]="limitUnsorted"
+        (page)="changedPageUnsorted($event)" [pageSizeOptions]="[5, 10, 25, 100]">
+      </md-paginator>
+    </div>
+  </div>
+  <!-- Selected -->
+  <div class="col-lg-6" style="height: calc(100% - 55px)">
+    <div class="group-row-left" style="padding: 10px;border-bottom: 1px solid #ddd">
+      <input type="text" class="input border-radius-2" style="width: 100%"
+        placeholder="{{'Selected Accounts'|translate}}..." [(ngModel)]="searchSelectedQwery"
+        (keyup.enter)="searchSelected();"> <code>{{selectedAccounts.length}}</code>
+    </div>
+    <div class="group-col-left" style="height: 100%; overflow-y: auto">
+      <table class="left-align" mdSort (mdSortChange)="sortDataSelected($event)">
+        <thead class="stripped">
+          <tr>
+            <th md-sort-header="id" style="color: #555!important">
+              {{'ID'|translate}}
+            </th>
+            <th md-sort-header="name" style="color: #555!important">
+              {{'Name'|translate}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let account of newSelectedAccounts" class="user-unselect" (click)="unselectAccount(account)">
+            <td style="position: relative"><i
+                class="icon fa fa-arrow-left"></i>{{account.account ? account.account.id: account.id}}
+            </td>
+            <td>{{account.account ? account.account.name: account.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="group-col-left center h v" style="width: 100%; padding: 15px 0;border-top: 1px solid #ddd"
+        *ngIf="!newSelectedAccounts.length">
+        <b class="small-text-2">{{'NO_USERS_SELECTED'|translate}}</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <div class="group-row-left" style="justify-content: flex-end; ">
+    <button type="button" md-raised-button color="primary" class="marg-r-10" name="button" (click)="select()">
+      <p class="small-text-2">{{'Select'|translate}}</p>
+    </button>
+    <button type="button" md-raised-button color="primary" class="marg-r-10" name="button" (click)="selectAndEdit()">
+      <p class="small-text-2">{{'Select And Edit'|translate}}</p>
+    </button>
+    <button type="button" md-raised-button color="primary" class="marg-r-10" name="button" (click)="close()">
+      <p class="small-text-2">{{'Close'|translate}}</p>
+    </button>
+  </div>
+</div>

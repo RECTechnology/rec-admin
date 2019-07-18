@@ -1,0 +1,133 @@
+<div class="sidemenu"
+  [ngClass]="{'collapsed': !contrService.sidemenuVisible, 'company': us.userData.group_data.type === 'COMPANY'}">
+  <div class="collapse-menu">
+    <button type="button" name="button" class="sidemenu-collapse-btn" (click)="contrService.toggleSidemenu()">
+      <div class="center v">
+        <i class="fa fa-caret-left" *ngIf="contrService.sidemenuVisible"></i>
+        <i class="navbar-icon fa fa-bars icon"></i>
+        <i class="fa fa-caret-right" *ngIf="!contrService.sidemenuVisible"></i>
+      </div>
+    </button>
+    <a routerLink="/dashboard" class="navbar-brand" *ngIf="contrService.sidemenuVisible">
+      {{brand.header_title}} ADMIN
+    </a>
+  </div>
+  <div class="content" style="position:relative" *ngIf="contrService.sidemenuVisible">
+    <div class="user-info">
+      <div class="user-data">
+        <div class="user-image center h column" routerLink="/account">
+          <img src="{{us.userData.group_data.company_image || brand.profile_default_image}}" alt="">
+        </div>
+        <div class="user-company">
+          <p *ngIf="us.userData.group_data.tier < 4" class="center v space-between" sandbox-test>
+            {{'Account'|translate}}
+          </p>
+          <p *ngIf="us.userData.group_data.tier > 4" sandbox-test>{{'Corporate Account'|translate}}</p>
+          <h4 title="{{us.userData.group_data.name}}" class="col-white"
+            style="white-space: nowrap;margin-bottom: 0; padding-bottom: 0;">
+            {{us.userData.group_data.name}}
+          </h4>
+        </div>
+      </div>
+    </div>
+    <div class="menu">
+      <ul class="menu-list">
+        <li class="item separate" disabled>
+          <span>
+            {{'ADMIN'|translate}}
+          </span>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/dashboard" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-tachometer"></i>
+          <span>
+            {{'Dashboard'|translate}}
+          </span>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/users" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-user"></i>
+          <span>
+            {{'Users'|translate}}
+          </span>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/accounts" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-group"></i>
+          <span>
+            {{'Accounts'|translate}}
+          </span>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/transactions" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-money"></i>
+          <span>
+            {{'Transactions'|translate}}
+          </span>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/bussiness" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-building"></i>
+          <span>
+            {{'BUSSINESES'|translate}}
+          </span>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/sellers" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-money"></i>
+          <span>
+            {{'EXCHANGERS'|translate}}
+          </span>
+        </li>
+        <li class="item separate" disabled>
+          <span>
+            {{'SPECIAL_ACTIONS'|translate}}
+          </span>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/change_delegate" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-exchange"></i>
+          <span>
+            {{'CHANGE_DELEGATE'|translate}}
+          </span>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/treasure_account" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-money"></i>
+          <span>
+            {{'CREATE_RECS'|translate}}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="content small" *ngIf="!contrService.sidemenuVisible">
+    <div class="menu">
+      <ul class="menu-list">
+        <li class="item" (click)="clickedItem()" routerLink="/dashboard" routerLinkActive="active"
+          title="{{'Dashboard'|translate}}">
+          <i class="fa fa-lg fa-fw fa-tachometer"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/users" routerLinkActive="active"
+          title="{{'Users'|translate}}">
+          <i class="fa fa-lg fa-fw fa-user"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/accounts" routerLinkActive="active"
+          title="{{'Accounts'|translate}}">
+          <i class="fa fa-lg fa-fw fa-group"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/transactions" routerLinkActive="active"
+          title="{{'Transactions'|translate}}">
+          <i class="fa fa-lg fa-fw fa-money"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/bussiness" routerLinkActive="active"
+          title="{{'BUSSINESES'|translate}}">
+          <i class="fa fa-lg fa-fw fa-building"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/sellers" routerLinkActive="active"
+          title="{{'EXCHANGERS'|translate}}">
+          <i class="fa fa-lg fa-fw fa-money"></i>
+        </li>
+        <li class="item separate"></li>
+        <li class="item" (click)="clickedItem()" routerLink="/change_delegate" routerLinkActive="active"
+          title="{{'CHANGE_DELEGATE'|translate}}">
+          <i class="fa fa-lg fa-fw fa-exchange"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="backdrop-mobile" [ngClass]="{'collapsed': !contrService.sidemenuVisible}" *ngIf="utils.isMobileDevice"
+  (click)="contrService.toggleSidemenu()"></div>

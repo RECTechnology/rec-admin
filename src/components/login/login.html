@@ -1,0 +1,87 @@
+<div class="backdrop login-container">
+  <div class="abs-right-top">
+    <lang-selector></lang-selector>
+  </div>
+  <div class="row login-content">
+    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 bg-blue left-side">
+      <div class="center h v fill-space padd-x20 column">
+        <a href="{{Brand.web}}" class="link" style="margin: 15px 0">
+          <img src="{{Brand.logo}}" alt="" height="50px">
+        </a>
+
+        <div class="center h column" style="margin: 20px 0">
+          <p class="text-center upper-case" style="font-size: 13px;">{{'ECONOMIC_CITIZEN_RESOURCES'|translate}}</p>
+          <i class="small-text text-center">{{'START_NEIGHBOURHOOD'|translate}}</i>
+        </div>
+
+        <div class="abs-bottom-center" style="width: 100%; bottom: -10px">
+          <div class="center h v" style="margin: 20px 0; width: 100%;">
+            <b>
+              ADMIN
+            </b>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 right-side bg-white no-shadow">
+      <div class="center h v fill-space padd-x20 column">
+        <div class="center h v column">
+          <span class="col-blue">
+            {{'ENTER'|translate}}
+          </span>
+          <p class="login-title">
+            <i class="col-gary-light title small-text" style="text-align: center">
+              {{'sign_in'|translate}}
+            </i>
+          </p>
+        </div>
+        <span sandbox-desc></span>
+        <p class="small-text text-danger" *ngIf="errorMessage">
+          {{errorMessage|translate}}
+          <a href="javascript:;" (click)="retry()">Retry</a>
+        </p>
+        <form *ngIf="!needs_two_fa" class="login-form" autocomplete="new-password" (keyup.enter)="doLogin()">
+          <div class="input-group">
+            <input [(ngModel)]="credentials.username" [disabled]="disabled" id="username" name="username" type="text" class="form-control"
+              placeholder="{{'USER'|translate}}" autocomplete="new-password">
+            <div class="input-group-addon">
+              <i class="fa fa-user"></i>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <input [(ngModel)]="credentials.password" id="password" [disabled]="disabled" name="password" type="password" class="form-control"
+              placeholder="{{'PASSWORD'|translate}}" autocomplete="new-password">
+            <div class="input-group-addon">
+              <i class="fa fa-lock"></i>
+            </div>
+          </div>
+
+
+          <div class="input-group" style="margin-bottom: 2px">
+            <input [(ngModel)]="credentials.two_fa" #twoFAInput [disabled]="disabled" name="two_fa{{date_timestamp}}" type="text" class="form-control"
+              placeholder="{{('2FA_opt'|translate) + ('(Optional)'|translate)}}" autocomplete="new-password">
+            <div class="input-group-addon">
+              <i class="fa fa-lock"></i>
+            </div>
+          </div>
+
+          <div class="" style="margin-top: 10px">
+            <!-- <div class="g-recaptcha" data-callback="gotCaptcha" data-sitekey="6LeWBBUTAAAAANgZXswR094tppChLE7rH-EheV5P" data-error-callback="capthaError">{{captchaErrorMsg}}</div> -->
+          </div>
+
+          <div class="input-group buttons" style="margin-top: 15px">
+            <button [disabled]="loading || disabled || !credentials.username || !credentials.password " type="button" (click)="doLogin()"
+              name="button" id="login-btn">
+              <div class="center v h">
+                <md-progress-spinner color="primary" mode="indeterminate" style="width: 20px; height: 20px" *ngIf="loading">
+                </md-progress-spinner>
+                <span style="margin-left: 10px">{{'SIGN_IN'|translate}}</span>
+              </div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

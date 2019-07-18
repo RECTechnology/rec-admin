@@ -1,0 +1,26 @@
+<div class="modal-header bg-{{status}}">
+  <span [innerHTML]="title|translate:data"></span>
+
+  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="group-col-left padd-x20">
+
+  <p [innerHTML]="message|translate:data"></p>
+
+  <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">
+    <button type="button" md-button name="button" (click)="close(false)" style="margin-right: 10px">
+      {{btnCancelText|translate}}
+    </button>
+    <button type="button" md-button color="primary" name="button" (click)="opts.customBtnClick()" *ngIf="opts.customBtn" style="margin-right: 10px">
+      <b>{{opts.customBtnText|translate}}</b>
+    </button>
+    <button type="button" md-raised-button color="{{status == 'error' ? 'warn': 'primary'}}" name="button" (click)="close(true)">
+      <b>{{btnConfirmText|translate}}</b>
+    </button>
+  </div>
+</div>
