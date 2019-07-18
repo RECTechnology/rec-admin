@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ControlesService {

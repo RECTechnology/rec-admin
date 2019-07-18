@@ -16,13 +16,13 @@
     <div style="padding-left: 15px; width: 100%" class="group-col-left">
       <div class="row" style="width: 100%">
         <div class="fill-size center h v" *ngIf="!companyService.currencies.length">
-          <md-progress-spinner color="primary" style="width: 45px; height: 45px" mode="indeterminate"></md-progress-spinner>
+          <mat-progress-spinner color="primary" style="width: 45px; height: 45px" mode="indeterminate"></mat-progress-spinner>
         </div>
         <div class="col-lg-3" *ngFor="let currency of companyService.currencies" style="margin-top: 15px">
           <div class="currency center space-between">
-            <md-checkbox color="primary" [checked]="currency.enabled" [disabled]="disabled" (click)="updateSetting(currency.name, !currency.enabled)">
+            <mat-checkbox color="primary" [checked]="currency.enabled" [disabled]="disabled" (click)="updateSetting(currency.name, !currency.enabled)">
               <p class="small-text-2">{{currency.name}}</p>
-            </md-checkbox>
+            </mat-checkbox>
           </div>
         </div>
       </div>

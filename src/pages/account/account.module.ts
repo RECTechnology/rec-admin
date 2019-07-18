@@ -7,7 +7,7 @@ import { AccountComponent } from './account.component';
 import { KycTab } from './tab_kyc/kyc.tab';
 import { IsLoggedInGuard } from '../../services/guards/login.guard';
 import { Tier1Form } from './tab_kyc/tier_validation/tier_validation.component';
-import { TranslateModule } from 'ng2-translate';
+import { TranslateModule } from '@ngx-translate/core';
 import { ViewDetails } from '../dialogs/view-details/view-details.dia';
 import { ViewDetailsAccount } from '../dialogs/view-details-account/view-details-account.dia';
 import { ShowMovements } from '../dialogs/show-movements/show-movements.dia';
@@ -17,6 +17,8 @@ import { AccountDetailsTab } from './tab_account_details/account_details.tab';
 import { EditUserData } from '../dialogs/edit-user/edit-user.dia';
 import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
 import { AccountDocuments } from './tab_documents/account_documents.tab';
+import { MatTabsModule } from '@angular/material';
+import { MaterialModule } from 'src/shared/md-module';
 
 const accountRoutes: Routes = [
   {
@@ -59,6 +61,7 @@ const accountRoutes: Routes = [
     BrowserModule,
     FormsModule,
     TranslateModule.forRoot(),
+    // MaterialModule,
   ],
 })
 export class AccountModule { }

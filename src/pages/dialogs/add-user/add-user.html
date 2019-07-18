@@ -1,7 +1,7 @@
 <div class="modal-header bg-blue">
   {{'Add User'|translate}}
 
-  <button type="button" md-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
     <span class="center h v">
       <i class="fa fa-times col-white"></i>
     </span>
@@ -24,17 +24,17 @@
     <div class="col-lg-5">
       <div class="group-col-left">
         <p class="small-text">{{'Role'|translate}}: </p>
-        <button md-button [matMenuTriggerFor]="roleMenu" class="md-button-menu" style="width: 100%">
+        <button mat-button [matMenuTriggerFor]="roleMenu" class="mat-button-menu" style="width: 100%">
           <span class="center space-between">
             <span class="small-text">{{existingUser.role}}</span>
             <i class="fa fa-caret-right"></i>
           </span>
         </button>
-        <md-menu #roleMenu="mdMenu">
-          <button md-menu-item *ngFor="let role of roles" (click)="existingUser.role = role" style="">
+        <mat-menu #roleMenu="matMenu">
+          <button mat-menu-item *ngFor="let role of roles" (click)="existingUser.role = role" style="">
             <p class="small-text">{{role}}</p>
           </button>
-        </md-menu>
+        </mat-menu>
       </div>
     </div>
   </div>
@@ -72,17 +72,17 @@
     <div class="col-lg-5">
       <div class="group-col-left">
         <p class="small-text">{{'Role'|translate}}: </p>
-        <button md-button [matMenuTriggerFor]="roleMenu" class="md-button-menu" style="width: 100%">
+        <button mat-button [matMenuTriggerFor]="roleMenu" class="mat-button-menu" style="width: 100%">
           <span class="center space-between">
             <span class="small-text">{{existingUser.role}}</span>
             <i class="fa fa-caret-right"></i>
           </span>
         </button>
-        <md-menu #roleMenu="mdMenu">
-          <button md-menu-item *ngFor="let role of roles" (click)="existingUser.role = role" style="">
+        <mat-menu #roleMenu="matMenu">
+          <button mat-menu-item *ngFor="let role of roles" (click)="existingUser.role = role" style="">
             <p class="small-text">{{role}}</p>
           </button>
-        </md-menu>
+        </mat-menu>
       </div>
     </div>
   </div>

@@ -10,7 +10,6 @@ import { DevOptions } from './dev-options/dev-options.dia';
 import { BetaTerms } from './beta-terms/beta-terms.dia';
 import { DataProtection } from './data-protection/data-protection.dia';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
-import { ChangePassword } from '../../pages/profile/dialogs/change-password/change-password.dia';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -59,6 +58,7 @@ export class LoginComponent implements OnInit {
     /* This is actually not needed, but is a good way of checking if API is working */
     this.aas.doAuth((response, error) => {
       if (error) {
+        console.log(error);
         this.errorMessage = 'There has been an error, please try again later.';
       } else {
         this.gotToken = true;
@@ -190,28 +190,6 @@ export class LoginComponent implements OnInit {
       .toPromise()
       .then((confirmed) => confirmed)
       .catch((error) => { return; });
-  }
-
-  public async openChangePassword(message?: string, disable = false) {
-    const dialogRef = this.dialog.open(ChangePassword, { disableClose: disable });
-    dialogRef.componentInstance.message = message;
-    await dialogRef.afterClosed().toPromise().then().catch();
-  }
-
-  private addCaptchaScript() {
-    const script = document.createElement('script');
-    const lang = this.translate.getBrowserLang();
-    const langParams = '&hl=' + lang;
-    script.src = `https://www.google.com/recaptcha/api.js?render=onload${langParams}`;
-    script.async = true;
-    script.defer = true;
-    (window as any).gotCaptcha = (x) => {
-      this.gotCaptcha(x);
-    };
-    (window as any).captchaError = (x) => {
-      this.capthaError(x);
-    };
-    document.body.appendChild(script);
   }
 
   // Check if fields are correct

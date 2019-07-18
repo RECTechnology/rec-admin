@@ -24,17 +24,17 @@
       <div class="group-col-left">
         <span class="small-text-2">{{'Exchanger'|translate}}</span>
 
-        <md-select style="max-width: 300px; width: auto; min-width: 150px;" [(ngModel)]="exchanger"
+        <mat-select style="max-width: 300px; width: auto; min-width: 150px;" [(ngModel)]="exchanger"
           (selectionChange)="selectionChanged()">
           <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="exchangerQuery"
             (ngModelChange)="onInput()" placeholder="Search exchangers">
-          <md-option [value]="ex" *ngFor="let ex of filtered">
+          <mat-option [value]="ex" *ngFor="let ex of filtered">
             {{ex.name}} (<code>{{ex.id}}</code>)
-          </md-option>
-          <md-option *ngIf="filtered.length <= 0">
+          </mat-option>
+          <mat-option *ngIf="filtered.length <= 0">
             There are no items...
-          </md-option>
-        </md-select>
+          </mat-option>
+        </mat-select>
       </div>
     </div>
     <div class="col-lg-12">
@@ -70,10 +70,10 @@
 
   <div class="col-lg-12" style="margin: 0!important; height: 70px;border-top: 1px solid #ddd">
     <div class="group-row-left padd-x20" style="justify-content: flex-end">
-      <button type="button" md-raised-button color="primary" name="button" (click)="confirm()">
+      <button type="button" mat-raised-button color="primary" name="button" (click)="confirm()">
         <p class="small-text-2">{{'Confirm'|translate}}</p>
       </button>
-      <button type="button" md-raised-button color="primary" name="button" (click)="close()">
+      <button type="button" mat-raised-button color="primary" name="button" (click)="close()">
         <p class="small-text-2">{{'Close'|translate}}</p>
       </button>
     </div>

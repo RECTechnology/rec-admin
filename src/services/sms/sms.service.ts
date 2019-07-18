@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
 import { BaseService2 } from '../base/base.service-2';
 import { UserService } from '../user.service';
 import { ErrorManager } from '../error-manager/error-manager';

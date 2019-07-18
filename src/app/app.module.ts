@@ -6,17 +6,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 
 // Custom I18 provider for translating AngularMaterial
 
 // Components & dialogs
 import { AppComponent } from './app.component';
-import { ProfileModule } from 'src/pages/profile/profile.module';
 import { AccountModule } from 'src/pages/account/account.module';
-import { WalletModule } from 'src/pages/dashboard/dashboard.module';
+import { WalletModule } from 'src/pages/wallet/wallet.module';
 import { ChangeDelegateModule } from 'src/pages/change_delegate/change_delegate.module';
 import { CompaniesModule } from 'src/pages/companies/companies.module';
-import { CountryPickerModule } from 'angular2-countrypicker';
+// import { CountryPickerModule } from 'angular2-countrypicker';
 import { LoginComponent } from 'src/components/login/login.component';
 import { DashboardComponent } from 'src/pages/dashboard/dashboard.component';
 import { DevOptions } from 'src/components/login/dev-options/dev-options.dia';
@@ -52,7 +52,7 @@ import { MaterialModule } from 'src/shared/md-module';
 import { MatPaginatorIntl } from '@angular/material';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
 const LOCALE = navigator.languages[1];
@@ -62,7 +62,6 @@ const imports = [
   FormsModule,
   HttpClientModule,
   BrowserAnimationsModule,
-  ProfileModule,
   SharedModule, // Contains shared imports and Routes
   AccountModule,
   WalletModule,
@@ -70,16 +69,19 @@ const imports = [
   CompaniesModule,
   TranslateModule.forRoot({
     loader: {
+      deps: [HttpClient],
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
-      deps: [HttpClient],
     },
   }),
   BrowserAnimationsModule,
   MaterialModule,
-  CountryPickerModule.forRoot({
-    baseUrl: '/assets/countries/',
+  AgmCoreModule.forRoot({
+    apiKey: 'YOUR_KEY',
   }),
+  // CountryPickerModule.forRoot({
+  //   baseUrl: '/assets/countries/',
+  // }),
 ];
 
 const declarations = [

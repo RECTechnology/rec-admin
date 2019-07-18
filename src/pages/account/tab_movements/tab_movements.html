@@ -1,5 +1,5 @@
 <div style="height: 100%; padding: 20px">
-  <md-card style="padding: 0">
+  <mat-card style="padding: 0">
     <div class="fill-size center v space-between" style="padding: 10px 15px; border-bottom: 1px solid #e6e6e6;">
       <p class="small-text col-blue" style="margin-right: 15px!important">{{'TRANSACTIONS'|translate}}</p>
       <input type="text" class="input border-radius-2" style="width: 75%" placeholder="{{'Search'|translate}}..."
@@ -16,12 +16,12 @@
         </span>
       </button>
       <button md-icon-button style="margin-left: 8px" (click)="exportCSV()"
-        mdTooltip="{{'EXPORT_TXS_AS_CSV'|translate}}">
+        matTooltip="{{'EXPORT_TXS_AS_CSV'|translate}}">
         <span class="center h v">
           <i class="fa fa-download small-text-2"></i>
         </span>
       </button>
-      <button type="button" style="margin-left: 8px" color="primary" md-raised-button (click)="sendRecs()"
+      <button type="button" style="margin-left: 8px" color="primary" mat-raised-button (click)="sendRecs()"
         name="button">
         <p class="text-small">
           <i class="fa fa-plus"></i>
@@ -105,16 +105,16 @@
           </tr>
         </tbody>
         <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-          <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-          </md-progress-spinner>
+          <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+          </mat-progress-spinner>
         </div>
       </table>
       <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !loading">
         <p class="small-text-2">{{'NO_TRANSACTIONS_YET'|translate}}</p>
       </div>
-      <md-paginator [length]="totalMovements" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"
+      <mat-paginator [length]="totalMovements" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"
         [pageSizeOptions]="[5, 10, 25, 100]">
-      </md-paginator>
+      </mat-paginator>
     </div>
-  </md-card>
+  </mat-card>
 </div>

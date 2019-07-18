@@ -1,12 +1,12 @@
-<button [md-menu-trigger-for]="langMenu" type="button" md-button class="md-button-menu" style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
+<button [matMenuTriggerFor]="langMenu" type="button" mat-button class="mat-button-menu" style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
   <span *ngIf="lang.icon == 'cat'" class="flag_cataluña"></span>
   <span *ngIf="lang.icon != 'cat'" class="flag-icon flag-icon-{{lang.icon}}" style="margin-right: 6px"></span>
   <i class="fa fa-caret-down"></i>
 </button>
-<md-menu #langMenu="mdMenu" y-position="below" overlapTrigger="false">
-  <button (click)="selectLang(lang_)" md-menu-item *ngFor="let lang_ of langs" style="padding: 5px auto" [ngClass]="{'bg-gray-light': lang_.abrev == lang.abrev}">
+<mat-menu #langMenu="matMenu" y-position="below" overlapTrigger="false">
+  <button (click)="selectLang(lang_)" mat-menu-item *ngFor="let lang_ of langs" style="padding: 5px auto" [ngClass]="{'bg-gray-light': lang_.abrev == lang.abrev}">
     <span *ngIf="lang_.icon == 'cat'" class="flag_cataluña"></span>
     <span *ngIf="lang_.icon != 'cat'" class="flag-icon flag-icon-{{lang_.icon}}" style="margin-right: 6px"></span>
     <span style="color: #666; font-size: 12px">{{lang_.abrev|translate}}</span>
   </button>
-</md-menu>
+</mat-menu>

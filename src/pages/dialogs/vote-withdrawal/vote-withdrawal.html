@@ -31,17 +31,17 @@
       <div class="col-lg-12">
         <div class="marg-b-10">
           <p><b>Decida:</b></p>
-          <md-radio-group [(ngModel)]="decision" aria-label="Select an option">
-            <md-radio-button value="approved" color="primary">
-              <i class="fa fa-check col-success"></i> Aprovado</md-radio-button>
-            <md-radio-button value="refused" color="primary">
-              <i class="fa fa-times col-error"></i> Rechazado</md-radio-button>
-          </md-radio-group>
+          <mat-radio-group [(ngModel)]="decision" aria-label="Select an option">
+            <mat-radio-button value="approved" color="primary">
+              <i class="fa fa-check col-success"></i> Aprovado</mat-radio-button>
+            <mat-radio-button value="refused" color="primary">
+              <i class="fa fa-times col-error"></i> Rechazado</mat-radio-button>
+          </mat-radio-group>
         </div>
       </div>
       <div class="col-lg-12">
         <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
-          <button md-button (click)="close()">
+          <button mat-button (click)="close()">
             {{'CANCEL'|translate}}
           </button>
           <btn-loader (click)="vote()" [disabled]="loading" [loading]="loading" text="{{'Vote'|translate}}">

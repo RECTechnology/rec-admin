@@ -5,7 +5,7 @@ import { environment } from '../../environment/environment';
 import { ErrorManager } from '../error-manager/error-manager';
 import { XHR } from '../xhr/xhr';
 import { API_URL } from '../../data/consts';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 /**
@@ -282,6 +282,6 @@ export class BaseService {
     }
 
     this.errMan.addError(error);
-    return Observable.throw(error);
+    return throwError(error);
   }
 }

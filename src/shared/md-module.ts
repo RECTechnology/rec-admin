@@ -3,17 +3,44 @@ import {
     MatButtonModule, MatCheckboxModule,
     MatCardModule, MatSelectModule,
     MatTooltipModule, MatPaginatorModule,
+    MatMenuModule, MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
+    MatSortModule,
+    MatOptionModule,
+    MatBadgeModule,
+    MatTabsModule,
+    MatChipsModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatSnackBarModule,
+
 } from '@angular/material';
 
+const MODULES = [
+    MatButtonModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
+    MatSortModule,
+    MatOptionModule,
+    MatBadgeModule,
+    MatTabsModule,
+    MatChipsModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatSnackBarModule,
+];
+
 @NgModule({
-    imports: [
-        MatButtonModule,
-        MatCheckboxModule,
-        MatCardModule,
-        MatSelectModule,
-        MatTooltipModule,
-        MatPaginatorModule,
-    ],
+    exports: MODULES,
+    imports: MODULES,
 })
 export class MaterialModule {
 

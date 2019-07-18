@@ -50,25 +50,25 @@
                     <i class="fa fa-ellipsis-v"></i>
                   </p>
                 </button>
-                <md-menu #options="mdMenu">
-                  <button md-menu-item (click)="showConfirmDelete(acc, i)">
+                <mat-menu #options="matMenu">
+                  <button mat-menu-item (click)="showConfirmDelete(acc, i)">
                     <p class="small-text text-danger">
                       {{'Delete'|translate}}
                     </p>
                   </button>
-                </md-menu>
+                </mat-menu>
               </td>
             </tr>
             <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-              <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-              </md-progress-spinner>
+              <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+              </mat-progress-spinner>
             </div>
           </table>
           <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="(!loading && totalAccounts <= 0) || accountList.length <= 0">
             <p class="small-text-2">{{'NO_ACC_YET'|translate}}.</p>
           </div>
-          <md-paginator [length]="totalAccounts" [pageSize]="10" (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]">
-          </md-paginator>
+          <mat-paginator [length]="totalAccounts" [pageSize]="10" (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]">
+          </mat-paginator>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@
           </span>
         </button>
         <button md-icon-button style="margin-left: 8px" (click)="exportCSV()"
-          mdTooltip="{{'EXPORT_TXS_AS_CSV'|translate}}">
+          matTooltip="{{'EXPORT_TXS_AS_CSV'|translate}}">
           <span class="center h v">
             <i class="fa fa-download small-text-2"></i>
           </span>
@@ -26,7 +26,7 @@
             <i class="fa fa-times col-error small-text-2"></i>
           </span>
         </button>
-        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-raised-button
+        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-raised-button
           (click)="sendRecs()" name="button">
           <p class="text-small">
             <i class="fa fa-plus"></i>
@@ -112,30 +112,30 @@
               <span class="circle bg-{{tx.status}}" *ngIf="utils.isMobileDevice"></span>
             </td>
             <td>
-              <button md-button [mdMenuTriggerFor]="actions" class="icon-btn-small" md-icon-button>
+              <button mat-button [matMenuTriggerFor]="actions" class="icon-btn-small" md-icon-button>
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
               </button>
-              <md-menu #actions="mdMenu">
-                <button md-menu-item (click)="openTxDetails(tx.id)">
+              <mat-menu #actions="matMenu">
+                <button mat-menu-item (click)="openTxDetails(tx.id)">
                   <p class="small-text">{{'View Details'|translate}}</p>
                 </button>
-              </md-menu>
+              </mat-menu>
             </td>
           </tr>
         </tbody>
         <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-          <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-          </md-progress-spinner>
+          <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+          </mat-progress-spinner>
         </div>
       </table>
       <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !loading">
         <p class="small-text-2">{{'NO_TRANSACTIONS_YET'|translate}}</p>
       </div>
-      <md-paginator [length]="totalWalletTransactions" style="width: 100%" [pageSize]="limit"
+      <mat-paginator [length]="totalWalletTransactions" style="width: 100%" [pageSize]="limit"
         (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]">
-      </md-paginator>
+      </mat-paginator>
     </div>
   </div>
   <page-footer></page-footer>

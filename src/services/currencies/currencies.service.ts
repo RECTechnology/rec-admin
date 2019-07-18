@@ -5,9 +5,6 @@ import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
 import { ErrorManager } from '../error-manager/error-manager';
 import { Currency, Crypto, Fiat } from '../../shared/entities/currency/currency';
-
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
 import { Ticker } from '../../shared/entities/ticker/ticker';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';

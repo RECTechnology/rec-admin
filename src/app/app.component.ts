@@ -126,7 +126,7 @@ export class AppComponent implements OnInit, OnDestroy {
     localStorage.setItem('lang', currentLang);
 
     console.log('Current Lang: ', currentLang);
-    /* Sets up ng2-translate */
+    /* Sets up @ngx-translate/core */
     this.translate.setDefaultLang('en');
     this.translate.use(currentLang);
   }

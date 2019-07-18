@@ -6,7 +6,7 @@
     <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
       <tl-header title="Accounts" [(query)]="searchQuery" [options]="headerOpts" (onSearch)="search($event)">
         <button md-icon-button style="margin-left: 8px" (click)="export()"
-          mdTooltip="{{'EXPORT_AS_CSV'|translate}}">
+          matTooltip="{{'EXPORT_AS_CSV'|translate}}">
           <span class="center h v">
             <i class="fa fa-download small-text-2"></i>
           </span>
@@ -14,27 +14,27 @@
       </tl-header>
       <tl-subheader>
         <div style="padding: 8px 15px;">
-          <md-checkbox style="margin-right: 8px" color="primary" [(ngModel)]="active" (ngModelChange)="search();">
+          <mat-checkbox style="margin-right: 8px" color="primary" [(ngModel)]="active" (ngModelChange)="search();">
             <span class="small-text">{{'Active'|translate}}</span>
-          </md-checkbox>
-          <!-- <md-checkbox style="margin-right: 8px" color="primary" (change)="selectType('COMPANY')" [checked]="isComp">
+          </mat-checkbox>
+          <!-- <mat-checkbox style="margin-right: 8px" color="primary" (change)="selectType('COMPANY')" [checked]="isComp">
             <span class="small-text">{{'Company'|translate}}</span>
-          </md-checkbox>
-          <md-checkbox style="margin-right: 8px" color="primary" (change)="selectType('PRIVATE')" [checked]="isPriv">
+          </mat-checkbox>
+          <mat-checkbox style="margin-right: 8px" color="primary" (change)="selectType('PRIVATE')" [checked]="isPriv">
             <span class="small-text">{{'Private'|translate}}</span>
-          </md-checkbox> -->
+          </mat-checkbox> -->
 
-          <md-radio-group aria-label="Select an option" [(ngModel)]="type" (change)="changedType()">
-            <md-radio-button value="COMPANY" color="primary">
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="type" (change)="changedType()">
+            <mat-radio-button value="COMPANY" color="primary">
               <span class="small-text">{{'Company'|translate}}</span>
-            </md-radio-button>
-            <md-radio-button value="PRIVATE" color="primary">
+            </mat-radio-button>
+            <mat-radio-button value="PRIVATE" color="primary">
               <span class="small-text">{{'Private'|translate}}</span>
-            </md-radio-button>
-            <md-radio-button value="" color="primary">
+            </mat-radio-button>
+            <mat-radio-button value="" color="primary">
               <span class="small-text">{{'All'|translate}}</span>
-            </md-radio-button>
-          </md-radio-group>
+            </mat-radio-button>
+          </mat-radio-group>
 
           <div class="abs-center-right small-text col-gray-light" style="padding: 8px 15px;">
             {{'Showing'|translate}}: {{showingAccounts}} {{'of'|translate}} {{companyService.totalAccounts}}

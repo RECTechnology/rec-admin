@@ -6,7 +6,7 @@
         placeholder="{{searchPlaceholder|translate}}..." [(ngModel)]="query" (ngModelChange)="searchChanged()" (keyup.enter)="search();">
 
     <div *ngIf="options.input">
-        <button type="button" color="primary" md-raised-button (click)="search();" name="button">
+        <button type="button" color="primary" mat-raised-button (click)="search();" name="button">
             <p class="text-small">
                 <i class="fa fa-search"></i>
                 {{searchPlaceholder|translate}}
@@ -15,7 +15,7 @@
     </div>
 
     <div *ngIf="options.newItem">
-        <button type="button" color="primary" md-raised-button (click)="addItem();" name="button">
+        <button type="button" color="primary" mat-raised-button (click)="addItem();" name="button">
             <p class="text-small">
                 <i class="fa {{newItemIcon}}"></i>
                 {{newItemText|translate}}

@@ -1,5 +1,5 @@
 <div style="height: 100%; padding: 20px">
-  <md-card style="padding: 20px">
+  <mat-card style="padding: 20px">
     <div *ngIf="!loading && companyService.selectedCompany && companyService.selectedCompany.id">
       <div class="group-col-left" style="width: 100%; padding: 20px">
         <div class="group-row-left center h v" style="position: relative;width: 100%">
@@ -78,10 +78,10 @@
         <div class="group-col-left" style="padding-top: 15px">
           <b>{{'Actions'|translate}}: </b>
           <div style="margin-left: 10px">
-            <button md-button color="primary" (click)="openEditAccount()">
+            <button mat-button color="primary" (click)="openEditAccount()">
               {{'Edit'|translate}}
             </button>
-            <button md-button color="primary" (click)="expelUser()">
+            <button mat-button color="primary" (click)="expelUser()">
               <span class="col-error">{{'Delete'|translate}}</span>
             </button>
           </div>
@@ -90,8 +90,8 @@
     </div>
 
     <div *ngIf="loading" class="center h v bg-white-opaque" style="width: 100%;">
-      <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-      </md-progress-spinner>
+      <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+      </mat-progress-spinner>
     </div>
-  </md-card>
+  </mat-card>
 </div>

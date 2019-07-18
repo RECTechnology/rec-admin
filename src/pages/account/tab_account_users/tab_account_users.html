@@ -8,13 +8,13 @@
           [(ngModel)]="searchQuery" (keyup.enter)="search();">
 
         <div>
-          <button type="button" color="primary" md-raised-button (click)="search()" name="button">
+          <button type="button" color="primary" mat-raised-button (click)="search()" name="button">
             <p class="text-small">
               <i class="fa fa-search"></i>
               {{'Search'|translate}}
             </p>
           </button>
-          <button type="button" color="primary" md-raised-button (click)="openAddUser()" name="button">
+          <button type="button" color="primary" mat-raised-button (click)="openAddUser()" name="button">
             <p class="text-small">
               <i class="fa fa-plus"></i>
               {{'Add User'|translate}}
@@ -23,18 +23,18 @@
         </div>
       </div>
       <div class="group-row-left center v" style="padding: 8px 15px; border-bottom: 1px solid #ddd; position: relative;">
-        <md-checkbox color="primary" class="small-text" style="margin-right: 10px">
+        <mat-checkbox color="primary" class="small-text" style="margin-right: 10px">
           {{'Active'|translate}}
-        </md-checkbox>
-        <md-checkbox color="primary" class="small-text" style="margin-right: 10px">
+        </mat-checkbox>
+        <mat-checkbox color="primary" class="small-text" style="margin-right: 10px">
           {{'Inactive'|translate}}
-        </md-checkbox>
-        <md-checkbox color="primary" class="small-text" style="margin-right: 10px">
+        </mat-checkbox>
+        <mat-checkbox color="primary" class="small-text" style="margin-right: 10px">
           {{'Profesional'|translate}}
-        </md-checkbox>
-        <md-checkbox color="primary" class="small-text" style="margin-right: 10px">
+        </mat-checkbox>
+        <mat-checkbox color="primary" class="small-text" style="margin-right: 10px">
           {{'Particular'|translate}}
-        </md-checkbox>
+        </mat-checkbox>
 
         <div class="abs-center-right small-text " style="padding: 8px 15px;">
           {{'Total'|translate}}: {{showingAccounts}} of {{companyService.totalAccounts}}
@@ -65,31 +65,31 @@
                 <i class="fa fa-ellipsis-v"></i>
               </span>
             </button>
-            <md-menu #optsMenu="mdMenu">
-              <button md-menu-item (click)="openViewDetails(user, i)">
+            <mat-menu #optsMenu="matMenu">
+              <button mat-menu-item (click)="openViewDetails(user, i)">
                 <p class="small-text">{{'View Details'|translate}}</p>
               </button>
-              <button md-menu-item (click)="openEditUser(user, i)">
+              <button mat-menu-item (click)="openEditUser(user, i)">
                 <p class="small-text">{{'Edit'|translate}}</p>
               </button>
               <hr>
-              <button md-menu-item (click)="openDeleteUser(user)">
+              <button mat-menu-item (click)="openDeleteUser(user)">
                 <p class="small-text col-error">{{'EXPEL'|translate}}</p>
               </button>
-            </md-menu>
+            </mat-menu>
           </td>
         </tr>
         <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-          <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-          </md-progress-spinner>
+          <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+          </mat-progress-spinner>
         </div>
       </table>
       <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="!loading && total_users <= 0">
         <p class="small-text-2">{{'There are no users yet'|translate}}</p>
       </div>
-      <md-paginator [length]="companyService.totalAccounts" [pageSize]="limit" (page)="changedPage($event)"
+      <mat-paginator [length]="companyService.totalAccounts" [pageSize]="limit" (page)="changedPage($event)"
         [pageSizeOptions]="[5, 10, 25, 100]">
-      </md-paginator>
+      </mat-paginator>
     </div>
   </div>
 </div>

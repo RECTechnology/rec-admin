@@ -7,12 +7,9 @@ import { BaseService } from './base/base.service';
 import { ErrorManager } from './error-manager/error-manager';
 import { UserStorage } from './user-storage/user-storage';
 import { MatDialog } from '@angular/material';
-
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
 import { MySnackBarSevice } from '../bases/snackbar-base';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
@@ -376,7 +373,7 @@ export class RegisterService {
       error._body = JSON.parse(error._body);
     }
     this.errMan.addError(error);
-    return Observable.throw(error);
+    return throwError(error);
   }
 }
 
@@ -411,7 +408,7 @@ export class ValidateService {
       error._body = JSON.parse(error._body);
     }
     this.errMan.addError(error);
-    return Observable.throw(error);
+    return throwError(error);
   }
 }
 
@@ -452,6 +449,6 @@ export class ForgotPassService {
       error._body = JSON.parse(error._body);
     }
     this.errMan.addError(error);
-    return Observable.throw(error);
+    return throwError(error);
   }
 }

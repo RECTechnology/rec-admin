@@ -1,8 +1,5 @@
 /* tslint:disable */
 import { environment } from '../../config/environment-v2';
-import { environment as env } from '../../config/environment';
-import { concat } from 'rxjs/observable/concat';
-
 
 // Configure environment
 const envName = environment.name;

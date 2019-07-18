@@ -43,7 +43,8 @@ import { TableListSubHeader } from '../components/table-list/tl-subheader/tl-sub
 import { TableListTable } from '../components/table-list/tl-table/tl-table.component';
 import { CountrySelector } from '../components/country-selector/country-selector.component';
 import { AppNotifications } from '../components/app-notifications/app-notifications';
-import { AppRoutingModule } from 'src/app/app-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
+import { AppRoutingModule } from 'src/app/app.routing';
 
 @NgModule({
   declarations: [
@@ -120,12 +121,14 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     TableListSubHeader,
     TableListTable,
     CountrySelector,
+    MaterialModule,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     MaterialModule,
     AppRoutingModule, // Module to manage App Routing
+    TranslateModule.forChild(),
   ],
   providers: [
     CompanyService,

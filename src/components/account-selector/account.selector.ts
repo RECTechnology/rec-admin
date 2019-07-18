@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 import { LANGS, LANG_MAP } from '../../data/consts';
 import { UserService } from '../../services/user.service';
 import { LoginService } from '../../services/auth.service';

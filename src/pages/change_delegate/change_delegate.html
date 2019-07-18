@@ -75,27 +75,27 @@
             </td>
             <td>
 
-              <button md-button *ngIf="change.status == 'scheduled'" (click)="cancelChange()">
+              <button mat-button *ngIf="change.status == 'scheduled'" (click)="cancelChange()">
                 {{'Cancel'|translate}}
               </button>
 
-              <button md-icon-button [mdMenuTriggerFor]="actions" *ngIf="change.status == 'draft'">
+              <button md-icon-button [matMenuTriggerFor]="actions" *ngIf="change.status == 'draft'">
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
               </button>
-              <md-menu #actions="mdMenu">
-                <button md-menu-item (click)="navigateToChange(change.id)">
+              <mat-menu #actions="matMenu">
+                <button mat-menu-item (click)="navigateToChange(change.id)">
                   <p class="small-text"><i class="fa fa-edit"></i> {{'View/Edit'|translate}}</p>
                 </button>
-                <button md-menu-item (click)="activateChange(change)">
+                <button mat-menu-item (click)="activateChange(change)">
                   <p class="small-text"><i class="fa fa-file"></i> {{'Activate'|translate}}</p>
                 </button>
                 <hr>
-                <button md-menu-item (click)="deleteChange(change)">
+                <button mat-menu-item (click)="deleteChange(change)">
                   <p class="small-text col-error"><i class="fa fa-trash"></i> {{'DELETE'|translate}}</p>
                 </button>
-              </md-menu>
+              </mat-menu>
             </td>
           </tr>
         </tbody>
@@ -104,12 +104,12 @@
         <p class="small-text-2">{{'NO_DELEGATE_CHANGES_YET'|translate}}</p>
       </div>
       <div class="abs-center center h v bg-white-opaque" style="width: 100%;height: 100%" *ngIf="loadingList">
-        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-        </md-progress-spinner>
+        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
       </div>
-      <md-paginator [length]="total" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"
+      <mat-paginator [length]="total" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"
         [pageSizeOptions]="[5, 10, 25, 100]">
-      </md-paginator>
+      </mat-paginator>
     </div>
 
   </div>

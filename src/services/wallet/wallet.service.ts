@@ -6,9 +6,6 @@ import { ErrorManager } from '../error-manager/error-manager';
 import { Wallet } from '../../shared/entities/wallet/wallet';
 import { PrepaidCardMulti } from '../../shared/entities/prepaid_card/prepaid_card';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
-
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

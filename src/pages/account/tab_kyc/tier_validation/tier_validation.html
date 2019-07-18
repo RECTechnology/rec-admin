@@ -97,11 +97,11 @@
         </div>
       </div>
       <div *ngIf="uploadButtons" class="group-row-left center v" style="margin-top: 20px; margin-left: 40px!important; width: 100%">
-        <button type="button" md-raised-button color="primary" name="button" (click)="uploadDocument()">
+        <button type="button" mat-raised-button color="primary" name="button" (click)="uploadDocument()">
           <i class="fa fa-upload"></i> {{'Upload Document'|translate}}
         </button>
 
-        <button [disabled]="tierStatus && tierStatus !== 'denied'" style="margin-left: 30px" type="button" md-raised-button color="primary"
+        <button [disabled]="tierStatus && tierStatus !== 'denied'" style="margin-left: 30px" type="button" mat-raised-button color="primary"
           name="button" (click)="requestKycValidation()">
           <i class="fa fa-upload"></i>
           <span [innerHTML]="'REQUEST_TIER'|translate: { tier:  tier}"></span>
@@ -152,14 +152,14 @@
         </tr>
       </table>
       <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="loading">
-        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-        </md-progress-spinner>
+        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
       </div>
       <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="!loading && kycUploads.length <= 0">
         <p class="small-text-2">{{'There are no uploads yet'|translate}}.</p>
       </div>
-      <md-paginator [length]="totalKycUploads" [pageSize]="10" (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]">
-      </md-paginator>
+      <mat-paginator [length]="totalKycUploads" [pageSize]="10" (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
     </div>
 
   </div>

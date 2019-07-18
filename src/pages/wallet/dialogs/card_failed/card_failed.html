@@ -36,12 +36,12 @@
   </ul>
 
   <div class="group-col-left">
-    <md-checkbox color="primary" [(ngModel)]="checked">
+    <mat-checkbox color="primary" [(ngModel)]="checked">
       <p class="text-small no-margin">
         I accept that I have read the above information
       </p>
-    </md-checkbox>
-    <button (click)="close()" [disabled]="!checked" style="min-width: 150px" type="button" md-raised-button color="primary" name="button">
+    </mat-checkbox>
+    <button (click)="close()" [disabled]="!checked" style="min-width: 150px" type="button" mat-raised-button color="primary" name="button">
       <div class="center h v">
         <p class="text-small no-margin" style="margin: 0px 6px!important">
           {{'Accept' | translate}}

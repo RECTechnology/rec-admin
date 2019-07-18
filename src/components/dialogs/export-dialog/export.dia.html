@@ -10,8 +10,8 @@
 
 <div class="group-col-left padd-x20" style="position: relative; max-height: 80vh; overflow-y: auto;">
     <div class="overlay center v h" *ngIf="loading">
-        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-        </md-progress-spinner>
+        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
     </div>
 
     <div style="width: 100%; padding-bottom: 10px">
@@ -26,7 +26,7 @@
     <kvp-list [(hidden)]="hidden" [items]="list" (onChange)="changedItems($event)"></kvp-list>
 
     <div class="center v">
-        <button md-raised-button [disabled]="!fileName || loading" (click)="export()"
+        <button mat-raised-button [disabled]="!fileName || loading" (click)="export()"
             style="margin-left: 8px!important; padding-right: 10px!important">
             <span class="center h v">
                 <i class="fa fa-download"></i> {{'EXPORT'|translate}}

@@ -1,18 +1,18 @@
 <div>
-  <button [md-menu-trigger-for]="notifMenu" type="button" md-icon-button style="margin-right: 10px" mdBadge="4"
-    mdBadgeOverlap="false">
+  <button [matMenuTriggerFor]="notifMenu" type="button" mat-icon-button style="margin-right: 10px" matBadge="4"
+    matBadgeOverlap="false">
     <span class="center h v">
       <i *ngIf="ns.hasNotifications" class="fa fa-bell"></i>
       <i *ngIf="!ns.hasNotifications" class="fa fa-bell" style="opacity: 0.4"></i>
     </span>
     <span *ngIf="ns.hasNotifications" class="badge badge-pill badge-danger abs-top-right small-text">{{ns.count}}</span>
   </button>
-  <md-menu #notifMenu="mdMenu" y-position="below" overlapTrigger="false">
-    <div md-menu-item disabled *ngIf="!ns.hasNotifications">
+  <mat-menu #notifMenu="matMenu" y-position="below" overlapTrigger="false">
+    <div mat-menu-item disabled *ngIf="!ns.hasNotifications">
       <p>Nothing here! You are done! </p>
     </div>
     <ng-template ngFor let-notif [ngForOf]="ns.notifications">
-      <div (click)="clicked(notif)" *ngIf="!notif.link" md-menu-item style="height: auto; min-height: 50px">
+      <div (click)="clicked(notif)" *ngIf="!notif.link" mat-menu-item style="height: auto; min-height: 50px">
         <div class="group-row-left">
           <div>
             <b><i class="fa fa-{{notif.icon || 'bell'}}"></i> {{notif.title}}</b>
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <a (click)="clicked(notif)" *ngIf="notif.link" routerLink="{{notif.link}}" md-menu-item
+      <a (click)="clicked(notif)" *ngIf="notif.link" routerLink="{{notif.link}}" mat-menu-item
         style="height: auto; min-height: 50px">
         <div class="group-row-left">
           <div>
@@ -30,5 +30,5 @@
         </div>
       </a>
     </ng-template>
-  </md-menu>
+  </mat-menu>
 </div>

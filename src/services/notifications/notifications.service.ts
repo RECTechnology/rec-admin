@@ -4,9 +4,6 @@ import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
 import { ErrorManager } from '../error-manager/error-manager';
 
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
-
 export interface Notification {
     title: string;
     description: string;

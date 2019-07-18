@@ -13,13 +13,13 @@
   <p [innerHTML]="message|translate:data"></p>
 
   <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">
-    <button type="button" md-button name="button" (click)="close(false)" style="margin-right: 10px">
+    <button type="button" mat-button name="button" (click)="close(false)" style="margin-right: 10px">
       {{btnCancelText|translate}}
     </button>
-    <button type="button" md-button color="primary" name="button" (click)="opts.customBtnClick()" *ngIf="opts.customBtn" style="margin-right: 10px">
+    <button type="button" mat-button color="primary" name="button" (click)="opts.customBtnClick()" *ngIf="opts.customBtn" style="margin-right: 10px">
       <b>{{opts.customBtnText|translate}}</b>
     </button>
-    <button type="button" md-raised-button color="{{status == 'error' ? 'warn': 'primary'}}" name="button" (click)="close(true)">
+    <button type="button" mat-raised-button color="{{status == 'error' ? 'warn': 'primary'}}" name="button" (click)="close(true)">
       <b>{{btnConfirmText|translate}}</b>
     </button>
   </div>

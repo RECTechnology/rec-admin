@@ -1,7 +1,7 @@
 <div *ngIf="!hidden && validationErrors && validationErrors.length" class="bg-warn fill-size"
     style="padding: 10px 15px; position: relative;">
     <div class="abs-right-top">
-        <button md-button (click)="closeErrors()">
+        <button mat-button (click)="closeErrors()">
             <p class="small-text"><span class="fa fa-times"></span> Close</p>
         </button>
         <button md-icon-button (click)="hideErrors()">

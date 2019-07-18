@@ -22,10 +22,10 @@
   </div>
 
   <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">
-    <button type="button" md-button name="button" (click)="close(false)" style="margin-right: 10px">
+    <button type="button" mat-button name="button" (click)="close(false)" style="margin-right: 10px">
       {{'CANCEL'|translate}}
     </button>
-    <button type="button" [disabled]="!code" md-raised-button color="primary" name="button" (click)="close(true)">
+    <button type="button" [disabled]="!code" mat-raised-button color="primary" name="button" (click)="close(true)">
       <b>{{'CONTINUE'|translate}}</b>
     </button>
   </div>
@@ -34,7 +34,7 @@
 <div class="group-col-left padd-x20" *ngIf="!has2FAActivated">
   <div class="group-row-left center h v marg-b-10">
     <b class="small-text-3 marg-r-10">{{'SEND_OTP_TO_MAIL'|translate}}</b>
-    <button md-raised-button color="primary" (click)="sendOTP()" *ngIf="!sentOTP">{{'SEND_MAIL'|translate}}</button>
+    <button mat-raised-button color="primary" (click)="sendOTP()" *ngIf="!sentOTP">{{'SEND_MAIL'|translate}}</button>
     <b class="small-text-2 col-success" *ngIf="sentOTP"><i class="fa fa-check"></i> {{'SENT_OTP_MAIL_OK'|translate}}</b>
   </div>
 
@@ -52,10 +52,10 @@
   </p>
   
   <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">
-    <button type="button" md-button name="button" (click)="close()" style="margin-right: 10px">
+    <button type="button" mat-button name="button" (click)="close()" style="margin-right: 10px">
       {{'CANCEL'|translate}}
     </button>
-    <button type="button" [disabled]="!code" md-raised-button color="primary" name="button" (click)="close(code)">
+    <button type="button" [disabled]="!code" mat-raised-button color="primary" name="button" (click)="close(code)">
       <b>{{'CONTINUE'|translate}}</b>
     </button>
   </div>

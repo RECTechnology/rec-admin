@@ -1,7 +1,7 @@
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { Injectable } from '@angular/core';
-import { TranslateService } from 'ng2-translate';
-import { Observable } from 'rxjs/Observable';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable, zip } from 'rxjs';
 
 @Injectable()
 export class MySnackBarSevice {
@@ -16,7 +16,7 @@ export class MySnackBarSevice {
 
   public open(message: string, action: string = 'OK', options?: MatSnackBarConfig) {
     options = { ...options, ...MySnackBarSevice.DEFAULT_OPTS };
-    return Observable.zip(this.translate.get(message), this.translate.get(action))
+    return zip(this.translate.get(message), this.translate.get(action))
       .subscribe(
         (resp) => {
           const [msg, okMsg] = resp;

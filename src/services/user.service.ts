@@ -3,7 +3,7 @@ import { XHR } from './xhr/xhr';
 import { API_URL } from '../data/consts';
 import { ErrorManager } from './error-manager/error-manager';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
@@ -309,6 +309,7 @@ export class UserService {
       options,
     ).pipe(
       map((res: any) => {
+        console.log('res', res);
         const body = res.json();
         body.data.group_data.wallets[0].available = body.data.group_data.wallets[0].available / 100000000;
         body.data.group_data.wallets[0].balance = body.data.group_data.wallets[0].balance / 100000000;
@@ -536,14 +537,16 @@ export class UserService {
   }
 
   private extractData(res: any) {
+    console.log(res);
     const body = res.json();
     return body ? body.data : (body || {});
   }
+
   private handleError(error: Response | any) {
     if ('_body' in error) {
       error._body = JSON.parse(error._body);
     }
     this.errMan.addError(error);
-    return Observable.throw(error);
+    return throwError(error);
   }
 }

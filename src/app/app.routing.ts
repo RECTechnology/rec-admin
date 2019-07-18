@@ -11,7 +11,6 @@ import { MapComponent } from 'src/pages/map/map.component';
 import { SellersComponent } from 'src/pages/sellers/sellers.component';
 import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
 
-
 const ROUTES: Routes = [
 
   // Public Routes - user shouldn't be authenticated to accesss them

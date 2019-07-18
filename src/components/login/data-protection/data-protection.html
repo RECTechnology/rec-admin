@@ -17,16 +17,16 @@
       {{'MUST_ACCEPT'|translate}}
     </p>
     <div class="padd-x15 group-col-left">
-      <md-checkbox [(ngModel)]="dataProtectionAccepted" color="primary">
+      <mat-checkbox [(ngModel)]="dataProtectionAccepted" color="primary">
         <p class="small-text-2">
           {{'accept:data_policy'|translate}}
         </p>
-      </md-checkbox>
-      <md-checkbox [(ngModel)]="tosAccepted" color="primary">
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="tosAccepted" color="primary">
         <p class="small-text-2">
           {{'accept:terms'|translate}}
         </p>
-      </md-checkbox>
+      </mat-checkbox>
     </div>
 
     <p class="small-text-3" style="margin: 10px 0 0!important">
@@ -34,19 +34,19 @@
       <i class="col-gray-light"># {{'NOT_REQUIRED'|translate}}</i>
     </p>
     <div class="padd-x15 group-col-left">
-      <md-checkbox [(ngModel)]="notifAccepted" color="primary">
+      <mat-checkbox [(ngModel)]="notifAccepted" color="primary">
         <p class="small-text-2">
           {{'accept:notifications:mail'|translate}}
         </p>
-      </md-checkbox>
+      </mat-checkbox>
     </div>
   </div>
 
   <div class="group-row-right" style="width: 100%; margin-top: 20px">
-    <button type="button" name="button" md-raised-button (click)="decline()" color="default" style="margin-right: 10px">
+    <button type="button" name="button" mat-raised-button (click)="decline()" color="default" style="margin-right: 10px">
       <p class="small-text">{{'DECLINE'|translate}}</p>
     </button>
-    <button type="button" name="button" md-raised-button (click)="close()" color="primary">
+    <button type="button" name="button" mat-raised-button (click)="close()" color="primary">
       <p class="small-text">{{'Accept'|translate}}</p>
     </button>
   </div>

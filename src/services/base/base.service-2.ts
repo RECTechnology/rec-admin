@@ -1,10 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { ErrorManager } from '../error-manager/error-manager';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 /**
@@ -215,6 +213,6 @@ export abstract class BaseService2 {
       error._body = JSON.parse(error._body);
     }
     this.errMan.addError(error);
-    return Observable.throw(error);
+    return throwError(error);
   }
 }

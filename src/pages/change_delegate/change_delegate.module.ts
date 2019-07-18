@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { IsLoggedInGuard } from '../../services/guards/login.guard';
-import { TranslateModule } from 'ng2-translate';
+import { TranslateModule } from '@ngx-translate/core';
 import { ChangeDelegateComponent } from './change_delegate.component';
 import { DelegateHeaderComponent } from './components/delegate_header/delegate_header.component';
 import { NewDelegateComponent } from './components/new_delegate_change/new_delegate.component';

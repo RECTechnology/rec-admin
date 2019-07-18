@@ -1,0 +1,19 @@
+module.exports = {
+  "production": true,
+  "url": "https://api.chip-chap.com",
+  "pre_url": "https://pre-api.chip-chap.com",
+  "test_url": "https://sandbox.chip-chap.com",
+  "clientID": "47_dzq844m23vkg884gckk88wcwgg44ws8swkk8c4so4wg0kgoo8",
+  "clientSecret": "408zh9onjxmo08ckc8ossggwo4s8s80sksw4080o8c4c8oogk8",
+  "pre_clientID": "2_2lp3pc9wv1esogs4k4sc8ko880sw4soswoo8wgsoc8kkw804o4",
+  "pre_clientSecret": "4xoukdqzhbwgc4w4cgks8c4owwo8g88oowk4oo4gkg4wcgsggc",
+  "test_clientID": "18_3ve25poy9nwgckss0sgs4w0wosc80o8s4kw8sckw4sowc4o4co",
+  "test_clientSecret": "ws3g754va1c88cs04k8c8kkogggkk0sswws4w0sko44scwwo4",
+  "captchaKey": "6LeWBBUTAAAAANgZXswR094tppChLE7rH-EheV5P",
+  "test": false,
+  "beta": false,
+  "local": true,
+  "build_tag": "jenkins-chipchap-beta-user-asdkañsldk",
+  "git_desc": "__git_desc__",
+  "testing": true
+}

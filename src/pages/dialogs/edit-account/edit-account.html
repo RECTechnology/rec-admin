@@ -9,9 +9,9 @@
 </div>
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
-  <md-tab-group class="profile-tabs" [(selectedIndex)]="currentTab" (selectedIndexChange)="currentTab = $event"
+  <mat-tab-group class="profile-tabs" [(selectedIndex)]="currentTab" (selectedIndexChange)="currentTab = $event"
     style="width: 100%">
-    <md-tab label="{{'BASIC_INFO'|translate}}" style="height: 400px">
+    <mat-tab label="{{'BASIC_INFO'|translate}}" style="height: 400px">
       <div class="row padd-x20">
         <div class="col-lg-12  marg-bottom-x15">
           <b class="small-text-3" style="margin: 15px 0 10px 0">{{'BASIC_INFO'|translate}}</b>
@@ -68,53 +68,53 @@
             <div class="col-lg-12">
               <div class="group-col-left">
                 <span class="small-text-2">{{'Type'|translate}}</span>
-                <button md-button [matMenuTriggerFor]="typeMenu" class="md-button-menu"
+                <button mat-button [matMenuTriggerFor]="typeMenu" class="mat-button-menu"
                   style="width: 100%; margin-bottom: 10px">
                   <span class="center space-between">
                     <span class="small-text">{{accountCopy.type}}</span>
                     <i class="fa fa-caret-right"></i>
                   </span>
                 </button>
-                <md-menu #typeMenu="mdMenu">
-                  <button md-menu-item *ngFor="let type of ACCOUNT_TYPES" (click)="setType(type)">
+                <mat-menu #typeMenu="matMenu">
+                  <button mat-menu-item *ngFor="let type of ACCOUNT_TYPES" (click)="setType(type)">
                     <p class="small-text">{{type}}</p>
                   </button>
-                </md-menu>
+                </mat-menu>
               </div>
             </div>
 
             <div class="col-lg-12">
               <div class="group-col-left" *ngIf="accountCopy.type === 'COMPANY'">
                 <span class="small-text-2">{{'Sub Type'|translate}}</span>
-                <button md-button [matMenuTriggerFor]="subTypeMenu" class="md-button-menu"
+                <button mat-button [matMenuTriggerFor]="subTypeMenu" class="mat-button-menu"
                   style="width: 100%; margin-bottom: 10px">
                   <span class="center space-between">
                     <span class="small-text">{{accountCopy.subtype}}</span>
                     <i class="fa fa-caret-right"></i>
                   </span>
                 </button>
-                <md-menu #subTypeMenu="mdMenu">
-                  <button md-menu-item *ngFor="let stype of ACCOUNT_SUB_TYPES_COMPANY"
+                <mat-menu #subTypeMenu="matMenu">
+                  <button mat-menu-item *ngFor="let stype of ACCOUNT_SUB_TYPES_COMPANY"
                     (click)="accountCopy.subtype = stype">
                     <p class="small-text">{{stype}}</p>
                   </button>
-                </md-menu>
+                </mat-menu>
               </div>
               <div class="group-col-left" *ngIf="accountCopy.type === 'PRIVATE'">
                 <span class="small-text-2">{{'Sub Type'|translate}}</span>
-                <button md-button [matMenuTriggerFor]="subTypeMenu" class="md-button-menu"
+                <button mat-button [matMenuTriggerFor]="subTypeMenu" class="mat-button-menu"
                   style="width: 100%; margin-bottom: 10px">
                   <span class="center space-between">
                     <span class="small-text">{{accountCopy.subtype}}</span>
                     <i class="fa fa-caret-right"></i>
                   </span>
                 </button>
-                <md-menu #subTypeMenu="mdMenu">
-                  <button md-menu-item *ngFor="let stype of ACCOUNT_SUB_TYPES_PRIVATE"
+                <mat-menu #subTypeMenu="matMenu">
+                  <button mat-menu-item *ngFor="let stype of ACCOUNT_SUB_TYPES_PRIVATE"
                     (click)="accountCopy.subtype = stype">
                     <p class="small-text">{{stype}}</p>
                   </button>
-                </md-menu>
+                </mat-menu>
               </div>
             </div>
           </div>
@@ -132,7 +132,7 @@
                 </div>
               </div>
             </div>
-            <button md-raised-button (click)="selectOrgImage()" style="margin-top: 10px">
+            <button mat-raised-button (click)="selectOrgImage()" style="margin-top: 10px">
               {{'CHANGE'|translate}}
             </button>
           </div>
@@ -142,9 +142,9 @@
         <div class="col-lg-3">
           <div class="group-col-left">
             <span class="small-text-2">{{'Account Active'|translate}}</span>
-            <md-checkbox color="primary" [(ngModel)]="accountCopy.active">
+            <mat-checkbox color="primary" [(ngModel)]="accountCopy.active">
               <span class="small-text-2">{{(accountCopy.active ? 'Active': 'Inactive')|translate}}</span>
-            </md-checkbox>
+            </mat-checkbox>
           </div>
         </div>
 
@@ -156,8 +156,8 @@
           </div>
         </div>
       </div>
-    </md-tab>
-    <md-tab label="{{'LOCALIZATION'|translate}}" style="height: 400px">
+    </mat-tab>
+    <mat-tab label="{{'LOCALIZATION'|translate}}" style="height: 400px">
       <div class="row padd-x20">
         <div class="col-lg-12">
           <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'LOCALIZATION'|translate}}</b>
@@ -251,8 +251,8 @@
           </div>
         </div>
       </div>
-    </md-tab>
-    <md-tab label="{{'MARKETING'|translate}}" style="height: 400px" [disabled]="type === 'PRIVATE'">
+    </mat-tab>
+    <mat-tab label="{{'MARKETING'|translate}}" style="height: 400px" [disabled]="type === 'PRIVATE'">
       <div class="row padd-x20" style="width: 100%">
         <div class="col-lg-12" style="height: auto">
           <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'MARKETING' | translate}}</b>
@@ -268,7 +268,7 @@
             <div style="height: auto; min-height: 90px; width: 60%; background: #ddd">
               <img style="width: 100%;" src="{{accountCopy.public_image}}" alt="">
             </div>
-            <button md-raised-button (click)="selectPublicImage()" class="marg-top-x10">
+            <button mat-raised-button (click)="selectPublicImage()" class="marg-top-x10">
               {{'CHANGE'|translate}}
             </button>
           </div>
@@ -287,11 +287,11 @@
         <div class="col-lg-6 " style="margin-bottom: 15px!important">
           <div class="group-col-left">
             <span class="small-text-2">{{'Activity'|translate}}</span>
-            <md-select style="width: 100%" [(ngModel)]="accountCopy.categoryId">
-              <md-option [value]="category.id" *ngFor="let category of companyService.categories">
+            <mat-select style="width: 100%" [(ngModel)]="accountCopy.categoryId">
+              <mat-option [value]="category.id" *ngFor="let category of companyService.categories">
                 {{category[lang]}}
-              </md-option>
-            </md-select>
+              </mat-option>
+            </mat-select>
           </div>
         </div>
 
@@ -309,7 +309,7 @@
         <div class="col-lg-6 " style="margin-bottom: 15px!important">
           <div class="group-col-left">
             <span class="small-text-2">{{'Schedule'|translate}}</span>
-            <button md-raised-button (click)="manageSchedule()">{{'MANAGE_SCHEDULE'|translate}}</button>
+            <button mat-raised-button (click)="manageSchedule()">{{'MANAGE_SCHEDULE'|translate}}</button>
           </div>
         </div>
 
@@ -317,7 +317,7 @@
         <div class="col-lg-6 " style="margin-bottom: 15px!important">
           <div class="group-col-left">
             <span class="small-text-2">{{'Offers'|translate}}</span>
-            <button md-raised-button (click)="manageOffers()">{{'MANAGE_OFFERS'|translate}}</button>
+            <button mat-raised-button (click)="manageOffers()">{{'MANAGE_OFFERS'|translate}}</button>
           </div>
         </div>
 
@@ -329,9 +329,9 @@
           </div>
         </div>
       </div>
-    </md-tab>
+    </mat-tab>
 
-    <md-tab label="{{'Schedule'|translate}}" style="height: 400px" *ngIf="viewManageSchedule">
+    <mat-tab label="{{'Schedule'|translate}}" style="height: 400px" *ngIf="viewManageSchedule">
       <div class="row padd-x20">
         <div class="col-lg-12" style="height: auto">
           <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'SCHEDULE' | translate}}</b>
@@ -353,7 +353,7 @@
                 {{day.name|translate}}
               </td>
               <td>
-                <md-checkbox color="primary" [(ngModel)]="day.open"></md-checkbox>
+                <mat-checkbox color="primary" [(ngModel)]="day.open"></mat-checkbox>
               </td>
               <td>
                 <div class="row">
@@ -386,9 +386,9 @@
           </div>
         </div>
       </div>
-    </md-tab>
+    </mat-tab>
 
-    <md-tab label="{{'OFFERS'|translate}}" style="height: 400px" *ngIf="viewManageOffers">
+    <mat-tab label="{{'OFFERS'|translate}}" style="height: 400px" *ngIf="viewManageOffers">
       <div class="row padd-x20" style="width: 100%">
         <div class="col-lg-12" style="height: auto">
           <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'OFFERS' | translate}}</b>
@@ -407,10 +407,10 @@
             start: "2018-12-03T00:00:00+00:00" -->
           <div class="row">
             <div class="col-lg-6" *ngFor="let offer of account.offers">
-              <md-card>
-                <img md-card-image src="{{'https://material.angular.io/assets/img/examples/shiba2.jpg'}}"
+              <mat-card>
+                <img mat-card-image src="{{'https://material.angular.io/assets/img/examples/shiba2.jpg'}}"
                   alt="Photo of a the offer">
-                <md-card-content>
+                <mat-card-content>
                   <div class="group-row-left space-between" *ngIf="offer.active">
                     <div>
                       {{'Start'|translate}}: <code>{{offer.start | date}}</code>
@@ -431,18 +431,18 @@
                   <p class="small-text col-gray-light">
                     {{offer.description}}
                   </p>
-                </md-card-content>
-              </md-card>
+                </mat-card-content>
+              </mat-card>
             </div>
 
             <div class="col-lg-12" style="margin-top: 20px">
-              <button md-raised-button>
+              <button mat-raised-button>
                 {{'ADD_OFFER'|translate}}
               </button>
             </div>
           </div>
         </div>
       </div>
-    </md-tab>
-  </md-tab-group>
+    </mat-tab>
+  </mat-tab-group>
 </div>

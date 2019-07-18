@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CountryPickerService } from 'angular2-countrypicker';
+// import { CountryPickerService } from 'angular2-countrypicker';
 
 @Component({
     selector: 'country-selector',
@@ -12,14 +12,14 @@ export class CountrySelector implements OnInit {
     @Output() public valueChange = new EventEmitter<string>();
 
     constructor(
-        public countryPickerService: CountryPickerService,
+        // public countryPickerService: CountryPickerService,
     ) { }
 
     public ngOnInit() {
-        this.countryPickerService.getCountries().subscribe((countries) => {
-            this.countries = countries;
-        }, (err) => {
-            this.error = err;
-        });
+        // this.countryPickerService.getCountries().subscribe((countries) => {
+        //     this.countries = countries;
+        // }, (err) => {
+        //     this.error = err;
+        // });
     }
 }

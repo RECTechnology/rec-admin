@@ -5,7 +5,7 @@ import { CompanyService } from '../../../services/company/company.service';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 import { AdminService } from '../../../services/admin/admin.service';
 
 @Component({

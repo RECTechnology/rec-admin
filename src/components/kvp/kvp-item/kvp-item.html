@@ -1,6 +1,6 @@
 <div class="kvp-item" [ngClass]="{'inactive': !active}">
   <div class="kvp-checkbox">
-    <md-checkbox [(ngModel)]="active" (change)="changedActive($event)" color="primary"></md-checkbox>
+    <mat-checkbox [(ngModel)]="active" (change)="changedActive($event)" color="primary"></mat-checkbox>
   </div>
   <div class="kvp-key">
     <input class="input" type="text" [(ngModel)]="key" (change)="changedKey($event)" autofocus>

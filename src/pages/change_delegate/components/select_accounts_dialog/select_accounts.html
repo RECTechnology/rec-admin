@@ -39,16 +39,16 @@
         </tbody>
       </table>
       <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-        </md-progress-spinner>
+        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
       </div>
       <div class="group-col-left center h v" style="width: 100%; padding: 15px 0;border-top: 1px solid #ddd"
         *ngIf="!sortedUnselectedAccounts.length && !loading">
         <b class="small-text-2">{{'ALL_USERS_SELECTED'|translate}}</b>
       </div>
-      <md-paginator [length]="totalAccountsUnsorted" style="width: 100%" [pageSize]="limitUnsorted"
+      <mat-paginator [length]="totalAccountsUnsorted" style="width: 100%" [pageSize]="limitUnsorted"
         (page)="changedPageUnsorted($event)" [pageSizeOptions]="[5, 10, 25, 100]">
-      </md-paginator>
+      </mat-paginator>
     </div>
   </div>
   <!-- Selected -->
@@ -89,13 +89,13 @@
 
 <div class="modal-footer">
   <div class="group-row-left" style="justify-content: flex-end; ">
-    <button type="button" md-raised-button color="primary" class="marg-r-10" name="button" (click)="select()">
+    <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" (click)="select()">
       <p class="small-text-2">{{'Select'|translate}}</p>
     </button>
-    <button type="button" md-raised-button color="primary" class="marg-r-10" name="button" (click)="selectAndEdit()">
+    <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" (click)="selectAndEdit()">
       <p class="small-text-2">{{'Select And Edit'|translate}}</p>
     </button>
-    <button type="button" md-raised-button color="primary" class="marg-r-10" name="button" (click)="close()">
+    <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" (click)="close()">
       <p class="small-text-2">{{'Close'|translate}}</p>
     </button>
   </div>

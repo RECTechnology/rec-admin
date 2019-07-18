@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { LoginService } from '../auth.service';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
 
 declare let _;
 

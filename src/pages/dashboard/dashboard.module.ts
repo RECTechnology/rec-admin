@@ -28,4 +28,4 @@ const routes: Routes = [
     TranslateModule.forRoot(),
   ],
 })
-export class WalletModule { }
+export class DashboardModule { }

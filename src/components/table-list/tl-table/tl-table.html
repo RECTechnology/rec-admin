@@ -1,15 +1,15 @@
 <div style="position: relative">
-    <table class="left-align" mdSort [mdSortDirection]="sortDir" [mdSortActive]="sortId"
-        (mdSortChange)="sortData($event)">
+    <table class="left-align" matSort [matSortDirection]="sortDir" [matSortActive]="sortId"
+        (matSortChange)="sortData($event)">
         <tr>
-            <th *ngFor="let header of headers" style="color: #555!important" md-sort-header="{{header.sort}}">
+            <th *ngFor="let header of headers" style="color: #555!important" mat-sort-header="{{header.sort}}">
                 {{header.title|translate}}</th>
             <th *ngIf="itemOptions"></th>
         </tr>
         <tr *ngFor="let entry of data; let i = index; trackBy: trackByFn">
             <td *ngFor="let header of headers">
-                <md-checkbox *ngIf="header.type === 'checkbox'" color="primary" [ngModel]="getEntry(entry, header)"
-                    disabled></md-checkbox>
+                <mat-checkbox *ngIf="header.type === 'checkbox'" color="primary" [ngModel]="getEntry(entry, header)"
+                    disabled></mat-checkbox>
 
                 <span *ngIf="header.type === 'status'"
                     [ngClass]="header.statusClass(getEntry(entry, header))">{{getEntry(entry, header)}}</span>
@@ -18,14 +18,14 @@
 
                 <i *ngIf="header.type === 'date'">{{getEntry(entry, header) | date}}</i>
 
-                <button *ngIf="header.type === 'button'" md-icon-button (click)="header.buttonAction(entry)">
+                <button *ngIf="header.type === 'button'" mat-icon-button (click)="header.buttonAction(entry)">
                     <img *ngIf="header.buttonImg" src="{{header.buttonImg}}" alt=""
                         style="height: 25px;margin-right: 10px">
                     <span *ngIf="header.icon" class="fa fa-{{header.icon}}"></span>
                 </button>
 
-                <md-slide-toggle *ngIf="header.type === 'slidetoggle'" color="primary" [(ngModel)]="entry[header.sort]"
-                    (change)="header.slideAction(entry, $event)"></md-slide-toggle>
+                <mat-slide-toggle *ngIf="header.type === 'slidetoggle'" color="primary" [(ngModel)]="entry[header.sort]"
+                    (change)="header.slideAction(entry, $event)"></mat-slide-toggle>
 
                 <div *ngIf="header.type === 'avatar'">
                     <img src="{{getEntry(entry, header.avatar) || Brand.account_default_image}}" alt=""
@@ -35,30 +35,30 @@
                 <span *ngIf="!header.type">{{getEntry(entry, header)}}</span>
             </td>
             <td *ngIf="itemOptions && itemOptions.length">
-                <button md-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
+                <button mat-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
                     <span class="center h v">
                         <i class="fa fa-ellipsis-v"></i>
                     </span>
                 </button>
-                <md-menu #optsMenu="mdMenu">
-                    <button md-menu-item [disabled]="isOptionDisabled(option, entry)" *ngFor="let option of itemOptions"
-                        (click)="option.callback(entry)">
+                <mat-menu #optsMenu="matMenu">
+                    <button mat-menu-item [disabled]="isOptionDisabled(option, entry)"
+                        *ngFor="let option of itemOptions" (click)="option.callback(entry)">
                         <p class="small-text {{option.class}}"> <i *ngIf="option.icon" class="fa {{option.icon}}"></i>
                             {{getOptionText(option)|translate}}</p>
                     </button>
-                </md-menu>
+                </mat-menu>
             </td>
         </tr>
     </table>
     <div *ngIf="showLoader && loading" class="abs-center center h v bg-white-opaque" style="width: 100%;">
-        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-        </md-progress-spinner>
+        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
     </div>
 
     <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="!loading && data.length <= 0">
         <p class="small-text-2">{{noItemsMessage|translate}}</p>
     </div>
-    <md-paginator *ngIf="showPaginator" [length]="total" [(pageSize)]="limit" (page)="changedPage($event)"
+    <mat-paginator *ngIf="showPaginator" [length]="total" [(pageSize)]="limit" (page)="changedPage($event)"
         [pageSizeOptions]="[5, 10, 25, 100]">
-    </md-paginator>
+    </mat-paginator>
 </div>

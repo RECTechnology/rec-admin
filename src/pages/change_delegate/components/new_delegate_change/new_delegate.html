@@ -33,7 +33,7 @@
         <p class="small-text">
           <b>{{sortedData.length}}</b> {{'SELECTED_ACCOUNTS_COUNT'|translate}}
         </p>
-        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-button name="button"
+        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-button name="button"
           (click)="openSelectAccounts()">
           <p class="text-small">
             <i class="fa fa-plus"></i>
@@ -41,7 +41,7 @@
           </p>
         </button>
 
-        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-button name="button"
+        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-button name="button"
           (click)="newImport()">
           <p class="text-small">
             <i class="fa fa-file"></i>
@@ -50,7 +50,7 @@
         </button>
 
         <button type="button" [disabled]="selectedAccountsCount <= 0" style="margin-right: 10px; padding-right: 10px"
-          color="primary" md-button name="button" (click)="openEditAccounts()">
+          color="primary" mat-button name="button" (click)="openEditAccounts()">
           <p class="text-small">
             <i class="fa fa-edit"></i>
             {{'EDIT_ACCOUNTS'|translate}}
@@ -69,7 +69,7 @@
         <thead class="bordered stripped">
           <tr>
             <th>
-              <md-checkbox color="primary" [(ngModel)]="allSelected" (ngModelChange)="selectAll()"></md-checkbox>
+              <mat-checkbox color="primary" [(ngModel)]="allSelected" (ngModelChange)="selectAll()"></mat-checkbox>
             </th>
             <th style="color: #555!important">
               {{'#'|translate}}
@@ -92,7 +92,7 @@
         <tbody>
           <tr *ngFor="let data of notSavedItems; let i = index; trackBy: trackByFn">
             <td>
-              <md-checkbox color="primary" [(ngModel)]="data.selected" (ngModelChange)="changed()"></md-checkbox>
+              <mat-checkbox color="primary" [(ngModel)]="data.selected" (ngModelChange)="changed()"></mat-checkbox>
             </td>
             <td>{{data.id}}</td>
             <td>{{data.account.id}} <i>({{data.account.name}})</i></td>
@@ -104,20 +104,20 @@
               <b *ngIf="data.cvv2">{{data.cvv2}}</b>
             </td>
             <td>
-              <button md-icon-button [mdMenuTriggerFor]="actions">
+              <button md-icon-button [matMenuTriggerFor]="actions">
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
               </button>
-              <md-menu #actions="mdMenu">
-                <button md-menu-item (click)="openEditAccount(data, i)">
+              <mat-menu #actions="matMenu">
+                <button mat-menu-item (click)="openEditAccount(data, i)">
                   <p class="small-text"><i class="fa fa-edit"></i> {{'Edit'|translate}}</p>
                 </button>
                 <hr>
-                <button md-menu-item (click)="deleteData(data, i)">
+                <button mat-menu-item (click)="deleteData(data, i)">
                   <p class="small-text col-error"><i class="fa fa-trash"></i> {{'DELETE'|translate}}</p>
                 </button>
-              </md-menu>
+              </mat-menu>
             </td>
           </tr>
         </tbody>
@@ -127,7 +127,7 @@
         *ngIf="!loading && !notSavedItems.length">
         <b class="small-text-2">{{'NO_ACCOUNTS_SELECTED'|translate}}</b>
         <p class="small-text">{{'SELECT_ACCOUNTS'|translate}}!</p>
-        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-raised-button
+        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-raised-button
           name="button" (click)="openSelectAccounts()">
           <p class="text-small">
             <i class="fa fa-plus"></i>
@@ -137,8 +137,8 @@
       </div>
 
       <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-        </md-progress-spinner>
+        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
       </div>
     </div>
 
@@ -149,8 +149,8 @@
         <thead class="bordered stripped">
           <tr>
             <th>
-              <md-checkbox color="primary" [(ngModel)]="allSelectedSaved" (ngModelChange)="selectAllSaved()">
-              </md-checkbox>
+              <mat-checkbox color="primary" [(ngModel)]="allSelectedSaved" (ngModelChange)="selectAllSaved()">
+              </mat-checkbox>
             </th>
             <th md-sort-header="id" style="color: #555!important">
               {{'#'|translate}}
@@ -173,7 +173,7 @@
         <tbody>
           <tr *ngFor="let data of savedItems; let i = index; trackBy: trackByFn">
             <td>
-              <md-checkbox color="primary" [(ngModel)]="data.selected" (ngModelChange)="changed()"></md-checkbox>
+              <mat-checkbox color="primary" [(ngModel)]="data.selected" (ngModelChange)="changed()"></mat-checkbox>
             </td>
             <td>{{data.id}}</td>
             <td>{{data.account.id}} <i>({{data.account.name}})</i></td>
@@ -185,20 +185,20 @@
               <b *ngIf="data.cvv2">{{data.cvv2}}</b>
             </td>
             <td>
-              <button md-icon-button [mdMenuTriggerFor]="actions">
+              <button md-icon-button [matMenuTriggerFor]="actions">
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
               </button>
-              <md-menu #actions="mdMenu">
-                <button md-menu-item (click)="openEditAccount(data, i, true)">
+              <mat-menu #actions="matMenu">
+                <button mat-menu-item (click)="openEditAccount(data, i, true)">
                   <p class="small-text"><i class="fa fa-edit"></i> {{'Edit'|translate}}</p>
                 </button>
                 <hr>
-                <button md-menu-item (click)="deleteData(data, i, true)">
+                <button mat-menu-item (click)="deleteData(data, i, true)">
                   <p class="small-text col-error"><i class="fa fa-trash"></i> {{'DELETE'|translate}}</p>
                 </button>
-              </md-menu>
+              </mat-menu>
             </td>
           </tr>
         </tbody>
@@ -210,27 +210,27 @@
       </div>
 
       <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-        </md-progress-spinner>
+        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
       </div>
     </div>
 
     <!-- Paginator -->
     <div class="fill-size">
-      <md-paginator [length]="totalSaved" style="width: 100%" [pageSize]="limitSaved" (page)="changedPageSaved($event)"
+      <mat-paginator [length]="totalSaved" style="width: 100%" [pageSize]="limitSaved" (page)="changedPageSaved($event)"
         [pageSizeOptions]="[5, 10, 25, 100]">
-      </md-paginator>
+      </mat-paginator>
     </div>
 
     <!-- Footer -->
     <div class="fill-size" style="padding: 10px 15px; border-top: 1px solid #ddd">
       <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
-        [disabled]="!saved && !notSavedItems.length" md-button name="button" (click)="saveEntries()">
+        [disabled]="!saved && !notSavedItems.length" mat-button name="button" (click)="saveEntries()">
         <p class="text-small">
           {{'SAVE'|translate}}
         </p>
       </button>
-      <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" md-raised-button name="button"
+      <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-raised-button name="button"
         (click)="activateChange()">
         <p class="text-small">
           {{'Activate'|translate}}
@@ -240,8 +240,8 @@
 
     <!-- Loader -->
     <div class="overlay group-col-left center h v" *ngIf="savingEntries">
-      <md-progress-spinner color="primary" mode="determinate" [value]="percentageSent"
-        style="width: 40px; height: 40px"></md-progress-spinner>
+      <mat-progress-spinner color="primary" mode="determinate" [value]="percentageSent"
+        style="width: 40px; height: 40px"></mat-progress-spinner>
       <p class="small-text-1">
         Sending: <b>{{objectsSent}} of {{objectsToSend}}</b>
       </p>

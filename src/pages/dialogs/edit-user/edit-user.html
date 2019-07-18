@@ -9,8 +9,8 @@
 </div>
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
-  <md-tab-group class="profile-tabs">
-    <md-tab label="{{'BASIC_INFO'|translate}}">
+  <mat-tab-group class="profile-tabs">
+    <mat-tab label="{{'BASIC_INFO'|translate}}">
       <div class="row padd-x20">
         <div class="col-lg-12">
           <b class="small-text-3" style="margin: 15px 0 10px 0">{{'BASIC_INFO'|translate}}</b>
@@ -52,9 +52,9 @@
           <div class="group-col-left">
             <div class="group-row-left space-between" style="width :100%">
               <span class="small-text-2">{{'Phone'|translate}}</span>
-              <md-checkbox color="primary" [(ngModel)]="userCopy.public_phone">
+              <mat-checkbox color="primary" [(ngModel)]="userCopy.public_phone">
                 <span class="small-text-2">{{'Public'|translate}}</span>
-              </md-checkbox>
+              </mat-checkbox>
             </div>
             <div class="row">
               <div class="col-lg-4">
@@ -86,11 +86,11 @@
         <div class="col-lg-3">
           <div class="group-col-left">
             <span class="small-text-2">{{'Gender'|translate}}</span>
-            <md-select [(ngModel)]="userCopy.kyc_validations.gender">
-              <md-option value="M">{{'MALE'|translate}}</md-option>
-              <md-option value="F">{{'FEMALE'|translate}}</md-option>
-              <!-- <md-option value="">{{'NON-BINARY'|translate}}</md-option> -->
-            </md-select>
+            <mat-select [(ngModel)]="userCopy.kyc_validations.gender">
+              <mat-option value="M">{{'MALE'|translate}}</mat-option>
+              <mat-option value="F">{{'FEMALE'|translate}}</mat-option>
+              <!-- <mat-option value="">{{'NON-BINARY'|translate}}</mat-option> -->
+            </mat-select>
           </div>
         </div>
 
@@ -134,9 +134,9 @@
               <div class="col-lg-6">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'NATIONALITY'|translate}}</span>
-                  <!-- <md-select [(ngModel)]="userCopy.kyc_validations.nationality">
-                    <md-option *ngFor="let c of countries" value="{{c.cca3}}">{{c.name.common}}</md-option>
-                  </md-select> -->
+                  <!-- <mat-select [(ngModel)]="userCopy.kyc_validations.nationality">
+                    <mat-option *ngFor="let c of countries" value="{{c.cca3}}">{{c.name.common}}</mat-option>
+                  </mat-select> -->
                   <country-selector [(value)]="userCopy.kyc_validations.nationality"></country-selector>
                 </div>
               </div>
@@ -152,8 +152,8 @@
           </div>
         </div>
       </div>
-    </md-tab>
-    <md-tab label="{{'PROFILE_APEARANCE'|translate}}">
+    </mat-tab>
+    <mat-tab label="{{'PROFILE_APEARANCE'|translate}}">
       <div class="row padd-x20">
         <div class="col-lg-12" style="height: auto">
           <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'PROFILE_APEARANCE' | translate}}</b>
@@ -171,7 +171,7 @@
                 </div>
               </div>
             </div>
-            <button md-raised-button (click)="selectProfileImage()" class="marg-top-x10">
+            <button mat-raised-button (click)="selectProfileImage()" class="marg-top-x10">
               {{'CHANGE'|translate}}
             </button>
           </div>
@@ -188,7 +188,7 @@
                 </div>
               </div>
             </div>
-            <button md-raised-button (click)="selectDocFront()" class="marg-top-x10">
+            <button mat-raised-button (click)="selectDocFront()" class="marg-top-x10">
               {{'CHANGE'|translate}}
             </button>
           </div>
@@ -205,7 +205,7 @@
                 </div>
               </div>
             </div>
-            <button md-raised-button (click)="selectDocRear()" class="marg-top-x10">
+            <button mat-raised-button (click)="selectDocRear()" class="marg-top-x10">
               {{'CHANGE'|translate}}
             </button>
           </div>
@@ -219,6 +219,6 @@
           </div>
         </div>
       </div>
-    </md-tab>
-  </md-tab-group>
+    </mat-tab>
+  </mat-tab-group>
 </div>

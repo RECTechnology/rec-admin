@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
 import { ConfirmationMessage } from '../../../components/dialogs/confirmation-message/confirmation.dia';
 import { AdminService } from '../../../services/admin/admin.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   providers: [

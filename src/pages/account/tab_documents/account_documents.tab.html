@@ -2,24 +2,24 @@
   <div class="row">
 
     <div class="col-lg-12" *ngIf="type === ''">
-      <md-card style="padding: 20px; height: 420px; position: relative;" class="center h v">
-        <md-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-        </md-progress-spinner>
-      </md-card>
+      <mat-card style="padding: 20px; height: 420px; position: relative;" class="center h v">
+        <mat-progress-spinner color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
+      </mat-card>
     </div>
 
     <div class="col-lg-12" *ngIf="type !== '' && alreadyValidated">
-      <md-card style="padding: 20px; height: auto; position: relative;" class="center h v">
+      <mat-card style="padding: 20px; height: auto; position: relative;" class="center h v">
         <div style="text-align: center">
           <h4>{{'USER_REGISTERED_LEMON'|translate}}</h4>
           <p [innerHTML]="'USER_REGISTERED_LEMON_DESC'|translate:({id: lemonId})"></p>
           <!-- <p>This user is already registered in LemonWay, with id <code>{{lemonId}}</code></p> -->
         </div>
-      </md-card>
+      </mat-card>
     </div>
 
     <div class="col-xlg-6 col-lg-12 col-md-12" style="margin-top: 15px" *ngIf="type !== ''">
-      <md-card style="padding: 20px; height: 420px; position: relative;">
+      <mat-card style="padding: 20px; height: 420px; position: relative;">
         <div class="col-lg-12">
           <h4 class="md-title">{{'EMPRESAS'|translate}}</h4>
           <i>{{'ACCEPTED_FILE_FORMATS'|translate}}: <b>pdf, png & jpeg</b></i>
@@ -46,21 +46,21 @@
               </div>
             </li>
           </ol>
-          <button md-raised-button>
+          <button mat-raised-button>
             {{'Add document'|translate}}
           </button>
-          <button md-raised-button color="primary" (click)="validateDocs('company')">
+          <button mat-raised-button color="primary" (click)="validateDocs('company')">
             {{'Validate Data'|translate}}
           </button>
-          <button md-raised-button color="primary" (click)="openAccount('company')">
+          <button mat-raised-button color="primary" (click)="openAccount('company')">
             {{'Open Account'|translate}}
           </button>
         </div>
-      </md-card>
+      </mat-card>
     </div>
 
     <div class="col-xlg-6 col-lg-12 col-md-12" style="margin-top: 15px" *ngIf="type !== ''">
-      <md-card style="padding: 20px; height: 420px">
+      <mat-card style="padding: 20px; height: 420px">
         <div class="col-lg-12">
           <h4 class="md-title">{{'AUTONOMOS'|translate}}</h4>
           <i>{{'ACCEPTED_FILE_FORMATS'|translate}}: <b>pdf, png & jpeg</b></i>
@@ -87,17 +87,17 @@
               </div>
             </li>
           </ol>
-          <button md-raised-button>
+          <button mat-raised-button>
             {{'Add document'|translate}}
           </button>
-          <button md-raised-button color="primary" (click)="validateDocs('autonomo')">
+          <button mat-raised-button color="primary" (click)="validateDocs('autonomo')">
             {{'Validate Data'|translate}}
           </button>
-          <button md-raised-button color="primary" (click)="openAccount('autonomo')">
+          <button mat-raised-button color="primary" (click)="openAccount('autonomo')">
             {{'Open Account'|translate}}
           </button>
         </div>
-      </md-card>
+      </mat-card>
     </div>
   </div>
 </div>
