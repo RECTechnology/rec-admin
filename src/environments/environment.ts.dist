@@ -1,3 +1,5 @@
+import * as pkg from '../../package.json';
+
 export const environment = {
   beta: false,
   captchaKey: '$PANEL_CAPTCHA_KEY',
@@ -5,7 +7,7 @@ export const environment = {
   clientSecret: '$PANEL_CLIENT_SECRET',
   production: true,
   url: '$PANEL_API_URL',
-  version: '$PANEL_APP_VERSION',
+  version: pkg.version,
   test: false,
   Brand: {
     "title": "$PANEL_TITLE",
