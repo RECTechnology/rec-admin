@@ -23,7 +23,7 @@
 
     <p class="small-text col-info">* {{'FILTERS_APPLY'|translate}}</p>
 
-    <kvp-list [(hidden)]="hidden" [items]="list" (onChange)="changedItems($event)"></kvp-list>
+    <kvp-list [(hidden)]="hidden" [items]="list" (onReset)="reset()" (onChange)="changedItems($event)"></kvp-list>
 
     <div class="center v">
         <button mat-raised-button [disabled]="!fileName || loading" (click)="export()"
