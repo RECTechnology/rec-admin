@@ -1,9 +1,7 @@
-test-build: 
-	lint
-	build
+test-build: lint build
 
 build: clean
-		npm run build:prod
+	npm run build:prod
 
 build-docker: build
 	docker build . -t rec-admin -f Dockerfile
