@@ -57,6 +57,7 @@ import localeEn from '@angular/common/locales/en';
 import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
 import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
 import { TableListModule } from 'src/components/table-list/table-list-module';
+import { CountryPickerModule } from 'ngx-country-picker';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -100,9 +101,10 @@ const imports = [
   AgmCoreModule.forRoot({
     apiKey: 'YOUR_KEY',
   }),
-  // CountryPickerModule.forRoot({
-  //   baseUrl: '/assets/countries/',
-  // }),
+  CountryPickerModule.forRoot({
+    baseUrl: '/assets/resources/countries/',
+    filename: 'countries.json',
+  }),
 ];
 
 const declarations = [

@@ -30,10 +30,9 @@ import { CountrySelector } from '../components/country-selector/country-selector
 import { AppNotifications } from '../components/app-notifications/app-notifications';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from 'src/app/app.routing';
-import { TableListModule } from 'src/components/table-list/table-list-module';
 import { AccountSelector } from 'src/components/account-selector/account.selector';
 import { ChangePhone } from 'src/pages/dashboard/dialogs/change-phone/change-phone.dia';
-import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
+import { StreetTypeSelector } from 'src/components/street-selector/street-selector.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +61,7 @@ import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
     AppNotifications,
     AccountSelector,
     ChangePhone,
+    StreetTypeSelector,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -96,6 +96,7 @@ import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
     MaterialModule,
     AccountSelector,
     ChangePhone,
+    StreetTypeSelector,
   ],
   imports: [
     BrowserModule,

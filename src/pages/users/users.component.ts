@@ -85,9 +85,20 @@ export class UsersPage implements OnInit {
 
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },
-    { key: 'name', value: '$.name', active: true },
-    { key: 'dni', value: '$.dni', active: true },
+    { key: 'active_group', value: '$.active_group', active: true },
+    { key: 'username', value: '$.username', active: true },
     { key: 'email', value: '$.email', active: true },
+    { key: 'enabled', value: '$.enabled', active: true },
+    { key: 'locked', value: '$.locked', active: true },
+    { key: 'expired', value: '$.expired', active: true },
+    { key: 'roles', value: '$.roles', active: true },
+    { key: 'name', value: '$.name', active: true },
+    { key: 'created', value: '$.created', active: true },
+    { key: 'dni', value: '$.dni', active: true },
+    { key: 'prefix', value: '$.prefix', active: true },
+    { key: 'phone', value: '$.phone', active: true },
+    { key: 'pin', value: '$.pin', active: true },
+    { key: 'public_phone', value: '$.public_phone', active: true },
   ];
 
   constructor(

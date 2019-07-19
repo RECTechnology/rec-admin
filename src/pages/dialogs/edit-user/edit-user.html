@@ -121,8 +121,9 @@
               <div class="col-lg-3">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Street Type'|translate}}</span>
-                  <input type="text" class="user-input small" style="max-width: 300px"
-                    [(ngModel)]="userCopy.kyc_validations.street_type" placeholder="{{'Street Type'|translate}}">
+                  <street-type-selector [(value)]="userCopy.kyc_validations.street_type"></street-type-selector>
+                  <!-- <input type="text" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="userCopy.kyc_validations.street_type" placeholder="{{'Street Type'|translate}}"> -->
                 </div>
               </div>
               <div class="col-lg-6">

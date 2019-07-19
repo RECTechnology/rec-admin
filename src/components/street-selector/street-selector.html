@@ -1,8 +1,7 @@
 <mat-select *ngIf="!error" [(ngModel)]="value" (ngModelChange)="valueChange.emit(value)"
     style="width: 100%; min-width: 90px">
-    <mat-option *ngFor="let c of countries" [value]="c.cca3">
-        <span class="flag-icon flag-icon-{{c.cca2.toLowerCase()}}" style="margin-right: 6px"></span> {{c.name.common}}
-        ({{c.cca3}})
+    <mat-option *ngFor="let type of streetTypes" [value]="type">
+        <span class="text-transform: capitalize">{{type|translate}}</span>
     </mat-option>
 </mat-select>
 <p *ngIf="error" class="small-text col-error">

@@ -87,7 +87,7 @@ export class AdminService extends BaseService {
     }
 
     public updateUserKyc(id, data) {
-        return this.put(data, null, `${API_URL}/admin/v1/kycs/${id}`);
+        return this.put(data, null, `${API_URL}/admin/v3/kycs/${id}`);
     }
 
     public updateUserPhone(id, prefix, phone) {

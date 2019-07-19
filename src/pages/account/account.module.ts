@@ -19,6 +19,7 @@ import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
 import { AccountDocuments } from './tab_documents/account_documents.tab';
 import { MatTabsModule } from '@angular/material';
 import { MaterialModule } from 'src/shared/md-module';
+import { CountryPickerModule } from 'ngx-country-picker';
 
 const accountRoutes: Routes = [
   {
@@ -61,6 +62,7 @@ const accountRoutes: Routes = [
     BrowserModule,
     FormsModule,
     TranslateModule.forRoot(),
+    CountryPickerModule,
     // MaterialModule,
   ],
 })
