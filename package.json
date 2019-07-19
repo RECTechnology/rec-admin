@@ -10,8 +10,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:pre": "ng build --prod --configuration=preproduction",
-    "build:prod": "ng build --prod --configuration=production",
+    "build:pre": "ng build",
+    "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -5,8 +5,7 @@
   <div class="row" style="margin: 0; padding: 20px;">
     <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
       <tl-header title="Accounts" [(query)]="searchQuery" [options]="headerOpts" (onSearch)="search($event)">
-        <button mat-icon-button style="margin-left: 8px" (click)="export()"
-          matTooltip="{{'EXPORT_AS_CSV'|translate}}">
+        <button mat-icon-button style="margin-left: 8px" (click)="export()" matTooltip="{{'EXPORT_AS_CSV'|translate}}">
           <span class="center h v">
             <i class="fa fa-download small-text-2"></i>
           </span>
@@ -25,13 +24,13 @@
           </mat-checkbox> -->
 
           <mat-radio-group aria-label="Select an option" [(ngModel)]="type" (change)="changedType()">
-            <mat-radio-button value="COMPANY" color="primary">
+            <mat-radio-button style="margin-right: 10px" value="COMPANY" color="primary">
               <span class="small-text">{{'Company'|translate}}</span>
             </mat-radio-button>
-            <mat-radio-button value="PRIVATE" color="primary">
+            <mat-radio-button style="margin-right: 10px" value="PRIVATE" color="primary">
               <span class="small-text">{{'Private'|translate}}</span>
             </mat-radio-button>
-            <mat-radio-button value="" color="primary">
+            <mat-radio-button style="margin-right: 10px" value="" color="primary">
               <span class="small-text">{{'All'|translate}}</span>
             </mat-radio-button>
           </mat-radio-group>

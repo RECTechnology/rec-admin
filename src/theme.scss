@@ -374,3 +374,8 @@ table tr:nth-child(odd) {
 .dark-theme .bordered-top {
   border-top: 1px solid lighten($color: #424242, $amount: 10);
 }
+
+.mat-radio-label {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}

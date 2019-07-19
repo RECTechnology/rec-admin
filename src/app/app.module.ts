@@ -49,7 +49,7 @@ import { NotificationService } from 'src/services/notifications/notifications.se
 import { SharedModule } from 'src/shared/shared.module';
 import { MdI18n } from 'src/shared/md-i18n';
 import { MaterialModule } from 'src/shared/md-module';
-import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginatorIntl, RippleGlobalOptions, MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material';
 
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
@@ -65,6 +65,14 @@ export function createTranslateLoader(http: HttpClient) {
 registerLocaleData(localeCat);
 registerLocaleData(localeEn);
 registerLocaleData(localeEs);
+
+const globalRippleConfig: RippleGlobalOptions = {
+  animation: {
+    enterDuration: 300,
+    exitDuration: 0,
+  },
+  disabled: true,
+};
 
 const LOCALE = navigator.languages[1];
 
@@ -147,6 +155,7 @@ const providers = [
     useClass: MdI18n,
     useValue: LOCALE,
   },
+  { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }
 ];
 const entryComponents = [
   DevOptions,

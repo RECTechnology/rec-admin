@@ -79,7 +79,7 @@ export class SellersComponent extends PageBase {
   }
 
   public getSellers(query: string = '') {
-    const data: ListAccountsParams = this.getCleanParams();
+    const data: ListAccountsParams = this.getCleanParams(query);
 
     this.loading = true;
     this.as.listAccountsV3(data).subscribe(
@@ -119,7 +119,7 @@ export class SellersComponent extends PageBase {
       limit: this.limit,
       offset: this.offset,
       order: this.sortDir,
-      search: query,
+      search: query || this.query,
       sort: this.sortID,
       tier: 2,
       type: 'COMPANY',

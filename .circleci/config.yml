@@ -9,6 +9,8 @@ jobs:
     steps:
       - checkout
 
+      - run: make test-build
+
       # with credentials stored in the UI
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS reg.rallf.com:8443
 

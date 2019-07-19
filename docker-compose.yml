@@ -7,3 +7,21 @@ services:
       - .:/usr/share/nginx/html
     ports:
       - 8080:80
+    environment:
+      - PANEL_TITLE=REC Admin
+      - PANEL_API_URL=https://api.rec.qbitartifacts.com
+      - PANEL_ORGANIZATION_NAME=QBit Artifacts SL
+      - PANEL_WEB_URL=https://rec.qbitartifacts.com
+      - PANEL_FAVICON_URL=https://rec.barcelona/wp-content/uploads/2018/04/favicon_16_rec_simbol.png
+      - PANEL_TOS_URL=https://rec.barcelona/legal.html
+      - PANEL_COPYRIGHT_YEAR=2019
+      - PANEL_API_DOCS_URL=https://dev.rec.qbitartifacts.com
+      - PANEL_SANDBOX_FRONT_URL=https://dev.rec.qbitartifacts.com
+      - PANEL_SUPPORT_URL=https://support.rec.qbitartifacts.com
+      - PANEL_MAIN_COLOR=#0098db
+      - PANEL_DARK_COLOR=#1976ce
+      - PANEL_MAIN_THEME=blue
+      - PANEL_ACCENT_THEME=pink
+      - PANEL_CLIENT_ID=1_23zebs1ciqsk088s4wckckgwkcogo8ws8os48osc40s0s8ss0k
+      - PANEL_CLIENT_SECRET=2zspa4vc6ask0wk0kcso0sowg0w088k00k00gkcs8ggs0g400g
+      - PANEL_CAPTCHA_KEY=xxxxxxx

@@ -30,7 +30,7 @@ export class AccountUsersTab implements AfterContentInit {
   public account_id = null;
   public items: any[] = [];
   public sortedData: any[] = [];
-  public brand = environment.Brand;
+  public brand: any = environment.Brand;
 
   constructor(
     public titleService: Title,

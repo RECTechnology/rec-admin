@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderComponent {
   public Brand: any = environment.Brand;
-  public brand = environment.Brand;
+  public brand: any = environment.Brand;
   public refreshObs;
   public view_price = false;
   constructor(

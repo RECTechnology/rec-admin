@@ -11,7 +11,7 @@ import { UtilsService } from '../../services/utils/utils.service';
   templateUrl: '../../components/sidemenu/sidemenu.html',
 })
 export class SidemenuComponent implements OnInit {
-  public brand = environment.Brand;
+  public brand: any = environment.Brand;
   public environment = environment;
   public loadEnded = false;
   @Input() public collapsed = null;
