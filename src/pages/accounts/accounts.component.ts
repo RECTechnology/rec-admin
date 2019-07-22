@@ -191,7 +191,7 @@ export class AccountsPage implements AfterContentInit {
 
     const dialogRef = this.dialog.open(ExportDialog);
     dialogRef.componentInstance.filters = data;
-    dialogRef.componentInstance.fn = this.exportCall.bind(this.as);
+    dialogRef.componentInstance.fn = this.as.exportAccountsV3.bind(this.as);
     dialogRef.componentInstance.entityName = 'Accounts';
     dialogRef.componentInstance.defaultExports = [...this.defaultExportKvp];
     dialogRef.componentInstance.list = [...this.defaultExportKvp];
