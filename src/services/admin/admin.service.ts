@@ -190,6 +190,9 @@ export class AdminService extends BaseService {
     }
 
     public listAccountsV3(opts: ListAccountsParams) {
+        if (!opts.search) {
+            delete opts.search;
+        }
         return this.get(null, opts, `${API_URL}/admin/v3/accounts`)
             .pipe(map((resp) => {
                 resp.data.elements = resp.data.elements.map(this.cs.mapCompany.bind(this.cs));
@@ -198,6 +201,9 @@ export class AdminService extends BaseService {
     }
 
     public getAccountsV3(opts: SearchAccountsParams) {
+        if (!opts.query.search) {
+            delete opts.query.search;
+        }
         return this.get(null, opts, `${API_URL}/admin/v3/accounts/search`)
             .pipe(map((resp) => {
                 resp.data.elements = resp.data.elements.map(this.cs.mapCompany.bind(this.cs));
@@ -206,14 +212,23 @@ export class AdminService extends BaseService {
     }
 
     public exportAccountsV3(opts: any) {
+        if (!opts.search) {
+            delete opts.search;
+        }
         return this.get(null, opts, `${API_URL}/admin/v3/accounts/export`, { Accept: '*/*' }, { responseType: 'text' });
     }
 
     public listUsersV3(opts: ListAccountsParams) {
+        if (!opts.search) {
+            delete opts.search;
+        }
         return this.get(null, opts, `${API_URL}/admin/v3/users`);
     }
 
     public exportUsersV3(opts: ListAccountsParams) {
+        if (!opts.search) {
+            delete opts.search;
+        }
         return this.get(null, opts, `${API_URL}/admin/v3/users/export`, { Accept: '*/*' }, { responseType: 'text' });
     }
 

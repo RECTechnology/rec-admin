@@ -102,7 +102,7 @@ const imports = [
     apiKey: 'YOUR_KEY',
   }),
   CountryPickerModule.forRoot({
-    baseUrl: '/assets/resources/countries/',
+    baseUrl: '/assets/countries/',
     filename: 'countries.json',
   }),
 ];

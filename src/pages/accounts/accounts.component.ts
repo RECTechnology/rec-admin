@@ -46,6 +46,7 @@ export class AccountsPage implements AfterContentInit {
     { key: 'cif', value: '$.cif', active: true },
     { key: 'type', value: '$.type', active: true },
     { key: 'subtype', value: '$.subtype', active: true },
+    { key: 'username', value: '$.kyc_manager.name', active: true },
     { key: 'lastname', value: '$.kyc_manager.kyc_validations.last_name', active: true },
     { key: 'street_type', value: '$.street_type', active: true },
     { key: 'street', value: '$.street', active: true },
