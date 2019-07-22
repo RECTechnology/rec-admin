@@ -141,7 +141,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
   public setUp() {
     console.log('setup');
     this.loading = true;
-    this.companyService.getGroup(this.account_id)
+    this.companyService.getAccount(this.account_id)
       .subscribe((resp) => {
         console.log('Account: ', resp);
         this.companyService.selectedCompany = resp;

@@ -65,7 +65,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   }
 
   public setUp() {
-    this.companyService.getGroup(this.account_id)
+    this.companyService.getAccount(this.account_id)
       .subscribe((resp) => {
         this.companyService.selectedCompany = resp;
         this.controles.showAccountDetails = true;

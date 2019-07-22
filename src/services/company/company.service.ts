@@ -57,8 +57,8 @@ export class CompanyService extends BaseService {
 
   public mapCompany(el) {
     const updated: any = {};
-    updated.available = el.wallets && el.wallets[0] ? this.ws.scaleNum(el.wallets[0].available, 8) : 0;
-    updated.available_eur = el.wallets && el.wallets[1] ? this.ws.scaleNum(el.wallets[1].available, 2) : 0;
+    updated.available = el && el.wallets && el.wallets[0] ? this.ws.scaleNum(el.wallets[0].available, 8) : 0;
+    updated.available_eur = el && el.wallets && el.wallets[1] ? this.ws.scaleNum(el.wallets[1].available, 2) : 0;
     updated.scheduleMap = this.utils.parseSchedule(el.schedule);
     return {
       ...el,
@@ -76,7 +76,7 @@ export class CompanyService extends BaseService {
   public getCompanies(
     offset = 0, limit = 10,
     query = null, sort = 'id',
-    order ='desc',
+    order = 'desc',
     active: boolean | number = true, type = null,
   ) {
     return this.get(null, { offset, limit, search: query, order, sort, active, type }, `${API_URL}/manager/v2/groups`)
@@ -116,7 +116,7 @@ export class CompanyService extends BaseService {
     return this.delete(null, `${API_URL}/manager/v1/users/${id}`);
   }
 
-  public getAllUsers(query, offset = 0, limit = 10, sort = 'id', order ='desc') {
+  public getAllUsers(query, offset = 0, limit = 10, sort = 'id', order = 'desc') {
     return this.get(null, { search: query, offset, limit, sort, order }, `${API_URL}/manager/v2/users`).pipe(
       map((resp) => {
         resp.data.elements.map(async (u) => {
@@ -222,9 +222,20 @@ export class CompanyService extends BaseService {
    */
   public getGroup(group_id: string): Observable<any> {
     return this.get(null, null, `${API_URL}/groups/v1/show/${group_id}`)
-      .pipe(map((resp) => {
-        return this.mapCompany(resp.data.elements);
-      }));
+      .pipe(
+        map((resp) => {
+          return this.mapCompany(resp);
+        }),
+      );
+  }
+
+  public getAccount(account_id: string): Observable<any> {
+    return this.get(null, null, `${API_URL}/admin/v3/accounts/${account_id}`)
+      .pipe(
+        map((resp) => {
+          return this.mapCompany(resp.data);
+        }),
+      );
   }
 
   /**
@@ -268,7 +279,7 @@ export class CompanyService extends BaseService {
               observer.next();
               observer.complete();
 
-              this.getGroup(company.id)
+              this.getAccount(company.id)
                 .subscribe(
                   (data) => {
                     this.us.userData.group_data = data.data.elements;
