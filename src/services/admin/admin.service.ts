@@ -154,7 +154,7 @@ export class AdminService extends BaseService {
         return this.get(null, null, `${API_URL}/admin/v1/delegated_changes`);
     }
 
-    public getChangeDelegateDataList(id, offset = 0, limit = 10, sort = 'id', order ='desc', search = '') {
+    public getChangeDelegateDataList(id, offset = 0, limit = 10, sort = 'id', order = 'desc', search = '') {
         return this.get(null, {
             delegated_change_id: id,
             limit, offset, order, search, sort,
@@ -206,7 +206,7 @@ export class AdminService extends BaseService {
     }
 
     public exportAccountsV3(opts: any) {
-        return this.get(null, opts, `${API_URL}/admin/v3/accounts/export`, { Accept: '*/*' }, { responseType: 0 });
+        return this.get(null, opts, `${API_URL}/admin/v3/accounts/export`, { Accept: '*/*' }, { responseType: 'text' });
     }
 
     public listUsersV3(opts: ListAccountsParams) {
@@ -214,7 +214,7 @@ export class AdminService extends BaseService {
     }
 
     public exportUsersV3(opts: ListAccountsParams) {
-        return this.get(null, opts, `${API_URL}/admin/v3/users/export`, { Accept: '*/*' }, { responseType: 0 });
+        return this.get(null, opts, `${API_URL}/admin/v3/users/export`, { Accept: '*/*' }, { responseType: 'text' });
     }
 
     public setMapVisibility(account_id, on_map) {

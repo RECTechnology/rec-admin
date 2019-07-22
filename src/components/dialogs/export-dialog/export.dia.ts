@@ -70,6 +70,7 @@ export class ExportDialog implements OnInit {
       // this.csvData = resp;
       this.download(resp, 'text/csv', this.fileName);
     }, (error) => {
+      console.log('Error', error)
       this.error = error._body.message || 'Error';
       this.loading = false;
     });
