@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ErrorManager } from '../error-manager/error-manager';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
@@ -36,13 +36,13 @@ export abstract class BaseService2 {
    * @return {Observable}     a Observable that resolves in the response
   */
   public get(id?: string, params?: any, url?: string): Observable<any> {
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'authorization': 'Bearer ' + this.getToken(),
       'content-type': 'application/json',
     });
 
-    const searchParams: URLSearchParams = new URLSearchParams();
+    const searchParams: HttpParams = new HttpParams();
     if (params) {
       for (const key in params) {
         if (key) {
@@ -54,6 +54,7 @@ export abstract class BaseService2 {
 
     const options: any = ({
       headers,
+      params: searchParams,
       search: searchParams,
     });
 
