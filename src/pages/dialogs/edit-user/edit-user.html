@@ -89,7 +89,6 @@
             <mat-select [(ngModel)]="userCopy.kyc_validations.gender">
               <mat-option value="M">{{'MALE'|translate}}</mat-option>
               <mat-option value="F">{{'FEMALE'|translate}}</mat-option>
-              <!-- <mat-option value="">{{'NON-BINARY'|translate}}</mat-option> -->
             </mat-select>
           </div>
         </div>
@@ -122,8 +121,6 @@
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Street Type'|translate}}</span>
                   <street-type-selector [(value)]="userCopy.kyc_validations.street_type"></street-type-selector>
-                  <!-- <input type="text" class="user-input small" style="max-width: 300px"
-                    [(ngModel)]="userCopy.kyc_validations.street_type" placeholder="{{'Street Type'|translate}}"> -->
                 </div>
               </div>
               <div class="col-lg-6">
@@ -135,9 +132,6 @@
               <div class="col-lg-6">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'NATIONALITY'|translate}}</span>
-                  <!-- <mat-select [(ngModel)]="userCopy.kyc_validations.nationality">
-                    <mat-option *ngFor="let c of countries" value="{{c.cca3}}">{{c.name.common}}</mat-option>
-                  </mat-select> -->
                   <country-selector [(value)]="userCopy.kyc_validations.nationality"></country-selector>
                 </div>
               </div>

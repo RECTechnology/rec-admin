@@ -88,7 +88,6 @@ export class UsersPage implements OnInit {
 
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },
-    { key: 'active_group', value: '$.active_group', active: true },
     { key: 'username', value: '$.username', active: true },
     { key: 'email', value: '$.email', active: true },
     { key: 'enabled', value: '$.enabled', active: true },

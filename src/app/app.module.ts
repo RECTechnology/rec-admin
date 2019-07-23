@@ -8,17 +8,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 
-// Custom I18 provider for translating AngularMaterial
-
 // Components & dialogs
 import { AppComponent } from './app.component';
 import { AccountModule } from 'src/pages/account/account.module';
 import { WalletModule } from 'src/pages/wallet/wallet.module';
 import { ChangeDelegateModule } from 'src/pages/change_delegate/change_delegate.module';
-import { CompaniesModule } from 'src/pages/companies/companies.module';
-// import { CountryPickerModule } from 'angular2-countrypicker';
 import { LoginComponent } from 'src/components/login/login.component';
-import { DashboardComponent } from 'src/pages/dashboard/dashboard.component';
 import { DevOptions } from 'src/components/login/dev-options/dev-options.dia';
 import { BetaTerms } from 'src/components/login/beta-terms/beta-terms.dia';
 import { DataProtection } from 'src/components/login/data-protection/data-protection.dia';
@@ -88,7 +83,6 @@ const imports = [
   WalletModule,
   TableListModule,
   ChangeDelegateModule,
-  CompaniesModule,
   TranslateModule.forRoot({
     loader: {
       deps: [HttpClient],
@@ -157,7 +151,7 @@ const providers = [
     useClass: MdI18n,
     useValue: LOCALE,
   },
-  { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig }
+  { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
 ];
 const entryComponents = [
   DevOptions,

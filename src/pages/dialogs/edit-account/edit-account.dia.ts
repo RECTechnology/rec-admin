@@ -7,6 +7,7 @@ import { UtilsService } from '../../../services/utils/utils.service';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
 import { TranslateService } from '@ngx-translate/core';
 import { AdminService } from '../../../services/admin/admin.service';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   providers: [
@@ -39,6 +40,8 @@ export class EditAccountData {
     en: 'eng',
     es: 'esp',
   };
+
+  public geocoder: any;
 
   constructor(
     public dialogRef: MatDialogRef<EditAccountData>,
