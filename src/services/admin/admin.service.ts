@@ -232,6 +232,10 @@ export class AdminService extends BaseService {
         return this.get(null, opts, `${API_URL}/admin/v3/users/export`, { Accept: '*/*' }, { responseType: 'text' });
     }
 
+    public getUserV3(id) {
+        return this.get(null, {}, `${API_URL}/admin/v3/users/${id}`);
+    }
+
     public setMapVisibility(account_id, on_map) {
         return this.put(
             { on_map }, null,

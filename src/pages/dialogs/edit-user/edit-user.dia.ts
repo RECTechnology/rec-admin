@@ -19,7 +19,7 @@ import { forkJoin } from 'rxjs';
 })
 export class EditUserData {
   public user: any = {};
-  public userCopy: any = {};
+  public userCopy: any = { kyc_validations: {} };
   public loading = false;
   public error = '';
 
@@ -34,12 +34,23 @@ export class EditUserData {
   ) { }
 
   public ngOnInit() {
-    this.userCopy = Object.assign({}, this.user);
-    this.userCopy.kyc_validations = Object.assign({}, this.user.kyc_validations);
+    // this.userCopy = Object.assign({}, this.user);
+    // this.userCopy.kyc_validations = Object.assign({}, this.user.kyc_validations);
+    this.getUser();
   }
 
   public close(user = null): void {
     this.dialogRef.close(JSON.stringify(user));
+  }
+
+  public getUser() {
+    this.adminService.getUserV3(this.user.id)
+      .subscribe((resp) => {
+        console.log('Got user', resp);
+        this.user = resp.data;
+        this.userCopy = { ...this.user };
+        this.userCopy.kyc_validations = { ...this.user.kyc_validations };
+      });
   }
 
   public async update() {

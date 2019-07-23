@@ -57,7 +57,10 @@ export class UsersPage implements OnInit {
     sort: 'email',
     title: 'Email',
   }, {
-    accessor: (el) => '+' + (el.prefix || '--') + ' ' + el.phone,
+    accessor: (el) => {
+      const hasPlus = String(el.prefix).includes('+');
+      return (!hasPlus ? '+' : '') + (el.prefix || '--') + ' ' + el.phone;
+    },
     sort: 'phone',
     title: 'Phone',
   }, {
