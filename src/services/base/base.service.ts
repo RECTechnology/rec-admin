@@ -85,7 +85,6 @@ export class BaseService {
     } else if (params) {
       for (const key in params) {
         if (key) {
-          console.log('adding param', key);
           let param = params[key];
           if (String(param).toString() === '[object Object]') {
             param = JSON.stringify(param);
@@ -94,8 +93,6 @@ export class BaseService {
         }
       }
     }
-
-    console.log('Params', searchParams);
 
     const options = {
       headers,

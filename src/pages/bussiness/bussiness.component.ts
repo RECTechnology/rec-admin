@@ -90,17 +90,19 @@ export class BussinessComponent extends PageBase {
         return el.offer_count;
       },
       avatar: {
-        accessor: () => '../../../resources/offerta-small.png',
+        accessor: () => '/assets/resources/offerta-small.png',
         sort: 'offer',
         title: 'offer',
       },
       sort: 'offer_count',
+      sortable: false,
       title: 'Offers',
       type: 'avatar',
     }, {
       buttonAction: this.openMaps.bind(this),
-      buttonImg: '../../../resources/marcador.png',
+      buttonImg: '/assets/resources/marcador.png',
       sort: 'coordenates',
+      sortable: false,
       title: 'Coordenates',
       type: 'button',
     }, {
@@ -279,7 +281,7 @@ export class BussinessComponent extends PageBase {
     if (!sort.active || sort.direction === '') {
       this.sortedData = this.bussinessList.slice();
       this.sortID = 'id';
-      this.sortDir ='desc';
+      this.sortDir = 'desc';
     } else {
       this.sortID = sort.active;
       this.sortDir = sort.direction.toUpperCase();

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export interface TlHeader {
     sort: string;
+    sortable?: boolean;
     title: string;
     type?: 'text' | 'checkbox' | 'status' | 'code' | 'date' | 'avatar' | 'button' | 'slidetoggle';
     accessor?: string | ((el: any) => any);

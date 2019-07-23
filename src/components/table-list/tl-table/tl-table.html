@@ -2,8 +2,11 @@
     <table class="left-align" matSort [matSortDirection]="sortDir" [matSortActive]="sortId"
         (matSortChange)="sortData($event)">
         <tr class="bordered-bottom">
-            <th *ngFor="let header of headers" mat-sort-header="{{header.sort}}">
-                {{header.title|translate}}</th>
+            <ng-template ngFor let-header [ngForOf]="headers">
+                <th *ngIf="header.sortable === undefined  || header.sortable" mat-sort-header="{{header.sort}}">
+                    {{header.title|translate}}</th>
+                <th *ngIf="header.sortable !== undefined && !header.sortable" style="text-transform: capitalize">{{header.title|translate}}</th>
+            </ng-template>
             <th *ngIf="itemOptions"></th>
         </tr>
         <tr *ngFor="let entry of data; let i = index; trackBy: trackByFn">
