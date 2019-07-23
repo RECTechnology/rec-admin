@@ -93,7 +93,7 @@ export class UsersPage implements OnInit {
     { key: 'enabled', value: '$.enabled', active: true },
     { key: 'locked', value: '$.locked', active: true },
     { key: 'expired', value: '$.expired', active: true },
-    { key: 'roles', value: '$.roles', active: true },
+    { key: 'roles', value: '$.roles[*]', active: true },
     { key: 'name', value: '$.name', active: true },
     { key: 'created', value: '$.created', active: true },
     { key: 'dni', value: '$.dni', active: true },
