@@ -60,7 +60,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 class MyErrorHandler implements ErrorHandler {
-  handleError(error) {
+  public handleError(error) {
     // do something with the exception
   }
 }
@@ -163,8 +163,8 @@ const providers = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpErrorInterceptor,
-    multi: true
-  }
+    multi: true,
+  },
 ];
 const entryComponents = [
   DevOptions,

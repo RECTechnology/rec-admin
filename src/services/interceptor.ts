@@ -4,7 +4,7 @@ import {
     HttpHandler,
     HttpRequest,
     HttpResponse,
-    HttpErrorResponse
+    HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
@@ -16,7 +16,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
     constructor(
         public translate: TranslateService,
-        public snackbar: MySnackBarSevice
+        public snackbar: MySnackBarSevice,
     ) { }
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

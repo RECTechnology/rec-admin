@@ -16,7 +16,6 @@ export class CCInput {
   @Input() public badValue: boolean = false;
   @Output() public valueChange: EventEmitter<any>;
   @Output() public onInput: EventEmitter<any>;
-  
 
   constructor() {
     this.valueChange = new EventEmitter();

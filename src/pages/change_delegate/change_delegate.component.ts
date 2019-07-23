@@ -36,7 +36,6 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
   public validationErrors: any[] = [];
   public loadingList = true;
 
-
   constructor(
     public titleService: Title,
     public ls: LoginService,

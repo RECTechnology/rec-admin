@@ -13,7 +13,7 @@ export class MdI18n extends MatPaginatorIntl {
     this.setUpLang();
   }
 
-  public getRangeLabel = function (page: number, pageSize: number, length: number): string {
+  public getRangeLabel = function(page: number, pageSize: number, length: number): string {
     this.setUpLang();
     if (length === 0 || pageSize === 0) {
       return `0 / ${length}`;
@@ -25,7 +25,7 @@ export class MdI18n extends MatPaginatorIntl {
       Math.min(startIndex + pageSize, length) :
       startIndex + pageSize;
     return `${startIndex + 1} - ${endIndex} / ${length}`;
-  }
+  };
 
   private setUpLang() {
     const localSavedLang = localStorage.getItem('lang');

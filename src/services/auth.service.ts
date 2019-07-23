@@ -397,7 +397,6 @@ export class ValidateService {
     );
   }
 
-
   public extractData(res: any) {
     return res;
   }
@@ -434,7 +433,6 @@ export class ForgotPassService {
       catchError(this.handleError.bind(this)),
     );
   }
-
 
   public extractData(res: any) {
     return res;

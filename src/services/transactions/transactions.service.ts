@@ -113,7 +113,7 @@ export class TransactionService extends BaseService {
             };
           });
           return res;
-        })
+        }),
     );
   }
 

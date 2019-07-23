@@ -12,6 +12,6 @@ export class MapComponent {
     public lng: number = 7.809007;
 
     constructor(
-        public controles: ControlesService
+        public controles: ControlesService,
     ) { }
 }
