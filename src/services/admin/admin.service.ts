@@ -200,7 +200,7 @@ export class AdminService extends BaseService {
             }));
     }
 
-    public searchAccountsV3(opts: ListAccountsParams) {
+    public searchAccountsV3(opts: SearchAccountsParams) {
         return this.get(null, opts, `${API_URL}/admin/v3/accounts/search`)
             .pipe(map((resp) => {
                 resp.data.elements = resp.data.elements.map(this.cs.mapCompany.bind(this.cs));
@@ -208,11 +208,11 @@ export class AdminService extends BaseService {
             }));
     }
 
-    public getAccountsV3(opts: SearchAccountsParams) {
+    public getAccountsV3(opts: ListAccountsParams) {
         if (!opts.query.search) {
             delete opts.query.search;
         }
-        return this.get(null, opts, `${API_URL}/admin/v3/accounts/search`)
+        return this.get(null, opts, `${API_URL}/admin/v3/accounts`)
             .pipe(map((resp) => {
                 resp.data.elements = resp.data.elements.map(this.cs.mapCompany.bind(this.cs));
                 return resp;

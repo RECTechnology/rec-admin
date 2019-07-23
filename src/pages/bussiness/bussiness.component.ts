@@ -13,7 +13,7 @@ import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { TableListHeaderOptions } from '../../components/table-list/tl-header/tl-header.component';
 import { TlHeader, TlItemOption } from '../../components/table-list/tl-table/tl-table.component';
 import { AdminService } from '../../services/admin/admin.service';
-import { ListAccountsParams } from '../../interfaces/search';
+import { ListAccountsParams, SearchAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 
 const FILTERS = {
@@ -171,13 +171,21 @@ export class BussinessComponent extends PageBase {
 
   public getBussiness(query: string = '') {
     this.loading = true;
-    const data: ListAccountsParams = this.getCleanParams(query);
+    const data: any = this.getCleanParams(query);
 
-    if (!data.subtype) {
-      delete data.subtype;
+    if (data.query && !data.query.subtype) {
+      delete data.query.subtype;
     }
 
-    this.as.searchAccountsV3(data).subscribe(
+    this.as.searchAccountsV3({
+      ...data,
+      query: {
+        only_with_offers: data.only_offers,
+        search: this.query,
+        subtype: data.subtype,
+        type: data.type,
+      },
+    }).subscribe(
       (resp) => {
         this.bussinessList = resp.data.elements.map((el) => {
           el.address = [
@@ -239,14 +247,16 @@ export class BussinessComponent extends PageBase {
   public getCleanParams(query?: string) {
     const filters = this.getFilters();
 
-    const data: ListAccountsParams = {
+    const data: any = {
       limit: this.limit,
       offset: this.offset,
       order: this.sortDir,
-      search: query,
+      search: query || this.query,
       sort: this.sortID,
       subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
       type: 'COMPANY',
+      // tslint:disable-next-line: object-literal-sort-keys
+      only_offers: filters.only_offers,
     };
 
     if (!data.type) {
