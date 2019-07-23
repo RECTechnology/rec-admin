@@ -1,8 +1,7 @@
 
-[ng-img]: https://img.shields.io/badge/Version-v4.3.3-blue.svg
-[node-img]: https://img.shields.io/badge/Version-v6.11.2-blue.svg
-[wp-img]: https://img.shields.io/badge/Version-v5.3.0-blue.svg
-[npm-img]: https://img.shields.io/badge/Version-v2.2.1-blue.svg
+[ng-img]: https://img.shields.io/badge/Version-v8.1.1-blue.svg
+[node-img]: https://img.shields.io/badge/Version-v10.14.2-blue.svg
+[npm-img]: https://img.shields.io/badge/Version-v6.4.1-blue.svg
 
 # [<img src="https://rec.barcelona/wp-content/uploads/2018/04/Group-3151.png" width="25" />](https://admin.rec.barcelona) [REC Barcelona (Admin Panel)](https://admin.rec.barcelona)
 
@@ -13,9 +12,9 @@ Panel de administracion para [rec.barcelona](https://rec.barcelona)
 [![CircleCI](https://circleci.com/gh/QbitArtifacts/rec-admin.svg?style=svg&circle-token=de5e8c8c8e7506b96c5c73f933530bb69b6ea988)](https://circleci.com/gh/QbitArtifacts/rec-admin)
 
 ### Project Dependencies versions
-| Angular                  | Node                       | Npm                        | Webpack                  |
-| ------------------------ | -------------------------- | -------------------------- | ------------------------ |
-| [![ngVersion][ng-img]]() | [![ngVersion][node-img]]() | [![ngVersion][node-img]]() | [![ngVersion][wp-img]]() |
+| Angular                  | Node                       | Npm                        |
+| ------------------------ | -------------------------- | -------------------------- | 
+| [![ngVersion][ng-img]]() | [![ngVersion][node-img]]() | [![ngVersion][node-img]]() | 
 
 ### Usefull Links
 * [Angular](https://angular.io)
@@ -28,32 +27,32 @@ Please check [this wiki](https://github.com/QbitArtifacts/bootstrap/wiki/Develop
 
 ### Setting Up
 1. Install dependecies `npm install`
-2. Run dev server `npm serve` will start a server at `http://127.0.0.1:8080`
+    1.2. Install ng cli globaly `[sudo] npm install @angular/cli -g`
+2. Run dev server `ng serve` will start a server at `http://localhost:4200`
 3. App starts at `app/main.ts`
 
 ### Building App
 #### Development
-1. Run `npm run build:dev`
-2. App is available at: `/prod/index.html`
+1. Run `ng build`
+2. App is available at: `/dist/index.html`
 3. It's ready
    
 #### Production
-1. Run `npm run build:prod`
-2. App is available at: `/prod/index.html`
+1. Run `ng build --prod`
+2. App is available at: `/dist/index.html`
 3. It's ready
 
 
 ### Package Scripts
-* `build:dev`  - Build dev app, with dev credentials
-* `build:prod` - Build production app, minified and compressed
-
-* `serve` - Serves with current environment
-
-* `last-tag` - Returns the lastest tag
-* `e2e` - runs e2e tests with protractor
-* `e2e:headless` - runs e2e tests in headless mode with protractor
-
-* `sass:theme` - Compile the theme
-* `sass:theme:w` - Compile the theme and watches
-  * Compiles: `/resources/css/theme.scss`
-  * Outputs to: `/resources/css/theme.css`
+```json
+{
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "build:pre": "ng build",
+    "build:prod": "ng build --prod",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+}
+```

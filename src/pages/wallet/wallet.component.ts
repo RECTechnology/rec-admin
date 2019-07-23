@@ -96,7 +96,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
         }
         this.getTransactions();
         this.getMethods();
-        this.ws.doGetWallets();
         this.companyService.doGetCompanies();
       });
   }
