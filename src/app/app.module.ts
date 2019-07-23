@@ -1,11 +1,11 @@
 
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 
 // Components & dialogs
@@ -53,9 +53,16 @@ import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
 import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
 import { TableListModule } from 'src/components/table-list/table-list-module';
 import { CountryPickerModule } from 'ngx-country-picker';
+import { HttpErrorInterceptor } from 'src/services/interceptor';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+}
+
+class MyErrorHandler implements ErrorHandler {
+  handleError(error) {
+    // do something with the exception
+  }
 }
 
 registerLocaleData(localeCat);
@@ -152,6 +159,12 @@ const providers = [
     useValue: LOCALE,
   },
   { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
+  { provide: ErrorHandler, useClass: MyErrorHandler },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
+    multi: true
+  }
 ];
 const entryComponents = [
   DevOptions,

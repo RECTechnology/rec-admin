@@ -265,6 +265,17 @@ export class BaseService {
   }
 
   public handleError(error: Response | any) {
-    return throwError(error);
+    console.log('asdasdoahsdohasd', error);
+    let cleanError = error;
+    const errStr = error.error || error;
+
+    if (typeof errStr === 'string') {
+      try {
+        cleanError = JSON.parse(errStr);
+      } catch (error) {
+        cleanError = errStr;
+      }
+    }
+    return throwError(cleanError);
   }
 }

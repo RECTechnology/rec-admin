@@ -219,7 +219,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
         this.snackbar.open('Documents validated', 'OK');
         console.log(resp);
       }, (error) => {
-        this.snackbar.open('Error: ' + error._body.message, 'OK');
+        this.snackbar.open('Error: ' + error.message, 'OK');
         console.log(error);
       });
   }
@@ -237,11 +237,11 @@ export class AccountDocuments implements OnDestroy, OnInit {
             this.snackbar.open('Account opened correctly', 'OK');
             this.setUp();
           }, (error) => {
-            this.snackbar.open('Error: ' + error._body.message, 'OK');
+            this.snackbar.open('Error: ' + error.message, 'OK');
           });
 
       }, (error) => {
-        this.snackbar.open('Error: ' + error._body.message, 'OK');
+        this.snackbar.open('Error: ' + error.message, 'OK');
       });
   }
 
@@ -258,7 +258,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
               this.snackbar.open('Uploaded document correctly!', 'OK');
               this.getDocuments();
             }, (error) => {
-              this.snackbar.open('There has been an error: ' + error._body.message, 'OK');
+              this.snackbar.open('There has been an error: ' + error.message, 'OK');
             });
         }
       });
@@ -271,7 +271,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
         console.log(resp);
         this.setUp();
       }, (error) => {
-        this.snackbar.open('Error: ' + error._body.message, 'OK');
+        this.snackbar.open('Error: ' + error.message, 'OK');
         console.log(error);
       });
   }

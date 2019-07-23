@@ -96,7 +96,7 @@ export class EditAccountData {
             this.snackBar.open('Updated account correctly!', 'ok');
             this.close(this.account);
           }, (error) => {
-            this.snackBar.open('Error updating account!' + error._body.message, 'ok');
+            this.snackBar.open('Error updating account!' + error.message, 'ok');
             this.close(this.account);
           });
     } else {

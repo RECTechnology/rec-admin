@@ -38,7 +38,7 @@ export class TwoFaDia extends BaseDialog {
           this.sentOTP = true;
         },
         (error) => {
-          this.error = error._body.message;
+          this.error = error.message;
           this.disabled = false;
           this.loading = false;
           this.sentOTP = false;

@@ -138,7 +138,7 @@
   "Street Number": "Numero Carrer",
   "Description": "Descripció",
   "Number": "Numero",
-  "Street Type": "Tipus Carrer",
+  "Street Type": "Tipus de Via",
   "ACTIVE": "Actiu",
   "COUNTRY": "País",
   "ADDRESS": "Direcció",
@@ -921,5 +921,6 @@
   "FILENAME_REQUIRED": "El nom del fitxer és obligatori",
   "KVP_ITEMS_HIDDEN": "Els camps d’exportació s’han amagat",
   "KVP_ITEMS_SHOWN": "Mostrant els camps d’exportació",
-  "FILTERS_APPLY": "Els filtros del llistat s'apliquen açi"
+  "FILTERS_APPLY": "Els filtros del llistat s'apliquen açi",
+  "ERROR_500": "S'ha produït un error inesperat, torneu-ho a provar o contacteu amb l'administrador"
 }

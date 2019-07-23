@@ -48,7 +48,7 @@ export class AddUser extends BaseDialog {
             });
           },
           (error) => {
-            this.error = error._body.message;
+            this.error = error.message;
             setTimeout((x) => this.error = '', 3e3);
             this.loading = false;
           },
@@ -66,7 +66,7 @@ export class AddUser extends BaseDialog {
             });
           },
           (error) => {
-            this.error = error._body.message;
+            this.error = error.message;
             setTimeout((x) => this.error = '', 3e3);
             this.loading = false;
           },

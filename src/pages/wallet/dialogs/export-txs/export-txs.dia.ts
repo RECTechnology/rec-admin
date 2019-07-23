@@ -65,6 +65,9 @@ export class ExportTxsDia extends BaseDialog {
       this.foundTxs = this.data.length;
       this.loading = false;
       this.preview = this.getFormatted(this.data);
+    }, (error) => {
+      this.loading = false;
+      this.error = error.message;
     });
   }
 

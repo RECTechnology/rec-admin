@@ -908,5 +908,7 @@
   "KVP_DESC_JSON": "Consulte el siguiente enlace para obtener información sobre cómo funciona JSONPath",
   "FILENAME_REQUIRED": "Se requiere el nombre de archivo",
   "KVP_ITEMS_HIDDEN": "Mostrando los campos de exportación",
-  "FILTERS_APPLY": "Los filtros del listado se aplican aqui"
+  "FILTERS_APPLY": "Los filtros del listado se aplican aqui",
+  "Street Type": "Tipo de Vía",
+  "ERROR_500": "Ha habido un error inesperado, inténtelo de nuevo o póngase en contacto con el administrador."
 }

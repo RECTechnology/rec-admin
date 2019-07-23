@@ -14,6 +14,8 @@ export class ExportDialog implements OnInit {
   public defaultExports: any = [];
   public fileName: string = '';
   public error: string = '';
+  public errorLarge: string = '';
+  public showAllError = false;
   public hidden = true;
   public fn: ((v?: any) => Observable<any>) = () => new Observable();
 
@@ -61,17 +63,19 @@ export class ExportDialog implements OnInit {
 
   public export() {
     this.hidden = true;
+    this.error = null;
+
     const field_map = this.getFieldMap();
-    console.log('Field map', field_map);
+
     this.loading = true;
     this.fn({ ...this.filters, field_map }).subscribe((resp) => {
       console.log(resp);
       this.loading = false;
-      // this.csvData = resp;
       this.download(resp, 'text/csv', this.fileName);
     }, (error) => {
-      console.log('Error', error)
-      this.error = error._body.message || 'Error';
+      console.log('Error', error);
+      this.errorLarge = (error.message || 'Error');
+      this.error = this.errorLarge.substr(0, 86);
       this.loading = false;
     });
   }

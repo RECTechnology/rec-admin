@@ -32,7 +32,7 @@ export class AddCommentDia extends BaseDialog {
           this.close();
         },
         (error) => {
-          this.error = error._body.message;
+          this.error = error.message;
           setTimeout((x) => { this.error = ''; }, 3500);
           this.loading = false;
         });

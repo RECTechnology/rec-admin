@@ -206,7 +206,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       this.sortID = 'id';
-      this.sortDir ='desc';
+      this.sortDir = 'desc';
       return;
     }
 
@@ -288,6 +288,8 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
       this.sortedData = this.txService.walletTransactions.slice();
       this.loadingTransactions = false;
       this.loading = false;
+    }, (error) => {
+      console.log(error);
     });
   }
 

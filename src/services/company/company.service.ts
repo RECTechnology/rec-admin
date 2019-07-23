@@ -298,8 +298,8 @@ export class CompanyService extends BaseService {
                 observer.error({ status: 403, error: 'You dont have the necesary permissions' });
                 this.snackbar.open('You dont have the necesary permissions', 'ok');
               } else {
-                observer.error({ status: 0, error: 'There has been an error: ' + error._body.message });
-                this.snackbar.open('There has been an error: ' + error._body.message, 'ok');
+                observer.error({ status: 0, error: 'There has been an error: ' + error.message });
+                this.snackbar.open('There has been an error: ' + error.message, 'ok');
               }
             });
       }

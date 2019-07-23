@@ -274,7 +274,7 @@ export class UsersPage implements OnInit {
           this.snackbar.open('Deleted user from system', 'ok');
         },
         (error) => {
-          this.snackbar.open('Error deleting user: ' + error._body.message, 'ok');
+          this.snackbar.open('Error deleting user: ' + error.message, 'ok');
         });
   }
 }

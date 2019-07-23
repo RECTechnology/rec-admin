@@ -7,7 +7,7 @@ import Transaction from '../../shared/entities/transaction/transaction.ent';
 import { WalletService } from '../wallet/wallet.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 function formatTX(tx) {
   const new_tx = new Transaction();
@@ -82,6 +82,7 @@ export class TransactionService extends BaseService {
         resp.data = resp.data.map(formatTX.bind(this));
         return resp;
       }),
+      catchError(this.handleError.bind(this)),
     );
   }
 
@@ -112,7 +113,7 @@ export class TransactionService extends BaseService {
             };
           });
           return res;
-        }),
+        })
     );
   }
 
@@ -124,10 +125,11 @@ export class TransactionService extends BaseService {
     return this.get(null, {
       finish_date, limit,
       offset, order, sort, start_date,
-    }, `${API_URL}/company/${id}/v1/wallet/transactions`).pipe(map((resp) => {
-      resp.data.elements = resp.data.elements.map(formatTX.bind(this));
-      return resp;
-    }));
+    }, `${API_URL}/company/${id}/v1/wallet/transactions`).pipe(
+      map((resp) => {
+        resp.data.elements = resp.data.elements.map(formatTX.bind(this));
+        return resp;
+      }));
   }
 
   public getTxById(id) {

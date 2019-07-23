@@ -32,6 +32,13 @@
                 <i class="fa fa-download"></i> {{'EXPORT'|translate}}
             </span>
         </button>
-        <p *ngIf="error" style="margin-left: 10px" class="small-text col-error">{{error}}</p>
     </div>
+    <p *ngIf="error && !showingAllError" style="margin-left: 10px" class="small-text col-error">
+        {{error}}
+    </p>
+    <a *ngIf="error" class="col-gray small-text" (click)="showingAllError = !showingAllError">View
+        {{showingAllError ? 'Less': 'More'}}</a>
+    <p *ngIf="showingAllError" style="margin-left: 10px; max-width: 1000" class="small-text col-error">
+        {{errorLarge}}
+    </p>
 </div>

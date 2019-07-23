@@ -57,12 +57,14 @@
           <i class="fa fa-times col-error small-text-2"></i>
         </span>
       </button>
-      <mat-progress-spinner style="margin-left: 10px" [diameter]="25" mode="indeterminate" color="primary" *ngIf="loading">
+      <mat-progress-spinner style="margin-left: 10px" [diameter]="25" mode="indeterminate" color="primary"
+        *ngIf="loading">
       </mat-progress-spinner>
       <p class="small-text-2 col-{{foundTxs > 0 ? 'success': 'error'}}" style="margin-left: 10px!important"
         *ngIf="foundTxs !== null">
         {{'FOUND_X_TX'|translate:({amount: foundTxs})}}
       </p>
+      <p class="col-error small-text" *ngIf="error">{{error|translate}}</p>
     </div>
 
     <div class="group-col-left v w-100 padd-x10" style="padding-top: 10px" *ngIf="data">
