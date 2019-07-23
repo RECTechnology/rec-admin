@@ -10,23 +10,9 @@ import { AgmCoreModule } from '@agm/core';
 
 // Components & dialogs
 import { AppComponent } from './app.component';
-import { AccountModule } from 'src/pages/account/account.module';
 import { WalletModule } from 'src/pages/wallet/wallet.module';
 import { ChangeDelegateModule } from 'src/pages/change_delegate/change_delegate.module';
-import { LoginComponent } from 'src/components/login/login.component';
-import { DevOptions } from 'src/components/login/dev-options/dev-options.dia';
-import { BetaTerms } from 'src/components/login/beta-terms/beta-terms.dia';
-import { DataProtection } from 'src/components/login/data-protection/data-protection.dia';
-import { TwoFaDia } from 'src/components/dialogs/two_fa_prompt/two_fa_prompt.dia';
-import { BussinessComponent } from 'src/pages/bussiness/bussiness.component';
-import { SellersComponent } from 'src/pages/sellers/sellers.component';
 import { UsersPage } from 'src/pages/users/users.component';
-import { AccountsPage } from 'src/pages/accounts/accounts.component';
-import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
-import { ExportExchangersDia } from 'src/pages/sellers/dialogs/export-sellers/export-sellers.dia';
-import { VoteWithdrawal } from 'src/pages/dialogs/vote-withdrawal/vote-withdrawal.dia';
-import { KeyValuePair } from 'src/components/kvp/kvp-list/kvp-list';
-import { KeyValueItem } from 'src/components/kvp/kvp-item/kvp-item';
 import { ExportDialog } from 'src/components/dialogs/export-dialog/export.dia';
 import { MapComponent } from 'src/pages/map/map.component';
 import { LoginService, AppAuthService, RegisterService } from 'src/services/auth.service';
@@ -51,18 +37,12 @@ import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
 import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
-import { TableListModule } from 'src/components/table-list/table-list-module';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { HttpErrorInterceptor } from 'src/services/interceptor';
+import { AccountModule } from 'src/pages/account/account.module';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
-}
-
-class MyErrorHandler implements ErrorHandler {
-  public handleError(error) {
-    // do something with the exception
-  }
 }
 
 registerLocaleData(localeCat);
@@ -84,12 +64,12 @@ const imports = [
   FormsModule,
   HttpClientModule,
   BrowserAnimationsModule,
+  // TableListModule,
   SharedModule, // Contains shared imports and Routes
-  AccountModule,
   DashboardModule,
   WalletModule,
-  TableListModule,
   ChangeDelegateModule,
+  AccountModule,
   TranslateModule.forRoot({
     loader: {
       deps: [HttpClient],
@@ -108,85 +88,51 @@ const imports = [
   }),
 ];
 
-const declarations = [
-  AppComponent,
-  LoginComponent,
-  DevOptions,
-  BetaTerms,
-  DataProtection,
-  TwoFaDia,
-  BussinessComponent,
-  SellersComponent,
-  UsersPage,
-  AccountsPage,
-  TreasureAccount,
-  ExportExchangersDia,
-  VoteWithdrawal,
-  KeyValuePair,
-  KeyValueItem,
-  ExportDialog,
-  MapComponent,
-];
-
-const providers = [
-  LoginService,
-  UserService,
-  AppAuthService,
-  RegisterService,
-  IsLoggedInGuard,
-  ControlesService,
-  CurrenciesService,
-  TransactionService,
-  IsLoggedInGuard,
-  IsNotLoggedInGuard,
-  IsResellerGuard,
-  WalletService,
-  UtilsService,
-  TranslateService,
-  AdminService,
-  XHR,
-  MySnackBarSevice,
-  NotificationService,
-  {
-    // Provide locale so angular can show localized dates
-    provide: LOCALE_ID,
-    useValue: LOCALE,
-  },
-  {
-    // Provide custom MdI18 provider
-    provide: MatPaginatorIntl,
-    useClass: MdI18n,
-    useValue: LOCALE,
-  },
-  { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
-  { provide: ErrorHandler, useClass: MyErrorHandler },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpErrorInterceptor,
-    multi: true,
-  },
-];
-const entryComponents = [
-  DevOptions,
-  BetaTerms,
-  DataProtection,
-  TwoFaDia,
-  ExportExchangersDia,
-  VoteWithdrawal,
-  ExportDialog,
-];
-
 @NgModule({
+  bootstrap: [AppComponent],
+  declarations: [AppComponent],
   /**
    * Root Component is 'AppComponent'
    * AppComponent is the first component to be rendered,
    * and all the other components are rendered inside <router-outlet> based on the route
    */
-  bootstrap: [AppComponent],
-  declarations,
-  entryComponents,
   imports,
-  providers,
-  // imports: [BrowserAnimationsModule],
+  providers: [
+    LoginService,
+    UserService,
+    AppAuthService,
+    RegisterService,
+    IsLoggedInGuard,
+    ControlesService,
+    CurrenciesService,
+    TransactionService,
+    IsLoggedInGuard,
+    IsNotLoggedInGuard,
+    IsResellerGuard,
+    WalletService,
+    UtilsService,
+    TranslateService,
+    AdminService,
+    XHR,
+    MySnackBarSevice,
+    NotificationService,
+    {
+      // Provide locale so angular can show localized dates
+      provide: LOCALE_ID,
+      useValue: LOCALE,
+    },
+    {
+      // Provide custom MdI18 provider
+      provide: MatPaginatorIntl,
+      useClass: MdI18n,
+      useValue: LOCALE,
+    },
+    { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
+  ]
 })
 export class AppModule { }

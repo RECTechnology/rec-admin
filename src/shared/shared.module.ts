@@ -29,11 +29,26 @@ import { ValidationErrorsComponent } from '../components/validation-errors/valid
 import { CountrySelector } from '../components/country-selector/country-selector.component';
 import { AppNotifications } from '../components/app-notifications/app-notifications';
 import { TranslateModule } from '@ngx-translate/core';
-import { AppRoutingModule } from 'src/app/app.routing';
-import { AccountSelector } from 'src/components/account-selector/account.selector';
-import { ChangePhone } from 'src/pages/dashboard/dialogs/change-phone/change-phone.dia';
-import { StreetTypeSelector } from 'src/components/street-selector/street-selector.component';
-
+import { AppRoutingModule } from '../app/app.routing';
+import { AccountSelector } from '../components/account-selector/account.selector';
+import { ChangePhone } from '../pages/dashboard/dialogs/change-phone/change-phone.dia';
+import { StreetTypeSelector } from '../components/street-selector/street-selector.component';
+import { KeyValuePair } from '../components/kvp/kvp-list/kvp-list';
+import { KeyValueItem } from '../components/kvp/kvp-item/kvp-item';
+import { TwoFaDia } from 'src/components/dialogs/two_fa_prompt/two_fa_prompt.dia';
+import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
+import { SellersComponent } from 'src/pages/sellers/sellers.component';
+import { MapComponent } from 'src/pages/map/map.component';
+import { AccountsPage } from 'src/pages/accounts/accounts.component';
+import { BussinessComponent } from 'src/pages/bussiness/bussiness.component';
+import { LoginComponent } from 'src/components/login/login.component';
+import { ExportDialog } from 'src/components/dialogs/export-dialog/export.dia';
+import { UsersPage } from 'src/pages/users/users.component';
+import { VoteWithdrawal } from 'src/pages/dialogs/vote-withdrawal/vote-withdrawal.dia';
+import { TableListHeader } from 'src/components/table-list/tl-header/tl-header.component';
+import { TableListSubHeader } from 'src/components/table-list/tl-subheader/tl-subheader.component';
+import { TableListTable } from 'src/components/table-list/tl-table/tl-table.component';
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   declarations: [
     SidemenuComponent,
@@ -62,6 +77,22 @@ import { StreetTypeSelector } from 'src/components/street-selector/street-select
     AccountSelector,
     ChangePhone,
     StreetTypeSelector,
+    KeyValuePair,
+    KeyValueItem,
+    TwoFaDia,
+    TreasureAccount,
+    SellersComponent,
+    MapComponent,
+    BussinessComponent,
+    LoginComponent,
+    ExportDialog,
+    BussinessComponent,
+    AccountsPage,
+    UsersPage,
+    VoteWithdrawal,
+    TableListHeader,
+    TableListSubHeader,
+    TableListTable,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -71,6 +102,9 @@ import { StreetTypeSelector } from 'src/components/street-selector/street-select
     AddUser,
     ManageSms,
     BussinessDetailsDia,
+    TwoFaDia,
+    ExportDialog,
+    VoteWithdrawal,
   ],
   exports: [
     SidemenuComponent,
@@ -97,6 +131,9 @@ import { StreetTypeSelector } from 'src/components/street-selector/street-select
     AccountSelector,
     ChangePhone,
     StreetTypeSelector,
+    TableListHeader,
+    TableListSubHeader,
+    TableListTable,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +141,7 @@ import { StreetTypeSelector } from 'src/components/street-selector/street-select
     MaterialModule,
     AppRoutingModule, // Module to manage App Routing
     TranslateModule.forChild(),
+    AgmCoreModule,
   ],
   providers: [
     CompanyService,

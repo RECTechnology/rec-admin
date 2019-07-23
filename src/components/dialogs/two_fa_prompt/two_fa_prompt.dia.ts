@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { CurrenciesService } from '../../../services/currencies/currencies.service';
+import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
 

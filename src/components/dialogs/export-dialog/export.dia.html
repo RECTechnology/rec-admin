@@ -33,12 +33,12 @@
             </span>
         </button>
     </div>
-    <p *ngIf="error && !showingAllError" style="margin-left: 10px" class="small-text col-error">
+    <p *ngIf="error && !showAllError" style="margin-left: 10px" class="small-text col-error">
         {{error}}
     </p>
-    <a *ngIf="error" class="col-gray small-text" (click)="showingAllError = !showingAllError">View
-        {{showingAllError ? 'Less': 'More'}}</a>
-    <p *ngIf="showingAllError" style="margin-left: 10px; max-width: 1000" class="small-text col-error">
+    <a *ngIf="error" class="col-gray small-text" (click)="showAllError = !showAllError">View
+        {{showAllError ? 'Less': 'More'}}</a>
+    <p *ngIf="showAllError" style="margin-left: 10px; max-width: 1000" class="small-text col-error">
         {{errorLarge}}
     </p>
 </div>

@@ -5,9 +5,6 @@ import { MatDialog } from '@angular/material';
 import { LoginService, AppAuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { environment } from '../../environments/environment';
-import { DevOptions } from './dev-options/dev-options.dia';
-import { BetaTerms } from './beta-terms/beta-terms.dia';
-import { DataProtection } from './data-protection/data-protection.dia';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -60,12 +57,7 @@ export class LoginComponent implements OnInit {
         this.errorMessage = 'There has been an error, please try again later.';
       } else {
         this.gotToken = true;
-        // Is enviroment.beta is set, show the dialog to accept the terms
-        if ('beta' in environment && environment.beta && !this.acceptedBetaTerms) {
-          this.openBetaTerms();
-        } else { this.acceptedBetaTerms = true; }
       }
-      // this.addCaptchaScript();
     });
   }
 
@@ -161,33 +153,6 @@ export class LoginComponent implements OnInit {
         this.disabled = false;
       });
     } else { this.errorMessage = 'Please, username and password are required'; }
-  }
-
-  public openDevOptions() {
-    let ref = this.dialog.open(DevOptions);
-    ref.afterClosed().subscribe(
-      (resp) => ref = null,
-    );
-  }
-
-  public openBetaTerms() {
-    const ref = this.dialog.open(BetaTerms, { disableClose: true });
-    ref.afterClosed().subscribe(
-      (resp) => {
-        if (resp === 'accepted') { this.acceptedBetaTerms = true; }
-      },
-    );
-  }
-
-  public async openDataProtection(dataProtectionAccepted, tosAccepted, notifAccepted): Promise<any> {
-    const ref = this.dialog.open(DataProtection, { disableClose: true });
-    ref.componentInstance.dataProtectionAccepted = dataProtectionAccepted;
-    ref.componentInstance.tosAccepted = tosAccepted;
-    ref.componentInstance.notifAccepted = notifAccepted;
-    return await ref.afterClosed()
-      .toPromise()
-      .then((confirmed) => confirmed)
-      .catch((error) => { return; });
   }
 
   // Check if fields are correct
