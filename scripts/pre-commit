@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-npm run lint
+npm run lint -- --fix
 npm run build
 
 printf "\n\e[33m(!!!! Hey, don't forget to increase version number !!!!)\e[0m\n\n"
