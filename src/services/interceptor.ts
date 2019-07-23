@@ -10,6 +10,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
+import { environment } from 'src/environments/environment';
 
 export class HttpErrorInterceptor implements HttpInterceptor {
 
@@ -26,7 +27,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     let cleanError: any = error;
                     const errStr = error.error || error;
 
-                    if (error.status === 500) {
+                    if (error.status === 500 && !environment.error_500_details) {
                         this.snackbar.open('ERROR_500', 'ok');
                         return throwError({
                             message: 'ERROR_500',
