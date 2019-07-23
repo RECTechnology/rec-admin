@@ -177,7 +177,7 @@ export class BussinessComponent extends PageBase {
       delete data.subtype;
     }
 
-    this.as.listAccountsV3(data).subscribe(
+    this.as.searchAccountsV3(data).subscribe(
       (resp) => {
         this.bussinessList = resp.data.elements.map((el) => {
           el.address = [

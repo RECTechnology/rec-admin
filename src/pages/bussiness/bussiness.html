@@ -2,7 +2,7 @@
 <sidemenu></sidemenu>
 <div class="page bussiness" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
   <div class="row" style="margin: 0; padding: 20px;">
-    <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
+    <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
       <tl-header title="BUSSINES" [(query)]="query" [options]="headerOpts" (onSearch)="search()">
         <button mat-icon-button style="margin-left: 8px" (click)="export()" matTooltip="{{'EXPORT_AS_CSV'|translate}}">
           <span class="center h v">
@@ -36,7 +36,7 @@
         [itemOptions]="itemOptions" noItemsMessage="There are no bussiness yet" [limit]="limit" [total]="totalBussiness"
         (onChangePage)="changedPage($event)">
       </tl-table>
-    </div>
+    </mat-card>
   </div>
   <page-footer></page-footer>
 </div>

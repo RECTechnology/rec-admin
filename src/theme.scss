@@ -25,6 +25,9 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 // `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .dark-theme {
   @include angular-material-theme($dark-theme);
+  .page {
+    background: rgb(40, 40, 40);
+  }
 }
 
 $main-color: #0098db; // the color of your brand
@@ -364,15 +367,15 @@ table tr:nth-child(odd) {
 }
 
 .dark-theme .bordered {
-  border: 1px solid lighten($color: #424242, $amount: 10);
+  border: 1px solid lighten($color: #424242, $amount: 10) !important;
 }
 
 .dark-theme .bordered-bottom {
-  border-bottom: 1px solid lighten($color: #424242, $amount: 10);
+  border-bottom: 1px solid lighten($color: #424242, $amount: 10) !important;
 }
 
 .dark-theme .bordered-top {
-  border-top: 1px solid lighten($color: #424242, $amount: 10);
+  border-top: 1px solid lighten($color: #424242, $amount: 10) !important;
 }
 
 .mat-radio-label {

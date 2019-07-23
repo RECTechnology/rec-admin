@@ -99,7 +99,7 @@ const imports = [
   BrowserAnimationsModule,
   MaterialModule,
   AgmCoreModule.forRoot({
-    apiKey: 'YOUR_KEY',
+    apiKey: 'AIzaSyADIHp2sxXZ4eNC-gkVnoaFmUPNx1rUcCY',
   }),
   CountryPickerModule.forRoot({
     baseUrl: '/assets/countries/',

@@ -200,6 +200,14 @@ export class AdminService extends BaseService {
             }));
     }
 
+    public searchAccountsV3(opts: ListAccountsParams) {
+        return this.get(null, opts, `${API_URL}/admin/v3/accounts/search`)
+            .pipe(map((resp) => {
+                resp.data.elements = resp.data.elements.map(this.cs.mapCompany.bind(this.cs));
+                return resp;
+            }));
+    }
+
     public getAccountsV3(opts: SearchAccountsParams) {
         if (!opts.query.search) {
             delete opts.query.search;

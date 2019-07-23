@@ -3,7 +3,7 @@
 
 <div class="page accounts" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
   <div class="row" style="margin: 0; padding: 20px;">
-    <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
+    <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
       <tl-header title="Accounts" [(query)]="searchQuery" [options]="headerOpts" (onSearch)="search()">
         <button mat-icon-button style="margin-left: 8px" (click)="export()" matTooltip="{{'EXPORT_AS_CSV'|translate}}">
           <span class="center h v">
@@ -45,7 +45,7 @@
         [itemOptions]="itemOptions" noItemsMessage="There are no accounts yet" [limit]="limit"
         [total]="companyService.totalAccounts" (onChangePage)="changedPage($event)">
       </tl-table>
-    </div>
+    </mat-card>
   </div>
   <page-footer></page-footer>
 </div>

@@ -45,7 +45,7 @@
                 </span>
               </b>
               <span class="small-text-2"
-                *ngIf="companyService.selectedCompany.prefix || companyService.selectedCompany.phone">+{{companyService.selectedCompany.prefix}}
+                *ngIf="companyService.selectedCompany.prefix || companyService.selectedCompany.phone">{{companyService.selectedCompany.prefix}}
                 {{companyService.selectedCompany.phone}}</span>
               <span class="small-text-2"
                 *ngIf="!companyService.selectedCompany.prefix || !companyService.selectedCompany.phone">
