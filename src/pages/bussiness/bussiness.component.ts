@@ -171,21 +171,39 @@ export class BussinessComponent extends PageBase {
 
   public getBussiness(query: string = '') {
     this.loading = true;
-    const data: any = this.getCleanParams(query);
+    // const filters = this.getFilters();
+    // const data: any = {
+    //   limit: this.limit,
+    //   offset: this.offset,
+    //   order: this.sortDir,
+    //   sort: this.sortID,
+    //   // tslint:disable-next-line: object-literal-sort-keys
+    //   query: {
+    //     only_with_offers: filters.only_offers,
+    //     search: query || this.query,
+    //     subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
+    //     type: 'COMPANY',
+    //   },
+    // };
 
-    if (data.query && !data.query.subtype) {
-      delete data.query.subtype;
+    // if (data.query && !data.query.subtype) {
+    //   delete data.query.subtype;
+    // }
+
+    // if (data.query && !data.query.search) {
+    //   delete data.query.search;
+    // }
+
+    const data = this.getCleanParams();
+    // data.on_map = 1;
+    if (!data.subtype) {
+      delete data.subtype;
+    }
+    if (data.subtype && !data.subtype.search) {
+      delete data.subtype.search;
     }
 
-    this.as.searchAccountsV3({
-      ...data,
-      query: {
-        only_with_offers: data.only_offers,
-        search: this.query,
-        subtype: data.subtype,
-        type: data.type,
-      },
-    }).subscribe(
+    this.as.listAccountsV3(data).subscribe(
       (resp) => {
         this.bussinessList = resp.data.elements.map((el) => {
           el.address = [
