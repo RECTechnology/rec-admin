@@ -290,6 +290,10 @@ export class BussinessComponent extends PageBase {
     delete data.offset;
     delete data.limit;
 
+    if (!data.subtype) {
+      delete data.subtype;
+    }
+
     const dialogRef = this.dialog.open(ExportDialog);
     dialogRef.componentInstance.filters = data;
     dialogRef.componentInstance.fn = this.as.exportAccountsV3.bind(this.as);
