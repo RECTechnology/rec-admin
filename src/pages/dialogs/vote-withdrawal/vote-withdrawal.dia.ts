@@ -41,7 +41,7 @@ export class VoteWithdrawal {
         this.snackBar.open('Voted correctly');
         this.dialogRef.close({ vote: this.decision });
       }, (err) => {
-        this.snackBar.open(err._body.message);
+        this.snackBar.open(err.message);
       });
   }
 }

@@ -113,7 +113,7 @@ export class EditAccountData {
       .subscribe((resp) => {
         this.accountCopy.public_image = resp;
       }, (error) => {
-        this.snackBar.open(error._body.message);
+        this.snackBar.open(error.message);
       });
   }
 

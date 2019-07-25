@@ -41,6 +41,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         } catch (error) {
                             cleanError = errStr;
                         }
+                    } else if (typeof errStr === 'object') {
+                        cleanError = errStr;
                     }
                     return throwError(cleanError);
                 }),

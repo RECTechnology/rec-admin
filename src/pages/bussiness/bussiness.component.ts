@@ -171,37 +171,37 @@ export class BussinessComponent extends PageBase {
 
   public getBussiness(query: string = '') {
     this.loading = true;
-    // const filters = this.getFilters();
-    // const data: any = {
-    //   limit: this.limit,
-    //   offset: this.offset,
-    //   order: this.sortDir,
-    //   sort: this.sortID,
-    //   // tslint:disable-next-line: object-literal-sort-keys
-    //   query: {
-    //     only_with_offers: filters.only_offers,
-    //     search: query || this.query,
-    //     subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
-    //     type: 'COMPANY',
-    //   },
-    // };
+    const filters = this.getFilters();
+    const data: any = {
+      limit: this.limit,
+      offset: this.offset,
+      order: this.sortDir,
+      sort: this.sortID,
+      // tslint:disable-next-line: object-literal-sort-keys
+      query: {
+        only_with_offers: filters.only_offers,
+        search: query || this.query,
+        subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
+        type: 'COMPANY',
+      },
+    };
 
-    // if (data.query && !data.query.subtype) {
-    //   delete data.query.subtype;
-    // }
-
-    // if (data.query && !data.query.search) {
-    //   delete data.query.search;
-    // }
-
-    const data = this.getCleanParams();
-    // data.on_map = 1;
-    if (!data.subtype) {
-      delete data.subtype;
+    if (data.query && !data.query.subtype) {
+      delete data.query.subtype;
     }
-    if (data.subtype && !data.subtype.search) {
-      delete data.subtype.search;
+
+    if (data.query && !data.query.search) {
+      delete data.query.search;
     }
+
+    // const data = this.getCleanParams();
+    // // data.on_map = 1;
+    // if (!data.subtype) {
+    //   delete data.subtype;
+    // }
+    // if (data.subtype && !data.subtype.search) {
+    //   delete data.subtype.search;
+    // }
 
     this.as.listAccountsV3(data).subscribe(
       (resp) => {
@@ -257,7 +257,7 @@ export class BussinessComponent extends PageBase {
           );
         },
         (error) => {
-          this.snackbar.open(error._body.message, 'ok');
+          this.snackbar.open(error.message, 'ok');
         },
       );
   }

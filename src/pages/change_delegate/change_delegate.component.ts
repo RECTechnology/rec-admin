@@ -68,7 +68,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
         this.sortedData = this.delegateChanges.slice();
         this.loadingList = false;
       }, (error) => {
-        this.snackbar.open(error._body.message, 'ok');
+        this.snackbar.open(error.message, 'ok');
         this.loadingList = false;
       });
   }
@@ -83,7 +83,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
         this.snackbar.open('DELEGATE_CHANGE_CREATED', 'ok');
         this.search();
       }, (error) => {
-        this.snackbar.open(error._body.message, 'ok');
+        this.snackbar.open(error.message, 'ok');
       });
   }
 
@@ -97,10 +97,10 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
               this.snackbar.open(respDelegate.message, 'ok');
               this.search();
             }, (error) => {
-              if (error._body.message.includes('Validation error')) {
-                this.validationErrors = error._body.data;
+              if (error.message.includes('Validation error')) {
+                this.validationErrors = error.data;
               } else {
-                this.snackbar.open(error._body.message, 'ok');
+                this.snackbar.open(error.message, 'ok');
               }
             });
         }
@@ -127,7 +127,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
               this.snackbar.open('DELEGATE_CHANGE_DELETED', 'ok');
               this.search();
             }, (error) => {
-              this.snackbar.open(error._body.message, 'ok');
+              this.snackbar.open(error.message, 'ok');
             });
         }
       }, (err) => { return; });
