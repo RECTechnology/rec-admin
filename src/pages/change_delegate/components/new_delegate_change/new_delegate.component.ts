@@ -162,6 +162,7 @@ export class NewDelegateComponent extends PageBase {
 
     public setSelectedAccounts(users) {
         this.notSavedItems = users;
+        this.savedItems = this.getSelected(false);
     }
 
     public closeErrors() {
@@ -176,11 +177,16 @@ export class NewDelegateComponent extends PageBase {
         this.changeScheduled = false;
     }
 
-    public getSelected() {
-        const notSaved = this.notSavedItems.filter((el) => el.selected);
-        const saved = this.savedItems.filter((el) => el.selected);
+    public getSelected(status = true) {
+        const notSaved = this.notSavedItems.filter((el) => el.selected === status);
+        const saved = this.savedItems.filter((el) => el.selected === status);
         return [...notSaved, ...saved];
     }
+
+    // public removeSelected() {
+    //     this.notSavedItems = this.notSavedItems.filter((el) => !el.selected);
+    //     this.savedItems = this.savedItems.filter((el) => !el.selected);
+    // }
 
     public openEditAccounts() {
         const dialogRef = this.dialog.open(EditAccountsDia);
@@ -197,6 +203,7 @@ export class NewDelegateComponent extends PageBase {
                         e.exchanger = e.exchanger || { id: e.exchanger_id };
                         return e;
                     }));
+                    // this.removeSelected();
                 }
             });
     }
@@ -211,7 +218,11 @@ export class NewDelegateComponent extends PageBase {
             .subscribe((resp) => {
                 if (resp && resp.accounts) {
                     if (!saved) { this.notSavedItems[i] = resp.accounts[0]; }
-                    if (saved) { this.savedItems[i] = resp.accounts[0]; }
+                    if (saved) {
+                        resp.accounts[0].selected = true;
+                        this.savedItems.splice(i, 1);
+                        this.notSavedItems.push(resp.accounts[0]);
+                    }
                 }
             });
     }
@@ -294,7 +305,7 @@ export class NewDelegateComponent extends PageBase {
         for (const data of accounts) {
             const changeData: any = {
                 account_id: +data.account.id,
-                amount: data.amount * 100,
+                amount: data.amount,
                 delegated_change_id: this.idOrNew,
                 exchanger_id: data.exchanger_id || +data.exchanger.id,
             };
@@ -310,6 +321,10 @@ export class NewDelegateComponent extends PageBase {
             }
 
             const isNew = !data.status;
+
+            if (isNew) {
+                changeData.amount *= 100;
+            }
 
             try {
                 const fn = isNew

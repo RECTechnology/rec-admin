@@ -64,10 +64,11 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
       return this.filtered = this.exchangers.slice();
     }
 
+    const queryLowerCase = this.exchangerQuery.toLowerCase();
     this.filtered = this.exchangers.slice()
       .filter((el) => (
-        el.name.includes(this.exchangerQuery) ||
-        String(el.id).includes(this.exchangerQuery)
+        String(el.name).toLowerCase().includes(queryLowerCase) ||
+        String(el.id).toLowerCase().includes(queryLowerCase)
       ));
   }
 
@@ -76,8 +77,9 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
     this.isSingle = this.accountCount === 1;
 
     if (this.isSingle) {
-      this.amount = this.accounts[0].amount;
-      this.exchanger = this.accounts[0].exchanger;
+      // Convert from cents to euros
+      this.amount = this.accounts[0].amount / 100;
+      this.exchanger = this.accounts[0].exchanger.id;
       this.pan = this.accounts[0].pan;
 
       const date = this.accounts[0].expiry_date ? this.accounts[0].expiry_date.split('/') : [];
@@ -85,6 +87,12 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
       this.month = date[0];
       this.year = date[1];
       this.cvv2 = this.accounts[0].cvv2;
+    } else {
+      this.exchanger = this.accounts[0].exchanger;
+      this.accounts = this.accounts.map((el) => {
+        el.amount = el.amount / 100;
+        return el;
+      });
     }
   }
 
@@ -95,8 +103,9 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
   public confirm(): void {
     this.dialogRef.close({
       accounts: this.accounts.map((el) => {
-        el.amount = this.amount;
-        el.exchanger = { id: this.exchanger.id };
+        // Convert euros to cents
+        el.amount = this.amount * 100;
+        el.exchanger = { id: this.exchanger };
         el.pan = this.pan;
 
         if (this.month && this.year) {

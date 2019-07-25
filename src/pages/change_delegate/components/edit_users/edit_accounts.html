@@ -28,7 +28,7 @@
           (selectionChange)="selectionChanged()">
           <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="exchangerQuery"
             (ngModelChange)="onInput()" placeholder="Search exchangers">
-          <mat-option [value]="ex" *ngFor="let ex of filtered">
+          <mat-option [value]="ex.id" *ngFor="let ex of filtered">
             {{ex.name}} (<code>{{ex.id}}</code>)
           </mat-option>
           <mat-option *ngIf="filtered.length <= 0">

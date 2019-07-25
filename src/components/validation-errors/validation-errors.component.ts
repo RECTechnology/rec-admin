@@ -8,6 +8,7 @@ interface ValidationError {
 
 @Component({
     selector: 'validation-errors',
+    styles: [`:host { display: block; }`],
     templateUrl: './validation-errors.html',
 })
 export class ValidationErrorsComponent implements OnInit {
