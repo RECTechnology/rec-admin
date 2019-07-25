@@ -42,11 +42,11 @@ export class ActivateResume extends BaseDialog {
         this.loading = false;
         this.dialogRef.close(true);
       }, (error) => {
-        if (error._body.message.includes('Validation error')) {
-          this.validationErrors = error._body.data;
+        if (error.message.includes('Validation error')) {
+          this.validationErrors = error.data;
           this.validationErrorName = 'Validation Error';
         } else {
-          this.snackbar.open(error._body.message);
+          this.snackbar.open(error.message);
         }
         this.loading = false;
       });

@@ -82,7 +82,7 @@ export class EditUserData {
             this.snackBar.open('Phone number changed correctly (needs to be validated)', 'ok');
           })
           .catch((err) => {
-            this.snackBar.open(err._body.message, 'ok');
+            this.snackBar.open(err.message, 'ok');
           });
       }
       delete changedProps.prefix;
@@ -98,7 +98,7 @@ export class EditUserData {
         this.snackBar.open('Saved correctly', 'ok');
         this.close();
       }, (error) => {
-        this.snackBar.open(error._body.message, 'ok');
+        this.snackBar.open(error.message, 'ok');
         this.close();
       });
     }

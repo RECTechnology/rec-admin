@@ -39,7 +39,7 @@ export class CashOutDia extends BaseDialog {
         this.snackBar.open('Sent correclty');
         this.close(true);
       }, (err) => {
-        this.snackBar.open(err._body.message);
+        this.snackBar.open(err.message);
         this.close(false);
       });
   }

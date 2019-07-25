@@ -156,7 +156,7 @@ export class AccountUsersTab implements AfterContentInit {
           this.getUsers();
         },
         (error) => {
-          this.snackbar.open(error._body.desciption, 'ok');
+          this.snackbar.open(error.desciption, 'ok');
           console.log(error);
         });
   }

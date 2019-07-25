@@ -270,7 +270,7 @@ export class LoginService extends BaseService {
                 observer.next(true);
               },
               (error) => {
-                if (error._body.error_description === 'User account is locked.') {
+                if (error.error_description === 'User account is locked.') {
                   this.isLoggedIn_ = false;
                   observer.error('error');
                   this.snackbar.open('User account is locked.', 'ok');

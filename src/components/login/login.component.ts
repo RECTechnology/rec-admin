@@ -138,7 +138,7 @@ export class LoginComponent implements OnInit {
             },
             (error) => {
               console.log('Get profile bad', error);
-              this.errorMessage = error._body ? error._body.error_description : 'error';
+              this.errorMessage = error ? error.error_description : 'error';
               this.loading = false;
               this.disabled = false;
               this.us.tokens = null;
@@ -148,7 +148,7 @@ export class LoginComponent implements OnInit {
             });
       }, (error) => {
         console.log('Loggin bad', error);
-        this.errorMessage = error._body ? error._body.error_description : 'error';
+        this.errorMessage = error ? error.error_description : 'error';
         this.loading = false;
         this.disabled = false;
       });

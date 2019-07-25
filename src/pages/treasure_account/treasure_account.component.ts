@@ -125,7 +125,7 @@ export class TreasureAccount implements AfterContentInit {
         this.loading = false;
       },
       (err) => {
-        this.snackbar.open(err._body.message);
+        this.snackbar.open(err.message);
         this.loading = false;
       },
     );

@@ -257,7 +257,7 @@ export class BussinessComponent extends PageBase {
           );
         },
         (error) => {
-          this.snackbar.open(error._body.message, 'ok');
+          this.snackbar.open(error.message, 'ok');
         },
       );
   }

@@ -139,7 +139,7 @@ export class NewDelegateComponent extends PageBase {
                     this.savingEntries = false;
                     this.getDelegate();
                 }, (error) => {
-                    this.snackbar.open(error._body.message, 'ok');
+                    this.snackbar.open(error.message, 'ok');
                     this.changeScheduled = false;
                     this.loading = false;
                     this.savingEntries = false;
@@ -274,10 +274,11 @@ export class NewDelegateComponent extends PageBase {
                             this.snackbar.open(respDelegate.message, 'ok');
                             this.getDelegate();
                         }, (error) => {
-                            if (error._body.message.includes('Validation error')) {
-                                this.validationErrors = error._body.data;
+                            console.log('error', error);
+                            if (error.message.includes('Validation error')) {
+                                this.validationErrors = error.data;
                             } else {
-                                this.snackbar.open(error._body.message, 'ok');
+                                this.snackbar.open(error.message, 'ok');
                             }
                         });
                 }
@@ -320,11 +321,11 @@ export class NewDelegateComponent extends PageBase {
                 this.objectsSent += 1;
                 this.percentageSent = this.objectsSent / this.objectsToSend * 100;
             } catch (error) {
-                if (error._body.message.includes('Validation error')) {
-                    this.validationErrors = error._body.data;
+                if (error.message.includes('Validation error')) {
+                    this.validationErrors = error.data;
                     this.validationErrorName = 'Entry: ' + data.id;
                 } else {
-                    this.snackbar.open(error._body.message + ' | id: ' + changeData.account_id);
+                    this.snackbar.open(error.message + ' | id: ' + changeData.account_id);
                 }
                 errored = true;
             }
@@ -352,7 +353,7 @@ export class NewDelegateComponent extends PageBase {
                     this.snackbar.open('Deleted data', 'ok');
                     this.savedItems.splice(i, 1);
                 }, (error) => {
-                    this.snackbar.open(error._body.message, 'ok');
+                    this.snackbar.open(error.message, 'ok');
                 });
         } else {
             this.notSavedItems.splice(i, 1);
