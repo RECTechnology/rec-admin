@@ -81,7 +81,8 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
     this.adminService.createChangeDelegate(schedule)
       .subscribe((resp) => {
         this.snackbar.open('DELEGATE_CHANGE_CREATED', 'ok');
-        this.search();
+        this.router.navigate(['/change_delegate/' + resp.data.id]);
+        // this.search();
       }, (error) => {
         this.snackbar.open(error.message, 'ok');
       });

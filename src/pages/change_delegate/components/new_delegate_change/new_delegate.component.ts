@@ -162,7 +162,7 @@ export class NewDelegateComponent extends PageBase {
 
     public setSelectedAccounts(users) {
         this.notSavedItems = users;
-        this.savedItems = this.getSelected(false);
+        // this.savedItems = this.getSelected(false);
     }
 
     public closeErrors() {
@@ -178,9 +178,17 @@ export class NewDelegateComponent extends PageBase {
     }
 
     public getSelected(status = true) {
-        const notSaved = this.notSavedItems.filter((el) => el.selected === status);
+        return [...this.getSelectedSaved(), ...this.getSelectedUnsaved()];
+    }
+
+    public getSelectedSaved(status = true) {
         const saved = this.savedItems.filter((el) => el.selected === status);
-        return [...notSaved, ...saved];
+        return [...saved];
+    }
+
+    public getSelectedUnsaved(status = true) {
+        const notSaved = this.notSavedItems.filter((el) => el.selected === status);
+        return [...notSaved];
     }
 
     // public removeSelected() {
@@ -262,7 +270,7 @@ export class NewDelegateComponent extends PageBase {
                 if (result) {
                     this.total = this.sortedData.length + (result.accounts.length - this.sortedData.length);
                     this.setSelectedAccounts(result.accounts.map((e) => {
-                        e.selected = false;
+                        e.selected = true;
                         e.account = e.account || { id: e.id, name: e.name };
                         e.exchanger = e.exchanger || { id: e.exchanger_id };
                         return e;
@@ -297,7 +305,7 @@ export class NewDelegateComponent extends PageBase {
     }
 
     public async saveEntries() {
-        const accounts = this.getSelected();
+        const accounts = this.getSelectedUnsaved();
         this.savingEntries = true;
         this.objectsToSend = accounts.length;
         this.objectsSent = 0;
@@ -323,9 +331,9 @@ export class NewDelegateComponent extends PageBase {
 
             const isNew = !data.status;
 
-            if (isNew) {
-                changeData.amount *= 100;
-            }
+            // if (isNew) {
+            //     changeData.amount *= 100;
+            // }
 
             try {
                 const fn = isNew
