@@ -33,7 +33,7 @@ export class SmsService extends BaseService2 {
       {},
       null,
       `${API_URL}/admin/v1/user/${user_id}/${action}`,
-    ).pipe(map((resp) => resp.data));
+    ).pipe(map((resp) => resp ? resp.data : {}));
   }
 
   public check(user_id) {

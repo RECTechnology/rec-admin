@@ -163,7 +163,7 @@ export abstract class BaseService2 {
   }
 
   public put(data, id: string, url: string, content_type?: string): Observable<any> {
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
       'authorization': 'Bearer ' + this.getToken(),
       'content-type': (content_type || 'application/json'),
@@ -171,16 +171,15 @@ export abstract class BaseService2 {
 
     const options: any = ({
       headers,
-      method: 'PUT',
     });
 
     let params = null;
     if (content_type === 'application/x-www-form-urlencoded') {
-      params = new URLSearchParams();
+      params = new HttpParams();
 
       for (const key in data) {
         if (key) {
-          params.set(key, data[key]);
+          params = params.set(key, data[key]);
         }
       }
     }
