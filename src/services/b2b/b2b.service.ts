@@ -44,4 +44,16 @@ export class B2bService extends BaseService {
   public editActivities(id, data) {
     return this.put(data, null, `${API_URL}/b2b/activities/${id}`);
   }
+
+  public addNeighborhood(data) {
+    return this.post(data, null, `${API_URL}/b2b/neighborhoods`);
+  }
+
+  public addProducts(data) {
+    return this.post(data, null, `${API_URL}/b2b/products`);
+  }
+
+  public addActivities(data) {
+    return this.post(data, null, `${API_URL}/b2b/activities`);
+  }
 }

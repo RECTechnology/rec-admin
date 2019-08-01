@@ -53,6 +53,7 @@ import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
 import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
 import { TranslatableListComponent } from 'src/components/translatable-list/translatable-list.component';
 import { EditItemDia } from 'src/pages/b2b/settings/edit-item/edit-item.dia';
+import { AddItemDia } from 'src/pages/b2b/settings/add-item/add-item.dia';
 @NgModule({
   declarations: [
     SidemenuComponent,
@@ -101,6 +102,7 @@ import { EditItemDia } from 'src/pages/b2b/settings/edit-item/edit-item.dia';
     B2BSettingsComponent,
     TranslatableListComponent,
     EditItemDia,
+    AddItemDia,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -114,6 +116,7 @@ import { EditItemDia } from 'src/pages/b2b/settings/edit-item/edit-item.dia';
     ExportDialog,
     VoteWithdrawal,
     EditItemDia,
+    AddItemDia,
   ],
   exports: [
     SidemenuComponent,
@@ -147,6 +150,7 @@ import { EditItemDia } from 'src/pages/b2b/settings/edit-item/edit-item.dia';
     B2BSettingsComponent,
     TranslatableListComponent,
     EditItemDia,
+    AddItemDia,
   ],
   imports: [
     BrowserModule,

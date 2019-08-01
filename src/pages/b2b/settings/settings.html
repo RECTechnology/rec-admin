@@ -10,6 +10,12 @@
                         <div class="header bordered-bottom" style="padding: 10px 15px">
                             <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
                                 {{'AVAILABLE_NEIGHBORHOODS'|translate}}</p>
+
+                            <button type="button" color="primary" mat-raised-button name="button" (click)="addNeighborhood()">
+                                <p class="text-small">
+                                    {{'NEW'|translate}}
+                                </p>
+                            </button>
                         </div>
                         <translatable-list (edit)="editNeighborhood($event)" (delete)="deleteNeighborhood($event)"
                             [dataSource]="neighborhoods">
@@ -25,6 +31,11 @@
                         <div class="header  bordered-bottom" style="padding: 10px 15px">
                             <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
                                 {{'AVAILABLE_ACTIVITIES'|translate}}</p>
+                            <button type="button" color="primary" mat-raised-button name="button" (click)="addActivity()">
+                                <p class="text-small">
+                                    {{'NEW'|translate}}
+                                </p>
+                            </button>
                         </div>
                         <translatable-list (edit)="editActivities($event)" (delete)="deleteActivity($event)"
                             [dataSource]="activities">
@@ -40,6 +51,11 @@
                         <div class="header bordered-bottom" style="padding: 10px 15px">
                             <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
                                 {{'AVAILABLE_PRODUCTS'|translate}}</p>
+                            <button type="button" color="primary" mat-raised-button name="button" (click)="addProduct()">
+                                <p class="text-small">
+                                    {{'NEW'|translate}}
+                                </p>
+                            </button>
                         </div>
                         <translatable-list (edit)="editProducts($event)" (delete)="deleteProduct($event)"
                             [dataSource]="products"></translatable-list>

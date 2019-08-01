@@ -6,6 +6,7 @@ import { EditItemDia } from './edit-item/edit-item.dia';
 import { B2bService } from 'src/services/b2b/b2b.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
+import { AddItemDia } from './add-item/add-item.dia';
 
 @Component({
     selector: 'b2b-settings',
@@ -72,6 +73,23 @@ export class B2BSettingsComponent {
             });
     }
 
+    public addItem(type, callback: (id: any, data: any) => Observable<any>) {
+        const dialogRef = this.dialog.open(AddItemDia);
+        dialogRef.componentInstance.itemType = type;
+
+        return dialogRef.afterClosed()
+            .subscribe((data) => {
+                if (data) {
+                    callback.call(this.b2b, data)
+                        .subscribe((resp) => {
+                            this.snackbar.open('ADDED_CORRECTLY', 'ok');
+                        }, (error) => {
+                            this.snackbar.open(error.message, 'ok');
+                        });
+                }
+            });
+    }
+
     public editNeighborhood($event) {
         return this.editItem('neighborhood', $event, this.b2b.editNeighborhood);
     }
@@ -82,6 +100,18 @@ export class B2BSettingsComponent {
 
     public editActivities($event) {
         return this.editItem('activities', $event, this.b2b.editActivities);
+    }
+
+    public addNeighborhood() {
+        return this.addItem('neighborhood', this.b2b.addNeighborhood);
+    }
+
+    public addProducts() {
+        return this.addItem('products', this.b2b.addProducts);
+    }
+
+    public addActivities() {
+        return this.addItem('activities', this.b2b.addActivities);
     }
 
     /* Called when tab change, so url changes also */
