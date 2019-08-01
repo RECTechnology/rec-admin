@@ -382,3 +382,7 @@ table tr:nth-child(odd) {
   padding-bottom: 0;
   margin-bottom: 0;
 }
+
+translatable-list .mat-sort-header-container {
+  justify-content: flex-start !important;
+}
