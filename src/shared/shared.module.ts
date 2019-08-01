@@ -51,6 +51,8 @@ import { TableListTable } from 'src/components/table-list/tl-table/tl-table.comp
 import { AgmCoreModule } from '@agm/core';
 import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
 import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
+import { TranslatableListComponent } from 'src/components/translatable-list/translatable-list.component';
+import { EditItemDia } from 'src/pages/b2b/settings/edit-item/edit-item.dia';
 @NgModule({
   declarations: [
     SidemenuComponent,
@@ -97,6 +99,8 @@ import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component'
     TableListTable,
     B2BSendComponent,
     B2BSettingsComponent,
+    TranslatableListComponent,
+    EditItemDia,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -109,6 +113,7 @@ import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component'
     TwoFaDia,
     ExportDialog,
     VoteWithdrawal,
+    EditItemDia,
   ],
   exports: [
     SidemenuComponent,
@@ -140,6 +145,8 @@ import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component'
     TableListTable,
     B2BSendComponent,
     B2BSettingsComponent,
+    TranslatableListComponent,
+    EditItemDia,
   ],
   imports: [
     BrowserModule,

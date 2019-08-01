@@ -12,9 +12,6 @@ import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 import { WalletModule } from 'src/pages/wallet/wallet.module';
 import { ChangeDelegateModule } from 'src/pages/change_delegate/change_delegate.module';
-import { UsersPage } from 'src/pages/users/users.component';
-import { ExportDialog } from 'src/components/dialogs/export-dialog/export.dia';
-import { MapComponent } from 'src/pages/map/map.component';
 import { LoginService, AppAuthService, RegisterService } from 'src/services/auth.service';
 import { UserService } from 'src/services/user.service';
 import { IsLoggedInGuard, IsNotLoggedInGuard, IsResellerGuard } from 'src/services/guards/login.guard';
@@ -40,6 +37,7 @@ import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { HttpErrorInterceptor } from 'src/services/interceptor';
 import { AccountModule } from 'src/pages/account/account.module';
+import { B2bService } from 'src/services/b2b/b2b.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -116,6 +114,7 @@ const imports = [
     XHR,
     MySnackBarSevice,
     NotificationService,
+    B2bService,
     {
       // Provide locale so angular can show localized dates
       provide: LOCALE_ID,
