@@ -24,6 +24,10 @@ export interface TlItemOption {
     disabled?: boolean | ((el: any) => any);
 }
 
+export interface TableListOptions {
+    optionsType: 'menu' | 'buttons';
+}
+
 @Component({
     selector: 'tl-table',
     templateUrl: './tl-table.html',
@@ -37,6 +41,9 @@ export class TableListTable implements AfterContentInit {
     @Input() public showPaginator: boolean = true;
     @Input() public itemOptions: TlItemOption[];
     @Input() public noItemsMessage: string = 'There are no items';
+    @Input() public options: TableListOptions = {
+        optionsType: 'menu',
+    };
 
     @Input() public total: number = 0;
     @Input() public limit: number = 0;

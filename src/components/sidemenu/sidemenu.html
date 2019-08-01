@@ -73,6 +73,13 @@
             {{'EXCHANGERS'|translate}}
           </span>
         </li>
+        <li class="item" (click)="clickedItem()" routerLink="/b2b/settings" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-cog"></i>
+          <span>
+            {{'SETTINGS'|translate}}
+          </span>
+        </li>
+
         <li class="item separate" disabled>
           <span>
             {{'SPECIAL_ACTIONS'|translate}}
@@ -90,6 +97,12 @@
             {{'CREATE_RECS'|translate}}
           </span>
         </li>
+        <li class="item" (click)="clickedItem()" routerLink="/b2b/send" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-mail-bulk"></i>
+          <span>
+            {{'B2B_SEND'|translate}}
+          </span>
+        </li>
       </ul>
     </div>
   </div>
@@ -97,33 +110,45 @@
     <div class="menu">
       <ul class="menu-list">
         <li class="item" (click)="clickedItem()" routerLink="/dashboard" routerLinkActive="active"
-          title="{{'Dashboard'|translate}}">
+          matTooltip="{{'Dashboard'|translate}}">
           <i class="fa fa-lg fa-fw fa-tachometer"></i>
         </li>
         <li class="item" (click)="clickedItem()" routerLink="/users" routerLinkActive="active"
-          title="{{'Users'|translate}}">
+          matTooltip="{{'Users'|translate}}">
           <i class="fa fa-lg fa-fw fa-user"></i>
         </li>
         <li class="item" (click)="clickedItem()" routerLink="/accounts" routerLinkActive="active"
-          title="{{'Accounts'|translate}}">
+          matTooltip="{{'Accounts'|translate}}">
           <i class="fa fa-lg fa-fw fa-group"></i>
         </li>
         <li class="item" (click)="clickedItem()" routerLink="/transactions" routerLinkActive="active"
-          title="{{'Transactions'|translate}}">
-          <i class="fa fa-lg fa-fw fa-money"></i>
+          matTooltip="{{'Transactions'|translate}}">
+          <i class="fa fa-lg fa-fw fa-exchange"></i>
         </li>
         <li class="item" (click)="clickedItem()" routerLink="/bussiness" routerLinkActive="active"
-          title="{{'BUSSINESES'|translate}}">
+          matTooltip="{{'BUSSINESES'|translate}}">
           <i class="fa fa-lg fa-fw fa-building"></i>
         </li>
         <li class="item" (click)="clickedItem()" routerLink="/sellers" routerLinkActive="active"
-          title="{{'EXCHANGERS'|translate}}">
+          matTooltip="{{'EXCHANGERS'|translate}}">
           <i class="fa fa-lg fa-fw fa-money"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/b2b/settings" routerLinkActive="active"
+          matTooltip="{{'SETTINGS'|translate}}">
+          <i class="fa fa-lg fa-fw fa-cog"></i>
         </li>
         <li class="item separate"></li>
         <li class="item" (click)="clickedItem()" routerLink="/change_delegate" routerLinkActive="active"
-          title="{{'CHANGE_DELEGATE'|translate}}">
-          <i class="fa fa-lg fa-fw fa-exchange"></i>
+          matTooltip="{{'CHANGE_DELEGATE'|translate}}">
+          <i class="fa fa-lg fa-fw fa-calendar-alt"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/treasure_account" routerLinkActive="active"
+          matTooltip="{{'CREATE_RECS'|translate}}">
+          <i class="fa fa-lg fa-cash-register"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/b2b/send" routerLinkActive="active"
+          matTooltip="{{'B2B_SEND'|translate}}">
+          <i class="fa fa-lg fa-mail-bulk"></i>
         </li>
       </ul>
     </div>

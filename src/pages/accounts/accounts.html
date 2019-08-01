@@ -41,7 +41,7 @@
         </div>
       </tl-subheader>
 
-      <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
+      <tl-table [loading]="loading" [options]="tableOptions" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
         [itemOptions]="itemOptions" noItemsMessage="There are no accounts yet" [limit]="limit"
         [total]="companyService.totalAccounts" (onChangePage)="changedPage($event)">
       </tl-table>

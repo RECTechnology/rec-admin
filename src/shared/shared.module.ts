@@ -49,6 +49,8 @@ import { TableListHeader } from 'src/components/table-list/tl-header/tl-header.c
 import { TableListSubHeader } from 'src/components/table-list/tl-subheader/tl-subheader.component';
 import { TableListTable } from 'src/components/table-list/tl-table/tl-table.component';
 import { AgmCoreModule } from '@agm/core';
+import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
+import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
 @NgModule({
   declarations: [
     SidemenuComponent,
@@ -93,6 +95,8 @@ import { AgmCoreModule } from '@agm/core';
     TableListHeader,
     TableListSubHeader,
     TableListTable,
+    B2BSendComponent,
+    B2BSettingsComponent,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -134,6 +138,8 @@ import { AgmCoreModule } from '@agm/core';
     TableListHeader,
     TableListSubHeader,
     TableListTable,
+    B2BSendComponent,
+    B2BSettingsComponent,
   ],
   imports: [
     BrowserModule,

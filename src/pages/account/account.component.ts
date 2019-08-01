@@ -29,10 +29,12 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     // tslint:disable-next-line: object-literal-sort-keys
     movements: 2,
     documents: 3,
+    b2b: 4,
     0: 'details',
     1: 'users',
     2: 'movements',
     3: 'documents',
+    4: 'b2b',
   };
 
   constructor(

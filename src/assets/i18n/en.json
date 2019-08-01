@@ -384,5 +384,8 @@
   "KVP_ITEMS_HIDDEN": "Export fields are hidden",
   "KVP_ITEMS_SHOWN": "Export fields are shown",
   "FILTERS_APPLY": "Filters from list apply here",
-  "ERROR_500": "There has been an unexpected error, try again or contact Administrator"
+  "ERROR_500": "There has been an unexpected error, try again or contact Administrator",
+  "B2B_SEND": "Send B2B",
+  "SETTINGS": "Settings",
+  "B2B_MODULE": "B2B Module"
 }

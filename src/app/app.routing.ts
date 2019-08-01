@@ -10,6 +10,8 @@ import { BussinessComponent } from 'src/pages/bussiness/bussiness.component';
 import { MapComponent } from 'src/pages/map/map.component';
 import { SellersComponent } from 'src/pages/sellers/sellers.component';
 import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
+import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
+import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
 
 const ROUTES: Routes = [
 
@@ -26,6 +28,10 @@ const ROUTES: Routes = [
   { path: 'map', component: MapComponent, canActivate: [IsLoggedInGuard] },
   { path: 'sellers', component: SellersComponent, canActivate: [IsLoggedInGuard] },
   { path: 'treasure_account', component: TreasureAccount, canActivate: [IsLoggedInGuard] },
+
+  { path: 'b2b/send', component: B2BSendComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'b2b/settings', component: B2BSettingsComponent, canActivate: [IsLoggedInGuard] },
+
 ];
 
 @NgModule({

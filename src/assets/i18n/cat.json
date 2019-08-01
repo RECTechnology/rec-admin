@@ -922,5 +922,9 @@
   "KVP_ITEMS_HIDDEN": "Els camps d’exportació s’han amagat",
   "KVP_ITEMS_SHOWN": "Mostrant els camps d’exportació",
   "FILTERS_APPLY": "Els filtros del llistat s'apliquen açi",
-  "ERROR_500": "S'ha produït un error inesperat, torneu-ho a provar o contacteu amb l'administrador"
+  "ERROR_500": "S'ha produït un error inesperat, torneu-ho a provar o contacteu amb l'administrador",
+  "B2B_SEND": "Envio B2B",
+  "SETTINGS": "Configuració",
+  "B2B_MODULE": "Modul B2B"
+
 }

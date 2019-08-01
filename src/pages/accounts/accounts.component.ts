@@ -10,7 +10,7 @@ import { ControlesService } from '../../services/controles/controles.service';
 import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { environment } from '../../environments/environment';
-import { TlHeader, TlItemOption } from '../../components/table-list/tl-table/tl-table.component';
+import { TlHeader, TlItemOption, TableListOptions } from '../../components/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from '../../components/table-list/tl-header/tl-header.component';
 import { AdminService } from '../../services/admin/admin.service';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
@@ -92,11 +92,17 @@ export class AccountsPage implements AfterContentInit {
 
   public itemOptions: TlItemOption[] = [{
     callback: this.viewAccount.bind(this),
+    icon: 'fa-eye',
     text: 'View',
   }, {
     callback: this.viewEditAccount.bind(this),
+    icon: 'fa-edit',
     text: 'Edit Account',
   }];
+
+  public tableOptions: TableListOptions = {
+    optionsType: 'buttons',
+  };
 
   public isComp = false;
   public isPriv = false;

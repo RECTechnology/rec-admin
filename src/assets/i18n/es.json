@@ -910,5 +910,10 @@
   "KVP_ITEMS_HIDDEN": "Mostrando los campos de exportación",
   "FILTERS_APPLY": "Los filtros del listado se aplican aqui",
   "Street Type": "Tipo de Vía",
-  "ERROR_500": "Ha habido un error inesperado, inténtelo de nuevo o póngase en contacto con el administrador."
+  "ERROR_500": "Ha habido un error inesperado, inténtelo de nuevo o póngase en contacto con el administrador.",
+  "B2B_SEND": "Envio B2B",
+  "SETTINGS": "Configuración",
+  "B2B_MODULE": "Módulo B2B"
+
+
 }

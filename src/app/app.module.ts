@@ -129,10 +129,10 @@ const imports = [
     },
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
     {
+      multi: true,
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
-      multi: true,
     },
-  ]
+  ],
 })
 export class AppModule { }

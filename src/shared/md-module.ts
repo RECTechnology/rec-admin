@@ -14,6 +14,8 @@ import {
     MatRadioModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatGridListModule,
+    MatListModule,
 
 } from '@angular/material';
 
@@ -36,6 +38,8 @@ const MODULES = [
     MatRadioModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatGridListModule,
+    MatListModule,
 ];
 
 @NgModule({

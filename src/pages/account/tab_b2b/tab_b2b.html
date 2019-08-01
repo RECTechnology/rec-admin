@@ -1,0 +1,49 @@
+<div style="height: 100%">
+  <div class="row" style="margin: 0; padding: 20px;">
+    <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
+      <div class="header bordered-bottom" style="padding: 10px 15px">
+        <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
+          {{'B2B_MODULE'|translate}}</p>
+
+          <button type="button" color="primary" mat-raised-button  name="button">
+              <p class="text-small">
+                {{'SEND'|translate}}
+              </p>
+            </button>
+      </div>
+
+      <div class="row" style="padding: 20px">
+        <div class="col-lg-6 col-md-12">
+          <p class="no-margin no-padding small-text col-gray" style="margin: 0 !important">
+            {{'POSIBLE_PROVIDERS'|translate}}</p>
+
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let prov of providers">
+                <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
+                <h4 mat-line>{{prov.name}}</h4>
+                <p mat-line *ngIf="prov.description"> {{prov.description}} </p>
+                <p mat-line *ngIf="!prov.description">
+                    Aun no tenemos empresas que vendan esto, <a href="/">¿Quieres sugerir alguna?</a>
+                </p>
+            </mat-list-item>
+          </mat-list>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <p class="no-margin no-padding small-text col-gray" style="margin: 0 !important">
+            {{'POSIBLE_CLIENTS'|translate}}</p>
+
+            <mat-list role="list">
+                <mat-list-item role="listitem" *ngFor="let client of clients">
+                    <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
+                    <h4 mat-line>{{client.name}}</h4>
+                    <p mat-line *ngIf="client.description"> {{client.description}} </p>
+                    <p mat-line *ngIf="!client.description">
+                        Aun no tenemos empresas que compren esto, <a href="/">¿Quieres sugerir alguna?</a>
+                    </p>
+                </mat-list-item>
+              </mat-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
