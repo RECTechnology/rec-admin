@@ -18,7 +18,7 @@
                             </button>
                         </div>
                         <translatable-list (edit)="editNeighborhood($event)" (delete)="deleteNeighborhood($event)"
-                            [dataSource]="neighborhoods">
+                            [data]="neighborhoods">
                         </translatable-list>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                             </button>
                         </div>
                         <translatable-list (edit)="editActivities($event)" (delete)="deleteActivity($event)"
-                            [dataSource]="activities">
+                            [data]="activities">
                         </translatable-list>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                             </button>
                         </div>
                         <translatable-list (edit)="editProducts($event)" (delete)="deleteProduct($event)"
-                            [dataSource]="products"></translatable-list>
+                            [data]="products"></translatable-list>
                     </div>
                 </div>
             </div>

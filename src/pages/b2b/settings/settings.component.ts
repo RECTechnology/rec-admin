@@ -28,6 +28,26 @@ export class B2BSettingsComponent {
     public neighborhoods = [
         { id: 1, esp: 'Gracia', cat: 'Gracia', eng: 'Gracia' },
         { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
     ];
 
     public products = [
@@ -36,8 +56,8 @@ export class B2BSettingsComponent {
     ];
 
     public activities = [
-        { id: 1, esp: 'Panaderia', cat: 'Panaderia', eng: 'Bakery' },
-        { id: 2, esp: 'Bar', cat: 'Bar', eng: 'Pub' },
+        // { id: 1, esp: 'Panaderia', cat: 'Panaderia', eng: 'Bakery' },
+        // { id: 2, esp: 'Bar', cat: 'Bar', eng: 'Pub' },
     ];
 
     constructor(
