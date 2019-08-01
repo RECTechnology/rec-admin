@@ -126,13 +126,19 @@ export class B2BSettingsComponent {
         return this.addItem('neighborhood', this.b2b.addNeighborhood);
     }
 
-    public addProducts() {
+    public addProduct() {
         return this.addItem('products', this.b2b.addProducts);
     }
 
-    public addActivities() {
+    public addActivity() {
         return this.addItem('activities', this.b2b.addActivities);
     }
+
+    public deleteProduct($event) { }
+
+    public deleteActivity($event) { }
+
+    public deleteNeighborhood($event) { }
 
     /* Called when tab change, so url changes also */
     public changeUrl($event) {
