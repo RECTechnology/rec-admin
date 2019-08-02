@@ -161,7 +161,15 @@ export class NewDelegateComponent extends PageBase {
     }
 
     public setSelectedAccounts(users) {
-        this.notSavedItems = users;
+        this.notSavedItems = [...users];
+
+        const notSavedMap = this.notSavedItems.slice().map((el) => el.id);
+        console.log('map', notSavedMap);
+
+        this.savedItems = this.savedItems.filter((el) => {
+            console.log('Testing', el.id);
+            return !notSavedMap.includes(el.id);
+        });
         // this.savedItems = this.getSelected(false);
     }
 
@@ -199,7 +207,7 @@ export class NewDelegateComponent extends PageBase {
     public openEditAccounts() {
         const dialogRef = this.dialog.open(EditAccountsDia);
 
-        dialogRef.componentInstance.accounts = this.getSelected();
+        dialogRef.componentInstance.accounts = [...this.getSelected()];
         dialogRef.componentInstance.accountCount = dialogRef.componentInstance.accounts.length;
 
         dialogRef.afterClosed()
@@ -219,7 +227,7 @@ export class NewDelegateComponent extends PageBase {
     public openEditAccount(account, i, saved = false) {
         const dialogRef = this.dialog.open(EditAccountsDia);
 
-        dialogRef.componentInstance.accounts = [account];
+        dialogRef.componentInstance.accounts = [Object.assign({}, account)];
         dialogRef.componentInstance.accountCount = 1;
 
         dialogRef.afterClosed()
