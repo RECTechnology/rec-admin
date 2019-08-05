@@ -340,7 +340,6 @@
   "Individual High Value Account or Corporate Account": "Cuenta individual de Alto Valor o Corporativa",
   "Upgrade to": "Subir a",
   "Currencies": "Monedas",
-  "Schedules": "Schedules",
   "Enable/Disable curencies for this company": "Activar / desactivar monedas para esta cuenta",
   "PLEASE_UPLOAD_A_IDCARD": "Por favor suba un <b>Carnet de Identidad</b> para conseguir <b>KYC nivel {{tier}}</b>.",
   "PLEASE_UPLOAD_A_PORC": "Por favor suba un <b>Certificado De Residencia</b> para conseguir <b>KYC nivel {{tier}}</b>.",
@@ -913,7 +912,6 @@
   "ERROR_500": "Ha habido un error inesperado, inténtelo de nuevo o póngase en contacto con el administrador.",
   "B2B_SEND": "Envio B2B",
   "SETTINGS": "Configuración",
-  "B2B_MODULE": "Módulo B2B"
-
-
+  "B2B_MODULE": "Módulo B2B",
+  "REC_ENTITIES": "Entidades del REC"
 }

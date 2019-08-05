@@ -925,6 +925,8 @@
   "ERROR_500": "S'ha produït un error inesperat, torneu-ho a provar o contacteu amb l'administrador",
   "B2B_SEND": "Envio B2B",
   "SETTINGS": "Configuració",
-  "B2B_MODULE": "Modul B2B"
+  "B2B_MODULE": "Modul B2B",
+  "REC_ENTITIES": "Entitats del REC"
+
 
 }
