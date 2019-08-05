@@ -1,4 +1,4 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter, defineInjectable } from '@angular/core';
 import { XHR } from './xhr/xhr';
 import { API_URL } from '../data/consts';
 import { ErrorManager } from './error-manager/error-manager';
@@ -147,21 +147,20 @@ export class UserService {
    * @param {object} role - The role the user will have
    * @return {Observable<any>}
    */
-  public addUserToAccount(account_id, email, role): Observable<any> {
+  public addUserToAccount(account_id, dni, role): Observable<any> {
     const headers = new HttpHeaders({
       'accept': 'application/json',
       'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/x-www-form-urlencoded',
+      'content-type': 'application/json',
     });
     const options = ({ headers });
-    const params = new HttpParams();
-
-    params.set('user_dni', email);
-    params.set('role', role);
 
     return this.http.post(
       `${API_URL}/manager/v1/groups/${account_id}`,
-      params.toString(),
+      {
+        role: role,
+        user_dni: dni,
+      },
       options,
     ).pipe(
       map(this.extractData),
