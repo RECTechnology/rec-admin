@@ -93,9 +93,9 @@ export class B2BSettingsComponent {
             });
     }
 
-    public addItem(type, callback: (id: any, data: any) => Observable<any>) {
+    public addItem(type: string, callback: (id: any, data: any) => Observable<any>) {
         const dialogRef = this.dialog.open(AddItemDia);
-        dialogRef.componentInstance.itemType = type;
+        dialogRef.componentInstance.itemType = type.toUpperCase();
 
         return dialogRef.afterClosed()
             .subscribe((data) => {

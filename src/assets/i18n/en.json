@@ -393,5 +393,22 @@
   "POSIBLE_CLIENTS": "Posible Clients",
   "NO_BUSINESS_BUYING": "There aren't any bussiness buying that",
   "NO_BUSINESS_SELLING": "There aren't any bussiness selling that",
-  "SUGEST_SOME": "Do you want to sugest one?"
+  "SUGEST_SOME": "Do you want to sugest one?",
+  "NEIGBORHOODS": "Neighborhoods",
+  "ACTIVITIES": "Activities",
+  "PRODUCTS": "Products",
+  "NEIGBORHOOD": "Neighborhood",
+  "ACTIVITY": "Activity",
+  "PRODUCT": "Product",
+
+  "AVAILABLE_NEIGHBORHOODS": "Available Neighborhood",
+  "AVAILABLE_ACTIVITIES": "Available Activities",
+  "AVAILABLE_PRODUCTS": "Available Products",
+  "ADD_ITEM_DESC": "Add new translated item",
+  "EDIT_ITEM_DESC": "Edit translated item",
+  "Spanish": "Spanish",
+  "English": "English",
+  "Catalan": "Catalan",
+  "NEW": "New",
+  "ADD_ITEM": "Add Item"
 }

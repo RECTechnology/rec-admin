@@ -927,7 +927,26 @@
   "SETTINGS": "Configuració",
   "B2B_MODULE": "Modul B2B",
   "REC_ENTITIES": "Entitats del REC",
+  "POSIBLE_PROVIDERS": "Proveedores posibles",
+  "POSIBLE_CLIENTS": "Clients posibles",
   "NO_BUSINESS_BUYING": "No hi ha negocis que compren això",
   "NO_BUSINESS_SELLING": "No hi ha negocis que venguin això",
-  "SUGEST_SOME": "Vols sugerir algun?"
+  "SUGEST_SOME": "Vols sugerir algun?",
+  "NEIGBORHOODS": "Barris",
+  "ACTIVITIES": "Activitats",
+  "PRODUCTS": "Productes",
+  "NEIGHBORHOOD": "Barri",
+  "ACTIVITY": "Activitat",
+  "PRODUCT": "Producte",
+
+  "AVAILABLE_NEIGHBORHOODS": "Barri disponible",
+  "AVAILABLE_ACTIVITIES": "Activitats disponibles",
+  "AVAILABLE_PRODUCTS": "Productes disponibles",
+  "ADD_ITEM_DESC": "Anyadeix un nou element traduit",
+  "EDIT_ITEM_DESC": "Edita element traduit",
+  "Spanish": "Espanyol",
+  "English": "Ingles",
+  "Catalan": "Catalá",
+  "NEW": "Nou",
+  "ADD_ITEM": "Anyadeix Element"
 }

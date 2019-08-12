@@ -914,7 +914,27 @@
   "SETTINGS": "Configuración",
   "B2B_MODULE": "Módulo B2B",
   "REC_ENTITIES": "Entidades del REC",
-  "NO_BUSINESS_BUYING": "No hay negocios que compren esto", 
-  "NO_BUSINESS_SELLING": "No hay negocios que vendan esto", 
-  "SUGEST_SOME": "¿Quiere sugerir alguno?"
+  "POSIBLE_PROVIDERS": "Posibles Proveedores",
+  "POSIBLE_CLIENTS": "Posibles Clientes",
+  "NO_BUSINESS_BUYING": "No hay negocios que compren esto",
+  "NO_BUSINESS_SELLING": "No hay negocios que vendan esto",
+  "SUGEST_SOME": "¿Quiere sugerir alguno?",
+  "NEIGHBORHOODS": "Barrios",
+  "ACTIVITIES": "Actividades",
+  "PRODUCTS": "Productos",
+
+  "NEIGHBORHOOD": "Barrio",
+  "ACTIVITY": "Actividad",
+  "PRODUCT": "Producto",
+
+  "AVAILABLE_NEIGHBORHOODS": "Barrio disponible",
+  "AVAILABLE_ACTIVITIES": "Actividades disponibles",
+  "AVAILABLE_PRODUCTS": "Productos disponibles",
+  "ADD_ITEM_DESC": "Añadir un nuevo elemento traducido",
+  "EDIT_ITEM_DESC": "Editar elemento traducido",
+  "Spanish": "Español",
+  "English": "Ingles",
+  "Catalan": "Catalan",
+  "NEW": "Nuevo",
+  "ADD_ITEM": "Añadir Elemento"
 }
