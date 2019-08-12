@@ -13,32 +13,37 @@
       </div>
 
       <div class="row" style="padding: 20px">
+        <div class="col-lg-12">
+          <p class="small-text col-gray">Este es tu informe de posibilidades de intercambio con los demás usuarios
+            profesionales del sistema REC [Párrafo introductorio para el comercio, igual para todos, aunque traducido
+            cada uno a su idioma (idioma marcado en la app por el usuario administrador principal)]</p>
+        </div>
         <div class="col-lg-6 col-md-12">
-          <p class="no-margin no-padding small-text col-gray" style="margin: 0 !important">
+          <p class="no-margin no-padding bold underline col-gray" style="margin: 0 !important">
             {{'POSIBLE_PROVIDERS'|translate}}</p>
-
           <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let prov of providers">
               <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
-              <h4 mat-line>{{prov.name}}</h4>
+              <h4 mat-line class="small-text2 underline">{{prov.name}}</h4>
               <p mat-line *ngIf="prov.description"> {{prov.description}} </p>
               <p mat-line *ngIf="!prov.description">
-                  {{'NO_BUSINESS_SELLINGs'|translate}}, <a href="https://rec.barcelona/es/contacto/" target="_blank">{{'SUGEST_SOME'|translate}}</a>
+                {{'NO_BUSINESS_SELLINGs'|translate}}, <a href="https://rec.barcelona/es/contacto/"
+                  target="_blank">{{'SUGEST_SOME'|translate}}</a>
               </p>
             </mat-list-item>
           </mat-list>
         </div>
         <div class="col-lg-6 col-md-12">
-          <p class="no-margin no-padding small-text col-gray" style="margin: 0 !important">
+          <p class="no-margin no-padding bold underline col-gray" style="margin: 0 !important">
             {{'POSIBLE_CLIENTS'|translate}}</p>
 
           <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let client of clients">
               <!-- <mat-icon mat-list-icon>folder</mat-icon> -->
-              <h4 mat-line>{{client.name}}</h4>
+              <h4 mat-line class="small-text2 underline">{{client.name}}</h4>
               <p mat-line *ngIf="client.description"> {{client.description}} </p>
               <p mat-line *ngIf="!client.description">
-                {{'NO_BUSINESS_BUYING'|translate}},  <a href="/">{{'SUGEST_SOME'|translate}}</a>
+                {{'NO_BUSINESS_BUYING'|translate}}, <a href="/">{{'SUGEST_SOME'|translate}}</a>
               </p>
             </mat-list-item>
           </mat-list>
