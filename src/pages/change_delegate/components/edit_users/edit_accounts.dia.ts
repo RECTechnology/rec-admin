@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, Sort } from '@angular/material';
-import { CurrenciesService } from '../../../../services/currencies/currencies.service';
 import BaseDialog from '../../../../bases/dialog-base';
 import { CompanyService } from '../../../../services/company/company.service';
 import { UserService } from '../../../../services/user.service';
@@ -31,7 +30,6 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
   public isSingleEdit: boolean = false;
 
   constructor(
-    public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<EditAccountsDia>,
     public company: CompanyService,
     public us: UserService,

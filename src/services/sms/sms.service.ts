@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../user.service';
-import { ErrorManager } from '../error-manager/error-manager';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { API_URL } from '../../data/consts';
 import { Observable } from 'rxjs';

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { PageBase } from '../../../../bases/page-base';
-import { LoginService } from '../../../../services/auth.service';
+import { LoginService } from '../../../../services/auth/auth.service';
 import { ControlesService } from '../../../../services/controles/controles.service';
 import { MatDialog, Sort } from '@angular/material';
 import { SelectAccountsDia } from '../select_accounts_dialog/select_accounts.dia';

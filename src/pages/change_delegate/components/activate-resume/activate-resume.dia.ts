@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, Sort } from '@angular/material';
-import { CurrenciesService } from '../../../../services/currencies/currencies.service';
 import BaseDialog from '../../../../bases/dialog-base';
 import { CompanyService } from '../../../../services/company/company.service';
 import { UserService } from '../../../../services/user.service';
@@ -19,7 +18,6 @@ export class ActivateResume extends BaseDialog {
   public validationErrorName = '';
 
   constructor(
-    public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<ActivateResume>,
     public company: CompanyService,
     public us: UserService,

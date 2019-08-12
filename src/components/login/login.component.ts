@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChildren, NgZone, ChangeDetectorRef } from '@ang
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
-import { LoginService, AppAuthService } from '../../services/auth.service';
+import { LoginService, AppAuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user.service';
 import { environment } from '../../environments/environment';
 import { MySnackBarSevice } from '../../bases/snackbar-base';

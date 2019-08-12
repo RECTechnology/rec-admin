@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy, AfterContentInit, HostListener, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { AppService } from 'src/services/app.service';
+import { AppService } from 'src/services/app/app.service';
 import { environment } from 'src/environments/environment';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { CompanyService } from 'src/services/company/company.service';
-import { LoginService, AppAuthService } from 'src/services/auth.service';
+import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { AdminService } from 'src/services/admin/admin.service';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';

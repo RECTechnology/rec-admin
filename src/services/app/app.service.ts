@@ -1,8 +1,7 @@
 import { Injectable, VERSION } from '@angular/core';
-import { BaseService } from './base/base.service';
-import { UserService } from './user.service';
-import { ErrorManager } from './error-manager/error-manager';
-import { API_URL } from '../data/consts';
+import { BaseService } from '../base/base.service';
+import { UserService } from '../user.service';
+import { API_URL } from '../../data/consts';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 

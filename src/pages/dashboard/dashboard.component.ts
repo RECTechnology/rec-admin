@@ -1,16 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Title } from '@angular/platform-browser';
-import { UserService } from '../../services/user.service';
-import { CurrenciesService } from '../../services/currencies/currencies.service';
 import { ControlesService } from '../../services/controles/controles.service';
-import { CompanyService } from '../../services/company/company.service';
-import { TransactionService } from '../../services/transactions/transactions.service';
-import { UtilsService } from '../../services/utils/utils.service';
-import { LoginService } from '../../services/auth.service';
-import { WalletService } from '../../services/wallet/wallet.service';
+import { LoginService } from '../../services/auth/auth.service';
 import { PageBase, OnLogout } from '../../bases/page-base';
-import { AppService } from '../../services/app.service';
+import { AppService } from '../../services/app/app.service';
 
 declare const Morris;
 
@@ -33,16 +27,10 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
 
   constructor(
     public titleService: Title,
-    private us: UserService,
     public controles: ControlesService,
-    private currenciesService: CurrenciesService,
-    private transactions: TransactionService,
     private dialog: MatDialog,
-    private utils: UtilsService,
     public app: AppService,
-    private ws: WalletService,
     public ls: LoginService,
-    private companyService: CompanyService,
   ) {
     super();
   }

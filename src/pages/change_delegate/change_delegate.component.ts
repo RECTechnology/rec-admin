@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Sort, MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { PageBase } from '../../bases/page-base';
-import { LoginService } from '../../services/auth.service';
+import { LoginService } from '../../services/auth/auth.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { ControlesService } from '../../services/controles/controles.service';
 import { CsvUpload } from './components/csv-upload/csv-upload.dia';

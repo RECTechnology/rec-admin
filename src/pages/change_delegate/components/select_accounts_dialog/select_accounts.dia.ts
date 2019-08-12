@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, Sort } from '@angular/material';
-import { CurrenciesService } from '../../../../services/currencies/currencies.service';
 import BaseDialog from '../../../../bases/dialog-base';
 import { CompanyService } from '../../../../services/company/company.service';
 function compare(a: number | string, b: number | string, isAsc: boolean) {
@@ -41,7 +40,6 @@ export class SelectAccountsDia extends BaseDialog implements OnInit {
   public searchSelected: any = '';
 
   constructor(
-    public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<SelectAccountsDia>,
     public company: CompanyService,
   ) {

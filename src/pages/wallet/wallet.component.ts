@@ -4,8 +4,7 @@ import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Sort } from '@angular/material';
 import { UserService } from '../../services/user.service';
-import { LoginService } from '../../services/auth.service';
-import { CurrenciesService } from '../../services/currencies/currencies.service';
+import { LoginService } from '../../services/auth/auth.service';
 import { WalletService } from '../../services/wallet/wallet.service';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UtilsService } from '../../services/utils/utils.service';
@@ -69,7 +68,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     public controles: ControlesService,
     public us: UserService,
     public txService: TransactionService,
-    public currenciesService: CurrenciesService,
     public dialog: MatDialog,
     public ws: WalletService,
     public utils: UtilsService,
@@ -147,7 +145,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     // this.getCurrencies();
     this.setRefresh();
     this.getMethods();
-    this.getTickers();
     this.getTransactions();
   }
 
@@ -237,33 +234,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
 
   public getCurrencySmallImage(curr) {
     return `../../resources/currencies/${curr}-small.png`;
-  }
-
-  /**
-   * @param {String} currency - The currency to set as default
-   */
-  public changeCurrency(currency: string): void {
-    this.reloadingCurrency = true;
-    this.currenciesService.updateCurrency(currency)
-      .subscribe((resp) => {
-        localStorage.removeItem('wallet_balance');
-        this.us.userData.group_data = resp.data;
-        this.default_currency = this.us.getDefaultCurrency();
-        this.ws.doGetWallets();
-        this.reloadingCurrency = false;
-      });
-  }
-
-  // Gets tickers for default currency
-  public getTickers(): void {
-    this.currenciesService.getTickers(this.us.getDefaultCurrency())
-      .subscribe((resp) => {
-        const tickers = resp.data;
-        for (const key of tickers) {
-          const [currIn, currOut] = key.split('x');
-          this.currenciesService.tickers[key] = new Ticker(key, tickers[key], currIn, currOut, 1);
-        }
-      }, (error) => { return; });
   }
 
   // Gets methods and filters them by 'in' or 'out', also sets methods_in/out filters

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginService } from '../auth.service';
+import { LoginService } from '../auth/auth.service';
 import * as deepmerge from 'deepmerge';
 
 declare let _;

@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { TIERS } from './tiers';
-import { LoginService } from '../../../services/auth.service';
+import { LoginService } from '../../../services/auth/auth.service';
 
 // tslint:disable-next-line: only-arrow-functions space-before-function-paren
 const getPropFromPath = function (obj, path) {

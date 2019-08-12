@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { CurrenciesService } from '../../../../services/currencies/currencies.service';
 import { TransactionService } from '../../../../services/transactions/transactions.service';
 import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import BaseDialog from '../../../../bases/dialog-base';
@@ -23,7 +22,6 @@ export class CashOutDia extends BaseDialog {
   public available: number = 0;
 
   constructor(
-    public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<CashOutDia>,
     public txService: TransactionService,
     public ws: WalletService,

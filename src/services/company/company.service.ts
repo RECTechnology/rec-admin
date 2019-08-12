@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
-import { ErrorManager } from '../error-manager/error-manager';
-import { LoginService } from '../auth.service';
-import { CurrenciesService } from '../currencies/currencies.service';
+import { LoginService } from '../auth/auth.service';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { WalletService } from '../wallet/wallet.service';
 import { UtilsService } from '../utils/utils.service';
@@ -40,9 +38,7 @@ export class CompanyService extends BaseService {
   constructor(
     http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
     public ls: LoginService,
-    private curr: CurrenciesService,
     private ws: WalletService,
     private snackbar: MySnackBarSevice,
     private utils: UtilsService,

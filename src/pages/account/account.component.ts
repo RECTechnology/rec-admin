@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UserService } from '../../services/user.service';
 import { PageBase } from '../../bases/page-base';
-import { LoginService } from '../../services/auth.service';
+import { LoginService } from '../../services/auth/auth.service';
 import { MatDialog } from '../../../node_modules/@angular/material';
 import { CompanyService } from '../../services/company/company.service';
 import { UtilsService } from '../../services/utils/utils.service';

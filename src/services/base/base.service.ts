@@ -11,15 +11,15 @@ export interface BaseServiceOptions {
   flags?: {
     translateHeaders: boolean,
   };
-  headers: { [key: string]: string },
+  headers: { [key: string]: string };
 }
 
 @Injectable()
 export class BaseService {
 
   public xhr: XHR;
-  private opts: BaseServiceOptions;
-  private DEFAULT_OPTS = {
+  public opts: BaseServiceOptions;
+  public DEFAULT_OPTS = {
     flags: {
       translateHeaders: false,
     },

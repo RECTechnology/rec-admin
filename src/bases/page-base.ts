@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AfterContentInit, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
-import { LoginService } from '../services/auth.service';
+import { LoginService } from '../services/auth/auth.service';
 
 export interface PageBase {
 

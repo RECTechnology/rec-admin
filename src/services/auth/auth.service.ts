@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from './user.service';
-import { API_URL, clientID, clientSecret } from '../data/consts';
-import { BaseService } from './base/base.service';
-import { UserStorage } from './user-storage/user-storage';
+import { UserService } from '../user.service';
+import { API_URL, clientID, clientSecret } from '../../data/consts';
+import { BaseService } from '../base/base.service';
+import { UserStorage } from '../user-storage/user-storage';
 import { MatDialog } from '@angular/material';
-import { MySnackBarSevice } from '../bases/snackbar-base';
+import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Observer, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';

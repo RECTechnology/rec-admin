@@ -10,7 +10,6 @@ import { CollapseCardComponent } from '../components/collapse-card/collapse-card
 import { ConfirmationMessage } from '../components/dialogs/confirmation-message/confirmation.dia';
 import { InfoMessage } from '../components/dialogs/info-message/info.dia';
 import { FileUpload } from '../components/dialogs/file-upload/file-upload.dia';
-import { ErrorManager } from '../services/error-manager/error-manager';
 import { CompanyService } from '../services/company/company.service';
 import { IdleNotification } from '../components/dialogs/idle-notification/idle.dia';
 import { AddUser } from '../pages/dialogs/add-user/add-user.dia';
@@ -18,7 +17,6 @@ import { ButtonLoader } from '../components/button-loader/button-loader';
 import { CCInput } from '../components/cc-input/cc-input';
 import { CCInputEditable } from '../components/cc-input/cc-input';
 import { LangSelector } from '../components/lang-selector/lang.selector';
-import { UserCurrencyPrice } from '../components/user-currency-price/user-currency.component';
 import { FilterComponent } from '../components/filter/filter-component';
 import { Agregation } from '../components/agregation/agregation.component';
 import { DashChart } from '../components/dash-chart/dash-chart.component';
@@ -68,7 +66,6 @@ import { AddItemDia } from 'src/pages/b2b/settings/add-item/add-item.dia';
     ButtonLoader,
     CCInput,
     CCInputEditable,
-    UserCurrencyPrice,
     LangSelector,
     FilterComponent,
     Agregation,
@@ -131,7 +128,6 @@ import { AddItemDia } from 'src/pages/b2b/settings/add-item/add-item.dia';
     ButtonLoader,
     CCInput,
     CCInputEditable,
-    UserCurrencyPrice,
     LangSelector,
     FilterComponent,
     Agregation,
@@ -162,7 +158,6 @@ import { AddItemDia } from 'src/pages/b2b/settings/add-item/add-item.dia';
   ],
   providers: [
     CompanyService,
-    ErrorManager,
   ],
 })
 export class SharedModule { }

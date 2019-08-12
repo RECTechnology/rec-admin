@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
-import { LoginService } from '../auth.service';
+import { LoginService } from '../auth/auth.service';
 import { NotificationService } from '../notifications/notifications.service';
 import { CompanyService } from '../company/company.service';
 import { HttpClient } from '@angular/common/http';

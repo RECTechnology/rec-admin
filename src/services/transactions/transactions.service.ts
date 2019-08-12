@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
-import { ErrorManager } from '../error-manager/error-manager';
 import Transaction from '../../shared/entities/transaction/transaction.ent';
 import { WalletService } from '../wallet/wallet.service';
 import { HttpClient } from '@angular/common/http';

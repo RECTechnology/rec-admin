@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UserService } from '../../services/user.service';
 import { PageBase } from '../../bases/page-base';
-import { LoginService } from '../../services/auth.service';
+import { LoginService } from '../../services/auth/auth.service';
 import { MatDialog, Sort } from '../../../node_modules/@angular/material';
 import { BussinessDetailsDia } from '../dialogs/bussiness_detailes/bussiness_details.component';
 import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';

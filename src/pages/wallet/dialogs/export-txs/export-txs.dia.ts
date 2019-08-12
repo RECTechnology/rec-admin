@@ -1,14 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { CurrenciesService } from '../../../../services/currencies/currencies.service';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../../services/user.service';
 import BaseDialog from '../../../../bases/dialog-base';
 import { WalletService } from '../../../../services/wallet/wallet.service';
-import Transaction from '../../../../shared/entities/transaction/transaction.ent';
 import { TransactionService } from '../../../../services/transactions/transactions.service';
 import { TxFilter } from '../../../../components/filter/filter';
 import { CompanyService } from '../../../../services/company/company.service';
-// import { TxFilter } from '../../filter/filter';
 
 import * as moment from 'moment';
 
@@ -35,7 +32,6 @@ export class ExportTxsDia extends BaseDialog {
   public preview = '';
 
   constructor(
-    public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<ExportTxsDia>,
     public us: UserService,
     public cs: CompanyService,

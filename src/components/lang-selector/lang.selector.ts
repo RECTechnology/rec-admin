@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { LANGS, LANG_MAP } from '../../data/consts';
 import { UserService } from '../../services/user.service';
-import { LoginService } from '../../services/auth.service';
+import { LoginService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'lang-selector',

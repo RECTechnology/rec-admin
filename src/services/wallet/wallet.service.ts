@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
-import { ErrorManager } from '../error-manager/error-manager';
 import { Wallet } from '../../shared/entities/wallet/wallet';
 import { PrepaidCardMulti } from '../../shared/entities/prepaid_card/prepaid_card';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
@@ -57,79 +56,6 @@ export class WalletService extends BaseService {
    */
   public getToken(): string {
     return this.us.tokens.access_token;
-  }
-
-  /**
-   * Checks if a favorite item exists
-   * @param {string} name - The name of the favorite you want to check
-   * @param {string} direction - The direction of the method. One of `[in, out]`
-   * @return {boolean} string
-   */
-  public isFavorite(name, direction): boolean {
-    if (name === 'opex') {
-      name = 'prepaidcards';
-    }
-    return this.userFavs.some((e) => e.name === name && e.direction === direction);
-  }
-
-  /**
-   * Select favorite and add to `this.userFavs`
-   * @param {string} name - The name of the favorite you want to check
-   * @param {string} type - The type of the method. `['Bank', 'Crypto', 'Alternatives']`
-   * @param {string} dir - The direction of the method. One of `[in, out]`
-   * @param {Object} method - The direction of the method. One of `[in, out]`
-   */
-  public selectFavorite(name, type, direction, method) {
-    if (!this.isFavorite(name, direction)) {
-      if (name === 'opex' || name === 'spark') {
-        name = 'prepaidcards';
-      }
-      this.userFavs.push({
-        direction,
-        method,
-        name,
-        title: name + ' ' + type,
-        type,
-        typeSelected: type ? true : false,
-      });
-      localStorage.setItem('user-favs', JSON.stringify(this.userFavs));
-      this.snackbar.open('Added ' + name + ' ' + type + ' as favorite', 'ok', { duration: 3500 });
-    } else {
-      const fav = this.getFavorite(name, direction);
-      this.removeFavorite(fav);
-    }
-    this.sortFavs();
-  }
-
-  /**
-   * Removes favorite if it exists
-   * @param {any} fav - The favorite object
-   * @param {string} fav.name - The name of the favorite
-   * @param {string} fav.type - The type of the favorite
-   * @param {string} fav.typeSelected - If it has any type selected
-   * @param {string} fav.direction - The direction of the method. One of `[in, out]`
-   * @param {any} fav.method - The method itself
-   */
-  public removeFavorite(fav) {
-    const index = this.userFavs.indexOf(fav);
-    if (index !== -1) {
-      this.userFavs.splice(index, 1);
-    }
-    localStorage.setItem('user-favs', JSON.stringify(this.userFavs));
-    this.snackbar.open('Removed ' + fav.name + ' ' + fav.type + ' from favorites', 'ok', { duration: 3500 });
-    this.sortFavs();
-  }
-
-  /**
-   * Gets favorite by name
-   * @param {string} name - The name of the favorite you want to get
-   * @param {string} dir #optional - The direction. One of `[in, out]`
-   */
-  public getFavorite(name, dir?) {
-    if (name === 'opex' || name === 'spark') {
-      name = 'prepaidcards';
-    }
-    return (this.userFavs.filter((e) => e.name === name && e.direction === dir) || [undefined])[0];
   }
 
   /**

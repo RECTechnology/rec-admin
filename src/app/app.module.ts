@@ -12,11 +12,10 @@ import { AgmCoreModule } from '@agm/core';
 import { AppComponent } from './app.component';
 import { WalletModule } from 'src/pages/wallet/wallet.module';
 import { ChangeDelegateModule } from 'src/pages/change_delegate/change_delegate.module';
-import { LoginService, AppAuthService, RegisterService } from 'src/services/auth.service';
+import { LoginService, AppAuthService, RegisterService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { IsLoggedInGuard, IsNotLoggedInGuard, IsResellerGuard } from 'src/services/guards/login.guard';
 import { ControlesService } from 'src/services/controles/controles.service';
-import { CurrenciesService } from 'src/services/currencies/currencies.service';
 import { TransactionService } from 'src/services/transactions/transactions.service';
 import { WalletService } from 'src/services/wallet/wallet.service';
 import { UtilsService } from 'src/services/utils/utils.service';
@@ -102,7 +101,6 @@ const imports = [
     RegisterService,
     IsLoggedInGuard,
     ControlesService,
-    CurrenciesService,
     TransactionService,
     IsLoggedInGuard,
     IsNotLoggedInGuard,
