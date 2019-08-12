@@ -7,7 +7,7 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
   templateUrl: './translatable-list.component.html',
 })
 export class TranslatableListComponent implements OnInit {
-  @Input() public displayedColumns: string[] = ['id', 'esp', 'cat', 'eng', 'actions'];
+  @Input() public displayedColumns: string[] = ['id', 'cat', 'esp', 'eng', 'actions'];
   public dataSource: any;
 
   @Input() public data = [];

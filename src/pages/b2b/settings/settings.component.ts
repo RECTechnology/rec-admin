@@ -15,13 +15,13 @@ export class B2BSettingsComponent {
     public tab: string = '';
     public currentTab = 0;
     public tabMap = {
-        neighborhoods: 0,
         // tslint:disable-next-line: object-literal-sort-keys
-        activities: 1,
-        products: 2,
-        0: 'neighborhoods',
-        1: 'activities',
-        2: 'products',
+        activities: 0,
+        products: 1,
+        neighborhoods: 2,
+        0: 'activities',
+        1: 'products',
+        2: 'neighborhoods',
     };
 
     public neighborhoods = [
@@ -37,7 +37,7 @@ export class B2BSettingsComponent {
         },
         { id: 2, esp: 'Agua', cat: 'Aigua', eng: 'Water', pending: false },
     ];
-    public productsColumns = ['id', 'esp', 'cat', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
+    public productsColumns = ['id', 'cat', 'esp', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
 
     public activities = [
         // { id: 1, esp: 'Panaderia', cat: 'Panaderia', eng: 'Bakery' },
