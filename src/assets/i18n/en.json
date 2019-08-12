@@ -413,5 +413,14 @@
   "ENG": "English",
   "CAT": "Catalan",
   "NEW": "New",
-  "ADD_ITEM": "Add Item"
+  "ADD_ITEM": "Add Item",
+
+  "ACTIVITIES_PRODUCED": "Activities Produced",
+  "ACTIVITIES_CONSUMED": "Activities Consumed",
+  "NO_ITEMS": "There are no items",
+  "NEW_PRODUCT": "New Product",
+  "NEW_NEIGBORHOOD": "New Neighborhood",
+  "NEW_ACTIVITY": "New Activity",
+  "SAVE": "Save",
+  "INPUT_REQUIRED": "Field required: {{field}}"
 }

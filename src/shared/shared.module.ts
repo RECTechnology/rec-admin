@@ -49,7 +49,6 @@ import { TableListTable } from 'src/components/table-list/tl-table/tl-table.comp
 import { AgmCoreModule } from '@agm/core';
 import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
 import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
-import { EditItemDia } from 'src/pages/b2b/settings/edit-item/edit-item.dia';
 import { AddItemDia } from 'src/pages/b2b/settings/add-item/add-item.dia';
 import { TranslatableListComponent } from 'src/pages/b2b/components/translatable-list/translatable-list.component';
 
@@ -99,7 +98,6 @@ import { TranslatableListComponent } from 'src/pages/b2b/components/translatable
     B2BSendComponent,
     B2BSettingsComponent,
     TranslatableListComponent,
-    EditItemDia,
     AddItemDia,
   ],
   entryComponents: [
@@ -113,7 +111,6 @@ import { TranslatableListComponent } from 'src/pages/b2b/components/translatable
     TwoFaDia,
     ExportDialog,
     VoteWithdrawal,
-    EditItemDia,
     AddItemDia,
   ],
   exports: [
@@ -146,7 +143,6 @@ import { TranslatableListComponent } from 'src/pages/b2b/components/translatable
     B2BSendComponent,
     B2BSettingsComponent,
     TranslatableListComponent,
-    EditItemDia,
     AddItemDia,
   ],
   imports: [

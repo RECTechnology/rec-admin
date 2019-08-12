@@ -922,11 +922,9 @@
   "NEIGHBORHOODS": "Barrios",
   "ACTIVITIES": "Actividades",
   "PRODUCTS": "Productos",
-
   "NEIGHBORHOOD": "Barrio",
   "ACTIVITY": "Actividad",
   "PRODUCT": "Producto",
-
   "AVAILABLE_NEIGHBORHOODS": "Barrio disponible",
   "AVAILABLE_ACTIVITIES": "Actividades disponibles",
   "AVAILABLE_PRODUCTS": "Productos disponibles",
@@ -939,5 +937,13 @@
   "ENG": "Ingles",
   "CAT": "Catalan",
   "NEW": "Nuevo",
-  "ADD_ITEM": "Añadir Elemento"
+  "ADD_ITEM": "Añadir Elemento",
+  "ACTIVITIES_PRODUCED": "Actividades producidas",
+  "ACTIVITIES_CONSUMED": "Actividades consumidas",
+  "NO_ITEMS": "No hay elementos",
+  "NEW_PRODUCT": "Nuevo producto",
+  "NEW_NEIGBORHOOD": "Nuevo barrio",
+  "NEW_ACTIVITY": "Nueva actividad",
+  "SAVE": "Guardar",
+  "INPUT_REQUIRED": "Campo Requrido: {{field}}"
 }

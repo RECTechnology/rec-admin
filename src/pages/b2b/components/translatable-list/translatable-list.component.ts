@@ -12,6 +12,7 @@ export class TranslatableListComponent implements OnInit {
 
   @Input() public data = [];
   @Output('edit') public onEdit: EventEmitter<any> = new EventEmitter();
+  @Output('aprove') public onAprove: EventEmitter<any> = new EventEmitter();
   @Output('delete') public onDelete: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator, { static: true }) public paginator: MatPaginator;

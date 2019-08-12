@@ -938,7 +938,6 @@
   "NEIGHBORHOOD": "Barri",
   "ACTIVITY": "Activitat",
   "PRODUCT": "Producte",
-
   "AVAILABLE_NEIGHBORHOODS": "Barri disponible",
   "AVAILABLE_ACTIVITIES": "Activitats disponibles",
   "AVAILABLE_PRODUCTS": "Productes disponibles",
@@ -950,7 +949,14 @@
   "ESP": "Espanyol",
   "ENG": "Ingles",
   "CAT": "Catalá",
-
   "NEW": "Nou",
-  "ADD_ITEM": "Anyadeix Element"
+  "ADD_ITEM": "Anyadeix Element",
+  "ACTIVITIES_PRODUCED": "Activitats produïdes",
+  "ACTIVITIES_CONSUMED": "Activitats consumides",
+  "NO_ITEMS": "No hi ha articles",
+  "NEW_PRODUCT": "Nou producte",
+  "NEW_NEIGBORHOOD": "Nou barri",
+  "NEW_ACTIVITY": "Activitat nova",
+  "SAVE": "Guardar",
+  "INPUT_REQUIRED": "Camp Requerit: {{field}}"
 }

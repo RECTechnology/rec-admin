@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { EditItemDia } from './edit-item/edit-item.dia';
 import { B2bService } from 'src/services/b2b/b2b.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
@@ -31,7 +30,11 @@ export class B2BSettingsComponent {
     ];
 
     public products = [
-        { id: 1, esp: 'Pan', cat: 'Pa', eng: 'Bread', pending: true },
+        {
+            // tslint:disable-next-line: object-literal-sort-keys
+            id: 1, esp: 'Pan', cat: 'Pa', eng: 'Bread', pending: true,
+            activities_consumed: ['Harina', 'Mantequilla'], activities_produced: ['Pan', 'ASDASd']
+        },
         { id: 2, esp: 'Agua', cat: 'Aigua', eng: 'Water', pending: false },
     ];
     public productsColumns = ['id', 'esp', 'cat', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
@@ -57,9 +60,11 @@ export class B2BSettingsComponent {
     }
 
     public editItem(type, data, callback: (id: any, data: any) => Observable<any>) {
-        const dialogRef = this.dialog.open(EditItemDia);
+        const dialogRef = this.dialog.open(AddItemDia);
         dialogRef.componentInstance.itemType = type;
         dialogRef.componentInstance.item = { ...data };
+        dialogRef.componentInstance.isEdit = true;
+        dialogRef.componentInstance.isProduct = type === 'products';
 
         return dialogRef.afterClosed()
             .subscribe((edited) => {
@@ -77,6 +82,7 @@ export class B2BSettingsComponent {
     public addItem(type: string, callback: (id: any, data: any) => Observable<any>) {
         const dialogRef = this.dialog.open(AddItemDia);
         dialogRef.componentInstance.itemType = type.toUpperCase();
+        dialogRef.componentInstance.isProduct = type === 'products';
 
         return dialogRef.afterClosed()
             .subscribe((data) => {
