@@ -53,12 +53,12 @@
                                 {{'AVAILABLE_PRODUCTS'|translate}}</p>
                             <button type="button" color="primary" mat-raised-button name="button" (click)="addProduct()">
                                 <p class="text-small">
-                                    {{'NEW'|translate}}
+                                   <i class="fa fa-plus"></i> {{'NEW_PRODUCT'|translate}}
                                 </p>
                             </button>
                         </div>
                         <translatable-list (edit)="editProducts($event)" (delete)="deleteProduct($event)"
-                            [data]="products"></translatable-list>
+                            [data]="products" [displayedColumns]="productsColumns"></translatable-list>
                     </div>
                 </div>
             </div>

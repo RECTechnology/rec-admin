@@ -7,14 +7,15 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
   templateUrl: './translatable-list.component.html',
 })
 export class TranslatableListComponent implements OnInit {
-  public displayedColumns: string[] = ['id', 'esp', 'cat', 'eng', 'actionss'];
-  @Input() public data = [];
+  @Input() public displayedColumns: string[] = ['id', 'esp', 'cat', 'eng', 'actions'];
   public dataSource: any;
+
+  @Input() public data = [];
   @Output('edit') public onEdit: EventEmitter<any> = new EventEmitter();
   @Output('delete') public onDelete: EventEmitter<any> = new EventEmitter();
 
   @ViewChild(MatPaginator, { static: true }) public paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) public sort: MatSort;
+  @ViewChild(MatSort, { static: true }) public sort: MatSort;
 
   public ngOnInit() {
     this.dataSource = new MatTableDataSource<any>(this.data);

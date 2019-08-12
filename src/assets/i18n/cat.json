@@ -947,6 +947,10 @@
   "Spanish": "Espanyol",
   "English": "Ingles",
   "Catalan": "Catalá",
+  "ESP": "Espanyol",
+  "ENG": "Ingles",
+  "CAT": "Catalá",
+
   "NEW": "Nou",
   "ADD_ITEM": "Anyadeix Element"
 }

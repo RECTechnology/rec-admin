@@ -8,3 +8,8 @@ table {
   }
 }
 
+.translatable-table-row {
+  &.pending {
+    background: rgba(rgb(255, 212, 40), .3)!important;
+  }
+}

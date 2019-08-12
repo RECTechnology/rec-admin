@@ -409,6 +409,9 @@
   "Spanish": "Spanish",
   "English": "English",
   "Catalan": "Catalan",
+  "ESP": "Spanish",
+  "ENG": "English",
+  "CAT": "Catalan",
   "NEW": "New",
   "ADD_ITEM": "Add Item"
 }

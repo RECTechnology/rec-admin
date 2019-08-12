@@ -26,34 +26,15 @@ export class B2BSettingsComponent {
     };
 
     public neighborhoods = [
-        { id: 1, esp: 'Gracia', cat: 'Gracia', eng: 'Gracia' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample' },
+        { id: 1, esp: 'Gracia', cat: 'Gracia', eng: 'Gracia', pending: true },
+        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample', pending: true },
     ];
 
     public products = [
-        { id: 1, esp: 'Pan', cat: 'Pa', eng: 'Bread' },
-        { id: 2, esp: 'Agua', cat: 'Aigua', eng: 'Water' },
+        { id: 1, esp: 'Pan', cat: 'Pa', eng: 'Bread', pending: true },
+        { id: 2, esp: 'Agua', cat: 'Aigua', eng: 'Water', pending: false },
     ];
+    public productsColumns = ['id', 'esp', 'cat', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
 
     public activities = [
         // { id: 1, esp: 'Panaderia', cat: 'Panaderia', eng: 'Bakery' },

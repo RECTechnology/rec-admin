@@ -935,6 +935,9 @@
   "Spanish": "Español",
   "English": "Ingles",
   "Catalan": "Catalan",
+  "ESP": "Español",
+  "ENG": "Ingles",
+  "CAT": "Catalan",
   "NEW": "Nuevo",
   "ADD_ITEM": "Añadir Elemento"
 }
