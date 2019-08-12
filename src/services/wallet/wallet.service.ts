@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BaseService2 } from '../base/base.service-2';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
 import { ErrorManager } from '../error-manager/error-manager';
@@ -9,13 +8,14 @@ import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BaseService } from '../base/base.service';
 
 declare let _;
 // Sorts elements by status 'available' first
 const sortActive = (a, b) => (a === b) ? 0 : (a.status === 'available' ? -1 : 1);
 
 @Injectable()
-export class WalletService extends BaseService2 {
+export class WalletService extends BaseService {
   public wallets: any[] = [];
   public methods: any[] = [];
   // tslint:disable-next-line
@@ -44,10 +44,9 @@ export class WalletService extends BaseService2 {
   constructor(
     http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
     private snackbar: MySnackBarSevice,
   ) {
-    super(http, errMan);
+    super(http, us);
     this.userFavs = JSON.parse(localStorage.getItem('user-favs') || '[]');
     this.sortFavs();
   }

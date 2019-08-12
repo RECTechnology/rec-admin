@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoginService } from '../auth.service';
+import * as deepmerge from 'deepmerge';
 
 declare let _;
 
@@ -214,5 +215,9 @@ export class UtilsService {
     ].filter((a) => !!a);
 
     return address.join(', ');
+  }
+
+  public mergeObjects(a, b) {
+    return deepmerge(a, b);
   }
 }

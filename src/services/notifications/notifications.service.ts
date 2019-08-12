@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
-import { ErrorManager } from '../error-manager/error-manager';
 
 export interface Notification {
     title: string;
@@ -21,8 +20,7 @@ export class NotificationService extends BaseService {
     constructor(
         http: HttpClient,
         public us: UserService,
-        public errMan: ErrorManager,
-    ) { super(http, us, errMan); }
+    ) { super(http, us); }
 
     public get hasNotifications(): boolean {
         return this.count > 0;

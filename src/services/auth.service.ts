@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { UserService } from './user.service';
 import { API_URL, clientID, clientSecret } from '../data/consts';
 import { BaseService } from './base/base.service';
-import { ErrorManager } from './error-manager/error-manager';
 import { UserStorage } from './user-storage/user-storage';
 import { MatDialog } from '@angular/material';
 import { MySnackBarSevice } from '../bases/snackbar-base';
@@ -24,9 +23,8 @@ export class AppAuthService extends BaseService {
   constructor(
     http: HttpClient,
     us: UserService,
-    public errMan: ErrorManager,
   ) {
-    super(http, us, errMan);
+    super(http, us);
   }
 
   public localConfig(): Observable<any> {
@@ -101,12 +99,11 @@ export class LoginService extends BaseService {
     http: HttpClient,
     public router: Router,
     public us: UserService,
-    public errMan: ErrorManager,
     public appAuthServ: AppAuthService,
     private dialog: MatDialog,
     private snackbar: MySnackBarSevice,
   ) {
-    super(http, us, errMan);
+    super(http, us);
     this.us.onLogout.subscribe(
       (resp) => {
         this.logout();
@@ -342,7 +339,6 @@ export class RegisterService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private errMan: ErrorManager,
   ) {
     this.app_tokens = JSON.parse(localStorage.getItem('app.tokens'));
   }
@@ -377,7 +373,7 @@ export class RegisterService {
 
 @Injectable()
 export class ValidateService {
-  constructor(private http: HttpClient, private errMan: ErrorManager, private aas: AppAuthService) {
+  constructor(private http: HttpClient, private aas: AppAuthService) {
   }
 
   public validate(confirmation_token: string): Observable<any> {
@@ -408,7 +404,7 @@ export class ValidateService {
 
 @Injectable()
 export class ForgotPassService {
-  constructor(private http: HttpClient, private errMan: ErrorManager, public aas: AppAuthService) { }
+  constructor(private http: HttpClient, public aas: AppAuthService) { }
 
   public sendRecoverPass(email: string, captcha_code?): Observable<any> {
     const tokens = JSON.parse(localStorage.getItem('app.tokens'));

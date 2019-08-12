@@ -47,7 +47,7 @@ export class CompanyService extends BaseService {
     private snackbar: MySnackBarSevice,
     private utils: UtilsService,
   ) {
-    super(http, us, errMan);
+    super(http, us);
     this.ls.onLogin.subscribe(
       (resp) => {
         this.doGetCompanies();

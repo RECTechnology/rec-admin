@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BaseService2 } from '../base/base.service-2';
 import { UserService } from '../user.service';
 import { ErrorManager } from '../error-manager/error-manager';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
@@ -7,9 +6,10 @@ import { API_URL } from '../../data/consts';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { BaseService } from '../base/base.service';
 
 @Injectable()
-export class SmsService extends BaseService2 {
+export class SmsService extends BaseService {
 
   public static ACTION_CHECK = 'check_sms';
   public static ACTION_RESEND = 'resend_sms';
@@ -19,18 +19,17 @@ export class SmsService extends BaseService2 {
   constructor(
     http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
     private snackbar: MySnackBarSevice,
   ) {
-    super(http, errMan);
+    super(http, us);
   }
 
   /**
    * Sms action for user
    */
-  public smsAction(user_id: string, action: any, data?): Observable<any> {
+  public smsAction(user_id: string, action: any, data: any = {}): Observable<any> {
     return this.put(
-      {},
+      data,
       null,
       `${API_URL}/admin/v1/user/${user_id}/${action}`,
     ).pipe(map((resp) => resp ? resp.data : {}));

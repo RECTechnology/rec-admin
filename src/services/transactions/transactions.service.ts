@@ -72,9 +72,8 @@ export class TransactionService extends BaseService {
   constructor(
     http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
     private ws: WalletService,
-  ) { super(http, us, errMan); }
+  ) { super(http, us); }
 
   public getLast50(filterData): Observable<any> {
     return this.get(null, filterData, `${API_URL}/system/v1/last50`).pipe(

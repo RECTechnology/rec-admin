@@ -1,7 +1,7 @@
+
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
-import { ErrorManager } from '../error-manager/error-manager';
 import { LoginService } from '../auth.service';
 import { NotificationService } from '../notifications/notifications.service';
 import { CompanyService } from '../company/company.service';
@@ -13,12 +13,12 @@ export class B2bService extends BaseService {
   constructor(
     http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
     public ls: LoginService,
     public ns: NotificationService,
     public cs: CompanyService,
   ) {
-    super(http, us, errMan);
+    super(http, us);
+    this.setFlag('translateHeaders', true);
   }
 
   public getNeighborhoods() {

@@ -21,7 +21,7 @@ export class AdminService extends BaseService {
         public ns: NotificationService,
         public cs: CompanyService,
     ) {
-        super(http, us, errMan);
+        super(http, us);
     }
 
     public checkWithdrawals() {

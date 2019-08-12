@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
-import { ErrorManager } from '../error-manager/error-manager';
-import { Currency, Crypto, Fiat } from '../../shared/entities/currency/currency';
+import { Currency } from '../../shared/entities/currency/currency';
 import { Ticker } from '../../shared/entities/ticker/ticker';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -22,8 +21,7 @@ export class CurrenciesService extends BaseService {
   constructor(
     http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
-  ) { super(http, us, errMan); }
+  ) { super(http, us); }
 
   /**
   * Gets all tickers for specified currency

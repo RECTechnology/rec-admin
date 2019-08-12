@@ -2,31 +2,49 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserService } from '../user.service';
 import { environment } from '../../environments/environment';
-import { ErrorManager } from '../error-manager/error-manager';
 import { XHR } from '../xhr/xhr';
 import { API_URL } from '../../data/consts';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-/**
-* This class is intented to be used to extend from not to be used on it's self
-*/
+export interface BaseServiceOptions {
+  flags?: {
+    translateHeaders: boolean,
+  };
+  headers: { [key: string]: string },
+}
+
 @Injectable()
 export class BaseService {
+
   public xhr: XHR;
+  private opts: BaseServiceOptions;
+  private DEFAULT_OPTS = {
+    flags: {
+      translateHeaders: false,
+    },
+    headers: {
+      'accept': 'application/json',
+      'content-type': 'application/json',
+    },
+  };
+
   constructor(
     public http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
   ) {
     this.xhr = new XHR();
+    this.opts = this.DEFAULT_OPTS;
   }
 
-  /**
-   * Get the url for the http-call
-   * @param  {String} id #optional - If the url should be for an item
-   * @return {String} the url to make the call with
-  */
+  public setFlag(name: string, on: boolean = true) {
+    this.opts.flags[name] = on;
+  }
+
+  public getFlag(name: string) {
+    return this.opts.flags[name] || false;
+  }
+
   public getUrl(id?: any) {
     return API_URL || environment.url;
   }
@@ -37,6 +55,25 @@ export class BaseService {
   */
   public getToken() {
     return this.us.tokens.access_token;
+  }
+
+  public getHeaders(overwriteHeaders: any = {}): HttpHeaders {
+    const headers = new HttpHeaders({
+      authorization: 'Bearer ' + this.getToken(),
+      ...this.opts.headers,
+      ...this.getAdditionalHeaders(),
+      ...overwriteHeaders,
+    });
+    return headers;
+  }
+
+  public getAdditionalHeaders(): ({ [k: string]: string }) {
+    const headers = {};
+    if (this.getFlag('translateHeaders')) {
+      headers['Content-Language'] = 'true';
+      headers['Accept-Language'] = 'true';
+    }
+    return headers;
   }
 
   public xhrcall(data, method, path, contentType) {
@@ -55,24 +92,11 @@ export class BaseService {
     });
   }
 
-  /**
-   * Realizes a GET request
-   * @param  {String} id      #optional - is used to call this.getUrl(id?) with the id
-   * @param  {Array}  params  #optional - the parameters to be passed to the request
-   * @param  {String} url     #optional - if passed it will use this url instead of this.getUrl()
-   * @return {Observable}     a Observable that resolves in the response
-  */
   public get(
     id?: string, params?: any, url?: string,
     overwriteHeaders: any = {}, overwriteOptions: any = {},
   ): Observable<any> {
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'authorization': 'Bearer ' + this.getToken(),
-      'content-type': 'application/json',
-      ...overwriteHeaders,
-    });
-
+    const headers = this.getHeaders(overwriteHeaders);
     let searchParams: HttpParams = new HttpParams();
 
     if (params instanceof Array) {
@@ -109,18 +133,8 @@ export class BaseService {
     );
   }
 
-  /**
-   * Realizes a DELETE request
-   * @param  {String} id      #optional - is used to call this.getUrl(id?) with the id
-   * @param  {String} url     #optional - if passed it will use this url instead of this.getUrl()
-   * @return {Observable}     a Observable that resolves in the response
-  */
-  public delete(id?: string, url?: string, params: any = {}): Observable<any> {
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'authorization': 'Bearer ' + this.getToken(),
-      'content-type': 'application/json',
-    });
+  public delete(id?: string, url?: string, params: any = {}, overwriteHeaders: any = {}): Observable<any> {
+    const headers = this.getHeaders(overwriteHeaders);
     const options = ({
       body: params,
       headers,
@@ -136,24 +150,13 @@ export class BaseService {
     );
   }
 
-  /**
-   * Realizes a POST request
-   * @param  {Object} data #optional - data to be sent in the POST request
-   * @param  {String} id   #optional - is used to call this.getUrl(id?) with the id
-   * @param  {String} url  #optional - if passed it will use this url instead of this.getUrl()
-   * @return {Observable}  a Observable that resolves in the response
-  */
-  public post(data, id: string, url: string, content_type?): Observable<any> {
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'authorization': 'Bearer ' + this.getToken(),
-      'content-type': content_type || 'application/json',
-    });
-
-    const options = ({
-      headers,
-      method: 'POST',
-    });
+  public post(
+    data: any, id: string,
+    url: string, content_type: string = 'application/json',
+    overwriteHeaders: any = {},
+  ): Observable<any> {
+    const headers = this.getHeaders({ 'content-type': content_type, ...overwriteHeaders });
+    const options = { headers };
 
     let params = data;
     if (content_type === 'application/x-www-form-urlencoded') {
@@ -187,24 +190,9 @@ export class BaseService {
     );
   }
 
-  /**
-   * Realizes a PATCH request
-   * @param  {Object} data #optional - data to be sent in the PATCH request
-   * @param  {String} id   #optional - is used to call this.getUrl(id?) with the id
-   * @param  {String} url  #optional - if passed it will use this url instead of this.getUrl()
-   * @return {Observable}  a Observable that resolves in the response
-  */
-  public patch(data, id?: string, url?: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'authorization': 'Bearer ' + this.getToken(),
-      'content-type': 'application/json',
-    });
-
-    const options = ({
-      headers,
-      method: 'PATCH',
-    });
+  public patch(data, id?: string, url?: string, overwriteHeaders: any = {}): Observable<any> {
+    const headers = this.getHeaders(overwriteHeaders);
+    const options = { headers };
 
     return this.http.patch(
       url || this.getUrl(id),
@@ -216,23 +204,21 @@ export class BaseService {
     );
   }
 
-  public put(data, id: string, url: string, content_type?: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'authorization': 'Bearer ' + this.getToken(),
-      'content-type': (content_type || 'application/json'),
-    });
-
-    const options = ({
-      headers,
-      method: 'PUT',
-    });
+  public put(
+    data: any, id: string,
+    url: string, content_type: string = 'application/json',
+    overwriteHeaders: any = {},
+  ): Observable<any> {
+    const headers = this.getHeaders({ 'content-type': content_type, ...overwriteHeaders });
+    const options = { headers };
 
     let params = null;
     if (content_type === 'application/x-www-form-urlencoded') {
       params = new HttpParams();
       for (const key in data) {
-        if (key !== 'grant_types') { params.set(key, data[key]); }
+        if (key !== 'grant_types') {
+          params = params.set(key, data[key]);
+        }
       }
       if (data.grant_types) {
         for (const gtype of data.grant_types) {
@@ -251,21 +237,11 @@ export class BaseService {
     );
   }
 
-  /* Utils */
-  public mapDateStringToDate(prop) {
-    return (el) => {
-      const d = el[prop];
-      el.updated = new Date(d);
-      return el;
-    };
-  }
-
   public extractData(res: any) {
     return res;
   }
 
   public handleError(error: Response | any) {
-    console.log('asdasdoahsdohasd', error);
     let cleanError = error;
     const errStr = error.error || error;
 

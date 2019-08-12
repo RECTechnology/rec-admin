@@ -14,9 +14,8 @@ export class AppService extends BaseService {
   constructor(
     http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
   ) {
-    super(http, us, errMan);
+    super(http, us);
   }
 
   public getInfo() {
