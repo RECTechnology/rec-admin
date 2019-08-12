@@ -388,5 +388,10 @@
   "B2B_SEND": "Send B2B",
   "SETTINGS": "Settings",
   "B2B_MODULE": "B2B Module",
-  "REC_ENTITIES": "REC Entities"
+  "REC_ENTITIES": "REC Entities",
+  "POSIBLE_PROVIDERS": "Posible Providers",
+  "POSIBLE_CLIENTS": "Posible Clients",
+  "NO_BUSINESS_BUYING": "There aren't any bussiness buying that",
+  "NO_BUSINESS_SELLING": "There aren't any bussiness selling that",
+  "SUGEST_SOME": "Do you want to sugest one?"
 }

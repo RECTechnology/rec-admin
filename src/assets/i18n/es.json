@@ -913,5 +913,8 @@
   "B2B_SEND": "Envio B2B",
   "SETTINGS": "Configuración",
   "B2B_MODULE": "Módulo B2B",
-  "REC_ENTITIES": "Entidades del REC"
+  "REC_ENTITIES": "Entidades del REC",
+  "NO_BUSINESS_BUYING": "No hay negocios que compren esto", 
+  "NO_BUSINESS_SELLING": "No hay negocios que vendan esto", 
+  "SUGEST_SOME": "¿Quiere sugerir alguno?"
 }

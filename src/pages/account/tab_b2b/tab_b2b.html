@@ -23,7 +23,7 @@
               <h4 mat-line>{{prov.name}}</h4>
               <p mat-line *ngIf="prov.description"> {{prov.description}} </p>
               <p mat-line *ngIf="!prov.description">
-                Aun no tenemos empresas que vendan esto, <a href="https://rec.barcelona/es/contacto/" target="_blank">¿Quieres sugerir alguna?</a>
+                  {{'NO_BUSINESS_SELLINGs'|translate}}, <a href="https://rec.barcelona/es/contacto/" target="_blank">{{'SUGEST_SOME'|translate}}</a>
               </p>
             </mat-list-item>
           </mat-list>
@@ -38,7 +38,7 @@
               <h4 mat-line>{{client.name}}</h4>
               <p mat-line *ngIf="client.description"> {{client.description}} </p>
               <p mat-line *ngIf="!client.description">
-                Aun no tenemos empresas que compren esto, <a href="/">¿Quieres sugerir alguna?</a>
+                {{'NO_BUSINESS_BUYING'|translate}},  <a href="/">¿Quieres sugerir alguna?</a>
               </p>
             </mat-list-item>
           </mat-list>
