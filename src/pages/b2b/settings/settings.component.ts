@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AddItemDia } from './add-item/add-item.dia';
 
+
 @Component({
     selector: 'b2b-settings',
     templateUrl: './settings.html',
@@ -39,10 +40,7 @@ export class B2BSettingsComponent {
     ];
     public productsColumns = ['id', 'cat', 'esp', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
 
-    public activities = [
-        // { id: 1, esp: 'Panaderia', cat: 'Panaderia', eng: 'Bakery' },
-        // { id: 2, esp: 'Bar', cat: 'Bar', eng: 'Pub' },
-    ];
+    public activities = [];
 
     constructor(
         public controles: ControlesService,
@@ -54,7 +52,7 @@ export class B2BSettingsComponent {
     ) {
         this.route.queryParams
             .subscribe((params) => {
-                this.tab = params.tab || 'neighborhoods';
+                this.tab = params.tab || 'activities';
                 this.currentTab = this.tabMap[this.tab] || 0;
             });
     }

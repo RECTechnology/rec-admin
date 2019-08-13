@@ -51,6 +51,7 @@ import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
 import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
 import { AddItemDia } from 'src/pages/b2b/settings/add-item/add-item.dia';
 import { TranslatableListComponent } from 'src/pages/b2b/components/translatable-list/translatable-list.component';
+import { BaseService2 } from 'src/services/base/base.service-v2';
 
 @NgModule({
   declarations: [
@@ -155,6 +156,7 @@ import { TranslatableListComponent } from 'src/pages/b2b/components/translatable
   ],
   providers: [
     CompanyService,
+    BaseService2,
   ],
 })
 export class SharedModule { }
