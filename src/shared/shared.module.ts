@@ -52,6 +52,8 @@ import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component'
 import { AddItemDia } from 'src/pages/b2b/settings/add-item/add-item.dia';
 import { TranslatableListComponent } from 'src/pages/b2b/components/translatable-list/translatable-list.component';
 import { BaseService2 } from 'src/services/base/base.service-v2';
+import { CrudBaseService } from 'src/services/base/crud.base';
+import { CrudModule } from 'src/services/crud/crud.module';
 
 @NgModule({
   declarations: [
@@ -153,10 +155,12 @@ import { BaseService2 } from 'src/services/base/base.service-v2';
     AppRoutingModule, // Module to manage App Routing
     TranslateModule.forChild(),
     AgmCoreModule,
+    CrudModule,
   ],
   providers: [
     CompanyService,
     BaseService2,
+    CrudBaseService,
   ],
 })
 export class SharedModule { }

@@ -8,6 +8,7 @@ import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { EditAccountData } from '../../../pages/dialogs/edit-account/edit-account.dia';
 import { MatDialog } from '@angular/material';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 @Component({
   selector: 'account-details-tab',
@@ -29,6 +30,7 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
     public utils: UtilsService,
     public snackbar: MySnackBarSevice,
     public dialog: MatDialog,
+    public crudAccounts: AccountsCrud,
   ) {
 
   }
@@ -44,10 +46,10 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
   public setUp() {
     console.log('setup');
     this.loading = true;
-    this.companyService.getAccount(this.account_id)
-      .subscribe((resp) => {
+    this.crudAccounts.find(this.account_id)
+      .subscribe((resp: any) => {
         console.log('Account: ', resp);
-        this.companyService.selectedCompany = resp;
+        this.companyService.selectedCompany = resp.data;
         this.controles.showAccountDetails = true;
         this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
         this.loading = false;

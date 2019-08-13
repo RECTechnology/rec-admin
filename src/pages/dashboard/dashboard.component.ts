@@ -5,6 +5,7 @@ import { ControlesService } from '../../services/controles/controles.service';
 import { LoginService } from '../../services/auth/auth.service';
 import { PageBase, OnLogout } from '../../bases/page-base';
 import { AppService } from '../../services/app/app.service';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 declare const Morris;
 
@@ -31,8 +32,18 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     private dialog: MatDialog,
     public app: AppService,
     public ls: LoginService,
+    public crudAccounts: AccountsCrud,
   ) {
     super();
+    this.crudAccounts.list()
+      .subscribe(
+        (resp) => {
+          console.log('resp asd', resp);
+        },
+        (err) => {
+          console.log('err adsa', err);
+        },
+      );
   }
 
   // Custom hooks

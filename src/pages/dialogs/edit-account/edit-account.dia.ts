@@ -8,6 +8,7 @@ import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.
 import { TranslateService } from '@ngx-translate/core';
 import { AdminService } from '../../../services/admin/admin.service';
 import { MapsAPILoader } from '@agm/core';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 @Component({
   providers: [
@@ -52,6 +53,7 @@ export class EditAccountData {
     public translate: TranslateService,
     public companyService: CompanyService,
     public adminService: AdminService,
+    public crudAccounts: AccountsCrud,
   ) {
     this.lang = this.langMap[us.lang];
     this.companyService.listCategories()
@@ -82,6 +84,9 @@ export class EditAccountData {
 
     if (!changedProps.category) {
       delete changedProps.category;
+    } else {
+      changedProps.category_id = changedProps.category;
+      delete changedProps.category;
     }
 
     const schedule = this.utils.constructScheduleString(this.schedule);
@@ -90,7 +95,7 @@ export class EditAccountData {
     }
 
     if (Object.keys(changedProps).length) {
-      this.adminService.updateAccount(changedProps, id)
+      this.crudAccounts.update(id, changedProps)
         .subscribe(
           (resp) => {
             this.snackBar.open('Updated account correctly!', 'ok');

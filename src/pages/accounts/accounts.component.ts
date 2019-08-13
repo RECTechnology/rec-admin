@@ -15,6 +15,7 @@ import { TableListHeaderOptions } from '../../components/table-list/tl-header/tl
 import { AdminService } from '../../services/admin/admin.service';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { ListAccountsParams } from 'src/interfaces/search';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 @Component({
   selector: 'accounts',
@@ -118,7 +119,8 @@ export class AccountsPage implements AfterContentInit {
     public controles: ControlesService,
     public ws: WalletService,
     public snackbar: MySnackBarSevice,
-    public as: AdminService,
+    // public as: AdminService,
+    public crudAccounts: AccountsCrud,
   ) {
     this.route.queryParams
       .subscribe((params) => {
@@ -160,7 +162,7 @@ export class AccountsPage implements AfterContentInit {
     const data: ListAccountsParams = this.getCleanParams(query);
 
     this.loading = true;
-    this.as.listAccountsV3(data).subscribe(
+    this.crudAccounts.search(data).subscribe(
       (resp) => {
         this.companyService.companies = resp.data.elements;
         this.companyService.totalAccounts = resp.data.total;
@@ -187,7 +189,7 @@ export class AccountsPage implements AfterContentInit {
   }
 
   public exportCall(opts) {
-    return this.as.exportAccountsV3(opts);
+    return this.crudAccounts.export(opts);
   }
 
   public export() {
@@ -198,7 +200,7 @@ export class AccountsPage implements AfterContentInit {
 
     const dialogRef = this.dialog.open(ExportDialog);
     dialogRef.componentInstance.filters = data;
-    dialogRef.componentInstance.fn = this.as.exportAccountsV3.bind(this.as);
+    dialogRef.componentInstance.fn = this.crudAccounts.export.bind(this.crudAccounts);
     dialogRef.componentInstance.entityName = 'Accounts';
     dialogRef.componentInstance.defaultExports = [...this.defaultExportKvp];
     dialogRef.componentInstance.list = [...this.defaultExportKvp];

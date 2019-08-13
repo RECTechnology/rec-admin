@@ -6,6 +6,7 @@ import { XHR } from '../xhr/xhr';
 import { API_URL } from '../../data/consts';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { utils } from 'protractor';
 
 export interface BaseService2Options {
   base_url: string;
@@ -48,7 +49,10 @@ export class BaseService2 {
   }
 
   public getUrl(url?: any) {
-    return [(this.opts.base_url || API_URL || environment.url), url].join('');
+    if (url && !url.map) {
+      url = [url];
+    }
+    return [this.opts.base_url, ...url].join('');
   }
 
   /**
@@ -95,7 +99,7 @@ export class BaseService2 {
   }
 
   public get(
-    url?: string, params?: any,
+    url?: string | string[], params?: any,
     overwriteHeaders: any = {}, overwriteOptions: any = {},
   ): Observable<any> {
     const headers = this.getHeaders(overwriteHeaders);
@@ -126,8 +130,11 @@ export class BaseService2 {
       ...overwriteOptions,
     };
 
+    let URL = this.getUrl(url)
+    console.log('CRUD::find(' + URL + ')');
+
     return this.http.get(
-      this.getUrl(url),
+      URL,
       options,
     ).pipe(
       map(this.extractData),
@@ -135,7 +142,7 @@ export class BaseService2 {
     );
   }
 
-  public delete(url: string, data: any = {}, overwriteHeaders: any = {}): Observable<any> {
+  public delete(url: string | string[], data: any = {}, overwriteHeaders: any = {}): Observable<any> {
     const headers = this.getHeaders(overwriteHeaders);
     const options = ({
       body: data,
@@ -153,7 +160,7 @@ export class BaseService2 {
   }
 
   public post(
-    url: string, data: any, content_type: string = 'application/json',
+    url: string | string[], data: any, content_type: string = 'application/json',
     overwriteHeaders: any = {},
   ): Observable<any> {
     const headers = this.getHeaders({ 'content-type': content_type, ...overwriteHeaders });
@@ -191,7 +198,7 @@ export class BaseService2 {
     );
   }
 
-  public patch(url: string, data: any, overwriteHeaders: any = {}): Observable<any> {
+  public patch(url: string | string[], data: any, overwriteHeaders: any = {}): Observable<any> {
     const headers = this.getHeaders(overwriteHeaders);
     const options = { headers };
 
@@ -206,7 +213,7 @@ export class BaseService2 {
   }
 
   public put(
-    url: string, data: any, content_type: string = 'application/json',
+    url: string | string[], data: any, content_type: string = 'application/json',
     overwriteHeaders: any = {},
   ): Observable<any> {
     const headers = this.getHeaders({ 'content-type': content_type, ...overwriteHeaders });

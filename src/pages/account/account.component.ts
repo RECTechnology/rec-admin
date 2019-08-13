@@ -9,6 +9,7 @@ import { MatDialog } from '../../../node_modules/@angular/material';
 import { CompanyService } from '../../services/company/company.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 @Component({
   selector: 'account',
@@ -48,6 +49,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     public ls: LoginService,
     public dialog: MatDialog,
     public snackbar: MySnackBarSevice,
+    public crudAccounts: AccountsCrud,
   ) {
     super();
   }
@@ -67,11 +69,12 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   }
 
   public setUp() {
-    this.companyService.getAccount(this.account_id)
+    this.crudAccounts.find(this.account_id)
       .subscribe((resp) => {
         this.companyService.selectedCompany = resp;
         this.controles.showAccountDetails = true;
       }, (error) => {
+        console.log(error);
         this.snackbar.open('Account not found!', 'ok');
         this.router.navigate([`/dashboard`]);
       });

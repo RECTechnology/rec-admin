@@ -1,6 +1,6 @@
 <div style="height: 100%; padding: 20px">
   <mat-card style="padding: 20px">
-    <div *ngIf="!loading && companyService.selectedCompany && companyService.selectedCompany.id">
+    <div *ngIf="!loading && companyService.selectedCompany">
       <div class="group-col-left" style="width: 100%; padding: 20px">
         <div class="group-row-left center h v" style="position: relative;width: 100%">
           <img src="{{companyService.selectedCompany.company_image || Brand.account_default_image}}" alt=""
