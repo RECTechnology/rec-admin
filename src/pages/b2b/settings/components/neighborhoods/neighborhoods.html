@@ -1,0 +1,20 @@
+<div style="height: 100%">
+    <div class="row" style="margin: 0; padding: 20px;">
+        <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
+            <div class="header bordered-bottom" style="padding: 10px 15px">
+                <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
+                    {{'AVAILABLE_NEIGHBORHOODS'|translate}}</p>
+
+                <button type="button" color="primary" mat-raised-button name="button"
+                    (click)="addNeighborhood()">
+                    <p class="text-small">
+                        {{'NEW'|translate}}
+                    </p>
+                </button>
+            </div>
+            <translatable-list (edit)="editNeighborhood($event)" (delete)="deleteNeighborhood($event)"
+                [data]="neighborhoods">
+            </translatable-list>
+        </div>
+    </div>
+</div>

@@ -3,10 +3,7 @@ import { ControlesService } from 'src/services/controles/controles.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { B2bService } from 'src/services/b2b/b2b.service';
-import { Observable } from 'rxjs/internal/Observable';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
-import { AddItemDia } from './add-item/add-item.dia';
-
 
 @Component({
     selector: 'b2b-settings',
@@ -16,31 +13,14 @@ export class B2BSettingsComponent {
     public tab: string = '';
     public currentTab = 0;
     public tabMap = {
-        // tslint:disable-next-line: object-literal-sort-keys
         activities: 0,
         products: 1,
+        // tslint:disable-next-line: object-literal-sort-keys
         neighborhoods: 2,
         0: 'activities',
         1: 'products',
         2: 'neighborhoods',
     };
-
-    public neighborhoods = [
-        { id: 1, esp: 'Gracia', cat: 'Gracia', eng: 'Gracia', pending: true },
-        { id: 2, esp: 'Eixample', cat: 'Eixample', eng: 'Eixample', pending: true },
-    ];
-
-    public products = [
-        {
-            // tslint:disable-next-line: object-literal-sort-keys
-            id: 1, esp: 'Pan', cat: 'Pa', eng: 'Bread', pending: true,
-            activities_consumed: ['Harina', 'Mantequilla'], activities_produced: ['Pan', 'ASDASd']
-        },
-        { id: 2, esp: 'Agua', cat: 'Aigua', eng: 'Water', pending: false },
-    ];
-    public productsColumns = ['id', 'cat', 'esp', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
-
-    public activities = [];
 
     constructor(
         public controles: ControlesService,
@@ -56,74 +36,6 @@ export class B2BSettingsComponent {
                 this.currentTab = this.tabMap[this.tab] || 0;
             });
     }
-
-    public editItem(type, data, callback: (id: any, data: any) => Observable<any>) {
-        const dialogRef = this.dialog.open(AddItemDia);
-        dialogRef.componentInstance.itemType = type;
-        dialogRef.componentInstance.item = { ...data };
-        dialogRef.componentInstance.isEdit = true;
-        dialogRef.componentInstance.isProduct = type === 'products';
-
-        return dialogRef.afterClosed()
-            .subscribe((edited) => {
-                if (edited) {
-                    callback.call(this.b2b, data.id, edited)
-                        .subscribe((resp) => {
-                            this.snackbar.open('EDITED_CORRECTLY', 'ok');
-                        }, (error) => {
-                            this.snackbar.open(error.message, 'ok');
-                        });
-                }
-            });
-    }
-
-    public addItem(type: string, callback: (id: any, data: any) => Observable<any>) {
-        const dialogRef = this.dialog.open(AddItemDia);
-        dialogRef.componentInstance.itemType = type.toUpperCase();
-        dialogRef.componentInstance.isProduct = type === 'products';
-
-        return dialogRef.afterClosed()
-            .subscribe((data) => {
-                if (data) {
-                    callback.call(this.b2b, data)
-                        .subscribe((resp) => {
-                            this.snackbar.open('ADDED_CORRECTLY', 'ok');
-                        }, (error) => {
-                            this.snackbar.open(error.message, 'ok');
-                        });
-                }
-            });
-    }
-
-    public editNeighborhood($event) {
-        return this.editItem('neighborhood', $event, this.b2b.editNeighborhood);
-    }
-
-    public editProducts($event) {
-        return this.editItem('products', $event, this.b2b.editProducts);
-    }
-
-    public editActivities($event) {
-        return this.editItem('activities', $event, this.b2b.editActivities);
-    }
-
-    public addNeighborhood() {
-        return this.addItem('neighborhood', this.b2b.addNeighborhood);
-    }
-
-    public addProduct() {
-        return this.addItem('products', this.b2b.addProducts);
-    }
-
-    public addActivity() {
-        return this.addItem('activities', this.b2b.addActivities);
-    }
-
-    public deleteProduct($event) { }
-
-    public deleteActivity($event) { }
-
-    public deleteNeighborhood($event) { }
 
     /* Called when tab change, so url changes also */
     public changeUrl($event) {

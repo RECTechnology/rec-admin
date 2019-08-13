@@ -4,67 +4,13 @@
 <div class="page b2b-settings" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
     <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)">
         <mat-tab label="{{'ACTIVITIES'|translate}}">
-            <div style="height: 100%">
-                <div class="row" style="margin: 0; padding: 20px;">
-                    <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
-                        <div class="header  bordered-bottom" style="padding: 10px 15px">
-                            <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
-                                {{'AVAILABLE_ACTIVITIES'|translate}}</p>
-                            <button type="button" color="primary" mat-raised-button name="button"
-                                (click)="addActivity()">
-                                <p class="text-small">
-                                    {{'NEW'|translate}}
-                                </p>
-                            </button>
-                        </div>
-                        <translatable-list (edit)="editActivities($event)" (delete)="deleteActivity($event)"
-                            [data]="activities">
-                        </translatable-list>
-                    </div>
-                </div>
-            </div>
+            <tab-activities></tab-activities>
         </mat-tab>
         <mat-tab label="{{'PRODUCTS'|translate}}">
-            <div style="height: 100%">
-                <div class="row" style="margin: 0; padding: 20px;">
-                    <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
-                        <div class="header bordered-bottom" style="padding: 10px 15px">
-                            <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
-                                {{'AVAILABLE_PRODUCTS'|translate}}</p>
-                            <button type="button" color="primary" mat-raised-button name="button"
-                                (click)="addProduct()">
-                                <p class="text-small">
-                                    <i class="fa fa-plus"></i> {{'NEW_PRODUCT'|translate}}
-                                </p>
-                            </button>
-                        </div>
-                        <translatable-list (edit)="editProducts($event)" (delete)="deleteProduct($event)"
-                            [data]="products" [displayedColumns]="productsColumns"></translatable-list>
-                    </div>
-                </div>
-            </div>
+            <tab-products></tab-products>
         </mat-tab>
         <mat-tab label="{{'NEIGBORHOODS'|translate}}">
-            <div style="height: 100%">
-                <div class="row" style="margin: 0; padding: 20px;">
-                    <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
-                        <div class="header bordered-bottom" style="padding: 10px 15px">
-                            <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
-                                {{'AVAILABLE_NEIGHBORHOODS'|translate}}</p>
-
-                            <button type="button" color="primary" mat-raised-button name="button"
-                                (click)="addNeighborhood()">
-                                <p class="text-small">
-                                    {{'NEW'|translate}}
-                                </p>
-                            </button>
-                        </div>
-                        <translatable-list (edit)="editNeighborhood($event)" (delete)="deleteNeighborhood($event)"
-                            [data]="neighborhoods">
-                        </translatable-list>
-                    </div>
-                </div>
-            </div>
+            <tab-neighborhoods></tab-neighborhoods>
         </mat-tab>
     </mat-tab-group>
     <page-footer style="margin-top: 30px"></page-footer>

@@ -54,6 +54,9 @@ import { TranslatableListComponent } from 'src/pages/b2b/components/translatable
 import { BaseService2 } from 'src/services/base/base.service-v2';
 import { CrudBaseService } from 'src/services/base/crud.base';
 import { CrudModule } from 'src/services/crud/crud.module';
+import { ProductsTabComponent } from 'src/pages/b2b/settings/components/products/products.tab';
+import { ActivitiesTabComponent } from 'src/pages/b2b/settings/components/activities/activities.tab';
+import { NeighborhoodsTabComponent } from 'src/pages/b2b/settings/components/neighborhoods/neighborhoods.tab';
 
 @NgModule({
   declarations: [
@@ -102,6 +105,9 @@ import { CrudModule } from 'src/services/crud/crud.module';
     B2BSettingsComponent,
     TranslatableListComponent,
     AddItemDia,
+    ProductsTabComponent,
+    ActivitiesTabComponent,
+    NeighborhoodsTabComponent,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -147,6 +153,9 @@ import { CrudModule } from 'src/services/crud/crud.module';
     B2BSettingsComponent,
     TranslatableListComponent,
     AddItemDia,
+    ProductsTabComponent,
+    ActivitiesTabComponent,
+    NeighborhoodsTabComponent,
   ],
   imports: [
     BrowserModule,
