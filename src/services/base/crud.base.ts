@@ -60,7 +60,7 @@ export class CrudBaseService extends BaseService2 {
             .pipe(this.itemMapper());
     }
 
-    public search(data: SearchAccountsParams): Observable<any> {
+    public search(data: SearchAccountsParams = {}): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_SEARCH];
         return this.get(url, data)
             .pipe(this.itemMapper());
