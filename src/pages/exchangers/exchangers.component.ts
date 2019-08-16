@@ -3,13 +3,14 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UserService } from '../../services/user.service';
-import { PageBase } from '../../bases/page-base';
+import { PageBase, TablePageBase } from '../../bases/page-base';
 import { LoginService } from '../../services/auth/auth.service';
 import { MatDialog, Sort } from '@angular/material';
 import { TlHeader } from '../../components/table-list/tl-table/tl-table.component';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 @Component({
   selector: 'exchangers',
@@ -18,11 +19,8 @@ import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia'
   ],
   templateUrl: './exchangers.html',
 })
-export class ExchangersComponent extends PageBase {
+export class ExchangersComponent extends TablePageBase {
   public pageName = 'Exchangers';
-  public showing = 0;
-  public sortedData = [];
-  public sellerList = [];
   public wholesale = 1;
   public retailer = 1;
   public only_offers = false;
@@ -63,47 +61,32 @@ export class ExchangersComponent extends PageBase {
     public route: ActivatedRoute,
     public controles: ControlesService,
     public router: Router,
-    public us: UserService,
     public ls: LoginService,
     public dialog: MatDialog,
-    public as: AdminService,
+    public accountsCrud: AccountsCrud,
   ) {
     super();
-    this.getSellers();
   }
 
-  public getSellers(query: string = '') {
+  public ngOnInit() {
+    this.search();
+  }
+
+  public search(query: string = '') {
     const data: ListAccountsParams = this.getCleanParams(query);
 
     this.loading = true;
-    this.as.listAccountsV3(data).subscribe(
+    this.accountsCrud.list(data).subscribe(
       (resp) => {
-        this.sellerList = resp.data.elements;
+        this.data = resp.data.elements;
         this.total = resp.data.total;
-        this.sortedData = this.sellerList.slice();
+        this.sortedData = this.data.slice();
         this.loading = false;
       },
       (error) => {
         this.loading = false;
       },
     );
-  }
-
-  public search(query: string = '') {
-    this.filterChanged = true;
-    this.getSellers(query);
-  }
-
-  public sortData(sort: Sort): void {
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = this.sellerList.slice();
-      this.sortID = 'id';
-      this.sortDir = 'desc';
-    } else {
-      this.sortID = sort.active;
-      this.sortDir = sort.direction.toUpperCase();
-    }
-    this.search();
   }
 
   public getCleanParams(query?: string) {
@@ -130,17 +113,11 @@ export class ExchangersComponent extends PageBase {
 
     const dialogRef = this.dialog.open(ExportDialog);
     dialogRef.componentInstance.filters = data;
-    dialogRef.componentInstance.fn = this.as.exportAccountsV3.bind(this.as);
+    dialogRef.componentInstance.fn = this.accountsCrud.export.bind(this.accountsCrud);
     dialogRef.componentInstance.entityName = 'Exchangers';
     dialogRef.componentInstance.defaultExports = [...this.defaultExportKvp];
     dialogRef.componentInstance.list = [...this.defaultExportKvp];
 
     return dialogRef.afterClosed();
-  }
-
-  public changedPage($event) {
-    this.limit = $event.pageSize;
-    this.offset = this.limit * ($event.pageIndex);
-    this.search();
   }
 }

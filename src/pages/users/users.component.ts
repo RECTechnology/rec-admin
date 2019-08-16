@@ -1,22 +1,21 @@
-import { Component, AfterContentInit, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AddUser } from '../dialogs/add-user/add-user.dia';
-import { MatDialog, Sort } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { ConfirmationMessage } from '../../components/dialogs/confirmation-message/confirmation.dia';
 import { CompanyService } from '../../services/company/company.service';
 import { ViewDetails } from '../dialogs/view-details/view-details.dia';
 import { EditUserData } from '../dialogs/edit-user/edit-user.dia';
-import { environment } from '../../environments/environment';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { ControlesService } from '../../services/controles/controles.service';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { TlHeader, TlItemOption } from 'src/components/table-list/tl-table/tl-table.component';
-import { PageBase } from 'src/bases/page-base';
+import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
 
@@ -25,7 +24,7 @@ import { UsersCrud } from 'src/services/crud/users/users.crud';
   styleUrls: ['./users.css'],
   templateUrl: './users.html',
 })
-export class UsersPage extends PageBase implements OnInit {
+export class UsersPage extends TablePageBase implements OnInit {
   public pageName = 'Users';
   public canAddUser = false;
   public sortedData: any[] = [];
@@ -117,7 +116,7 @@ export class UsersPage extends PageBase implements OnInit {
     this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY'); // <<< TODO: Improve
     this.route.queryParams.subscribe((params) => {
       if (!params.sort) {
-        this.getUsers();
+        this.search();
       }
     });
   }
@@ -142,7 +141,7 @@ export class UsersPage extends PageBase implements OnInit {
     dialogRef.componentInstance.addReseller = false;
     dialogRef.afterClosed().subscribe((result) => {
       dialogRef = null;
-      this.getUsers();
+      this.search();
     });
   }
 
@@ -151,7 +150,7 @@ export class UsersPage extends PageBase implements OnInit {
     const dialogRef = this.dialog.open(EditUserData);
     dialogRef.componentInstance.user = user;
     dialogRef.afterClosed().subscribe((result) => {
-      this.getUsers();
+      this.search();
     });
   }
 
@@ -180,7 +179,7 @@ export class UsersPage extends PageBase implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.getUsers();
+        this.search();
       }
     });
   }
@@ -207,29 +206,6 @@ export class UsersPage extends PageBase implements OnInit {
     ref.componentInstance.btnConfirmText = 'Resend';
   }
 
-  public sortData(sort: Sort): void {
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = this.companyService.companyUsers.slice();
-      this.sortID = 'id';
-      this.sortDir = 'desc';
-    } else {
-      this.sortID = sort.active;
-      this.sortDir = sort.direction.toUpperCase();
-    }
-
-    this.search();
-  }
-
-  public search(query: string = '') {
-    this.getUsers(query);
-  }
-
-  public changedPage($event) {
-    this.limit = $event.pageSize;
-    this.offset = this.limit * ($event.pageIndex);
-    this.getUsers();
-  }
-
   public export() {
     const data: ListAccountsParams = this.getCleanParams();
 
@@ -246,7 +222,7 @@ export class UsersPage extends PageBase implements OnInit {
     return dialogRef.afterClosed();
   }
 
-  private getUsers(query: string = '') {
+  public search(query: string = '') {
     this.loading = true;
     const data: ListAccountsParams = this.getCleanParams(query);
 
@@ -267,7 +243,7 @@ export class UsersPage extends PageBase implements OnInit {
     this.companyService.removeUserFromSystem(user.id)
       .subscribe(
         (resp) => {
-          this.getUsers();
+          this.search();
           this.snackbar.open('Deleted user from system', 'ok');
         },
         (error) => {

@@ -16,13 +16,6 @@
           <mat-checkbox style="margin-right: 8px" color="primary" [(ngModel)]="active" (ngModelChange)="search();">
             <span class="small-text">{{'Active'|translate}}</span>
           </mat-checkbox>
-          <!-- <mat-checkbox style="margin-right: 8px" color="primary" (change)="selectType('COMPANY')" [checked]="isComp">
-            <span class="small-text">{{'Company'|translate}}</span>
-          </mat-checkbox>
-          <mat-checkbox style="margin-right: 8px" color="primary" (change)="selectType('PRIVATE')" [checked]="isPriv">
-            <span class="small-text">{{'Private'|translate}}</span>
-          </mat-checkbox> -->
-
           <mat-radio-group aria-label="Select an option" [(ngModel)]="type" (change)="changedType()">
             <mat-radio-button style="margin-right: 10px" value="COMPANY" color="primary">
               <span class="small-text">{{'Company'|translate}}</span>

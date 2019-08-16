@@ -9,13 +9,12 @@ import { CompanyService } from '../../services/company/company.service';
 import { ControlesService } from '../../services/controles/controles.service';
 import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
-import { environment } from '../../environments/environment';
 import { TlHeader, TlItemOption, TableListOptions } from '../../components/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from '../../components/table-list/tl-header/tl-header.component';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { ListAccountsParams } from 'src/interfaces/search';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
-import { PageBase } from 'src/bases/page-base';
+import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 
 @Component({
@@ -23,12 +22,11 @@ import { LoginService } from 'src/services/auth/auth.service';
   styleUrls: ['./accounts.css'],
   templateUrl: './accounts.html',
 })
-export class AccountsPage extends PageBase implements AfterContentInit {
+export class AccountsPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Accounts';
   public canAddUser = false;
   public sortedData: any[] = [];
   public accountID = null;
-  public accounts: any[] = [];
   public openDetails = false;
 
   public active = true;
@@ -128,7 +126,7 @@ export class AccountsPage extends PageBase implements AfterContentInit {
     this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY'); // <<< TODO: Improve
     this.route.queryParams.subscribe((params) => {
       if (!params.sort) {
-        this.getAccounts();
+        this.search();
       }
     });
   }
@@ -152,28 +150,17 @@ export class AccountsPage extends PageBase implements AfterContentInit {
     return data;
   }
 
-  public getAccounts(query: string = '') {
+  public search(query: string = '') {
     const data: any = this.getCleanParams(query);
 
     this.loading = true;
     this.crudAccounts.list(data).subscribe(
       (resp: any) => {
-        this.companyService.companies = resp.data.elements;
+        this.data = resp.data.elements;
+        this.sortedData = this.data.slice();
         this.total = resp.data.total;
-
-        this.sortedData = this.companyService.companies.slice();
-        this.showing = this.companyService.companies.length;
+        this.showing = this.data.length;
         this.loading = false;
-
-        this.accounts = this.companyService.companies;
-
-        // TODO: Improve this, should search for account in API instead of listed accounts
-        if (this.openDetails) {
-          const acc = this.accounts.filter((el) => el.id === this.accountID);
-          if (acc.length) {
-            this.viewAccount(acc[0]);
-          }
-        }
       },
       (error) => {
         this.loading = false;
@@ -203,7 +190,6 @@ export class AccountsPage extends PageBase implements AfterContentInit {
   }
 
   public selectType(type) {
-    // console.log(type, this.type);
     if (this.type === 'PRIVATE' && type === 'PRIVATE') {
       this.isPriv = false;
       this.type = '';
@@ -247,7 +233,7 @@ export class AccountsPage extends PageBase implements AfterContentInit {
 
   public sortData(sort: Sort): void {
     if (!sort.active || sort.direction === '') {
-      this.sortedData = this.companyService.companies.slice();
+      this.sortedData = this.data.slice();
       this.sortID = 'id';
       this.sortDir = 'desc';
     } else {
@@ -257,13 +243,25 @@ export class AccountsPage extends PageBase implements AfterContentInit {
     this.search();
   }
 
-  public search(query: string = '') {
-    this.getAccounts(query);
-  }
+  // public sortData(sort: Sort): void {
+  //   if (!sort.active || sort.direction === '') {
+  //     this.sortedData = this.companyService.companies.slice();
+  //     this.sortID = 'id';
+  //     this.sortDir = 'desc';
+  //   } else {
+  //     this.sortID = sort.active;
+  //     this.sortDir = sort.direction;
+  //   }
+  //   this.search();
+  // }
 
-  public changedPage($event) {
-    this.limit = $event.pageSize;
-    this.offset = this.limit * ($event.pageIndex);
-    this.getAccounts();
-  }
+  // public search(query: string = '') {
+  //   this.getAccounts(query);
+  // }
+
+  // public changedPage($event) {
+  //   this.limit = $event.pageSize;
+  //   this.offset = this.limit * ($event.pageIndex);
+  //   this.getAccounts();
+  // }
 }

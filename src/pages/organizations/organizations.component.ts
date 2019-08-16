@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UserService } from '../../services/user.service';
-import { PageBase } from '../../bases/page-base';
+import { PageBase, TablePageBase } from '../../bases/page-base';
 import { LoginService } from '../../services/auth/auth.service';
 import { MatDialog, Sort } from '@angular/material';
 import { BussinessDetailsDia } from '../dialogs/bussiness_detailes/bussiness_details.component';
@@ -28,11 +28,8 @@ const FILTERS = {
   styleUrls: ['./organizations.css'],
   templateUrl: './organizations.html',
 })
-export class OrganizationsComponent extends PageBase {
+export class OrganizationsComponent extends TablePageBase {
   public pageName = 'Organizations';
-  public total = 0;
-  public sortedData = [];
-  public bussinessList = [];
   public wholesale = 1;
   public retailer = 1;
   public only_offers = false;
@@ -136,7 +133,7 @@ export class OrganizationsComponent extends PageBase {
   ) {
     super();
     this.lang = this.langMap[us.lang];
-    this.getOrganizations();
+    this.search();
   }
 
   public getFilters() {
@@ -157,7 +154,7 @@ export class OrganizationsComponent extends PageBase {
     }
   }
 
-  public getOrganizations(query: string = '') {
+  public search(query: string = '') {
     this.loading = true;
     const filters = this.getFilters();
     const data: any = {
@@ -184,7 +181,7 @@ export class OrganizationsComponent extends PageBase {
 
     this.accountsCrud.search(data).subscribe(
       (resp: any) => {
-        this.bussinessList = resp.data.elements.map((el) => {
+        this.data = resp.data.elements.map((el) => {
           el.address = [
             el.street_type,
             el.street,
@@ -201,7 +198,7 @@ export class OrganizationsComponent extends PageBase {
           return el;
         });
         this.total = resp.data.total;
-        this.sortedData = this.bussinessList.slice();
+        this.sortedData = this.data.slice();
         this.loading = false;
       },
       (error) => {
@@ -283,24 +280,6 @@ export class OrganizationsComponent extends PageBase {
     return dialogRef.afterClosed();
   }
 
-  public search(query: string = '') {
-    this.filterChanged = true;
-    this.getOrganizations(query);
-  }
-
-  public sortData(sort: Sort): void {
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = this.bussinessList.slice();
-      this.sortID = 'id';
-      this.sortDir = 'desc';
-    } else {
-      this.sortID = sort.active;
-      this.sortDir = sort.direction.toUpperCase();
-    }
-
-    this.search();
-  }
-
   public viewDetails(bussiness) {
     const ref = this.dialog.open(BussinessDetailsDia);
     ref.componentInstance.bussiness = bussiness;
@@ -319,12 +298,6 @@ export class OrganizationsComponent extends PageBase {
   public openMaps(coord) {
     const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${coord.latitude},${coord.longitude}`;
     window.open(mapsUrl, '_blank');
-  }
-
-  public changedPage($event) {
-    this.limit = $event.pageSize;
-    this.offset = this.limit * ($event.pageIndex);
-    this.search();
   }
 
   public changedFilter() {

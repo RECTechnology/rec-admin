@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AfterContentInit, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoginService } from '../services/auth/auth.service';
+import { Sort } from '@angular/material';
 
 export interface PageBase {
 
@@ -51,15 +52,6 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   public abstract pageName: string;
   public abstract ls: LoginService;
   public Brand: any = environment.Brand;
-
-  public sortID: string = 'id';
-  public sortDir: string = 'desc';
-  public query: string = '';
-  public offset: number = 0;
-  public limit: number = 10;
-  public total = 0;
-  public showing = 0;
-
   public loading = false;
 
   constructor() {
@@ -89,12 +81,45 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
     this.setTitle(this.Brand.title + ' | ' + this.pageName);
   }
 
-  public setTitle(title): void {
+  public setTitle(title: string): void {
     this.titleService.setTitle(title);
   }
 
   public getTitle(): string {
     return this.titleService.getTitle();
+  }
+}
+
+export abstract class TablePageBase extends PageBase {
+  public sortID: string = 'id';
+  public sortDir: string = 'desc';
+  public query: string = '';
+  public offset: number = 0;
+  public limit: number = 10;
+  public total = 0;
+  public showing = 0;
+
+  public data: any[] = [];
+  public sortedData: any[] = [];
+
+  public abstract search(): any;
+
+  public changedPage($event) {
+    this.limit = $event.pageSize;
+    this.offset = this.limit * ($event.pageIndex);
+    this.search();
+  }
+
+  public sortData(sort: Sort): void {
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = this.data.slice();
+      this.sortID = 'id';
+      this.sortDir = 'desc';
+    } else {
+      this.sortID = sort.active;
+      this.sortDir = sort.direction;
+    }
+    this.search();
   }
 }
 
