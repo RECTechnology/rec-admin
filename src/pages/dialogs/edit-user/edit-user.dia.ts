@@ -9,6 +9,7 @@ import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.
 import { ConfirmationMessage } from '../../../components/dialogs/confirmation-message/confirmation.dia';
 import { AdminService } from '../../../services/admin/admin.service';
 import { forkJoin } from 'rxjs';
+import { UsersCrud } from 'src/services/crud/users/users.crud';
 
 @Component({
   providers: [
@@ -31,6 +32,7 @@ export class EditUserData {
     public adminService: AdminService,
     public utils: UtilsService,
     public dialog: MatDialog,
+    public usersCrud: UsersCrud,
   ) { }
 
   public ngOnInit() {
@@ -44,7 +46,7 @@ export class EditUserData {
   }
 
   public getUser() {
-    this.adminService.getUserV3(this.user.id)
+    this.usersCrud.find(this.user.id)
       .subscribe((resp) => {
         console.log('Got user', resp);
         this.user = resp.data;
@@ -70,7 +72,7 @@ export class EditUserData {
 
     const promises = [];
     if (Object.keys(changedProps).length) {
-      promises.push(this.adminService.updateUser(id, changedProps));
+      promises.push(this.usersCrud.update(id, changedProps));
     }
 
     if (changedProps.prefix || changedProps.phone) {

@@ -18,6 +18,7 @@ import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia'
 import { TlHeader, TlItemOption } from 'src/components/table-list/tl-table/tl-table.component';
 import { PageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
+import { UsersCrud } from 'src/services/crud/users/users.crud';
 
 @Component({
   selector: 'users',
@@ -106,6 +107,7 @@ export class UsersPage extends PageBase implements OnInit {
     public as: AdminService,
     public controles: ControlesService,
     public ls: LoginService,
+    public usersCrud: UsersCrud,
   ) {
     super();
   }
@@ -236,7 +238,7 @@ export class UsersPage extends PageBase implements OnInit {
 
     const dialogRef = this.dialog.open(ExportDialog);
     dialogRef.componentInstance.filters = data;
-    dialogRef.componentInstance.fn = this.as.exportUsersV3.bind(this.as);
+    dialogRef.componentInstance.fn = this.usersCrud.export.bind(this.usersCrud);
     dialogRef.componentInstance.entityName = 'Users';
     dialogRef.componentInstance.defaultExports = [...this.defaultExportKvp];
     dialogRef.componentInstance.list = [...this.defaultExportKvp];
@@ -248,7 +250,7 @@ export class UsersPage extends PageBase implements OnInit {
     this.loading = true;
     const data: ListAccountsParams = this.getCleanParams(query);
 
-    this.as.listUsersV3(data)
+    this.usersCrud.list(data)
       .subscribe(
         (resp) => {
           this.companyService.companyUsers = resp.data.elements;

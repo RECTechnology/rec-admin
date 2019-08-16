@@ -156,7 +156,7 @@ export class AccountsPage extends PageBase implements AfterContentInit {
     const data: any = this.getCleanParams(query);
 
     this.loading = true;
-    this.crudAccounts.list(this.offset, this.limit, data).subscribe(
+    this.crudAccounts.list(data).subscribe(
       (resp: any) => {
         this.companyService.companies = resp.data.elements;
         this.total = resp.data.total;

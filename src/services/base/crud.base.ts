@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 
 export interface CrudQueryOptions {
     search?: string;
-    [key: string]: string;
+    offset?: number;
+    limit?: number;
+    [key: string]: any;
 }
 
 export type CrudRole = 'user' | 'admin' | 'self' | 'super_admin' | 'manager';
@@ -54,25 +56,25 @@ export class CrudBaseService extends BaseService2 {
     }
 
     // Crud methods
-    public create(data: any) {
+    public create(data: any): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
         return this.post(url, data)
             .pipe(this.itemMapper());
     }
 
-    public remove(id: string) {
+    public remove(id: string): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.delete(url);
     }
 
-    public update(id: string, data: any) {
+    public update(id: string, data: any): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.put(url, data);
     }
 
-    public list(offset: number = 0, limit: number = 10, query?: CrudQueryOptions): Observable<any> {
+    public list(query?: CrudQueryOptions): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
-        return this.get(url, { offset, limit, ...query })
+        return this.get(url, query)
             .pipe(this.itemMapper());
     }
 
@@ -82,7 +84,7 @@ export class CrudBaseService extends BaseService2 {
             .pipe(this.itemMapper());
     }
 
-    public find(id: string) {
+    public find(id: string): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.get(url)
             .pipe(this.itemMapper());
