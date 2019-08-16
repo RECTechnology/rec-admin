@@ -16,6 +16,7 @@ export interface PageBase {
   limit: number;
   offset: number;
   total: number;
+  showing: number;
 
   loading: boolean;
 
@@ -44,7 +45,7 @@ export interface PageBase {
   onLogin?(resp: any): void;
 }
 
-export abstract class PageBase extends BaseComponent implements AfterContentInit, OnInit {
+export abstract class PageBase extends BaseComponent implements AfterContentInit, OnInit, PageBase {
 
   public abstract titleService: Title;
   public abstract pageName: string;
@@ -57,6 +58,7 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   public offset: number = 0;
   public limit: number = 10;
   public total = 0;
+  public showing = 0;
 
   public loading = false;
 

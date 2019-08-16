@@ -16,70 +16,62 @@ import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { TlHeader, TlItemOption } from 'src/components/table-list/tl-table/tl-table.component';
+import { PageBase } from 'src/bases/page-base';
+import { LoginService } from 'src/services/auth/auth.service';
 
 @Component({
   selector: 'users',
   styleUrls: ['./users.css'],
   templateUrl: './users.html',
 })
-export class UsersPage implements OnInit {
-  public loading = false;
+export class UsersPage extends PageBase implements OnInit {
+  public pageName = 'Users';
   public canAddUser = false;
-  public searchQuery = '';
-  public offset = 0;
-  public limit = 10;
-  public showingUsers = 0;
-  public totalUsers = 0;
-  public brand = environment.Brand;
   public sortedData: any[] = [];
-
-  public sortID: string = 'id';
-  public sortDir: string = 'desc';
-
   public headerOpts = { input: true };
-
-  public headers: TlHeader[] = [{
-    sort: 'id',
-    title: 'ID',
-    type: 'code',
-  }, {
-    avatar: {
-      sort: 'profile_image',
-      title: 'Profile Image',
-    },
-    sort: 'name',
-    title: 'Name',
-    type: 'avatar',
-  }, {
-    sort: 'username',
-    title: 'Username',
-  }, {
-    sort: 'email',
-    title: 'Email',
-  }, {
-    accessor: (el) => {
-      const hasPlus = String(el.prefix).includes('+');
-      return (!hasPlus ? '+' : '') + (el.prefix || '--') + ' ' + el.phone;
-    },
-    sort: 'phone',
-    title: 'Phone',
-  }, {
-    accessor: (el) => el.companies ? el.companies.length : 0,
-    sort: 'companies',
-    title: 'Companies',
-  }];
-
-  public itemOptions: TlItemOption[] = [{
-    callback: this.openViewDetails.bind(this),
-    text: 'View Details',
-  }, {
-    callback: this.openEditUser.bind(this),
-    text: 'Edit User',
-  }, {
-    callback: this.openDeleteUser.bind(this),
-    class: 'col-red col-error',
-    text: 'DELETE',
-  }];
+  public headers: TlHeader[] = [
+    {
+      sort: 'id',
+      title: 'ID',
+      type: 'code',
+    }, {
+      avatar: {
+        sort: 'profile_image',
+        title: 'Profile Image',
+      },
+      sort: 'name',
+      title: 'Name',
+      type: 'avatar',
+    }, {
+      sort: 'username',
+      title: 'Username',
+    }, {
+      sort: 'email',
+      title: 'Email',
+    }, {
+      accessor: (el) => {
+        const hasPlus = String(el.prefix).includes('+');
+        return (!hasPlus ? '+' : '') + (el.prefix || '--') + ' ' + el.phone;
+      },
+      sort: 'phone',
+      title: 'Phone',
+    }, {
+      accessor: (el) => el.companies ? el.companies.length : 0,
+      sort: 'companies',
+      title: 'Companies',
+    }];
+  public itemOptions: TlItemOption[] = [
+    {
+      callback: this.openViewDetails.bind(this),
+      text: 'View Details',
+    }, {
+      callback: this.openEditUser.bind(this),
+      text: 'Edit User',
+    }, {
+      callback: this.openDeleteUser.bind(this),
+      class: 'col-red col-error',
+      text: 'DELETE',
+    }];
 
   public activeUsers = false;
   public inactiveUsers = false;
@@ -113,7 +105,10 @@ export class UsersPage implements OnInit {
     public utils: UtilsService,
     public as: AdminService,
     public controles: ControlesService,
-  ) { }
+    public ls: LoginService,
+  ) {
+    super();
+  }
 
   public ngOnInit() {
     const roles = this.us.userData.group_data.roles;
@@ -131,7 +126,7 @@ export class UsersPage implements OnInit {
       limit: this.limit,
       offset: this.offset,
       order: this.sortDir,
-      search: query || this.searchQuery,
+      search: query || this.query,
       sort: this.sortID,
     };
 
@@ -258,8 +253,8 @@ export class UsersPage implements OnInit {
         (resp) => {
           this.companyService.companyUsers = resp.data.elements;
           this.sortedData = this.companyService.companyUsers.slice();
-          this.showingUsers = this.companyService.companyUsers.length;
-          this.companyService.totalUsers = resp.data.total;
+          this.showing = this.companyService.companyUsers.length;
+          this.total = resp.data.total;
           this.loading = false;
         },
         (error) => { this.loading = false; });

@@ -27,13 +27,13 @@
             </mat-radio-button>
           </mat-radio-group>
           <div class="abs-center-right small-text" style="padding: 8px;">
-            {{'Showing'|translate}}: {{limit}} of {{totalBussiness}}
+            {{'Showing'|translate}}: {{limit}} of {{total}}
           </div>
         </div>
       </tl-subheader>
 
       <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
-        [itemOptions]="itemOptions" noItemsMessage="There are no bussiness yet" [limit]="limit" [total]="totalBussiness"
+        [itemOptions]="itemOptions" noItemsMessage="There are no bussiness yet" [limit]="limit" [total]="total"
         (onChangePage)="changedPage($event)">
       </tl-table>
     </mat-card>

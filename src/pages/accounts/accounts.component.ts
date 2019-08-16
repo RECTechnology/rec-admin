@@ -26,7 +26,6 @@ import { LoginService } from 'src/services/auth/auth.service';
 export class AccountsPage extends PageBase implements AfterContentInit {
   public pageName = 'Accounts';
   public canAddUser = false;
-  public showingAccounts = 0;
   public sortedData: any[] = [];
   public accountID = null;
   public accounts: any[] = [];
@@ -85,7 +84,6 @@ export class AccountsPage extends PageBase implements AfterContentInit {
       sort: 'amount',
       title: 'Amount',
     }];
-
   public itemOptions: TlItemOption[] = [{
     callback: this.viewAccount.bind(this),
     icon: 'fa-eye',
@@ -164,7 +162,7 @@ export class AccountsPage extends PageBase implements AfterContentInit {
         this.total = resp.data.total;
 
         this.sortedData = this.companyService.companies.slice();
-        this.showingAccounts = this.companyService.companies.length;
+        this.showing = this.companyService.companies.length;
         this.loading = false;
 
         this.accounts = this.companyService.companies;

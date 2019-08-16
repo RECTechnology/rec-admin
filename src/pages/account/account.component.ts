@@ -19,7 +19,7 @@ import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
   templateUrl: './account.html',
 })
 export class AccountComponent extends PageBase implements OnInit, OnDestroy {
-  public pageName = 'Users/Accounts';
+  public pageName = 'Account';
   public currentTab = 0;
   public account_id = null;
   private sub: any = null;
@@ -64,6 +64,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
 
     this.route.params.subscribe((params) => {
       this.account_id = params.id;
+      this.pageName = 'Account (' + this.account_id + ')';
       this.setUp();
     });
   }

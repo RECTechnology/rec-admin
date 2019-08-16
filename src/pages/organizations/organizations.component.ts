@@ -13,7 +13,7 @@ import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { TableListHeaderOptions } from '../../components/table-list/tl-header/tl-header.component';
 import { TlHeader, TlItemOption } from '../../components/table-list/tl-table/tl-table.component';
 import { AdminService } from '../../services/admin/admin.service';
-import { ListAccountsParams, SearchAccountsParams } from '../../interfaces/search';
+import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
@@ -30,9 +30,7 @@ const FILTERS = {
 })
 export class OrganizationsComponent extends PageBase {
   public pageName = 'Organizations';
-  public totalOrganizations = 0;
-  public limit = 10;
-  public showing = 0;
+  public total = 0;
   public sortedData = [];
   public bussinessList = [];
   public wholesale = 1;
@@ -41,24 +39,15 @@ export class OrganizationsComponent extends PageBase {
 
   public filterChanged = false;
   public filterActive = 3; // 3 is an invalid filter so it will be unselected
-
-  public sortID: string = 'id';
-  public sortDir: string = 'desc';
-
-  public query: string = '';
-
   public lang = 'esp';
-
   public langMap = {
     cat: 'cat',
     en: 'eng',
     es: 'esp',
   };
-
   public headerOpts: TableListHeaderOptions = {
     input: true,
   };
-
   public headers: TlHeader[] = [
     {
       sort: 'id',
@@ -110,17 +99,16 @@ export class OrganizationsComponent extends PageBase {
       title: 'Map',
       type: 'slidetoggle',
     }];
-
-  public itemOptions: TlItemOption[] = [{
-    callback: this.viewDetails.bind(this),
-    icon: 'eye',
-    text: 'View',
-  }, {
-    callback: this.editDetails.bind(this),
-    icon: 'edit',
-    text: 'Edit User',
-  }];
-
+  public itemOptions: TlItemOption[] = [
+    {
+      callback: this.viewDetails.bind(this),
+      icon: 'eye',
+      text: 'View',
+    }, {
+      callback: this.editDetails.bind(this),
+      icon: 'edit',
+      text: 'Edit User',
+    }];
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },
     { key: 'name', value: '$.name', active: true },
@@ -194,15 +182,6 @@ export class OrganizationsComponent extends PageBase {
       delete data.query.search;
     }
 
-    // const data = this.getCleanParams();
-    // // data.on_map = 1;
-    // if (!data.subtype) {
-    //   delete data.subtype;
-    // }
-    // if (data.subtype && !data.subtype.search) {
-    //   delete data.subtype.search;
-    // }
-
     this.accountsCrud.search(data).subscribe(
       (resp: any) => {
         this.bussinessList = resp.data.elements.map((el) => {
@@ -221,7 +200,7 @@ export class OrganizationsComponent extends PageBase {
           ].join(' ');
           return el;
         });
-        this.totalOrganizations = resp.data.total;
+        this.total = resp.data.total;
         this.sortedData = this.bussinessList.slice();
         this.loading = false;
       },
