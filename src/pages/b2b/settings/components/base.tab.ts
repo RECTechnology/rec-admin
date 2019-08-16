@@ -42,4 +42,10 @@ export abstract class EntityTabBase {
         this.search();
     }
 
+    public changedPage($event) {
+        this.limit = $event.pageSize;
+        this.offset = this.limit * ($event.pageIndex);
+        this.search();
+    }
+
 }

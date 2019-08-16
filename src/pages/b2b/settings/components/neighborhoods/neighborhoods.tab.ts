@@ -13,7 +13,6 @@ import { MySnackBarSevice } from 'src/bases/snackbar-base';
 })
 export class NeighborhoodsTabComponent extends EntityTabBase {
     public data = [];
-
     public headerOpts: TableListHeaderOptions = { input: true };
     public headers: TlHeader[] = [
         {
