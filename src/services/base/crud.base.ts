@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService2 } from './base.service-v2';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
-import { SearchAccountsParams } from 'src/interfaces/search';
+import { SearchAccountsParams, ListAccountsParams } from 'src/interfaces/search';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -54,13 +54,29 @@ export class CrudBaseService extends BaseService2 {
     }
 
     // Crud methods
-    public list(offset: number = 0, limit: number = 10, query?: CrudQueryOptions) {
+    public create(data: any) {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
-        return this.get(url, { offset, limit, query })
+        return this.post(url, data)
             .pipe(this.itemMapper());
     }
 
-    public search(data: SearchAccountsParams = {}): Observable<any> {
+    public remove(id: string) {
+        const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
+        return this.delete(url);
+    }
+
+    public update(id: string, data: any) {
+        const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
+        return this.put(url, data);
+    }
+
+    public list(offset: number = 0, limit: number = 10, query?: CrudQueryOptions) {
+        const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
+        return this.get(url, { offset, limit, ...query })
+            .pipe(this.itemMapper());
+    }
+
+    public search(data: ListAccountsParams = {}): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_SEARCH];
         return this.get(url, data)
             .pipe(this.itemMapper());
@@ -78,15 +94,6 @@ export class CrudBaseService extends BaseService2 {
             .pipe(this.itemMapper());
     }
 
-    public update(id: string, data: any) {
-        const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
-        return this.put(url, data);
-    }
-
-    public remove(id: string) {
-        const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
-        return this.delete(url);
-    }
 
     private getUrlBase() {
         return ['/', this.userRole, '/', this.version, this.basePath];

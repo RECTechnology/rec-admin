@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { EntityTabBase } from '../base.tab';
+import { MatDialog } from '@angular/material';
+import { MySnackBarSevice } from 'src/bases/snackbar-base';
 
 @Component({
     selector: 'tab-activities',
@@ -11,7 +13,9 @@ export class ActivitiesTabComponent extends EntityTabBase {
 
     constructor(
         public activitiesCrud: ActivitiesCrud,
-    ) { super(); }
+        public dialog: MatDialog,
+        public snackbar: MySnackBarSevice,
+    ) { super(dialog); }
 
     public search() {
         this.activitiesCrud.search({

@@ -57,6 +57,7 @@ import { CrudModule } from 'src/services/crud/crud.module';
 import { ProductsTabComponent } from 'src/pages/b2b/settings/components/products/products.tab';
 import { ActivitiesTabComponent } from 'src/pages/b2b/settings/components/activities/activities.tab';
 import { NeighborhoodsTabComponent } from 'src/pages/b2b/settings/components/neighborhoods/neighborhoods.tab';
+import { AddNeighbourhoodDia } from 'src/pages/b2b/settings/components/neighborhoods/add/add.dia';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { NeighborhoodsTabComponent } from 'src/pages/b2b/settings/components/nei
     ProductsTabComponent,
     ActivitiesTabComponent,
     NeighborhoodsTabComponent,
+    AddNeighbourhoodDia,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -121,6 +123,7 @@ import { NeighborhoodsTabComponent } from 'src/pages/b2b/settings/components/nei
     ExportDialog,
     VoteWithdrawal,
     AddItemDia,
+    AddNeighbourhoodDia,
   ],
   exports: [
     SidemenuComponent,
@@ -156,6 +159,7 @@ import { NeighborhoodsTabComponent } from 'src/pages/b2b/settings/components/nei
     ProductsTabComponent,
     ActivitiesTabComponent,
     NeighborhoodsTabComponent,
+    AddNeighbourhoodDia,
   ],
   imports: [
     BrowserModule,

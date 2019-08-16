@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { EntityTabBase } from '../base.tab';
+import { MatDialog } from '@angular/material';
+import { MySnackBarSevice } from 'src/bases/snackbar-base';
 
 @Component({
     selector: 'tab-products',
@@ -19,7 +21,9 @@ export class ProductsTabComponent extends EntityTabBase {
 
     constructor(
         public productsCrud: ProductsCrud,
-    ) { super(); }
+        public dialog: MatDialog,
+        public snackbar: MySnackBarSevice,
+    ) { super(dialog); }
 
     public search() {
         this.productsCrud.search({
@@ -41,7 +45,9 @@ export class ProductsTabComponent extends EntityTabBase {
 
     public editProducts($event) { }
 
-    public addProduct() { }
+    public addProduct() {
+        // this.productsCrud.create({});
+    }
 
     public deleteProduct($event) { }
 }

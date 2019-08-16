@@ -96,7 +96,7 @@ export class TableListTable implements AfterContentInit {
 
     public sortData(sort: Sort): void {
         if (!sort.active || sort.direction === '') {
-            this.router.navigate([], { queryParams: { sort: 'id', dir: 'desc' } });
+            this.router.navigate([], { queryParams: { sort: 'id', dir: 'desc' }, queryParamsHandling: 'merge' });
         } else {
             this.router.navigate([], {
                 queryParams: { sort: sort.active, dir: sort.direction },

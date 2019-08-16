@@ -130,11 +130,8 @@ export class BaseService2 {
       ...overwriteOptions,
     };
 
-    let URL = this.getUrl(url)
-    console.log('CRUD::find(' + URL + ')');
-
     return this.http.get(
-      URL,
+      this.getUrl(url),
       options,
     ).pipe(
       map(this.extractData),
@@ -144,11 +141,10 @@ export class BaseService2 {
 
   public delete(url: string | string[], data: any = {}, overwriteHeaders: any = {}): Observable<any> {
     const headers = this.getHeaders(overwriteHeaders);
-    const options = ({
+    const options = {
       body: data,
       headers,
-      method: 'DELETE',
-    });
+    };
 
     return this.http.delete(
       this.getUrl(url),

@@ -1,16 +1,21 @@
 <div style="height: 100%">
     <div class="row" style="margin: 0; padding: 20px;">
         <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
-            <tl-header title="AVAILABLE_NEIGHBORHOODS" [(query)]="query" (onSearch)="search()">
+            <tl-header title="AVAILABLE_NEIGHBORHOODS" [(query)]="query" (onSearch)="search($event)">
                 <button type="button" color="primary" mat-raised-button name="button" (click)="addNeighborhood()">
                     <p class="text-small">
                         {{'NEW'|translate}}
                     </p>
                 </button>
             </tl-header>
-            <translatable-list (edit)="editNeighborhood($event)" (delete)="deleteNeighborhood($event)"
+            <!-- <translatable-list (edit)="editNeighborhood($event)" (delete)="deleteNeighborhood($event)"
                 [data]="neighborhoods">
-            </translatable-list>
+            </translatable-list> -->
+
+            <tl-table [loading]="loading" [options]="tableOptions" [sort]="true" [headers]="headers" [data]="sortedData"
+                [itemOptions]="itemOptions" noItemsMessage="There are no neighborhoods yet" [limit]="limit"
+                [total]="total" (onChangePage)="changedPage($event)" (onSort)="sortData($event)">
+            </tl-table>
         </div>
     </div>
 </div>

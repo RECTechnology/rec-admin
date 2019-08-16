@@ -159,11 +159,11 @@ export class AccountsPage implements AfterContentInit {
   }
 
   public getAccounts(query: string = '') {
-    const data: ListAccountsParams = this.getCleanParams(query);
+    const data: any = this.getCleanParams(query);
 
     this.loading = true;
-    this.crudAccounts.search(data).subscribe(
-      (resp) => {
+    this.crudAccounts.list(this.offset, this.limit, data).subscribe(
+      (resp: any) => {
         this.companyService.companies = resp.data.elements;
         this.companyService.totalAccounts = resp.data.total;
 

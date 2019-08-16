@@ -11,6 +11,6 @@ export class NeighborhoodsCrud extends CrudBaseService {
         public us: UserService,
     ) {
         super(http, us);
-        this.basePath = '/neighborhoods';
+        this.basePath = '/neighbourhoods';
     }
 }
