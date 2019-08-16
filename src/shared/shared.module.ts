@@ -35,10 +35,10 @@ import { KeyValuePair } from '../components/kvp/kvp-list/kvp-list';
 import { KeyValueItem } from '../components/kvp/kvp-item/kvp-item';
 import { TwoFaDia } from 'src/components/dialogs/two_fa_prompt/two_fa_prompt.dia';
 import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
-import { SellersComponent } from 'src/pages/sellers/sellers.component';
+import { ExchangersComponent } from 'src/pages/exchangers/exchangers.component';
 import { MapComponent } from 'src/pages/map/map.component';
 import { AccountsPage } from 'src/pages/accounts/accounts.component';
-import { BussinessComponent } from 'src/pages/bussiness/bussiness.component';
+import { OrganizationsComponent } from 'src/pages/organizations/organizations.component';
 import { LoginComponent } from 'src/components/login/login.component';
 import { ExportDialog } from 'src/components/dialogs/export-dialog/export.dia';
 import { UsersPage } from 'src/pages/users/users.component';
@@ -90,12 +90,11 @@ import { AddNeighbourhoodDia } from 'src/pages/b2b/settings/components/neighborh
     KeyValueItem,
     TwoFaDia,
     TreasureAccount,
-    SellersComponent,
+    ExchangersComponent,
     MapComponent,
-    BussinessComponent,
+    OrganizationsComponent,
     LoginComponent,
     ExportDialog,
-    BussinessComponent,
     AccountsPage,
     UsersPage,
     VoteWithdrawal,

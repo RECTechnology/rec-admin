@@ -5,7 +5,7 @@ import { ControlesService } from '../../services/controles/controles.service';
 import { UserService } from '../../services/user.service';
 import { PageBase } from '../../bases/page-base';
 import { LoginService } from '../../services/auth/auth.service';
-import { MatDialog, Sort } from '../../../node_modules/@angular/material';
+import { MatDialog, Sort } from '@angular/material';
 import { BussinessDetailsDia } from '../dialogs/bussiness_detailes/bussiness_details.component';
 import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
 import { ConfirmationMessage } from '../../components/dialogs/confirmation-message/confirmation.dia';
@@ -15,6 +15,7 @@ import { TlHeader, TlItemOption } from '../../components/table-list/tl-table/tl-
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams, SearchAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 const FILTERS = {
   only_offers: 0,
@@ -23,15 +24,13 @@ const FILTERS = {
 };
 
 @Component({
-  selector: 'bussiness',
-  styleUrls: [
-    '../../pages/bussiness/bussiness.css',
-  ],
-  templateUrl: '../../pages/bussiness/bussiness.html',
+  selector: 'organizations',
+  styleUrls: ['./organizations.css'],
+  templateUrl: './organizations.html',
 })
-export class BussinessComponent extends PageBase {
-  public pageName = 'Bussiness';
-  public totalBussiness = 0;
+export class OrganizationsComponent extends PageBase {
+  public pageName = 'Organizations';
+  public totalOrganizations = 0;
   public limit = 10;
   public showing = 0;
   public sortedData = [];
@@ -145,10 +144,11 @@ export class BussinessComponent extends PageBase {
     public dialog: MatDialog,
     public as: AdminService,
     public snackbar: MySnackBarSevice,
+    public accountsCrud: AccountsCrud,
   ) {
     super();
     this.lang = this.langMap[us.lang];
-    this.getBussiness();
+    this.getOrganizations();
   }
 
   public getFilters() {
@@ -169,7 +169,7 @@ export class BussinessComponent extends PageBase {
     }
   }
 
-  public getBussiness(query: string = '') {
+  public getOrganizations(query: string = '') {
     this.loading = true;
     const filters = this.getFilters();
     const data: any = {
@@ -203,8 +203,8 @@ export class BussinessComponent extends PageBase {
     //   delete data.subtype.search;
     // }
 
-    this.as.listAccountsV3(data).subscribe(
-      (resp) => {
+    this.accountsCrud.search(data).subscribe(
+      (resp: any) => {
         this.bussinessList = resp.data.elements.map((el) => {
           el.address = [
             el.street_type,
@@ -221,7 +221,7 @@ export class BussinessComponent extends PageBase {
           ].join(' ');
           return el;
         });
-        this.totalBussiness = resp.data.total;
+        this.totalOrganizations = resp.data.total;
         this.sortedData = this.bussinessList.slice();
         this.loading = false;
       },
@@ -296,7 +296,7 @@ export class BussinessComponent extends PageBase {
 
     const dialogRef = this.dialog.open(ExportDialog);
     dialogRef.componentInstance.filters = data;
-    dialogRef.componentInstance.fn = this.as.exportAccountsV3.bind(this.as);
+    dialogRef.componentInstance.fn = this.accountsCrud.export.bind(this.accountsCrud);
     dialogRef.componentInstance.entityName = 'Organizations';
     dialogRef.componentInstance.defaultExports = [...this.defaultExportKvp];
     dialogRef.componentInstance.list = [...this.defaultExportKvp];
@@ -306,7 +306,7 @@ export class BussinessComponent extends PageBase {
 
   public search(query: string = '') {
     this.filterChanged = true;
-    this.getBussiness(query);
+    this.getOrganizations(query);
   }
 
   public sortData(sort: Sort): void {

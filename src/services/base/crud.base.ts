@@ -70,7 +70,7 @@ export class CrudBaseService extends BaseService2 {
         return this.put(url, data);
     }
 
-    public list(offset: number = 0, limit: number = 10, query?: CrudQueryOptions) {
+    public list(offset: number = 0, limit: number = 10, query?: CrudQueryOptions): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
         return this.get(url, { offset, limit, ...query })
             .pipe(this.itemMapper());

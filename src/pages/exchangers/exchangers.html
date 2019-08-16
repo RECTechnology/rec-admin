@@ -1,6 +1,6 @@
 <header-nav></header-nav>
 <sidemenu></sidemenu>
-<div class="page bussiness" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+<div class="page exchangers" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
   <div class="row" style="margin: 0; padding: 20px;">
     <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
       <tl-header title="EXCHANGERS" [(query)]="query" (onSearch)="search()">
@@ -16,7 +16,7 @@
             {{'EXCHANGERS_DESC'|translate}}
           </p>
           <div class="abs-center-right small-text" style="padding: 8px;">
-            {{'Showing'|translate}}: {{limit}} of {{totalBussiness}}
+            {{'Showing'|translate}}: {{limit}} of {{total}}
           </div>
         </div>
       </tl-subheader>
@@ -24,7 +24,7 @@
       <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
         [itemOptions]="itemOptions"
         noItemsMessage="There are no exchangers yet, try another search or change the filters!" [limit]="limit"
-        [total]="totalBussiness" (onChangePage)="changedPage($event)">
+        [total]="total" (onChangePage)="changedPage($event)">
       </tl-table>
     </mat-card>
   </div>

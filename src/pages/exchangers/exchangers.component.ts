@@ -12,16 +12,14 @@ import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 
 @Component({
-  selector: 'sellers',
+  selector: 'exchangers',
   styleUrls: [
-    './sellers.css',
+    './exchangers.css',
   ],
-  templateUrl: './sellers.html',
+  templateUrl: './exchangers.html',
 })
-export class SellersComponent extends PageBase {
+export class ExchangersComponent extends PageBase {
   public pageName = 'Exchangers';
-  public totalBussiness = 0;
-  public limit = 10;
   public showing = 0;
   public sortedData = [];
   public sellerList = [];
@@ -31,10 +29,6 @@ export class SellersComponent extends PageBase {
 
   public filterChanged = false;
   public filterActive = 3; // 3 is an invalid filter so it will be unselected
-
-  public sortID: string = 'id';
-  public sortDir: string = 'desc';
-  public query: string = '';
 
   public headers: TlHeader[] = [
     {
@@ -85,7 +79,7 @@ export class SellersComponent extends PageBase {
     this.as.listAccountsV3(data).subscribe(
       (resp) => {
         this.sellerList = resp.data.elements;
-        this.totalBussiness = resp.data.total;
+        this.total = resp.data.total;
         this.sortedData = this.sellerList.slice();
         this.loading = false;
       },

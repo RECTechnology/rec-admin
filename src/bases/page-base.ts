@@ -9,6 +9,16 @@ export interface PageBase {
 
   route?: ActivatedRoute;
   router?: Router;
+
+  sortID: string;
+  sortDir: string;
+  query: string;
+  limit: number;
+  offset: number;
+  total: number;
+
+  loading: boolean;
+
   /**
    * @method afterContentInit
    * Optional method to execute after page's ngAfterContentInit
@@ -40,6 +50,15 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   public abstract pageName: string;
   public abstract ls: LoginService;
   public Brand: any = environment.Brand;
+
+  public sortID: string = 'id';
+  public sortDir: string = 'desc';
+  public query: string = '';
+  public offset: number = 0;
+  public limit: number = 10;
+  public total = 0;
+
+  public loading = false;
 
   constructor() {
     super();

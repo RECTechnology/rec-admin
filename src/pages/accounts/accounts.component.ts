@@ -12,32 +12,26 @@ import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { environment } from '../../environments/environment';
 import { TlHeader, TlItemOption, TableListOptions } from '../../components/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from '../../components/table-list/tl-header/tl-header.component';
-import { AdminService } from '../../services/admin/admin.service';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { ListAccountsParams } from 'src/interfaces/search';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { PageBase } from 'src/bases/page-base';
+import { LoginService } from 'src/services/auth/auth.service';
 
 @Component({
   selector: 'accounts',
   styleUrls: ['./accounts.css'],
   templateUrl: './accounts.html',
 })
-export class AccountsPage implements AfterContentInit {
-  public loading = false;
+export class AccountsPage extends PageBase implements AfterContentInit {
+  public pageName = 'Accounts';
   public canAddUser = false;
-  public searchQuery = '';
-  public offset = 0;
-  public limit = 10;
   public showingAccounts = 0;
-  public totalUsers = 0;
   public sortedData: any[] = [];
   public accountID = null;
   public accounts: any[] = [];
   public openDetails = false;
 
-  public Brand: any = environment.Brand;
-  public sortID: string = 'id';
-  public sortDir: string = 'desc';
   public active = true;
   public type = '';
 
@@ -58,38 +52,39 @@ export class AccountsPage implements AfterContentInit {
   ];
 
   public headerOpts: TableListHeaderOptions = { input: true };
-  public headers: TlHeader[] = [{
-    sort: 'active',
-    title: 'Active',
-    type: 'checkbox',
-  }, {
-    sort: 'id',
-    title: 'ID',
-    type: 'code',
-  }, {
-    avatar: {
-      sort: 'company_image',
-      title: 'Company Image',
-    },
-    sort: 'name',
-    title: 'Name',
-    type: 'avatar',
-  }, {
-    sort: 'email',
-    title: 'Email',
-  }, {
-    sort: 'type',
-    statusClass: (el: any) => ({
-      'col-blue': el !== 'COMPANY',
-      'col-orange': el === 'COMPANY',
-    }),
-    title: 'Type',
-    type: 'status',
-  }, {
-    accessor: 'available',
-    sort: 'amount',
-    title: 'Amount',
-  }];
+  public headers: TlHeader[] = [
+    {
+      sort: 'active',
+      title: 'Active',
+      type: 'checkbox',
+    }, {
+      sort: 'id',
+      title: 'ID',
+      type: 'code',
+    }, {
+      avatar: {
+        sort: 'company_image',
+        title: 'Company Image',
+      },
+      sort: 'name',
+      title: 'Name',
+      type: 'avatar',
+    }, {
+      sort: 'email',
+      title: 'Email',
+    }, {
+      sort: 'type',
+      statusClass: (el: any) => ({
+        'col-blue': el !== 'COMPANY',
+        'col-orange': el === 'COMPANY',
+      }),
+      title: 'Type',
+      type: 'status',
+    }, {
+      accessor: 'available',
+      sort: 'amount',
+      title: 'Amount',
+    }];
 
   public itemOptions: TlItemOption[] = [{
     callback: this.viewAccount.bind(this),
@@ -119,9 +114,10 @@ export class AccountsPage implements AfterContentInit {
     public controles: ControlesService,
     public ws: WalletService,
     public snackbar: MySnackBarSevice,
-    // public as: AdminService,
+    public ls: LoginService,
     public crudAccounts: AccountsCrud,
   ) {
+    super();
     this.route.queryParams
       .subscribe((params) => {
         this.accountID = params.id;
@@ -146,7 +142,7 @@ export class AccountsPage implements AfterContentInit {
       limit: this.limit,
       offset: this.offset,
       order: this.sortDir,
-      search: query || this.searchQuery,
+      search: query || this.query,
       sort: this.sortID,
       type: this.type,
     };
@@ -165,7 +161,7 @@ export class AccountsPage implements AfterContentInit {
     this.crudAccounts.list(this.offset, this.limit, data).subscribe(
       (resp: any) => {
         this.companyService.companies = resp.data.elements;
-        this.companyService.totalAccounts = resp.data.total;
+        this.total = resp.data.total;
 
         this.sortedData = this.companyService.companies.slice();
         this.showingAccounts = this.companyService.companies.length;
