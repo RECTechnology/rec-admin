@@ -10,6 +10,7 @@ export class NeighborhoodsCrud extends CrudBaseService {
         http: HttpClient,
         public us: UserService,
     ) {
-        super(http, us, '/neighborhoods');
+        super(http, us);
+        this.basePath = '/neighborhoods';
     }
 }

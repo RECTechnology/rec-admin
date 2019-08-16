@@ -10,6 +10,7 @@ export class ActivitiesCrud extends CrudBaseService {
         http: HttpClient,
         public us: UserService,
     ) {
-        super(http, us, '/activities');
+        super(http, us);
+        this.basePath = '/activities';
     }
 }

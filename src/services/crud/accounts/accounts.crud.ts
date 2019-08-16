@@ -13,7 +13,9 @@ export class AccountsCrud extends CrudBaseService {
         public us: UserService,
         public cs: CompanyService,
     ) {
-        super(http, us, '/accounts', 'admin');
+        super(http, us);
+        this.basePath = '/accounts';
+        this.userRole = 'admin';
         this.mapItems = true;
     }
 

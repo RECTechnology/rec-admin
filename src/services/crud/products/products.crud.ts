@@ -10,6 +10,7 @@ export class ProductsCrud extends CrudBaseService {
         http: HttpClient,
         public us: UserService,
     ) {
-        super(http, us, '/products');
+        super(http, us);
+        this.basePath = '/products';
     }
 }

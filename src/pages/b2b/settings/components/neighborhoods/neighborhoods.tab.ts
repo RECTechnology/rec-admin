@@ -34,7 +34,7 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
         );
     }
 
-    public editNeighborhoods($event) { }
+    public editNeighborhood($event) { }
 
     public addNeighborhood() { }
 

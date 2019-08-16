@@ -26,7 +26,7 @@ export class CrudBaseService extends BaseService2 {
     public static ROLE_SADMIN: CrudRole = 'super_admin';
 
     public basePath: string = '';
-    public userRole: string = 'user';
+    public userRole: string = CrudBaseService.ROLE_USER;
     public version: string = 'v3';
 
     public mapItems: boolean = false;
@@ -34,14 +34,14 @@ export class CrudBaseService extends BaseService2 {
     constructor(
         http: HttpClient,
         public us: UserService,
-        basePath: string = '',
-        userRole: string = CrudBaseService.ROLE_USER,
-        version: string = 'v3',
+        // basePath: string = '',
+        // userRole: string = CrudBaseService.ROLE_USER,
+        // version: string = 'v3',
     ) {
         super(http, us);
-        this.basePath = basePath;
-        this.userRole = userRole;
-        this.version = version;
+        // this.basePath = basePath;
+        // this.userRole = userRole;
+        // this.version = version;
     }
 
     // Noop mapper, it will be used when this.mapItems === false
