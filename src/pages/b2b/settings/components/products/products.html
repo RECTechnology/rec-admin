@@ -8,8 +8,9 @@
                     </p>
                 </button>
             </tl-header>
-            <translatable-list *ngIf="sortedData && sortedData.length" (edit)="editProducts($event)" (delete)="deleteProduct($event)" [data]="sortedData"
-                [displayedColumns]="productsColumns"></translatable-list>
+            <translatable-list (edit)="editProducts($event)" (delete)="deleteProduct($event)" [(data)]="sortedData"
+                [displayedColumns]="productsColumns">
+            </translatable-list>
         </div>
     </div>
 </div>

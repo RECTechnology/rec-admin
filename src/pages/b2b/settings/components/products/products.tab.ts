@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { EntityTabBase } from '../base.tab';
 import { MatDialog } from '@angular/material';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
+import { TranslatableListComponent } from 'src/pages/b2b/components/translatable-list/translatable-list.component';
 
 @Component({
     selector: 'tab-products',
@@ -21,6 +22,7 @@ export class ProductsTabComponent extends EntityTabBase {
     ) { super(dialog); }
 
     public search() {
+        console.log('this.list', this.list);
         this.productsCrud.search({
             limit: this.limit,
             offset: this.offset,
@@ -36,6 +38,7 @@ export class ProductsTabComponent extends EntityTabBase {
                 });
                 this.sortedData = this.data.slice();
                 this.total = resp.data.total;
+                this.list.updateData(this.data);
             },
             (error) => {
                 console.log('errror', error);

@@ -12,5 +12,6 @@ export class NeighborhoodsCrud extends CrudBaseService {
     ) {
         super(http, us);
         this.basePath = '/neighbourhoods';
+        this.setFlag('translateHeaders');
     }
 }

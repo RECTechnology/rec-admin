@@ -21,7 +21,7 @@ export class LangSelector {
 
   public selectLang(lang) {
     this.lang = lang;
-    this.us.lang = lang;
+    this.us.lang = lang.abrev;
     this.translate.use(this.lang.abrev);
     localStorage.setItem('lang', this.lang.abrev);
   }

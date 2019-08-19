@@ -1,5 +1,7 @@
 import { MatDialog, Sort } from '@angular/material';
 import { ConfirmationMessage } from 'src/components/dialogs/confirmation-message/confirmation.dia';
+import { ViewChild } from '@angular/core';
+import { TranslatableListComponent } from '../../components/translatable-list/translatable-list.component';
 
 export abstract class EntityTabBase {
     public query: string = '';
@@ -13,10 +15,12 @@ export abstract class EntityTabBase {
     public data: any[] = [];
     public sortedData: any[] = [];
 
+    @ViewChild(TranslatableListComponent, { static: true }) public list: TranslatableListComponent;
+
     constructor(public dialog: MatDialog) { }
     public abstract search(): any;
 
-    public ngOnInit() {
+    public ngAfterViewInit() {
         this.search();
     }
 

@@ -30,16 +30,13 @@ export class ActivitiesTabComponent extends EntityTabBase {
             },
         }).subscribe(
             (resp) => {
-                console.log('activities', resp);
                 this.data = resp.data.elements.map((elem) => {
                     elem.eng = elem.name;
                     return elem;
                 });
                 this.sortedData = this.data.slice();
-
-                console.log('sorted', this.sortedData);
-
                 this.total = resp.data.total;
+                this.list.updateData(this.data);
             },
             (error) => {
                 console.log('errror', error);

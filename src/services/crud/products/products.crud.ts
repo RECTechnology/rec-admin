@@ -12,5 +12,6 @@ export class ProductsCrud extends CrudBaseService {
     ) {
         super(http, us);
         this.basePath = '/products';
+        this.setFlag('translateHeaders');
     }
 }

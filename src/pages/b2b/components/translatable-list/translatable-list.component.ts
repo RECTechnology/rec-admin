@@ -11,6 +11,7 @@ export class TranslatableListComponent implements OnInit {
   public dataSource: any;
 
   @Input() public data = [];
+  @Output() public dataChange: EventEmitter<any> = new EventEmitter();
   @Output('edit') public onEdit: EventEmitter<any> = new EventEmitter();
   @Output('aprove') public onAprove: EventEmitter<any> = new EventEmitter();
   @Output('delete') public onDelete: EventEmitter<any> = new EventEmitter();
@@ -19,10 +20,13 @@ export class TranslatableListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) public sort: MatSort;
 
   public ngOnInit() {
-    console.log('daklsdjkasdkljasd', this.data);
+    this.updateData(this.data);
+  }
+
+  public updateData(data) {
+    this.data = data;
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
 }

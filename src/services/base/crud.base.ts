@@ -57,8 +57,9 @@ export class CrudBaseService extends BaseService2 {
     // Crud methods
     public create(data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
-        return this.post(url, data, 'application/json', { 'Content-Language': lang, 'Accept-Language': lang })
-            .pipe(this.itemMapper());
+        return this.post(url, data, 'application/json',
+            lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
+        ).pipe(this.itemMapper());
     }
 
     public remove(id: string): Observable<any> {
@@ -68,7 +69,9 @@ export class CrudBaseService extends BaseService2 {
 
     public update(id: string, data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
-        return this.put(url, data, 'application/json', { 'Content-Language': lang, 'Accept-Language': lang });
+        return this.put(url, data, 'application/json',
+            lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
+        );
     }
 
     public list(query?: CrudQueryOptions): Observable<any> {
