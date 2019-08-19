@@ -76,8 +76,8 @@ export class BaseService2 {
   public getAdditionalHeaders(): ({ [k: string]: string }) {
     const headers = {};
     if (this.getFlag('translateHeaders')) {
-      headers['Content-Language'] = 'true';
-      headers['Accept-Language'] = 'true';
+      headers['Content-Language'] = 'en';
+      headers['Accept-Language'] = 'en';
     }
     return headers;
   }
@@ -156,10 +156,11 @@ export class BaseService2 {
   }
 
   public post(
-    url: string | string[], data: any, content_type: string = 'application/json',
+    url: string | string[], data: any,
+    content_type: string = 'application/json',
     overwriteHeaders: any = {},
   ): Observable<any> {
-    const headers = this.getHeaders({ 'content-type': content_type, ...overwriteHeaders });
+    const headers = this.getHeaders({ 'Content-Type': content_type, ...overwriteHeaders });
     const options = { headers };
 
     let params = data;
@@ -179,11 +180,12 @@ export class BaseService2 {
       params = new FormData();
       for (const key in data) {
         if (key) {
-          params.append(key, data[key]);
+          params = params.append(key, data[key]);
         }
       }
     }
 
+    console.log('POST', url, params, options);
     return this.http.post(
       this.getUrl(url),
       params,

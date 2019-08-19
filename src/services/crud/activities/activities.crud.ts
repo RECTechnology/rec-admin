@@ -12,5 +12,6 @@ export class ActivitiesCrud extends CrudBaseService {
     ) {
         super(http, us);
         this.basePath = '/activities';
+        this.setFlag('translateHeaders');
     }
 }

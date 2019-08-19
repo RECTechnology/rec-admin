@@ -19,6 +19,7 @@ export class TranslatableListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) public sort: MatSort;
 
   public ngOnInit() {
+    console.log('daklsdjkasdkljasd', this.data);
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

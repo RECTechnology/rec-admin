@@ -28,7 +28,7 @@ export class CrudBaseService extends BaseService2 {
     public static ROLE_SADMIN: CrudRole = 'super_admin';
 
     public basePath: string = '';
-    public userRole: string = CrudBaseService.ROLE_USER;
+    public userRole: string = CrudBaseService.ROLE_ADMIN;
     public version: string = 'v3';
 
     public mapItems: boolean = false;
@@ -56,9 +56,9 @@ export class CrudBaseService extends BaseService2 {
     }
 
     // Crud methods
-    public create(data: any): Observable<any> {
+    public create(data: any, lang: string = 'en'): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
-        return this.post(url, data)
+        return this.post(url, data, 'application/json', { 'Content-Language': lang })
             .pipe(this.itemMapper());
     }
 
@@ -67,9 +67,9 @@ export class CrudBaseService extends BaseService2 {
         return this.delete(url);
     }
 
-    public update(id: string, data: any): Observable<any> {
+    public update(id: string, data: any, lang = 'en'): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
-        return this.put(url, data);
+        return this.put(url, data, 'application/json', { 'Content-Language': lang });
     }
 
     public list(query?: CrudQueryOptions): Observable<any> {
