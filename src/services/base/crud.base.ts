@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { BaseService2 } from './base.service-v2';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
-import { SearchAccountsParams, ListAccountsParams } from 'src/interfaces/search';
+import { ListAccountsParams } from 'src/interfaces/search';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { RecLang, REC_LANGS, CrudRole } from 'src/types';
 
 export interface CrudQueryOptions {
     search?: string;
@@ -12,8 +13,6 @@ export interface CrudQueryOptions {
     limit?: number;
     [key: string]: any;
 }
-
-export type CrudRole = 'user' | 'admin' | 'self' | 'super_admin' | 'manager';
 
 @Injectable()
 export class CrudBaseService extends BaseService2 {
@@ -56,7 +55,7 @@ export class CrudBaseService extends BaseService2 {
     }
 
     // Crud methods
-    public create(data: any, lang: string = 'en'): Observable<any> {
+    public create(data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
         return this.post(url, data, 'application/json', { 'Content-Language': lang, 'Accept-Language': lang })
             .pipe(this.itemMapper());
@@ -67,7 +66,7 @@ export class CrudBaseService extends BaseService2 {
         return this.delete(url);
     }
 
-    public update(id: string, data: any, lang = 'en'): Observable<any> {
+    public update(id: string, data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.put(url, data, 'application/json', { 'Content-Language': lang, 'Accept-Language': lang });
     }

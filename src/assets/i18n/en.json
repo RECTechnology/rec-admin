@@ -422,5 +422,6 @@
   "NEW_NEIGBORHOOD": "New Neighborhood",
   "NEW_ACTIVITY": "New Activity",
   "SAVE": "Save",
-  "INPUT_REQUIRED": "Field required: {{field}}"
+  "INPUT_REQUIRED": "Field required: {{field}}",
+  "UsersAndAccounts": "REC Users"
 }

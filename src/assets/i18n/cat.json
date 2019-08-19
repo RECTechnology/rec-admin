@@ -958,5 +958,6 @@
   "NEW_NEIGBORHOOD": "Nou barri",
   "NEW_ACTIVITY": "Activitat nova",
   "SAVE": "Guardar",
-  "INPUT_REQUIRED": "Camp Requerit: {{field}}"
+  "INPUT_REQUIRED": "Camp Requerit: {{field}}",
+  "UsersAndAccounts": "Usuaris REC"  
 }

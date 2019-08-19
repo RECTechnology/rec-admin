@@ -6,7 +6,7 @@ export abstract class EntityTabBase {
     public limit = 10;
     public offset = 0;
     public total = 0;
-    public sortDir = 'desc';
+    public sortDir = 'asc';
     public sortID = 'id';
     public loading = false;
 

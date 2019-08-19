@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserService } from '../user.service';
-import { environment } from '../../environments/environment';
 import { XHR } from '../xhr/xhr';
 import { API_URL } from '../../data/consts';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { utils } from 'protractor';
+import { REC_LANGS } from 'src/types';
 
 export interface BaseService2Options {
   base_url: string;
@@ -76,8 +75,8 @@ export class BaseService2 {
   public getAdditionalHeaders(): ({ [k: string]: string }) {
     const headers = {};
     if (this.getFlag('translateHeaders')) {
-      headers['Content-Language'] = 'en';
-      headers['Accept-Language'] = 'en';
+      headers['Content-Language'] = REC_LANGS.EN;
+      headers['Accept-Language'] = REC_LANGS.EN;
     }
     return headers;
   }

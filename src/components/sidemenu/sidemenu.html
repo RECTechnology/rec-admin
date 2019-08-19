@@ -47,7 +47,7 @@
         <li class="item" (click)="contrService.toggleManagement()">
           <i class="fa fa-lg fa-fw fa-users-cog"></i>
           <span class="dropdown-text">
-            {{'Management'|translate}}
+            {{'UsersAndAccounts'|translate}}
             <span class="fa fa-angle-right" *ngIf="!contrService.managementExpanded"></span>
             <span class="fa fa-angle-down" *ngIf="contrService.managementExpanded"></span>
           </span>
@@ -130,7 +130,7 @@
 
         <li class="item" (click)="contrService.toggleManagement()"
           [ngClass]="{'opened': contrService.managementExpanded}" *ngIf="us.isReseller"
-          title="{{'Reseller'|translate}}">
+          title="{{'UsersAndAccounts'|translate}}">
           <i class="fa fa-lg fa-fw fa-users-cog"></i>
           <span class="fa fa-angle-right" *ngIf="!contrService.managementExpanded"></span>
           <span class="fa fa-angle-down" *ngIf="contrService.managementExpanded"></span>
