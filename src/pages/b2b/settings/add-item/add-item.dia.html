@@ -60,7 +60,7 @@
                                 placeholder="Search Activities">
 
                             <ng-template ngFor let-act [ngForOf]="activities">
-                                <button *ngIf="!item.activities_consumed.includes(act.id) && nameMatches(act.name)"
+                                <button *ngIf="!item.activities_consumed.includes(act) && nameMatches(act.name)"
                                     mat-menu-item (click)="addConsumed(act)" style="padding: 5px auto">
                                     <span style="color: #666; font-size: 12px">{{act.name}}</span>
                                 </button>
@@ -94,7 +94,7 @@
                                 (click)="$event.stopPropagation()" (blur)="actQuery = ''"
                                 placeholder="Search Activities">
                             <ng-template ngFor let-act [ngForOf]="activities">
-                                <button *ngIf="!item.activities_produced.includes(act.id) && nameMatches(act.name)"
+                                <button *ngIf="!item.activities_produced.includes(act) && nameMatches(act.name)"
                                     mat-menu-item (click)="addProduced(act)" style="padding: 5px auto">
                                     <span style="color: #666; font-size: 12px">{{act.name}}</span>
                                 </button>
