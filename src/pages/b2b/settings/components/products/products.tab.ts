@@ -11,14 +11,7 @@ import { forkJoin } from 'rxjs';
     templateUrl: './products.html',
 })
 export class ProductsTabComponent extends EntityTabBase {
-    public products = [
-        {
-            // tslint:disable-next-line: object-literal-sort-keys
-            id: 1, esp: 'Pan', cat: 'Pa', eng: 'Bread', pending: true,
-            activities_consumed: ['Harina', 'Mantequilla'], activities_produced: ['Pan', 'ASDASd'],
-        },
-        { id: 2, esp: 'Agua', cat: 'Aigua', eng: 'Water', pending: false },
-    ];
+    public products = [];
     public productsColumns = ['id', 'cat', 'esp', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
 
     constructor(
@@ -58,14 +51,15 @@ export class ProductsTabComponent extends EntityTabBase {
 
         ref.afterClosed().subscribe((updated) => {
             if (updated) {
+                const proms = [
+                    this.productsCrud.update(product.id, { name: updated.cat }, 'ca'),
+                    this.productsCrud.update(product.id, { name: updated.esp }, 'es'),
+                    this.productsCrud.update(product.id, { name: updated.eng }, 'en'),
+                ];
 
-                delete updated.id;
-                delete updated.created;
-                delete updated.updated;
-
-                this.productsCrud.update(product.id, updated).subscribe(
+                forkJoin(proms).subscribe(
                     (resp) => {
-                        this.snackbar.open('Updated Product: ' + product.id, 'ok');
+                        this.snackbar.open('Updated product: ' + product.id, 'ok');
                         this.search();
                     },
                     (error) => this.snackbar.open(error.message),

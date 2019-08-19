@@ -38,7 +38,7 @@
                             <ul *ngIf="item.activities_consumed.length" style="list-style: none; margin: 0; padding: 0">
                                 <li class="activity-list-item small-text" (click)="deleteConsumed(i)"
                                     *ngFor="let cons of item.activities_consumed; let i = index">
-                                    {{cons}}
+                                    {{cons.name}}
 
                                     <span class="icon fa fa-trash"></span>
                                 </li>
@@ -47,19 +47,26 @@
                                 {{'NO_ITEMS'|translate}}
                             </p>
                         </div>
+
+                        <!--  -->
                         <button [matMenuTriggerFor]="actMenu" type="button" mat-button class="mat-button-menu"
                             style="margin-top: 5px; width: 100%">
                             <span>{{'ACTIVITY'|translate}}</span>
                             <i class="fa fa-caret-down" style="margin-left: 8px"></i>
                         </button>
                         <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
+                            <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+                                 (click)="$event.stopPropagation()" (blur)="actQuery = ''"
+                                placeholder="Search Activities">
+
                             <ng-template ngFor let-act [ngForOf]="activities">
-                                <button *ngIf="!item.activities_consumed.includes(act)" mat-menu-item
-                                    (click)="addConsumed(act)" style="padding: 5px auto">
-                                    <span style="color: #666; font-size: 12px">{{act}}</span>
+                                <button *ngIf="!item.activities_consumed.includes(act.id) && nameMatches(act.name)"
+                                    mat-menu-item (click)="addConsumed(act)" style="padding: 5px auto">
+                                    <span style="color: #666; font-size: 12px">{{act.name}}</span>
                                 </button>
                             </ng-template>
                         </mat-menu>
+
                     </div>
                     <div class="col-lg-6">
                         <p class="small-text-2">{{'ACTIVITIES_PRODUCED'|translate}}</p>
@@ -67,7 +74,7 @@
                             <ul *ngIf="item.activities_produced.length" style="list-style: none; margin: 0; padding: 0">
                                 <li class="activity-list-item small-text" (click)="deleteProduced(i)"
                                     *ngFor="let prod of item.activities_produced; let i = index">
-                                    {{prod}}
+                                    {{prod.name}}
                                     <span class="icon fa fa-trash small-text col-error"></span>
                                 </li>
                             </ul>
@@ -75,16 +82,21 @@
                                 {{'NO_ITEMS'|translate}}
                             </p>
                         </div>
+
+                        <!--  -->
                         <button [matMenuTriggerFor]="actMenu2" type="button" mat-button class="mat-button-menu"
                             style="margin-top: 5px; width: 100%">
                             <span>{{'ACTIVITY'|translate}}</span>
                             <i class="fa fa-caret-down" style="margin-left: 8px"></i>
                         </button>
                         <mat-menu #actMenu2="matMenu" y-position="below" overlapTrigger="false">
+                            <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+                                (click)="$event.stopPropagation()" (blur)="actQuery = ''"
+                                placeholder="Search Activities">
                             <ng-template ngFor let-act [ngForOf]="activities">
-                                <button *ngIf="!item.activities_produced.includes(act)" mat-menu-item
-                                    (click)="addProduced(act)" style="padding: 5px auto">
-                                    <span style="color: #666; font-size: 12px">{{act}}</span>
+                                <button *ngIf="!item.activities_produced.includes(act.id) && nameMatches(act.name)"
+                                    mat-menu-item (click)="addProduced(act)" style="padding: 5px auto">
+                                    <span style="color: #666; font-size: 12px">{{act.name}}</span>
                                 </button>
                             </ng-template>
                         </mat-menu>

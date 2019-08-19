@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 
 @Component({
     selector: 'add-item',
@@ -15,17 +16,11 @@ export class AddItemDia {
     public loading: boolean = false;
     public disabled: boolean = false;
 
+    public actQuery = '';
+
     public isProduct = false;
     public isEdit = false;
-    public activities = [
-        'a',
-        'b',
-        'c',
-        'd',
-        'e',
-        'f',
-        'g',
-    ];
+    public activities = [];
 
     public item: any = {
         activities_consumed: [],
@@ -39,8 +34,12 @@ export class AddItemDia {
         public dialogRef: MatDialogRef<AddItemDia>,
         public us: UserService,
         public translate: TranslateService,
+        public activitiesCrud: ActivitiesCrud,
     ) {
-
+        this.activitiesCrud.list({ offset: 0, limit: 100 })
+            .subscribe((resp) => {
+                this.activities = resp.data.elements;
+            });
     }
 
     public addConsumed(act) {
@@ -69,6 +68,10 @@ export class AddItemDia {
 
     public close(): void {
         this.dialogRef.close(false);
+    }
+
+    public nameMatches(name: string) {
+        return String(name).toLowerCase().includes(this.actQuery.toLowerCase());
     }
 
     public check() {

@@ -54,11 +54,14 @@ export class ActivitiesTabComponent extends EntityTabBase {
 
         ref.afterClosed().subscribe((updated) => {
             if (updated) {
-                delete updated.id;
-                delete updated.created;
-                delete updated.updated;
+                console.log('Updated', updated);
+                const proms = [
+                    this.activitiesCrud.update(activity.id, { name: updated.cat }, 'ca'),
+                    this.activitiesCrud.update(activity.id, { name: updated.esp }, 'es'),
+                    this.activitiesCrud.update(activity.id, { name: updated.eng }, 'en'),
+                ];
 
-                this.activitiesCrud.update(activity.id, updated).subscribe(
+                forkJoin(proms).subscribe(
                     (resp) => {
                         this.snackbar.open('Updated Activity: ' + activity.id, 'ok');
                         this.search();
