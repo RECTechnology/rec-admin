@@ -5,7 +5,8 @@ import { XHR } from '../xhr/xhr';
 import { API_URL } from '../../data/consts';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { REC_LANGS } from 'src/types';
+import { REC_LANGS, RecLang } from 'src/types';
+import { UtilsService } from '../utils/utils.service';
 
 export interface BaseService2Options {
   base_url: string;
@@ -13,11 +14,11 @@ export interface BaseService2Options {
     translateHeaders: boolean,
   };
   headers: { [key: string]: string };
+  lang?: RecLang;
 }
 
 @Injectable()
 export class BaseService2 {
-
   public xhr: XHR;
   public opts: BaseService2Options;
   public DEFAULT_OPTS = {
@@ -29,6 +30,7 @@ export class BaseService2 {
       'accept': 'application/json',
       'content-type': 'application/json',
     },
+    lang: REC_LANGS.EN,
   };
 
   constructor(
@@ -37,6 +39,7 @@ export class BaseService2 {
   ) {
     this.xhr = new XHR();
     this.opts = this.DEFAULT_OPTS;
+    this.opts.lang = UtilsService.getLocaleFromLang(us.lang);
   }
 
   public setFlag(name: string, on: boolean = true) {
@@ -75,8 +78,8 @@ export class BaseService2 {
   public getAdditionalHeaders(): ({ [k: string]: string }) {
     const headers = {};
     if (this.getFlag('translateHeaders')) {
-      headers['Content-Language'] = REC_LANGS.EN;
-      headers['Accept-Language'] = REC_LANGS.EN;
+      headers['Content-Language'] = this.opts.lang || REC_LANGS.EN;
+      headers['Accept-Language'] = this.opts.lang || REC_LANGS.EN;
     }
     return headers;
   }

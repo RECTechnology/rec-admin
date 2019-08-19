@@ -6,6 +6,10 @@ declare let _;
 
 @Injectable()
 export class UtilsService {
+  public static getLocaleFromLang(lang) {
+    return lang.substr(0, 2);
+  }
+
   public isSandbox = false;
   // tslint:disable-next-line
   public _idleSecondsCounter = 0;
@@ -220,4 +224,5 @@ export class UtilsService {
   public mergeObjects(a, b) {
     return deepmerge(a, b);
   }
+
 }
