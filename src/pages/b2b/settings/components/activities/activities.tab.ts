@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
+import { element } from 'protractor';
 
 @Component({
     selector: 'tab-activities',
@@ -23,17 +24,14 @@ export class ActivitiesTabComponent extends EntityTabBase {
 
     public search() {
         this.activitiesCrud.search({
+            dir: this.sortDir,
             limit: this.limit,
             offset: this.offset,
-            query: {
-                search: this.query,
-            },
+            search: this.query,
+            sort: this.sortID,
         }).subscribe(
             (resp) => {
-                this.data = resp.data.elements.map((elem) => {
-                    elem.eng = elem.name;
-                    return elem;
-                });
+                this.data = resp.data.elements.map(this.mapTranslatedElement);
                 this.sortedData = this.data.slice();
                 this.total = resp.data.total;
                 this.list.updateData(this.data);
@@ -87,7 +85,7 @@ export class ActivitiesTabComponent extends EntityTabBase {
                             ];
 
                             return forkJoin(proms).subscribe((resp) => {
-                                this.snackbar.open('Created Activity: ' + act.id, 'ok');
+                                this.snackbar.open('Created Activity', 'ok');
                                 this.search();
                             });
                         },

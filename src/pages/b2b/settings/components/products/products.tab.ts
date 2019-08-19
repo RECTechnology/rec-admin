@@ -22,20 +22,15 @@ export class ProductsTabComponent extends EntityTabBase {
     ) { super(dialog); }
 
     public search() {
-        console.log('this.list', this.list);
         this.productsCrud.search({
+            dir: this.sortDir,
             limit: this.limit,
             offset: this.offset,
-            query: {
-                search: this.query,
-            },
+            search: this.query,
+            sort: this.sortID,
         }).subscribe(
             (resp) => {
-                console.log('products', resp);
-                this.data = resp.data.elements.map((elem) => {
-                    elem.eng = elem.name;
-                    return elem;
-                });
+                this.data = resp.data.elements.map(this.mapTranslatedElement);
                 this.sortedData = this.data.slice();
                 this.total = resp.data.total;
                 this.list.updateData(this.data);
@@ -90,7 +85,7 @@ export class ProductsTabComponent extends EntityTabBase {
                             ];
 
                             return forkJoin(proms).subscribe((resp) => {
-                                this.snackbar.open('Created Product: ' + prod.id, 'ok');
+                                this.snackbar.open('Created Product', 'ok');
                                 this.search();
                             });
                         },

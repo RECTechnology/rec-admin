@@ -52,4 +52,10 @@ export abstract class EntityTabBase {
         this.search();
     }
 
+    public mapTranslatedElement(elem) {
+        elem.eng = elem.translations && elem.translations.en ? elem.translations.en.name : '';
+        elem.cat = elem.translations && elem.translations.ca ? elem.translations.ca.name : '';
+        elem.esp = elem.translations && elem.translations.es ? elem.translations.es.name : '';
+        return elem;
+    }
 }

@@ -74,21 +74,21 @@ export class CrudBaseService extends BaseService2 {
         );
     }
 
-    public list(query?: CrudQueryOptions): Observable<any> {
+    public list(query?: CrudQueryOptions, lang: RecLang = REC_LANGS.ALL): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
-        return this.get(url, query)
+        return this.get(url, query, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());
     }
 
-    public search(data: ListAccountsParams = {}): Observable<any> {
-        const url = [...this.getUrlBase(), CrudBaseService.PATH_SEARCH];
-        return this.get(url, data)
+    public search(data: ListAccountsParams = {}, lang: RecLang = REC_LANGS.ALL): Observable<any> {
+        const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
+        return this.get(url, data, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());
     }
 
-    public find(id: string): Observable<any> {
+    public find(id: string, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
-        return this.get(url)
+        return this.get(url, null, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());
     }
 
