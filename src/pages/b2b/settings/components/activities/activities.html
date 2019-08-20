@@ -4,7 +4,7 @@
             <tl-header title="AVAILABLE_ACTIVITIES" [(query)]="query" (onSearch)="search()">
                 <button type="button" color="primary" mat-raised-button name="button" (click)="addActivity()">
                     <p class="text-small">
-                        {{'NEW'|translate}}
+                        <i class="fa fa-plus"></i> {{('NEW'|translate)}} {{('ACTIVITY'|translate)}}
                     </p>
                 </button>
             </tl-header>

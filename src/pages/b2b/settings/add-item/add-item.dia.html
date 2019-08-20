@@ -35,15 +35,17 @@
                     <div class="col-lg-6">
                         <p class="small-text-2">{{'ACTIVITIES_CONSUMED'|translate}}</p>
                         <div class="activity-box-list">
-                            <ul *ngIf="item.activities_consumed.length" style="list-style: none; margin: 0; padding: 0">
+                            <ul *ngIf="item.consuming_by_id && item.consuming_by_id.length"
+                                style="list-style: none; margin: 0; padding: 0">
                                 <li class="activity-list-item small-text" (click)="deleteConsumed(i)"
-                                    *ngFor="let cons of item.activities_consumed; let i = index">
+                                    *ngFor="let cons of item.consuming_by_id; let i = index">
                                     {{cons.name}}
 
                                     <span class="icon fa fa-trash"></span>
                                 </li>
                             </ul>
-                            <p class="small-text col-gray padd-x10" *ngIf="!item.activities_consumed.length">
+                            <p class="small-text col-gray padd-x10"
+                                *ngIf="item.consuming_by_id && !item.consuming_by_id.length">
                                 {{'NO_ITEMS'|translate}}
                             </p>
                         </div>
@@ -60,7 +62,8 @@
                                 placeholder="Search Activities">
 
                             <ng-template ngFor let-act [ngForOf]="activities">
-                                <button *ngIf="!item.activities_consumed.includes(act) && nameMatches(act.name)"
+                                <button
+                                    *ngIf="item.consuming_by_id && !item.consuming_by_id.includes(act) && nameMatches(act.name)"
                                     mat-menu-item (click)="addConsumed(act)" style="padding: 5px auto">
                                     <span style="color: #666; font-size: 12px">{{act.name}}</span>
                                 </button>
@@ -71,14 +74,16 @@
                     <div class="col-lg-6">
                         <p class="small-text-2">{{'ACTIVITIES_PRODUCED'|translate}}</p>
                         <div class="activity-box-list">
-                            <ul *ngIf="item.activities_produced.length" style="list-style: none; margin: 0; padding: 0">
+                            <ul *ngIf="item.producing_by_id && item.producing_by_id.length"
+                                style="list-style: none; margin: 0; padding: 0">
                                 <li class="activity-list-item small-text" (click)="deleteProduced(i)"
-                                    *ngFor="let prod of item.activities_produced; let i = index">
+                                    *ngFor="let prod of item.producing_by_id; let i = index">
                                     {{prod.name}}
                                     <span class="icon fa fa-trash small-text col-error"></span>
                                 </li>
                             </ul>
-                            <p class="small-text col-gray padd-x10" *ngIf="!item.activities_produced.length">
+                            <p class="small-text col-gray padd-x10"
+                                *ngIf="item.producing_by_id && !item.producing_by_id.length">
                                 {{'NO_ITEMS'|translate}}
                             </p>
                         </div>
@@ -94,7 +99,8 @@
                                 (click)="$event.stopPropagation()" (blur)="actQuery = ''"
                                 placeholder="Search Activities">
                             <ng-template ngFor let-act [ngForOf]="activities">
-                                <button *ngIf="!item.activities_produced.includes(act) && nameMatches(act.name)"
+                                <button
+                                    *ngIf="item.producing_by_id && !item.producing_by_id.includes(act) && nameMatches(act.name)"
                                     mat-menu-item (click)="addProduced(act)" style="padding: 5px auto">
                                     <span style="color: #666; font-size: 12px">{{act.name}}</span>
                                 </button>

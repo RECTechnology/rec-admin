@@ -4,7 +4,7 @@
             <tl-header title="AVAILABLE_NEIGHBORHOODS" [(query)]="query" (onSearch)="search($event)">
                 <button type="button" color="primary" mat-raised-button name="button" (click)="addNeighborhood()">
                     <p class="text-small">
-                        {{'NEW'|translate}}
+                       <i class="fa fa-plus"></i> {{'NEW'|translate}} {{'NEIGBORHOOD'|translate}}
                     </p>
                 </button>
             </tl-header>

@@ -26,7 +26,7 @@ export class ProductsTabComponent extends EntityTabBase {
             dir: this.sortDir,
             limit: this.limit,
             offset: this.offset,
-            search: this.query,
+            search: this.query || '',
             sort: this.sortID,
         }).subscribe(
             (resp) => {
@@ -73,9 +73,6 @@ export class ProductsTabComponent extends EntityTabBase {
 
         ref.afterClosed().subscribe((created) => {
             if (created) {
-                delete created.activities_consumed;
-                delete created.activities_produced;
-
                 this.productsCrud.create({ name: created.eng, description: '' }, 'en')
                     .subscribe(
                         (prod) => {

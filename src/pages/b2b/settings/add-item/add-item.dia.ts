@@ -23,8 +23,8 @@ export class AddItemDia {
     public activities = [];
 
     public item: any = {
-        activities_consumed: [],
-        activities_produced: [],
+        consuming_by_id: [],
+        producing_by_id: [],
         cat: '',
         eng: '',
         esp: '',
@@ -38,24 +38,25 @@ export class AddItemDia {
     ) {
         this.activitiesCrud.list({ offset: 0, limit: 100 })
             .subscribe((resp) => {
+                console.log('activities', resp);
                 this.activities = resp.data.elements;
             });
     }
 
     public addConsumed(act) {
-        this.item.activities_consumed.push(act);
+        this.item.consuming_by_id.push(act);
     }
 
     public addProduced(act) {
-        this.item.activities_produced.push(act);
+        this.item.producing_by_id.push(act);
     }
 
     public deleteProduced(i) {
-        this.item.activities_produced.splice(i, 1);
+        this.item.producing_by_id.splice(i, 1);
     }
 
     public deleteConsumed(i) {
-        this.item.activities_consumed.splice(i, 1);
+        this.item.consuming_by_id.splice(i, 1);
     }
 
     public ngOnInit() {
