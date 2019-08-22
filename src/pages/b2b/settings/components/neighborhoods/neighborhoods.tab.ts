@@ -83,26 +83,35 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
     }
 
     public editNeighborhood(neighborhood) {
-        const ref = this.dialog.open(AddNeighbourhoodDia);
-        ref.componentInstance.isEdit = true;
-        ref.componentInstance.item = Object.assign({}, neighborhood);
 
-        ref.afterClosed().subscribe((updated) => {
-            if (updated) {
+        this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
+            .subscribe((proceed) => {
+                if (proceed) {
+                    const ref = this.dialog.open(AddNeighbourhoodDia);
+                    ref.componentInstance.isEdit = true;
+                    ref.componentInstance.item = Object.assign({}, neighborhood);
 
-                delete updated.id;
-                delete updated.created;
-                delete updated.updated;
+                    ref.afterClosed().subscribe((updated) => {
+                        if (updated) {
 
-                this.nCrud.update(neighborhood.id, updated).subscribe(
-                    (resp) => {
-                        this.snackbar.open('Updated Neighbourhood: ' + neighborhood.id, 'ok');
-                        this.search();
-                    },
-                    (error) => this.snackbar.open(error.message),
-                );
-            }
-        });
+                            delete updated.id;
+                            delete updated.created;
+                            delete updated.updated;
+                            delete updated.accounts;
+                            delete updated.translations;
+
+                            this.nCrud.update(neighborhood.id, updated).subscribe(
+                                (resp) => {
+                                    this.snackbar.open('Updated Neighbourhood: ' + neighborhood.id, 'ok');
+                                    this.search();
+                                },
+                                (error) => this.snackbar.open(error.message),
+                            );
+                        }
+                    });
+
+                }
+            });
     }
 
     public addNeighborhood() {

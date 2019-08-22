@@ -24,9 +24,9 @@ export abstract class EntityTabBase {
         this.search();
     }
 
-    public confirm(title, message, btnText = 'Delete') {
+    public confirm(title, message, btnText = 'Delete', status = 'error') {
         const dialogRef = this.dialog.open(ConfirmationMessage);
-        dialogRef.componentInstance.status = 'error';
+        dialogRef.componentInstance.status = status;
         dialogRef.componentInstance.title = title;
         dialogRef.componentInstance.message = message;
         dialogRef.componentInstance.btnConfirmText = btnText;

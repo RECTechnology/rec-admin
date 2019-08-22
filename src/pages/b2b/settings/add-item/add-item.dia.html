@@ -1,5 +1,5 @@
 <div class="modal-header bg-blue">
-    {{!isEdit ? 'ADD_ITEM': 'EDIT_ITEM' | translate}} ({{itemType|translate}})
+    <span>{{(!isEdit ? 'ADD_ITEM': 'EDIT_ITEM') | translate}} ({{itemType|translate}})</span>
 
     <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
         <span class="center h v">
@@ -10,24 +10,25 @@
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
     <div class="padd-x20" style="width: 100%">
-        <p style="padding-bottom: 15px">{{(!isEdit ? 'ADD_ITEM_DESC': 'EDIT_ITEM_DESC')|translate}}</p>
+        <p style="padding-bottom: 15px">{{(!isEdit ? 'ADD_ITEM_DESC': 'EDIT_ITEM_DESC')|translate:({ type: itemType })}}
+        </p>
 
         <div class="row" style="width: 100%">
             <div class="col-lg-4" [class.col-lg-12]="!isProduct">
                 <div class="group-col-left" style="width: 100%">
+                    <span class="small-text-2">{{'Catalan'|translate}}</span>
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.cat"
+                        placeholder="{{'Catalan'|translate}}" [disabled]="loading">
+                </div>
+                <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'Spanish'|translate}}</span>
-                    <input type="text" class="user-input small" (blur)="check()" style="max-width: 100%"
-                        [(ngModel)]="item.esp" placeholder="{{'Spanish'|translate}}" [disabled]="loading">
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.esp"
+                        placeholder="{{'Spanish'|translate}}" [disabled]="loading">
                 </div>
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'English'|translate}}</span>
-                    <input type="text" class="user-input small" (blur)="check()" style="max-width: 100%"
-                        [(ngModel)]="item.eng" placeholder="{{'English'|translate}}" [disabled]="loading">
-                </div>
-                <div class="group-col-left" style="width: 100%">
-                    <span class="small-text-2">{{'Catalan'|translate}}</span>
-                    <input type="text" class="user-input small" (blur)="check()" style="max-width: 100%"
-                        [(ngModel)]="item.cat" placeholder="{{'Catalan'|translate}}" [disabled]="loading">
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.eng"
+                        placeholder="{{'English'|translate}}" [disabled]="loading">
                 </div>
             </div>
             <div class="col-lg-8" *ngIf="isProduct && isEdit">
@@ -37,7 +38,7 @@
                         <div class="activity-box-list">
                             <ul *ngIf="item.consuming_by && item.consuming_by.length"
                                 style="list-style: none; margin: 0; padding: 0">
-                                <li class="activity-list-item small-text" (click)="deleteConsumed(i)"
+                                <li class="activity-list-item small-text" (dblclick)="deleteConsumed(i)"
                                     *ngFor="let cons of item.consuming_by; let i = index">
                                     {{cons.name}}
 
@@ -76,7 +77,7 @@
                         <div class="activity-box-list">
                             <ul *ngIf="item.producing_by && item.producing_by.length"
                                 style="list-style: none; margin: 0; padding: 0">
-                                <li class="activity-list-item small-text" (click)="deleteProduced(i)"
+                                <li class="activity-list-item small-text" (dblclick)="deleteProduced(i)"
                                     *ngFor="let prod of item.producing_by; let i = index">
                                     {{prod.name}}
                                     <span class="icon fa fa-trash small-text col-error"></span>
@@ -112,7 +113,8 @@
             <div class="col-lg-8" *ngIf="isProduct && !isEdit">
                 <div class="alert alert-primary">
                     <p class="small-text-2 text-primary">
-                        <i class="fa fa-info-circle" style="margin-right: 8px"></i> You will be able to add activities after creating product
+                        <i class="fa fa-info-circle" style="margin-right: 8px"></i>
+                        {{'ACTIVITY_AFTER_CREATE'|translate}}
                     </p>
                 </div>
             </div>

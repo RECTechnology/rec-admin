@@ -47,28 +47,33 @@ export class ActivitiesTabComponent extends EntityTabBase {
     }
 
     public editActivities(activity) {
-        const ref = this.dialog.open(AddItemDia);
-        ref.componentInstance.isEdit = true;
-        ref.componentInstance.item = Object.assign({}, activity);
-        ref.componentInstance.itemType = 'ACTIVITY';
+        this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
+            .subscribe((proceed) => {
+                if (proceed) {
+                    const ref = this.dialog.open(AddItemDia);
+                    ref.componentInstance.isEdit = true;
+                    ref.componentInstance.item = Object.assign({}, activity);
+                    ref.componentInstance.itemType = 'ACTIVITY';
 
-        ref.afterClosed().subscribe((updated) => {
-            if (updated) {
-                const proms = [
-                    this.activitiesCrud.update(activity.id, { name: updated.cat }, 'ca'),
-                    this.activitiesCrud.update(activity.id, { name: updated.esp }, 'es'),
-                    this.activitiesCrud.update(activity.id, { name: updated.eng }, 'en'),
-                ];
+                    ref.afterClosed().subscribe((updated) => {
+                        if (updated) {
+                            const proms = [
+                                this.activitiesCrud.update(activity.id, { name: updated.cat }, 'ca'),
+                                this.activitiesCrud.update(activity.id, { name: updated.esp }, 'es'),
+                                this.activitiesCrud.update(activity.id, { name: updated.eng }, 'en'),
+                            ];
 
-                forkJoin(proms).subscribe(
-                    (resp) => {
-                        this.snackbar.open('Updated Activity: ' + activity.id, 'ok');
-                        this.search();
-                    },
-                    (error) => this.snackbar.open(error.message),
-                );
-            }
-        });
+                            forkJoin(proms).subscribe(
+                                (resp) => {
+                                    this.snackbar.open('Updated Activity: ' + activity.id, 'ok');
+                                    this.search();
+                                },
+                                (error) => this.snackbar.open(error.message),
+                            );
+                        }
+                    });
+                }
+            });
     }
 
     public addActivity() {
