@@ -17,20 +17,20 @@
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'Spanish'|translate}}</span>
                     <input type="text" class="user-input small" (blur)="check()" style="max-width: 100%"
-                        [(ngModel)]="item.esp" placeholder="{{'Spanish'|translate}}">
+                        [(ngModel)]="item.esp" placeholder="{{'Spanish'|translate}}" [disabled]="loading">
                 </div>
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'English'|translate}}</span>
                     <input type="text" class="user-input small" (blur)="check()" style="max-width: 100%"
-                        [(ngModel)]="item.eng" placeholder="{{'English'|translate}}">
+                        [(ngModel)]="item.eng" placeholder="{{'English'|translate}}" [disabled]="loading">
                 </div>
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'Catalan'|translate}}</span>
                     <input type="text" class="user-input small" (blur)="check()" style="max-width: 100%"
-                        [(ngModel)]="item.cat" placeholder="{{'Catalan'|translate}}">
+                        [(ngModel)]="item.cat" placeholder="{{'Catalan'|translate}}" [disabled]="loading">
                 </div>
             </div>
-            <div class="col-lg-8" *ngIf="isProduct">
+            <div class="col-lg-8" *ngIf="isProduct && isEdit">
                 <div class="row">
                     <div class="col-lg-6">
                         <p class="small-text-2">{{'ACTIVITIES_CONSUMED'|translate}}</p>
@@ -51,8 +51,8 @@
                         </div>
 
                         <!--  -->
-                        <button [matMenuTriggerFor]="actMenu" type="button" mat-button class="mat-button-menu"
-                            style="margin-top: 5px; width: 100%">
+                        <button [matMenuTriggerFor]="actMenu" [disabled]="loading" type="button" mat-button
+                            class="mat-button-menu" style="margin-top: 5px; width: 100%">
                             <span>{{'ACTIVITY'|translate}}</span>
                             <i class="fa fa-caret-down" style="margin-left: 8px"></i>
                         </button>
@@ -89,8 +89,8 @@
                         </div>
 
                         <!--  -->
-                        <button [matMenuTriggerFor]="actMenu2" type="button" mat-button class="mat-button-menu"
-                            style="margin-top: 5px; width: 100%">
+                        <button [matMenuTriggerFor]="actMenu2" [disabled]="loading" type="button" mat-button
+                            class="mat-button-menu" style="margin-top: 5px; width: 100%">
                             <span>{{'ACTIVITY'|translate}}</span>
                             <i class="fa fa-caret-down" style="margin-left: 8px"></i>
                         </button>
@@ -107,6 +107,13 @@
                             </ng-template>
                         </mat-menu>
                     </div>
+                </div>
+            </div>
+            <div class="col-lg-8" *ngIf="isProduct && !isEdit">
+                <div class="alert alert-primary">
+                    <p class="small-text-2 text-primary">
+                        <i class="fa fa-info-circle" style="margin-right: 8px"></i> You will be able to add activities after creating product
+                    </p>
                 </div>
             </div>
         </div>

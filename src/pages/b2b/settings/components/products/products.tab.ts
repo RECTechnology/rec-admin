@@ -53,15 +53,25 @@ export class ProductsTabComponent extends EntityTabBase {
 
         ref.afterClosed().subscribe((updated) => {
             if (updated) {
+                this.loading = true;
                 const proms = [
                     this.productsCrud.update(product.id, { name: updated.cat }, 'ca'),
                     this.productsCrud.update(product.id, { name: updated.esp }, 'es'),
                     this.productsCrud.update(product.id, { name: updated.eng }, 'en'),
                 ];
 
+                for (const activity of updated.consuming_by) {
+                    proms.push(this.productsCrud.addConsumedByToProduct(product.id, activity.id));
+                }
+
+                for (const activity of updated.producing_by) {
+                    proms.push(this.productsCrud.addProducingByToProduct(product.id, activity.id));
+                }
+
                 forkJoin(proms).subscribe(
                     (resp) => {
                         this.snackbar.open('Updated product: ' + product.id, 'ok');
+                        this.loading = false;
                         this.search();
                     },
                     (error) => this.snackbar.open(error.message),
@@ -78,17 +88,22 @@ export class ProductsTabComponent extends EntityTabBase {
 
         ref.afterClosed().subscribe((created) => {
             if (created) {
+                this.loading = true;
                 this.productsCrud.create({ name: created.eng, description: '' }, 'en')
                     .subscribe(
                         (prod) => {
+                            const productID = prod.data.id;
+
                             const proms = [
-                                this.productsCrud.update(prod.data.id, { name: created.cat }, 'ca'),
-                                this.productsCrud.update(prod.data.id, { name: created.esp }, 'es'),
+                                this.productsCrud.update(productID, { name: created.cat }, 'ca'),
+                                this.productsCrud.update(productID, { name: created.esp }, 'es'),
                             ];
 
                             return forkJoin(proms).subscribe((resp) => {
                                 this.snackbar.open('Created Product', 'ok');
+                                this.loading = false;
                                 this.search();
+                                this.editProducts(this.mapTranslatedElement(prod));
                             });
                         },
                         (error) => {

@@ -29,27 +29,16 @@ export class TranslatableListComponent implements AfterViewInit {
   }
 
   public updateData(data, total = 0) {
-    console.log('this.total', this.total);
-    console.log('total', total);
-    console.log('pageSize', this.limit);
-
     this.paginator.length = total || this.total;
     this.paginator.pageSize = this.limit;
-
     this.dataSource = data;
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-
-    console.log('this.paginator', this.paginator);
   }
 
   public sortData(sort: MatSort) {
-    console.log('sortData', this.constructor.name);
     this.onSortChange.emit(sort);
   }
 
   public changedPage($event) {
-    console.log('changedPage', this.constructor.name);
     this.onChangePage.emit($event);
   }
 }

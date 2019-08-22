@@ -945,7 +945,7 @@
   "NEW_NEIGBORHOOD": "Nuevo barrio",
   "NEW_ACTIVITY": "Nueva actividad",
   "SAVE": "Guardar",
-  "INPUT_REQUIRED": "Campo Requrido: {{field}}",
+  "INPUT_REQUIRED": "Campo Requerido: {{field}}",
   "UsersAndAccounts": "Usuarios REC",
   "EDIT_ITEM": "Editar Elemento"
 }

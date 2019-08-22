@@ -3,6 +3,8 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
+import { ProductsCrud } from 'src/services/crud/products/products.crud';
+import { MySnackBarSevice } from 'src/bases/snackbar-base';
 
 @Component({
     selector: 'add-item',
@@ -35,6 +37,8 @@ export class AddItemDia {
         public us: UserService,
         public translate: TranslateService,
         public activitiesCrud: ActivitiesCrud,
+        public productsCrud: ProductsCrud,
+        public snackbar: MySnackBarSevice,
     ) {
         this.activitiesCrud.list({ offset: 0, limit: 100 })
             .subscribe((resp) => {
@@ -43,20 +47,58 @@ export class AddItemDia {
             });
     }
 
+    public addedSubscriber(sub, message = 'Added activity') {
+        sub.subscribe(
+            (resp) => {
+                this.snackbar.open(message, 'ok');
+                this.loading = false;
+            },
+            (error) => {
+                this.snackbar.open(error.message, 'ok');
+                this.loading = false;
+            });
+    }
+
+    public deletedSubscriber(sub, message = 'Deleted activity') {
+        sub.subscribe(
+            (resp) => {
+                this.snackbar.open(message, 'ok');
+                this.loading = false;
+            },
+            (error) => {
+                this.snackbar.open(error.message, 'ok');
+                this.loading = false;
+            });
+    }
+
     public addConsumed(act) {
+        this.loading = true;
+
         this.item.consuming_by.push(act);
+        this.addedSubscriber(this.productsCrud.addConsumedByToProduct(this.item.id, act.id));
     }
 
     public addProduced(act) {
+        this.loading = true;
+
         this.item.producing_by.push(act);
+        this.addedSubscriber(this.productsCrud.addProducingByToProduct(this.item.id, act.id));
     }
 
     public deleteProduced(i) {
+        this.loading = true;
+
+        const act = this.item.producing_by[i];
         this.item.producing_by.splice(i, 1);
+        this.deletedSubscriber(this.productsCrud.removeConsumedByToProduct(this.item.id, act.id));
     }
 
     public deleteConsumed(i) {
+        this.loading = true;
+
+        const act = this.item.producing_by[i];
         this.item.consuming_by.splice(i, 1);
+        this.deletedSubscriber(this.productsCrud.removeProducingByToProduct(this.item.id, act.id));
     }
 
     public ngOnInit() {
