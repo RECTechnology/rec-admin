@@ -23,21 +23,25 @@ export class ActivitiesTabComponent extends EntityTabBase {
     }
 
     public search() {
+        this.loading = true;
         this.activitiesCrud.search({
             dir: this.sortDir,
             limit: this.limit,
             offset: this.offset,
-            search: this.query,
+            search: this.query || '',
             sort: this.sortID,
         }).subscribe(
             (resp) => {
                 this.data = resp.data.elements.map(this.mapTranslatedElement);
                 this.sortedData = this.data.slice();
                 this.total = resp.data.total;
-                this.list.updateData(this.data);
+                console.log('RESP', resp);
+                this.list.updateData(this.data, resp.data.total);
+                this.loading = false;
             },
             (error) => {
                 console.log('errror', error);
+                this.loading = false;
             },
         );
     }
@@ -46,10 +50,10 @@ export class ActivitiesTabComponent extends EntityTabBase {
         const ref = this.dialog.open(AddItemDia);
         ref.componentInstance.isEdit = true;
         ref.componentInstance.item = Object.assign({}, activity);
+        ref.componentInstance.itemType = 'ACTIVITY';
 
         ref.afterClosed().subscribe((updated) => {
             if (updated) {
-                console.log('Updated', updated);
                 const proms = [
                     this.activitiesCrud.update(activity.id, { name: updated.cat }, 'ca'),
                     this.activitiesCrud.update(activity.id, { name: updated.esp }, 'es'),
@@ -70,12 +74,10 @@ export class ActivitiesTabComponent extends EntityTabBase {
     public addActivity() {
         const ref = this.dialog.open(AddItemDia);
         ref.componentInstance.isEdit = false;
+        ref.componentInstance.itemType = 'ACTIVITY';
 
         ref.afterClosed().subscribe((created) => {
             if (created) {
-                delete created.activities_consumed;
-                delete created.activities_produced;
-
                 this.activitiesCrud.create({ name: created.eng, description: '' }, 'en')
                     .subscribe(
                         (act) => {

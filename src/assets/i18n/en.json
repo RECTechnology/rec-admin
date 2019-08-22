@@ -400,7 +400,6 @@
   "NEIGBORHOOD": "Neighborhood",
   "ACTIVITY": "Activity",
   "PRODUCT": "Product",
-
   "AVAILABLE_NEIGHBORHOODS": "Available Neighborhood",
   "AVAILABLE_ACTIVITIES": "Available Activities",
   "AVAILABLE_PRODUCTS": "Available Products",
@@ -423,5 +422,7 @@
   "NEW_ACTIVITY": "New Activity",
   "SAVE": "Save",
   "INPUT_REQUIRED": "Field required: {{field}}",
-  "UsersAndAccounts": "REC Users"
+  "UsersAndAccounts": "REC Users",
+  "ADD_ITEM": "Add Item",
+  "EDIT_ITEM": "Edit Item"
 }

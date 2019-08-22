@@ -18,6 +18,7 @@ export class AddNeighbourhoodDia {
     public item: any = {
         description: '',
         name: '',
+        townhall_code: '',
     };
 
     constructor(

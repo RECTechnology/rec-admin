@@ -8,7 +8,9 @@
                     </p>
                 </button>
             </tl-header>
-            <translatable-list (edit)="editActivities($event)" (delete)="deleteActivity($event)" [data]="sortedData">
+            <translatable-list [(limit)]="limit" (onSort)="sortData($event)" (changedPage)="changedPage($event)"
+                [loading]="loading" (edit)="editActivities($event)" (delete)="deleteActivity($event)"
+                [data]="sortedData">
             </translatable-list>
         </div>
     </div>

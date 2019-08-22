@@ -946,5 +946,6 @@
   "NEW_ACTIVITY": "Nueva actividad",
   "SAVE": "Guardar",
   "INPUT_REQUIRED": "Campo Requrido: {{field}}",
-  "UsersAndAccounts": "Usuarios REC"
+  "UsersAndAccounts": "Usuarios REC",
+  "EDIT_ITEM": "Editar Elemento"
 }

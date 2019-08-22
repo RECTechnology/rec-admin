@@ -959,5 +959,6 @@
   "NEW_ACTIVITY": "Activitat nova",
   "SAVE": "Guardar",
   "INPUT_REQUIRED": "Camp Requerit: {{field}}",
-  "UsersAndAccounts": "Usuaris REC"  
+  "UsersAndAccounts": "Usuaris REC",
+  "EDIT_ITEM": "Editar Element"
 }

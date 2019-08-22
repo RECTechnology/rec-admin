@@ -22,6 +22,7 @@ export class ProductsTabComponent extends EntityTabBase {
     ) { super(dialog); }
 
     public search() {
+        this.loading = true;
         this.productsCrud.search({
             dir: this.sortDir,
             limit: this.limit,
@@ -34,8 +35,10 @@ export class ProductsTabComponent extends EntityTabBase {
                 this.sortedData = this.data.slice();
                 this.total = resp.data.total;
                 this.list.updateData(this.data);
+                this.loading = false;
             },
             (error) => {
+                this.loading = false;
                 console.log('errror', error);
             },
         );
@@ -45,6 +48,7 @@ export class ProductsTabComponent extends EntityTabBase {
         const ref = this.dialog.open(AddItemDia);
         ref.componentInstance.isEdit = true;
         ref.componentInstance.isProduct = true;
+        ref.componentInstance.itemType = 'PRODUCT';
         ref.componentInstance.item = Object.assign({}, product);
 
         ref.afterClosed().subscribe((updated) => {
@@ -70,6 +74,7 @@ export class ProductsTabComponent extends EntityTabBase {
         const ref = this.dialog.open(AddItemDia);
         ref.componentInstance.isEdit = false;
         ref.componentInstance.isProduct = true;
+        ref.componentInstance.itemType = 'PRODUCT';
 
         ref.afterClosed().subscribe((created) => {
             if (created) {

@@ -34,15 +34,9 @@ export class CrudBaseService extends BaseService2 {
 
     constructor(
         http: HttpClient,
-        public us: UserService,
-        // basePath: string = '',
-        // userRole: string = CrudBaseService.ROLE_USER,
-        // version: string = 'v3',
+        public us: UserService
     ) {
         super(http, us);
-        // this.basePath = basePath;
-        // this.userRole = userRole;
-        // this.version = version;
     }
 
     // Noop mapper, it will be used when this.mapItems === false
@@ -98,12 +92,11 @@ export class CrudBaseService extends BaseService2 {
             .pipe(this.itemMapper());
     }
 
-
-    private getUrlBase() {
+    public getUrlBase() {
         return ['/', this.userRole, '/', this.version, this.basePath];
     }
 
-    private itemMapper() {
+    public itemMapper() {
         if (!this.mapItems) {
             return map((resp) => resp);
         } else {

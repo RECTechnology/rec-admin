@@ -4,12 +4,13 @@
             <tl-header title="AVAILABLE_PRODUCTS" [(query)]="query" (onSearch)="search()">
                 <button type="button" color="primary" mat-raised-button name="button" (click)="addProduct()">
                     <p class="text-small">
-                       <i class="fa fa-plus"></i> {{'NEW_PRODUCT'|translate}}
+                        <i class="fa fa-plus"></i> {{'NEW_PRODUCT'|translate}}
                     </p>
                 </button>
             </tl-header>
-            <translatable-list (edit)="editProducts($event)" (delete)="deleteProduct($event)" [(data)]="sortedData"
-                [displayedColumns]="productsColumns">
+            <translatable-list [(limit)]="limit" [total]="total" (onSort)="sortData($event)"
+                (changedPage)="changedPage($event)" [loading]="loading" (edit)="editProducts($event)"
+                (delete)="deleteProduct($event)" [(data)]="sortedData" [displayedColumns]="productsColumns">
             </translatable-list>
         </div>
     </div>

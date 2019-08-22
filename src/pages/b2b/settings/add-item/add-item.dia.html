@@ -1,5 +1,5 @@
 <div class="modal-header bg-blue">
-    {{title | translate}} ({{itemType|translate}})
+    {{!isEdit ? 'ADD_ITEM': 'EDIT_ITEM' | translate}} ({{itemType|translate}})
 
     <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
         <span class="center h v">
@@ -10,7 +10,7 @@
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
     <div class="padd-x20" style="width: 100%">
-        <p style="padding-bottom: 15px">{{(!isEdit ? 'ADD_ITEM_DESC':'EDIT_ITEM_DESC')|translate}}</p>
+        <p style="padding-bottom: 15px">{{(!isEdit ? 'ADD_ITEM_DESC': 'EDIT_ITEM_DESC')|translate}}</p>
 
         <div class="row" style="width: 100%">
             <div class="col-lg-4" [class.col-lg-12]="!isProduct">
@@ -35,17 +35,17 @@
                     <div class="col-lg-6">
                         <p class="small-text-2">{{'ACTIVITIES_CONSUMED'|translate}}</p>
                         <div class="activity-box-list">
-                            <ul *ngIf="item.consuming_by_id && item.consuming_by_id.length"
+                            <ul *ngIf="item.consuming_by && item.consuming_by.length"
                                 style="list-style: none; margin: 0; padding: 0">
                                 <li class="activity-list-item small-text" (click)="deleteConsumed(i)"
-                                    *ngFor="let cons of item.consuming_by_id; let i = index">
+                                    *ngFor="let cons of item.consuming_by; let i = index">
                                     {{cons.name}}
 
                                     <span class="icon fa fa-trash"></span>
                                 </li>
                             </ul>
                             <p class="small-text col-gray padd-x10"
-                                *ngIf="item.consuming_by_id && !item.consuming_by_id.length">
+                                *ngIf="item.consuming_by && !item.consuming_by.length">
                                 {{'NO_ITEMS'|translate}}
                             </p>
                         </div>
@@ -63,7 +63,7 @@
 
                             <ng-template ngFor let-act [ngForOf]="activities">
                                 <button
-                                    *ngIf="item.consuming_by_id && !item.consuming_by_id.includes(act) && nameMatches(act.name)"
+                                    *ngIf="item.consuming_by && !item.consuming_by.includes(act) && nameMatches(act.name)"
                                     mat-menu-item (click)="addConsumed(act)" style="padding: 5px auto">
                                     <span style="color: #666; font-size: 12px">{{act.name}}</span>
                                 </button>
@@ -74,16 +74,16 @@
                     <div class="col-lg-6">
                         <p class="small-text-2">{{'ACTIVITIES_PRODUCED'|translate}}</p>
                         <div class="activity-box-list">
-                            <ul *ngIf="item.producing_by_id && item.producing_by_id.length"
+                            <ul *ngIf="item.producing_by && item.producing_by.length"
                                 style="list-style: none; margin: 0; padding: 0">
                                 <li class="activity-list-item small-text" (click)="deleteProduced(i)"
-                                    *ngFor="let prod of item.producing_by_id; let i = index">
+                                    *ngFor="let prod of item.producing_by; let i = index">
                                     {{prod.name}}
                                     <span class="icon fa fa-trash small-text col-error"></span>
                                 </li>
                             </ul>
                             <p class="small-text col-gray padd-x10"
-                                *ngIf="item.producing_by_id && !item.producing_by_id.length">
+                                *ngIf="item.producing_by && !item.producing_by.length">
                                 {{'NO_ITEMS'|translate}}
                             </p>
                         </div>
@@ -100,7 +100,7 @@
                                 placeholder="Search Activities">
                             <ng-template ngFor let-act [ngForOf]="activities">
                                 <button
-                                    *ngIf="item.producing_by_id && !item.producing_by_id.includes(act) && nameMatches(act.name)"
+                                    *ngIf="item.producing_by && !item.producing_by.includes(act) && nameMatches(act.name)"
                                     mat-menu-item (click)="addProduced(act)" style="padding: 5px auto">
                                     <span style="color: #666; font-size: 12px">{{act.name}}</span>
                                 </button>

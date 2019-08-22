@@ -24,6 +24,12 @@
                     <input type="text" class="user-input small" (blur)="check()" style="max-width: 100%"
                         [(ngModel)]="item.description" placeholder="{{'Description'|translate}}" (keyup.enter)="add()">
                 </div>
+                <div class="group-col-left" style="width: 100%">
+                    <span class="small-text-2">{{'TOWNHALL_CODE'|translate}}</span>
+                    <input type="text" class="user-input small" (blur)="check()" style="max-width: 100%"
+                        [(ngModel)]="item.townhall_code" placeholder="{{'TOWNHALL_CODE'|translate}}"
+                        (keyup.enter)="add()">
+                </div>
             </div>
         </div>
 

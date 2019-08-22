@@ -23,8 +23,8 @@ export class AddItemDia {
     public activities = [];
 
     public item: any = {
-        consuming_by_id: [],
-        producing_by_id: [],
+        consuming_by: [],
+        producing_by: [],
         cat: '',
         eng: '',
         esp: '',
@@ -44,19 +44,19 @@ export class AddItemDia {
     }
 
     public addConsumed(act) {
-        this.item.consuming_by_id.push(act);
+        this.item.consuming_by.push(act);
     }
 
     public addProduced(act) {
-        this.item.producing_by_id.push(act);
+        this.item.producing_by.push(act);
     }
 
     public deleteProduced(i) {
-        this.item.producing_by_id.splice(i, 1);
+        this.item.producing_by.splice(i, 1);
     }
 
     public deleteConsumed(i) {
-        this.item.consuming_by_id.splice(i, 1);
+        this.item.consuming_by.splice(i, 1);
     }
 
     public ngOnInit() {

@@ -21,8 +21,8 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
             type: 'code',
         },
         {
-            sort: 'neighbourhood_id',
-            title: 'Neighbourhood ID',
+            sort: 'townhall_code',
+            title: 'Townhall ID',
             type: 'code',
         },
         {
@@ -40,12 +40,12 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
     public itemOptions: TlItemOption[] = [{
         callback: this.editNeighborhood.bind(this),
         icon: 'fa-edit',
-        text: 'Edit Account',
+        text: 'Edit Neighbourhood',
     }, {
         callback: this.deleteNeighborhood.bind(this),
         class: 'col-error',
         icon: 'fa-trash',
-        text: 'Delete Account',
+        text: 'Delete Neighbourhood',
     }];
 
     public tableOptions: TableListOptions = {
