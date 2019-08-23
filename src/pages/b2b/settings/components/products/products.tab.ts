@@ -44,8 +44,8 @@ export class ProductsTabComponent extends EntityTabBase {
         );
     }
 
-    public editProducts(product) {
-        this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
+    public editProducts(product, skip = false) {
+        this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning', skip)
             .subscribe((proceed) => {
                 if (proceed) {
                     const ref = this.dialog.open(AddItemDia);
@@ -105,11 +105,9 @@ export class ProductsTabComponent extends EntityTabBase {
                             ];
 
                             return forkJoin(proms).subscribe((resp) => {
-                                console.log('Product', prod);
                                 this.snackbar.open('Created Product', 'ok');
                                 this.loading = false;
                                 this.search();
-                                this.editProducts(this.mapTranslatedElement(prod.data));
                             });
                         },
                         (error) => {

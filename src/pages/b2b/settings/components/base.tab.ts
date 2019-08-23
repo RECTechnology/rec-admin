@@ -2,6 +2,7 @@ import { MatDialog, Sort } from '@angular/material';
 import { ConfirmationMessage } from 'src/components/dialogs/confirmation-message/confirmation.dia';
 import { ViewChild } from '@angular/core';
 import { TranslatableListComponent } from '../../components/translatable-list/translatable-list.component';
+import { Observable } from 'rxjs';
 
 export abstract class EntityTabBase {
     public query: string = '';
@@ -24,7 +25,13 @@ export abstract class EntityTabBase {
         this.search();
     }
 
-    public confirm(title, message, btnText = 'Delete', status = 'error') {
+    public confirm(title, message, btnText = 'Delete', status = 'error', skip = false) {
+        if (skip) {
+            return new Observable((obs) => {
+                obs.next(true);
+                obs.complete();
+            });
+        }
         const dialogRef = this.dialog.open(ConfirmationMessage);
         dialogRef.componentInstance.status = status;
         dialogRef.componentInstance.title = title;
