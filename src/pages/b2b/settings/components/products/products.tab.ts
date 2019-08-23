@@ -45,39 +45,44 @@ export class ProductsTabComponent extends EntityTabBase {
     }
 
     public editProducts(product) {
-        const ref = this.dialog.open(AddItemDia);
-        ref.componentInstance.isEdit = true;
-        ref.componentInstance.isProduct = true;
-        ref.componentInstance.itemType = 'PRODUCT';
-        ref.componentInstance.item = Object.assign({}, product);
+        this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
+            .subscribe((proceed) => {
+                if (proceed) {
+                    const ref = this.dialog.open(AddItemDia);
+                    ref.componentInstance.isEdit = true;
+                    ref.componentInstance.isProduct = true;
+                    ref.componentInstance.itemType = 'PRODUCT';
+                    ref.componentInstance.item = Object.assign({}, product);
 
-        ref.afterClosed().subscribe((updated) => {
-            if (updated) {
-                this.loading = true;
-                const proms = [
-                    this.productsCrud.update(product.id, { name: updated.cat }, 'ca'),
-                    this.productsCrud.update(product.id, { name: updated.esp }, 'es'),
-                    this.productsCrud.update(product.id, { name: updated.eng }, 'en'),
-                ];
+                    ref.afterClosed().subscribe((updated) => {
+                        if (updated) {
+                            this.loading = true;
+                            const proms = [
+                                this.productsCrud.update(product.id, { name: updated.cat }, 'ca'),
+                                this.productsCrud.update(product.id, { name: updated.esp }, 'es'),
+                                this.productsCrud.update(product.id, { name: updated.eng }, 'en'),
+                            ];
 
-                for (const activity of updated.consuming_by) {
-                    proms.push(this.productsCrud.addConsumedByToProduct(product.id, activity.id));
+                            for (const activity of updated.consuming_by) {
+                                proms.push(this.productsCrud.addConsumedByToProduct(product.id, activity.id));
+                            }
+
+                            for (const activity of updated.producing_by) {
+                                proms.push(this.productsCrud.addProducingByToProduct(product.id, activity.id));
+                            }
+
+                            forkJoin(proms).subscribe(
+                                (resp) => {
+                                    this.snackbar.open('Updated product: ' + product.id, 'ok');
+                                    this.loading = false;
+                                    this.search();
+                                },
+                                (error) => this.snackbar.open(error.message),
+                            );
+                        }
+                    });
                 }
-
-                for (const activity of updated.producing_by) {
-                    proms.push(this.productsCrud.addProducingByToProduct(product.id, activity.id));
-                }
-
-                forkJoin(proms).subscribe(
-                    (resp) => {
-                        this.snackbar.open('Updated product: ' + product.id, 'ok');
-                        this.loading = false;
-                        this.search();
-                    },
-                    (error) => this.snackbar.open(error.message),
-                );
-            }
-        });
+            });
     }
 
     public addProduct() {
