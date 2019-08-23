@@ -46,7 +46,6 @@ export class AddItemDia {
                 this.activities = resp.data.elements;
             });
 
-        this.check();
     }
 
     public addedSubscriber(sub, message = 'Added activity') {
@@ -104,7 +103,7 @@ export class AddItemDia {
     }
 
     public ngOnInit() {
-        return;
+        this.check();
     }
 
     public add() {
