@@ -45,6 +45,8 @@ export class AddItemDia {
                 console.log('activities', resp);
                 this.activities = resp.data.elements;
             });
+
+        this.check();
     }
 
     public addedSubscriber(sub, message = 'Added activity') {

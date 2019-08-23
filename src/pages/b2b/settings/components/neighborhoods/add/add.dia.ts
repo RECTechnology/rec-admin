@@ -26,7 +26,7 @@ export class AddNeighbourhoodDia {
         public us: UserService,
         public translate: TranslateService,
     ) {
-
+        this.check();
     }
 
     public ngOnInit() {
@@ -45,11 +45,6 @@ export class AddNeighbourhoodDia {
         if (!this.item.name) {
             this.error = this.translate.instant('INPUT_REQUIRED', {
                 field: 'name',
-            });
-            this.disabled = true;
-        } else if (!this.item.description) {
-            this.error = this.translate.instant('INPUT_REQUIRED', {
-                field: 'description',
             });
             this.disabled = true;
         } else {
