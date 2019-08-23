@@ -10,6 +10,7 @@ import { EditAccountData } from '../../dialogs/edit-account/edit-account.dia';
 import { MatDialog } from '@angular/material';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
 import { AdminService } from '../../../services/admin/admin.service';
+import { B2bService } from 'src/services/b2b/b2b.service';
 
 @Component({
   selector: 'b2b-module',
@@ -45,4 +46,20 @@ export class B2BModuleTab {
       name: 'Producto 3',
     },
   ];
+
+  constructor(
+    public b2bCrud: B2bService,
+    public snackbar: MySnackBarSevice,
+  ) { }
+
+  public sendB2b() {
+    this.b2bCrud.sendB2BMailAccount()
+      .subscribe(
+        (resp) => {
+          this.snackbar.open('Sent mail');
+        }, (error) => {
+          this.snackbar.open(error.message);
+        },
+      );
+  }
 }

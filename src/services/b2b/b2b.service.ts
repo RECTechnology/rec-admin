@@ -21,39 +21,11 @@ export class B2bService extends BaseService2 {
     this.setFlag('translateHeaders', true);
   }
 
-  public getNeighborhoods() {
-    return this.get(`/admin/neighborhoods`);
+  public sendB2BMailAccount() {
+    return this.post('/b2b/account-mail', {});
   }
 
-  public getProducts() {
-    return this.get(`/admin/products`);
-  }
-
-  public getActivities() {
-    return this.get(`/admin/activities`);
-  }
-
-  public editNeighborhood(id, data) {
-    return this.put(`/admin/neighborhoods/${id}`, data);
-  }
-
-  public editProducts(id, data) {
-    return this.put(`/admin/products/${id}`, data);
-  }
-
-  public editActivities(id, data) {
-    return this.put(`/admin/activities/${id}`, data);
-  }
-
-  public addNeighborhood(data) {
-    return this.post(`/admin/neighborhoods`, data);
-  }
-
-  public addProducts(data) {
-    return this.post(`/admin/products`, data);
-  }
-
-  public addActivities(data) {
-    return this.post(`/admin/activities`, data);
+  public sendB2BMailBulk() {
+    return this.post('/b2b/bulk-mail', {});
   }
 }
