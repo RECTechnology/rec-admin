@@ -50,6 +50,7 @@ export class ProductsTabComponent extends EntityTabBase {
         ref.componentInstance.isProduct = true;
         ref.componentInstance.itemType = 'PRODUCT';
         ref.componentInstance.item = Object.assign({}, product);
+        
 
         ref.afterClosed().subscribe((updated) => {
             if (updated) {

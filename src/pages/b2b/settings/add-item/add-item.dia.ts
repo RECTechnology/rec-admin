@@ -25,8 +25,8 @@ export class AddItemDia {
     public activities = [];
 
     public item: any = {
-        consuming_by: [],
-        producing_by: [],
+        default_consuming_by: [],
+        default_producing_by: [],
         cat: '',
         eng: '',
         esp: '',
@@ -74,31 +74,31 @@ export class AddItemDia {
     public addConsumed(act) {
         this.loading = true;
 
-        this.item.consuming_by.push(act);
+        this.item.default_consuming_by.push(act);
         this.addedSubscriber(this.productsCrud.addConsumedByToProduct(this.item.id, act.id));
     }
 
     public addProduced(act) {
         this.loading = true;
 
-        this.item.producing_by.push(act);
+        this.item.default_consuming_by.push(act);
         this.addedSubscriber(this.productsCrud.addProducingByToProduct(this.item.id, act.id));
     }
 
     public deleteProduced(i) {
         this.loading = true;
 
-        const act = this.item.producing_by[i];
-        this.item.producing_by.splice(i, 1);
-        this.deletedSubscriber(this.productsCrud.removeConsumedByToProduct(this.item.id, act.id));
+        const act = this.item.default_consuming_by[i];
+        this.item.default_consuming_by.splice(i, 1);
+        this.deletedSubscriber(this.productsCrud.removeProducingByToProduct(this.item.id, act.id));
     }
 
     public deleteConsumed(i) {
         this.loading = true;
 
-        const act = this.item.producing_by[i];
-        this.item.consuming_by.splice(i, 1);
-        this.deletedSubscriber(this.productsCrud.removeProducingByToProduct(this.item.id, act.id));
+        const act = this.item.default_consuming_by[i];
+        this.item.default_consuming_by.splice(i, 1);
+        this.deletedSubscriber(this.productsCrud.removeConsumedByToProduct(this.item.id, act.id));
     }
 
     public ngOnInit() {
