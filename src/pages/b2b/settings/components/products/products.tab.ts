@@ -50,7 +50,6 @@ export class ProductsTabComponent extends EntityTabBase {
         ref.componentInstance.isProduct = true;
         ref.componentInstance.itemType = 'PRODUCT';
         ref.componentInstance.item = Object.assign({}, product);
-        
 
         ref.afterClosed().subscribe((updated) => {
             if (updated) {
@@ -101,10 +100,11 @@ export class ProductsTabComponent extends EntityTabBase {
                             ];
 
                             return forkJoin(proms).subscribe((resp) => {
+                                console.log('Product', prod);
                                 this.snackbar.open('Created Product', 'ok');
                                 this.loading = false;
                                 this.search();
-                                this.editProducts(this.mapTranslatedElement(prod));
+                                this.editProducts(this.mapTranslatedElement(prod.data));
                             });
                         },
                         (error) => {
