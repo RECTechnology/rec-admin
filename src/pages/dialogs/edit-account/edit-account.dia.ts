@@ -74,6 +74,7 @@ export class EditAccountData {
 
   public ngOnInit() {
     this.type = this.account.type;
+    this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
     this.accountCopy = Object.assign({}, this.account);
     this.schedule = this.utils.parseSchedule(this.account.schedule);
     this.accountCopy.categoryId = this.account.category ? this.account.category.id : '';
@@ -144,7 +145,6 @@ export class EditAccountData {
     return String(name).toLowerCase().includes(this.actQuery.toLowerCase());
   }
 
-
   public update() {
     const id = this.account.id;
     const data = this.accountCopy;
@@ -152,6 +152,9 @@ export class EditAccountData {
 
     changedProps.category = changedProps.category || changedProps.categoryId;
     delete changedProps.categoryId;
+
+    console.log('data', data);
+    console.log('changedProps', changedProps);
 
     if (!changedProps.category) {
       delete changedProps.category;
@@ -166,13 +169,16 @@ export class EditAccountData {
     }
 
     if (Object.keys(changedProps).length) {
+      this.loading = true;
       this.crudAccounts.update(id, changedProps)
         .subscribe(
           (resp) => {
             this.snackBar.open('Updated account correctly!', 'ok');
+            this.loading = false;
             this.close(this.account);
           }, (error) => {
             this.snackBar.open('Error updating account!' + error.message, 'ok');
+            this.loading = false;
             this.close(this.account);
           });
     } else {

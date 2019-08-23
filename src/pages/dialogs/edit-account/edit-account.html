@@ -24,8 +24,8 @@
         <div class="col-lg-6">
           <div class="group-col-left">
             <span class="small-text-2">{{'Name'|translate}}</span>
-            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.name"
-              placeholder="Name">
+            <input [disabled]="loading" type="text" class="user-input small" style="max-width: 300px"
+              [(ngModel)]="accountCopy.name" placeholder="Name">
           </div>
         </div>
 
@@ -35,12 +35,12 @@
             <span class="small-text-2">{{'Phone'|translate}}</span>
             <div class="row">
               <div class="col-lg-4">
-                <input type="tel" class="user-input small" style="max-width: 100%" [(ngModel)]="accountCopy.prefix"
-                  placeholder="Phone prefix">
+                <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 100%"
+                  [(ngModel)]="accountCopy.prefix" placeholder="Phone prefix">
               </div>
               <div class="col-lg-8">
-                <input type="tel" class="user-input small" style="max-width: 100%" [(ngModel)]="accountCopy.phone"
-                  placeholder="Phone number">
+                <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 100%"
+                  [(ngModel)]="accountCopy.phone" placeholder="Phone number">
               </div>
             </div>
           </div>
@@ -50,7 +50,8 @@
         <div class="col-lg-6">
           <div class="group-col-left">
             <span class="small-text-2">{{'Email'|translate}}</span>
-            <input type="email" class="user-input small" [(ngModel)]="accountCopy.email" placeholder="Email address">
+            <input [disabled]="loading" type="email" class="user-input small" [(ngModel)]="accountCopy.email"
+              placeholder="Email address">
           </div>
         </div>
 
@@ -58,7 +59,8 @@
         <div class="col-lg-6">
           <div class="group-col-left">
             <span class="small-text-2">{{'NIF'|translate}}</span>
-            <input type="tel" class="user-input small" [(ngModel)]="accountCopy.cif" placeholder="NIF">
+            <input [disabled]="loading" type="tel" class="user-input small" [(ngModel)]="accountCopy.cif"
+              placeholder="NIF">
           </div>
         </div>
 
@@ -180,41 +182,43 @@
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'City'|translate}}</span>
-                  <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.city"
-                    placeholder="{{'City'|translate}}">
+                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="accountCopy.city" placeholder="{{'City'|translate}}">
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Street'|translate}}</span>
-                  <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.street"
-                    placeholder="{{'Street'|translate}}">
+                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="accountCopy.street" placeholder="{{'Street'|translate}}">
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Number'|translate}}</span>
-                  <input type="tel" class="user-input small" style="max-width: 300px"
+                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
                     [(ngModel)]="accountCopy.address_number" placeholder="{{'Number'|translate}}">
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Street Type'|translate}}</span>
-                  <street-type-selector [(value)]="accountCopy.street_type"></street-type-selector>
+                  <street-type-selector [disabled]="loading" [(value)]="accountCopy.street_type"></street-type-selector>
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'ZIP'|translate}}</span>
-                  <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.zip"
-                    placeholder="{{'Zip code'|translate}}">
+                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="accountCopy.zip" placeholder="{{'Zip code'|translate}}">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'BARRIO'|translate}}</span>
-                  <input type="text" class="user-input small" [(ngModel)]="accountCopy.neighborhood">
+                  <neighbourhood-selector [disabled]="loading" [(value)]="accountCopy.neighbourhood_id">
+                  </neighbourhood-selector>
+                  <!-- <input [disabled]="loading" type="text" class="user-input small" [(ngModel)]="accountCopy.neighborhood"> -->
                 </div>
               </div>
             </div>
@@ -229,13 +233,14 @@
               <div class="col-lg-6">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Latitude'|translate}}</span>
-                  <input type="number" class="user-input small" [(ngModel)]="accountCopy.latitude">
+                  <input [disabled]="loading" type="number" class="user-input small" [(ngModel)]="accountCopy.latitude">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Longitude'|translate}}</span>
-                  <input type="number" class="user-input small" [(ngModel)]="accountCopy.longitude">
+                  <input [disabled]="loading" type="number" class="user-input small"
+                    [(ngModel)]="accountCopy.longitude">
                 </div>
               </div>
             </div>
@@ -356,7 +361,7 @@
           </button>
 
           <mat-menu #consMenu="matMenu" y-position="below" overlapTrigger="false">
-            <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+            <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
                (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="Search Activities">
 
             <ng-template ngFor let-prod [ngForOf]="productList">
@@ -396,7 +401,7 @@
           </button>
 
           <mat-menu #prodMenu="matMenu" y-position="below" overlapTrigger="false">
-            <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+            <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
                (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="Search Activities">
 
             <ng-template ngFor let-prod [ngForOf]="productList">
@@ -440,20 +445,24 @@
               <td>
                 <div class="row">
                   <div class="col-lg-6">
-                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.morning.open">
+                    <input [disabled]="loading" type="time" class="user-input small" style="width: 100px"
+                      [(ngModel)]="day.morning.open">
                   </div>
                   <div class="col-lg-6">
-                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.morning.close">
+                    <input [disabled]="loading" type="time" class="user-input small" style="width: 100px"
+                      [(ngModel)]="day.morning.close">
                   </div>
                 </div>
               </td>
               <td>
                 <div class="row">
                   <div class="col-lg-6">
-                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.evening.open">
+                    <input [disabled]="loading" type="time" class="user-input small" style="width: 100px"
+                      [(ngModel)]="day.evening.open">
                   </div>
                   <div class="col-lg-6">
-                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.evening.close">
+                    <input [disabled]="loading" type="time" class="user-input small" style="width: 100px"
+                      [(ngModel)]="day.evening.close">
                   </div>
                 </div>
               </td>

@@ -58,6 +58,7 @@ import { ProductsTabComponent } from 'src/pages/b2b/settings/components/products
 import { ActivitiesTabComponent } from 'src/pages/b2b/settings/components/activities/activities.tab';
 import { NeighborhoodsTabComponent } from 'src/pages/b2b/settings/components/neighborhoods/neighborhoods.tab';
 import { AddNeighbourhoodDia } from 'src/pages/b2b/settings/components/neighborhoods/add/add.dia';
+import { NeighbourhoodSelector } from 'src/components/neighbourhood-selector/neighbourhood-selector.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { AddNeighbourhoodDia } from 'src/pages/b2b/settings/components/neighborh
     ActivitiesTabComponent,
     NeighborhoodsTabComponent,
     AddNeighbourhoodDia,
+    NeighbourhoodSelector,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -159,6 +161,7 @@ import { AddNeighbourhoodDia } from 'src/pages/b2b/settings/components/neighborh
     ActivitiesTabComponent,
     NeighborhoodsTabComponent,
     AddNeighbourhoodDia,
+    NeighbourhoodSelector,
   ],
   imports: [
     BrowserModule,
