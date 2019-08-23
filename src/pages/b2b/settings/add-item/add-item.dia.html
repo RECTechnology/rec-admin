@@ -1,5 +1,5 @@
 <div class="modal-header bg-blue">
-    <span>{{(!isEdit ? 'ADD_ITEM': 'EDIT_ITEM') | translate}} ({{itemType|translate}})</span>
+    <span>{{(!isEdit ? 'ADD': 'EDIT') | translate}} {{itemType|translate}}</span>
 
     <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
         <span class="center h v">
