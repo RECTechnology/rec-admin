@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AdminService } from '../../../services/admin/admin.service';
 import { MapsAPILoader } from '@agm/core';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { ProductsCrud } from 'src/services/crud/products/products.crud';
 
 @Component({
   providers: [
@@ -43,6 +44,8 @@ export class EditAccountData {
   };
 
   public geocoder: any;
+  public productList: any[] = [];
+  public actQuery = '';
 
   constructor(
     public dialogRef: MatDialogRef<EditAccountData>,
@@ -54,11 +57,18 @@ export class EditAccountData {
     public companyService: CompanyService,
     public adminService: AdminService,
     public crudAccounts: AccountsCrud,
+    public productsCrud: ProductsCrud,
+    public snackbar: MySnackBarSevice,
   ) {
     this.lang = this.langMap[us.lang];
     this.companyService.listCategories()
       .subscribe((resp) => {
         this.companyService.categories = resp.data;
+      });
+
+    this.productsCrud.list({ limit: 300 })
+      .subscribe((resp) => {
+        this.productList = resp.data.elements;
       });
   }
 
@@ -70,9 +80,70 @@ export class EditAccountData {
     delete this.accountCopy.kyc_validations;
   }
 
+  public addConsumed(product) {
+    this.loading = true;
+    this.account.consuming_products.push(product);
+    this.crudAccounts.addConsumedProductToAccount(this.account.id, product.id)
+      .subscribe((resp) => {
+        this.snackbar.open('Added product', 'ok');
+        this.loading = false;
+      }, (error) => {
+        this.snackbar.open(error.message, 'ok');
+        this.loading = false;
+      });
+  }
+
+  public addProduced(product) {
+    this.loading = true;
+    this.account.producing_products.push(product);
+    this.crudAccounts.addProducedProductToAccount(this.account.id, product.id)
+      .subscribe((resp) => {
+        this.snackbar.open('Added product', 'ok');
+        this.loading = false;
+      }, (error) => {
+        this.snackbar.open(error.message, 'ok');
+        this.loading = false;
+      });
+  }
+
+  public deleteConsumed(i) {
+    this.loading = true;
+
+    const act = this.account.consuming_products[i];
+    this.account.consuming_products.splice(i, 1);
+    this.crudAccounts.removeConsumedProductToAccount(this.account.id, act.id)
+      .subscribe((resp) => {
+        this.snackbar.open('Removed product', 'ok');
+        this.loading = false;
+      }, (error) => {
+        this.snackbar.open(error.message, 'ok');
+        this.loading = false;
+      });
+  }
+
+  public deleteProduced(i) {
+    this.loading = true;
+
+    const act = this.account.producing_products[i];
+    this.account.producing_products.splice(i, 1);
+    this.crudAccounts.removeProducedProductToAccount(this.account.id, act.id)
+      .subscribe((resp) => {
+        this.snackbar.open('Removed product', 'ok');
+        this.loading = false;
+      }, (error) => {
+        this.snackbar.open(error.message, 'ok');
+        this.loading = false;
+      });
+  }
+
   public close(account = {}): void {
     this.dialogRef.close(JSON.stringify(account));
   }
+
+  public nameMatches(name: string) {
+    return String(name).toLowerCase().includes(this.actQuery.toLowerCase());
+  }
+
 
   public update() {
     const id = this.account.id;

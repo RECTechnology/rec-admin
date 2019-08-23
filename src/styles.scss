@@ -12,3 +12,36 @@ mat-spinner svg {
   width: 40px !important;
   height: 40px !important;
 }
+.activity-box-list {
+  width: auto;
+  height: 150px;
+  max-height: 150px;
+  overflow-y: auto;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+  background: #f4f4f4;
+  padding: 0;
+}
+
+.activity-list-item {
+  cursor: pointer;
+  padding: 6px 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .icon {
+    opacity: 0;
+    transition: all ease-in-out 0.4s;
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  &:hover {
+    background: rgba(rgb(242, 114, 35), 0.2);
+    .icon {
+      opacity: 1;
+    }
+  }
+}
