@@ -956,5 +956,7 @@
   "Townhall ID": "Id ayuntamiento",
   "TOWNHALL_CODE": "Id ayuntamiento",
   "EDIT": "Editar",
-  "WARNING": "Advertencia"
+  "WARNING": "Advertencia",
+  "PRODUCTS_CONSUMED": "Productos Consumidos",
+  "PRODUCTS_PRODUCED": "Productos Producidos"
 }

@@ -429,5 +429,7 @@
   "ACTIVITY_DESC": "Editing this item could cause collateral effects, you should only edit an item for reasons such as spelling errors, if this is not the case, please, report it before “development@rec.barcelona” to obtain authorization and the technical coordinator is aware of this change",
   "ACTIVITY_AFTER_CREATE": "You will be able to add activities after creating product",
   "TOWNHALL_CODE": "Townhall ID",
-  "EDIT": "Edit"
+  "EDIT": "Edit",
+  "PRODUCTS_CONSUMED": "Products Consumed",
+  "PRODUCTS_PRODUCED": "Products Produced"
 }

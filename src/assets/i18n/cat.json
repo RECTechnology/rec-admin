@@ -968,5 +968,7 @@
   "Townhall ID": "Id ajuntament",
   "TOWNHALL_CODE": "Id ajuntament",
   "EDIT": "Editar",
-  "WARNING": "Advertència"
+  "WARNING": "Advertència",
+  "PRODUCTS_CONSUMED": "Productes Consumits",
+  "PRODUCTS_PRODUCED": "Productes Produits"
 }
