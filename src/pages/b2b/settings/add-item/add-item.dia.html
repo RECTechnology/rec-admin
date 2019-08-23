@@ -18,17 +18,17 @@
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'Catalan'|translate}}</span>
                     <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.cat"
-                        placeholder="{{'Catalan'|translate}}" [disabled]="loading">
+                        placeholder="{{'Catalan'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'Spanish'|translate}}</span>
                     <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.esp"
-                        placeholder="{{'Spanish'|translate}}" [disabled]="loading">
+                        placeholder="{{'Spanish'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'English'|translate}}</span>
                     <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.eng"
-                        placeholder="{{'English'|translate}}" [disabled]="loading">
+                        placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
             </div>
             <div class="col-lg-8" *ngIf="isProduct && isEdit">
