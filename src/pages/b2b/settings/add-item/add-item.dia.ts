@@ -81,15 +81,15 @@ export class AddItemDia {
     public addProduced(act) {
         this.loading = true;
 
-        this.item.default_consuming_by.push(act);
+        this.item.default_producing_by.push(act);
         this.addedSubscriber(this.productsCrud.addProducingByToProduct(this.item.id, act.id));
     }
 
     public deleteProduced(i) {
         this.loading = true;
 
-        const act = this.item.default_consuming_by[i];
-        this.item.default_consuming_by.splice(i, 1);
+        const act = this.item.default_producing_by[i];
+        this.item.default_producing_by.splice(i, 1);
         this.deletedSubscriber(this.productsCrud.removeProducingByToProduct(this.item.id, act.id));
     }
 

@@ -38,11 +38,11 @@
                         <div class="activity-box-list">
                             <ul *ngIf="item.default_consuming_by && item.default_consuming_by.length"
                                 style="list-style: none; margin: 0; padding: 0">
-                                <li class="activity-list-item small-text" (dblclick)="deleteConsumed(i)"
+                                <li class="activity-list-item small-text"
                                     *ngFor="let cons of item.default_consuming_by; let i = index">
                                     {{cons.name}}
 
-                                    <span class="icon fa fa-trash"></span>
+                                    <span class="icon fa fa-trash" (click)="deleteConsumed(i)"></span>
                                 </li>
                             </ul>
                             <p class="small-text col-gray padd-x10"
@@ -77,10 +77,11 @@
                         <div class="activity-box-list">
                             <ul *ngIf="item.default_producing_by && item.default_producing_by.length"
                                 style="list-style: none; margin: 0; padding: 0">
-                                <li class="activity-list-item small-text" (dblclick)="deleteProduced(i)"
+                                <li class="activity-list-item small-text"
                                     *ngFor="let prod of item.default_producing_by; let i = index">
                                     {{prod.name}}
-                                    <span class="icon fa fa-trash small-text col-error"></span>
+                                    <span class="icon fa fa-trash small-text col-error"
+                                        (click)="deleteProduced(i)"></span>
                                 </li>
                             </ul>
                             <p class="small-text col-gray padd-x10"

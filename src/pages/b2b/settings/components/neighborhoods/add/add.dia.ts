@@ -47,6 +47,11 @@ export class AddNeighbourhoodDia {
                 field: 'name',
             });
             this.disabled = true;
+        } else if (!this.item.description) {
+            this.error = this.translate.instant('INPUT_REQUIRED', {
+                field: 'description',
+            });
+            this.disabled = true;
         } else {
             this.error = '';
             this.disabled = false;

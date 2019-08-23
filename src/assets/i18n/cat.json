@@ -962,7 +962,7 @@
   "INPUT_REQUIRED": "Camp Requerit: {{field}}",
   "UsersAndAccounts": "Usuaris",
   "EDIT_ITEM": "Editar Element",
-  "ACTIVITY_DESC": "Edita aço podria causar efectes col·laterals, només deurien de ser editades per causes a les correccions ortogràfiques, si aquest no és el cas, si us plau, comuniqui-ho abans a desarrollo@rec.barcelona i esperi a obtenir autorització del coordinador tècnic perquè aquest estigui al corrent del canvi ",
+  "ACTIVITY_DESC": "Editar aquest ítem podria causar efectes col·laterals, només s’ha d'editar un ítem per causes com errors ortogràfics, si no és el cas, si us plau, comuniqui-ho abans a \"desarrollo@rec.barcelona\" per tal d’obtenir autorització i que el coordinador tècnic estigui al corrent del canvi",
   "ACTIVITY_AFTER_CREATE": "Podreu afegir activitats després de crear un producte",
   "Townhall ID": "Id del ajuntament",
   "TOWNHALL_CODE": "Id del ajuntament",

@@ -424,9 +424,8 @@
   "SAVE": "Save",
   "INPUT_REQUIRED": "Field required: {{field}}",
   "UsersAndAccounts": "Users",
-  "ADD_ITEM": "Add Item",
   "EDIT_ITEM": "Edit Item",
-  "ACTIVITY_DESC": "Editing this could cause collateral effects, it should only be edited for reasons such as spelling errors, if this is not the case, please, report it before to desarrollo@rec.barcelona and wait for authorization from the coordinator technician so that he is aware of the change",
+  "ACTIVITY_DESC": "Editing this item could cause collateral effects, you should only edit an item for reasons such as spelling errors, if this is not the case, please, report it before “development@rec.barcelona” to obtain authorization and the technical coordinator is aware of this change",
   "ACTIVITY_AFTER_CREATE": "You will be able to add activities after creating product",
   "TOWNHALL_CODE": "Townhall ID",
   "EDIT": "Edit"
