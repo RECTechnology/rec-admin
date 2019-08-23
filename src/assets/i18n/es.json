@@ -920,9 +920,11 @@
   "NO_BUSINESS_SELLING": "No hay negocios que vendan esto",
   "SUGEST_SOME": "¿Quiere sugerir alguno?",
   "NEIGHBORHOODS": "Barrios",
+  "NEIGHBOURHOODS": "Barrios",
   "ACTIVITIES": "Actividades",
   "PRODUCTS": "Productos",
-  "NEIGBORHOOD": "Barrio",
+  "NEIGHBORHOOD": "Barrio",
+  "NEIGBOURHOOD": "Barrio",
   "ACTIVITY": "Actividad",
   "PRODUCT": "Producto",
   "AVAILABLE_NEIGHBORHOODS": "Barrio disponible",
@@ -951,7 +953,7 @@
   "EDIT_ITEM": "Editar Elemento",
   "ACTIVITY_DESC": "Editar este ítem podría causar efectos colaterales, solo debes editar un ítem por causas como errores ortográficos, si no es el caso, por favor, comuníquelo antes a “desarrollo@rec.barcelona” para obtener autorización y que el coordinador técnico esté al corriente de este cambio",
   "ACTIVITY_AFTER_CREATE": "Podrá agregar actividades después de crear el producto",
-  "Townhall ID": "Id del ayuntamiento",
-  "TOWNHALL_CODE": "Id del ayuntamiento",
+  "Townhall ID": "Id ayuntamiento",
+  "TOWNHALL_CODE": "Id ayuntamiento",
   "EDIT": "Editar"
 }
