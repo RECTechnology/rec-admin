@@ -30,6 +30,7 @@ export abstract class EntityTabBase {
         dialogRef.componentInstance.title = title;
         dialogRef.componentInstance.message = message;
         dialogRef.componentInstance.btnConfirmText = btnText;
+        dialogRef.componentInstance.headerIcon = 'warning';
 
         return dialogRef.afterClosed();
     }

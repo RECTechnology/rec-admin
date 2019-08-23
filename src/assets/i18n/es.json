@@ -955,5 +955,6 @@
   "ACTIVITY_AFTER_CREATE": "Podrá agregar actividades después de crear el producto",
   "Townhall ID": "Id ayuntamiento",
   "TOWNHALL_CODE": "Id ayuntamiento",
-  "EDIT": "Editar"
+  "EDIT": "Editar",
+  "WARNING": "Advertencia"
 }

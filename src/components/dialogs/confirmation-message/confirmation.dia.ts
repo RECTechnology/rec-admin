@@ -12,6 +12,7 @@ export class ConfirmationMessage {
   public title: string = 'blue';
   public btnConfirmText: string = 'ok';
   public btnCancelText: string = 'Cancel';
+  public headerIcon: string = null;
   public data: any = {};
   public opts: any = {};
 
