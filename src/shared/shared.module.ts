@@ -59,6 +59,10 @@ import { ActivitiesTabComponent } from 'src/pages/b2b/settings/components/activi
 import { NeighborhoodsTabComponent } from 'src/pages/b2b/settings/components/neighborhoods/neighborhoods.tab';
 import { AddNeighbourhoodDia } from 'src/pages/b2b/settings/components/neighborhoods/add/add.dia';
 import { NeighbourhoodSelector } from 'src/components/neighbourhood-selector/neighbourhood-selector.component';
+import { QuillModule } from 'ngx-quill';
+import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
+import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
+import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
 
 @NgModule({
   declarations: [
@@ -111,6 +115,7 @@ import { NeighbourhoodSelector } from 'src/components/neighbourhood-selector/nei
     NeighborhoodsTabComponent,
     AddNeighbourhoodDia,
     NeighbourhoodSelector,
+    SendMail,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -125,6 +130,7 @@ import { NeighbourhoodSelector } from 'src/components/neighbourhood-selector/nei
     VoteWithdrawal,
     AddItemDia,
     AddNeighbourhoodDia,
+    SendMail,
   ],
   exports: [
     SidemenuComponent,
@@ -171,11 +177,14 @@ import { NeighbourhoodSelector } from 'src/components/neighbourhood-selector/nei
     TranslateModule.forChild(),
     AgmCoreModule,
     CrudModule,
+    QuillModule,
   ],
   providers: [
     CompanyService,
     BaseService2,
     CrudBaseService,
+    MailingDeliveriesCrud,
+    MailingCrud,
   ],
 })
 export class SharedModule { }

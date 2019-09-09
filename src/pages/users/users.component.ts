@@ -72,7 +72,6 @@ export class UsersPage extends TablePageBase implements OnInit {
       class: 'col-red col-error',
       text: 'DELETE',
     }];
-
   public activeUsers = false;
   public inactiveUsers = false;
   public profesionalUsers = false;

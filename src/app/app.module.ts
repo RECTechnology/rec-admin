@@ -32,8 +32,10 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
-import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
 import { CountryPickerModule } from 'ngx-country-picker';
+import { QuillModule } from 'ngx-quill';
+
+import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
 import { HttpErrorInterceptor } from 'src/services/interceptor';
 import { AccountModule } from 'src/pages/account/account.module';
 import { B2bService } from 'src/services/b2b/b2b.service';
@@ -83,6 +85,7 @@ const imports = [
     baseUrl: '/assets/countries/',
     filename: 'countries.json',
   }),
+  QuillModule.forRoot(),
 ];
 
 @NgModule({

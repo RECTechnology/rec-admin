@@ -1,0 +1,39 @@
+<header-nav></header-nav>
+<sidemenu></sidemenu>
+
+<div class="page mailing" [ngClass]="{'collapsed': !controls.sidemenuVisible}">
+    <div class="padd-x20" style="width: 100%">
+        <mat-card style="margin-bottom: 10px">
+            <p class="col-blue small-text">
+                {{isEdit ? 'EDIT_MAIL': 'CREATE_MAIL'}}
+            </p>
+        </mat-card>
+        <mat-card style="margin-bottom: 10px">
+            <div>
+                <input type="text" placeholder="Subject" [(ngModel)]="mail.subject">
+            </div>
+            <quill-editor [ngModel]="mail.content" format="html" [styles]="{height: '200px'}" (onFocus)="focus($event)"
+                (onEditorChanged)="changedEditor($event)" (onBlur)="blur($event)" (onEditorCreated)="created($event)">
+            </quill-editor>
+        </mat-card>
+        <mat-card style="margin-bottom: 10px">
+            <button color="primary" *ngIf="isEdit" (click)="updateMail()" mat-raised-button style="margin-right: 10px"
+                matTooltip="{{'SEND_EMAIL'|translate}}">
+                <i class="fa fa-paper-plane"></i> {{'Save'|translate}}
+            </button>
+
+            <button color="primary" *ngIf="!isEdit" (click)="createMail()" mat-raised-button style="margin-right: 10px"
+                matTooltip="{{'SEND_EMAIL'|translate}}">
+                <i class="fa fa-paper-plane"></i> {{'Create'|translate}}
+            </button>
+
+            <button color="primary" (click)="sendMail()" mat-raised-button style="margin-right: 10px"
+                matTooltip="{{'SEND_EMAIL'|translate}}">
+                <i class="fa fa-paper-plane"></i> {{'SEND'|translate}}
+            </button>
+            <button mat-icon-button matTooltip="{{'ATTACH'|translate}}">
+                <i class="fa fa-paperclip"></i>
+            </button>
+        </mat-card>
+    </div>
+</div>

@@ -12,6 +12,7 @@ import { ExchangersComponent } from 'src/pages/exchangers/exchangers.component';
 import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
 import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
 import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
+import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
 
 const ROUTES: Routes = [
 
@@ -29,7 +30,8 @@ const ROUTES: Routes = [
   { path: 'exchangers', component: ExchangersComponent, canActivate: [IsLoggedInGuard] },
   { path: 'treasure_account', component: TreasureAccount, canActivate: [IsLoggedInGuard] },
 
-  { path: 'b2b/send', component: B2BSendComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'rec/mailing', component: B2BSendComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'rec/mailing/:id_or_new', component: SendMail, canActivate: [IsLoggedInGuard] },
   { path: 'b2b/settings', component: B2BSettingsComponent, canActivate: [IsLoggedInGuard] },
 
 ];

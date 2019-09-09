@@ -431,5 +431,6 @@
   "TOWNHALL_CODE": "Townhall ID",
   "EDIT": "Edit",
   "PRODUCTS_CONSUMED": "Products Consumed",
-  "PRODUCTS_PRODUCED": "Products Produced"
+  "PRODUCTS_PRODUCED": "Products Produced",
+  "REC_MAILING": "Mailing"
 }

@@ -1,12 +1,26 @@
 <header-nav></header-nav>
 <sidemenu></sidemenu>
 
-<div class="page b2b-send" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+<div class="page mailing" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
     <div class="row" style="margin: 0; padding: 20px;">
         <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
-            <button mat-raised-button color="primary" (click)="sendMail()">
-                Send
-            </button>
+            <tl-header title="Mailing Deliveries" [(query)]="query" (onSearch)="search()">
+                <button type="button" color="primary" mat-raised-button name="button" (click)="createMail()">
+                    <p class="text-small">
+                        <i class="fa fa-plus"></i> {{('Mail'|translate)}}
+                    </p>
+                </button>
+            </tl-header>
+            <tl-subheader style="position: relative">
+                <div class="abs-center-right small-text">
+                    {{'Showing'|translate}}: {{showing}} of {{total}}
+                </div>
+            </tl-subheader>
+            <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
+                [data]="sortedData" [itemOptions]="itemOptions" noItemsMessage="There are no mails yet" [limit]="limit"
+                [total]="total" (onChangePage)="changedPage($event)">
+            </tl-table>
         </mat-card>
     </div>
+    <page-footer></page-footer>
 </div>
