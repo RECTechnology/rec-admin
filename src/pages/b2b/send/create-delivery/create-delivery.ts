@@ -77,10 +77,11 @@ export class CreateDelivery extends BaseDialog {
                         (result) => {
                             this.snackbar.open('Created ' + subs.length + ' deliveries correctly!', 'ok');
                             this.loading = false;
+                            this.close();
                         },
                         (error) => {
-                            this.loading = false;
                             this.snackbar.open(error.message, 'ok');
+                            this.loading = false;
                         },
                     );
             }

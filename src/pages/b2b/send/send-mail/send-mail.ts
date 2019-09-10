@@ -4,7 +4,7 @@ import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
 import { CreateDelivery } from '../create-delivery/create-delivery';
@@ -81,6 +81,7 @@ export class SendMail extends TablePageBase {
         public mailDeliveries: MailingDeliveriesCrud,
         public snackbar: MySnackBarSevice,
         public route: ActivatedRoute,
+        public router: Router,
         public controls: ControlesService,
         public mailing: MailingCrud,
         public dialog: MatDialog,
@@ -112,6 +113,7 @@ export class SendMail extends TablePageBase {
     }
 
     public search() {
+        this.loading = true;
         this.mailDeliveries.search({
             dir: this.sortDir,
             limit: this.limit,
@@ -148,6 +150,25 @@ export class SendMail extends TablePageBase {
             .subscribe((resp) => {
                 this.snackbar.open('Edited Mail Correctly');
                 this.loading = false;
+                this.saved = true;
+                this.mail = resp.data;
+                this.mailCopy = Object.assign({}, this.mail);
+            }, (err) => {
+                this.snackbar.open(err.message);
+                this.loading = false;
+            });
+    }
+
+    public createMail() {
+        this.loading = true;
+        const data: any = Object.assign({}, this.mail);
+        this.mailing.create({ subject: data.subject, content: data.content })
+            .subscribe((resp) => {
+                this.snackbar.open('Created Mail Correctly');
+                this.loading = false;
+                this.isEdit = true;
+                this.id = resp.data.id;
+                this.router.navigate(['/rec/mailing/' + this.id]);
             }, (err) => {
                 this.snackbar.open(err.message);
                 this.loading = false;
@@ -163,18 +184,15 @@ export class SendMail extends TablePageBase {
     }
 
     public changedEditor(event) {
-        console.log('editor-change', event);
         this.mail.content = event.html ? event.html : this.mail.content;
     }
 
     public focus($event) {
-        console.log('focus', $event);
         this.focused = true;
         this.blured = false;
     }
 
     public blur($event) {
-        console.log('blur', $event);
         this.focused = false;
         this.blured = true;
     }

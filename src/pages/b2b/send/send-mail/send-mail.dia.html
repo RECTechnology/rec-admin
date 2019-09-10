@@ -29,13 +29,13 @@
                 <i class="fa fa-save" style="margin-right: 8px"></i> {{'SAVE'|translate}}
             </button>
 
-            <button color="primary" *ngIf="!isEdit" (click)="createMail()" [disabled]="loading" mat-raised-button
-                style="margin-right: 10px" matTooltip="{{'CREATE_EMAIL'|translate}}">
+            <button color="primary" *ngIf="!isEdit" (click)="createMail()" [disabled]="isSaveDisabled() || loading"
+                mat-raised-button style="margin-right: 10px" matTooltip="{{'Create'|translate}}">
                 <i class="fa fa-save" style="margin-right: 8px"></i> {{'Create'|translate}}
             </button>
 
-            <button color="primary" (click)="createDelivery()" mat-raised-button [disabled]="loading"
-                style="margin-right: 10px" matTooltip="{{'CREATE_DELIVERY'|translate}}">
+            <button color="primary" (click)="createDelivery()" mat-raised-button [disabled]="loading || !isEdit"
+                style="margin-right: 10px" matTooltip="{{(!isEdit ? 'Please, save before creating a delivery': 'CREATE_DELIVERY')|translate}}">
                 <i class="fa fa-paper-plane" style="margin-right: 8px"></i> {{'CREATE_DELIVERY'|translate}}
             </button>
             <button mat-icon-button matTooltip="{{'ATTACH'|translate}}">
