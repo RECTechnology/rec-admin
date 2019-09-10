@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef, MatDialog, throwToolbarMixedModesError } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
@@ -10,6 +10,7 @@ import { AdminService } from '../../../services/admin/admin.service';
 import { MapsAPILoader } from '@agm/core';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
+import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 
 @Component({
   providers: [
@@ -47,6 +48,9 @@ export class EditAccountData {
   public productList: any[] = [];
   public actQuery = '';
 
+  public activities = [];
+  public activitiesSelected = [];
+
   constructor(
     public dialogRef: MatDialogRef<EditAccountData>,
     public snackBar: MySnackBarSevice,
@@ -58,6 +62,7 @@ export class EditAccountData {
     public adminService: AdminService,
     public crudAccounts: AccountsCrud,
     public productsCrud: ProductsCrud,
+    public activitiesCrud: ActivitiesCrud,
     public snackbar: MySnackBarSevice,
   ) {
     this.lang = this.langMap[us.lang];
@@ -70,15 +75,32 @@ export class EditAccountData {
       .subscribe((resp) => {
         this.productList = resp.data.elements;
       });
+
+    this.activitiesCrud.list({ limit: 300 })
+      .subscribe((resp) => {
+        this.activities = resp.data.elements;
+      });
   }
 
   public ngOnInit() {
     this.type = this.account.type;
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
-    this.accountCopy = Object.assign({}, this.account);
+    this.accountCopy = { ...this.account };
     this.schedule = this.utils.parseSchedule(this.account.schedule);
-    this.accountCopy.categoryId = this.account.category ? this.account.category.id : '';
     delete this.accountCopy.kyc_validations;
+  }
+
+  public addActivity(act) {
+    this.loading = true;
+    this.activitiesSelected.push(act);
+    this.crudAccounts.addActivity(this.account.id, act.id)
+      .subscribe((resp) => {
+        this.snackbar.open('Removed activity', 'ok');
+        this.loading = false;
+      }, (error) => {
+        this.snackbar.open(error.message, 'ok');
+        this.loading = false;
+      });
   }
 
   public addConsumed(product) {
@@ -105,6 +127,21 @@ export class EditAccountData {
         this.snackbar.open(error.message, 'ok');
         this.loading = false;
       });
+  }
+
+  public deleteActivity(i) {
+    this.loading = true;
+    const act = this.activitiesSelected[i];
+    this.activitiesSelected.splice(i, 1);
+    this.crudAccounts.deleteActivity(this.account.id, act.id)
+      .subscribe((resp) => {
+        this.snackbar.open('Removed activity', 'ok');
+        this.loading = false;
+      }, (error) => {
+        this.snackbar.open(error.message, 'ok');
+        this.loading = false;
+      });
+
   }
 
   public deleteConsumed(i) {
@@ -147,19 +184,7 @@ export class EditAccountData {
 
   public update() {
     const id = this.account.id;
-    const data = this.accountCopy;
-    const changedProps: any = this.utils.deepDiff(data, this.account);
-
-    changedProps.category = changedProps.category || changedProps.categoryId;
-    delete changedProps.categoryId;
-
-
-    if (!changedProps.category) {
-      delete changedProps.category;
-    } else {
-      changedProps.category_id = changedProps.category;
-      delete changedProps.category;
-    }
+    const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
 
     const schedule = this.utils.constructScheduleString(this.schedule);
     if (schedule !== this.account.schedule) {
@@ -175,7 +200,7 @@ export class EditAccountData {
             this.loading = false;
             this.close(this.account);
           }, (error) => {
-            this.snackBar.open('Error updating account!' + error.message, 'ok');
+            this.snackBar.open('Error updating account! ' + error.message, 'ok');
             this.loading = false;
             this.close(this.account);
           });

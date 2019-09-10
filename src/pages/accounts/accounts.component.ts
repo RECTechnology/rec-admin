@@ -223,7 +223,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
 
   public viewEditAccount(account) {
     const dialogRef = this.dialog.open(EditAccountData);
-    dialogRef.componentInstance.account = account;
+    dialogRef.componentInstance.account = { ...account };
 
     dialogRef.afterClosed()
       .subscribe((result) => {

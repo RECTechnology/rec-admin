@@ -39,6 +39,16 @@ export class AccountsCrud extends CrudBaseService {
         return this.delete(url).pipe(this.itemMapper());
     }
 
+    public addActivity(account_id, activity_id) {
+        const url = [...this.getUrlBase(), '/', account_id, '/', 'activities'];
+        return this.post(url, { id: activity_id }).pipe(this.itemMapper());
+    }
+
+    public deleteActivity(account_id, activity_id) {
+        const url = [...this.getUrlBase(), '/', account_id, '/', 'activities', '/', activity_id];
+        return this.delete(url).pipe(this.itemMapper());
+    }
+
     public mapper(item: any) {
         return this.cs.mapCompany(item);
     }
