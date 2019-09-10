@@ -19,9 +19,7 @@ import { Observable, forkJoin } from 'rxjs';
 export class CreateDelivery extends BaseDialog {
     public id = null;
     public deliveries = [];
-
     public selectedAccounts = [];
-    pub
 
     constructor(
         public dialogRef: MatDialogRef<CreateDelivery>,
@@ -68,15 +66,23 @@ export class CreateDelivery extends BaseDialog {
 
         dialogRef.afterClosed().subscribe((resp) => {
             if (resp) {
+                this.loading = true;
                 const subs = [];
-
                 for (const account of this.selectedAccounts) {
                     subs.push(this.mailDeliveries.create({ account_id: account.id, mailing_id: this.id }));
                 }
 
-                forkJoin(subs).subscribe((result) => {
-                    console.log('aSas', result);
-                });
+                forkJoin(subs)
+                    .subscribe(
+                        (result) => {
+                            this.snackbar.open('Made ' + subs.length + ' deliveries correctly!', 'ok');
+                            this.loading = false;
+                        },
+                        (error) => {
+                            this.loading = false;
+                            this.snackbar.open(error.message, 'ok');
+                        },
+                    );
             }
         });
     }

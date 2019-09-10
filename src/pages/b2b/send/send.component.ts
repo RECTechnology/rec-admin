@@ -31,6 +31,15 @@ export class B2BSendComponent extends TablePageBase {
             title: 'Subject',
         },
         {
+            accessor: (item) => item.deliveries.length,
+            sort: 'deliveries',
+            title: 'Deliveries',
+        },
+        {
+            sort: 'processed',
+            title: 'Processed',
+        },
+        {
             sort: 'created',
             title: 'Created',
             type: 'date',
@@ -75,13 +84,18 @@ export class B2BSendComponent extends TablePageBase {
 
     public getMailList() {
         this.loading = true;
-        this.mailing.list()
-            .subscribe((resp) => {
-                this.data = resp.data.elements;
-                this.sortedData = this.data.slice();
-                this.showing = this.data.length;
-                this.total = resp.data.total;
-                this.loading = false;
-            });
+        this.mailing.search({
+            dir: this.sortDir,
+            limit: this.limit,
+            offset: this.offset,
+            query: this.query,
+            sort: this.sortID,
+        }).subscribe((resp) => {
+            this.data = resp.data.elements;
+            this.sortedData = this.data.slice();
+            this.showing = this.data.length;
+            this.total = resp.data.total;
+            this.loading = false;
+        });
     }
 }

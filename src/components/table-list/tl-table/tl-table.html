@@ -16,7 +16,7 @@
                     disabled></mat-checkbox>
 
                 <span *ngIf="header.type === 'status'"
-                    [ngClass]="header.statusClass(getEntry(entry, header))">{{getEntry(entry, header)}}</span>
+                    [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header)): ''">{{getEntry(entry, header)}}</span>
 
                 <code *ngIf="header.type === 'code'">{{getEntry(entry, header)}}</code>
 
