@@ -971,5 +971,6 @@
   "WARNING": "Advertència",
   "PRODUCTS_CONSUMED": "Productes Consumits",
   "PRODUCTS_PRODUCED": "Productes Produits",
-  "REC_MAILING": "Mailing"
+  "REC_MAILING": "Mailing",
+  "DELIVERY_WARNIGN": "En enviar un correu significa que s'enviarà a tots els correus relacionats amb els comptes seleccionats"
 }

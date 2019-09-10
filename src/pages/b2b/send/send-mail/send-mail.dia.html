@@ -4,36 +4,52 @@
 <div class="page mailing" [ngClass]="{'collapsed': !controls.sidemenuVisible}">
     <div class="padd-x20" style="width: 100%">
         <mat-card style="margin-bottom: 10px">
-            <p class="col-blue small-text">
-                {{isEdit ? 'EDIT_MAIL': 'CREATE_MAIL'}}
-            </p>
+            <div class="center v">
+                <button mat-icon-button routerLink="/rec/mailing" class="icon-btn-small" style="margin-right: 10px">
+                    <div class="center h v">
+                        <i class="fa fa-angle-left"></i>
+                    </div>
+                </button>
+                <p class="col-blue small-text">
+                    {{isEdit ? 'EDIT_MAIL': 'CREATE_MAIL'}}
+                </p>
+            </div>
         </mat-card>
         <mat-card style="margin-bottom: 10px">
-            <div>
-                <input type="text" placeholder="Subject" [(ngModel)]="mail.subject">
-            </div>
+            <input matInput type="text"
+                style="margin-bottom: 10px; width: 100%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
+                placeholder="Subject" [(ngModel)]="mail.subject">
             <quill-editor [ngModel]="mail.content" format="html" [styles]="{height: '200px'}" (onFocus)="focus($event)"
                 (onEditorChanged)="changedEditor($event)" (onBlur)="blur($event)" (onEditorCreated)="created($event)">
             </quill-editor>
         </mat-card>
         <mat-card style="margin-bottom: 10px">
-            <button color="primary" *ngIf="isEdit" (click)="updateMail()" mat-raised-button style="margin-right: 10px"
-                matTooltip="{{'SEND_EMAIL'|translate}}">
-                <i class="fa fa-paper-plane"></i> {{'Save'|translate}}
+            <button color="primary" *ngIf="isEdit" [disabled]="isSaveDisabled()" (click)="updateMail()"
+                mat-raised-button style="margin-right: 10px" matTooltip="{{'SEND_EMAIL'|translate}}">
+                <i class="fa fa-save" style="margin-right: 8px"></i> {{'Save'|translate}}
             </button>
 
             <button color="primary" *ngIf="!isEdit" (click)="createMail()" mat-raised-button style="margin-right: 10px"
                 matTooltip="{{'SEND_EMAIL'|translate}}">
-                <i class="fa fa-paper-plane"></i> {{'Create'|translate}}
+                <i class="fa fa-save" style="margin-right: 8px"></i> {{'Create'|translate}}
             </button>
 
-            <button color="primary" (click)="sendMail()" mat-raised-button style="margin-right: 10px"
+            <button color="primary" (click)="createDelivery()" mat-raised-button style="margin-right: 10px"
                 matTooltip="{{'SEND_EMAIL'|translate}}">
-                <i class="fa fa-paper-plane"></i> {{'SEND'|translate}}
+                <i class="fa fa-paper-plane" style="margin-right: 8px"></i> {{'CREATE_DELIVERY'|translate}}
             </button>
             <button mat-icon-button matTooltip="{{'ATTACH'|translate}}">
                 <i class="fa fa-paperclip"></i>
             </button>
+        </mat-card>
+
+        <mat-card style="margin-bottom: 10px">
+            <p class="col-blue small-text">{{'DELIVERIES'|translate}}</p>
+            <div>
+                <p *ngIf="!deliveries.length" class="small-text">
+                    {{'NO_DELIVERIES'|translate}}
+                </p>
+            </div>
         </mat-card>
     </div>
 </div>

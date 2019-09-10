@@ -92,7 +92,7 @@
     <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" (click)="select()">
       <p class="small-text-2">{{'Select'|translate}}</p>
     </button>
-    <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" (click)="selectAndEdit()">
+    <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" *ngIf="showEdit" (click)="selectAndEdit()">
       <p class="small-text-2">{{'Select And Edit'|translate}}</p>
     </button>
     <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" (click)="close()">

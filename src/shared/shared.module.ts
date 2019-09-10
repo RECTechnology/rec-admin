@@ -63,6 +63,7 @@ import { QuillModule } from 'ngx-quill';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
 import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
+import { CreateDelivery } from 'src/pages/b2b/send/create-delivery/create-delivery';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
     AddNeighbourhoodDia,
     NeighbourhoodSelector,
     SendMail,
+    CreateDelivery,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -131,6 +133,7 @@ import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
     AddItemDia,
     AddNeighbourhoodDia,
     SendMail,
+    CreateDelivery,
   ],
   exports: [
     SidemenuComponent,
