@@ -66,9 +66,6 @@ export class B2BSendComponent extends TablePageBase {
         super();
     }
 
-    // tslint:disable-next-line: no-empty
-    public search() { }
-
     public createMail() {
         this.router.navigate(['/rec/mailing/new']);
     }
@@ -79,10 +76,10 @@ export class B2BSendComponent extends TablePageBase {
     }
 
     public ngOnInit() {
-        this.getMailList();
+        this.search();
     }
 
-    public getMailList() {
+    public search() {
         this.loading = true;
         this.mailing.search({
             dir: this.sortDir,
