@@ -28,14 +28,13 @@
             </div>
         </div>
         <p class="small-text" *ngIf="!selectedAccounts.length">
-            {{'No accounts selected yet'|translate}}
+            {{'NO_USERS_SELECTED'|translate}}
         </p>
     </div>
 
     <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
-        <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
         <btn-loader (click)="createDelivery()" [disabled]="loading" [loading]="loading"
-            [text]="'Create Delivery'">
+            [text]="'CREATE_DELIVERY'">
         </btn-loader>
     </div>
 </div>

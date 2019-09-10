@@ -75,7 +75,7 @@ export class CreateDelivery extends BaseDialog {
                 forkJoin(subs)
                     .subscribe(
                         (result) => {
-                            this.snackbar.open('Made ' + subs.length + ' deliveries correctly!', 'ok');
+                            this.snackbar.open('Created ' + subs.length + ' deliveries correctly!', 'ok');
                             this.loading = false;
                         },
                         (error) => {

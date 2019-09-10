@@ -57,7 +57,6 @@ export class CompanyService extends BaseService {
     updated.available_eur = el && el.wallets && el.wallets[1] ? this.ws.scaleNum(el.wallets[1].available, 2) : 0;
     updated.scheduleMap = this.utils.parseSchedule(el.schedule);
     updated.polla = 'asdas';
-    console.log('mapper');
     return {
       ...el,
       ...updated,

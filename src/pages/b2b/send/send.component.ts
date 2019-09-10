@@ -48,7 +48,7 @@ export class B2BSendComponent extends TablePageBase {
     public itemOptions: TlItemOption[] = [
         {
             callback: this.editMail.bind(this),
-            text: 'Edit Mail',
+            text: 'Edit',
         },
     ];
 

@@ -433,5 +433,16 @@
   "PRODUCTS_CONSUMED": "Products Consumed",
   "PRODUCTS_PRODUCED": "Products Produced",
   "REC_MAILING": "Mailing",
-  "DELIVERY_WARNIGN": "Delivering a mail means it will be sent to all the mails related to the selected accounts"
+  "DELIVERY_WARNIGN": "Delivering a mail means it will be sent to all the mails related to the selected accounts",
+  "Mailings": "Mailings",
+  "Deliveries": "Deliveries",
+  "Subject": "Subject",
+  "Content": "Content",
+  "Mail": "Mail",
+  "EDIT_MAIL": "Edit Mail",
+  "CREATE_MAIL": "Create Mail",
+  "CREATE_DELIVERY": "Create Delivery",
+  "ATTACH": "Add Attachment",
+  "DELIVERY_DESC": "Select a set of account, email will be sent to all accounts that have an email address assigmen",
+  "SELECTED_ACCOUNTS": "Selected Accounts"
 }

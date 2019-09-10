@@ -972,5 +972,18 @@
   "PRODUCTS_CONSUMED": "Productes Consumits",
   "PRODUCTS_PRODUCED": "Productes Produits",
   "REC_MAILING": "Mailing",
-  "DELIVERY_WARNIGN": "En enviar un correu significa que s'enviarà a tots els correus relacionats amb els comptes seleccionats"
+  "DELIVERY_WARNIGN": "En enviar un correu significa que s'enviarà a tots els correus relacionats amb els comptes seleccionats",
+  "Mailings": "Correus",
+  "Deliveries": "Lliuraments",
+  "Subject": "Assumpte",
+  "Content": "Contingut",
+  "Mail": "Correu",
+  "Processed": "Processat",
+  "EDIT_MAIL": "Editar Correu",
+  "CREATE_MAIL": "Crear Correu",
+  "CREATE_DELIVERY": "Crear Lliurament",
+  "Account Email": "Correu Compte",
+  "ATTACH": "Afegir Adjunt",
+  "DELIVERY_DESC": "Seleccioneu un conjunt de comptes, s'enviarà un correu electrònic a tots els comptes que tinguin una adreça de correu electrònic assigmen",
+  "SELECTED_ACCOUNTS": "Comptes Seleccionats"
 }

@@ -153,8 +153,6 @@ export class EditAccountData {
     changedProps.category = changedProps.category || changedProps.categoryId;
     delete changedProps.categoryId;
 
-    console.log('data', data);
-    console.log('changedProps', changedProps);
 
     if (!changedProps.category) {
       delete changedProps.category;

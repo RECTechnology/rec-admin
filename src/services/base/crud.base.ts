@@ -101,11 +101,9 @@ export class CrudBaseService extends BaseService2 {
             return map((resp) => resp);
         } else {
             return map((resp: any) => {
-                console.log('mapper resp', resp);
                 if (resp && resp.data && resp.data.elements && resp.data.elements.length > 1) {
                     resp.data.elements = resp.data.elements.map((el) => this.mapper(el));
                 } else if (resp.data) {
-                    console.log('data', resp.data);
                     resp.data = this.mapper(resp.data);
                 }
                 return resp;

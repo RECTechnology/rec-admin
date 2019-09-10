@@ -11,7 +11,7 @@ import { CreateDelivery } from '../create-delivery/create-delivery';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { Title } from '@angular/platform-browser';
-import { TlHeader, TlItemOption } from 'src/components/table-list/tl-table/tl-table.component';
+import { TlHeader } from 'src/components/table-list/tl-table/tl-table.component';
 
 @Component({
     selector: 'send-mail',

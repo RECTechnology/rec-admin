@@ -960,5 +960,19 @@
   "PRODUCTS_CONSUMED": "Productos Consumidos",
   "PRODUCTS_PRODUCED": "Productos Producidos",
   "REC_MAILING": "Mailing",
-  "DELIVERY_WARNIGN": "Entregar un correo significa que se enviará a todos los correos relacionados con las cuentas seleccionadas"
+  "DELIVERY_WARNIGN": "Entregar un correo significa que se enviará a todos los correos relacionados con las cuentas seleccionadas",
+  "Mailings": "Correos",
+  "Deliveries": "Entregas",
+  "Subject": "Asunto",
+  "Content": "Contenido",
+  "Mail": "Correo",
+  "Processed": "Procesado",
+  "EDIT_MAIL": "Editar Correo",
+  "CREATE_MAIL": "Crear Correo",
+  "CREATE_DELIVERY": "Crear Entrega",
+  "Account Email": "Correo Cuenta",
+  "ATTACH": "Añadir Adjunto",
+  "DELIVERY_DESC": "Seleccione un conjunto de cuenta, se enviará un correo electrónico a todas las cuentas que tengan un asistente de dirección de correo electrónico",
+  "SELECTED_ACCOUNTS": "Cuentas Seleccionadas"
+
 }
