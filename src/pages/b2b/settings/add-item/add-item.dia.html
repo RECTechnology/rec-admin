@@ -40,8 +40,7 @@
                                 style="list-style: none; margin: 0; padding: 0">
                                 <li class="activity-list-item small-text"
                                     *ngFor="let cons of item.default_consuming_by; let i = index">
-                                    {{cons.name}}
-
+                                    {{cons | tolang}}
                                     <span class="icon fa fa-trash col-error" (click)="deleteConsumed(i)"></span>
                                 </li>
                             </ul>
@@ -66,7 +65,8 @@
                                 <button
                                     *ngIf="item.default_consuming_by && !item.default_consuming_by.includes(act) && nameMatches(act.name)"
                                     mat-menu-item (click)="addConsumed(act)" style="padding: 5px auto">
-                                    <span style="color: #666; font-size: 12px">{{act.name}}</span>
+                                    <span
+                                        style="color: #666; font-size: 12px">{{act | tolang}}</span>
                                 </button>
                             </ng-template>
                         </mat-menu>
@@ -79,7 +79,7 @@
                                 style="list-style: none; margin: 0; padding: 0">
                                 <li class="activity-list-item small-text"
                                     *ngFor="let prod of item.default_producing_by; let i = index">
-                                    {{prod.name}}
+                                    {{prod | tolang}}
                                     <span class="icon fa fa-trash small-text col-error"
                                         (click)="deleteProduced(i)"></span>
                                 </li>
@@ -104,7 +104,8 @@
                                 <button
                                     *ngIf="item.default_producing_by && !item.default_producing_by.includes(act) && nameMatches(act.name)"
                                     mat-menu-item (click)="addProduced(act)" style="padding: 5px auto">
-                                    <span style="color: #666; font-size: 12px">{{act.name}}</span>
+                                    <span
+                                        style="color: #666; font-size: 12px">{{act | tolang}}</span>
                                 </button>
                             </ng-template>
                         </mat-menu>

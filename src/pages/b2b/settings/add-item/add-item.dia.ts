@@ -32,6 +32,12 @@ export class AddItemDia {
         esp: '',
     };
 
+    public langMap = {
+        cat: 'ca',
+        en: 'en',
+        es: 'es',
+    };
+
     constructor(
         public dialogRef: MatDialogRef<AddItemDia>,
         public us: UserService,
