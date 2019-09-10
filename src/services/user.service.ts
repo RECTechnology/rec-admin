@@ -154,10 +154,9 @@ export class UserService {
       'content-type': 'application/x-www-form-urlencoded',
     });
     const options = ({ headers });
-    const params = new HttpParams();
-
-    params.set('user_dni', email);
-    params.set('role', role);
+    let params = new HttpParams();
+    params = params.set('user_dni', email);
+    params = params.set('role', role);
 
     return this.http.post(
       `${API_URL}/manager/v1/groups/${account_id}`,
