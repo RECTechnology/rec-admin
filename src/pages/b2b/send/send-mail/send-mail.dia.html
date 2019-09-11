@@ -16,9 +16,18 @@
             </div>
         </mat-card>
         <mat-card style="margin-bottom: 10px">
-            <input matInput type="text"
-                style="margin-bottom: 10px; width: 100%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
-                placeholder="Subject" [(ngModel)]="mail.subject">
+            <div class="group-row-left center v space-between">
+                <input matInput type="text"
+                    style="width: 100%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
+                    placeholder="Subject" [(ngModel)]="mail.subject">
+
+                <div class="group-row-left center v" style="min-width: 30%; width: auto;margin-left: 10px">
+                    <p class="small-text no-marg" style="margin-right: 8px!important; width: auto">Schedule At</p>
+                    <input type="datetime-local" [(ngModel)]="mail.scheduled_at"
+                        style="border-radius: 2px;border: 1px solid #ddd;font-size: 12px">
+                </div>
+            </div>
+            <br>
             <quill-editor [ngModel]="mail.content" format="html" [styles]="{height: '200px'}" (onFocus)="focus($event)"
                 (onEditorChanged)="changedEditor($event)" (onBlur)="blur($event)" (onEditorCreated)="created($event)">
             </quill-editor>
@@ -35,7 +44,8 @@
             </button>
 
             <button color="primary" (click)="createDelivery()" mat-raised-button [disabled]="loading || !isEdit"
-                style="margin-right: 10px" matTooltip="{{(!isEdit ? 'Please, save before creating a delivery': 'CREATE_DELIVERY')|translate}}">
+                style="margin-right: 10px"
+                matTooltip="{{(!isEdit ? 'Please, save before creating a delivery': 'CREATE_DELIVERY')|translate}}">
                 <i class="fa fa-paper-plane" style="margin-right: 8px"></i> {{'CREATE_DELIVERY'|translate}}
             </button>
             <button mat-icon-button matTooltip="{{'ATTACH'|translate}}">

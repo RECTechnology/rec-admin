@@ -13,6 +13,10 @@ import { LoginService } from 'src/services/auth/auth.service';
 import { Title } from '@angular/platform-browser';
 import { TlHeader } from 'src/components/table-list/tl-table/tl-table.component';
 
+import * as moment from 'moment';
+
+const now = new Date();
+
 @Component({
     selector: 'send-mail',
     templateUrl: './send-mail.dia.html',
@@ -26,11 +30,19 @@ export class SendMail extends TablePageBase {
 
     public mail = {
         content: '',
+        scheduled_at:
+            `${now.getFullYear()}-${now.getMonth().toString().padStart(2, '0')}-${
+            now.getDate().toString().padStart(2, '0')}T${
+            now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`,
         subject: '',
     };
 
     public mailCopy = {
         content: '',
+        scheduled_at:
+            `${now.getFullYear()}-${now.getMonth().toString().padStart(2, '0')}-${
+            now.getDate().toString().padStart(2, '0')}T${
+            now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`,
         subject: '',
     };
 
@@ -99,7 +111,7 @@ export class SendMail extends TablePageBase {
                 this.getMail();
                 this.search();
             } else {
-                this.mailCopy = Object.assign({}, this.mail);
+                this.mailCopy = { ...this.mail };
             }
         });
     }
@@ -108,7 +120,13 @@ export class SendMail extends TablePageBase {
         this.mailing.find(this.id)
             .subscribe((resp) => {
                 this.mail = resp.data;
-                this.mailCopy = Object.assign({}, this.mail);
+                let now = new Date(this.mail.scheduled_at);
+
+                this.mail.scheduled_at =
+                    `${now.getFullYear()}-${now.getMonth().toString().padStart(2, '0')}-${
+                    now.getDate().toString().padStart(2, '0')}T${
+                    now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                this.mailCopy = { ...this.mail };
             });
     }
 
@@ -146,33 +164,39 @@ export class SendMail extends TablePageBase {
     public updateMail() {
         this.loading = true;
         const data: any = Object.assign({}, this.mail);
-        this.mailing.update(this.id, { subject: data.subject, content: data.content })
-            .subscribe((resp) => {
-                this.snackbar.open('Edited Mail Correctly');
-                this.loading = false;
-                this.saved = true;
-                this.mail = resp.data;
-                this.mailCopy = Object.assign({}, this.mail);
-            }, (err) => {
-                this.snackbar.open(err.message);
-                this.loading = false;
-            });
+        this.mailing.update(this.id, {
+            content: data.content,
+            scheduled_at: moment(data.scheduled_at).toISOString(),
+            subject: data.subject,
+        }).subscribe((resp) => {
+            this.snackbar.open('Edited Mail Correctly');
+            this.loading = false;
+            this.saved = true;
+            this.mail = resp.data;
+            this.mailCopy = Object.assign({}, this.mail);
+        }, (err) => {
+            this.snackbar.open(err.message);
+            this.loading = false;
+        });
     }
 
     public createMail() {
         this.loading = true;
         const data: any = Object.assign({}, this.mail);
-        this.mailing.create({ subject: data.subject, content: data.content })
-            .subscribe((resp) => {
-                this.snackbar.open('Created Mail Correctly');
-                this.loading = false;
-                this.isEdit = true;
-                this.id = resp.data.id;
-                this.router.navigate(['/rec/mailing/' + this.id]);
-            }, (err) => {
-                this.snackbar.open(err.message);
-                this.loading = false;
-            });
+        this.mailing.create({
+            content: data.content,
+            scheduled_at: new Date(data.scheduled_at).toISOString(),
+            subject: data.subject,
+        }).subscribe((resp) => {
+            this.snackbar.open('Created Mail Correctly');
+            this.loading = false;
+            this.isEdit = true;
+            this.id = resp.data.id;
+            this.router.navigate(['/rec/mailing/' + this.id]);
+        }, (err) => {
+            this.snackbar.open(err.message);
+            this.loading = false;
+        });
     }
 
     public isSaveDisabled() {
