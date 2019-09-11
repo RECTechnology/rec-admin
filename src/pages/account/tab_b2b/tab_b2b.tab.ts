@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
 import { AdminService } from '../../../services/admin/admin.service';
 import { B2bService } from 'src/services/b2b/b2b.service';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 @Component({
   selector: 'b2b-module',
@@ -50,7 +51,10 @@ export class B2BModuleTab {
   constructor(
     public b2bCrud: B2bService,
     public snackbar: MySnackBarSevice,
-  ) { }
+    public accountCrud: AccountsCrud,
+  ) {
+
+  }
 
   public sendB2b() {
     console.log('asdkjaskldj');

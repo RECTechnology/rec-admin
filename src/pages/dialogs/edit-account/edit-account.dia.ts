@@ -86,6 +86,7 @@ export class EditAccountData {
     this.type = this.account.type;
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
     this.accountCopy = { ...this.account };
+    this.activitiesSelected = this.accountCopy.activities.slice();
     this.schedule = this.utils.parseSchedule(this.account.schedule);
     delete this.accountCopy.kyc_validations;
   }
@@ -95,7 +96,7 @@ export class EditAccountData {
     this.activitiesSelected.push(act);
     this.crudAccounts.addActivity(this.account.id, act.id)
       .subscribe((resp) => {
-        this.snackbar.open('Removed activity', 'ok');
+        this.snackbar.open('Added activity', 'ok');
         this.loading = false;
       }, (error) => {
         this.snackbar.open(error.message, 'ok');

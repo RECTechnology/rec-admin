@@ -70,6 +70,14 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   }
 
   public setUp() {
+    this.crudAccounts.getPdf(this.account_id)
+      .subscribe(
+        (resp) => {
+          console.log(resp);
+        }, (error) => {
+          this.snackbar.open(error.message);
+        },
+      );
     this.crudAccounts.find(this.account_id)
       .subscribe((resp) => {
         this.companyService.selectedCompany = resp;

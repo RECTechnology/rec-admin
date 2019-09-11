@@ -455,7 +455,7 @@
             <ul *ngIf="activitiesSelected && activitiesSelected.length" style="list-style: none; margin: 0; padding: 0">
               <li class="activity-list-item small-text" (click)="deleteActivity(i)"
                 *ngFor="let act of activitiesSelected; let i = index">
-                {{act.translations[us.lang].name}}
+                {{act | tolang}}
 
                 <span class="icon fa fa-trash"></span>
               </li>
@@ -476,9 +476,9 @@
                (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="Search Activities">
 
             <ng-template ngFor let-prod [ngForOf]="activities">
-              <button *ngIf="activitiesSelected && !activitiesSelected.includes(prod)" mat-menu-item
+              <button *ngIf="accountCopy.activities && !accountCopy.activities.includes(prod)" mat-menu-item
                 (click)="addActivity(prod)" style="padding: 5px auto">
-                <span style="color: #666; font-size: 12px">{{prod.translations[us.lang].name}}</span>
+                <span style="color: #666; font-size: 12px">{{prod | tolang}}</span>
               </button>
             </ng-template>
           </mat-menu>

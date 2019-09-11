@@ -173,6 +173,7 @@ import { ConvertToLangPipe } from 'src/pipes/convert-to-lang/convert-to-lang.pip
     NeighborhoodsTabComponent,
     AddNeighbourhoodDia,
     NeighbourhoodSelector,
+    ConvertToLangPipe,
   ],
   imports: [
     BrowserModule,

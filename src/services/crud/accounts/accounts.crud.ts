@@ -19,6 +19,12 @@ export class AccountsCrud extends CrudBaseService {
         this.mapItems = true;
     }
 
+    public getPdf(account_id) {
+        // /admin/v3/accounts/{id}/report_clients_providers
+        const url = [...this.getUrlBase(), '/', account_id, '/', 'report_clients_providers'];
+        return this.get(url);
+    }
+
     public addConsumedProductToAccount(account_id, product_id) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'consuming_products'];
         return this.post(url, { id: product_id }).pipe(this.itemMapper());
