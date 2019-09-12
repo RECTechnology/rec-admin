@@ -18,4 +18,9 @@ export class MailingCrud extends CrudBaseService {
         this.userRole = 'admin';
         this.mapItems = true;
     }
+
+    public addAttachment(mailing_id, link) {
+        const url = [...this.getUrlBase(), '/', mailing_id, '/', 'attachments'];
+        return this.post(url, { link });
+    }
 }

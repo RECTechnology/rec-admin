@@ -14,6 +14,7 @@ import { Title } from '@angular/platform-browser';
 import { TlHeader } from 'src/components/table-list/tl-table/tl-table.component';
 
 import * as moment from 'moment';
+import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
 
 const now = new Date();
 
@@ -219,5 +220,24 @@ export class SendMail extends TablePageBase {
     public blur($event) {
         this.focused = false;
         this.blured = true;
+    }
+
+    public selectFile(selectedImage) {
+        const dialogRef = this.dialog.open(FileUpload);
+        dialogRef.componentInstance.selectedImage = selectedImage;
+        dialogRef.componentInstance.hasSelectedImage = !!selectedImage;
+        return dialogRef.afterClosed().subscribe((attachmentLink) => {
+            if (attachmentLink) {
+                this.loading = true;
+                this.mailing.addAttachment(this.id, attachmentLink)
+                    .subscribe((resp) => {
+                        this.snackbar.open('Added attachment correctly');
+                        this.loading = false;
+                    }, (err) => {
+                        this.snackbar.open(err.message);
+                        this.loading = false;
+                    });
+            }
+        });
     }
 }

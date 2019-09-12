@@ -48,9 +48,13 @@
                 matTooltip="{{(!isEdit ? 'Please, save before creating a delivery': 'CREATE_DELIVERY')|translate}}">
                 <i class="fa fa-paper-plane" style="margin-right: 8px"></i> {{'CREATE_DELIVERY'|translate}}
             </button>
-            <button mat-icon-button matTooltip="{{'ATTACH'|translate}}">
+            <button mat-icon-button matTooltip="{{'ATTACH'|translate}}" [matMenuTriggerFor]="menu">
                 <i class="fa fa-paperclip"></i>
             </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item disabled>Clients/Providers PDF</button>
+                <button mat-menu-item (click)="selectFile()">Other</button>
+            </mat-menu>
         </mat-card>
         <mat-card style="padding: 0">
             <tl-header title="DELIVERIES" [(query)]="query" (onSearch)="search()"></tl-header>

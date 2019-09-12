@@ -46,7 +46,7 @@ export class AddItemDia {
         public productsCrud: ProductsCrud,
         public snackbar: MySnackBarSevice,
     ) {
-        this.activitiesCrud.list({ offset: 0, limit: 100 })
+        this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' })
             .subscribe((resp) => {
                 console.log('activities', resp);
                 this.activities = resp.data.elements;
