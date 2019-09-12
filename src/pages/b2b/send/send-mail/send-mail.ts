@@ -222,7 +222,7 @@ export class SendMail extends TablePageBase {
         this.blured = true;
     }
 
-    public selectFile(selectedImage) {
+    public selectFile(selectedImage?) {
         const dialogRef = this.dialog.open(FileUpload);
         dialogRef.componentInstance.selectedImage = selectedImage;
         dialogRef.componentInstance.hasSelectedImage = !!selectedImage;
