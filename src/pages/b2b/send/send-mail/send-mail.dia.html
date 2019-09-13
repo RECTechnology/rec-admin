@@ -16,12 +16,20 @@
             </div>
         </mat-card>
         <mat-card style="margin-bottom: 10px; width: 100%; margin-top: 10px">
-            <div class="group-row-left center v space-between bordered-bottom" style="padding-bottom: 10px">
+            <!-- From -->
+            <div class="group-row-left bordered-bottom" style="padding-bottom: 10px!important">
+                <p class="small-text">
+                    {{'All mail will be sent from'|translate}} <a href="mailto:no-reply@email.rec.barcelona"
+                        class="col-info">no-reply@email.rec.barcelona</a></p>
+            </div>
+
+            <!-- Subject -->
+            <div class="group-row-left center v space-between" style="padding-bottom: 10px; padding-top: 10px">
                 <div class="group-row-left" style="width: 90%">
                     <p class="small-text" style="margin-right: 10px!important">{{'Subject'|translate}}</p>
                     <input matInput type="text"
                         style="width: 100%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
-                        placeholder="Subject" [(ngModel)]="mail.subject">
+                        placeholder="{{'Subject'|translate}}" [(ngModel)]="mail.subject">
                 </div>
 
                 <div *ngIf="sendScheduled" class="group-row-left center v"
@@ -40,8 +48,9 @@
                     <button mat-raised-button color="primary" style="margin-right: 10px">Send Now</button>
                 </div>
             </div>
+
+            <!-- Content -->
             <div style="width: 100%;" class="group-col-left">
-                <p class="small-text" style="margin-bottom: 10px">{{'Content'|translate}}</p>
                 <quill-editor style="width: 100%;" [ngModel]="mail.content" format="html"
                     [styles]="{height: '200px', width: '100%'}" (onFocus)="focus($event)"
                     (onEditorChanged)="changedEditor($event)" (onBlur)="blur($event)"
