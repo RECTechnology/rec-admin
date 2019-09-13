@@ -55,8 +55,11 @@
                 matTooltip="{{(!isEdit ? 'Please, save before creating a delivery': 'CREATE_DELIVERY')|translate}}">
                 <i class="fa fa-paper-plane" style="margin-right: 8px"></i> {{'CREATE_DELIVERY'|translate}}
             </button>
-            <button mat-icon-button matTooltip="{{'ATTACH'|translate}}" [matMenuTriggerFor]="menu">
-                <i class="fa fa-paperclip"></i>
+            <button mat-button matTooltip="{{'ATTACH'|translate}}" [matMenuTriggerFor]="menu">
+                <span class="center v">
+                    <i class="fa fa-paperclip" style="margin-right: 10px"></i>
+                    <p>{{'ATTACH_FILES'|translate}}</p>
+                </span>
             </button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item disabled>Clients/Providers PDF</button>

@@ -444,5 +444,6 @@
   "CREATE_DELIVERY": "Create Delivery",
   "ATTACH": "Add Attachment",
   "DELIVERY_DESC": "Select a set of account, email will be sent to all accounts that have an email address assigmen",
-  "SELECTED_ACCOUNTS": "Selected Accounts"
+  "SELECTED_ACCOUNTS": "Selected Accounts",
+  "ATTACH_FILES": "Attach Files"
 }

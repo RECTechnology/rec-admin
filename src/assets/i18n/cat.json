@@ -985,5 +985,6 @@
   "Account Email": "Correu Compte",
   "ATTACH": "Afegir Adjunt",
   "DELIVERY_DESC": "Seleccioneu un conjunt de comptes, s'enviarà un correu electrònic a tots els comptes que tinguin una adreça de correu electrònic assigmen",
-  "SELECTED_ACCOUNTS": "Comptes Seleccionats"
+  "SELECTED_ACCOUNTS": "Comptes Seleccionats",
+  "ATTACH_FILES": "Adjuntar Archius"
 }

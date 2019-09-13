@@ -973,6 +973,7 @@
   "Account Email": "Correo Cuenta",
   "ATTACH": "Añadir Adjunto",
   "DELIVERY_DESC": "Seleccione un conjunto de cuenta, se enviará un correo electrónico a todas las cuentas que tengan un asistente de dirección de correo electrónico",
-  "SELECTED_ACCOUNTS": "Cuentas Seleccionadas"
+  "SELECTED_ACCOUNTS": "Cuentas Seleccionadas",
+  "ATTACH_FILES": "Adjunta Archivos"
 
 }
