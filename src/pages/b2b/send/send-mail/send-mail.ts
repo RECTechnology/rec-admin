@@ -88,6 +88,8 @@ export class SendMail extends TablePageBase {
         },
     ];
 
+    public sendScheduled = false;
+
     constructor(
         public us: UserService,
         public translate: TranslateService,

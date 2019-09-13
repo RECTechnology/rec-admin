@@ -17,17 +17,27 @@
         </mat-card>
         <mat-card style="margin-bottom: 10px; width: 100%; margin-top: 10px">
             <div class="group-row-left center v space-between bordered-bottom" style="padding-bottom: 10px">
-                <div class="group-row-left" style="width: 100%">
+                <div class="group-row-left" style="width: 90%">
                     <p class="small-text" style="margin-right: 10px!important">{{'Subject'|translate}}</p>
                     <input matInput type="text"
                         style="width: 100%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
                         placeholder="Subject" [(ngModel)]="mail.subject">
                 </div>
 
-                <div class="group-row-left center v" style="min-width: 30%; width: auto;margin-left: 10px">
-                    <p class="small-text no-marg" style="margin-right: 8px!important; width: auto">Schedule At</p>
+                <div *ngIf="sendScheduled" class="group-row-left center v"
+                    style="min-width: 30%; width: auto;margin-left: 10px">
+                    <p class="small-text no-marg" style="margin-right: 8px!important; width: auto">Send Scheduled</p>
                     <input type="datetime-local" [(ngModel)]="mail.scheduled_at"
                         style="border-radius: 2px;border: 1px solid #ddd;font-size: 12px">
+
+                    <button mat-icon-button (click)="sendScheduled = false">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div *ngIf="!sendScheduled" class="group-row-left">
+                    <button mat-raised-button color="primary" style="margin: 0 10px;"
+                        (click)="sendScheduled = !sendScheduled">Send Scheduled</button>
+                    <button mat-raised-button color="primary" style="margin-right: 10px">Send Now</button>
                 </div>
             </div>
             <div style="width: 100%;" class="group-col-left">
