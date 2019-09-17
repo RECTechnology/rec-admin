@@ -81,7 +81,8 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       accessor: 'available',
       sort: 'amount',
       title: 'Amount',
-    }];
+    }
+  ];
   public itemOptions: TlItemOption[] = [{
     callback: this.viewAccount.bind(this),
     icon: 'fa-eye',
