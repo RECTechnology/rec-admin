@@ -161,6 +161,8 @@ export class SendMail extends TablePageBase {
     public createDelivery() {
         const ref = this.dialog.open(CreateDelivery);
         ref.componentInstance.id = this.id;
+        ref.componentInstance.selectedAccounts = this.data.map((el) => el.account);
+        ref.componentInstance.deliveries = this.data.map((el) => el.account);
         ref.afterClosed()
             .subscribe((resp) => {
                 console.log('createDelivery::afterClosed', this.id);
