@@ -28,6 +28,7 @@ export class SendMail extends TablePageBase {
     public saved = false;
 
     public pageName = 'Send Email';
+    public moreThan5 = false;
 
     public mail = {
         content: '',
@@ -144,11 +145,17 @@ export class SendMail extends TablePageBase {
             sort: this.sortID,
         }).subscribe((resp) => {
             this.data = resp.data.elements;
-            this.sortedData = this.data.slice();
+            this.sortedData = this.data.slice(0, 5);
             this.showing = this.data.length;
             this.total = resp.data.total;
+            this.moreThan5 = this.total > 5;
             this.loading = false;
         });
+    }
+
+    public showAll() {
+        this.sortedData = this.data.slice();
+        this.moreThan5 = false;
     }
 
     public createDelivery() {
@@ -158,6 +165,28 @@ export class SendMail extends TablePageBase {
             .subscribe((resp) => {
                 console.log('createDelivery::afterClosed', this.id);
                 console.log(resp);
+                this.search();
+            }, (err) => {
+                this.snackbar.open(err.message);
+                this.loading = false;
+            });
+    }
+
+    public getStatusColor(status) {
+        switch (status) {
+            case 'errored': return 'error';
+            case 'sent': return 'success';
+            case 'scheduled': return 'primary';
+        }
+    }
+
+    public deleteAccount(item) {
+        this.loading = true;
+        this.mailDeliveries.remove(item.id)
+            .subscribe((resp) => {
+                this.snackbar.open('Deleted Account Correctly');
+                this.loading = false;
+                this.search();
             }, (err) => {
                 this.snackbar.open(err.message);
                 this.loading = false;

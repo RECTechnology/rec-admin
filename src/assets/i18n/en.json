@@ -445,5 +445,9 @@
   "ATTACH": "Add Attachment",
   "DELIVERY_DESC": "Select a set of account, email will be sent to all accounts that have an email address assigmen",
   "SELECTED_ACCOUNTS": "Selected Accounts",
-  "ATTACH_FILES": "Attach Files"
+  "ATTACH_FILES": "Attach Files",
+
+  "ALL_MAIL_FROM": "All mail will be sent from",
+  "SEND_SCHEDULED": "Send Scheduled",
+  "SEND_NOW": "Send Now"
 }

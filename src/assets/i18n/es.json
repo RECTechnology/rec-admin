@@ -974,6 +974,8 @@
   "ATTACH": "Añadir Adjunto",
   "DELIVERY_DESC": "Seleccione un conjunto de cuenta, se enviará un correo electrónico a todas las cuentas que tengan un asistente de dirección de correo electrónico",
   "SELECTED_ACCOUNTS": "Cuentas Seleccionadas",
-  "ATTACH_FILES": "Adjunta Archivos"
-
+  "ATTACH_FILES": "Adjunta Archivos",
+  "ALL_MAIL_FROM": "Todo el correo se enviará desde",
+  "SEND_SCHEDULED": "Enviar programado",
+  "SEND_NOW": "Enviar ahora"
 }
