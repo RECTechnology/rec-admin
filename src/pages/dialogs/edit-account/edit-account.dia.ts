@@ -71,7 +71,7 @@ export class EditAccountData {
         this.companyService.categories = resp.data;
       });
 
-    this.productsCrud.list({ limit: 300 })
+    this.productsCrud.list({ limit: 300, sort: 'name', order: 'asc' })
       .subscribe((resp) => {
         this.productList = resp.data.elements;
       });
