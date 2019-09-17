@@ -52,7 +52,7 @@
                                 ... ({{total}} items)
                             </div>
                         </mat-chip>
-                        <mat-chip (click)="createDelivery()" color="primary" selected>
+                        <mat-chip (click)="createDelivery()" [disabled]="!isEdit" matTooltip="Guardar/crear antes de poder asignar cuentas" color="primary" selected>
                             <div class="center h v" style="height: 100%">
                                 <i class="fa fa-plus"></i>
                             </div>
@@ -89,9 +89,9 @@
                 <button mat-raised-button color="primary" style="margin-right: 10px">{{'SEND_NOW'|translate}}</button>
             </div> -->
 
-            <button mat-flat-button color="primary"
+            <button mat-flat-button color="primary" disabled
                 style="border-top-right-radius: 0; border-bottom-right-radius: 0">{{'Send'|translate}}</button>
-            <button mat-flat-button color="primary" style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+            <button mat-flat-button color="primary" disabled style="border-top-left-radius: 0; border-bottom-left-radius: 0"
                 [matMenuTriggerFor]="menusend" aria-label="Example icon-button with a menu">
                 <i class="fa fa-caret-down"></i>
             </button>
@@ -108,7 +108,7 @@
             </button>
 
             <button color="primary" *ngIf="!isEdit" (click)="createMail()" [disabled]="isSaveDisabled() || loading"
-                mat-raised-button style="margin-right: 10px" matTooltip="{{'Create'|translate}}">
+                mat-raised-button style="margin-right: 10px;margin-left: 15px" matTooltip="{{'Create'|translate}}">
                 <i class="fa fa-save" style="margin-right: 8px"></i> {{'Create'|translate}}
             </button>
 
