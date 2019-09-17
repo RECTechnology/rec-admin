@@ -37,7 +37,6 @@ export class KeyValuePair implements OnInit {
   }
 
   public ngOnInit() {
-    console.log('KeyValuePair', this.items);
   }
 
   public trackByFn(index, item) {

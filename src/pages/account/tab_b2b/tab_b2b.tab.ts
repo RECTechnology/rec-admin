@@ -57,7 +57,6 @@ export class B2BModuleTab {
   }
 
   public sendB2b() {
-    console.log('asdkjaskldj');
     this.b2bCrud.sendB2BMailAccount()
       .subscribe(
         (resp) => {

@@ -28,7 +28,6 @@ export class NeighbourhoodSelector implements OnInit {
     public search() {
         this.nCrud.list({ limit: 100 }).subscribe((resp) => {
             this.barrios = resp.data.elements;
-            console.log('this.barrios', this.barrios);
         }, (err) => {
             this.error = err;
         });

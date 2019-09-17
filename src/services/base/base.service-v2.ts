@@ -77,7 +77,6 @@ export class BaseService2 {
   public getAdditionalHeaders(): ({ [k: string]: string }) {
     const headers = {};
     if (this.getFlag('translateHeaders')) {
-      console.log(this.us.lang);
       this.opts.lang = UtilsService.getLocaleFromLang(this.us.lang);
       headers['Content-Language'] = this.opts.lang || REC_LANGS.EN;
       headers['Accept-Language'] = this.opts.lang || REC_LANGS.EN;
@@ -188,7 +187,6 @@ export class BaseService2 {
       }
     }
 
-    console.log('POST', url, params, options);
     return this.http.post(
       this.getUrl(url),
       params,

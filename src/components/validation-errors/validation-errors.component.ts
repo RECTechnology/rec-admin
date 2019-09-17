@@ -18,7 +18,6 @@ export class ValidationErrorsComponent implements OnInit {
 
     public ngOnInit() {
         this.hidden = this.validationErrors.length <= 0;
-        console.log(this.validationName);
     }
 
     public hideErrors() {

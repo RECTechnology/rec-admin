@@ -68,15 +68,12 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
             sort: this.sortID,
         }).subscribe(
             (resp) => {
-                console.log('neighborhoods', resp);
                 this.data = resp.data.elements;
                 this.sortedData = this.data.slice();
-                console.log('NNN', this.data);
                 this.total = resp.data.total;
                 this.loading = false;
             },
             (error) => {
-                console.log('errror', error);
                 this.loading = false;
             },
         );

@@ -165,8 +165,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       },
       (error) => {
         this.loading = false;
-        // tslint:disable-next-line
-        console.log(error);
       });
   }
 

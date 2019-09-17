@@ -280,7 +280,6 @@ export class UserService {
       options,
     ).pipe(
       map((res: any) => {
-        console.log('res', res);
         const body = res;
         body.data.group_data.wallets[0].available = body.data.group_data.wallets[0].available / 100000000;
         body.data.group_data.wallets[0].balance = body.data.group_data.wallets[0].balance / 100000000;
@@ -290,8 +289,6 @@ export class UserService {
           body.data.kyc_validations.phone = parsed.number;
           body.data.kyc_validations.prefix = parsed.prefix;
         } catch (error) {
-          // tslint:disable-next-line
-          console.log('error', error);
         }
 
         return body.data || body || {};

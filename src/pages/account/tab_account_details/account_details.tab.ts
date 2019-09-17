@@ -44,18 +44,15 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
   }
 
   public setUp() {
-    console.log('setup');
     this.loading = true;
     this.crudAccounts.find(this.account_id)
       .subscribe((resp: any) => {
-        console.log('Account: ', resp);
         this.companyService.selectedCompany = resp.data;
         this.controles.showAccountDetails = true;
         this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
         this.loading = false;
       }, (error) => {
         this.loading = false;
-        console.log(error);
       });
   }
 
@@ -90,7 +87,6 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
   }
 
   public ngOnDestroy() {
-    console.log('On destroy');
     this.companyService.selectedCompany = null;
     this.controles.showAccountDetails = false;
   }

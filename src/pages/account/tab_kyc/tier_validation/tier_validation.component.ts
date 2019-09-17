@@ -96,7 +96,6 @@ export class Tier1Form implements OnInit {
     dialogRef.componentInstance.code = code;
     dialogRef.componentInstance.btnText = btnText;
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
       if (result) {
         this.companyService.requestKycValidation(this.tier)
           .subscribe(

@@ -164,13 +164,9 @@ export class NewDelegateComponent extends PageBase {
         this.notSavedItems = [...users];
 
         const notSavedMap = this.notSavedItems.slice().map((el) => el.id);
-        console.log('map', notSavedMap);
-
         this.savedItems = this.savedItems.filter((el) => {
-            console.log('Testing', el.id);
             return !notSavedMap.includes(el.id);
         });
-        // this.savedItems = this.getSelected(false);
     }
 
     public closeErrors() {
@@ -301,7 +297,6 @@ export class NewDelegateComponent extends PageBase {
                             this.snackbar.open(respDelegate.message, 'ok');
                             this.getDelegate();
                         }, (error) => {
-                            console.log('error', error);
                             if (error.message.includes('Validation error')) {
                                 this.validationErrors = error.data;
                             } else {

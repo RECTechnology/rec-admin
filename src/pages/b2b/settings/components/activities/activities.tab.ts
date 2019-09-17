@@ -35,12 +35,10 @@ export class ActivitiesTabComponent extends EntityTabBase {
                 this.data = resp.data.elements.map(this.mapTranslatedElement);
                 this.sortedData = this.data.slice();
                 this.total = resp.data.total;
-                console.log('RESP', resp);
                 this.list.updateData(this.data, resp.data.total);
                 this.loading = false;
             },
             (error) => {
-                console.log('errror', error);
                 this.loading = false;
             },
         );
@@ -97,7 +95,6 @@ export class ActivitiesTabComponent extends EntityTabBase {
                             });
                         },
                         (error) => {
-                            console.log(error);
                             this.snackbar.open(error.message);
                         },
                     );

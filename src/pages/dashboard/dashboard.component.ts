@@ -35,15 +35,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     public crudAccounts: AccountsCrud,
   ) {
     super();
-    this.crudAccounts.list()
-      .subscribe(
-        (resp) => {
-          console.log('resp asd', resp);
-        },
-        (err) => {
-          console.log('err adsa', err);
-        },
-      );
   }
 
   // Custom hooks

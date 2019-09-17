@@ -56,7 +56,6 @@ export class SelectAccountsDia extends BaseDialog {
   public getAccounts() {
     this.loading = true;
     this.selectedIDs = this.selectedAccounts.slice().map((el) => (el.account ? el.account.id : el.id));
-    console.log('Selected ids', this.selectedIDs)
     this.company.getCompanies(
       this.offsetUnsorted, this.limitUnsorted,
       this.unselectedSearch, this.sortIDUnsorted,

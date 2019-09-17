@@ -71,7 +71,6 @@ export class B2BSendComponent extends TablePageBase {
     }
 
     public editMail(item) {
-        console.log('edit item', item);
         this.router.navigate(['/rec/mailing/' + item.id]);
     }
 

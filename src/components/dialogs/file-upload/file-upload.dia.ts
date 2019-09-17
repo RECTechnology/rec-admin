@@ -59,11 +59,9 @@ export class FileUpload {
     this.us.uploadFileWithProgress(this.file)
       .subscribe(
         (resp) => {
-          console.log('asdasd', resp);
           this.close(resp.data.src);
         },
         (error) => {
-          console.log('ererre', error);
           this.snackBar.open('Error uploading: ' + error.message, 'ok');
           this.error = error.message;
         },

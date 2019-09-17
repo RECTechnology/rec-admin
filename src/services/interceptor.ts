@@ -23,7 +23,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         return next.handle(request)
             .pipe(
                 catchError((error: HttpErrorResponse) => {
-                    console.log('Interceptor', error);
                     let cleanError: any = error;
                     const errStr = error.error || error;
 

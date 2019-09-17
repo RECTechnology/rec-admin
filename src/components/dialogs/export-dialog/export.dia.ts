@@ -47,12 +47,10 @@ export class ExportDialog implements OnInit {
   }
 
   public changedItems($event) {
-    console.log('Chagned');
   }
 
   public getFieldMap() {
     const map = {};
-    console.log(this.list);
     for (const entry of this.list) {
       if (entry && entry.active && entry.key) {
         map[entry.key] = entry.value;
@@ -69,11 +67,9 @@ export class ExportDialog implements OnInit {
 
     this.loading = true;
     this.fn({ ...this.filters, field_map }).subscribe((resp) => {
-      console.log(resp);
       this.loading = false;
       this.download(resp, 'text/csv', this.fileName);
     }, (error) => {
-      console.log('Error', error);
       this.errorLarge = (error.message || 'Error');
       this.error = this.errorLarge.substr(0, 86);
       this.loading = false;

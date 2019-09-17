@@ -73,7 +73,6 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     this.crudAccounts.getPdf(this.account_id)
       .subscribe(
         (resp) => {
-          console.log(resp);
         }, (error) => {
           this.snackbar.open(error.message);
         },
@@ -83,7 +82,6 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
         this.companyService.selectedCompany = resp;
         this.controles.showAccountDetails = true;
       }, (error) => {
-        console.log(error);
         this.snackbar.open('Account not found!', 'ok');
         this.router.navigate([`/dashboard`]);
       });

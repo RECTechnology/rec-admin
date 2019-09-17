@@ -56,7 +56,6 @@ export class DashChart implements AfterViewInit {
     ykeys: ['a', 'b'],
     labels: ['Particular', 'Empresas'],
     xLabelFormat(d) {
-      console.log(d);
       return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
     },
   };
@@ -68,7 +67,6 @@ export class DashChart implements AfterViewInit {
   public ngAfterViewInit() {
     this.chart_ = new Morris.Area(this.morris);
     (window as any).addEventListener('resize', () => {
-      console.log('resize');
       this.chart_.redraw();
     });
   }
@@ -89,7 +87,6 @@ export class DashChart implements AfterViewInit {
         });
       }
     }
-    console.log(formated);
     return formated;
   }
 }

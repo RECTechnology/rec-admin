@@ -82,7 +82,6 @@ export class ViewDetails extends BaseDialog implements OnInit {
           .subscribe((resend) => {
             this.snackBar.open('Re-Sent sms to number: ' + this.getPhone(), 'ok');
           }, (error) => {
-            console.log(error);
             this.snackBar.open('Error re-sending: ' + error, 'ok');
           });
       }

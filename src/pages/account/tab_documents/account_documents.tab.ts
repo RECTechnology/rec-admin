@@ -139,11 +139,9 @@ export class AccountDocuments implements OnDestroy, OnInit {
   }
 
   public setUp() {
-    console.log('setup');
     this.loading = true;
     this.companyService.getAccount(this.account_id)
       .subscribe((resp) => {
-        console.log('Account: ', resp);
         this.companyService.selectedCompany = resp;
         this.controles.showAccountDetails = true;
         this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
@@ -156,7 +154,6 @@ export class AccountDocuments implements OnDestroy, OnInit {
         this.getDocuments();
       }, (error) => {
         this.loading = false;
-        console.log(error);
       });
 
   }
@@ -203,9 +200,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
             d.preview = '';
           }
         }
-        console.log('resp', resp);
       }, (error) => {
-        console.log('error', error);
       });
   }
 
@@ -217,10 +212,8 @@ export class AccountDocuments implements OnDestroy, OnInit {
     this.adminService.checkLemonKyc(autonomo, company, 0, this.owner)
       .subscribe((resp) => {
         this.snackbar.open('Documents validated', 'OK');
-        console.log(resp);
       }, (error) => {
         this.snackbar.open('Error: ' + error.message, 'OK');
-        console.log(error);
       });
   }
 
@@ -268,16 +261,13 @@ export class AccountDocuments implements OnDestroy, OnInit {
     return this.adminService.removeDoc(doc.tag, this.owner)
       .subscribe((resp) => {
         this.snackbar.open('Removed document', 'OK');
-        console.log(resp);
         this.setUp();
       }, (error) => {
         this.snackbar.open('Error: ' + error.message, 'OK');
-        console.log(error);
       });
   }
 
   public ngOnDestroy() {
-    console.log('On destroy');
     this.companyService.selectedCompany = null;
     this.controles.showAccountDetails = false;
   }

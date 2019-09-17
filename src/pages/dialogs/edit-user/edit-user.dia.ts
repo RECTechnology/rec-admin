@@ -48,7 +48,6 @@ export class EditUserData {
   public getUser() {
     this.usersCrud.find(this.user.id)
       .subscribe((resp) => {
-        console.log('Got user', resp);
         this.user = resp.data;
         this.userCopy = { ...this.user };
         this.userCopy.kyc_validations = { ...this.user.kyc_validations };

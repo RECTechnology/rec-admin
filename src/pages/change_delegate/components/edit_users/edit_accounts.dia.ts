@@ -48,7 +48,6 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
   public getExchangersList() {
     this.us.getListOfRecSellers(0, 1000, '').subscribe(
       (resp) => {
-        // console.log('resp', resp);
         this.exchangers = resp.data.elements;
         this.filtered = this.exchangers.slice();
       },

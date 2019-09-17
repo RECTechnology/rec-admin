@@ -71,7 +71,6 @@ export class TableListTable implements AfterContentInit {
                 this.sortDir = params.dir;
                 this.sortId = params.sort;
                 if (this.sortDir || this.sortId) {
-                    console.log('emmited');
                     this.onSort.emit({
                         active: this.sortId,
                         direction: this.sortDir as SortDirection,

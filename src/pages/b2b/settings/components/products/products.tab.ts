@@ -39,7 +39,6 @@ export class ProductsTabComponent extends EntityTabBase {
             },
             (error) => {
                 this.loading = false;
-                console.log('errror', error);
             },
         );
     }
@@ -111,7 +110,6 @@ export class ProductsTabComponent extends EntityTabBase {
                             });
                         },
                         (error) => {
-                            console.log(error);
                             this.snackbar.open(error.message);
                         },
                     );

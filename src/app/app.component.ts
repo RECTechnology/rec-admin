@@ -96,7 +96,6 @@ export class AppComponent implements OnInit, OnDestroy {
         this.setupLang();
 
         this.us.getProfile().subscribe((profile) => {
-          console.log('login', profile);
           this.us.userData = profile;
           if (!this.us.isSuperAdmin()) {
             this.us.logout();
@@ -109,7 +108,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.companyService.listCategories()
           .subscribe((categories) => {
-            console.log('got categories', categories);
             this.companyService.categories = categories.data;
           });
       });
@@ -121,11 +119,9 @@ export class AppComponent implements OnInit, OnDestroy {
     const browserLang = this.translate.getBrowserLang();
     const localSavedLang = localStorage.getItem('lang');
     const currentLang = localSavedLang || browserLang || 'en';
-    this.us.lang =
-      this.utils.userLang = currentLang;
+    this.us.lang = this.utils.userLang = currentLang;
     localStorage.setItem('lang', currentLang);
 
-    console.log('Current Lang: ', currentLang);
     /* Sets up @ngx-translate/core */
     this.translate.setDefaultLang('en');
     this.translate.use(currentLang);

@@ -165,8 +165,6 @@ export class SendMail extends TablePageBase {
         ref.componentInstance.deliveries = this.data.map((el) => el.account);
         ref.afterClosed()
             .subscribe((resp) => {
-                console.log('createDelivery::afterClosed', this.id);
-                console.log(resp);
                 this.search();
             }, (err) => {
                 this.snackbar.open(err.message);
@@ -238,7 +236,6 @@ export class SendMail extends TablePageBase {
     }
 
     public created(event) {
-        console.log('editor-created', event);
     }
 
     public changedEditor(event) {

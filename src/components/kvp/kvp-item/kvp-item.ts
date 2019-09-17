@@ -56,6 +56,5 @@ export class KeyValueItem implements OnInit {
   }
 
   public ngOnInit() {
-    console.log('On init', this.key, this.value);
   }
 }

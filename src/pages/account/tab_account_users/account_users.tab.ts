@@ -94,7 +94,6 @@ export class AccountUsersTab implements AfterContentInit {
     dialogRef.componentInstance.btnConfirmText = 'EXPEL';
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('result', result);
       if (result) {
         // If user click 'Delete' we proceed to delete user
         this.removeUser(user);
@@ -103,7 +102,6 @@ export class AccountUsersTab implements AfterContentInit {
   }
 
   public keyPressed(user, event) {
-    console.log(event);
   }
 
   public sortData(sort: Sort): void {
@@ -132,10 +130,6 @@ export class AccountUsersTab implements AfterContentInit {
   }
 
   public getUsers() {
-    console.log('Offset: ', this.offset);
-    console.log('Limit: ', this.limit);
-    console.log('Query: ', this.searchQuery);
-
     this.companyService.getGroupUsers(this.account_id, this.offset, this.limit)
       .subscribe(
         (resp) => {
@@ -157,7 +151,6 @@ export class AccountUsersTab implements AfterContentInit {
         },
         (error) => {
           this.snackbar.open(error.desciption, 'ok');
-          console.log(error);
         });
   }
 }

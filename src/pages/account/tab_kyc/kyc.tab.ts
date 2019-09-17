@@ -9,7 +9,6 @@ import { LoginService } from '../../../services/auth/auth.service';
 const getPropFromPath = function (obj, path) {
   if (!path.length) { return null; }
   for (let i = 0, path2 = path.split('.'), len = path.length; i < len; i++) {
-    console.log(obj, path2, i);
     obj = obj[path[i]];
   }
   return obj;

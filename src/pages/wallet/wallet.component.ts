@@ -259,7 +259,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
       this.loadingTransactions = false;
       this.loading = false;
     }, (error) => {
-      console.log(error);
     });
   }
 
