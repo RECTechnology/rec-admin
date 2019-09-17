@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -36,10 +36,6 @@ export class CreateDelivery extends BaseDialog {
         super();
     }
 
-    public ngAfterContentInit() {
-        console.log('CreateDelivery::ngAfterContentInit', this.id);
-    }
-
     public openSelectAccounts() {
         const ref = this.dialog.open(SelectAccountsDia, { width: '80vw', height: '80vh' });
         ref.componentInstance.selectedAccounts = this.selectedAccounts.slice();
@@ -50,7 +46,6 @@ export class CreateDelivery extends BaseDialog {
         ref.afterClosed()
             .subscribe((result) => {
                 if (result) {
-                    console.log('Result', result);
                     this.selectedAccounts = result.accounts;
                 }
             });
