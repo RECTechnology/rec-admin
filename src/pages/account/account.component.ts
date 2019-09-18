@@ -38,6 +38,8 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     4: 'b2b',
   };
 
+  public pdfHtml = '';
+
   constructor(
     public titleService: Title,
     public route: ActivatedRoute,
@@ -70,13 +72,6 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   }
 
   public setUp() {
-    this.crudAccounts.getPdf(this.account_id)
-      .subscribe(
-        (resp) => {
-        }, (error) => {
-          this.snackbar.open(error.message);
-        },
-      );
     this.crudAccounts.find(this.account_id)
       .subscribe((resp) => {
         this.companyService.selectedCompany = resp;

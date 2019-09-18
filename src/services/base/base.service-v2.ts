@@ -244,10 +244,12 @@ export class BaseService2 {
   }
 
   public extractData(res: any) {
+    console.log('data', res);
     return res;
   }
 
   public handleError(error: Response | any) {
+    console.log('handleError', error);
     let cleanError = error;
     const errStr = error.error || error;
 

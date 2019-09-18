@@ -65,6 +65,7 @@ import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
 import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
 import { CreateDelivery } from 'src/pages/b2b/send/create-delivery/create-delivery';
 import { ConvertToLangPipe } from 'src/pipes/convert-to-lang/convert-to-lang.pipe';
+import { EscapeHtmlPipe } from 'src/pipes/safe-html/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { ConvertToLangPipe } from 'src/pipes/convert-to-lang/convert-to-lang.pip
     SendMail,
     CreateDelivery,
     ConvertToLangPipe,
+    EscapeHtmlPipe,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -174,6 +176,7 @@ import { ConvertToLangPipe } from 'src/pipes/convert-to-lang/convert-to-lang.pip
     AddNeighbourhoodDia,
     NeighbourhoodSelector,
     ConvertToLangPipe,
+    EscapeHtmlPipe
   ],
   imports: [
     BrowserModule,

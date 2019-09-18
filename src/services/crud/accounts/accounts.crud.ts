@@ -8,6 +8,10 @@ import { CompanyService } from 'src/services/company/company.service';
 
 @Injectable()
 export class AccountsCrud extends CrudBaseService {
+
+
+    public pdfHtml: string = '';
+
     constructor(
         http: HttpClient,
         public us: UserService,
@@ -20,10 +24,15 @@ export class AccountsCrud extends CrudBaseService {
     }
 
     public getPdf(account_id) {
-        // /admin/v3/accounts/{id}/report_clients_providers
         const url = [...this.getUrlBase(), '/', account_id, '/', 'report_clients_providers'];
-        return this.get(url);
+        return this.get(url, {}, { Accept: 'application/pdf' }, { responseType: 'blob' });
     }
+
+    public getPdfAsHtml(account_id) {
+        const url = [...this.getUrlBase(), '/', account_id, '/', 'report_clients_providers'];
+        return this.get(url, {}, { Accept: 'text/html' }, { responseType: 'text' });
+    }
+
 
     public addConsumedProductToAccount(account_id, product_id) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'consuming_products'];

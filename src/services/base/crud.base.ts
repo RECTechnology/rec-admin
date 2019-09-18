@@ -34,7 +34,7 @@ export class CrudBaseService extends BaseService2 {
 
     constructor(
         http: HttpClient,
-        public us: UserService
+        public us: UserService,
     ) {
         super(http, us);
     }

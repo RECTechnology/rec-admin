@@ -1,4 +1,4 @@
-import { Component, AfterContentInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, AfterContentInit, OnDestroy, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { ControlesService } from '../../../services/controles/controles.service';
@@ -48,21 +48,40 @@ export class B2BModuleTab {
     },
   ];
 
+  @Input() id = '';
+  public pdfHtml = '';
+
   constructor(
     public b2bCrud: B2bService,
     public snackbar: MySnackBarSevice,
-    public accountCrud: AccountsCrud,
+    public crudAccounts: AccountsCrud,
+    public utils: UtilsService,
+    public cs: CompanyService,
   ) {
 
   }
 
-  public sendB2b() {
-    this.b2bCrud.sendB2BMailAccount()
+  public ngAfterContentInit() {
+    this.crudAccounts.getPdfAsHtml(this.id)
       .subscribe(
         (resp) => {
-          this.snackbar.open('Sent mail');
+          console.log(resp);
+          this.pdfHtml = resp;
         }, (error) => {
-          this.snackbar.open(error.message);
+          console.log(error);
+        },
+      );
+  }
+
+  public sendB2b() {
+    this.crudAccounts.getPdf(this.id)
+      .subscribe(
+        (resp) => {
+          let date = new Date().toLocaleDateString().replace(/ /g, '-');
+          let name = `${this.cs.selectedCompany.name}-report-${date}.pdf`
+          this.utils.downloadBlob(resp, name);
+        }, (error) => {
+          console.log(error);
         },
       );
   }
