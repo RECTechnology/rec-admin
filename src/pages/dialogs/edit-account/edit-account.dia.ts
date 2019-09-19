@@ -77,12 +77,9 @@ export class EditAccountData {
     const data = this.accountCopy;
     const changedProps: any = this.utils.deepDiff(data, this.account);
 
-    changedProps.category = changedProps.category || changedProps.categoryId;
+    changedProps.category_id = changedProps.category || changedProps.categoryId;
     delete changedProps.categoryId;
-
-    if (!changedProps.category) {
-      delete changedProps.category;
-    }
+    delete changedProps.category;
 
     const schedule = this.utils.constructScheduleString(this.schedule);
     if (schedule !== this.account.schedule) {
