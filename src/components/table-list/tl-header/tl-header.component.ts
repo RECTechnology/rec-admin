@@ -55,13 +55,12 @@ export class TableListHeader {
     }
 
     public searchChanged() {
-        this.queryChange.emit(this.query);
+        this.queryChange.emit(this.query || '');
     }
 
     public search() {
-        // this.router.navigate([], { queryParams: { query: this.query }, queryParamsHandling: 'merge' });
-        this.queryChange.emit(this.query);
-        this.onSearch.emit(this.query);
+        this.queryChange.emit(this.query || '');
+        this.onSearch.emit(this.query || '');
     }
 
     public addItem() {
