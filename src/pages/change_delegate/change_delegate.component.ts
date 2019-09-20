@@ -12,6 +12,8 @@ import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { AdminService } from '../../services/admin/admin.service';
 import { ConfirmationMessage } from '../../components/dialogs/confirmation-message/confirmation.dia';
 import { ActivateResume } from './components/activate-resume/activate-resume.dia';
+import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
+import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 
 @Component({
   selector: 'change_delegate',
@@ -46,6 +48,8 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
     public router: Router,
     public dialog: MatDialog,
     public snackbar: MySnackBarSevice,
+    public changeCrud: DelegatedChangesCrud,
+    public changeDataCrud: DelegatedChangesDataCrud,
   ) {
     super();
   }
@@ -56,7 +60,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
 
   public search(query?: string) {
     this.loadingList = true;
-    this.adminService.getChangeDelegateList()
+    this.changeCrud.list({ query })
       .subscribe((resp) => {
         this.delegateChanges = resp.data.elements
           .map((el) => {
@@ -78,7 +82,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
   }
 
   public newChange(schedule) {
-    this.adminService.createChangeDelegate(schedule)
+    this.changeCrud.create({ scheduled_at: schedule })
       .subscribe((resp) => {
         this.snackbar.open('DELEGATE_CHANGE_CREATED', 'ok');
         this.router.navigate(['/change_delegate/' + resp.data.id]);
@@ -93,17 +97,19 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
     dialogRef.afterClosed()
       .subscribe((resp) => {
         if (resp) {
-          this.adminService.sendChangeDelegateCsv(resp, change.id)
-            .subscribe((respDelegate) => {
-              this.snackbar.open(respDelegate.message, 'ok');
-              this.search();
-            }, (error) => {
-              if (error.message.includes('Validation error')) {
-                this.validationErrors = error.data;
-              } else {
-                this.snackbar.open(error.message, 'ok');
-              }
-            });
+          this.changeDataCrud.importFromCSV({
+            delegated_change_id: change.id,
+            path: resp,
+          }).subscribe((respDelegate) => {
+            this.snackbar.open(respDelegate.message, 'ok');
+            this.search();
+          }, (error) => {
+            if (error.message.includes('Validation error')) {
+              this.validationErrors = error.data;
+            } else {
+              this.snackbar.open(error.message, 'ok');
+            }
+          });
         }
       });
   }
@@ -123,7 +129,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
     this.openDeleteChange(change)
       .subscribe((resp) => {
         if (resp) {
-          this.adminService.deleteChangeDelegate(change.id)
+          this.changeCrud.remove(change.id)
             .subscribe(() => {
               this.snackbar.open('DELEGATE_CHANGE_DELETED', 'ok');
               this.search();

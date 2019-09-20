@@ -66,6 +66,8 @@ import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
 import { CreateDelivery } from 'src/pages/b2b/send/create-delivery/create-delivery';
 import { ConvertToLangPipe } from 'src/pipes/convert-to-lang/convert-to-lang.pipe';
 import { EscapeHtmlPipe } from 'src/pipes/safe-html/safe-html.pipe';
+import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
+import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 
 @NgModule({
   declarations: [
@@ -176,7 +178,7 @@ import { EscapeHtmlPipe } from 'src/pipes/safe-html/safe-html.pipe';
     AddNeighbourhoodDia,
     NeighbourhoodSelector,
     ConvertToLangPipe,
-    EscapeHtmlPipe
+    EscapeHtmlPipe,
   ],
   imports: [
     BrowserModule,
@@ -194,6 +196,8 @@ import { EscapeHtmlPipe } from 'src/pipes/safe-html/safe-html.pipe';
     CrudBaseService,
     MailingDeliveriesCrud,
     MailingCrud,
+    DelegatedChangesCrud,
+    DelegatedChangesDataCrud,
   ],
 })
 export class SharedModule { }

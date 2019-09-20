@@ -13,6 +13,8 @@ import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import { AdminService } from '../../../../services/admin/admin.service';
 import { UtilsService } from '../../../../services/utils/utils.service';
 import { ActivateResume } from '../activate-resume/activate-resume.dia';
+import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
+import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 function compare(a: number | string, b: number | string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
@@ -75,6 +77,8 @@ export class NewDelegateComponent extends PageBase {
         public adminService: AdminService,
         public snackbar: MySnackBarSevice,
         public utils: UtilsService,
+        public changeCrud: DelegatedChangesCrud,
+        public changeDataCrud: DelegatedChangesDataCrud,
     ) {
         super();
     }
@@ -93,7 +97,7 @@ export class NewDelegateComponent extends PageBase {
 
     public getDelegate() {
         this.loading = true;
-        this.adminService.getChangeDelegate(this.idOrNew)
+        this.changeCrud.find(this.idOrNew)
             .subscribe(
                 (resp) => {
                     this.delegate = resp.data;
@@ -112,11 +116,14 @@ export class NewDelegateComponent extends PageBase {
 
     public getDelegateData() {
         this.loading = true;
-        this.adminService.getChangeDelegateDataList(
-            this.idOrNew, this.offsetSaved,
-            this.limitSaved, this.sortID,
-            this.sortDir, this.searchQuery,
-        ).subscribe((resp) => {
+        this.changeDataCrud.list({
+            id: this.idOrNew,
+            limit: this.limitSaved,
+            offset: this.offsetSaved,
+            order: this.sortDir,
+            query: this.searchQuery,
+            sort: this.sortID,
+        }).subscribe((resp) => {
             this.savedItems = resp.data.elements.map((el) => {
                 el.selected = false;
                 return el;
@@ -130,7 +137,7 @@ export class NewDelegateComponent extends PageBase {
         const scheduled_at = new Date(this.dateScheduled + ' ' + this.timeScheduled);
         this.loading = true;
 
-        this.adminService.updateChangeDelegate(this.delegate.id, { scheduled_at: scheduled_at.toISOString() })
+        this.changeCrud.update(this.delegate.id, { scheduled_at: scheduled_at.toISOString() })
             .subscribe(
                 (resp) => {
                     this.snackbar.open('Updated schedule time', 'ok');
@@ -292,7 +299,7 @@ export class NewDelegateComponent extends PageBase {
         dialogRef.afterClosed()
             .subscribe((resp) => {
                 if (resp) {
-                    this.adminService.sendChangeDelegateCsv(resp, this.delegate.id)
+                    this.changeDataCrud.importFromCSV({ path: resp, delegated_change_id: this.delegate.id })
                         .subscribe((respDelegate) => {
                             this.snackbar.open(respDelegate.message, 'ok');
                             this.getDelegate();
@@ -340,8 +347,8 @@ export class NewDelegateComponent extends PageBase {
 
             try {
                 const fn = isNew
-                    ? this.adminService.sendChangeDelegateData.bind(this.adminService)
-                    : this.adminService.updateChangeDelegateData.bind(this.adminService, data.id);
+                    ? this.changeDataCrud.create.bind(this.changeDataCrud)
+                    : this.changeDataCrud.update.bind(this.changeDataCrud, data.id);
 
                 const resp = await fn(changeData).toPromise();
                 this.objectsSent += 1;
