@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy, AfterContentInit, HostListener, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
 import { AppService } from 'src/services/app/app.service';
 import { environment } from 'src/environments/environment';
 import { UtilsService } from 'src/services/utils/utils.service';
@@ -16,9 +15,7 @@ import { MatDialog } from '@angular/material';
 import { interval } from 'rxjs';
 
 @Component({
-  providers: [
-    AppService,
-  ],
+  providers: [AppService],
   selector: 'app-rec-admin',
   templateUrl: './app.component.html',
 })

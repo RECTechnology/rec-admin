@@ -1,11 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { EntityTabBase } from '../base.tab';
 import { MatDialog } from '@angular/material';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
-import { TranslatableListComponent } from 'src/pages/b2b/components/translatable-list/translatable-list.component';
 
 @Component({
     selector: 'tab-products',
@@ -29,7 +28,7 @@ export class ProductsTabComponent extends EntityTabBase {
             offset: this.offset,
             search: this.query || '',
             sort: this.sortID,
-        }).subscribe(
+        }, 'all').subscribe(
             (resp) => {
                 this.data = resp.data.elements.map(this.mapTranslatedElement);
                 this.sortedData = this.data.slice();

@@ -117,14 +117,15 @@ export class NewDelegateComponent extends PageBase {
     public getDelegateData() {
         this.loading = true;
         this.changeDataCrud.list({
-            id: this.idOrNew,
+            delegate_change_id: this.idOrNew,
             limit: this.limitSaved,
             offset: this.offsetSaved,
             order: this.sortDir,
             query: this.searchQuery,
             sort: this.sortID,
         }).subscribe((resp) => {
-            this.savedItems = resp.data.elements.map((el) => {
+            console.log('Data', resp);
+            this.savedItems = resp.data.data.map((el) => {
                 el.selected = false;
                 return el;
             });

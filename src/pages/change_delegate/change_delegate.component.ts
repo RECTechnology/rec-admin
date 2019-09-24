@@ -60,7 +60,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
 
   public search(query?: string) {
     this.loadingList = true;
-    this.changeCrud.list({ query })
+    this.changeCrud.list()
       .subscribe((resp) => {
         this.delegateChanges = resp.data.elements
           .map((el) => {
