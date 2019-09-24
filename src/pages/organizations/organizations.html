@@ -9,10 +9,19 @@
             <i class="fa fa-download small-text-2"></i>
           </span>
         </button>
+
+        <!-- <mat-button-toggle-group [(ngModel)]="showType" appearance="legacy">
+          <mat-button-toggle value="list">
+            <i class="fa fa-list"></i>
+          </mat-button-toggle>
+          <mat-button-toggle value="map">
+            <i class="fa fa-map"></i>
+          </mat-button-toggle>
+        </mat-button-toggle-group> -->
       </tl-header>
       <tl-subheader>
         <div style="padding: 8px 15px;">
-          <mat-radio-group  [(ngModel)]="filterActive" (change)="changedFilter()" color="primary">
+          <mat-radio-group [(ngModel)]="filterActive" (change)="changedFilter()" color="primary">
             <mat-radio-button style="margin-right: 10px" value="0" class="col-gray small-text" color="primary">
               {{'WHOLESALE'|translate}}
             </mat-radio-button>
@@ -32,10 +41,16 @@
         </div>
       </tl-subheader>
 
-      <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
-        [itemOptions]="itemOptions" noItemsMessage="There are no bussiness yet" [limit]="limit" [total]="total"
-        (onChangePage)="changedPage($event)">
+      <tl-table *ngIf="showType === 'list'" [loading]="loading" [sort]="true" (onSort)="sortData($event)"
+        [headers]="headers" [data]="sortedData" [itemOptions]="itemOptions" noItemsMessage="There are no bussiness yet"
+        [limit]="limit" [total]="total" (onChangePage)="changedPage($event)">
       </tl-table>
+
+      <div style="height: 300px;">
+        <agm-map *ngIf="showType === 'map' && sortedData.length" [latitude]="lat" [longitude]="lng">
+          <agm-marker *ngFor="let item of sortedData" [latitude]="item.lat" [longitude]="item.lon"></agm-marker>
+        </agm-map>
+      </div>
     </mat-card>
   </div>
   <page-footer></page-footer>

@@ -17,6 +17,7 @@ import {
     MatGridListModule,
     MatListModule,
     MatTableModule,
+    MatButtonToggleModule,
 
 } from '@angular/material';
 
@@ -42,6 +43,7 @@ const MODULES = [
     MatGridListModule,
     MatListModule,
     MatTableModule,
+    MatButtonToggleModule,
 ];
 
 @NgModule({

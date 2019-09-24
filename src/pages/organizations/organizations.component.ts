@@ -34,6 +34,8 @@ export class OrganizationsComponent extends TablePageBase {
   public retailer = 1;
   public only_offers = false;
 
+  public showType = 'list';
+
   public filterChanged = false;
   public filterActive = 3; // 3 is an invalid filter so it will be unselected
   public lang = 'esp';
@@ -163,16 +165,17 @@ export class OrganizationsComponent extends TablePageBase {
       order: this.sortDir,
       sort: this.sortID,
       // tslint:disable-next-line: object-literal-sort-keys
+      subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
+      type: 'COMPANY',
+      // tslint:disable-next-line: object-literal-sort-keys
+      only_with_offers: filters.only_offers,
       query: {
-        only_with_offers: filters.only_offers,
         search: query || this.query,
-        subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
-        type: 'COMPANY',
       },
     };
 
-    if (data.query && !data.query.subtype) {
-      delete data.query.subtype;
+    if (!data.subtype) {
+      delete data.subtype;
     }
 
     if (data.query && !data.query.search) {
