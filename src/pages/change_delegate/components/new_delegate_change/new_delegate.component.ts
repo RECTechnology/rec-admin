@@ -90,7 +90,7 @@ export class NewDelegateComponent extends PageBase {
 
             if (!this.isNew) {
                 this.getDelegate();
-                this.getDelegateData();
+                // this.getDelegateData();
             }
         });
     }
@@ -110,6 +110,10 @@ export class NewDelegateComponent extends PageBase {
                         this.dateScheduled = parts.dateStr;
                         this.timeScheduled = parts.timeStr;
                     }
+                    this.savedItems = resp.data.data.map((el) => {
+                        el.selected = false;
+                        return el;
+                    });
                     this.loading = false;
                 }, (error) => this.loading = false);
     }
