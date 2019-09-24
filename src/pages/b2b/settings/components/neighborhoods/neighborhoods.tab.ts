@@ -96,6 +96,7 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
                             delete updated.updated;
                             delete updated.accounts;
                             delete updated.translations;
+                            delete updated.bounds;
 
                             this.nCrud.update(neighborhood.id, updated).subscribe(
                                 (resp) => {
