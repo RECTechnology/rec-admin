@@ -13,6 +13,7 @@ import { element } from 'protractor';
 })
 export class ActivitiesTabComponent extends EntityTabBase {
     public activities = [];
+    public loading = true;
 
     constructor(
         public activitiesCrud: ActivitiesCrud,
@@ -23,7 +24,6 @@ export class ActivitiesTabComponent extends EntityTabBase {
     }
 
     public search() {
-        this.loading = true;
         this.activitiesCrud.search({
             dir: this.sortDir,
             limit: this.limit,

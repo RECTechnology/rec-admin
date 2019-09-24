@@ -80,7 +80,6 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
     }
 
     public editNeighborhood(neighborhood) {
-
         this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
             .subscribe((proceed) => {
                 if (proceed) {

@@ -8,10 +8,10 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 })
 export class TranslatableListComponent implements AfterViewInit {
   @Input() public displayedColumns: string[] = ['id', 'cat', 'esp', 'eng', 'actions'];
-  public dataSource: any;
+  public dataSource: any = [];
 
   @Input() public data = [];
-  @Input() public loading = false;
+  @Input() public loading = true;
   @Input() public total = 0;
   @Input() public limit = 10;
   @Output() public dataChange: EventEmitter<any> = new EventEmitter();
