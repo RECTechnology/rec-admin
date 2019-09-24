@@ -51,7 +51,7 @@ export class UsersPage extends TablePageBase implements OnInit {
     }, {
       accessor: (el) => {
         const hasPlus = String(el.prefix).includes('+');
-        return (!hasPlus ? '+' : '') + (el.prefix || '--') + ' ' + el.phone;
+        return (!hasPlus ? '+' : '') + (el.prefix || '--') + ' ' + (el.phone || 'not-set');
       },
       sort: 'phone',
       title: 'Phone',

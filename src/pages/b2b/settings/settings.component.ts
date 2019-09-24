@@ -4,12 +4,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { B2bService } from 'src/services/b2b/b2b.service';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
+import { PageBase } from 'src/bases/page-base';
+import { LoginService } from 'src/services/auth/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'b2b-settings',
     templateUrl: './settings.html',
 })
-export class B2BSettingsComponent {
+export class B2BSettingsComponent extends PageBase {
+    public pageName = 'Entities';
     public tab: string = '';
     public currentTab = 0;
     public tabMap = {
@@ -29,7 +33,10 @@ export class B2BSettingsComponent {
         public dialog: MatDialog,
         public b2b: B2bService,
         public snackbar: MySnackBarSevice,
+        public ls: LoginService,
+        public titleService: Title,
     ) {
+        super();
         this.route.queryParams
             .subscribe((params) => {
                 this.tab = params.tab || 'activities';
@@ -39,6 +46,9 @@ export class B2BSettingsComponent {
 
     /* Called when tab change, so url changes also */
     public changeUrl($event) {
+        this.pageName = this.tabMap[$event];
+        this.setTitle(this.Brand.title + ' | ' + (this.pageName[0].toUpperCase() + (this.pageName.substr(1))));
+
         this.router.navigate(['/b2b/settings'], {
             queryParams: { tab: this.tabMap[$event] },
             queryParamsHandling: 'merge',
