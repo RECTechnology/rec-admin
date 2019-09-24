@@ -6,6 +6,7 @@ import { UserService } from '../../../../services/user.service';
 import { AdminService } from '../../../../services/admin/admin.service';
 import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import { UtilsService } from '../../../../services/utils/utils.service';
+import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 
 @Component({
   selector: 'activate-resume',
@@ -24,6 +25,7 @@ export class ActivateResume extends BaseDialog {
     public adminService: AdminService,
     public snackbar: MySnackBarSevice,
     public utils: UtilsService,
+    public changeCrud: DelegatedChangesCrud,
   ) {
     super();
   }
@@ -34,7 +36,7 @@ export class ActivateResume extends BaseDialog {
 
   public proceed() {
     this.loading = true;
-    this.adminService.updateChangeDelegate(this.change.id, { status: 'scheduled' })
+    this.changeCrud.update(this.change.id, { status: 'scheduled' })
       .subscribe((resp) => {
         this.snackbar.open('Launched delegated change', 'ok');
         this.loading = false;

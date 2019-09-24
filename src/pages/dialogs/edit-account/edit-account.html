@@ -376,11 +376,10 @@
           <div class="activity-box-list">
             <ul *ngIf="account.consuming_products && account.consuming_products.length"
               style="list-style: none; margin: 0; padding: 0">
-              <li class="activity-list-item small-text"
-                *ngFor="let cons of account.consuming_products; let i = index">
+              <li class="activity-list-item small-text" *ngFor="let cons of account.consuming_products; let i = index">
                 {{cons.name}}
 
-                <span class="icon fa fa-trash"  (click)="deleteConsumed(i)"></span>
+                <span class="icon fa fa-trash" (click)="deleteConsumed(i)"></span>
               </li>
             </ul>
             <p class="small-text col-gray padd-x10"
@@ -415,11 +414,10 @@
           <div class="activity-box-list">
             <ul *ngIf="account.producing_products && account.producing_products.length"
               style="list-style: none; margin: 0; padding: 0">
-              <li class="activity-list-item small-text"
-                *ngFor="let cons of account.producing_products; let i = index">
+              <li class="activity-list-item small-text" *ngFor="let cons of account.producing_products; let i = index">
                 {{cons.name}}
 
-                <span class="icon fa fa-trash"  (click)="deleteProduced(i)"></span>
+                <span class="icon fa fa-trash" (click)="deleteProduced(i)"></span>
               </li>
             </ul>
             <p class="small-text col-gray padd-x10"
@@ -453,11 +451,10 @@
           <p class="small-text-2">{{'ACTIVITIES'|translate}}</p>
           <div class="activity-box-list">
             <ul *ngIf="activitiesSelected && activitiesSelected.length" style="list-style: none; margin: 0; padding: 0">
-              <li class="activity-list-item small-text"
-                *ngFor="let act of activitiesSelected; let i = index">
+              <li class="activity-list-item small-text" *ngFor="let act of activitiesSelected; let i = index">
                 {{act | tolang}}
 
-                <span class="icon fa fa-trash"  (click)="deleteActivity(i)"></span>
+                <span class="icon fa fa-trash" (click)="deleteActivity(i)"></span>
               </li>
             </ul>
             <p class="small-text col-gray padd-x10" *ngIf="activitiesSelected && !activitiesSelected.length">

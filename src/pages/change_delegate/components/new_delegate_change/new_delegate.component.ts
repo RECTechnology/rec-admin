@@ -90,7 +90,7 @@ export class NewDelegateComponent extends PageBase {
 
             if (!this.isNew) {
                 this.getDelegate();
-                // this.getDelegateData();
+                this.getDelegateData();
             }
         });
     }
@@ -110,10 +110,10 @@ export class NewDelegateComponent extends PageBase {
                         this.dateScheduled = parts.dateStr;
                         this.timeScheduled = parts.timeStr;
                     }
-                    this.savedItems = resp.data.data.map((el) => {
-                        el.selected = false;
-                        return el;
-                    });
+                    // this.savedItems = resp.data.data.map((el) => {
+                    //     el.selected = false;
+                    //     return el;
+                    // });
                     this.loading = false;
                 }, (error) => this.loading = false);
     }
@@ -121,7 +121,7 @@ export class NewDelegateComponent extends PageBase {
     public getDelegateData() {
         this.loading = true;
         this.changeDataCrud.list({
-            delegate_change_id: this.idOrNew,
+            delegated_change_id: this.idOrNew,
             limit: this.limitSaved,
             offset: this.offsetSaved,
             order: this.sortDir,
@@ -129,7 +129,7 @@ export class NewDelegateComponent extends PageBase {
             sort: this.sortID,
         }).subscribe((resp) => {
             console.log('Data', resp);
-            this.savedItems = resp.data.data.map((el) => {
+            this.savedItems = resp.data.elements.map((el) => {
                 el.selected = false;
                 return el;
             });
