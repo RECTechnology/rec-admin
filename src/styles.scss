@@ -48,9 +48,16 @@ mat-spinner svg {
 
 .report {
   width: 100%;
+  display: flex;
+  // align-items: flex-start;
+  // justify-content: start;
+  align-items: flex-start!important;
   
   .report-list {
     width: 45%;
+    li {
+      margin-top: 10px;
+    }
   }
 
   .list-title {

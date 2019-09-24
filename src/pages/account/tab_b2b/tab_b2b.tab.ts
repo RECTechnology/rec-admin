@@ -1,19 +1,12 @@
-import { Component, AfterContentInit, OnDestroy, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { WalletService } from '../../../services/wallet/wallet.service';
-import { ControlesService } from '../../../services/controles/controles.service';
+import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
-import { environment } from '../../../environments/environment';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { EditAccountData } from '../../dialogs/edit-account/edit-account.dia';
-import { MatDialog } from '@angular/material';
-import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
-import { AdminService } from '../../../services/admin/admin.service';
 import { B2bService } from 'src/services/b2b/b2b.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'b2b-module',
   templateUrl: './tab_b2b.html',
 })
@@ -48,8 +41,8 @@ export class B2BModuleTab {
     },
   ];
 
-  @Input() id = '';
-  public pdfHtml = '';
+  @Input() public id = '';
+  @Input() public pdfHtml = '';
 
   constructor(
     public b2bCrud: B2bService,
@@ -57,6 +50,7 @@ export class B2BModuleTab {
     public crudAccounts: AccountsCrud,
     public utils: UtilsService,
     public cs: CompanyService,
+    private changeDetector: ChangeDetectorRef,
   ) {
 
   }
@@ -67,6 +61,7 @@ export class B2BModuleTab {
         (resp) => {
           console.log(resp);
           this.pdfHtml = resp;
+          this.changeDetector.detectChanges();
         }, (error) => {
           console.log(error);
         },
