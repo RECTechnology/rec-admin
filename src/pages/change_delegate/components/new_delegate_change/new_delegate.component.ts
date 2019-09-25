@@ -304,7 +304,8 @@ export class NewDelegateComponent extends PageBase {
         dialogRef.afterClosed()
             .subscribe((resp) => {
                 if (resp) {
-                    this.changeDataCrud.importFromCSV({ path: resp, delegated_change_id: this.delegate.id })
+                    // this.changeDataCrud.importFromCSV({ path: resp, delegated_change_id: this.delegate.id })
+                    this.adminService.sendChangeDelegateCsv(resp, this.delegate.id)
                         .subscribe((respDelegate) => {
                             this.snackbar.open(respDelegate.message, 'ok');
                             this.getDelegate();
@@ -345,10 +346,6 @@ export class NewDelegateComponent extends PageBase {
             }
 
             const isNew = !data.status;
-
-            // if (isNew) {
-            //     changeData.amount *= 100;
-            // }
 
             try {
                 const fn = isNew
