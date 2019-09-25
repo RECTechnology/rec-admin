@@ -8,7 +8,6 @@ import { UtilsService } from '../../services/utils/utils.service';
 import { CompanyService } from '../../services/company/company.service';
 import { ControlesService } from '../../services/controles/controles.service';
 import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { TlHeader, TlItemOption, TableListOptions } from '../../components/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from '../../components/table-list/tl-header/tl-header.component';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
@@ -16,6 +15,7 @@ import { ListAccountsParams } from 'src/interfaces/search';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'accounts',
@@ -110,9 +110,9 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     public router: Router,
     public controles: ControlesService,
     public ws: WalletService,
-    public snackbar: MySnackBarSevice,
     public ls: LoginService,
     public crudAccounts: AccountsCrud,
+    public alerts: AlertsService,
   ) {
     super();
     this.route.queryParams
@@ -178,14 +178,13 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     delete data.offset;
     delete data.limit;
 
-    const dialogRef = this.dialog.open(ExportDialog);
-    dialogRef.componentInstance.filters = data;
-    dialogRef.componentInstance.fn = this.crudAccounts.export.bind(this.crudAccounts);
-    dialogRef.componentInstance.entityName = 'Accounts';
-    dialogRef.componentInstance.defaultExports = [...this.defaultExportKvp];
-    dialogRef.componentInstance.list = [...this.defaultExportKvp];
-
-    return dialogRef.afterClosed();
+    return this.alerts.openModal(ExportDialog, {
+      defaultExports: [...this.defaultExportKvp],
+      entityName: 'Accounts',
+      filters: data,
+      fn: this.crudAccounts.export.bind(this.crudAccounts),
+      list: [...this.defaultExportKvp],
+    });
   }
 
   public selectType(type) {
@@ -221,13 +220,11 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public viewEditAccount(account) {
-    const dialogRef = this.dialog.open(EditAccountData);
-    dialogRef.componentInstance.account = { ...account };
-
-    dialogRef.afterClosed()
-      .subscribe((result) => {
-        this.search();
-      });
+    this.alerts.openModal(EditAccountData, {
+      account: { ...account },
+    }).subscribe((result) => {
+      this.search();
+    });
   }
 
   public sortData(sort: Sort): void {
@@ -241,26 +238,4 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     }
     this.search();
   }
-
-  // public sortData(sort: Sort): void {
-  //   if (!sort.active || sort.direction === '') {
-  //     this.sortedData = this.companyService.companies.slice();
-  //     this.sortID = 'id';
-  //     this.sortDir = 'desc';
-  //   } else {
-  //     this.sortID = sort.active;
-  //     this.sortDir = sort.direction;
-  //   }
-  //   this.search();
-  // }
-
-  // public search(query: string = '') {
-  //   this.getAccounts(query);
-  // }
-
-  // public changedPage($event) {
-  //   this.limit = $event.pageSize;
-  //   this.offset = this.limit * ($event.pageIndex);
-  //   this.getAccounts();
-  // }
 }
