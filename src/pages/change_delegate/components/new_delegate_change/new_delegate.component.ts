@@ -15,9 +15,8 @@ import { UtilsService } from '../../../../services/utils/utils.service';
 import { ActivateResume } from '../activate-resume/activate-resume.dia';
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
+import { AlertsService } from 'src/services/alerts/alerts.service';
+
 @Component({
     selector: 'new-delegate',
     styleUrls: [
@@ -75,10 +74,10 @@ export class NewDelegateComponent extends PageBase {
         public router: Router,
         public company: CompanyService,
         public adminService: AdminService,
-        public snackbar: MySnackBarSevice,
         public utils: UtilsService,
         public changeCrud: DelegatedChangesCrud,
         public changeDataCrud: DelegatedChangesDataCrud,
+        public alerts: AlertsService,
     ) {
         super();
     }
@@ -110,10 +109,6 @@ export class NewDelegateComponent extends PageBase {
                         this.dateScheduled = parts.dateStr;
                         this.timeScheduled = parts.timeStr;
                     }
-                    // this.savedItems = resp.data.data.map((el) => {
-                    //     el.selected = false;
-                    //     return el;
-                    // });
                     this.loading = false;
                 }, (error) => this.loading = false);
     }
@@ -128,7 +123,6 @@ export class NewDelegateComponent extends PageBase {
             query: this.searchQuery,
             sort: this.sortID,
         }).subscribe((resp) => {
-            console.log('Data', resp);
             this.savedItems = resp.data.elements.map((el) => {
                 el.selected = false;
                 return el;
@@ -145,13 +139,13 @@ export class NewDelegateComponent extends PageBase {
         this.changeCrud.update(this.delegate.id, { scheduled_at: scheduled_at.toISOString() })
             .subscribe(
                 (resp) => {
-                    this.snackbar.open('Updated schedule time', 'ok');
+                    this.alerts.showSnackbar('Updated schedule time', 'ok');
                     this.changeScheduled = false;
                     this.loading = false;
                     this.savingEntries = false;
                     this.getDelegate();
                 }, (error) => {
-                    this.snackbar.open(error.message, 'ok');
+                    this.alerts.showSnackbar(error.message, 'ok');
                     this.changeScheduled = false;
                     this.loading = false;
                     this.savingEntries = false;
@@ -159,13 +153,11 @@ export class NewDelegateComponent extends PageBase {
     }
 
     public activateChange() {
-        const dialogRef = this.dialog.open(ActivateResume);
-        dialogRef.componentInstance.change = this.delegate;
-
-        dialogRef.afterClosed()
-            .subscribe((resp) => {
-                if (resp) { this.router.navigate(['/change_delegate']); }
-            });
+        const dialogRef = this.alerts.openModal(ActivateResume, {
+            change: this.delegate,
+        }).subscribe((resp) => {
+            if (resp) { this.router.navigate(['/change_delegate']); }
+        });
     }
 
     public changed() {
@@ -207,48 +199,36 @@ export class NewDelegateComponent extends PageBase {
         return [...notSaved];
     }
 
-    // public removeSelected() {
-    //     this.notSavedItems = this.notSavedItems.filter((el) => !el.selected);
-    //     this.savedItems = this.savedItems.filter((el) => !el.selected);
-    // }
-
     public openEditAccounts() {
-        const dialogRef = this.dialog.open(EditAccountsDia);
-
-        dialogRef.componentInstance.accounts = [...this.getSelected()];
-        dialogRef.componentInstance.accountCount = dialogRef.componentInstance.accounts.length;
-
-        dialogRef.afterClosed()
-            .subscribe((resp) => {
-                if (resp && resp.accounts) {
-                    this.setSelectedAccounts(resp.accounts.map((e) => {
-                        e.selected = true;
-                        e.account = e.account || { id: e.id, name: e.name };
-                        e.exchanger = e.exchanger || { id: e.exchanger_id };
-                        return e;
-                    }));
-                    // this.removeSelected();
-                }
-            });
+        const accounts = [...this.getSelected()];
+        this.alerts.openModal(EditAccountsDia, {
+            accounts, accountCount: accounts.length,
+        }).subscribe((resp) => {
+            if (resp && resp.accounts) {
+                this.setSelectedAccounts(resp.accounts.map((e) => {
+                    e.selected = true;
+                    e.account = e.account || { id: e.id, name: e.name };
+                    e.exchanger = e.exchanger || { id: e.exchanger_id };
+                    return e;
+                }));
+            }
+        });
     }
 
     public openEditAccount(account, i, saved = false) {
-        const dialogRef = this.dialog.open(EditAccountsDia);
-
-        dialogRef.componentInstance.accounts = [Object.assign({}, account)];
-        dialogRef.componentInstance.accountCount = 1;
-
-        dialogRef.afterClosed()
-            .subscribe((resp) => {
-                if (resp && resp.accounts) {
-                    if (!saved) { this.notSavedItems[i] = resp.accounts[0]; }
-                    if (saved) {
-                        resp.accounts[0].selected = true;
-                        this.savedItems.splice(i, 1);
-                        this.notSavedItems.push(resp.accounts[0]);
-                    }
+        this.alerts.openModal(EditAccountsDia, {
+            accountCount: 1,
+            accounts: [Object.assign({}, account)],
+        }).subscribe((resp) => {
+            if (resp && resp.accounts) {
+                if (!saved) { this.notSavedItems[i] = resp.accounts[0]; }
+                if (saved) {
+                    resp.accounts[0].selected = true;
+                    this.savedItems.splice(i, 1);
+                    this.notSavedItems.push(resp.accounts[0]);
                 }
-            });
+            }
+        });
     }
 
     public selectAll() {
@@ -278,42 +258,39 @@ export class NewDelegateComponent extends PageBase {
     }
 
     public openSelectAccounts() {
-        const dialogRef = this.dialog.open(SelectAccountsDia, { width: '80vw', height: '80vh' });
-        dialogRef.componentInstance.selectedAccounts = this.savedItems.slice();
 
-        dialogRef.afterClosed()
-            .subscribe((result) => {
-                if (result) {
-                    this.total = this.sortedData.length + (result.accounts.length - this.sortedData.length);
-                    this.setSelectedAccounts(result.accounts.map((e) => {
-                        e.selected = true;
-                        e.account = e.account || { id: e.id, name: e.name };
-                        e.exchanger = e.exchanger || { id: e.exchanger_id };
-                        return e;
-                    }));
+        this.alerts.openModal(SelectAccountsDia, {
+            selectedAccounts: this.savedItems.slice(),
+        }, { width: '80vw', height: '80vh' }).subscribe((result) => {
+            if (result) {
+                this.total = this.sortedData.length + (result.accounts.length - this.sortedData.length);
+                this.setSelectedAccounts(result.accounts.map((e) => {
+                    e.selected = true;
+                    e.account = e.account || { id: e.id, name: e.name };
+                    e.exchanger = e.exchanger || { id: e.exchanger_id };
+                    return e;
+                }));
 
-                    if (result.edit) {
-                        this.openEditAccounts();
-                    }
+                if (result.edit) {
+                    this.openEditAccounts();
                 }
-            });
+            }
+        });
     }
 
     public newImport() {
-        const dialogRef = this.dialog.open(CsvUpload);
-        dialogRef.afterClosed()
+        this.alerts.openModal(CsvUpload, {})
             .subscribe((resp) => {
                 if (resp) {
-                    // this.changeDataCrud.importFromCSV({ path: resp, delegated_change_id: this.delegate.id })
                     this.adminService.sendChangeDelegateCsv(resp, this.delegate.id)
                         .subscribe((respDelegate) => {
-                            this.snackbar.open(respDelegate.message, 'ok');
+                            this.alerts.showSnackbar(respDelegate.message, 'ok');
                             this.getDelegate();
                         }, (error) => {
                             if (error.message.includes('Validation error')) {
                                 this.validationErrors = error.errors;
                             } else {
-                                this.snackbar.open(error.message, 'ok');
+                                this.alerts.showSnackbar(error.message, 'ok');
                             }
                         });
                 }
@@ -360,7 +337,7 @@ export class NewDelegateComponent extends PageBase {
                     this.validationErrors = error.errors;
                     this.validationErrorName = 'Entry: ' + data.id;
                 } else {
-                    this.snackbar.open(error.message + ' | id: ' + changeData.account_id);
+                    this.alerts.showSnackbar(error.message + ' | id: ' + changeData.account_id);
                 }
                 errored = true;
             }
@@ -369,7 +346,7 @@ export class NewDelegateComponent extends PageBase {
         this.savingEntries = false;
 
         if (!errored) {
-            this.snackbar.open(`Saved correctly...`, 'ok');
+            this.alerts.showSnackbar(`Saved correctly...`, 'ok');
             this.validationErrors = [];
             this.notSavedItems = [];
             this.getDelegate();
@@ -385,10 +362,10 @@ export class NewDelegateComponent extends PageBase {
         if (saved) {
             this.adminService.deleteChangeDelegateData(data.id)
                 .subscribe((resp) => {
-                    this.snackbar.open('Deleted data', 'ok');
+                    this.alerts.showSnackbar('Deleted data', 'ok');
                     this.savedItems.splice(i, 1);
                 }, (error) => {
-                    this.snackbar.open(error.message, 'ok');
+                    this.alerts.showSnackbar(error.message, 'ok');
                 });
         } else {
             this.notSavedItems.splice(i, 1);

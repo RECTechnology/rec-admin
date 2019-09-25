@@ -18,12 +18,12 @@ export class AlertsService {
 
   public showConfirmation(message, title, btnConfirmText, status = 'error', headerIcon = 'warning') {
     return this.openModal(ConfirmationMessage, {
-      btnConfirmText, message, status, title, headerIcon
+      btnConfirmText, message, status, title, headerIcon,
     });
   }
 
-  public openModal(C, props = {}) {
-    const dialogRef = this.dialog.open(C);
+  public openModal(C, props = {}, modalOptions = {}) {
+    const dialogRef = this.dialog.open(C, modalOptions);
     for (const key in props) {
       if (key) {
         dialogRef.componentInstance[key] = props[key];

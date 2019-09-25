@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AddUser } from '../dialogs/add-user/add-user.dia';
@@ -77,7 +77,6 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   public inactiveUsers = false;
   public profesionalUsers = false;
   public particularUsers = false;
-
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },
     { key: 'username', value: '$.username', active: true },
