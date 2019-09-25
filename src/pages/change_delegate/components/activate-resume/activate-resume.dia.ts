@@ -7,6 +7,7 @@ import { AdminService } from '../../../../services/admin/admin.service';
 import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import { UtilsService } from '../../../../services/utils/utils.service';
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'activate-resume',
@@ -23,9 +24,9 @@ export class ActivateResume extends BaseDialog {
     public company: CompanyService,
     public us: UserService,
     public adminService: AdminService,
-    public snackbar: MySnackBarSevice,
     public utils: UtilsService,
     public changeCrud: DelegatedChangesCrud,
+    public alerts: AlertsService,
   ) {
     super();
   }
@@ -38,7 +39,7 @@ export class ActivateResume extends BaseDialog {
     this.loading = true;
     this.changeCrud.update(this.change.id, { status: 'scheduled' })
       .subscribe((resp) => {
-        this.snackbar.open('Launched delegated change', 'ok');
+        this.alerts.showSnackbar('Launched delegated change', 'ok');
         this.loading = false;
         this.dialogRef.close(true);
       }, (error) => {
@@ -46,7 +47,7 @@ export class ActivateResume extends BaseDialog {
           this.validationErrors = error.errors;
           this.validationErrorName = 'Validation Error';
         } else {
-          this.snackbar.open(error.message);
+          this.alerts.showSnackbar(error.message);
         }
         this.loading = false;
       });
