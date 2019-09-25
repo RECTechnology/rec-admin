@@ -1,7 +1,7 @@
 import { AppPage } from '../app.po';
 import { browser, logging, ElementFinder } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('Rec Admin App', () => {
     let page: AppPage;
 
     beforeEach(() => {
@@ -24,11 +24,6 @@ describe('workspace-project App', () => {
         btn.click();
 
         await page.sleep(5);
-
-        // const title = await page.getTitle();
-        // console.log('title is: ', title);
-
-        // expect(title).toContain('Dashboard');
     });
 
     afterEach(async () => {

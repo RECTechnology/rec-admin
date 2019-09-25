@@ -6,6 +6,7 @@ import { TableListHeaderOptions } from 'src/components/table-list/tl-header/tl-h
 import { MatDialog } from '@angular/material';
 import { AddNeighbourhoodDia } from './add/add.dia';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
     selector: 'tab-neighborhoods',
@@ -56,7 +57,8 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
         public nCrud: NeighborhoodsCrud,
         public dialog: MatDialog,
         public snackbar: MySnackBarSevice,
-    ) { super(dialog); }
+        public alerts: AlertsService,
+    ) { super(dialog, alerts); }
 
     public search(query?) {
         this.loading = true;
@@ -83,11 +85,10 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
         this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
             .subscribe((proceed) => {
                 if (proceed) {
-                    const ref = this.dialog.open(AddNeighbourhoodDia);
-                    ref.componentInstance.isEdit = true;
-                    ref.componentInstance.item = Object.assign({}, neighborhood);
-
-                    ref.afterClosed().subscribe((updated) => {
+                    const ref = this.alerts.openModal(AddNeighbourhoodDia, {
+                        isEdit: true,
+                        item: Object.assign({}, neighborhood),
+                    }).subscribe((updated) => {
                         if (updated) {
 
                             delete updated.id;
@@ -99,10 +100,10 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
 
                             this.nCrud.update(neighborhood.id, updated).subscribe(
                                 (resp) => {
-                                    this.snackbar.open('Updated Neighbourhood: ' + neighborhood.id, 'ok');
+                                    this.alerts.showSnackbar('Updated Neighbourhood: ' + neighborhood.id, 'ok');
                                     this.search();
                                 },
-                                (error) => this.snackbar.open(error.message),
+                                (error) => this.alerts.showSnackbar(error.message),
                             );
                         }
                     });
@@ -112,16 +113,16 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
     }
 
     public addNeighborhood() {
-        const ref = this.dialog.open(AddNeighbourhoodDia);
-        ref.componentInstance.isEdit = false;
-        ref.afterClosed().subscribe((created) => {
+        this.alerts.openModal(AddNeighbourhoodDia, {
+            isEdit: false,
+        }).subscribe((created) => {
             if (created) {
                 this.nCrud.create(created).subscribe(
                     (resp) => {
-                        this.snackbar.open('Created Neighbourhood', 'ok');
+                        this.alerts.showSnackbar('Created Neighbourhood', 'ok');
                         this.search();
                     },
-                    (error) => this.snackbar.open(error.message),
+                    (error) => this.alerts.showSnackbar(error.message),
                 );
             }
         });
@@ -134,10 +135,10 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
                     if (del) {
                         this.nCrud.remove(neighborhood.id).subscribe(
                             (resp) => {
-                                this.snackbar.open('Deleted Neighbourhood', 'ok');
+                                this.alerts.showSnackbar('Deleted Neighbourhood', 'ok');
                                 this.search();
                             },
-                            (error) => this.snackbar.open(error.message),
+                            (error) => this.alerts.showSnackbar(error.message),
                         );
                     }
                 },

@@ -68,6 +68,7 @@ import { ConvertToLangPipe } from 'src/pipes/convert-to-lang/convert-to-lang.pip
 import { EscapeHtmlPipe } from 'src/pipes/safe-html/safe-html.pipe';
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @NgModule({
   declarations: [
@@ -198,6 +199,7 @@ import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/de
     MailingCrud,
     DelegatedChangesCrud,
     DelegatedChangesDataCrud,
+    AlertsService,
   ],
 })
 export class SharedModule { }

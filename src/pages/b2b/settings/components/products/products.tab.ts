@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
     selector: 'tab-products',
@@ -18,7 +19,8 @@ export class ProductsTabComponent extends EntityTabBase {
         public productsCrud: ProductsCrud,
         public dialog: MatDialog,
         public snackbar: MySnackBarSevice,
-    ) { super(dialog); }
+        public alerts: AlertsService,
+    ) { super(dialog, alerts); }
 
     public search() {
         this.loading = true;
@@ -46,13 +48,12 @@ export class ProductsTabComponent extends EntityTabBase {
         this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning', skip)
             .subscribe((proceed) => {
                 if (proceed) {
-                    const ref = this.dialog.open(AddItemDia);
-                    ref.componentInstance.isEdit = true;
-                    ref.componentInstance.isProduct = true;
-                    ref.componentInstance.itemType = 'PRODUCT';
-                    ref.componentInstance.item = Object.assign({}, product);
-
-                    ref.afterClosed().subscribe((updated) => {
+                    this.alerts.openModal(AddItemDia, {
+                        isEdit: true,
+                        isProduct: true,
+                        item: Object.assign({}, product),
+                        itemType: 'PRODUCT',
+                    }).subscribe((updated) => {
                         if (updated) {
                             this.loading = true;
                             const proms = [
@@ -84,12 +85,11 @@ export class ProductsTabComponent extends EntityTabBase {
     }
 
     public addProduct() {
-        const ref = this.dialog.open(AddItemDia);
-        ref.componentInstance.isEdit = false;
-        ref.componentInstance.isProduct = true;
-        ref.componentInstance.itemType = 'PRODUCT';
-
-        ref.afterClosed().subscribe((created) => {
+        this.alerts.openModal(AddItemDia, {
+            isEdit: false,
+            isProduct: true,
+            itemType: 'PRODUCT',
+        }).subscribe((created) => {
             if (created) {
                 this.loading = true;
                 this.productsCrud.create({ name: created.eng, description: '' }, 'en')

@@ -3,6 +3,7 @@ import { ConfirmationMessage } from 'src/components/dialogs/confirmation-message
 import { ViewChild } from '@angular/core';
 import { TranslatableListComponent } from '../../components/translatable-list/translatable-list.component';
 import { Observable } from 'rxjs';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 export abstract class EntityTabBase {
     public query: string = '';
@@ -18,28 +19,33 @@ export abstract class EntityTabBase {
 
     @ViewChild(TranslatableListComponent, { static: true }) public list: TranslatableListComponent;
 
-    constructor(public dialog: MatDialog) { }
+    constructor(
+        public dialog: MatDialog,
+        public alerts: AlertsService,
+    ) { }
+
     public abstract search(): any;
 
     public ngAfterViewInit() {
         this.search();
     }
 
-    public confirm(title, message, btnText = 'Delete', status = 'error', skip = false) {
+    public confirm(title, message, btnText = 'Delete', status = 'error', skip = false, icon = 'warning') {
         if (skip) {
             return new Observable((obs) => {
                 obs.next(true);
                 obs.complete();
             });
         }
-        const dialogRef = this.dialog.open(ConfirmationMessage);
-        dialogRef.componentInstance.status = status;
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.message = message;
-        dialogRef.componentInstance.btnConfirmText = btnText;
-        dialogRef.componentInstance.headerIcon = 'warning';
+        return this.alerts.showConfirmation(message, title, btnText, status, icon);
+        // const dialogRef = this.dialog.open(ConfirmationMessage);
+        // dialogRef.componentInstance.status = status;
+        // dialogRef.componentInstance.title = title;
+        // dialogRef.componentInstance.message = message;
+        // dialogRef.componentInstance.btnConfirmText = btnText;
+        // dialogRef.componentInstance.headerIcon = 'warning';
 
-        return dialogRef.afterClosed();
+        // return dialogRef.afterClosed();
     }
 
     public sortData(sort: Sort): void {

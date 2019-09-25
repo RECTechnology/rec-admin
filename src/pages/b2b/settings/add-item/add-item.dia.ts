@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
     selector: 'add-item',
@@ -45,6 +46,7 @@ export class AddItemDia {
         public activitiesCrud: ActivitiesCrud,
         public productsCrud: ProductsCrud,
         public snackbar: MySnackBarSevice,
+        public alerts: AlertsService,
     ) {
         this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' })
             .subscribe((resp) => {
@@ -56,11 +58,11 @@ export class AddItemDia {
     public addedSubscriber(sub, message = 'Added activity') {
         sub.subscribe(
             (resp) => {
-                this.snackbar.open(message, 'ok');
+                this.alerts.showSnackbar(message, 'ok');
                 this.loading = false;
             },
             (error) => {
-                this.snackbar.open(error.message, 'ok');
+                this.alerts.showSnackbar(error.message, 'ok');
                 this.loading = false;
             });
     }
@@ -68,11 +70,11 @@ export class AddItemDia {
     public deletedSubscriber(sub, message = 'Deleted activity') {
         sub.subscribe(
             (resp) => {
-                this.snackbar.open(message, 'ok');
+                this.alerts.showSnackbar(message, 'ok');
                 this.loading = false;
             },
             (error) => {
-                this.snackbar.open(error.message, 'ok');
+                this.alerts.showSnackbar(error.message, 'ok');
                 this.loading = false;
             });
     }

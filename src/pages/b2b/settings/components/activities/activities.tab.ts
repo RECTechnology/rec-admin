@@ -6,6 +6,7 @@ import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
 import { element } from 'protractor';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
     selector: 'tab-activities',
@@ -19,8 +20,9 @@ export class ActivitiesTabComponent extends EntityTabBase {
         public activitiesCrud: ActivitiesCrud,
         public dialog: MatDialog,
         public snackbar: MySnackBarSevice,
+        public alerts: AlertsService,
     ) {
-        super(dialog);
+        super(dialog, alerts);
     }
 
     public search() {
@@ -48,12 +50,11 @@ export class ActivitiesTabComponent extends EntityTabBase {
         this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
             .subscribe((proceed) => {
                 if (proceed) {
-                    const ref = this.dialog.open(AddItemDia);
-                    ref.componentInstance.isEdit = true;
-                    ref.componentInstance.item = Object.assign({}, activity);
-                    ref.componentInstance.itemType = 'ACTIVITY';
-
-                    ref.afterClosed().subscribe((updated) => {
+                    const ref = this.alerts.openModal(AddItemDia, {
+                        isEdit: true,
+                        item: Object.assign({}, activity),
+                        itemType: 'ACTIVITY',
+                    }).subscribe((updated) => {
                         if (updated) {
                             const proms = [
                                 this.activitiesCrud.update(activity.id, { name: updated.cat }, 'ca'),
@@ -63,10 +64,10 @@ export class ActivitiesTabComponent extends EntityTabBase {
 
                             forkJoin(proms).subscribe(
                                 (resp) => {
-                                    this.snackbar.open('Updated Activity: ' + activity.id, 'ok');
+                                    this.alerts.showSnackbar('Updated Activity: ' + activity.id, 'ok');
                                     this.search();
                                 },
-                                (error) => this.snackbar.open(error.message),
+                                (error) => this.alerts.showSnackbar(error.message),
                             );
                         }
                     });
@@ -75,11 +76,10 @@ export class ActivitiesTabComponent extends EntityTabBase {
     }
 
     public addActivity() {
-        const ref = this.dialog.open(AddItemDia);
-        ref.componentInstance.isEdit = false;
-        ref.componentInstance.itemType = 'ACTIVITY';
-
-        ref.afterClosed().subscribe((created) => {
+        const ref = this.alerts.openModal(AddItemDia, {
+            isEdit: false,
+            itemType: 'ACTIVITY',
+        }).subscribe((created) => {
             if (created) {
                 this.activitiesCrud.create({ name: created.eng, description: '' }, 'en')
                     .subscribe(
@@ -90,12 +90,12 @@ export class ActivitiesTabComponent extends EntityTabBase {
                             ];
 
                             return forkJoin(proms).subscribe((resp) => {
-                                this.snackbar.open('Created Activity', 'ok');
+                                this.alerts.showSnackbar('Created Activity', 'ok');
                                 this.search();
                             });
                         },
                         (error) => {
-                            this.snackbar.open(error.message);
+                            this.alerts.showSnackbar(error.message);
                         },
                     );
             }
@@ -109,10 +109,10 @@ export class ActivitiesTabComponent extends EntityTabBase {
                     if (del) {
                         this.activitiesCrud.remove(activity.id).subscribe(
                             (resp) => {
-                                this.snackbar.open('Deleted Activity', 'ok');
+                                this.alerts.showSnackbar('Deleted Activity', 'ok');
                                 this.search();
                             },
-                            (error) => this.snackbar.open(error.message),
+                            (error) => this.alerts.showSnackbar(error.message),
                         );
                     }
                 },
