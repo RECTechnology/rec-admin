@@ -5,11 +5,9 @@ import { AddUser } from '../dialogs/add-user/add-user.dia';
 import { MatDialog } from '@angular/material';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils/utils.service';
-import { ConfirmationMessage } from '../../components/dialogs/confirmation-message/confirmation.dia';
 import { CompanyService } from '../../services/company/company.service';
 import { ViewDetails } from '../dialogs/view-details/view-details.dia';
 import { EditUserData } from '../dialogs/edit-user/edit-user.dia';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { ControlesService } from '../../services/controles/controles.service';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
@@ -18,6 +16,7 @@ import { TlHeader, TlItemOption } from 'src/components/table-list/tl-table/tl-ta
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'users',
@@ -100,12 +99,12 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     public dialog: MatDialog,
     public us: UserService,
     public companyService: CompanyService,
-    public snackbar: MySnackBarSevice,
     public utils: UtilsService,
     public as: AdminService,
     public controles: ControlesService,
     public ls: LoginService,
     public usersCrud: UsersCrud,
+    public alerts: AlertsService,
   ) {
     super();
   }
@@ -135,36 +134,32 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
 
   // Opens add user modal
   public openAddUser() {
-    let dialogRef = this.dialog.open(AddUser);
-    dialogRef.componentInstance.showCreateNewUser = false;
-    dialogRef.componentInstance.addReseller = false;
-    dialogRef.afterClosed().subscribe((result) => {
-      dialogRef = null;
+    this.alerts.openModal(AddUser, {
+      addReseller: false,
+      showCreateNewUser: false,
+    }).subscribe((result) => {
       this.search();
     });
   }
 
   // Opens edit user roles modal
   public openEditUser(user, i) {
-    const dialogRef = this.dialog.open(EditUserData);
-    dialogRef.componentInstance.user = user;
-    dialogRef.afterClosed().subscribe((result) => {
+    this.alerts.openModal(EditUserData, {
+      user,
+    }).subscribe((result) => {
       this.search();
     });
   }
 
   // Opens delete user modal
   public openDeleteUser(user) {
-    const dialogRef = this.dialog.open(ConfirmationMessage);
     const accName = this.us.userData.group_data.name;
-
-    dialogRef.componentInstance.status = 'error';
-    dialogRef.componentInstance.title = 'Remove user from system?';
-    dialogRef.componentInstance.message =
-      'Are you sure you want to remove user from the sistem [ ' + accName + ' ]? No going back.';
-    dialogRef.componentInstance.btnConfirmText = 'Delete';
-
-    dialogRef.afterClosed().subscribe((result) => {
+    const dialogRef = this.alerts.showConfirmation(
+      'Are you sure you want to remove user from the sistem [ ' + accName + ' ]? No going back.',
+      'Remove user from system?',
+      'Delete',
+      'error'
+    ).subscribe((result) => {
       if (result) {
         this.removeUser(user);
       }
@@ -172,37 +167,14 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   }
 
   public openViewDetails(user) {
-    const dialogRef = this.dialog.open(ViewDetails);
-    dialogRef.componentInstance.user = user;
-    dialogRef.componentInstance.parent = this;
-
-    dialogRef.afterClosed().subscribe((result) => {
+    this.alerts.openModal(ViewDetails, {
+      parent: this,
+      user,
+    }).subscribe((result) => {
       if (result) {
         this.search();
       }
     });
-  }
-
-  public viewSMSCode(user) {
-    const ref = this.dialog.open(ConfirmationMessage);
-    ref.componentInstance.opts = {
-      customBtn: true,
-      customBtnClick: () => {
-        ref.componentInstance.close(true);
-        this.resendSMSCode(user);
-      },
-      customBtnText: 'Resend SMS Code',
-    };
-    ref.componentInstance.title = 'SMS Code';
-    ref.componentInstance.message = 'Code for user <b>' + user.name + '</b>: <code >xfD5fEd</code><br>';
-    ref.componentInstance.btnConfirmText = 'Close';
-  }
-
-  public resendSMSCode(user) {
-    const ref = this.dialog.open(ConfirmationMessage);
-    ref.componentInstance.title = 'Resend SMS Code';
-    ref.componentInstance.message = 'Are you sure you want to re-send the sms code to user <b>' + user.name + '</b>?';
-    ref.componentInstance.btnConfirmText = 'Resend';
   }
 
   public export() {
@@ -211,14 +183,13 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     delete data.offset;
     delete data.limit;
 
-    const dialogRef = this.dialog.open(ExportDialog);
-    dialogRef.componentInstance.filters = data;
-    dialogRef.componentInstance.fn = this.usersCrud.export.bind(this.usersCrud);
-    dialogRef.componentInstance.entityName = 'Users';
-    dialogRef.componentInstance.defaultExports = [...this.defaultExportKvp];
-    dialogRef.componentInstance.list = [...this.defaultExportKvp];
-
-    return dialogRef.afterClosed();
+    return this.alerts.openModal(ExportDialog, {
+      defaultExports: [...this.defaultExportKvp],
+      entityName: 'Users',
+      filters: data,
+      fn: this.usersCrud.export.bind(this.usersCrud),
+      list: [...this.defaultExportKvp],
+    });
   }
 
   public search(query: string = '') {
@@ -242,10 +213,10 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
       .subscribe(
         (resp) => {
           this.search();
-          this.snackbar.open('Deleted user from system', 'ok');
+          this.alerts.showSnackbar('Deleted user from system', 'ok');
         },
         (error) => {
-          this.snackbar.open('Error deleting user: ' + error.message, 'ok');
+          this.alerts.showSnackbar('Error deleting user: ' + error.message, 'ok');
         });
   }
 }
