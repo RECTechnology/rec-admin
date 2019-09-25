@@ -11,6 +11,7 @@ import { MapsAPILoader } from '@agm/core';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   providers: [
@@ -64,6 +65,7 @@ export class EditAccountData {
     public productsCrud: ProductsCrud,
     public activitiesCrud: ActivitiesCrud,
     public snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) {
     this.lang = this.langMap[us.lang];
     this.companyService.listCategories()
@@ -96,10 +98,10 @@ export class EditAccountData {
     this.activitiesSelected.push(act);
     this.crudAccounts.addActivity(this.account.id, act.id)
       .subscribe((resp) => {
-        this.snackbar.open('Added activity', 'ok');
+        this.alerts.showSnackbar('Added activity', 'ok');
         this.loading = false;
       }, (error) => {
-        this.snackbar.open(error.message, 'ok');
+        this.alerts.showSnackbar(error.message, 'ok');
         this.loading = false;
       });
   }
@@ -109,10 +111,10 @@ export class EditAccountData {
     this.account.consuming_products.push(product);
     this.crudAccounts.addConsumedProductToAccount(this.account.id, product.id)
       .subscribe((resp) => {
-        this.snackbar.open('Added product', 'ok');
+        this.alerts.showSnackbar('Added product', 'ok');
         this.loading = false;
       }, (error) => {
-        this.snackbar.open(error.message, 'ok');
+        this.alerts.showSnackbar(error.message, 'ok');
         this.loading = false;
       });
   }
@@ -122,10 +124,10 @@ export class EditAccountData {
     this.account.producing_products.push(product);
     this.crudAccounts.addProducedProductToAccount(this.account.id, product.id)
       .subscribe((resp) => {
-        this.snackbar.open('Added product', 'ok');
+        this.alerts.showSnackbar('Added product', 'ok');
         this.loading = false;
       }, (error) => {
-        this.snackbar.open(error.message, 'ok');
+        this.alerts.showSnackbar(error.message, 'ok');
         this.loading = false;
       });
   }
@@ -136,10 +138,10 @@ export class EditAccountData {
     this.activitiesSelected.splice(i, 1);
     this.crudAccounts.deleteActivity(this.account.id, act.id)
       .subscribe((resp) => {
-        this.snackbar.open('Removed activity', 'ok');
+        this.alerts.showSnackbar('Removed activity', 'ok');
         this.loading = false;
       }, (error) => {
-        this.snackbar.open(error.message, 'ok');
+        this.alerts.showSnackbar(error.message, 'ok');
         this.loading = false;
       });
 
@@ -152,10 +154,10 @@ export class EditAccountData {
     this.account.consuming_products.splice(i, 1);
     this.crudAccounts.removeConsumedProductToAccount(this.account.id, act.id)
       .subscribe((resp) => {
-        this.snackbar.open('Removed product', 'ok');
+        this.alerts.showSnackbar('Removed product', 'ok');
         this.loading = false;
       }, (error) => {
-        this.snackbar.open(error.message, 'ok');
+        this.alerts.showSnackbar(error.message, 'ok');
         this.loading = false;
       });
   }
@@ -167,10 +169,10 @@ export class EditAccountData {
     this.account.producing_products.splice(i, 1);
     this.crudAccounts.removeProducedProductToAccount(this.account.id, act.id)
       .subscribe((resp) => {
-        this.snackbar.open('Removed product', 'ok');
+        this.alerts.showSnackbar('Removed product', 'ok');
         this.loading = false;
       }, (error) => {
-        this.snackbar.open(error.message, 'ok');
+        this.alerts.showSnackbar(error.message, 'ok');
         this.loading = false;
       });
   }
@@ -197,21 +199,17 @@ export class EditAccountData {
       this.crudAccounts.update(id, changedProps)
         .subscribe(
           (resp) => {
-            this.snackBar.open('Updated account correctly!', 'ok');
+            this.alerts.showSnackbar('Updated account correctly!', 'ok');
             this.loading = false;
             this.close(this.account);
           }, (error) => {
-            this.snackBar.open('Error updating account! ' + error.message, 'ok');
+            this.alerts.showSnackbar('Error updating account! ' + error.message, 'ok');
             this.loading = false;
             this.close(this.account);
           });
     } else {
-      this.snackBar.open('Nothing to update', 'ok');
+      this.alerts.showSnackbar('Nothing to update', 'ok');
     }
-  }
-
-  public saveImages() {
-    // /manager/v1/groups/1176/image
   }
 
   public selectPublicImage() {
@@ -219,7 +217,7 @@ export class EditAccountData {
       .subscribe((resp) => {
         this.accountCopy.public_image = resp;
       }, (error) => {
-        this.snackBar.open(error.message);
+        this.alerts.showSnackbar(error.message);
       });
   }
 
@@ -233,10 +231,10 @@ export class EditAccountData {
   }
 
   public openUpdateImage(selectedImage) {
-    const dialogRef = this.dialog.open(FileUpload);
-    dialogRef.componentInstance.selectedImage = selectedImage;
-    dialogRef.componentInstance.hasSelectedImage = !!selectedImage;
-    return dialogRef.afterClosed();
+    return this.alerts.openModal(FileUpload, {
+      hasSelectedImage: !!selectedImage,
+      selectedImage,
+    });
   }
 
   public manageSchedule() {
@@ -253,7 +251,6 @@ export class EditAccountData {
 
   public setType(type) {
     this.accountCopy.type = type;
-
     if (type === 'COMPANY') {
       this.accountCopy.subtype = this.ACCOUNT_SUB_TYPES_COMPANY[0];
     } else if (type === 'PRIVATE') {
