@@ -238,7 +238,6 @@ export class UsersPage extends TablePageBase implements OnInit {
   }
 
   private removeUser(user) {
-    const userIndex = this.companyService.companyUsers.indexOf(user);
     this.companyService.removeUserFromSystem(user.id)
       .subscribe(
         (resp) => {
