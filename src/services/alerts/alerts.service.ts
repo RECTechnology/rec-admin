@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBarConfig } from '@angular/material';
 import { ConfirmationMessage } from 'src/components/dialogs/confirmation-message/confirmation.dia';
 
 @Injectable({
@@ -12,13 +12,13 @@ export class AlertsService {
     public dialog: MatDialog,
   ) { }
 
-  public showSnackbar(message, buttonText = 'ok') {
-    return this.snackbar.open(message, buttonText);
+  public showSnackbar(message, buttonText = 'ok', opts: MatSnackBarConfig) {
+    return this.snackbar.open(message, buttonText, opts);
   }
 
   public showConfirmation(message, title, btnConfirmText, status = 'error', headerIcon = 'warning') {
     return this.openModal(ConfirmationMessage, {
-      btnConfirmText, message, status, title, headerIcon,
+      btnConfirmText, headerIcon, message, status, title,
     });
   }
 
