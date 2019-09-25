@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AddUser } from '../dialogs/add-user/add-user.dia';
@@ -24,10 +24,11 @@ import { UsersCrud } from 'src/services/crud/users/users.crud';
   styleUrls: ['./users.css'],
   templateUrl: './users.html',
 })
-export class UsersPage extends TablePageBase implements OnInit {
+export class UsersPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Users';
   public canAddUser = false;
   public sortedData: any[] = [];
+  public loading = true;
   public headerOpts = { input: true };
   public headers: TlHeader[] = [
     {
@@ -110,7 +111,7 @@ export class UsersPage extends TablePageBase implements OnInit {
     super();
   }
 
-  public ngOnInit() {
+  public ngAfterContentInit() {
     const roles = this.us.userData.group_data.roles;
     this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY'); // <<< TODO: Improve
     this.route.queryParams.subscribe((params) => {
