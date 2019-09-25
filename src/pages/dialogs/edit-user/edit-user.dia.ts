@@ -10,6 +10,7 @@ import { ConfirmationMessage } from '../../../components/dialogs/confirmation-me
 import { AdminService } from '../../../services/admin/admin.service';
 import { forkJoin } from 'rxjs';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   providers: [
@@ -33,6 +34,7 @@ export class EditUserData {
     public utils: UtilsService,
     public dialog: MatDialog,
     public usersCrud: UsersCrud,
+    public alerts: AlertsService,
   ) { }
 
   public ngOnInit() {
@@ -56,7 +58,7 @@ export class EditUserData {
 
   public async update() {
     const id = this.user.id;
-    const kycId = this.user.kyc_validations.id;
+    const kycId = this.user.kyc_validations && this.user.kyc_validations.id;
     const data = this.userCopy;
 
     const changedProps: any = this.utils.deepDiff(data, this.user);
@@ -80,40 +82,36 @@ export class EditUserData {
         await this.adminService.updateUserPhone(id, changedProps.prefix, changedProps.phone)
           .toPromise()
           .then((update) => {
-            this.snackBar.open('Phone number changed correctly (needs to be validated)', 'ok');
+            this.alerts.showSnackbar('Phone number changed correctly (needs to be validated)', 'ok');
           })
           .catch((err) => {
-            this.snackBar.open(err.message, 'ok');
+            this.alerts.showSnackbar(err.message, 'ok');
           });
       }
       delete changedProps.prefix;
       delete changedProps.phone;
     }
 
-    if (Object.keys(changedPropsKyc).length) {
+    if (kycId && Object.keys(changedPropsKyc).length) {
       promises.push(this.adminService.updateUserKyc(kycId, changedPropsKyc));
     }
 
     if (promises.length) {
       forkJoin(promises).subscribe((resp) => {
-        this.snackBar.open('Saved correctly', 'ok');
+        this.alerts.showSnackbar('Saved correctly', 'ok');
         this.close();
       }, (error) => {
-        this.snackBar.open(error.message, 'ok');
+        this.alerts.showSnackbar(error.message, 'ok');
         this.close();
       });
     }
   }
 
   public confirmChangePhone() {
-    const dialogRef = this.dialog.open(ConfirmationMessage);
-
-    dialogRef.componentInstance.status = 'error';
-    dialogRef.componentInstance.title = 'Change phone for user ' + this.user.name;
-    dialogRef.componentInstance.message = `CHANGE_PHONE_DESC`;
-    dialogRef.componentInstance.btnConfirmText = 'Change';
-
-    return dialogRef.afterClosed().toPromise();
+    return this.alerts.showConfirmation(
+      `CHANGE_PHONE_DESC`, 'Change phone for user ' + this.user.name,
+      'Change', 'error',
+    ).toPromise();
   }
 
   public selectProfileImage() {
@@ -144,9 +142,9 @@ export class EditUserData {
   }
 
   public openUpdateImage(selectedImage) {
-    const dialogRef = this.dialog.open(FileUpload);
-    dialogRef.componentInstance.selectedImage = selectedImage;
-    dialogRef.componentInstance.hasSelectedImage = !!selectedImage;
-    return dialogRef.afterClosed();
+    return this.alerts.openModal(FileUpload, {
+      hasSelectedImage: !!selectedImage,
+      selectedImage,
+    });
   }
 }

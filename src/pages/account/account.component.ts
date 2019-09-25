@@ -10,6 +10,7 @@ import { CompanyService } from '../../services/company/company.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'account',
@@ -52,6 +53,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public snackbar: MySnackBarSevice,
     public crudAccounts: AccountsCrud,
+    public alerts: AlertsService,
   ) {
     super();
   }
@@ -77,7 +79,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
         this.companyService.selectedCompany = resp;
         this.controles.showAccountDetails = true;
       }, (error) => {
-        this.snackbar.open('Account not found!', 'ok');
+        this.alerts.showSnackbar('Account not found!', 'ok');
         this.router.navigate([`/dashboard`]);
       });
   }
