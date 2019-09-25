@@ -12,7 +12,7 @@ export class AlertsService {
     public dialog: MatDialog,
   ) { }
 
-  public showSnackbar(message, buttonText = 'ok', opts: MatSnackBarConfig) {
+  public showSnackbar(message, buttonText = 'ok', opts: MatSnackBarConfig = {}) {
     return this.snackbar.open(message, buttonText, opts);
   }
 
