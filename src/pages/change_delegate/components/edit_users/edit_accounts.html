@@ -70,7 +70,8 @@
 
   <div class="col-lg-12" style="margin: 0!important; height: 70px;border-top: 1px solid #ddd">
     <div class="group-row-left padd-x20" style="justify-content: flex-end">
-      <button type="button" mat-raised-button color="primary" name="button" (click)="confirm()">
+      <p class="col-error small-text" *ngIf="error" style="margin-right: 10px!important">{{error}}</p>
+      <button type="button" style="margin-right: 10px;" mat-raised-button color="primary" name="button" (click)="confirm()">
         <p class="small-text-2">{{'Confirm'|translate}}</p>
       </button>
       <button type="button" mat-raised-button color="primary" name="button" (click)="close()">

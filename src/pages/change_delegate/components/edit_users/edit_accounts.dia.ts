@@ -3,6 +3,7 @@ import { MatDialogRef, Sort } from '@angular/material';
 import BaseDialog from '../../../../bases/dialog-base';
 import { CompanyService } from '../../../../services/company/company.service';
 import { UserService } from '../../../../services/user.service';
+import { UtilsService } from 'src/services/utils/utils.service';
 
 @Component({
   selector: 'edit-accounts',
@@ -33,6 +34,7 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
     public dialogRef: MatDialogRef<EditAccountsDia>,
     public company: CompanyService,
     public us: UserService,
+    public utils: UtilsService,
   ) {
     super();
     this.getExchangersList();
@@ -76,7 +78,7 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
 
     if (this.isSingle) {
       // Convert from cents to euros
-      this.amount = (this.accounts[0].amount / 100) || 0;
+      this.amount = (this.accounts[0].amount / 100) || 0;
       this.exchanger = this.accounts[0].exchanger.id;
       this.pan = this.accounts[0].pan;
 
@@ -99,6 +101,17 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
   }
 
   public confirm(): void {
+
+    if (!this.utils.validPAN(this.pan)) {
+      this.error = 'PAN Number is not correct';
+      return;
+    }
+
+    if (!this.utils.validCVV(this.cvv2)) {
+      this.error = 'CVV is not correct';
+      return;
+    }
+
     this.dialogRef.close({
       accounts: this.accounts.map((el) => {
         // Convert euros to cents

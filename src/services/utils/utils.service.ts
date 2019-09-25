@@ -225,7 +225,6 @@ export class UtilsService {
     return deepmerge(a, b);
   }
 
-
   public downloadBlob(blob: Blob, name = 'file') {
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(blob);
@@ -248,6 +247,15 @@ export class UtilsService {
       window.URL.revokeObjectURL(data);
       link.remove();
     }, 100);
+  }
+
+  public validPAN(value) {
+    const regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+    return regpan.test(value);
+  }
+
+  public validCVV(val) {
+    return (typeof val === 'string' && val.length === 3) || typeof val === 'number';
   }
 
 }
