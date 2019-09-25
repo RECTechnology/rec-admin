@@ -105,7 +105,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
             this.search();
           }, (error) => {
             if (error.message.includes('Validation error')) {
-              this.validationErrors = error.data;
+              this.validationErrors = error.errors;
             } else {
               this.snackbar.open(error.message, 'ok');
             }

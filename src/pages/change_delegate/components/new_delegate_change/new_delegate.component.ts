@@ -311,7 +311,7 @@ export class NewDelegateComponent extends PageBase {
                             this.getDelegate();
                         }, (error) => {
                             if (error.message.includes('Validation error')) {
-                                this.validationErrors = error.data;
+                                this.validationErrors = error.errors;
                             } else {
                                 this.snackbar.open(error.message, 'ok');
                             }
@@ -330,7 +330,7 @@ export class NewDelegateComponent extends PageBase {
         for (const data of accounts) {
             const changeData: any = {
                 account_id: +data.account.id,
-                amount: data.amount,
+                amount: data.amount || 0,
                 delegated_change_id: this.idOrNew,
                 exchanger_id: data.exchanger_id || +data.exchanger.id,
             };
@@ -357,7 +357,7 @@ export class NewDelegateComponent extends PageBase {
                 this.percentageSent = this.objectsSent / this.objectsToSend * 100;
             } catch (error) {
                 if (error.message.includes('Validation error')) {
-                    this.validationErrors = error.data;
+                    this.validationErrors = error.errors;
                     this.validationErrorName = 'Entry: ' + data.id;
                 } else {
                     this.snackbar.open(error.message + ' | id: ' + changeData.account_id);
