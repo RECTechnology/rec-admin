@@ -1,8 +1,14 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, ElementFinder } from 'protractor';
+import { By } from 'selenium-webdriver';
 
 export class AppPage {
-  public navigateTo() {
-    return browser.get(browser.baseUrl) as Promise<any>;
+
+  public sleep(seconds) {
+    return browser.sleep(seconds * 1000);
+  }
+
+  public navigateTo(path = '') {
+    return browser.get(browser.baseUrl + path) as Promise<any>;
   }
 
   public getTitleText() {
@@ -11,5 +17,26 @@ export class AppPage {
 
   public getTitle() {
     return browser.getTitle() as Promise<any>;
+  }
+
+  public getUrl() {
+    return browser.getCurrentUrl() as Promise<any>;
+  }
+
+  public getElement(elby: By): ElementFinder {
+    return element(elby);
+  }
+
+  public getElementByCss(selector: string) {
+    return this.getElement(by.css(selector));
+  }
+
+  public getElementById(id: string) {
+    return this.getElement(by.id(id));
+  }
+
+
+  public logout(){
+    
   }
 }
