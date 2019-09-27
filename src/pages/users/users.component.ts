@@ -160,7 +160,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
       'Are you sure you want to remove user from the sistem [ ' + accName + ' ]? No going back.',
       'Remove user from system?',
       'Delete',
-      'error'
+      'error',
     ).subscribe((result) => {
       if (result) { this.removeUser(user); }
     });

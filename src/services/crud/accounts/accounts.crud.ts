@@ -9,7 +9,6 @@ import { CompanyService } from 'src/services/company/company.service';
 @Injectable()
 export class AccountsCrud extends CrudBaseService {
 
-
     public pdfHtml: string = '';
 
     constructor(
@@ -32,7 +31,6 @@ export class AccountsCrud extends CrudBaseService {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'report_clients_providers'];
         return this.get(url, {}, { Accept: 'text/html' }, { responseType: 'text' });
     }
-
 
     public addConsumedProductToAccount(account_id, product_id) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'consuming_products'];

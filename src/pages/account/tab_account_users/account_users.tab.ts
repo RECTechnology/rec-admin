@@ -83,7 +83,6 @@ export class AccountUsersTab implements AfterContentInit {
   public openEditUser(user, i?) {
     let dialogRef = this.dialog.open(EditUserData);
     dialogRef.componentInstance.user = user;
-    // dialogRef.componentInstance.title = 'Edit account';
     dialogRef.afterClosed().subscribe((result) => {
       dialogRef = null;
       this.getUsers();

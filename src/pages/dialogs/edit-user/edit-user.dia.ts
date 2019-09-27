@@ -4,9 +4,7 @@ import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { Observable } from 'rxjs';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
-import { ConfirmationMessage } from '../../../components/dialogs/confirmation-message/confirmation.dia';
 import { AdminService } from '../../../services/admin/admin.service';
 import { forkJoin } from 'rxjs';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
@@ -38,8 +36,6 @@ export class EditUserData {
   ) { }
 
   public ngOnInit() {
-    // this.userCopy = Object.assign({}, this.user);
-    // this.userCopy.kyc_validations = Object.assign({}, this.user.kyc_validations);
     this.getUser();
   }
 

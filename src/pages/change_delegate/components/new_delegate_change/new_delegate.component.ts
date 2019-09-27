@@ -202,7 +202,8 @@ export class NewDelegateComponent extends PageBase {
     public openEditAccounts() {
         const accounts = [...this.getSelected()];
         this.alerts.openModal(EditAccountsDia, {
-            accounts, accountCount: accounts.length,
+            accountCount: accounts.length,
+            accounts, 
         }).subscribe((resp) => {
             if (resp && resp.accounts) {
                 this.setSelectedAccounts(resp.accounts.map((e) => {

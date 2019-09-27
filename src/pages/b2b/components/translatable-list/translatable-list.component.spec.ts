@@ -8,7 +8,7 @@ describe('TranslatableListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TranslatableListComponent ]
+      declarations: [ TranslatableListComponent ],
     })
     .compileComponents();
   }));

@@ -23,6 +23,8 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   public pageName = 'Account';
   public currentTab = 0;
   public account_id = null;
+
+  public pdfHtml = '';
   private sub: any = null;
   private tab: string = '';
   private tabMap = {
@@ -38,8 +40,6 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     3: 'documents',
     4: 'b2b',
   };
-
-  public pdfHtml = '';
 
   constructor(
     public titleService: Title,

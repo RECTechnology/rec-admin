@@ -124,7 +124,7 @@ export class SendMail extends TablePageBase {
         this.mailing.find(this.id)
             .subscribe((resp) => {
                 this.mail = resp.data;
-                let now = new Date(this.mail.scheduled_at);
+                const now = new Date(this.mail.scheduled_at);
 
                 this.mail.scheduled_at =
                     `${now.getFullYear()}-${now.getMonth().toString().padStart(2, '0')}-${

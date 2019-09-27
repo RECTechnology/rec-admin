@@ -289,6 +289,7 @@ export class UserService {
           body.data.kyc_validations.phone = parsed.number;
           body.data.kyc_validations.prefix = parsed.prefix;
         } catch (error) {
+          console.log(error);
         }
 
         return body.data || body || {};

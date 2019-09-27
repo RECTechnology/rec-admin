@@ -59,7 +59,6 @@ export class B2BModuleTab {
     this.crudAccounts.getPdfAsHtml(this.id)
       .subscribe(
         (resp) => {
-          console.log(resp);
           this.pdfHtml = resp;
           this.changeDetector.detectChanges();
         }, (error) => {
@@ -72,8 +71,8 @@ export class B2BModuleTab {
     this.crudAccounts.getPdf(this.id)
       .subscribe(
         (resp) => {
-          let date = new Date().toLocaleDateString().replace(/ /g, '-');
-          let name = `${this.cs.selectedCompany.name}-report-${date}.pdf`
+          const date = new Date().toLocaleDateString().replace(/ /g, '-');
+          const name = `${this.cs.selectedCompany.name}-report-${date}.pdf`;
           this.utils.downloadBlob(resp, name);
         }, (error) => {
           console.log(error);

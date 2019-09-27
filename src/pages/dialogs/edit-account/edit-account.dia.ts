@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialogRef, MatDialog, throwToolbarMixedModesError } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
@@ -7,7 +7,6 @@ import { UtilsService } from '../../../services/utils/utils.service';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
 import { TranslateService } from '@ngx-translate/core';
 import { AdminService } from '../../../services/admin/admin.service';
-import { MapsAPILoader } from '@agm/core';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
