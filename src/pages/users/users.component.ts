@@ -117,6 +117,8 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
         this.search();
       }
     });
+
+    this.setTitle(this.Brand.title + ' | ' + this.pageName);
   }
 
   public getCleanParams(query?: string) {
@@ -154,15 +156,13 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   // Opens delete user modal
   public openDeleteUser(user) {
     const accName = this.us.userData.group_data.name;
-    const dialogRef = this.alerts.showConfirmation(
+    this.alerts.showConfirmation(
       'Are you sure you want to remove user from the sistem [ ' + accName + ' ]? No going back.',
       'Remove user from system?',
       'Delete',
       'error'
     ).subscribe((result) => {
-      if (result) {
-        this.removeUser(user);
-      }
+      if (result) { this.removeUser(user); }
     });
   }
 

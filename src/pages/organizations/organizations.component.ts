@@ -138,6 +138,10 @@ export class OrganizationsComponent extends TablePageBase {
     this.search();
   }
 
+  public ngAfterContentInit() {
+    this.setTitle(this.Brand.title + ' | ' + this.pageName);
+  }
+
   public getFilters() {
     switch (Number(this.filterActive)) {
       case (0): return {
