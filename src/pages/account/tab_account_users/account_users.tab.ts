@@ -13,6 +13,7 @@ import { AddUser } from '../../dialogs/add-user/add-user.dia';
 import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { environment } from '../../../environments/environment';
 import { AdminService } from '../../../services/admin/admin.service';
+import { ViewDetails } from 'src/pages/dialogs/view-details/view-details.dia';
 
 @Component({
   selector: 'account-users-tab',
@@ -61,7 +62,13 @@ export class AccountUsersTab implements AfterContentInit {
 
   // Opens add user modal
   public openViewDetails(elem?, i?) {
-    return;
+    let dialogRef = this.dialog.open(ViewDetails);
+    dialogRef.componentInstance.parent = this;
+    dialogRef.componentInstance.user = elem;
+    dialogRef.afterClosed().subscribe((result) => {
+      dialogRef = null;
+      this.getUsers();
+    });
   }
 
   public openAddUser() {
