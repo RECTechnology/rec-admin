@@ -287,54 +287,6 @@
           </div>
         </div>
 
-        <!-- Activity -->
-        <!-- <div class="col-lg-6 " style="margin-bottom: 15px!important">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Activity'|translate}}</span>
-            <mat-select style="width: 100%" [(ngModel)]="accountCopy.activity_id">
-              <mat-option [value]="act.id" *ngFor="let act of activities">
-                {{act.translations[us.lang].name}}
-              </mat-option>
-            </mat-select>
-          </div>
-        </div> -->
-        <!-- <div class="col-lg-6">
-          <p class="small-text-2">{{'ACTIVITIES'|translate}}</p>
-          <div class="activity-box-list">
-            <ul *ngIf="activitiesSelected && activitiesSelected.length" style="list-style: none; margin: 0; padding: 0">
-              <li class="activity-list-item small-text" (click)="deleteActivity(i)"
-                *ngFor="let act of activitiesSelected; let i = index">
-                {{act.translations[us.lang].name}}
-
-                <span class="icon fa fa-trash"></span>
-              </li>
-            </ul>
-            <p class="small-text col-gray padd-x10" *ngIf="activitiesSelected && !activitiesSelected.length">
-              {{'NO_ITEMS'|translate}}
-            </p>
-          </div>
-
-          <button [matMenuTriggerFor]="actMenu" [disabled]="loading" type="button" mat-button class="mat-button-menu"
-            style="margin-top: 5px; width: 100%">
-            <span>{{'ACTIVITY'|translate}}</span>
-            <i class="fa fa-caret-down" style="margin-left: 8px"></i>
-          </button>
-
-          <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
-            <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="Search Activities">
-
-            <ng-template ngFor let-prod [ngForOf]="activities">
-              <button *ngIf="activitiesSelected && !activitiesSelected.includes(prod)"
-                mat-menu-item (click)="addActivity(prod)" style="padding: 5px auto">
-                <span style="color: #666; font-size: 12px">{{prod.translations[us.lang].name}}</span>
-              </button>
-            </ng-template>
-          </mat-menu>
-        </div> -->
-
-
-
         <!-- Products -->
         <div class="col-lg-12 " style="margin-bottom: 15px!important">
           <div class="group-col-left">
@@ -377,7 +329,7 @@
             <ul *ngIf="account.consuming_products && account.consuming_products.length"
               style="list-style: none; margin: 0; padding: 0">
               <li class="activity-list-item small-text" *ngFor="let cons of account.consuming_products; let i = index">
-                {{cons.name}}
+                {{cons | tolang}}
 
                 <span class="icon fa fa-trash" (click)="deleteConsumed(i)"></span>
               </li>
@@ -402,7 +354,7 @@
               <button
                 *ngIf="account.consuming_products && !account.consuming_products.includes(prod) && nameMatches(prod.name)"
                 mat-menu-item (click)="addConsumed(prod)" style="padding: 5px auto">
-                <span style="color: #666; font-size: 12px">{{prod.name}}</span>
+                <span style="color: #666; font-size: 12px">{{prod | tolang}}</span>
               </button>
             </ng-template>
           </mat-menu>
@@ -415,7 +367,7 @@
             <ul *ngIf="account.producing_products && account.producing_products.length"
               style="list-style: none; margin: 0; padding: 0">
               <li class="activity-list-item small-text" *ngFor="let cons of account.producing_products; let i = index">
-                {{cons.name}}
+                {{cons| tolang}}
 
                 <span class="icon fa fa-trash" (click)="deleteProduced(i)"></span>
               </li>
@@ -440,7 +392,7 @@
               <button
                 *ngIf="account.producing_products && !account.producing_products.includes(prod) && nameMatches(prod.name)"
                 mat-menu-item (click)="addProduced(prod)" style="padding: 5px auto">
-                <span style="color: #666; font-size: 12px">{{prod.name}}</span>
+                <span style="color: #666; font-size: 12px">{{prod| tolang}}</span>
               </button>
             </ng-template>
           </mat-menu>
