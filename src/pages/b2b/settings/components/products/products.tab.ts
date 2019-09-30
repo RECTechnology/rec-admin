@@ -62,13 +62,13 @@ export class ProductsTabComponent extends EntityTabBase {
                                 this.productsCrud.update(product.id, { name: updated.eng }, 'en'),
                             ];
 
-                            for (const activity of updated.consuming_by) {
-                                proms.push(this.productsCrud.addConsumedByToProduct(product.id, activity.id));
-                            }
+                            // for (const activity of updated.consuming_by) {
+                            //     proms.push(this.productsCrud.addConsumedByToProduct(product.id, activity.id));
+                            // }
 
-                            for (const activity of updated.producing_by) {
-                                proms.push(this.productsCrud.addProducingByToProduct(product.id, activity.id));
-                            }
+                            // for (const activity of updated.producing_by) {
+                            //     proms.push(this.productsCrud.addProducingByToProduct(product.id, activity.id));
+                            // }
 
                             forkJoin(proms).subscribe(
                                 (resp) => {

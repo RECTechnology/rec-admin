@@ -977,5 +977,6 @@
   "ATTACH_FILES": "Adjunta Archivos",
   "ALL_MAIL_FROM": "Todo el correo se enviará desde",
   "SEND_SCHEDULED": "Enviar programado",
-  "SEND_NOW": "Enviar ahora"
+  "SEND_NOW": "Enviar ahora",
+  "Search Activities": "Busca Actividades"
 }

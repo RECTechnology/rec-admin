@@ -989,5 +989,7 @@
   "ATTACH_FILES": "Adjuntar Archius",
   "ALL_MAIL_FROM": "Tot el correu serà enviat des de",
   "SEND_SCHEDULED": "Enviar programació",
-  "SEND_NOW": "Enviar ara"
+  "SEND_NOW": "Enviar ara",
+  "Search Activities": "Cerca Activitats"
+
 }

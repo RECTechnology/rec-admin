@@ -59,7 +59,7 @@
                         <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
                             <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
                                  (click)="$event.stopPropagation()" (blur)="actQuery = ''"
-                                placeholder="Search Activities">
+                                placeholder="{{'Search Activities'|translate}}">
 
                             <ng-template ngFor let-act [ngForOf]="activities">
                                 <button
@@ -99,7 +99,7 @@
                         <mat-menu #actMenu2="matMenu" y-position="below" overlapTrigger="false">
                             <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
                                 (click)="$event.stopPropagation()" (blur)="actQuery = ''"
-                                placeholder="Search Activities">
+                                placeholder="{{'Search Activities'|translate}}">
                             <ng-template ngFor let-act [ngForOf]="activities">
                                 <button
                                     *ngIf="item.default_producing_by && !item.default_producing_by.includes(act) && nameMatches(act.name)"
