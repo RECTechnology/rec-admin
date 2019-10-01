@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from 'src/services/controles/controles.service';
@@ -15,6 +13,7 @@ import { TlHeader } from 'src/components/table-list/tl-table/tl-table.component'
 
 import * as moment from 'moment';
 import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 const now = new Date();
 
@@ -95,14 +94,13 @@ export class SendMail extends TablePageBase {
         public us: UserService,
         public translate: TranslateService,
         public mailDeliveries: MailingDeliveriesCrud,
-        public snackbar: MySnackBarSevice,
         public route: ActivatedRoute,
         public router: Router,
         public controls: ControlesService,
         public mailing: MailingCrud,
-        public dialog: MatDialog,
         public ls: LoginService,
         public titleService: Title,
+        public alerts: AlertsService,
     ) {
         super();
     }
@@ -124,12 +122,12 @@ export class SendMail extends TablePageBase {
         this.mailing.find(this.id)
             .subscribe((resp) => {
                 this.mail = resp.data;
-                const now = new Date(this.mail.scheduled_at);
+                const scheduled = new Date(this.mail.scheduled_at);
 
                 this.mail.scheduled_at =
-                    `${now.getFullYear()}-${now.getMonth().toString().padStart(2, '0')}-${
-                    now.getDate().toString().padStart(2, '0')}T${
-                    now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                    `${scheduled.getFullYear()}-${scheduled.getMonth().toString().padStart(2, '0')}-${
+                    scheduled.getDate().toString().padStart(2, '0')}T${
+                    scheduled.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
                 this.mailCopy = { ...this.mail };
             });
     }
@@ -159,17 +157,16 @@ export class SendMail extends TablePageBase {
     }
 
     public createDelivery() {
-        const ref = this.dialog.open(CreateDelivery);
-        ref.componentInstance.id = this.id;
-        ref.componentInstance.selectedAccounts = this.data.map((el) => el.account);
-        ref.componentInstance.deliveries = this.data.map((el) => el.account);
-        ref.afterClosed()
-            .subscribe((resp) => {
-                this.search();
-            }, (err) => {
-                this.snackbar.open(err.message);
-                this.loading = false;
-            });
+        this.alerts.openModal(CreateDelivery, {
+            deliveries: this.data.map((el) => el.account),
+            id: this.id,
+            selectedAccounts: this.data.map((el) => el.account),
+        }).subscribe(() => {
+            this.search();
+        }, (err) => {
+            this.alerts.showSnackbar(err.message);
+            this.loading = false;
+        });
     }
 
     public getStatusColor(status) {
@@ -184,11 +181,11 @@ export class SendMail extends TablePageBase {
         this.loading = true;
         this.mailDeliveries.remove(item.id)
             .subscribe((resp) => {
-                this.snackbar.open('Deleted Account Correctly');
+                this.alerts.showSnackbar('Deleted Account Correctly');
                 this.loading = false;
                 this.search();
             }, (err) => {
-                this.snackbar.open(err.message);
+                this.alerts.showSnackbar(err.message);
                 this.loading = false;
             });
     }
@@ -201,13 +198,13 @@ export class SendMail extends TablePageBase {
             scheduled_at: moment(data.scheduled_at).toISOString(),
             subject: data.subject,
         }).subscribe((resp) => {
-            this.snackbar.open('Edited Mail Correctly');
+            this.alerts.showSnackbar('Edited Mail Correctly');
             this.loading = false;
             this.saved = true;
             this.mail = resp.data;
             this.mailCopy = Object.assign({}, this.mail);
         }, (err) => {
-            this.snackbar.open(err.message);
+            this.alerts.showSnackbar(err.message);
             this.loading = false;
         });
     }
@@ -220,13 +217,13 @@ export class SendMail extends TablePageBase {
             scheduled_at: new Date(data.scheduled_at).toISOString(),
             subject: data.subject,
         }).subscribe((resp) => {
-            this.snackbar.open('Created Mail Correctly');
+            this.alerts.showSnackbar('Created Mail Correctly');
             this.loading = false;
             this.isEdit = true;
             this.id = resp.data.id;
             this.router.navigate(['/rec/mailing/' + this.id]);
         }, (err) => {
-            this.snackbar.open(err.message);
+            this.alerts.showSnackbar(err.message);
             this.loading = false;
         });
     }
@@ -235,6 +232,7 @@ export class SendMail extends TablePageBase {
         return this.mail.subject === this.mailCopy.subject && this.mail.content === this.mailCopy.content;
     }
 
+    // tslint:disable-next-line: no-empty
     public created(event) {
     }
 
@@ -253,18 +251,18 @@ export class SendMail extends TablePageBase {
     }
 
     public selectFile(selectedImage?) {
-        const dialogRef = this.dialog.open(FileUpload);
-        dialogRef.componentInstance.selectedImage = selectedImage;
-        dialogRef.componentInstance.hasSelectedImage = !!selectedImage;
-        return dialogRef.afterClosed().subscribe((attachmentLink) => {
+        this.alerts.openModal(FileUpload, {
+            hasSelectedImage: !!selectedImage,
+            selectedImage,
+        }).subscribe((attachmentLink) => {
             if (attachmentLink) {
                 this.loading = true;
                 this.mailing.addAttachment(this.id, attachmentLink)
-                    .subscribe((resp) => {
-                        this.snackbar.open('Added attachment correctly');
+                    .subscribe(() => {
+                        this.alerts.showSnackbar('Added attachment correctly');
                         this.loading = false;
                     }, (err) => {
-                        this.snackbar.open(err.message);
+                        this.alerts.showSnackbar(err.message);
                         this.loading = false;
                     });
             }

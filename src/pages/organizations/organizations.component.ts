@@ -3,19 +3,19 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UserService } from '../../services/user.service';
-import { PageBase, TablePageBase } from '../../bases/page-base';
+import { TablePageBase } from '../../bases/page-base';
 import { LoginService } from '../../services/auth/auth.service';
-import { MatDialog, Sort } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { BussinessDetailsDia } from '../dialogs/bussiness_detailes/bussiness_details.component';
 import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
 import { ConfirmationMessage } from '../../components/dialogs/confirmation-message/confirmation.dia';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { TableListHeaderOptions } from '../../components/table-list/tl-header/tl-header.component';
 import { TlHeader, TlItemOption } from '../../components/table-list/tl-table/tl-table.component';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 const FILTERS = {
   only_offers: 0,
@@ -130,8 +130,8 @@ export class OrganizationsComponent extends TablePageBase {
     public ls: LoginService,
     public dialog: MatDialog,
     public as: AdminService,
-    public snackbar: MySnackBarSevice,
     public accountsCrud: AccountsCrud,
+    public alerts: AlertsService,
   ) {
     super();
     this.lang = this.langMap[us.lang];
@@ -234,13 +234,13 @@ export class OrganizationsComponent extends TablePageBase {
     this.as.setMapVisibility(acc.id, visible.checked)
       .subscribe(
         (resp) => {
-          this.snackbar.open(visible.checked
+          this.alerts.showSnackbar(visible.checked
             ? 'Organization is shown in map'
             : 'Organization is hidden from map', 'ok',
           );
         },
         (error) => {
-          this.snackbar.open(error.message, 'ok');
+          this.alerts.showSnackbar(error.message, 'ok');
         },
       );
   }
@@ -277,29 +277,25 @@ export class OrganizationsComponent extends TablePageBase {
       delete data.subtype;
     }
 
-    const dialogRef = this.dialog.open(ExportDialog);
-    dialogRef.componentInstance.filters = data;
-    dialogRef.componentInstance.fn = this.accountsCrud.export.bind(this.accountsCrud);
-    dialogRef.componentInstance.entityName = 'Organizations';
-    dialogRef.componentInstance.defaultExports = [...this.defaultExportKvp];
-    dialogRef.componentInstance.list = [...this.defaultExportKvp];
-
-    return dialogRef.afterClosed();
+    return this.alerts.openModal(ExportDialog, {
+      defaultExports: [...this.defaultExportKvp],
+      entityName: 'Organizations',
+      filters: data,
+      fn: this.accountsCrud.export.bind(this.accountsCrud),
+      list: [...this.defaultExportKvp],
+    });
   }
 
   public viewDetails(bussiness) {
-    const ref = this.dialog.open(BussinessDetailsDia);
-    ref.componentInstance.bussiness = bussiness;
+    return this.alerts.openModal(BussinessDetailsDia, { bussiness });
   }
 
   public editDetails(bussiness) {
-    const dialogRef = this.dialog.open(EditAccountData);
-    dialogRef.componentInstance.account = Object.assign({}, bussiness);
-
-    dialogRef.afterClosed()
-      .subscribe((result) => {
-        this.search();
-      });
+    this.alerts.openModal(EditAccountData, {
+      account: Object.assign({}, bussiness),
+    }).subscribe((result) => {
+      this.search();
+    });
   }
 
   public openMaps(coord) {

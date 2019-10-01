@@ -16,9 +16,9 @@ export class AlertsService {
     return this.snackbar.open(message, buttonText, opts);
   }
 
-  public showConfirmation(message, title, btnConfirmText, status = 'error', headerIcon = 'warning') {
+  public showConfirmation(message, title, btnConfirmText, status = 'error', headerIcon = 'warning', opts = {}) {
     return this.openModal(ConfirmationMessage, {
-      btnConfirmText, headerIcon, message, status, title,
+      btnConfirmText, headerIcon, message, status, title, opts,
     });
   }
 

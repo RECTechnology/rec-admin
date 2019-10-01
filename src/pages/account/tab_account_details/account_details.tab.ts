@@ -2,13 +2,12 @@ import { Component, AfterContentInit, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { ControlesService } from '../../../services/controles/controles.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { environment } from '../../../environments/environment';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { EditAccountData } from '../../../pages/dialogs/edit-account/edit-account.dia';
-import { MatDialog } from '@angular/material';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'account-details-tab',
@@ -28,9 +27,8 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
     public ws: WalletService,
     public companyService: CompanyService,
     public utils: UtilsService,
-    public snackbar: MySnackBarSevice,
-    public dialog: MatDialog,
     public crudAccounts: AccountsCrud,
+    public alerts: AlertsService,
   ) {
 
   }
@@ -64,13 +62,11 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
   }
 
   public openEditAccount() {
-    const dialogRef = this.dialog.open(EditAccountData);
-    dialogRef.componentInstance.account = Object.assign({}, this.companyService.selectedCompany);
-
-    dialogRef.afterClosed()
-      .subscribe((result) => {
-        this.setUp();
-      });
+    this.alerts.openModal(EditAccountData, {
+      account: Object.assign({}, this.companyService.selectedCompany)
+    }).subscribe((result) => {
+      this.setUp();
+    });
   }
 
   public openDeleteAccount() {

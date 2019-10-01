@@ -1,19 +1,18 @@
-import { Component, AfterContentInit, OnDestroy } from '@angular/core';
+import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, Sort } from '@angular/material';
+import { Sort } from '@angular/material';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { UserService } from '../../../services/user.service';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { ConfirmationMessage } from '../../../components/dialogs/confirmation-message/confirmation.dia';
 import { CompanyService } from '../../../services/company/company.service';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { EditUserData } from '../../dialogs/edit-user/edit-user.dia';
 import { AddUser } from '../../dialogs/add-user/add-user.dia';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { environment } from '../../../environments/environment';
 import { AdminService } from '../../../services/admin/admin.service';
 import { ViewDetails } from 'src/pages/dialogs/view-details/view-details.dia';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'account-users-tab',
@@ -36,7 +35,6 @@ export class AccountUsersTab implements AfterContentInit {
   constructor(
     public titleService: Title,
     public route: ActivatedRoute,
-    public dialog: MatDialog,
     public us: UserService,
     public companyService: CompanyService,
     public adminService: AdminService,
@@ -44,7 +42,7 @@ export class AccountUsersTab implements AfterContentInit {
     public router: Router,
     public controles: ControlesService,
     public ws: WalletService,
-    public snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) {
 
     this.route.params
@@ -56,50 +54,43 @@ export class AccountUsersTab implements AfterContentInit {
   public ngAfterContentInit() {
     this.loading = true;
     const roles = this.us.userData.group_data.roles;
-    this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY'); // <<< TODO: Improve
+    this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY');
     this.getUsers();
   }
 
   // Opens add user modal
   public openViewDetails(elem?, i?) {
-    let dialogRef = this.dialog.open(ViewDetails);
-    dialogRef.componentInstance.parent = this;
-    dialogRef.componentInstance.user = elem;
-    dialogRef.afterClosed().subscribe((result) => {
-      dialogRef = null;
+    this.alerts.openModal(ViewDetails, {
+      parent: this,
+      user: elem,
+    }).subscribe(() => {
       this.getUsers();
     });
   }
 
   public openAddUser() {
-    let dialogRef = this.dialog.open(AddUser);
-    dialogRef.componentInstance.group_id = this.account_id;
-    dialogRef.afterClosed().subscribe((result) => {
-      dialogRef = null;
+    this.alerts.openModal(AddUser, {
+      group_id: this.account_id,
+    }).subscribe(() => {
       this.getUsers();
     });
   }
 
   public openEditUser(user, i?) {
-    let dialogRef = this.dialog.open(EditUserData);
-    dialogRef.componentInstance.user = user;
-    dialogRef.afterClosed().subscribe((result) => {
-      dialogRef = null;
-      this.getUsers();
-    });
+    this.alerts.openModal(EditUserData, { user })
+      .subscribe(() => {
+        this.getUsers();
+      });
   }
 
   // Opens delete user modal
   public openDeleteUser(user) {
-    const dialogRef = this.dialog.open(ConfirmationMessage);
-
-    dialogRef.componentInstance.status = 'error';
-    dialogRef.componentInstance.title = 'Expel user (' + user.username + ') from account';
-    dialogRef.componentInstance.message =
-      'Are you sure you want to expel user from account [ ' + this.account_id + ' ]?';
-    dialogRef.componentInstance.btnConfirmText = 'EXPEL';
-
-    dialogRef.afterClosed().subscribe((result) => {
+    this.alerts.showConfirmation(
+      'Are you sure you want to expel user from account [ ' + this.account_id + ' ]?',
+      'Expel user (' + user.username + ') from account',
+      'EXPEL',
+      'error',
+    ).subscribe((result) => {
       if (result) {
         // If user click 'Delete' we proceed to delete user
         this.removeUser(user);
@@ -107,8 +98,7 @@ export class AccountUsersTab implements AfterContentInit {
     });
   }
 
-  public keyPressed(user, event) {
-  }
+  public keyPressed(user, event) { }
 
   public sortData(sort: Sort): void {
     const data = this.items.slice();
@@ -152,11 +142,11 @@ export class AccountUsersTab implements AfterContentInit {
     this.adminService.removeUserFromAccount(this.account_id, user.id)
       .subscribe(
         (resp) => {
-          this.snackbar.open('Expeled user currectly!', 'ok');
+          this.alerts.showSnackbar('Expeled user currectly!', 'ok');
           this.getUsers();
         },
         (error) => {
-          this.snackbar.open(error.desciption, 'ok');
+          this.alerts.showSnackbar(error.desciption, 'ok');
         });
   }
 }

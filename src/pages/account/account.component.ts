@@ -8,7 +8,6 @@ import { LoginService } from '../../services/auth/auth.service';
 import { MatDialog } from '../../../node_modules/@angular/material';
 import { CompanyService } from '../../services/company/company.service';
 import { UtilsService } from '../../services/utils/utils.service';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
@@ -51,7 +50,6 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     public utils: UtilsService,
     public ls: LoginService,
     public dialog: MatDialog,
-    public snackbar: MySnackBarSevice,
     public crudAccounts: AccountsCrud,
     public alerts: AlertsService,
   ) {

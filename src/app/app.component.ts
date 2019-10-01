@@ -8,11 +8,11 @@ import { CompanyService } from 'src/services/company/company.service';
 import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { AdminService } from 'src/services/admin/admin.service';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { IdleNotification } from 'src/components/dialogs/idle-notification/idle.dia';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material';
 import { interval } from 'rxjs';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   providers: [AppService],
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private aas: AppAuthService,
     private us: UserService,
     public as: AdminService,
-    public snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) {
     this.utils.isSandbox = this.isSandbox = environment.test;
 
@@ -96,7 +96,7 @@ export class AppComponent implements OnInit, OnDestroy {
           this.us.userData = profile;
           if (!this.us.isSuperAdmin()) {
             this.us.logout();
-            this.snackbar.open('You don\'t have necesary permissions...', 'OK');
+            this.alerts.showSnackbar('You don\'t have necesary permissions...', 'OK');
             return;
           }
         }, (error) => { return; });

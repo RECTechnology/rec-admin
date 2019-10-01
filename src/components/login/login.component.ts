@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChildren, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material';
 import { LoginService, AppAuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user.service';
 import { environment } from '../../environments/environment';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
-import { TranslateService } from '@ngx-translate/core';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'login',
@@ -41,10 +39,8 @@ export class LoginComponent implements OnInit {
     private titleService: Title,
     private aas: AppAuthService,
     private us: UserService,
-    private dialog: MatDialog,
-    private translate: TranslateService,
     public zone: NgZone,
-    private snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) { }
 
   public ngOnInit() {
@@ -107,7 +103,7 @@ export class LoginComponent implements OnInit {
                 this.us.logout();
                 this.disabled = false;
                 this.loading = false;
-                this.snackbar.open('You don\'t have necesary permissions...', 'OK');
+                this.alerts.showSnackbar('You don\'t have necesary permissions...', 'OK');
                 return;
               }
 

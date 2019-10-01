@@ -1,5 +1,4 @@
 import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { B2bService } from 'src/services/b2b/b2b.service';
@@ -46,7 +45,6 @@ export class B2BModuleTab {
 
   constructor(
     public b2bCrud: B2bService,
-    public snackbar: MySnackBarSevice,
     public crudAccounts: AccountsCrud,
     public utils: UtilsService,
     public cs: CompanyService,
