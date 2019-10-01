@@ -45,6 +45,7 @@ export class EditUserData {
     this.usersCrud.find(this.user.id)
       .subscribe((resp) => {
         this.user = resp.data;
+        this.user.kyc_validations.lastName = this.user.kyc_validations.last_name;
         this.userCopy = { ...this.user };
         this.userCopy.kyc_validations = { ...this.user.kyc_validations };
       });
@@ -98,6 +99,8 @@ export class EditUserData {
         this.alerts.showSnackbar(error.message, 'ok');
         this.close();
       });
+    } else {
+      this.alerts.showSnackbar('Nothing to update', 'ok');
     }
   }
 
