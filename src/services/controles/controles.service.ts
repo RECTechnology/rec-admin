@@ -8,9 +8,7 @@ export class ControlesService {
   public chatVisible: boolean = false;
   public managementExpanded: boolean = false;
   public errorReporterOpened: boolean = false;
-
   public showAccountDetails: boolean = false;
-
   public currencySelected = false;
   public selectedCurrency: any = {};
 
