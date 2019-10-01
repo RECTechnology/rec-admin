@@ -3,9 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { FileUpload } from '../../../../components/dialogs/file-upload/file-upload.dia';
-import { MatDialog } from '@angular/material';
 import { CompanyService } from '../../../../services/company/company.service';
-import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({

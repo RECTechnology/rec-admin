@@ -5,7 +5,6 @@ import { TlItemOption, TableListOptions, TlHeader } from 'src/components/table-l
 import { TableListHeaderOptions } from 'src/components/table-list/tl-header/tl-header.component';
 import { MatDialog } from '@angular/material';
 import { AddNeighbourhoodDia } from './add/add.dia';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
@@ -56,7 +55,6 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
     constructor(
         public nCrud: NeighborhoodsCrud,
         public dialog: MatDialog,
-        public snackbar: MySnackBarSevice,
         public alerts: AlertsService,
     ) { super(dialog, alerts); }
 

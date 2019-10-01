@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
@@ -45,7 +44,6 @@ export class AddItemDia {
         public translate: TranslateService,
         public activitiesCrud: ActivitiesCrud,
         public productsCrud: ProductsCrud,
-        public snackbar: MySnackBarSevice,
         public alerts: AlertsService,
     ) {
         this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' })

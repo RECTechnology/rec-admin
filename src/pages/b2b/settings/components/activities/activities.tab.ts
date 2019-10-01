@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { EntityTabBase } from '../base.tab';
 import { MatDialog } from '@angular/material';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
-import { element } from 'protractor';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
@@ -19,7 +17,6 @@ export class ActivitiesTabComponent extends EntityTabBase {
     constructor(
         public activitiesCrud: ActivitiesCrud,
         public dialog: MatDialog,
-        public snackbar: MySnackBarSevice,
         public alerts: AlertsService,
     ) {
         super(dialog, alerts);

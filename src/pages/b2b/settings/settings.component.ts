@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
 import { B2bService } from 'src/services/b2b/b2b.service';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { PageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { Title } from '@angular/platform-browser';
@@ -30,9 +28,7 @@ export class B2BSettingsComponent extends PageBase {
         public controles: ControlesService,
         public route: ActivatedRoute,
         public router: Router,
-        public dialog: MatDialog,
         public b2b: B2bService,
-        public snackbar: MySnackBarSevice,
         public ls: LoginService,
         public titleService: Title,
     ) {

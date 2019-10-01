@@ -3,7 +3,6 @@ import { ControlesService } from 'src/services/controles/controles.service';
 import { B2bService } from 'src/services/b2b/b2b.service';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
-import { EntityTabBase } from '../settings/components/base.tab';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
