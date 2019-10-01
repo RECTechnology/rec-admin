@@ -8,9 +8,12 @@ jobs:
     machine: true
     steps:
       - checkout
-      # - run: npm install
 
-      # - run: npm run e2e
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+
+      - run: npm run e2e
 
       # with credentials stored in the UI
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS reg.rallf.com:8443
