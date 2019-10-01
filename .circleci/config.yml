@@ -9,6 +9,8 @@ jobs:
     steps:
       - checkout
 
+      - run: apt update
+      - run: apt install nodejs
       - run: npm install
 
       - run: npm run e2e
