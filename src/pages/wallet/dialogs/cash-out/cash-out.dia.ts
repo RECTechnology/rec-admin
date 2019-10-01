@@ -28,7 +28,7 @@ export class CashOutDia extends BaseDialog {
     public alerts: AlertsService,
   ) {
     super();
-    this.available = this.ws.getAvailable('REC', true);
+    // this.available = this.ws.getAvailable('REC', true);
   }
 
   public makeTx() {

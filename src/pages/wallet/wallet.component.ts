@@ -108,12 +108,10 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
 
   // Custom hooks
   public onLogout() {
-    this.ws.userFavs = [];
     this.ngOnDestroy();
   }
 
   public onLogin() {
-    this.ws.userFavs = JSON.parse(localStorage.getItem('user-favs') || '[]');
     this.getTransactions();
   }
 
@@ -293,7 +291,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     }
     dialogRef.afterClosed().subscribe((resp) => {
       dialogRef = null;
-      this.ws.doGetWallets();
       this.getTransactions();
     });
 

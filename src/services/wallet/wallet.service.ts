@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
-import { Wallet } from '../../shared/entities/wallet/wallet';
-import { PrepaidCardMulti } from '../../shared/entities/prepaid_card/prepaid_card';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { BaseService } from '../base/base.service';
 
 declare let _;
