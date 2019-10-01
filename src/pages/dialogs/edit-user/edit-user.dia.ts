@@ -76,7 +76,7 @@ export class EditUserData {
       if (resp) {
         await this.adminService.updateUserPhone(id, changedProps.prefix, changedProps.phone)
           .toPromise()
-          .then((update) => {
+          .then(() => {
             this.alerts.showSnackbar('Phone number changed correctly (needs to be validated)', 'ok');
           })
           .catch((err) => {

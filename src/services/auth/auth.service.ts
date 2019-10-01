@@ -50,11 +50,11 @@ export class AppAuthService extends BaseService {
   public refreshToken(refresh_token): Observable<any> {
     return this.get(
       null, {
-        client_id: clientID,
-        client_secret: clientSecret,
-        grant_type: 'refresh_token',
-        refresh_token,
-      }, `${API_URL}/oauth/v2/token`,
+      client_id: clientID,
+      client_secret: clientSecret,
+      grant_type: 'refresh_token',
+      refresh_token,
+    }, `${API_URL}/oauth/v2/token`,
     );
   }
 
@@ -330,111 +330,5 @@ export class LoginService extends BaseService {
           }
         },
       );
-  }
-}
-
-@Injectable()
-export class RegisterService {
-  public app_tokens;
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-  ) {
-    this.app_tokens = JSON.parse(localStorage.getItem('app.tokens'));
-  }
-
-  public register(data, recaptchaData, referal_code) {
-    this.app_tokens = JSON.parse(localStorage.getItem('app.tokens'));
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + this.app_tokens.access_token,
-      'content-type': 'application/json',
-    });
-    const options = ({ headers, method: 'POST' });
-
-    return this.http.post(
-      `${API_URL}/register/v1/commerce/commerce`,
-      { ...data, captcha: recaptchaData, referal_code },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public extractData(res: any) {
-    return res;
-  }
-
-  public handleError(error: Response | any) {
-    return throwError(error);
-  }
-}
-
-@Injectable()
-export class ValidateService {
-  constructor(private http: HttpClient, private aas: AppAuthService) {
-  }
-
-  public validate(confirmation_token: string): Observable<any> {
-    const tokens = JSON.parse(localStorage.getItem('app.tokens'));
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + tokens.access_token,
-      'content-type': 'application/json',
-    });
-    const options = ({ headers, method: 'POST' });
-    return this.http.post(
-      `${API_URL}/register/v1/validate_email`,
-      { confirmation_token },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public extractData(res: any) {
-    return res;
-  }
-
-  public handleError(error: Response | any) {
-    return throwError(error);
-  }
-}
-
-@Injectable()
-export class ForgotPassService {
-  constructor(private http: HttpClient, public aas: AppAuthService) { }
-
-  public sendRecoverPass(email: string, captcha_code?): Observable<any> {
-    const tokens = JSON.parse(localStorage.getItem('app.tokens'));
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + tokens.access_token,
-      'content-type': 'application/json',
-    });
-
-    const options = ({
-      headers,
-      method: 'GET',
-      search: {
-        captcha: captcha_code,
-      },
-    });
-
-    return this.http.get(
-      `${API_URL}/password_recovery/v1/${email}`,
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public extractData(res: any) {
-    return res;
-  }
-
-  public handleError(error: Response | any) {
-    return throwError(error);
   }
 }
