@@ -52,7 +52,6 @@ export class AddItemDia {
             .subscribe((resp) => {
                 this.activities = resp.data.elements;
             });
-
     }
 
     public addedSubscriber(sub, message = 'Added activity') {
