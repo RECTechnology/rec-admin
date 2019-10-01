@@ -37,7 +37,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     super();
   }
 
-  // Custom hooks
   public onLogout() {
     this.ngOnDestroy();
   }
@@ -84,16 +83,14 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
       });
   }
 
-  // Component hooks
   public ngOnDestroy() {
-    /* Must remove any interval when component is destroyed or it will keep running */
     clearInterval(this.refreshObs);
     this.dialog.closeAll();
   }
 
   /**
-  * Set a interval every this.refreshInterval
-  */
+   * Set a interval every this.refreshInterval
+   */
   private setRefresh(): void {
     this.refreshObs = setInterval((_) => {
       this.getStatus();

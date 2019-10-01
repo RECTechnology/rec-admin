@@ -23,6 +23,7 @@ export class CrudBaseService extends BaseService2 {
 
     public static ROLE_USER: CrudRole = 'user';
     public static ROLE_SELF: CrudRole = 'self';
+    public static ROLE_MANAGER: CrudRole = 'manager';
     public static ROLE_ADMIN: CrudRole = 'admin';
     public static ROLE_SADMIN: CrudRole = 'super_admin';
 
