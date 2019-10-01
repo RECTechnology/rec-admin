@@ -14,7 +14,6 @@ import { TxDetails } from './dialogs/tx_details/tx_details.dia';
 import { TranslateService } from '@ngx-translate/core';
 import { getDateDMY } from '../../shared/utils.fns';
 import { CompanyService } from '../../services/company/company.service';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { PageBase, OnLogout, OnLogin } from '../../bases/page-base';
 import { ExportTxsDia } from './dialogs/export-txs/export-txs.dia';
 import { CashOutDia } from './dialogs/cash-out/cash-out.dia';
