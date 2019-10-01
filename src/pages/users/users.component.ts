@@ -111,7 +111,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
 
   public ngAfterContentInit() {
     const roles = this.us.userData.group_data.roles;
-    this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY'); // <<< TODO: Improve
+    this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY'); // TODO: Improve
     this.route.queryParams.subscribe((params) => {
       if (!params.sort) {
         this.search();

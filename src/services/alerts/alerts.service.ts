@@ -30,9 +30,8 @@ export class AlertsService {
      * can now be done by passing params into dialog.open(C, { params: {} })
      *
      * But most of the modals don't use it, and asume the params will be injected on creation
-     *
      */
-    // TODO Need to change modals to accept new way of passing parameters
+    // TODO: Need to change modals to accept new way of passing parameters
     for (const key in props) {
       if (key) {
         dialogRef.componentInstance[key] = props[key];

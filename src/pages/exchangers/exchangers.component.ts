@@ -2,15 +2,13 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from '../../services/controles/controles.service';
-import { UserService } from '../../services/user.service';
-import { PageBase, TablePageBase } from '../../bases/page-base';
+import { TablePageBase } from '../../bases/page-base';
 import { LoginService } from '../../services/auth/auth.service';
-import { MatDialog, Sort } from '@angular/material';
 import { TlHeader } from '../../components/table-list/tl-table/tl-table.component';
-import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'exchangers',
@@ -62,8 +60,8 @@ export class ExchangersComponent extends TablePageBase {
     public controles: ControlesService,
     public router: Router,
     public ls: LoginService,
-    public dialog: MatDialog,
     public accountsCrud: AccountsCrud,
+    public alerts: AlertsService,
   ) {
     super();
   }
@@ -111,13 +109,12 @@ export class ExchangersComponent extends TablePageBase {
     delete data.offset;
     delete data.limit;
 
-    const dialogRef = this.dialog.open(ExportDialog);
-    dialogRef.componentInstance.filters = data;
-    dialogRef.componentInstance.fn = this.accountsCrud.export.bind(this.accountsCrud);
-    dialogRef.componentInstance.entityName = 'Exchangers';
-    dialogRef.componentInstance.defaultExports = [...this.defaultExportKvp];
-    dialogRef.componentInstance.list = [...this.defaultExportKvp];
-
-    return dialogRef.afterClosed();
+    return this.alerts.openModal(ExportDialog, {
+      defaultExports: [...this.defaultExportKvp],
+      entityName: 'Exchangers',
+      filters: data,
+      fn: this.accountsCrud.export.bind(this.accountsCrud),
+      list: [...this.defaultExportKvp],
+    });
   }
 }
