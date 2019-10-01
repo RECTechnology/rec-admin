@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, Sort } from '@angular/material';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import BaseDialog from '../../../../bases/dialog-base';
 import { CompanyService } from '../../../../services/company/company.service';
 import { UserService } from '../../../../services/user.service';
 import { AdminService } from '../../../../services/admin/admin.service';
-import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import { UtilsService } from '../../../../services/utils/utils.service';
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { AlertsService } from 'src/services/alerts/alerts.service';

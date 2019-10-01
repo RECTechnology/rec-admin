@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
 import { TranslateService } from '@ngx-translate/core';
@@ -53,7 +52,6 @@ export class EditAccountData {
 
   constructor(
     public dialogRef: MatDialogRef<EditAccountData>,
-    public snackBar: MySnackBarSevice,
     public utils: UtilsService,
     public us: UserService,
     public dialog: MatDialog,
@@ -63,7 +61,6 @@ export class EditAccountData {
     public crudAccounts: AccountsCrud,
     public productsCrud: ProductsCrud,
     public activitiesCrud: ActivitiesCrud,
-    public snackbar: MySnackBarSevice,
     public alerts: AlertsService,
   ) {
     this.lang = this.langMap[us.lang];

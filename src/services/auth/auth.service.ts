@@ -6,10 +6,10 @@ import { API_URL, clientID, clientSecret } from '../../data/consts';
 import { BaseService } from '../base/base.service';
 import { UserStorage } from '../user-storage/user-storage';
 import { MatDialog } from '@angular/material';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Observer, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { AlertsService } from '../alerts/alerts.service';
 
 @Injectable()
 export class AppAuthService extends BaseService {
@@ -101,7 +101,7 @@ export class LoginService extends BaseService {
     public us: UserService,
     public appAuthServ: AppAuthService,
     private dialog: MatDialog,
-    private snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) {
     super(http, us);
     this.us.onLogout.subscribe(
@@ -270,7 +270,7 @@ export class LoginService extends BaseService {
                 if (error.error_description === 'User account is locked.') {
                   this.isLoggedIn_ = false;
                   observer.error('error');
-                  this.snackbar.open('User account is locked.', 'ok');
+                  this.alerts.showSnackbar('User account is locked.', 'ok');
                 } else if (this.tokens.refresh_token) {
                   this.refresh(observer);
                 } else {

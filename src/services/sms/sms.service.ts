@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../user.service';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { API_URL } from '../../data/consts';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -18,7 +17,6 @@ export class SmsService extends BaseService {
   constructor(
     http: HttpClient,
     public us: UserService,
-    private snackbar: MySnackBarSevice,
   ) {
     super(http, us);
   }

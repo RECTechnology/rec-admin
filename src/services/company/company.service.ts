@@ -3,12 +3,12 @@ import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
 import { LoginService } from '../auth/auth.service';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { WalletService } from '../wallet/wallet.service';
 import { UtilsService } from '../utils/utils.service';
 import { map } from 'rxjs/internal/operators/map';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AlertsService } from '../alerts/alerts.service';
 
 interface Category {
   cat: string;
@@ -32,7 +32,6 @@ export class CompanyService extends BaseService {
   public changingFrom: any = {};
   public changingTo: any = {};
   public totalAccounts = 0;
-
   public categories: Category[];
 
   constructor(
@@ -40,8 +39,8 @@ export class CompanyService extends BaseService {
     public us: UserService,
     public ls: LoginService,
     private ws: WalletService,
-    private snackbar: MySnackBarSevice,
     private utils: UtilsService,
+    public alerts: AlertsService,
   ) {
     super(http, us);
     this.ls.onLogin.subscribe(
@@ -293,10 +292,10 @@ export class CompanyService extends BaseService {
               this.changingAccount = false;
               if (error.status === 403) {
                 observer.error({ status: 403, error: 'You dont have the necesary permissions' });
-                this.snackbar.open('You dont have the necesary permissions', 'ok');
+                this.alerts.showSnackbar('You dont have the necesary permissions', 'ok');
               } else {
                 observer.error({ status: 0, error: 'There has been an error: ' + error.message });
-                this.snackbar.open('There has been an error: ' + error.message, 'ok');
+                this.alerts.showSnackbar('There has been an error: ' + error.message, 'ok');
               }
             });
       }

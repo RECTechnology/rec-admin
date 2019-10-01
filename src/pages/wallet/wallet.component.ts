@@ -16,12 +16,12 @@ import { getDateDMY } from '../../shared/utils.fns';
 import { CompanyService } from '../../services/company/company.service';
 import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { PageBase, OnLogout, OnLogin } from '../../bases/page-base';
-import { Ticker } from '../../shared/entities/ticker/ticker';
 import { ExportTxsDia } from './dialogs/export-txs/export-txs.dia';
 import { CashOutDia } from './dialogs/cash-out/cash-out.dia';
 import { TxFilter } from '../../components/filter/filter';
 import { CashOutTesoroDia } from './dialogs/cash-out-tesoro/cash-out-tesoro.dia';
 import Transaction from '../../shared/entities/transaction/transaction.ent';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'wallet',
@@ -74,7 +74,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     public ls: LoginService,
     public translate: TranslateService,
     public companyService: CompanyService,
-    public snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) {
     super();
     this.filter = new TxFilter(this.router);
@@ -171,7 +171,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
           transaction: resp,
         });
       }, (error) => {
-        this.snackbar.open('Error finding transaction: ' + error, 'ok');
+        this.alerts.showSnackbar('Error finding transaction: ' + error, 'ok');
       });
 
   }

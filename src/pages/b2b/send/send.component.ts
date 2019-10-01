@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { B2bService } from 'src/services/b2b/b2b.service';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
-import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
 import { TlHeader, TlItemOption } from 'src/components/table-list/tl-table/tl-table.component';
@@ -54,10 +52,8 @@ export class B2BSendComponent extends TablePageBase {
     constructor(
         public controles: ControlesService,
         public b2bCrud: B2bService,
-        public snackbar: MySnackBarSevice,
         public mailDeliveries: MailingDeliveriesCrud,
         public mailing: MailingCrud,
-        public dialog: MatDialog,
         public router: Router,
         public ls: LoginService,
         public titleService: Title,

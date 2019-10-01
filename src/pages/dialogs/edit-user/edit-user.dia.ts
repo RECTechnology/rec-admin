@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
 import { AdminService } from '../../../services/admin/admin.service';
@@ -25,7 +24,6 @@ export class EditUserData {
 
   constructor(
     public dialogRef: MatDialogRef<EditUserData>,
-    public snackBar: MySnackBarSevice,
     public us: UserService,
     public companyService: CompanyService,
     public adminService: AdminService,

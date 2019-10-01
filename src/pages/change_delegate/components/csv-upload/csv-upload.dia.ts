@@ -1,8 +1,8 @@
-import { Component, AfterContentInit, NgZone } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Component, NgZone } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../../services/user.service';
 import { environment } from '../../../../environments/environment';
-import { MySnackBarSevice } from '../../../../bases/snackbar-base';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'csv-upload',
@@ -24,8 +24,8 @@ export class CsvUpload {
 
   constructor(
     public dialogRef: MatDialogRef<CsvUpload>,
-    public snackBar: MySnackBarSevice,
     public us: UserService,
+    public alerts: AlertsService,
   ) {
     this.us.uploadprogress$.subscribe(
       (data) => {
@@ -57,7 +57,7 @@ export class CsvUpload {
           this.close(resp.data.src);
         },
         (error) => {
-          this.snackBar.open('Error uploading: ' + error.message, 'ok');
+          this.alerts.showSnackbar('Error uploading: ' + error.message, 'ok');
           this.error = error.message;
         },
       );

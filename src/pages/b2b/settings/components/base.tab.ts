@@ -38,14 +38,6 @@ export abstract class EntityTabBase {
             });
         }
         return this.alerts.showConfirmation(message, title, btnText, status, icon);
-        // const dialogRef = this.dialog.open(ConfirmationMessage);
-        // dialogRef.componentInstance.status = status;
-        // dialogRef.componentInstance.title = title;
-        // dialogRef.componentInstance.message = message;
-        // dialogRef.componentInstance.btnConfirmText = btnText;
-        // dialogRef.componentInstance.headerIcon = 'warning';
-
-        // return dialogRef.afterClosed();
     }
 
     public sortData(sort: Sort): void {

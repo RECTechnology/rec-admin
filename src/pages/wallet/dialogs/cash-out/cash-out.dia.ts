@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { TransactionService } from '../../../../services/transactions/transactions.service';
-import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import BaseDialog from '../../../../bases/dialog-base';
 import { WalletService } from '../../../../services/wallet/wallet.service';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'cash-out',
@@ -25,7 +25,7 @@ export class CashOutDia extends BaseDialog {
     public dialogRef: MatDialogRef<CashOutDia>,
     public txService: TransactionService,
     public ws: WalletService,
-    private snackBar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) {
     super();
     this.available = this.ws.getAvailable('REC', true);
@@ -34,10 +34,10 @@ export class CashOutDia extends BaseDialog {
   public makeTx() {
     this.txService.sendTx(this.tx.sender, this.tx.receiver, this.tx.concept, this.tx.sms_code, this.tx.amount)
       .subscribe((resp) => {
-        this.snackBar.open('Sent correclty');
+        this.alerts.showSnackbar('Sent correclty');
         this.close(true);
       }, (err) => {
-        this.snackBar.open(err.message);
+        this.alerts.showSnackbar(err.message);
         this.close(false);
       });
   }

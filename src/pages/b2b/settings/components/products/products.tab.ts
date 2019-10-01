@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { EntityTabBase } from '../base.tab';
 import { MatDialog } from '@angular/material';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -18,7 +17,6 @@ export class ProductsTabComponent extends EntityTabBase {
     constructor(
         public productsCrud: ProductsCrud,
         public dialog: MatDialog,
-        public snackbar: MySnackBarSevice,
         public alerts: AlertsService,
     ) { super(dialog, alerts); }
 
@@ -62,21 +60,13 @@ export class ProductsTabComponent extends EntityTabBase {
                                 this.productsCrud.update(product.id, { name: updated.eng }, 'en'),
                             ];
 
-                            // for (const activity of updated.consuming_by) {
-                            //     proms.push(this.productsCrud.addConsumedByToProduct(product.id, activity.id));
-                            // }
-
-                            // for (const activity of updated.producing_by) {
-                            //     proms.push(this.productsCrud.addProducingByToProduct(product.id, activity.id));
-                            // }
-
                             forkJoin(proms).subscribe(
                                 (resp) => {
-                                    this.snackbar.open('Updated product: ' + product.id, 'ok');
+                                    this.alerts.showSnackbar('Updated product: ' + product.id, 'ok');
                                     this.loading = false;
                                     this.search();
                                 },
-                                (error) => this.snackbar.open(error.message),
+                                (error) => this.alerts.showSnackbar(error.message),
                             );
                         }
                     });
@@ -103,13 +93,13 @@ export class ProductsTabComponent extends EntityTabBase {
                             ];
 
                             return forkJoin(proms).subscribe((resp) => {
-                                this.snackbar.open('Created Product', 'ok');
+                                this.alerts.showSnackbar('Created Product', 'ok');
                                 this.loading = false;
                                 this.search();
                             });
                         },
                         (error) => {
-                            this.snackbar.open(error.message);
+                            this.alerts.showSnackbar(error.message);
                         },
                     );
             }
@@ -123,10 +113,10 @@ export class ProductsTabComponent extends EntityTabBase {
                     if (del) {
                         this.productsCrud.remove(product.id).subscribe(
                             (resp) => {
-                                this.snackbar.open('Deleted Product', 'ok');
+                                this.alerts.showSnackbar('Deleted Product', 'ok');
                                 this.search();
                             },
-                            (error) => this.snackbar.open(error.message),
+                            (error) => this.alerts.showSnackbar(error.message),
                         );
                     }
                 },

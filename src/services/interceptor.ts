@@ -3,20 +3,19 @@ import {
     HttpInterceptor,
     HttpHandler,
     HttpRequest,
-    HttpResponse,
     HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { environment } from 'src/environments/environment';
+import { AlertsService } from './alerts/alerts.service';
 
 export class HttpErrorInterceptor implements HttpInterceptor {
 
     constructor(
         public translate: TranslateService,
-        public snackbar: MySnackBarSevice,
+        public alerts: AlertsService,
     ) { }
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -27,7 +26,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     const errStr = error.error || error;
 
                     if (error.status === 500 && !environment.error_500_details) {
-                        this.snackbar.open('ERROR_500', 'ok');
+                        this.alerts.showSnackbar('ERROR_500', 'ok');
                         return throwError({
                             message: 'ERROR_500',
                             status: 500,

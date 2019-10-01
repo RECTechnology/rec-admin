@@ -3,13 +3,12 @@ import { Title } from '@angular/platform-browser';
 import { PageBase } from '../../../../bases/page-base';
 import { LoginService } from '../../../../services/auth/auth.service';
 import { ControlesService } from '../../../../services/controles/controles.service';
-import { MatDialog, Sort } from '@angular/material';
+import { Sort } from '@angular/material';
 import { SelectAccountsDia } from '../select_accounts_dialog/select_accounts.dia';
 import { EditAccountsDia } from '../edit_users/edit_accounts.dia';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyService } from '../../../../services/company/company.service';
 import { CsvUpload } from '../csv-upload/csv-upload.dia';
-import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import { AdminService } from '../../../../services/admin/admin.service';
 import { UtilsService } from '../../../../services/utils/utils.service';
 import { ActivateResume } from '../activate-resume/activate-resume.dia';
@@ -69,7 +68,6 @@ export class NewDelegateComponent extends PageBase {
         public titleService: Title,
         public ls: LoginService,
         public controles: ControlesService,
-        public dialog: MatDialog,
         public route: ActivatedRoute,
         public router: Router,
         public company: CompanyService,
@@ -203,7 +201,7 @@ export class NewDelegateComponent extends PageBase {
         const accounts = [...this.getSelected()];
         this.alerts.openModal(EditAccountsDia, {
             accountCount: accounts.length,
-            accounts, 
+            accounts,
         }).subscribe((resp) => {
             if (resp && resp.accounts) {
                 this.setSelectedAccounts(resp.accounts.map((e) => {

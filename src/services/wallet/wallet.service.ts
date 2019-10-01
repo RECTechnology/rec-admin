@@ -3,14 +3,12 @@ import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
 import { Wallet } from '../../shared/entities/wallet/wallet';
 import { PrepaidCardMulti } from '../../shared/entities/prepaid_card/prepaid_card';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseService } from '../base/base.service';
 
 declare let _;
-// Sorts elements by status 'available' first
 const sortActive = (a, b) => (a === b) ? 0 : (a.status === 'available' ? -1 : 1);
 
 @Injectable()
@@ -43,7 +41,6 @@ export class WalletService extends BaseService {
   constructor(
     http: HttpClient,
     public us: UserService,
-    private snackbar: MySnackBarSevice,
   ) {
     super(http, us);
     this.userFavs = JSON.parse(localStorage.getItem('user-favs') || '[]');

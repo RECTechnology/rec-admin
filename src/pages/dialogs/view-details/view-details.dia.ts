@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
-import { UserService } from '../../../services/user.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import BaseDialog from '../../../bases/dialog-base';
 import { environment } from '../../../environments/environment';
 import { SmsService } from '../../../services/sms/sms.service';
@@ -9,6 +7,7 @@ import { ConfirmationMessage } from '../../../components/dialogs/confirmation-me
 import { ManageSms } from '../manage-sms/manage-sms.dia';
 import { CompanyService } from '../../../services/company/company.service';
 import { AdminService } from '../../../services/admin/admin.service';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   providers: [SmsService],
@@ -21,12 +20,11 @@ export class ViewDetails extends BaseDialog implements OnInit {
   public Brand: any = environment.Brand;
   constructor(
     public dialogRef: MatDialogRef<ViewDetails>,
-    public snackBar: MySnackBarSevice,
     public sms: SmsService,
     public compService: CompanyService,
     public adminService: AdminService,
-    private us: UserService,
     public dialog: MatDialog,
+    public alerts: AlertsService,
   ) {
     super();
   }
@@ -80,9 +78,9 @@ export class ViewDetails extends BaseDialog implements OnInit {
       if (resp) {
         this.sms.resend(this.user.id)
           .subscribe((resend) => {
-            this.snackBar.open('Re-Sent sms to number: ' + this.getPhone(), 'ok');
+            this.alerts.showSnackbar('Re-Sent sms to number: ' + this.getPhone(), 'ok');
           }, (error) => {
-            this.snackBar.open('Error re-sending: ' + error, 'ok');
+            this.alerts.showSnackbar('Error re-sending: ' + error, 'ok');
           });
       }
     });
@@ -97,9 +95,9 @@ export class ViewDetails extends BaseDialog implements OnInit {
       if (resp) {
         this.adminService.deactiveUser(this.user.id)
           .subscribe((deactive) => {
-            this.snackBar.open('Disabled user: ' + this.user.id, 'ok');
+            this.alerts.showSnackbar('Disabled user: ' + this.user.id, 'ok');
           }, (error) => {
-            this.snackBar.open('Error disabling user: ' + error, 'ok');
+            this.alerts.showSnackbar('Error disabling user: ' + error, 'ok');
           });
       }
     });
@@ -114,9 +112,9 @@ export class ViewDetails extends BaseDialog implements OnInit {
       if (resp) {
         this.adminService.activeUser(this.user.id)
           .subscribe((active) => {
-            this.snackBar.open('Enabled user: ' + this.user.id, 'ok');
+            this.alerts.showSnackbar('Enabled user: ' + this.user.id, 'ok');
           }, (error) => {
-            this.snackBar.open('Error enabling user: ' + error, 'ok');
+            this.alerts.showSnackbar('Error enabling user: ' + error, 'ok');
           });
       }
     });
@@ -131,9 +129,9 @@ export class ViewDetails extends BaseDialog implements OnInit {
       if (resp) {
         this.sms.reset(this.user.id)
           .subscribe((reset) => {
-            this.snackBar.open('Re-Setting sms for number: ' + this.getPhone(), 'ok');
+            this.alerts.showSnackbar('Re-Setting sms for number: ' + this.getPhone(), 'ok');
           }, (error) => {
-            this.snackBar.open('Error re-setting: ' + error, 'ok');
+            this.alerts.showSnackbar('Error re-setting: ' + error, 'ok');
           });
       }
     });
@@ -148,9 +146,9 @@ export class ViewDetails extends BaseDialog implements OnInit {
       if (resp) {
         this.sms.validate(this.user.id)
           .subscribe((valid) => {
-            this.snackBar.open('Validated user with number: ' + this.getPhone(), 'ok');
+            this.alerts.showSnackbar('Validated user with number: ' + this.getPhone(), 'ok');
           }, (error) => {
-            this.snackBar.open('Error validating: ' + error, 'ok');
+            this.alerts.showSnackbar('Error validating: ' + error, 'ok');
           });
       }
     });

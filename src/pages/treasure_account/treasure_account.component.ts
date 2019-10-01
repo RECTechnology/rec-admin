@@ -1,13 +1,12 @@
 import { Component, AfterContentInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { WalletService } from '../../services/wallet/wallet.service';
 import { ControlesService } from '../../services/controles/controles.service';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { AdminService } from '../../services/admin/admin.service';
 import { TlItemOption, TlHeader } from '../../components/table-list/tl-table/tl-table.component';
 import { MatDialog } from '@angular/material';
 import { VoteWithdrawal } from '../dialogs/vote-withdrawal/vote-withdrawal.dia';
 import { UserService } from '../../services/user.service';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'treasure_account',
@@ -73,26 +72,21 @@ export class TreasureAccount implements AfterContentInit {
   public itemOptions: TlItemOption[] = [{
     callback: this.vote.bind(this),
     disabled: (el) => {
-      // let voted = this.checkIfUserNeedsToVote(el);
-      // return !voted;
       return false;
     },
     text: (el) => {
       return 'Vote';
-      // let voted = this.checkIfUserNeedsToVote(el);
-      // return (!voted) ? 'Already voted...' : 'Vote';
     },
   }];
   public activeWithdrawal: any;
 
   constructor(
-    private titleService: Title,
     public controles: ControlesService,
     public ws: WalletService,
     public us: UserService,
-    public snackbar: MySnackBarSevice,
     public as: AdminService,
     public dialog: MatDialog,
+    public alerts: AlertsService,
   ) { }
 
   public ngAfterContentInit() {
@@ -120,12 +114,12 @@ export class TreasureAccount implements AfterContentInit {
       description: this.concept,
     }).subscribe(
       (resp) => {
-        this.snackbar.open('Created withdrawal correctly');
+        this.alerts.showSnackbar('Created withdrawal correctly');
         this.reset();
         this.loading = false;
       },
       (err) => {
-        this.snackbar.open(err.message);
+        this.alerts.showSnackbar(err.message);
         this.loading = false;
       },
     );
@@ -171,13 +165,11 @@ export class TreasureAccount implements AfterContentInit {
   }
 
   public vote(withdrawal) {
-    const dialogRef = this.dialog.open(VoteWithdrawal);
     const validation = withdrawal.validations.filter((el) => el.validator.id === this.us.userData.id);
-
-    dialogRef.componentInstance.withdrawal = withdrawal;
-    dialogRef.componentInstance.validation = validation.pop() || null;
-    dialogRef.afterClosed()
-      .subscribe((result) => { return; });
+    return this.alerts.openModal(VoteWithdrawal, {
+      withdrawal,
+      validation,
+    }).subscribe((result) => { return; });
   }
 
   public changedPage($evt) {
