@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
 
-# ng e2e --prod
+ng e2e --port 4201
 
 printf "\n\e[33m(!!!! Hey, don't forget to increase version number !!!!)\e[0m\n\n"

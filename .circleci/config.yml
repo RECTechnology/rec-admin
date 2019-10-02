@@ -1,36 +1,13 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node:10-browsers
     branches:
       only:
         - master
         - stable
+    machine: true
     steps:
       - checkout
-
-      - run:
-          name: Show current branch
-          command: echo ${CIRCLE_BRANCH}
-        # Restore local dependencies from cache
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package-lock.json" }}
-          - v1-dependencies-
-      # Install project dependencies
-      - run:
-          name: Install local dependencies
-          command: npm install
-      # Cache local dependencies if they don't exist
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
-          paths:
-              - node_modules
-      # End to End test
-      - run:
-          name: End to End Test
-          command: npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 
       # with credentials stored in the UI
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS reg.rallf.com:8443
