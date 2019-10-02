@@ -46,6 +46,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     { key: 'dni', value: '$.kyc_manager.dni', active: true },
     { key: 'phone', value: '$.phone', active: true },
     { key: 'alias', value: '$.kyc_manager.active_card.alias', active: true },
+    { key: 'amount', value: '$.wallets[0].available', active: true },
   ];
 
   public headerOpts: TableListHeaderOptions = { input: true };
