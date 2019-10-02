@@ -7,7 +7,6 @@ jobs:
       only:
         - master
         - stable
-    machine: true
     steps:
       - checkout
 
