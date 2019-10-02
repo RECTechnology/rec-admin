@@ -28,7 +28,7 @@ export class ProductsTabComponent extends EntityTabBase {
             offset: this.offset,
             search: this.query || '',
             sort: this.sortID,
-        }, 'all').subscribe(
+        }).subscribe(
             (resp) => {
                 this.data = resp.data.elements.map(this.mapTranslatedElement);
                 this.sortedData = this.data.slice();

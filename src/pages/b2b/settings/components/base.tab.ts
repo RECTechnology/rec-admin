@@ -1,5 +1,4 @@
 import { MatDialog, Sort } from '@angular/material';
-import { ConfirmationMessage } from 'src/components/dialogs/confirmation-message/confirmation.dia';
 import { ViewChild } from '@angular/core';
 import { TranslatableListComponent } from '../../components/translatable-list/translatable-list.component';
 import { Observable } from 'rxjs';

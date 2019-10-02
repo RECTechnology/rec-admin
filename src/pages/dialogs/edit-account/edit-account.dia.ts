@@ -236,13 +236,13 @@ export class EditAccountData {
   public manageSchedule() {
     this.viewManageOffers = false;
     this.viewManageSchedule = true;
-    this.currentTab = 3;
+    this.currentTab = 4;
   }
 
   public manageOffers() {
     this.viewManageSchedule = false;
     this.viewManageOffers = true;
-    this.currentTab = 3;
+    this.currentTab = 4;
   }
 
   public setType(type) {
