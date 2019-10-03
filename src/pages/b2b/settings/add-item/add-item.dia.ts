@@ -46,7 +46,7 @@ export class AddItemDia {
         public productsCrud: ProductsCrud,
         public alerts: AlertsService,
     ) {
-        this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' }, this.langMap[us.lang])
+        this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' }, 'all')
             .subscribe((resp) => this.activities = resp.data.elements);
     }
 
