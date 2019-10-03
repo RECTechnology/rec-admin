@@ -23,15 +23,19 @@ export class AccountsCrud extends CrudBaseService {
         this.mapItems = true;
     }
 
-    public getPdf(account_id) {
+    public getPdf(account_id, lang: RecLang = REC_LANGS.ES) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'report_clients_providers'];
-        return this.get(url, {}, { Accept: 'application/pdf' }, { responseType: 'blob' });
+        return this.get(url, {}, {
+            'Accept': 'application/pdf',
+            'Content-Language': lang,
+            'Accept-Language': lang,
+        }, { responseType: 'blob' });
     }
 
     public getPdfAsHtml(account_id, lang: RecLang = REC_LANGS.ES) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'report_clients_providers'];
         return this.get(url, {}, {
-            Accept: 'text/html',
+            'Accept': 'text/html',
             'Content-Language': lang,
             'Accept-Language': lang,
         }, { responseType: 'text' });

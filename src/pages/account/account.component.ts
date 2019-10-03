@@ -71,14 +71,14 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   }
 
   public setUp() {
-    this.crudAccounts.find(this.account_id)
-      .subscribe((resp) => {
-        this.companyService.selectedCompany = resp;
-        this.controles.showAccountDetails = true;
-      }, (error) => {
-        this.alerts.showSnackbar('Account not found!', 'ok');
-        this.router.navigate([`/dashboard`]);
-      });
+    // this.crudAccounts.find(this.account_id)
+    //   .subscribe((resp) => {
+    //     this.companyService.selectedCompany = resp;
+    //     this.controles.showAccountDetails = true;
+    //   }, (error) => {
+    //     this.alerts.showSnackbar('Account not found!', 'ok');
+    //     this.router.navigate([`/dashboard`]);
+    //   });
   }
 
   /* Called when tab change, so url changes also */

@@ -74,7 +74,7 @@ export class B2BModuleTab {
   }
 
   public sendB2b() {
-    this.crudAccounts.getPdf(this.id)
+    this.crudAccounts.getPdf(this.id, this.langMap[this.us.lang])
       .subscribe(
         (resp) => {
           const date = new Date().toLocaleDateString().replace(/ /g, '-');
