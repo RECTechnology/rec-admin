@@ -5,6 +5,7 @@ import { UserService } from 'src/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CompanyService } from 'src/services/company/company.service';
+import { RecLang, REC_LANGS } from 'src/types';
 
 @Injectable()
 export class AccountsCrud extends CrudBaseService {
@@ -27,9 +28,13 @@ export class AccountsCrud extends CrudBaseService {
         return this.get(url, {}, { Accept: 'application/pdf' }, { responseType: 'blob' });
     }
 
-    public getPdfAsHtml(account_id) {
+    public getPdfAsHtml(account_id, lang: RecLang = REC_LANGS.ES) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'report_clients_providers'];
-        return this.get(url, {}, { Accept: 'text/html' }, { responseType: 'text' });
+        return this.get(url, {}, {
+            Accept: 'text/html',
+            'Content-Language': lang,
+            'Accept-Language': lang,
+        }, { responseType: 'text' });
     }
 
     public addConsumedProductToAccount(account_id, product_id) {

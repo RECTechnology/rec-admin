@@ -3,6 +3,7 @@ import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { B2bService } from 'src/services/b2b/b2b.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,18 +44,25 @@ export class B2BModuleTab {
   @Input() public id = '';
   @Input() public pdfHtml = '';
 
+  public langMap = {
+    cat: 'ca',
+    en: 'en',
+    es: 'es',
+  };
+
   constructor(
     public b2bCrud: B2bService,
     public crudAccounts: AccountsCrud,
     public utils: UtilsService,
     public cs: CompanyService,
     private changeDetector: ChangeDetectorRef,
+    public us: UserService,
   ) {
 
   }
 
   public ngAfterContentInit() {
-    this.crudAccounts.getPdfAsHtml(this.id)
+    this.crudAccounts.getPdfAsHtml(this.id, this.langMap[this.us.lang])
       .subscribe(
         (resp) => {
           this.pdfHtml = resp;

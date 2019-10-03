@@ -4,7 +4,7 @@ export const REC_LANGS: { [key: string]: RecLang } = {
     ALL: 'all',
     CA: 'ca',
     EN: 'en',
-    ES: 'es',
+    c: 'es',
 };
 
 export type CrudRole = 'user' | 'admin' | 'self' | 'super_admin' | 'manager';
