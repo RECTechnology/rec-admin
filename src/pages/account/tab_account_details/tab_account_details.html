@@ -78,10 +78,10 @@
         <div class="group-col-left" style="padding-top: 15px">
           <b>{{'Actions'|translate}}: </b>
           <div style="margin-left: 10px">
-            <button mat-button color="primary" (click)="openEditAccount()">
+            <button mat-button color="primary" [disabled]="loading" (click)="openEditAccount()">
               {{'Edit'|translate}}
             </button>
-            <button mat-button color="primary" (click)="expelUser()">
+            <button mat-button color="primary" [disabled]="loading" (click)="expelUser()">
               <span class="col-error">{{'Delete'|translate}}</span>
             </button>
           </div>

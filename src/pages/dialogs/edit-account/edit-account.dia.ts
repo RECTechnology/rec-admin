@@ -190,6 +190,8 @@ export class EditAccountData {
       changedProps.schedule = schedule;
     }
 
+    console.log('edit account', id);
+
     if (Object.keys(changedProps).length) {
       this.loading = true;
       this.crudAccounts.update(id, changedProps)

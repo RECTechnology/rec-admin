@@ -47,6 +47,9 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     { key: 'phone', value: '$.phone', active: true },
     { key: 'alias', value: '$.kyc_manager.active_card.alias', active: true },
     { key: 'amount', value: '$.wallets[0].available', active: true },
+    { key: 'neighbourhood_id', value: '$.neighbourhood.id', active: true },
+    { key: 'neighbourhood_name', value: '$.neighbourhood.name', active: true },
+    { key: 'activities', value: '$.activities[*]', active: true },
   ];
 
   public headerOpts: TableListHeaderOptions = { input: true };
@@ -160,8 +163,8 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.crudAccounts.list(data).subscribe(
       (resp: any) => {
         this.data = resp.data.elements;
-        this.sortedData = this.data.slice();
         this.total = resp.data.total;
+        this.sortedData = this.data.slice();
         this.showing = this.data.length;
         this.loading = false;
       },
