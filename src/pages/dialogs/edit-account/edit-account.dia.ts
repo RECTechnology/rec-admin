@@ -10,6 +10,7 @@ import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { LANG_MAP } from 'src/data/consts';
 
 @Component({
   providers: [
@@ -83,6 +84,8 @@ export class EditAccountData {
   public ngOnInit() {
     this.type = this.account.type;
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
+    this.account.kyc_manager.locale = LANG_MAP[this.account.kyc_manager.locale];
+
     this.accountCopy = { ...this.account };
     this.activitiesSelected = this.accountCopy.activities.slice();
     this.schedule = this.utils.parseSchedule(this.account.schedule);
@@ -141,6 +144,10 @@ export class EditAccountData {
         this.loading = false;
       });
 
+  }
+
+  public setLanguage($event) {
+    this.accountCopy.locale = $event.abrev;
   }
 
   public deleteConsumed(i) {

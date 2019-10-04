@@ -21,6 +21,10 @@ export class LangSelector {
     private ls: LoginService,
   ) { }
 
+  public ngOnInit(){
+    console.log('lang', this.lang);
+  }
+
   public selectLang(lang) {
     this.lang = lang;
     this.us.lang = lang.abrev;
