@@ -4,6 +4,7 @@ import { UtilsService } from '../../../services/utils/utils.service';
 import { B2bService } from 'src/services/b2b/b2b.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { UserService } from 'src/services/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -57,11 +58,18 @@ export class B2BModuleTab {
     public cs: CompanyService,
     private changeDetector: ChangeDetectorRef,
     public us: UserService,
+    public translate: TranslateService,
   ) {
-
+    translate.onLangChange.subscribe(resp => {
+      this.getPdfAsHtml();
+    });
   }
 
   public ngAfterContentInit() {
+    this.getPdfAsHtml();
+  }
+
+  public getPdfAsHtml() {
     this.crudAccounts.getPdfAsHtml(this.id, this.langMap[this.us.lang])
       .subscribe(
         (resp) => {
