@@ -46,6 +46,9 @@ export class B2BModuleTab {
   @Input() public id = '';
   @Input() public pdfHtml = '';
   @Input() public langs = LANGS;
+  @Input() public account: any = {
+    kyc_manager: { locale: 'es' },
+  };
   @Input() public lang = LANG_MAP[localStorage.getItem('lang') || 'en'] || LANGS[1];
 
   public langMap = {
@@ -63,8 +66,8 @@ export class B2BModuleTab {
     public us: UserService,
     public translate: TranslateService,
   ) {
-    this.lang = LANG_MAP[us.lang];
-    translate.onLangChange.subscribe(resp => {
+    this.lang = LANG_MAP[this.account.kyc_manager.locale];
+    translate.onLangChange.subscribe(() => {
       this.getPdfAsHtml();
     });
   }
