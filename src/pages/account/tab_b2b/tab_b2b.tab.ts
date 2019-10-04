@@ -5,6 +5,7 @@ import { B2bService } from 'src/services/b2b/b2b.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
+import { LANGS, LANG_MAP } from 'src/data/consts';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,6 +45,8 @@ export class B2BModuleTab {
 
   @Input() public id = '';
   @Input() public pdfHtml = '';
+  @Input() public langs = LANGS;
+  @Input() public lang = LANG_MAP[localStorage.getItem('lang') || 'en'] || LANGS[1];
 
   public langMap = {
     cat: 'ca',
@@ -60,9 +63,16 @@ export class B2BModuleTab {
     public us: UserService,
     public translate: TranslateService,
   ) {
+    this.lang = LANG_MAP[us.lang];
     translate.onLangChange.subscribe(resp => {
       this.getPdfAsHtml();
     });
+  }
+
+  public selectLang(lang) {
+    this.lang = lang;
+    this.us.lang = lang.abrev;
+    this.getPdfAsHtml();
   }
 
   public ngAfterContentInit() {
@@ -70,7 +80,7 @@ export class B2BModuleTab {
   }
 
   public getPdfAsHtml() {
-    this.crudAccounts.getPdfAsHtml(this.id, this.langMap[this.us.lang])
+    this.crudAccounts.getPdfAsHtml(this.id, this.langMap[this.lang.abrev])
       .subscribe(
         (resp) => {
           this.pdfHtml = resp;
@@ -82,7 +92,7 @@ export class B2BModuleTab {
   }
 
   public sendB2b() {
-    this.crudAccounts.getPdf(this.id, this.langMap[this.us.lang])
+    this.crudAccounts.getPdf(this.id, this.langMap[this.lang.abrev])
       .subscribe(
         (resp) => {
           const date = new Date().toLocaleDateString().replace(/ /g, '-');
