@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'tab-products',
@@ -18,7 +19,12 @@ export class ProductsTabComponent extends EntityTabBase {
         public productsCrud: ProductsCrud,
         public dialog: MatDialog,
         public alerts: AlertsService,
-    ) { super(dialog, alerts); }
+        public translate: TranslateService,
+    ) { super(dialog, alerts);
+        this.translate.onLangChange.subscribe(() => {
+            this.search();
+        });
+    }
 
     public search() {
         this.loading = true;

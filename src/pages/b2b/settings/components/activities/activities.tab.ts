@@ -23,6 +23,7 @@ export class ActivitiesTabComponent extends EntityTabBase {
     }
 
     public search() {
+        this.loading = true;
         this.activitiesCrud.search({
             dir: this.sortDir,
             limit: this.limit,
