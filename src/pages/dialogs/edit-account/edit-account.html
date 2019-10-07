@@ -352,7 +352,7 @@
 
           <mat-menu #consMenu="matMenu" y-position="below" overlapTrigger="false">
             <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="Search Activities">
+               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="{{'Search Products'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="productList">
               <button
@@ -390,7 +390,7 @@
 
           <mat-menu #prodMenu="matMenu" y-position="below" overlapTrigger="false">
             <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="Search Activities">
+               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="{{'Search Products'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="productList">
               <button
@@ -426,7 +426,7 @@
 
           <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
             <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="Search Activities">
+               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="{{'Search Activities'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="activities">
               <button *ngIf="accountCopy.activities && !accountCopy.activities.includes(prod)" mat-menu-item
