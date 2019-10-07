@@ -54,7 +54,7 @@
             </td>
             <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'buttons'">
                 <ng-template ngFor let-option [ngForOf]="itemOptions">
-                    <button *ngIf="option.icon" mat-icon-button color="primary"
+                    <button *ngIf="option.icon" mat-icon-button 
                         [disabled]="isOptionDisabled(option, entry)" (click)="option.callback(entry)"
                         class="{{option.class}}" matTooltip="{{getOptionText(option)|translate}}"
                         style="min-width: 0; margin-right: 8px">
