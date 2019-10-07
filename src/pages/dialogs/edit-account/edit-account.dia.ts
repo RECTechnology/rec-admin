@@ -27,7 +27,7 @@ export class EditAccountData {
   public ACCOUNT_SUB_TYPES_PRIVATE = ['NORMAL', 'BMINCOME'];
   public ACCOUNT_SUB_TYPES_COMPANY = ['WHOLESALE', 'RETAILER'];
   public type = 'PRIVATE';
-  public lang = 'esp';
+  public lang: any = 'esp';
 
   public currentTab = 0;
 
@@ -39,9 +39,11 @@ export class EditAccountData {
   public loading: boolean;
 
   public langMap = {
-    cat: 'cat',
-    en: 'eng',
-    es: 'esp',
+    cat: 'ca',
+    en: 'en',
+    eng: 'en',
+    es: 'es',
+    esp: 'es',
   };
 
   public geocoder: any;
@@ -70,12 +72,12 @@ export class EditAccountData {
         this.companyService.categories = resp.data;
       });
 
-    this.productsCrud.list({ limit: 300, sort: 'name', order: 'asc' })
+    this.productsCrud.list({ limit: 300, sort: 'name', order: 'asc' }, 'all')
       .subscribe((resp) => {
         this.productList = resp.data.elements;
       });
 
-    this.activitiesCrud.list({ limit: 300, sort: 'name', order: 'asc' })
+    this.activitiesCrud.list({ limit: 300, sort: 'name', order: 'asc' }, 'all')
       .subscribe((resp) => {
         this.activities = resp.data.elements;
       });

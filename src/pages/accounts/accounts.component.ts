@@ -160,7 +160,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     const data: any = this.getCleanParams(query);
 
     this.loading = true;
-    this.crudAccounts.list(data).subscribe(
+    this.crudAccounts.list(data, 'all').subscribe(
       (resp: any) => {
         this.data = resp.data.elements;
         this.total = resp.data.total;

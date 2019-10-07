@@ -43,7 +43,7 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
 
   public setUp() {
     this.loading = true;
-    this.crudAccounts.find(this.account_id)
+    this.crudAccounts.find(this.account_id, 'all')
       .subscribe((resp: any) => {
         this.companyService.selectedCompany = resp.data;
         this.controles.showAccountDetails = true;

@@ -25,7 +25,7 @@ export class CompanyService extends BaseService {
   public scheduled: any[] = [];
   public total_schedules: number = 0;
   public totalUsers: number = 0;
-  public selectedCompany: any = {};
+  public selectedCompany: any = null;
   public companies: any[] = [];
   public companyUsers: any[] = [];
   public changingAccount = false;
