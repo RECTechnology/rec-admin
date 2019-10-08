@@ -449,5 +449,6 @@
 
   "ALL_MAIL_FROM": "All mail will be sent from",
   "SEND_SCHEDULED": "Send Scheduled",
-  "SEND_NOW": "Send Now"
+  "SEND_NOW": "Send Now",
+  "BUSSINES_DETAILS": "Organization Details"
 }

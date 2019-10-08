@@ -43,7 +43,7 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
 
   public setUp() {
     this.loading = true;
-    this.crudAccounts.find(this.account_id, 'all')
+    this.crudAccounts.find(this.account_id)
       .subscribe((resp: any) => {
         this.companyService.selectedCompany = resp.data;
         this.controles.showAccountDetails = true;
@@ -63,7 +63,7 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
 
   public openEditAccount() {
     this.alerts.openModal(EditAccountData, {
-      account: Object.assign({}, this.companyService.selectedCompany)
+      account: Object.assign({}, this.companyService.selectedCompany),
     }).subscribe((result) => {
       this.setUp();
     });

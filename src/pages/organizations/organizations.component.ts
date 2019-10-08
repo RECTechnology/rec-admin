@@ -106,7 +106,7 @@ export class OrganizationsComponent extends TablePageBase {
     }, {
       callback: this.editDetails.bind(this),
       icon: 'edit',
-      text: 'Edit User',
+      text: 'Edit',
     }];
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },

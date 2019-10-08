@@ -990,6 +990,9 @@
   "ALL_MAIL_FROM": "Tot el correu serà enviat des de",
   "SEND_SCHEDULED": "Enviar programació",
   "SEND_NOW": "Enviar ara",
-  "Search Activities": "Cerca Activitats"
-
+  "Search Activities": "Cerca Activitats",
+  "BUSSINES_DETAILS": "Detalls de l'Organitzacio",
+  "Map": "Mapa",
+  "Category": "Categoria",
+  "Phone": "Telèfon"
 }
