@@ -19,6 +19,7 @@ export class BussinessDetailsDia extends BaseDialog implements OnInit {
   public address = '';
   public schedule: any[] = [];
   public Brand: any = environment.Brand;
+
   constructor(
     public dialogRef: MatDialogRef<BussinessDetailsDia>,
     public route: ActivatedRoute,

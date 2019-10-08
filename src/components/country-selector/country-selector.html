@@ -1,4 +1,4 @@
-<mat-select *ngIf="!error" [(ngModel)]="value" (ngModelChange)="valueChange.emit(value)"
+<mat-select *ngIf="!error" [(ngModel)]="value" (ngModelChange)="valueChange.emit(value)" class="mat-button-menu"
     style="width: 100%; min-width: 90px">
     <mat-option *ngFor="let c of countries" [value]="c.cca3">
         <span class="flag-icon flag-icon-{{c.cca2.toLowerCase()}}" style="margin-right: 6px"></span> {{c.name.common}}
