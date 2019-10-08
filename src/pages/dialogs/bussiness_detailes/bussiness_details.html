@@ -8,7 +8,6 @@
   </button>
 </div>
 
-
 <div class="modal-body no-padd" style="min-height: 300px; padding: 0!important">
   <div class="bussiness-details">
     <div class="bussiness-bg">
@@ -39,102 +38,18 @@
           <th style="color: #555!important">{{'Evening'|translate}}</th>
         </tr>
 
-        <tr>
+        <tr *ngFor="let day of schedule">
           <td>
-            {{'MONDAY'|translate}}
+            {{day.name|translate}}
           </td>
           <td>
-            <mat-checkbox disabled color="primary" checked="true"></mat-checkbox>
+            <mat-checkbox disabled color="primary" [checked]="day.open"></mat-checkbox>
           </td>
           <td>
-            <b>08:00</b>-<b>14:00</b>
+            <b>{{day.morning.open}}</b>-<b>{{day.morning.close}}</b>
           </td>
           <td>
-            <b>17:00</b>-<b>22:00</b>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            {{'TUESDAY'|translate}}
-          </td>
-          <td>
-            <mat-checkbox disabled color="primary" checked="true"></mat-checkbox>
-          </td>
-          <td>
-            <b>08:00</b>-<b>14:00</b>
-          </td>
-          <td>
-            <b>17:00</b>-<b>22:00</b>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            {{'WEDNESDAY'|translate}}
-          </td>
-          <td>
-            <mat-checkbox disabled color="primary" checked="true"></mat-checkbox>
-          </td>
-          <td>
-            <b>08:00</b>-<b>14:00</b>
-          </td>
-          <td>
-            <b>17:00</b>-<b>22:00</b>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            {{'THURSDAY'|translate}}
-          </td>
-          <td>
-            <mat-checkbox disabled color="primary" checked="true"></mat-checkbox>
-          </td>
-          <td>
-            <b>08:00</b>-<b>14:00</b>
-          </td>
-          <td>
-            <b>17:00</b>-<b>22:00</b>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            {{'FRIDAY'|translate}}
-          </td>
-          <td>
-            <mat-checkbox disabled color="primary" checked="true"></mat-checkbox>
-          </td>
-          <td>
-            <b>08:00</b>-<b>14:00</b>
-          </td>
-          <td>
-            <b>17:00</b>-<b>22:00</b>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            {{'SATURDAY'|translate}}
-          </td>
-          <td>
-            <mat-checkbox disabled color="primary"></mat-checkbox>
-          </td>
-          <td>
-            <b>...</b>-<b>...</b>
-          </td>
-          <td>
-            <b>...</b>-<b>...</b>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            {{'SUNDAY'|translate}}
-          </td>
-          <td>
-            <mat-checkbox disabled color="primary"></mat-checkbox>
-          </td>
-          <td>
-            <b>...</b>-<b>...</b>
-          </td>
-          <td>
-            <b>...</b>-<b>...</b>
+            <b>{{day.evening.open}}</b>-<b>{{day.evening.close}}</b>
           </td>
         </tr>
       </table>
