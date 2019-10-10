@@ -5,6 +5,7 @@ import { AfterContentInit, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoginService } from '../services/auth/auth.service';
 import { Sort } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface PageBase {
 
@@ -54,7 +55,9 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   public Brand: any = environment.Brand;
   public loading = false;
 
-  constructor() {
+  constructor(
+    // public translate: TranslateService,
+  ) {
     super();
     this.loading = true;
   }
@@ -83,6 +86,10 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
 
   public setTitle(title: string): void {
     this.titleService.setTitle(title);
+  }
+
+  public setTitleParts(title: string[]): void {
+    // this.titleService.setTitle(title.map((el) => this.translate.instant(el)).join(' '));
   }
 
   public getTitle(): string {

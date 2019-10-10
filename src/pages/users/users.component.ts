@@ -25,7 +25,6 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 })
 export class UsersPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Users';
-  public canAddUser = false;
   public sortedData: any[] = [];
   public loading = true;
   public headerOpts = { input: true };
@@ -110,15 +109,11 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   }
 
   public ngAfterContentInit() {
-    const roles = this.us.userData.group_data.roles;
-    this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY'); // TODO: Improve
     this.route.queryParams.subscribe((params) => {
       if (!params.sort) {
         this.search();
       }
     });
-
-    this.setTitle(this.Brand.title + ' | ' + this.pageName);
   }
 
   public getCleanParams(query?: string) {

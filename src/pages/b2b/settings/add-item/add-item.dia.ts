@@ -121,19 +121,19 @@ export class AddItemDia {
     }
 
     public check() {
-        if (!this.item.esp || !this.item.eng || !this.item.cat) {
-            const field: string = [
-                !this.item.esp ? 'ESP' : '',
-                !this.item.eng ? 'ENG' : '',
-                !this.item.cat ? 'CAT' : '',
-            ].filter((x) => x !== '').shift();
-            this.error = this.translate.instant('INPUT_REQUIRED', {
-                field: field ? this.translate.instant(field) : '',
-            });
-            this.disabled = true;
-        } else {
-            this.error = '';
-            this.disabled = false;
-        }
+        // if (!this.item.esp || !this.item.eng || !this.item.cat) {
+        //     const field: string = [
+        //         !this.item.esp ? 'ESP' : '',
+        //         !this.item.eng ? 'ENG' : '',
+        //         !this.item.cat ? 'CAT' : '',
+        //     ].filter((x) => x !== '').shift();
+        //     this.error = this.translate.instant('INPUT_REQUIRED', {
+        //         field: field ? this.translate.instant(field) : '',
+        //     });
+        //     this.disabled = true;
+        // } else {
+        //     this.error = '';
+        //     this.disabled = false;
+        // }
     }
 }
