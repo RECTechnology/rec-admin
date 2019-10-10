@@ -5,7 +5,6 @@ import { AfterContentInit, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoginService } from '../services/auth/auth.service';
 import { Sort } from '@angular/material';
-import { TranslateService } from '@ngx-translate/core';
 
 export interface PageBase {
 

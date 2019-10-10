@@ -73,14 +73,10 @@ export class EditAccountData {
       });
 
     this.productsCrud.list({ limit: 300, sort: 'name', order: 'asc' }, 'all')
-      .subscribe((resp) => {
-        this.productList = resp.data.elements;
-      });
+      .subscribe((resp) => this.productList = resp.data.elements);
 
     this.activitiesCrud.list({ limit: 300, sort: 'name', order: 'asc' }, 'all')
-      .subscribe((resp) => {
-        this.activities = resp.data.elements;
-      });
+      .subscribe((resp) => this.activities = resp.data.elements);
   }
 
   public ngOnInit() {
@@ -98,7 +94,7 @@ export class EditAccountData {
     this.loading = true;
     this.activitiesSelected.push(act);
     this.crudAccounts.addActivity(this.account.id, act.id)
-      .subscribe((resp) => {
+      .subscribe(() => {
         this.alerts.showSnackbar('Added activity', 'ok');
         this.loading = false;
       }, (error) => {
@@ -111,7 +107,7 @@ export class EditAccountData {
     this.loading = true;
     this.account.consuming_products.push(product);
     this.crudAccounts.addConsumedProductToAccount(this.account.id, product.id)
-      .subscribe((resp) => {
+      .subscribe(() => {
         this.alerts.showSnackbar('Added product', 'ok');
         this.loading = false;
       }, (error) => {

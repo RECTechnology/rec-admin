@@ -204,6 +204,10 @@ export class CompanyService extends BaseService {
       `${API_URL}/company/v1/account/kyc/validation`, 'application/x-www-form-urlencoded');
   }
 
+  public getUserAccounts() {
+    return this.get(null, null, `${API_URL}/user/v1/companies`);
+  }
+
   /**
    * @param {String} group_id - The group to set as active/default
    * @return {Observable}

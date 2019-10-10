@@ -6,6 +6,7 @@ import { LoginService } from '../../services/auth/auth.service';
 import { PageBase, OnLogout } from '../../bases/page-base';
 import { AppService } from '../../services/app/app.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { CompanyService } from 'src/services/company/company.service';
 
 declare const Morris;
 
@@ -33,8 +34,14 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     public app: AppService,
     public ls: LoginService,
     public crudAccounts: AccountsCrud,
+    public companyService: CompanyService,
   ) {
     super();
+
+    this.companyService.getUserAccounts()
+      .subscribe((resp) => {
+        console.log('accounts', resp);
+      });
   }
 
   public onLogout() {

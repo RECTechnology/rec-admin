@@ -173,7 +173,7 @@ export class OrganizationsComponent extends TablePageBase {
       type: 'COMPANY',
       // tslint:disable-next-line: object-literal-sort-keys
       only_with_offers: filters.only_offers,
-      search: query || this.query
+      search: query || this.query,
     };
 
     if (!data.subtype) {

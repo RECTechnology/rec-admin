@@ -6,6 +6,9 @@ import { TableListHeaderOptions } from 'src/components/table-list/tl-header/tl-h
 import { MatDialog } from '@angular/material';
 import { AddNeighbourhoodDia } from './add/add.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { CrudBaseService } from 'src/services/base/crud.base';
+import { REC_LANGS } from 'src/types';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'tab-neighborhoods',
@@ -115,7 +118,7 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
             isEdit: false,
         }).subscribe((created) => {
             if (created) {
-                this.nCrud.create(created).subscribe(
+                this.nCrud.create(created, REC_LANGS.EN).subscribe(
                     (resp) => {
                         this.alerts.showSnackbar('Created Neighbourhood', 'ok');
                         this.search();
