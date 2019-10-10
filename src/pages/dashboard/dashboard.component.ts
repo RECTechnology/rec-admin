@@ -37,11 +37,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     public companyService: CompanyService,
   ) {
     super();
-
-    this.companyService.getUserAccounts()
-      .subscribe((resp) => {
-        console.log('accounts', resp);
-      });
   }
 
   public onLogout() {

@@ -84,8 +84,7 @@ export class UserService {
 
   public getUserConfig(prop) {
     if (!(prop in this.userData.settings)) {
-      // tslint:disable-next-line
-      console.error(new Error(prop + ' is not a valid configuration property.'))
+      console.error(new Error(prop + ' is not a valid configuration property.'));
       return null;
     }
     return this.userData.settings[prop];
@@ -263,7 +262,6 @@ export class UserService {
     if (filter.retailer) { params = params.set('retailer', filter.retailer); }
     if (filter.wholesale) { params = params.set('wholesale', filter.wholesale); }
 
-    // /public/map/v1/list
     return this.http.get(`${API_URL}/public/map/v1/list`, options)
       .pipe(
         map(this.extractData),

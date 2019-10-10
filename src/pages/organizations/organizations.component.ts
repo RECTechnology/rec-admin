@@ -168,10 +168,12 @@ export class OrganizationsComponent extends TablePageBase {
       offset: this.offset,
       order: this.sortDir,
       sort: this.sortID,
-      subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
-      type: 'COMPANY',
-      only_with_offers: filters.only_offers,
-      search: query || this.query,
+      query: {
+        subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
+        type: 'COMPANY',
+        only_with_offers: filters.only_offers,
+        search: query || this.query,
+      },
     };
 
     if (!data.subtype) {
