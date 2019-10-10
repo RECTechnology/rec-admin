@@ -168,10 +168,8 @@ export class OrganizationsComponent extends TablePageBase {
       offset: this.offset,
       order: this.sortDir,
       sort: this.sortID,
-      // tslint:disable-next-line: object-literal-sort-keys
       subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
       type: 'COMPANY',
-      // tslint:disable-next-line: object-literal-sort-keys
       only_with_offers: filters.only_offers,
       search: query || this.query,
     };
@@ -196,6 +194,7 @@ export class OrganizationsComponent extends TablePageBase {
             el.zip,
             el.country,
           ].join(' ');
+
           el.coordenates = [
             el.latitude,
             el.longitude,
