@@ -118,13 +118,33 @@ export class NeighborhoodsTabComponent extends EntityTabBase {
             isEdit: false,
         }).subscribe((created) => {
             if (created) {
-                this.nCrud.create(created, REC_LANGS.EN).subscribe(
-                    (resp) => {
-                        this.alerts.showSnackbar('Created Neighbourhood', 'ok');
-                        this.search();
-                    },
-                    (error) => this.alerts.showSnackbar(error.message),
-                );
+                // this.nCrud.create(created, REC_LANGS.EN).subscribe(
+                //     (resp) => {
+                //         this.alerts.showSnackbar('Created Neighbourhood', 'ok');
+                //         this.search();
+                //     },
+                //     (error) => this.alerts.showSnackbar(error.message),
+                // );
+                this.nCrud.create(created, 'en')
+                    .subscribe(
+                        (prod) => {
+                            const productID = prod.data.id;
+
+                            const proms = [
+                                this.nCrud.update(productID, { name: created.name }, 'ca'),
+                                this.nCrud.update(productID, { name: created.name }, 'es'),
+                            ];
+
+                            return forkJoin(proms).subscribe((resp) => {
+                                this.alerts.showSnackbar('Created Product', 'ok');
+                                this.loading = false;
+                                this.search();
+                            });
+                        },
+                        (error) => {
+                            this.alerts.showSnackbar(error.message);
+                        },
+                    );
             }
         });
     }
