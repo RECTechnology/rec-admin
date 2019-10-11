@@ -35,19 +35,19 @@
       <table mdSort (mdSortChange)="sortData($event)" class="left-align">
         <thead class="bordered stripped">
           <tr>
-            <th md-sort-header="created" sandbox-test-data *ngIf="!utils.isMobileDevice" style="color: #555!important">
+            <th md-sort-header="created" *ngIf="!utils.isMobileDevice" style="color: #555!important">
               {{'Date'|translate}}
             </th>
-            <th md-sort-header="amount" sandbox-test-data style="color: #555!important">
+            <th md-sort-header="amount" style="color: #555!important">
               {{'Amount'|translate}}
             </th>
-            <th md-sort-header="method" sandbox-test-data *ngIf="!utils.isMobileDevice" style="color: #555!important">
+            <th md-sort-header="method" *ngIf="!utils.isMobileDevice" style="color: #555!important">
               {{'Service'|translate}}
             </th>
-            <th md-sort-header="status" sandbox-test-data style="color: #555!important">
+            <th md-sort-header="status" style="color: #555!important">
               {{'Status'|translate}}
             </th>
-            <th md-sort-header="concept" sandbox-test-data style="color: #555!important">
+            <th md-sort-header="concept" style="color: #555!important">
               {{'Concept'|translate}}
             </th>
             <th></th>

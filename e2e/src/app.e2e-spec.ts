@@ -1,16 +1,16 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('Rec Admin App', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should show login', () => {
+  it('should load login correctly', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to rec-admin!');
+    expect(page.getTitle()).toEqual('REC Admin | Login');
   });
 
   afterEach(async () => {

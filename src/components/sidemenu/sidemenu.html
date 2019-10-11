@@ -43,36 +43,57 @@
             {{'Dashboard'|translate}}
           </span>
         </li>
-        <li class="item" (click)="clickedItem()" routerLink="/users" routerLinkActive="active">
-          <i class="fa fa-lg fa-fw fa-user"></i>
-          <span>
-            {{'Users'|translate}}
+
+        <li class="item" (click)="contrService.toggleManagement()">
+          <i class="fa fa-lg fa-fw fa-users-cog"></i>
+          <span class="dropdown-text">
+            {{'UsersAndAccounts'|translate}}
+            <span class="fa fa-angle-right" *ngIf="!contrService.managementExpanded"></span>
+            <span class="fa fa-angle-down" *ngIf="contrService.managementExpanded"></span>
           </span>
         </li>
-        <li class="item" (click)="clickedItem()" routerLink="/accounts" routerLinkActive="active">
-          <i class="fa fa-lg fa-fw fa-group"></i>
-          <span>
-            {{'Accounts'|translate}}
-          </span>
-        </li>
+        <ul class="reseller-developers" [ngClass]="{'expanded': contrService.managementExpanded}" *ngIf="us.isReseller">
+          <li class="item" (click)="clickedItem()" routerLink="/users" routerLinkActive="active">
+            <i class="fa fa-lg fa-fw fa-user"></i>
+            <span>
+              {{'Users'|translate}}
+            </span>
+          </li>
+          <li class="item" (click)="clickedItem()" routerLink="/accounts" routerLinkActive="active">
+            <i class="fa fa-lg fa-fw fa-group"></i>
+            <span>
+              {{'Accounts'|translate}}
+            </span>
+          </li>
+          <li class="item" (click)="clickedItem()" routerLink="/exchangers" routerLinkActive="active">
+            <i class="fa fa-lg fa-fw fa-money"></i>
+            <span>
+              {{'EXCHANGERS'|translate}}
+            </span>
+          </li>
+          <li class="item" (click)="clickedItem()" routerLink="/organizations" routerLinkActive="active">
+            <i class="fa fa-lg fa-fw fa-building"></i>
+            <span>
+              {{'BUSSINESES'|translate}}
+            </span>
+          </li>
+        </ul>
+
+        
         <li class="item" (click)="clickedItem()" routerLink="/transactions" routerLinkActive="active">
           <i class="fa fa-lg fa-fw fa-exchange"></i>
           <span>
             {{'Transactions'|translate}}
           </span>
         </li>
-        <li class="item" (click)="clickedItem()" routerLink="/bussiness" routerLinkActive="active">
-          <i class="fa fa-lg fa-fw fa-building"></i>
+        
+        <li class="item" (click)="clickedItem()" routerLink="/b2b/settings" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-cog"></i>
           <span>
-            {{'BUSSINESES'|translate}}
+            {{'REC_ENTITIES'|translate}}
           </span>
         </li>
-        <li class="item" (click)="clickedItem()" routerLink="/sellers" routerLinkActive="active">
-          <i class="fa fa-lg fa-fw fa-money"></i>
-          <span>
-            {{'EXCHANGERS'|translate}}
-          </span>
-        </li>
+
         <li class="item separate" disabled>
           <span>
             {{'SPECIAL_ACTIONS'|translate}}
@@ -90,6 +111,12 @@
             {{'CREATE_RECS'|translate}}
           </span>
         </li>
+        <li class="item" (click)="clickedItem()" routerLink="/rec/mailing" routerLinkActive="active">
+          <i class="fa fa-lg fa-fw fa-mail-bulk"></i>
+          <span>
+            {{'REC_MAILING'|translate}}
+          </span>
+        </li>
       </ul>
     </div>
   </div>
@@ -97,33 +124,56 @@
     <div class="menu">
       <ul class="menu-list">
         <li class="item" (click)="clickedItem()" routerLink="/dashboard" routerLinkActive="active"
-          title="{{'Dashboard'|translate}}">
+          matTooltip="{{'Dashboard'|translate}}">
           <i class="fa fa-lg fa-fw fa-tachometer"></i>
         </li>
-        <li class="item" (click)="clickedItem()" routerLink="/users" routerLinkActive="active"
-          title="{{'Users'|translate}}">
-          <i class="fa fa-lg fa-fw fa-user"></i>
+
+        <li class="item" (click)="contrService.toggleManagement()"
+          [ngClass]="{'opened': contrService.managementExpanded}" *ngIf="us.isReseller"
+          title="{{'UsersAndAccounts'|translate}}">
+          <i class="fa fa-lg fa-fw fa-users-cog"></i>
+          <span class="fa fa-angle-right" *ngIf="!contrService.managementExpanded"></span>
+          <span class="fa fa-angle-down" *ngIf="contrService.managementExpanded"></span>
         </li>
-        <li class="item" (click)="clickedItem()" routerLink="/accounts" routerLinkActive="active"
-          title="{{'Accounts'|translate}}">
-          <i class="fa fa-lg fa-fw fa-group"></i>
-        </li>
+        <ul class="reseller-developers" [ngClass]="{'expanded': contrService.managementExpanded}" *ngIf="us.isReseller">
+          <li class="item" (click)="clickedItem()" routerLink="/users" routerLinkActive="active"
+            matTooltip="{{'Users'|translate}}">
+            <i class="fa fa-lg fa-fw fa-user"></i>
+          </li>
+          <li class="item" (click)="clickedItem()" routerLink="/accounts" routerLinkActive="active"
+            matTooltip="{{'Accounts'|translate}}">
+            <i class="fa fa-lg fa-fw fa-group"></i>
+          </li>
+          <li class="item" (click)="clickedItem()" routerLink="/organizations" routerLinkActive="active"
+            matTooltip="{{'BUSSINESES'|translate}}">
+            <i class="fa fa-lg fa-fw fa-building"></i>
+          </li>
+          <li class="item" (click)="clickedItem()" routerLink="/sellers" routerLinkActive="active"
+            matTooltip="{{'EXCHANGERS'|translate}}">
+            <i class="fa fa-lg fa-fw fa-money"></i>
+          </li>
+        </ul>
         <li class="item" (click)="clickedItem()" routerLink="/transactions" routerLinkActive="active"
-          title="{{'Transactions'|translate}}">
-          <i class="fa fa-lg fa-fw fa-money"></i>
+          matTooltip="{{'Transactions'|translate}}">
+          <i class="fa fa-lg fa-fw fa-exchange"></i>
         </li>
-        <li class="item" (click)="clickedItem()" routerLink="/bussiness" routerLinkActive="active"
-          title="{{'BUSSINESES'|translate}}">
-          <i class="fa fa-lg fa-fw fa-building"></i>
-        </li>
-        <li class="item" (click)="clickedItem()" routerLink="/sellers" routerLinkActive="active"
-          title="{{'EXCHANGERS'|translate}}">
-          <i class="fa fa-lg fa-fw fa-money"></i>
+        
+        <li class="item" (click)="clickedItem()" routerLink="/b2b/settings" routerLinkActive="active"
+          matTooltip="{{'REC_ENTITIES'|translate}}">
+          <i class="fa fa-lg fa-fw fa-cog"></i>
         </li>
         <li class="item separate"></li>
         <li class="item" (click)="clickedItem()" routerLink="/change_delegate" routerLinkActive="active"
-          title="{{'CHANGE_DELEGATE'|translate}}">
-          <i class="fa fa-lg fa-fw fa-exchange"></i>
+          matTooltip="{{'CHANGE_DELEGATE'|translate}}">
+          <i class="fa fa-lg fa-fw fa-calendar-alt"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/treasure_account" routerLinkActive="active"
+          matTooltip="{{'CREATE_RECS'|translate}}">
+          <i class="fa fa-lg fa-cash-register"></i>
+        </li>
+        <li class="item" (click)="clickedItem()" routerLink="/rec/mailing" routerLinkActive="active"
+          matTooltip="{{'REC_MAILING'|translate}}">
+          <i class="fa fa-lg fa-mail-bulk"></i>
         </li>
       </ul>
     </div>

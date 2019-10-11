@@ -49,8 +49,9 @@
           </p>
         </button>
 
-        <button type="button" [disabled]="selectedAccountsCount <= 0" style="margin-right: 10px; padding-right: 10px"
-          color="primary" mat-button name="button" (click)="openEditAccounts()">
+        <button type="button" [disabled]="getSelected().length <= 0"
+          style="margin-right: 10px; padding-right: 10px" color="primary" mat-button name="button"
+          (click)="openEditAccounts()">
           <p class="text-small">
             <i class="fa fa-edit"></i>
             {{'EDIT_ACCOUNTS'|translate}}
@@ -60,7 +61,8 @@
     </tl-subheader>
 
     <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
-      style="border-bottom: 1px solid #ddd; width: 100%" [validationName]="validationErrorName"></validation-errors>
+      style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
+    </validation-errors>
 
     <!-- Table -->
     <div class="fill-size"
@@ -97,7 +99,7 @@
             <td>{{data.id}}</td>
             <td>{{data.account.id}} <i>({{data.account.name}})</i></td>
             <td>{{data.exchanger.id}}</td>
-            <td>{{data.amount}}</td>
+            <td><code>{{data.amount/100}} €</code></td>
             <td>
               <b *ngIf="data.pan">{{data.pan}}</b>
               <b *ngIf="data.expiry_date">{{data.expiry_date}}</b>
@@ -225,13 +227,13 @@
     <!-- Footer -->
     <div class="fill-size" style="padding: 10px 15px; border-top: 1px solid #ddd">
       <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
-        [disabled]="!saved && !notSavedItems.length" mat-button name="button" (click)="saveEntries()">
+        [disabled]="saved && !notSavedItems.length" mat-button name="button" (click)="saveEntries()">
         <p class="text-small">
           {{'SAVE'|translate}}
         </p>
       </button>
-      <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-raised-button name="button"
-        (click)="activateChange()">
+      <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-raised-button
+        name="button" (click)="activateChange()">
         <p class="text-small">
           {{'Activate'|translate}}
         </p>

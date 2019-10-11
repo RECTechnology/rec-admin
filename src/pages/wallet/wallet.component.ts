@@ -4,8 +4,7 @@ import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Sort } from '@angular/material';
 import { UserService } from '../../services/user.service';
-import { LoginService } from '../../services/auth.service';
-import { CurrenciesService } from '../../services/currencies/currencies.service';
+import { LoginService } from '../../services/auth/auth.service';
 import { WalletService } from '../../services/wallet/wallet.service';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UtilsService } from '../../services/utils/utils.service';
@@ -15,14 +14,13 @@ import { TxDetails } from './dialogs/tx_details/tx_details.dia';
 import { TranslateService } from '@ngx-translate/core';
 import { getDateDMY } from '../../shared/utils.fns';
 import { CompanyService } from '../../services/company/company.service';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
 import { PageBase, OnLogout, OnLogin } from '../../bases/page-base';
-import { Ticker } from '../../shared/entities/ticker/ticker';
 import { ExportTxsDia } from './dialogs/export-txs/export-txs.dia';
 import { CashOutDia } from './dialogs/cash-out/cash-out.dia';
 import { TxFilter } from '../../components/filter/filter';
 import { CashOutTesoroDia } from './dialogs/cash-out-tesoro/cash-out-tesoro.dia';
 import Transaction from '../../shared/entities/transaction/transaction.ent';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'wallet',
@@ -69,14 +67,13 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     public controles: ControlesService,
     public us: UserService,
     public txService: TransactionService,
-    public currenciesService: CurrenciesService,
     public dialog: MatDialog,
     public ws: WalletService,
     public utils: UtilsService,
     public ls: LoginService,
     public translate: TranslateService,
     public companyService: CompanyService,
-    public snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) {
     super();
     this.filter = new TxFilter(this.router);
@@ -111,12 +108,10 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
 
   // Custom hooks
   public onLogout() {
-    this.ws.userFavs = [];
     this.ngOnDestroy();
   }
 
   public onLogin() {
-    this.ws.userFavs = JSON.parse(localStorage.getItem('user-favs') || '[]');
     this.getTransactions();
   }
 
@@ -147,7 +142,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     // this.getCurrencies();
     this.setRefresh();
     this.getMethods();
-    this.getTickers();
     this.getTransactions();
   }
 
@@ -174,7 +168,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
           transaction: resp,
         });
       }, (error) => {
-        this.snackbar.open('Error finding transaction: ' + error, 'ok');
+        this.alerts.showSnackbar('Error finding transaction: ' + error, 'ok');
       });
 
   }
@@ -239,33 +233,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     return `../../resources/currencies/${curr}-small.png`;
   }
 
-  /**
-   * @param {String} currency - The currency to set as default
-   */
-  public changeCurrency(currency: string): void {
-    this.reloadingCurrency = true;
-    this.currenciesService.updateCurrency(currency)
-      .subscribe((resp) => {
-        localStorage.removeItem('wallet_balance');
-        this.us.userData.group_data = resp.data;
-        this.default_currency = this.us.getDefaultCurrency();
-        this.ws.doGetWallets();
-        this.reloadingCurrency = false;
-      });
-  }
-
-  // Gets tickers for default currency
-  public getTickers(): void {
-    this.currenciesService.getTickers(this.us.getDefaultCurrency())
-      .subscribe((resp) => {
-        const tickers = resp.data;
-        for (const key of tickers) {
-          const [currIn, currOut] = key.split('x');
-          this.currenciesService.tickers[key] = new Ticker(key, tickers[key], currIn, currOut, 1);
-        }
-      }, (error) => { return; });
-  }
-
   // Gets methods and filters them by 'in' or 'out', also sets methods_in/out filters
   public getMethods(): void {
     this.filter.filterOptions.methods_in = ['rec', 'eur'];
@@ -324,7 +291,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     }
     dialogRef.afterClosed().subscribe((resp) => {
       dialogRef = null;
-      this.ws.doGetWallets();
       this.getTransactions();
     });
 

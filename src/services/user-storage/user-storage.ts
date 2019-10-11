@@ -3,10 +3,9 @@ import * as AES from 'crypto-js/aes';
 import * as Utf8 from 'crypto-js/enc-utf8';
 
 export class UserStorage {
-  public static defaultStorage: any = {
-
-  };
+  public static defaultStorage: any = {};
   public static hasLoadedYet = false;
+
   public static save(name, data, key) {
     try {
       const string = JSON.stringify(data);
@@ -22,9 +21,7 @@ export class UserStorage {
     if (!UserStorage.hasLoadedYet) {
       UserStorage.hasLoadedYet = true;
       const string = localStorage.getItem('___USR___' + name);
-      if (!string) {
-        return UserStorage.defaultStorage;
-      } else {
+      if (string) {
         const deciphered = AES.decrypt(string.toString(), key);
         const decipheredStorage = JSON.parse(deciphered.toString(Utf8));
         decipheredStorage.hasStorage = Object.keys(decipheredStorage).length > 0;

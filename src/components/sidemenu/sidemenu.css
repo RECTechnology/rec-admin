@@ -111,7 +111,7 @@
 }
 
 .reseller-developers.expanded {
-  height: 68px;
+  height: auto;
 }
 
 /* .reseller-developers .item.active, .dropdown-developers .item.active, .menu-list .item.active {
@@ -160,8 +160,8 @@
 .reseller-developers .item,
 .dropdown-developers .item {
   /*background: #2C3B40;*/
-  background: rgba(0, 0, 0, 0.1);
-  padding-left: 20px;
+  /* background: rgba(0, 0, 0, 0.1); */
+  padding-left: 40px;
   transition: all 0.3s ease-in-out;
   position: relative;
 }

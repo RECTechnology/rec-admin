@@ -28,7 +28,7 @@
           (selectionChange)="selectionChanged()">
           <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="exchangerQuery"
             (ngModelChange)="onInput()" placeholder="Search exchangers">
-          <mat-option [value]="ex" *ngFor="let ex of filtered">
+          <mat-option [value]="ex.id" *ngFor="let ex of filtered">
             {{ex.name}} (<code>{{ex.id}}</code>)
           </mat-option>
           <mat-option *ngIf="filtered.length <= 0">
@@ -70,7 +70,8 @@
 
   <div class="col-lg-12" style="margin: 0!important; height: 70px;border-top: 1px solid #ddd">
     <div class="group-row-left padd-x20" style="justify-content: flex-end">
-      <button type="button" mat-raised-button color="primary" name="button" (click)="confirm()">
+      <p class="col-error small-text" *ngIf="error" style="margin-right: 10px!important">{{error}}</p>
+      <button type="button" style="margin-right: 10px;" mat-raised-button color="primary" name="button" (click)="confirm()">
         <p class="small-text-2">{{'Confirm'|translate}}</p>
       </button>
       <button type="button" mat-raised-button color="primary" name="button" (click)="close()">

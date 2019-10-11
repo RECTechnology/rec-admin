@@ -8,6 +8,7 @@ interface ValidationError {
 
 @Component({
     selector: 'validation-errors',
+    styles: [`:host { display: block; }`],
     templateUrl: './validation-errors.html',
 })
 export class ValidationErrorsComponent implements OnInit {
@@ -17,7 +18,6 @@ export class ValidationErrorsComponent implements OnInit {
 
     public ngOnInit() {
         this.hidden = this.validationErrors.length <= 0;
-        console.log(this.validationName);
     }
 
     public hideErrors() {

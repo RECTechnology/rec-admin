@@ -17,7 +17,9 @@ import BaseDialog from '../../../bases/dialog-base';
 export class BussinessDetailsDia extends BaseDialog implements OnInit {
   public bussiness: any = null;
   public address = '';
+  public schedule: any[] = [];
   public Brand: any = environment.Brand;
+
   constructor(
     public dialogRef: MatDialogRef<BussinessDetailsDia>,
     public route: ActivatedRoute,
@@ -34,6 +36,8 @@ export class BussinessDetailsDia extends BaseDialog implements OnInit {
       this.close();
     }
     this.address = this.utils.constructAddressString(this.bussiness);
+    this.schedule = this.utils.parseSchedule(this.bussiness.schedule);
+    console.log('Schedule', this.schedule);
   }
 
   public setUp() {

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../services/user.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import BaseDialog from '../../../bases/dialog-base';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'add-user',
@@ -29,8 +29,8 @@ export class AddUser extends BaseDialog {
 
   constructor(
     public dialogRef: MatDialogRef<AddUser>,
-    public snackBar: MySnackBarSevice,
     private us: UserService,
+    public alerts: AlertsService,
   ) {
     super();
   }
@@ -43,7 +43,7 @@ export class AddUser extends BaseDialog {
           (resp) => {
             this.loading = false;
             this.close();
-            this.snackBar.open('Added user correctly', 'ok', {
+            this.alerts.showSnackbar('Added user correctly', 'ok', {
               duration: 2000,
             });
           },
@@ -61,7 +61,7 @@ export class AddUser extends BaseDialog {
           (resp) => {
             this.loading = false;
             this.close();
-            this.snackBar.open('Created user correctly', 'ok', {
+            this.alerts.showSnackbar('Created user correctly', 'ok', {
               duration: 2000,
             });
           },

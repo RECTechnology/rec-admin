@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, Sort } from '@angular/material';
-import { CurrenciesService } from '../../../../services/currencies/currencies.service';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import BaseDialog from '../../../../bases/dialog-base';
 import { CompanyService } from '../../../../services/company/company.service';
 import { UserService } from '../../../../services/user.service';
 import { AdminService } from '../../../../services/admin/admin.service';
-import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import { UtilsService } from '../../../../services/utils/utils.service';
+import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'activate-resume',
@@ -19,13 +19,13 @@ export class ActivateResume extends BaseDialog {
   public validationErrorName = '';
 
   constructor(
-    public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<ActivateResume>,
     public company: CompanyService,
     public us: UserService,
     public adminService: AdminService,
-    public snackbar: MySnackBarSevice,
     public utils: UtilsService,
+    public changeCrud: DelegatedChangesCrud,
+    public alerts: AlertsService,
   ) {
     super();
   }
@@ -36,17 +36,17 @@ export class ActivateResume extends BaseDialog {
 
   public proceed() {
     this.loading = true;
-    this.adminService.updateChangeDelegate(this.change.id, { status: 'scheduled' })
+    this.changeCrud.update(this.change.id, { status: 'scheduled' })
       .subscribe((resp) => {
-        this.snackbar.open('Launched delegated change', 'ok');
+        this.alerts.showSnackbar('Launched delegated change', 'ok');
         this.loading = false;
         this.dialogRef.close(true);
       }, (error) => {
         if (error.message.includes('Validation error')) {
-          this.validationErrors = error.data;
+          this.validationErrors = error.errors;
           this.validationErrorName = 'Validation Error';
         } else {
-          this.snackbar.open(error.message);
+          this.alerts.showSnackbar(error.message);
         }
         this.loading = false;
       });

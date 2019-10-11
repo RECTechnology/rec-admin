@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { CompanyService } from '../../../services/company/company.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { AdminService } from '../../../services/admin/admin.service';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   providers: [
@@ -21,10 +21,10 @@ export class VoteWithdrawal {
 
   constructor(
     public dialogRef: MatDialogRef<VoteWithdrawal>,
-    public snackBar: MySnackBarSevice,
     private as: AdminService,
     public utils: UtilsService,
     public dialog: MatDialog,
+    public alerts: AlertsService,
   ) { }
 
   public ngOnInit() {
@@ -38,10 +38,10 @@ export class VoteWithdrawal {
   public vote() {
     this.as.validateWithdrawalAttempt(this.validation.id, { accepted: this.decision })
       .subscribe((resp) => {
-        this.snackBar.open('Voted correctly');
+        this.alerts.showSnackbar('Voted correctly');
         this.dialogRef.close({ vote: this.decision });
       }, (err) => {
-        this.snackBar.open(err.message);
+        this.alerts.showSnackbar(err.message);
       });
   }
 }

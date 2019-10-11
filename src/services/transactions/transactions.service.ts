@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
-import { ErrorManager } from '../error-manager/error-manager';
 import Transaction from '../../shared/entities/transaction/transaction.ent';
 import { WalletService } from '../wallet/wallet.service';
 import { HttpClient } from '@angular/common/http';
@@ -72,9 +71,8 @@ export class TransactionService extends BaseService {
   constructor(
     http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
     private ws: WalletService,
-  ) { super(http, us, errMan); }
+  ) { super(http, us); }
 
   public getLast50(filterData): Observable<any> {
     return this.get(null, filterData, `${API_URL}/system/v1/last50`).pipe(

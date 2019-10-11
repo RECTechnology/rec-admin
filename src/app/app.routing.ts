@@ -6,10 +6,13 @@ import { UsersPage } from 'src/pages/users/users.component';
 import { AccountsPage } from 'src/pages/accounts/accounts.component';
 import { DashboardComponent } from 'src/pages/dashboard/dashboard.component';
 import { WalletComponent } from 'src/pages/wallet/wallet.component';
-import { BussinessComponent } from 'src/pages/bussiness/bussiness.component';
+import { OrganizationsComponent } from 'src/pages/organizations/organizations.component';
 import { MapComponent } from 'src/pages/map/map.component';
-import { SellersComponent } from 'src/pages/sellers/sellers.component';
+import { ExchangersComponent } from 'src/pages/exchangers/exchangers.component';
 import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
+import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
+import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
+import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
 
 const ROUTES: Routes = [
 
@@ -22,10 +25,15 @@ const ROUTES: Routes = [
   { path: 'accounts', component: AccountsPage, canActivate: [IsLoggedInGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [IsLoggedInGuard] },
   { path: 'transactions', component: WalletComponent, canActivate: [IsLoggedInGuard] },
-  { path: 'bussiness', component: BussinessComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'organizations', component: OrganizationsComponent, canActivate: [IsLoggedInGuard] },
   { path: 'map', component: MapComponent, canActivate: [IsLoggedInGuard] },
-  { path: 'sellers', component: SellersComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'exchangers', component: ExchangersComponent, canActivate: [IsLoggedInGuard] },
   { path: 'treasure_account', component: TreasureAccount, canActivate: [IsLoggedInGuard] },
+
+  { path: 'rec/mailing', component: B2BSendComponent, canActivate: [IsLoggedInGuard] },
+  { path: 'rec/mailing/:id_or_new', component: SendMail, canActivate: [IsLoggedInGuard] },
+  { path: 'b2b/settings', component: B2BSettingsComponent, canActivate: [IsLoggedInGuard] },
+
 ];
 
 @NgModule({

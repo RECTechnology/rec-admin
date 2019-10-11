@@ -1,0 +1,38 @@
+<div style="height: 100%">
+  <div class="row" style="margin: 0; padding: 20px;">
+    <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
+      <div class="header bordered-bottom" style="padding: 10px 15px">
+        <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
+          {{'B2B_MODULE'|translate}}</p>
+
+        <div>
+          <button style="margin-right: 10px" type="button" color="primary" mat-raised-button name="button" (click)="sendB2b()">
+            <p class="text-small">
+              {{'Download Pdf'|translate}}
+            </p>
+          </button>
+
+          <button [matMenuTriggerFor]="langMenu" type="button" mat-button class="mat-button-menu"
+            style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
+            <span *ngIf="lang.icon == 'cat'" class="flag_cataluña"></span>
+            <span *ngIf="lang.icon != 'cat'" class="flag-icon flag-icon-{{lang.icon}}" style="margin-right: 6px"></span>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <mat-menu #langMenu="matMenu" y-position="below" overlapTrigger="false">
+            <button (click)="selectLang(lang_)" mat-menu-item *ngFor="let lang_ of langs" style="padding: 5px auto"
+              [ngClass]="{'bg-gray-light': lang_.abrev == lang.abrev}">
+              <span *ngIf="lang_.icon == 'cat'" class="flag_cataluña"></span>
+              <span *ngIf="lang_.icon != 'cat'" class="flag-icon flag-icon-{{lang_.icon}}"
+                style="margin-right: 6px"></span>
+              <span style="color: #666; font-size: 12px">{{lang_.abrev|translate}}</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+
+      <div class="row" style="padding: 20px">
+        <div class="padd-x20" style="width: 100%" [innerHtml]="pdfHtml | keepHtml"></div>
+      </div>
+    </div>
+  </div>
+</div>

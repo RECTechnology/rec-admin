@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
-import { ErrorManager } from '../error-manager/error-manager';
-import { LoginService } from '../auth.service';
+import { LoginService } from '../auth/auth.service';
 import { API_URL } from '../../data/consts';
 import { NotificationService } from '../notifications/notifications.service';
 import { SearchAccountsParams, ListAccountsParams } from '../../interfaces/search';
@@ -16,12 +15,11 @@ export class AdminService extends BaseService {
     constructor(
         http: HttpClient,
         public us: UserService,
-        public errMan: ErrorManager,
         public ls: LoginService,
         public ns: NotificationService,
         public cs: CompanyService,
     ) {
-        super(http, us, errMan);
+        super(http, us);
     }
 
     public checkWithdrawals() {

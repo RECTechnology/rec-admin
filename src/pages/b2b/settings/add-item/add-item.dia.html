@@ -1,0 +1,132 @@
+<div class="modal-header bg-blue">
+    <span>{{(!isEdit ? 'ADD': 'EDIT') | translate}} {{itemType|translate}}</span>
+
+    <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+        <span class="center h v">
+            <i class="fa fa-times col-white"></i>
+        </span>
+    </button>
+</div>
+
+<div class="group-col-left modal-body" style="width: auto; padding: 0!important">
+    <div class="padd-x20" style="width: 100%">
+        <p style="padding-bottom: 15px">{{(!isEdit ? 'ADD_ITEM_DESC': 'EDIT_ITEM_DESC')|translate:({ type: itemType })}}
+        </p>
+
+        <div class="row" style="width: 100%">
+            <div class="col-lg-4" [class.col-lg-12]="!isProduct">
+                <div class="group-col-left" style="width: 100%">
+                    <span class="small-text-2">{{'Catalan'|translate}}</span>
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.cat"
+                        placeholder="{{'Catalan'|translate}}" [disabled]="loading" (blur)="check()">
+                </div>
+                <div class="group-col-left" style="width: 100%">
+                    <span class="small-text-2">{{'Spanish'|translate}}</span>
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.esp"
+                        placeholder="{{'Spanish'|translate}}" [disabled]="loading" (blur)="check()">
+                </div>
+                <div class="group-col-left" style="width: 100%">
+                    <span class="small-text-2">{{'English'|translate}}</span>
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.eng"
+                        placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()">
+                </div>
+            </div>
+            <div class="col-lg-8" *ngIf="isProduct && isEdit">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="small-text-2">{{'ACTIVITIES_CONSUMED'|translate}}</p>
+                        <div class="activity-box-list">
+                            <ul *ngIf="item.default_consuming_by && item.default_consuming_by.length"
+                                style="list-style: none; margin: 0; padding: 0">
+                                <li class="activity-list-item small-text"
+                                    *ngFor="let cons of item.default_consuming_by; let i = index">
+                                    {{cons | tolang}}
+                                    <span class="icon fa fa-trash col-error" (click)="deleteConsumed(i)"></span>
+                                </li>
+                            </ul>
+                            <p class="small-text col-gray padd-x10"
+                                *ngIf="item.default_consuming_by && !item.default_consuming_by.length">
+                                {{'NO_ITEMS'|translate}}
+                            </p>
+                        </div>
+
+                        <!--  -->
+                        <button [matMenuTriggerFor]="actMenu" [disabled]="loading" type="button" mat-button
+                            class="mat-button-menu" style="margin-top: 5px; width: 100%">
+                            <span>{{'ACTIVITY'|translate}}</span>
+                            <i class="fa fa-caret-down" style="margin-left: 8px"></i>
+                        </button>
+                        <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
+                            <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+                                 (click)="$event.stopPropagation()" (blur)="actQuery = ''"
+                                placeholder="{{'Search Activities'|translate}}">
+                            <ng-template ngFor let-act [ngForOf]="activities">
+                                <button
+                                    *ngIf="item.default_consuming_by && !item.default_consuming_by.includes(act) && nameMatches(act.name)"
+                                    mat-menu-item (click)="addConsumed(act)" style="padding: 5px auto">
+                                    <span
+                                        style="color: #666; font-size: 12px">{{act | tolang}}</span>
+                                </button>
+                            </ng-template>
+                        </mat-menu>
+                    </div>
+                    <div class="col-lg-6">
+                        <p class="small-text-2">{{'ACTIVITIES_PRODUCED'|translate}}</p>
+                        <div class="activity-box-list">
+                            <ul *ngIf="item.default_producing_by && item.default_producing_by.length"
+                                style="list-style: none; margin: 0; padding: 0">
+                                <li class="activity-list-item small-text"
+                                    *ngFor="let prod of item.default_producing_by; let i = index">
+                                    {{prod | tolang}}
+                                    <span class="icon fa fa-trash small-text col-error"
+                                        (click)="deleteProduced(i)"></span>
+                                </li>
+                            </ul>
+                            <p class="small-text col-gray padd-x10"
+                                *ngIf="item.default_producing_by && !item.default_producing_by.length">
+                                {{'NO_ITEMS'|translate}}
+                            </p>
+                        </div>
+
+                        <!--  -->
+                        <button [matMenuTriggerFor]="actMenu2" [disabled]="loading" type="button" mat-button
+                            class="mat-button-menu" style="margin-top: 5px; width: 100%">
+                            <span>{{'ACTIVITY'|translate}}</span>
+                            <i class="fa fa-caret-down" style="margin-left: 8px"></i>
+                        </button>
+                        <mat-menu #actMenu2="matMenu" y-position="below" overlapTrigger="false">
+                            <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+                                (click)="$event.stopPropagation()" (blur)="actQuery = ''"
+                                placeholder="{{'Search Activities'|translate}}">
+                            <ng-template ngFor let-act [ngForOf]="activities">
+                                <button
+                                    *ngIf="item.default_producing_by && !item.default_producing_by.includes(act) && nameMatches(act.name)"
+                                    mat-menu-item (click)="addProduced(act)" style="padding: 5px auto">
+                                    <span
+                                        style="color: #666; font-size: 12px">{{act | tolang}}</span>
+                                </button>
+                            </ng-template>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8" *ngIf="isProduct && !isEdit">
+                <div class="alert alert-primary">
+                    <p class="small-text-2 text-primary">
+                        <i class="fa fa-info-circle" style="margin-right: 8px"></i>
+                        {{'ACTIVITY_AFTER_CREATE'|translate}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
+                <btn-loader (click)="add()" [disabled]="disabled || loading" [loading]="loading"
+                    text="{{'SAVE'|translate}}">
+                </btn-loader>
+                <p *ngIf="error" class="col-error small-text marg-l-10">{{error}}</p>
+            </div>
+        </div>
+    </div>
+</div>

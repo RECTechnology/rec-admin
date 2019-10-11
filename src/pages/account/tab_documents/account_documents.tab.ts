@@ -1,15 +1,13 @@
-import { Component, AfterContentInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { ControlesService } from '../../../services/controles/controles.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { environment } from '../../../environments/environment';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { EditAccountData } from '../../dialogs/edit-account/edit-account.dia';
-import { MatDialog } from '@angular/material';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
 import { AdminService } from '../../../services/admin/admin.service';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'documents-tab',
@@ -126,8 +124,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
     public companyService: CompanyService,
     public adminService: AdminService,
     public utils: UtilsService,
-    public snackbar: MySnackBarSevice,
-    public dialog: MatDialog,
+    public alerts: AlertsService,
   ) { }
 
   public ngOnInit() {
@@ -139,11 +136,9 @@ export class AccountDocuments implements OnDestroy, OnInit {
   }
 
   public setUp() {
-    console.log('setup');
     this.loading = true;
     this.companyService.getAccount(this.account_id)
       .subscribe((resp) => {
-        console.log('Account: ', resp);
         this.companyService.selectedCompany = resp;
         this.controles.showAccountDetails = true;
         this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
@@ -156,7 +151,6 @@ export class AccountDocuments implements OnDestroy, OnInit {
         this.getDocuments();
       }, (error) => {
         this.loading = false;
-        console.log(error);
       });
 
   }
@@ -203,9 +197,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
             d.preview = '';
           }
         }
-        console.log('resp', resp);
       }, (error) => {
-        console.log('error', error);
       });
   }
 
@@ -216,11 +208,9 @@ export class AccountDocuments implements OnDestroy, OnInit {
     if (type === 'autonomo') { autonomo = 1; }
     this.adminService.checkLemonKyc(autonomo, company, 0, this.owner)
       .subscribe((resp) => {
-        this.snackbar.open('Documents validated', 'OK');
-        console.log(resp);
+        this.alerts.showSnackbar('Documents validated', 'OK');
       }, (error) => {
-        this.snackbar.open('Error: ' + error.message, 'OK');
-        console.log(error);
+        this.alerts.showSnackbar('Error: ' + error.message, 'OK');
       });
   }
 
@@ -234,14 +224,14 @@ export class AccountDocuments implements OnDestroy, OnInit {
       .subscribe((resp) => {
         this.adminService.uploadLemonFiles(autonomo, company, 1, this.owner)
           .subscribe(() => {
-            this.snackbar.open('Account opened correctly', 'OK');
+            this.alerts.showSnackbar('Account opened correctly', 'OK');
             this.setUp();
           }, (error) => {
-            this.snackbar.open('Error: ' + error.message, 'OK');
+            this.alerts.showSnackbar('Error: ' + error.message, 'OK');
           });
 
       }, (error) => {
-        this.snackbar.open('Error: ' + error.message, 'OK');
+        this.alerts.showSnackbar('Error: ' + error.message, 'OK');
       });
   }
 
@@ -255,10 +245,10 @@ export class AccountDocuments implements OnDestroy, OnInit {
         if (resp) {
           this.saveDoc(resp, doc.tag)
             .subscribe(() => {
-              this.snackbar.open('Uploaded document correctly!', 'OK');
+              this.alerts.showSnackbar('Uploaded document correctly!', 'OK');
               this.getDocuments();
             }, (error) => {
-              this.snackbar.open('There has been an error: ' + error.message, 'OK');
+              this.alerts.showSnackbar('There has been an error: ' + error.message, 'OK');
             });
         }
       });
@@ -267,25 +257,22 @@ export class AccountDocuments implements OnDestroy, OnInit {
   public removeDoc(doc, i) {
     return this.adminService.removeDoc(doc.tag, this.owner)
       .subscribe((resp) => {
-        this.snackbar.open('Removed document', 'OK');
-        console.log(resp);
+        this.alerts.showSnackbar('Removed document', 'OK');
         this.setUp();
       }, (error) => {
-        this.snackbar.open('Error: ' + error.message, 'OK');
-        console.log(error);
+        this.alerts.showSnackbar('Error: ' + error.message, 'OK');
       });
   }
 
   public ngOnDestroy() {
-    console.log('On destroy');
     this.companyService.selectedCompany = null;
     this.controles.showAccountDetails = false;
   }
 
   private uploadFile(url) {
-    const dialogRef = this.dialog.open(FileUpload);
-    dialogRef.componentInstance.selectedImage = url;
-    dialogRef.componentInstance.hasSelectedImage = !!url;
-    return dialogRef.afterClosed();
+    return this.alerts.openModal(FileUpload, {
+      hasSelectedImage: !!url,
+      selectedImage: url,
+    });
   }
 }

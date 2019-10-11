@@ -8,8 +8,10 @@
 
 // Define the default theme (same as the example above).
 $candy-app-primary: mat-palette($mat-blue);
+$candy-app-error: mat-palette($mat-red);
+$candy-app-success: mat-palette($mat-green);
 $candy-app-accent: mat-palette($mat-amber, A200, A100, A400);
-$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent);
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-error);
 
 // Include the default theme styles.
 @include angular-material-theme($candy-app-theme);
@@ -381,4 +383,16 @@ table tr:nth-child(odd) {
 .mat-radio-label {
   padding-bottom: 0;
   margin-bottom: 0;
+}
+
+translatable-list .mat-sort-header-container {
+  justify-content: flex-start !important;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.bold {
+  font-weight: bold;
 }

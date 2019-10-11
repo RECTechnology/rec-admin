@@ -1,8 +1,8 @@
-import { Component, AfterContentInit, NgZone } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { Component, NgZone } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { environment } from '../../../environments/environment';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'file-upload',
@@ -24,8 +24,8 @@ export class FileUpload {
 
   constructor(
     public dialogRef: MatDialogRef<FileUpload>,
-    public snackBar: MySnackBarSevice,
     public us: UserService,
+    public alerts: AlertsService,
   ) {
     this.us.uploadprogress$.subscribe(
       (data) => {
@@ -59,12 +59,10 @@ export class FileUpload {
     this.us.uploadFileWithProgress(this.file)
       .subscribe(
         (resp) => {
-          console.log('asdasd', resp);
           this.close(resp.data.src);
         },
         (error) => {
-          console.log('ererre', error);
-          this.snackBar.open('Error uploading: ' + error.message, 'ok');
+          this.alerts.showSnackbar('Error uploading: ' + error.message, 'ok');
           this.error = error.message;
         },
       );

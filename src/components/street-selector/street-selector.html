@@ -1,4 +1,4 @@
-<mat-select *ngIf="!error" [(ngModel)]="value" (ngModelChange)="valueChange.emit(value)"
+<mat-select *ngIf="!error" [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="valueChange.emit(value)" class="mat-button-menu"
     style="width: 100%; min-width: 90px">
     <mat-option *ngFor="let type of streetTypes" [value]="type">
         <span class="text-transform: capitalize">{{type|translate}}</span>

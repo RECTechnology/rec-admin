@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { Observable } from 'rxjs';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
-import { ConfirmationMessage } from '../../../components/dialogs/confirmation-message/confirmation.dia';
 import { AdminService } from '../../../services/admin/admin.service';
 import { forkJoin } from 'rxjs';
+import { UsersCrud } from 'src/services/crud/users/users.crud';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   providers: [
@@ -25,17 +24,16 @@ export class EditUserData {
 
   constructor(
     public dialogRef: MatDialogRef<EditUserData>,
-    public snackBar: MySnackBarSevice,
     public us: UserService,
     public companyService: CompanyService,
     public adminService: AdminService,
     public utils: UtilsService,
     public dialog: MatDialog,
+    public usersCrud: UsersCrud,
+    public alerts: AlertsService,
   ) { }
 
   public ngOnInit() {
-    // this.userCopy = Object.assign({}, this.user);
-    // this.userCopy.kyc_validations = Object.assign({}, this.user.kyc_validations);
     this.getUser();
   }
 
@@ -44,10 +42,10 @@ export class EditUserData {
   }
 
   public getUser() {
-    this.adminService.getUserV3(this.user.id)
+    this.usersCrud.find(this.user.id)
       .subscribe((resp) => {
-        console.log('Got user', resp);
         this.user = resp.data;
+        this.user.kyc_validations.lastName = this.user.kyc_validations.last_name;
         this.userCopy = { ...this.user };
         this.userCopy.kyc_validations = { ...this.user.kyc_validations };
       });
@@ -55,7 +53,7 @@ export class EditUserData {
 
   public async update() {
     const id = this.user.id;
-    const kycId = this.user.kyc_validations.id;
+    const kycId = this.user.kyc_validations && this.user.kyc_validations.id;
     const data = this.userCopy;
 
     const changedProps: any = this.utils.deepDiff(data, this.user);
@@ -70,7 +68,7 @@ export class EditUserData {
 
     const promises = [];
     if (Object.keys(changedProps).length) {
-      promises.push(this.adminService.updateUser(id, changedProps));
+      promises.push(this.usersCrud.update(id, changedProps));
     }
 
     if (changedProps.prefix || changedProps.phone) {
@@ -78,41 +76,39 @@ export class EditUserData {
       if (resp) {
         await this.adminService.updateUserPhone(id, changedProps.prefix, changedProps.phone)
           .toPromise()
-          .then((update) => {
-            this.snackBar.open('Phone number changed correctly (needs to be validated)', 'ok');
+          .then(() => {
+            this.alerts.showSnackbar('Phone number changed correctly (needs to be validated)', 'ok');
           })
           .catch((err) => {
-            this.snackBar.open(err.message, 'ok');
+            this.alerts.showSnackbar(err.message, 'ok');
           });
       }
       delete changedProps.prefix;
       delete changedProps.phone;
     }
 
-    if (Object.keys(changedPropsKyc).length) {
+    if (kycId && Object.keys(changedPropsKyc).length) {
       promises.push(this.adminService.updateUserKyc(kycId, changedPropsKyc));
     }
 
     if (promises.length) {
       forkJoin(promises).subscribe((resp) => {
-        this.snackBar.open('Saved correctly', 'ok');
+        this.alerts.showSnackbar('Saved correctly', 'ok');
         this.close();
       }, (error) => {
-        this.snackBar.open(error.message, 'ok');
+        this.alerts.showSnackbar(error.message, 'ok');
         this.close();
       });
+    } else {
+      this.alerts.showSnackbar('Nothing to update', 'ok');
     }
   }
 
   public confirmChangePhone() {
-    const dialogRef = this.dialog.open(ConfirmationMessage);
-
-    dialogRef.componentInstance.status = 'error';
-    dialogRef.componentInstance.title = 'Change phone for user ' + this.user.name;
-    dialogRef.componentInstance.message = `CHANGE_PHONE_DESC`;
-    dialogRef.componentInstance.btnConfirmText = 'Change';
-
-    return dialogRef.afterClosed().toPromise();
+    return this.alerts.showConfirmation(
+      `CHANGE_PHONE_DESC`, 'Change phone for user ' + this.user.name,
+      'Change', 'error',
+    ).toPromise();
   }
 
   public selectProfileImage() {
@@ -143,9 +139,9 @@ export class EditUserData {
   }
 
   public openUpdateImage(selectedImage) {
-    const dialogRef = this.dialog.open(FileUpload);
-    dialogRef.componentInstance.selectedImage = selectedImage;
-    dialogRef.componentInstance.hasSelectedImage = !!selectedImage;
-    return dialogRef.afterClosed();
+    return this.alerts.openModal(FileUpload, {
+      hasSelectedImage: !!selectedImage,
+      selectedImage,
+    });
   }
 }

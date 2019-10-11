@@ -1,6 +1,6 @@
 <div style="height: 100%; padding: 20px">
   <mat-card style="padding: 20px">
-    <div *ngIf="!loading && companyService.selectedCompany && companyService.selectedCompany.id">
+    <div *ngIf="!loading && companyService.selectedCompany">
       <div class="group-col-left" style="width: 100%; padding: 20px">
         <div class="group-row-left center h v" style="position: relative;width: 100%">
           <img src="{{companyService.selectedCompany.company_image || Brand.account_default_image}}" alt=""
@@ -68,7 +68,8 @@
         <div class="group-col-left" style="padding-top: 15px">
           <b>{{'Available'|translate}}: </b>
           <div class="group-row-left">
-            <code style="margin-left: 10px" class="small-text-2">{{companyService.selectedCompany.available}} REC</code>
+            <code style="margin-left: 10px" 
+              class="small-text-2">{{companyService.selectedCompany.available}} REC</code>
             <code style="margin-left: 10px"
               class="small-text-2">{{companyService.selectedCompany.available_eur}} EUR</code>
           </div>
@@ -78,10 +79,10 @@
         <div class="group-col-left" style="padding-top: 15px">
           <b>{{'Actions'|translate}}: </b>
           <div style="margin-left: 10px">
-            <button mat-button color="primary" (click)="openEditAccount()">
+            <button mat-button color="primary" [disabled]="loading" (click)="openEditAccount()">
               {{'Edit'|translate}}
             </button>
-            <button mat-button color="primary" (click)="expelUser()">
+            <button mat-button color="primary" [disabled]="loading" (click)="expelUser()">
               <span class="col-error">{{'Delete'|translate}}</span>
             </button>
           </div>

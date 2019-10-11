@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../../services/user.service';
-import { LoginService } from '../../services/auth.service';
+import { LoginService } from '../../services/auth/auth.service';
 import { CompanyService } from '../../services/company/company.service';
 import BaseDialog from '../../bases/dialog-base';
 import { MatDialogRef } from '@angular/material';

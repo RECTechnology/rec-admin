@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { CurrenciesService } from '../../../../services/currencies/currencies.service';
+import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../../services/user.service';
 import BaseDialog from '../../../../bases/dialog-base';
 import { WalletService } from '../../../../services/wallet/wallet.service';
@@ -12,7 +11,6 @@ import { WalletService } from '../../../../services/wallet/wallet.service';
 export class ChangePhone extends BaseDialog implements OnInit {
   public user: any = {};
   constructor(
-    public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<ChangePhone>,
     public us: UserService,
     public ws: WalletService,

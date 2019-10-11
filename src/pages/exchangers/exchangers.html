@@ -1,0 +1,32 @@
+<header-nav></header-nav>
+<sidemenu></sidemenu>
+<div class="page exchangers" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+  <div class="row" style="margin: 0; padding: 20px;">
+    <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
+      <tl-header title="EXCHANGERS" [(query)]="query" (onSearch)="search()">
+        <button mat-icon-button style="margin-left: 8px" (click)="export()" matTooltip="{{'EXPORT_AS_CSV'|translate}}">
+          <span class="center h v">
+            <i class="fa fa-download small-text-2"></i>
+          </span>
+        </button>
+      </tl-header>
+      <tl-subheader>
+        <div style="padding: 8px 15px;">
+          <p class="small-text">
+            {{'EXCHANGERS_DESC'|translate}}
+          </p>
+          <div class="abs-center-right small-text" style="padding: 8px;">
+            {{'Showing'|translate}}: {{limit}} of {{total}}
+          </div>
+        </div>
+      </tl-subheader>
+
+      <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
+        [itemOptions]="itemOptions"
+        noItemsMessage="There are no exchangers yet, try another search or change the filters!" [limit]="limit"
+        [total]="total" (onChangePage)="changedPage($event)">
+      </tl-table>
+    </mat-card>
+  </div>
+  <page-footer></page-footer>
+</div>

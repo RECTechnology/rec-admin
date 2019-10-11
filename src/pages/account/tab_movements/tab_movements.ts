@@ -81,7 +81,6 @@ export class MovementsTab implements AfterContentInit {
       },
       (err) => {
         this.loading = false;
-        console.log(err);
       },
     );
     // Perform search
@@ -129,7 +128,6 @@ export class MovementsTab implements AfterContentInit {
     }).bind(ref.componentInstance);
 
     ref.afterClosed().subscribe((resp) => {
-      console.log('Closed exporter');
     });
   }
 

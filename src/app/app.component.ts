@@ -1,24 +1,21 @@
-import { Component, OnInit, OnDestroy, AfterContentInit, HostListener, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
-import { AppService } from 'src/services/app.service';
+import { AppService } from 'src/services/app/app.service';
 import { environment } from 'src/environments/environment';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { CompanyService } from 'src/services/company/company.service';
-import { LoginService, AppAuthService } from 'src/services/auth.service';
+import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { AdminService } from 'src/services/admin/admin.service';
-import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { IdleNotification } from 'src/components/dialogs/idle-notification/idle.dia';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material';
 import { interval } from 'rxjs';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
-  providers: [
-    AppService,
-  ],
+  providers: [AppService],
   selector: 'app-rec-admin',
   templateUrl: './app.component.html',
 })
@@ -43,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private aas: AppAuthService,
     private us: UserService,
     public as: AdminService,
-    public snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) {
     this.utils.isSandbox = this.isSandbox = environment.test;
 
@@ -96,11 +93,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this.setupLang();
 
         this.us.getProfile().subscribe((profile) => {
-          console.log('login', profile);
           this.us.userData = profile;
           if (!this.us.isSuperAdmin()) {
             this.us.logout();
-            this.snackbar.open('You don\'t have necesary permissions...', 'OK');
+            this.alerts.showSnackbar('You don\'t have necesary permissions...', 'OK');
             return;
           }
         }, (error) => { return; });
@@ -109,7 +105,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.companyService.listCategories()
           .subscribe((categories) => {
-            console.log('got categories', categories);
             this.companyService.categories = categories.data;
           });
       });
@@ -121,11 +116,9 @@ export class AppComponent implements OnInit, OnDestroy {
     const browserLang = this.translate.getBrowserLang();
     const localSavedLang = localStorage.getItem('lang');
     const currentLang = localSavedLang || browserLang || 'en';
-    this.us.lang =
-      this.utils.userLang = currentLang;
+    this.us.lang = this.utils.userLang = currentLang;
     localStorage.setItem('lang', currentLang);
 
-    console.log('Current Lang: ', currentLang);
     /* Sets up @ngx-translate/core */
     this.translate.setDefaultLang('en');
     this.translate.use(currentLang);

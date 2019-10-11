@@ -1,0 +1,9 @@
+<mat-select *ngIf="!error" [(ngModel)]="value" (ngModelChange)="valueChange.emit(value)" [disabled]="disabled" class="mat-button-menu"
+    style="width: 100%; min-width: 90px">
+    <mat-option *ngFor="let barrio of barrios" [value]="barrio.id">
+        {{barrio.name}}
+    </mat-option>
+</mat-select>
+<p *ngIf="error" class="small-text col-error">
+    {{error}}
+</p>

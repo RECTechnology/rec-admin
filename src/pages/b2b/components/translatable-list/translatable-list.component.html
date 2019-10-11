@@ -1,0 +1,89 @@
+<table mat-table matSort [dataSource]="dataSource" (matSortChange)="sortData($event)">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ID'|translate}} </th>
+        <td mat-cell *matCellDef="let element"> <code>{{element.id}}</code> </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="esp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="name-esp"> {{'ESP'|translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.esp || element.name}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="eng">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header="name-eng"> {{'ENG'|translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.eng || element.name}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="cat">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header="name-cat"> {{'CAT'|translate}} </th>
+        <td mat-cell *matCellDef="let element"> {{element.cat || element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <button [matMenuTriggerFor]="listMenu" type="button" mat-button>
+                <i class="fa fa-ellipsis-v"></i>
+            </button>
+            <mat-menu #listMenu="matMenu">
+                <button mat-menu-item *ngIf="element.pending" (click)="onAprove.emit(element)" matTooltip="Revise Item">
+                    <span class="center v"><i class="fa fa-check" style="margin-right: 8px"></i>
+                        {{'REVISE'|translate}}</span>
+                </button>
+                <button mat-menu-item (click)="onEdit.emit(element)" matTooltip="Edit Item">
+                    <span class="center v"><i class="fa fa-edit" style="margin-right: 8px"></i>
+                        {{'EDIT'|translate}}</span>
+                </button>
+                <hr>
+                <button mat-menu-item (click)="onDelete.emit(element)" matTooltip="Delete Item">
+                    <span class="center v col-error"><i class="fa fa-trash" style="margin-right: 8px"></i>
+                        {{'DELETE'|translate}}</span>
+                </button>
+            </mat-menu>
+        </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="activities-consumed">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ACTIVITIES_CONSUMED'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+            <ul>
+                <li *ngFor="let activity of element.default_consuming_by">
+                    {{activity | tolang}}
+                </li>
+            </ul>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="activities-produced">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'ACTIVITIES_PRODUCED'|translate}} </th>
+        <td mat-cell *matCellDef="let element">
+            <ul>
+                <li *ngFor="let activity of element.default_producing_by">
+                    {{activity | tolang}}
+                </li>
+            </ul>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="translatable-table-row"
+        [class.pending]="row.pending"></tr>
+</table>
+
+<div *ngIf="!data.length" style="padding: 8px 15px;">
+    <p>No items here!</p>
+</div>
+
+<mat-paginator [(pageSize)]="limit" [length]="total" (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 20, 100]"
+    showFirstLastButtons>
+</mat-paginator>
+
+<div *ngIf="loading" class="abs-center center h v bg-white-opaque" style="width: 100%;">
+    <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+    </mat-progress-spinner>
+</div>

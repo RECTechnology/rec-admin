@@ -6,11 +6,9 @@ export class ControlesService {
   public profileDropDownActive: boolean = false;
   public devDropdownExpanded: boolean = false;
   public chatVisible: boolean = false;
-  public resellerExpanded: boolean = false;
+  public managementExpanded: boolean = false;
   public errorReporterOpened: boolean = false;
-
   public showAccountDetails: boolean = false;
-
   public currencySelected = false;
   public selectedCurrency: any = {};
 
@@ -25,11 +23,11 @@ export class ControlesService {
     }
   }
 
-  public toggleReseller(state?: boolean): void {
+  public toggleManagement(state?: boolean): void {
     if (state != null && state !== undefined) {
-      this.resellerExpanded = state;
+      this.managementExpanded = state;
     } else {
-      this.resellerExpanded = !this.resellerExpanded;
+      this.managementExpanded = !this.managementExpanded;
     }
   }
 

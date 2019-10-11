@@ -30,6 +30,7 @@ export class StreetTypeSelector implements OnInit {
     ];
     public error: string;
     @Input() public value: any = 'calle';
+    @Input() public disabled: boolean = false;
     @Output() public valueChange = new EventEmitter<string>();
 
     public ngOnInit() {

@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+  td {
+    text-align: left;
+  }
+  th {
+    padding: 10px 10px !important;
+  }
+}
+
+.translatable-table-row {
+  &.pending {
+    background: rgba(rgb(255, 212, 40), .3)!important;
+  }
+}

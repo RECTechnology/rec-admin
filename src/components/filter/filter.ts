@@ -33,7 +33,6 @@ export class Filter {
       const isArray = filter instanceof Array;
 
       if (fl > 0 && isArray) {
-        console.log('Is array and more thant one', filter);
         filter.forEach((value) => {
           const keyStr = `query[${key}][]`;
           filters[keyStr] = value;
@@ -48,7 +47,6 @@ export class Filter {
   }
 
   public add(name, value) {
-    console.log('ADD: ', name, value);
     if (value === 'Spark/Opex') {
       this.filters[name].push('spark');
       this.addFilterQuery(name, 'spark');
@@ -136,7 +134,6 @@ export class TxFilter {
   * @param {Object} filter - the whole fitler object in case needed
   */
   public addFilter(key, value, filter) {
-    console.log('Add filter');
     if (value === 'Spark/Opex') {
       this.addFilter(key, 'spark', filter);
       return;
@@ -159,13 +156,11 @@ export class TxFilter {
       }
     } else {
       const i = this.filterArray.indexOf({ key, value });
-      console.log('already has filter: ', key, i);
       this.filterArray.splice(i, 1);
     }
   }
 
   public clearFilter() {
-    console.log('clearfilter');
     this.filterArray = [
       { key: 'exchanges', value: 'all' },
       { key: 'status', value: 'all' },

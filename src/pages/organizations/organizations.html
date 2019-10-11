@@ -1,0 +1,57 @@
+<header-nav></header-nav>
+<sidemenu></sidemenu>
+<div class="page bussiness" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+  <div class="row" style="margin: 0; padding: 20px;">
+    <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
+      <tl-header title="BUSSINES" [(query)]="query" [options]="headerOpts" (onSearch)="search()">
+        <button mat-icon-button style="margin-left: 8px" (click)="export()" matTooltip="{{'EXPORT_AS_CSV'|translate}}">
+          <span class="center h v">
+            <i class="fa fa-download small-text-2"></i>
+          </span>
+        </button>
+
+        <!-- <mat-button-toggle-group [(ngModel)]="showType" appearance="legacy">
+          <mat-button-toggle value="list">
+            <i class="fa fa-list"></i>
+          </mat-button-toggle>
+          <mat-button-toggle value="map">
+            <i class="fa fa-map"></i>
+          </mat-button-toggle>
+        </mat-button-toggle-group> -->
+      </tl-header>
+      <tl-subheader>
+        <div style="padding: 8px 15px;">
+          <mat-radio-group [(ngModel)]="filterActive" (change)="changedFilter()" color="primary">
+            <mat-radio-button style="margin-right: 10px" value="0" class="col-gray small-text" color="primary">
+              {{'WHOLESALE'|translate}}
+            </mat-radio-button>
+            <mat-radio-button style="margin-right: 10px" value="1" class="col-gray small-text" color="primary">
+              {{'RETAILER'|translate}}
+            </mat-radio-button>
+            <mat-radio-button style="margin-right: 10px" value="2" class="col-gray small-text" color="primary">
+              {{'ONLY_OFFERS'|translate}}
+            </mat-radio-button>
+            <mat-radio-button style="margin-right: 10px" value="3" class="col-gray small-text" color="primary">
+              {{'ALL'|translate}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <div class="abs-center-right small-text" style="padding: 8px;">
+            {{'Showing'|translate}}: {{limit}} of {{total}}
+          </div>
+        </div>
+      </tl-subheader>
+
+      <tl-table *ngIf="showType === 'list'" [loading]="loading" [sort]="true" (onSort)="sortData($event)"
+        [headers]="headers" [data]="sortedData" [itemOptions]="itemOptions" noItemsMessage="There are no bussiness yet"
+        [limit]="limit" [total]="total" (onChangePage)="changedPage($event)">
+      </tl-table>
+
+      <div style="height: 300px;" *ngIf="showType === 'map' && sortedData.length">
+        <agm-map>
+          <agm-marker *ngFor="let item of sortedData" [latitude]="item.lat" [longitude]="item.lon"></agm-marker>
+        </agm-map>
+      </div>
+    </mat-card>
+  </div>
+  <page-footer></page-footer>
+</div>

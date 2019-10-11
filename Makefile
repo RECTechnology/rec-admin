@@ -1,4 +1,4 @@
-test-build: lint build
+test: lint test
 
 build: clean
 	npm run build:prod

@@ -1,12 +1,10 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { FileUpload } from '../../../../components/dialogs/file-upload/file-upload.dia';
-import { MatDialog, MatSnackBar } from '@angular/material';
 import { CompanyService } from '../../../../services/company/company.service';
-import { InfoMessage } from '../../../../components/dialogs/info-message/info.dia';
-import { MySnackBarSevice } from '../../../../bases/snackbar-base';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'kyc-tier-validation',
@@ -28,12 +26,11 @@ export class Tier1Form implements OnInit {
   @Input() public showRequirementsList: boolean = true;
   public loading = false;
   constructor(
-    public dialog: MatDialog,
     public titleService: Title,
     public route: ActivatedRoute,
     public us: UserService,
     public companyService: CompanyService,
-    public snackBar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) { }
 
   public setupKYCdata() {
@@ -58,25 +55,23 @@ export class Tier1Form implements OnInit {
   }
 
   public uploadDocument() {
-    let dialogRef = this.dialog.open(FileUpload);
-    dialogRef.componentInstance.title = 'Please upload your Tier ' + this.tier;
-    dialogRef.componentInstance.noImageName = 'no_image_image';
-
-    dialogRef.afterClosed().subscribe((src) => {
+    this.alerts.openModal(FileUpload, {
+      noImageName: 'no_image_image',
+      title: 'Please upload your Tier ' + this.tier,
+    }).subscribe((src) => {
       if (src) {
         this.companyService.uploadKycFile(src, this.tier, 'tier ' + this.tier)
           .subscribe(
-            (resp) => {
+            () => {
               const title = 'Your document has been uploaded';
               const message =
                 title + ', our team will check it and if everything is fine your KYC TIER will be updated. Thank you.';
               const htmlMessage = `<p class="small-text-2">${message}</p>`;
               const btnMessage = 'Ok';
-              this.openShowInfoMessage(htmlMessage, title, false, btnMessage);
+              this.alerts.showConfirmation(htmlMessage, title, btnMessage);
               this.getUploads();
-            }, (error) => { return; });
+            }, () => { return; });
       }
-      dialogRef = null;
     });
   }
 
@@ -86,32 +81,7 @@ export class Tier1Form implements OnInit {
       title + ', our team will check it and if everything is fine your KYC TIER will be updated. Thank you.';
     const htmlMessage = `<p class="small-text-2">${message}</p>`;
     const btnMessage = 'Ok';
-    this.openShowInfoMessage(htmlMessage, title, false, btnMessage);
-  }
-
-  public openShowInfoMessage(message, title, code, btnText, btnAction?) {
-    let dialogRef = this.dialog.open(InfoMessage);
-    dialogRef.componentInstance.message = message;
-    dialogRef.componentInstance.title = title;
-    dialogRef.componentInstance.code = code;
-    dialogRef.componentInstance.btnText = btnText;
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-      if (result) {
-        this.companyService.requestKycValidation(this.tier)
-          .subscribe(
-            (resp) => {
-              this.us.getProfile()
-                .subscribe((profile) => {
-                  this.us.userData = profile;
-                  this.setupKYCdata();
-                  this.tierStatus = 'pending';
-                }, (error) => { return; });
-            },
-            (error) => { return; });
-      }
-      dialogRef = null;
-    });
+    this.alerts.showConfirmation(htmlMessage, title, btnMessage);
   }
 
   public returnBack() {

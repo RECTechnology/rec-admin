@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
-import { LoginService } from '../auth.service';
+import { LoginService } from '../auth/auth.service';
+import * as deepmerge from 'deepmerge';
 
 declare let _;
 
 @Injectable()
 export class UtilsService {
+  public static getLocaleFromLang(lang) {
+    return lang.substr(0, 2);
+  }
+
   public isSandbox = false;
   // tslint:disable-next-line
   public _idleSecondsCounter = 0;
@@ -215,4 +220,42 @@ export class UtilsService {
 
     return address.join(', ');
   }
+
+  public mergeObjects(a, b) {
+    return deepmerge(a, b);
+  }
+
+  public downloadBlob(blob: Blob, name = 'file') {
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob);
+      return;
+    }
+
+    // For other browsers:
+    // Create a link pointing to the ObjectURL containing the blob.
+    const data = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = data;
+    link.download = name;
+
+    // this is necessary as link.click() does not work on the latest firefox
+    link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
+
+    setTimeout(() => {
+      // For Firefox it is necessary to delay revoking the ObjectURL
+      window.URL.revokeObjectURL(data);
+      link.remove();
+    }, 100);
+  }
+
+  public validPAN(value) {
+    const regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+    return regpan.test(value);
+  }
+
+  public validCVV(val) {
+    return (typeof val === 'string' && val.length === 3) || typeof val === 'number';
+  }
+
 }

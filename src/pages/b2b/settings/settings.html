@@ -1,0 +1,17 @@
+<header-nav></header-nav>
+<sidemenu></sidemenu>
+
+<div class="page b2b-settings" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+    <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)">
+        <mat-tab label="{{'ACTIVITIES'|translate}}">
+            <tab-activities></tab-activities>
+        </mat-tab>
+        <mat-tab label="{{'PRODUCTS'|translate}}">
+            <tab-products></tab-products>
+        </mat-tab>
+        <mat-tab label="{{'NEIGHBORHOODS'|translate}}">
+            <tab-neighborhoods></tab-neighborhoods>
+        </mat-tab>
+    </mat-tab-group>
+    <page-footer style="margin-top: 30px"></page-footer>
+</div>

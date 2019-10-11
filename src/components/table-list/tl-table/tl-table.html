@@ -5,7 +5,8 @@
             <ng-template ngFor let-header [ngForOf]="headers">
                 <th *ngIf="header.sortable === undefined  || header.sortable" mat-sort-header="{{header.sort}}">
                     {{header.title|translate}}</th>
-                <th *ngIf="header.sortable !== undefined && !header.sortable" style="text-transform: capitalize">{{header.title|translate}}</th>
+                <th *ngIf="header.sortable !== undefined && !header.sortable" style="text-transform: capitalize">
+                    {{header.title|translate}}</th>
             </ng-template>
             <th *ngIf="itemOptions"></th>
         </tr>
@@ -15,7 +16,7 @@
                     disabled></mat-checkbox>
 
                 <span *ngIf="header.type === 'status'"
-                    [ngClass]="header.statusClass(getEntry(entry, header))">{{getEntry(entry, header)}}</span>
+                    [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header)): ''">{{getEntry(entry, header)}}</span>
 
                 <code *ngIf="header.type === 'code'">{{getEntry(entry, header)}}</code>
 
@@ -37,7 +38,7 @@
                 </div>
                 <span *ngIf="!header.type">{{getEntry(entry, header)}}</span>
             </td>
-            <td *ngIf="itemOptions && itemOptions.length">
+            <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'menu'">
                 <button mat-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
                     <span class="center h v">
                         <i class="fa fa-ellipsis-v"></i>
@@ -50,6 +51,25 @@
                             {{getOptionText(option)|translate}}</p>
                     </button>
                 </mat-menu>
+            </td>
+            <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'buttons'">
+                <ng-template ngFor let-option [ngForOf]="itemOptions">
+                    <button *ngIf="option.icon" mat-icon-button 
+                        [disabled]="isOptionDisabled(option, entry)" (click)="option.callback(entry)"
+                        class="{{option.class}}" matTooltip="{{getOptionText(option)|translate}}"
+                        style="min-width: 0; margin-right: 8px">
+                        <span class="center h v">
+                            <i class="fa {{option.icon}}"></i>
+                        </span>
+                    </button>
+
+                    <button *ngIf="!option.icon" mat-button color="primary" [disabled]="isOptionDisabled(option, entry)"
+                        (click)="option.callback(entry)" class="{{option.class}}"
+                        style="min-width: 0; margin-right: 8px">
+                        <p class="small-text {{option.class}}"> <i *ngIf="option.icon" class="fa {{option.icon}}"></i>
+                            {{getOptionText(option)|translate}}</p>
+                    </button>
+                </ng-template>
             </td>
         </tr>
     </table>

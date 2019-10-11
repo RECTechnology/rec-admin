@@ -1,16 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Title } from '@angular/platform-browser';
-import { UserService } from '../../services/user.service';
-import { CurrenciesService } from '../../services/currencies/currencies.service';
 import { ControlesService } from '../../services/controles/controles.service';
-import { CompanyService } from '../../services/company/company.service';
-import { TransactionService } from '../../services/transactions/transactions.service';
-import { UtilsService } from '../../services/utils/utils.service';
-import { LoginService } from '../../services/auth.service';
-import { WalletService } from '../../services/wallet/wallet.service';
+import { LoginService } from '../../services/auth/auth.service';
 import { PageBase, OnLogout } from '../../bases/page-base';
-import { AppService } from '../../services/app.service';
+import { AppService } from '../../services/app/app.service';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { CompanyService } from 'src/services/company/company.service';
 
 declare const Morris;
 
@@ -33,21 +29,17 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
 
   constructor(
     public titleService: Title,
-    private us: UserService,
     public controles: ControlesService,
-    private currenciesService: CurrenciesService,
-    private transactions: TransactionService,
     private dialog: MatDialog,
-    private utils: UtilsService,
     public app: AppService,
-    private ws: WalletService,
     public ls: LoginService,
-    private companyService: CompanyService,
+    public crudAccounts: AccountsCrud,
+    public companyService: CompanyService,
   ) {
     super();
+    this.companyService.getUserAccounts().subscribe(console.log, console.error);
   }
 
-  // Custom hooks
   public onLogout() {
     this.ngOnDestroy();
   }
@@ -94,16 +86,14 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
       });
   }
 
-  // Component hooks
   public ngOnDestroy() {
-    /* Must remove any interval when component is destroyed or it will keep running */
     clearInterval(this.refreshObs);
     this.dialog.closeAll();
   }
 
   /**
-  * Set a interval every this.refreshInterval
-  */
+   * Set a interval every this.refreshInterval
+   */
   private setRefresh(): void {
     this.refreshObs = setInterval((_) => {
       this.getStatus();

@@ -2,15 +2,13 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
-import { ErrorManager } from '../error-manager/error-manager';
-import { LoginService } from '../auth.service';
-import { CurrenciesService } from '../currencies/currencies.service';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
+import { LoginService } from '../auth/auth.service';
 import { WalletService } from '../wallet/wallet.service';
 import { UtilsService } from '../utils/utils.service';
 import { map } from 'rxjs/internal/operators/map';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AlertsService } from '../alerts/alerts.service';
 
 interface Category {
   cat: string;
@@ -27,27 +25,24 @@ export class CompanyService extends BaseService {
   public scheduled: any[] = [];
   public total_schedules: number = 0;
   public totalUsers: number = 0;
-  public selectedCompany: any = {};
+  public selectedCompany: any = null;
   public companies: any[] = [];
   public companyUsers: any[] = [];
   public changingAccount = false;
   public changingFrom: any = {};
   public changingTo: any = {};
   public totalAccounts = 0;
-
   public categories: Category[];
 
   constructor(
     http: HttpClient,
     public us: UserService,
-    public errMan: ErrorManager,
     public ls: LoginService,
-    private curr: CurrenciesService,
     private ws: WalletService,
-    private snackbar: MySnackBarSevice,
     private utils: UtilsService,
+    public alerts: AlertsService,
   ) {
-    super(http, us, errMan);
+    super(http, us);
     this.ls.onLogin.subscribe(
       (resp) => {
         this.doGetCompanies();
@@ -60,6 +55,7 @@ export class CompanyService extends BaseService {
     updated.available = el && el.wallets && el.wallets[0] ? this.ws.scaleNum(el.wallets[0].available, 8) : 0;
     updated.available_eur = el && el.wallets && el.wallets[1] ? this.ws.scaleNum(el.wallets[1].available, 2) : 0;
     updated.scheduleMap = this.utils.parseSchedule(el.schedule);
+    updated.polla = 'asdas';
     return {
       ...el,
       ...updated,
@@ -208,6 +204,10 @@ export class CompanyService extends BaseService {
       `${API_URL}/company/v1/account/kyc/validation`, 'application/x-www-form-urlencoded');
   }
 
+  public getUserAccounts() {
+    return this.get(null, null, `${API_URL}/user/v1/companies`);
+  }
+
   /**
    * @param {String} group_id - The group to set as active/default
    * @return {Observable}
@@ -296,10 +296,10 @@ export class CompanyService extends BaseService {
               this.changingAccount = false;
               if (error.status === 403) {
                 observer.error({ status: 403, error: 'You dont have the necesary permissions' });
-                this.snackbar.open('You dont have the necesary permissions', 'ok');
+                this.alerts.showSnackbar('You dont have the necesary permissions', 'ok');
               } else {
                 observer.error({ status: 0, error: 'There has been an error: ' + error.message });
-                this.snackbar.open('There has been an error: ' + error.message, 'ok');
+                this.alerts.showSnackbar('There has been an error: ' + error.message, 'ok');
               }
             });
       }

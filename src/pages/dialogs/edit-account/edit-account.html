@@ -24,8 +24,8 @@
         <div class="col-lg-6">
           <div class="group-col-left">
             <span class="small-text-2">{{'Name'|translate}}</span>
-            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.name"
-              placeholder="Name">
+            <input [disabled]="loading" type="text" class="user-input small" style="max-width: 300px"
+              [(ngModel)]="accountCopy.name" placeholder="Name">
           </div>
         </div>
 
@@ -35,12 +35,12 @@
             <span class="small-text-2">{{'Phone'|translate}}</span>
             <div class="row">
               <div class="col-lg-4">
-                <input type="tel" class="user-input small" style="max-width: 100%" [(ngModel)]="accountCopy.prefix"
-                  placeholder="Phone prefix">
+                <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 100%"
+                  [(ngModel)]="accountCopy.prefix" placeholder="Phone prefix">
               </div>
               <div class="col-lg-8">
-                <input type="tel" class="user-input small" style="max-width: 100%" [(ngModel)]="accountCopy.phone"
-                  placeholder="Phone number">
+                <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 100%"
+                  [(ngModel)]="accountCopy.phone" placeholder="Phone number">
               </div>
             </div>
           </div>
@@ -50,7 +50,8 @@
         <div class="col-lg-6">
           <div class="group-col-left">
             <span class="small-text-2">{{'Email'|translate}}</span>
-            <input type="email" class="user-input small" [(ngModel)]="accountCopy.email" placeholder="Email address">
+            <input [disabled]="loading" type="email" class="user-input small" [(ngModel)]="accountCopy.email"
+              placeholder="Email address">
           </div>
         </div>
 
@@ -58,7 +59,8 @@
         <div class="col-lg-6">
           <div class="group-col-left">
             <span class="small-text-2">{{'NIF'|translate}}</span>
-            <input type="tel" class="user-input small" [(ngModel)]="accountCopy.cif" placeholder="NIF">
+            <input [disabled]="loading" type="tel" class="user-input small" [(ngModel)]="accountCopy.cif"
+              placeholder="NIF">
           </div>
         </div>
 
@@ -146,6 +148,10 @@
               <span class="small-text-2">{{(accountCopy.active ? 'Active': 'Inactive')|translate}}</span>
             </mat-checkbox>
           </div>
+          <div class="group-col-left">
+            <span class="small-text-2">{{'Language'|translate}}</span>
+            <lang-selector mode="event" (changed)="setLanguage($event)" [lang]="accountCopy.kyc_manager.locale"></lang-selector>
+          </div>
         </div>
 
         <div class="col-lg-12">
@@ -180,41 +186,43 @@
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'City'|translate}}</span>
-                  <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.city"
-                    placeholder="{{'City'|translate}}">
+                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="accountCopy.city" placeholder="{{'City'|translate}}">
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Street'|translate}}</span>
-                  <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.street"
-                    placeholder="{{'Street'|translate}}">
+                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="accountCopy.street" placeholder="{{'Street'|translate}}">
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Number'|translate}}</span>
-                  <input type="tel" class="user-input small" style="max-width: 300px"
+                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
                     [(ngModel)]="accountCopy.address_number" placeholder="{{'Number'|translate}}">
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Street Type'|translate}}</span>
-                  <street-type-selector [(value)]="accountCopy.street_type"></street-type-selector>
+                  <street-type-selector [disabled]="loading" [(value)]="accountCopy.street_type"></street-type-selector>
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'ZIP'|translate}}</span>
-                  <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="accountCopy.zip"
-                    placeholder="{{'Zip code'|translate}}">
+                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
+                    [(ngModel)]="accountCopy.zip" placeholder="{{'Zip code'|translate}}">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'BARRIO'|translate}}</span>
-                  <input type="text" class="user-input small" [(ngModel)]="accountCopy.neighborhood">
+                  <neighbourhood-selector [disabled]="loading" [(value)]="accountCopy.neighbourhood_id">
+                  </neighbourhood-selector>
+                  <!-- <input [disabled]="loading" type="text" class="user-input small" [(ngModel)]="accountCopy.neighborhood"> -->
                 </div>
               </div>
             </div>
@@ -229,13 +237,14 @@
               <div class="col-lg-6">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Latitude'|translate}}</span>
-                  <input type="number" class="user-input small" [(ngModel)]="accountCopy.latitude">
+                  <input [disabled]="loading" type="number" class="user-input small" [(ngModel)]="accountCopy.latitude">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'Longitude'|translate}}</span>
-                  <input type="number" class="user-input small" [(ngModel)]="accountCopy.longitude">
+                  <input [disabled]="loading" type="number" class="user-input small"
+                    [(ngModel)]="accountCopy.longitude">
                 </div>
               </div>
             </div>
@@ -264,8 +273,8 @@
         <div class="col-lg-12" style="margin-bottom: 15px!important; ">
           <div class="group-col-left">
             <span class="small-text-2">{{'Public Image'|translate}}</span>
-            <div style="height: auto; min-height: 90px; width: 60%; background: #ddd">
-              <img style="width: 100%;" src="{{accountCopy.public_image}}" alt="">
+            <div style="height: auto; min-height: 90px;max-height: 90px;max-width: 90px; width: 60%; background: #ddd">
+              <img style="width: 100%;max-height: 90px;max-width: 90px;" src="{{accountCopy.public_image}}" alt="">
             </div>
             <button mat-raised-button (click)="selectPublicImage()" class="marg-top-x10">
               {{'CHANGE'|translate}}
@@ -281,19 +290,6 @@
               placeholder="Description"></textarea>
           </div>
         </div>
-
-        <!-- Activity -->
-        <div class="col-lg-6 " style="margin-bottom: 15px!important">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Activity'|translate}}</span>
-            <mat-select style="width: 100%" [(ngModel)]="accountCopy.categoryId">
-              <mat-option [value]="category.id" *ngFor="let category of companyService.categories">
-                {{category[lang]}}
-              </mat-option>
-            </mat-select>
-          </div>
-        </div>
-
 
         <!-- Products -->
         <div class="col-lg-12 " style="margin-bottom: 15px!important">
@@ -329,6 +325,120 @@
         </div>
       </div>
     </mat-tab>
+    <mat-tab label="{{'B2B'|translate}}" style="height: 400px" [disabled]="type === 'PRIVATE'">
+      <div class="row padd-x20" style="width: 100%">
+        <div class="col-lg-6">
+          <p class="small-text-2">{{'PRODUCTS_CONSUMED'|translate}}</p>
+          <div class="activity-box-list">
+            <ul *ngIf="account.consuming_products && account.consuming_products.length"
+              style="list-style: none; margin: 0; padding: 0">
+              <li class="activity-list-item small-text" *ngFor="let cons of account.consuming_products; let i = index">
+                {{cons | tolang}}
+
+                <span class="icon fa fa-trash" (click)="deleteConsumed(i)"></span>
+              </li>
+            </ul>
+            <p class="small-text col-gray padd-x10"
+              *ngIf="account.consuming_products && !account.consuming_products.length">
+              {{'NO_ITEMS'|translate}}
+            </p>
+          </div>
+
+          <button [matMenuTriggerFor]="consMenu" [disabled]="loading" type="button" mat-button class="mat-button-menu"
+            style="margin-top: 5px; width: 100%">
+            <span>{{'PRODUCT'|translate}}</span>
+            <i class="fa fa-caret-down" style="margin-left: 8px"></i>
+          </button>
+
+          <mat-menu #consMenu="matMenu" y-position="below" overlapTrigger="false">
+            <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="{{'Search Products'|translate}}">
+
+            <ng-template ngFor let-prod [ngForOf]="productList">
+              <button
+                *ngIf="account.consuming_products && !account.consuming_products.includes(prod) && nameMatches(prod.name)"
+                mat-menu-item (click)="addConsumed(prod)" style="padding: 5px auto">
+                <span style="color: #666; font-size: 12px">{{prod | tolang}}</span>
+              </button>
+            </ng-template>
+          </mat-menu>
+        </div>
+
+
+        <div class="col-lg-6">
+          <p class="small-text-2">{{'PRODUCTS_PRODUCED'|translate}}</p>
+          <div class="activity-box-list">
+            <ul *ngIf="account.producing_products && account.producing_products.length"
+              style="list-style: none; margin: 0; padding: 0">
+              <li class="activity-list-item small-text" *ngFor="let cons of account.producing_products; let i = index">
+                {{cons| tolang}}
+
+                <span class="icon fa fa-trash" (click)="deleteProduced(i)"></span>
+              </li>
+            </ul>
+            <p class="small-text col-gray padd-x10"
+              *ngIf="account.producing_products && !account.producing_products.length">
+              {{'NO_ITEMS'|translate}}
+            </p>
+          </div>
+
+          <button [matMenuTriggerFor]="prodMenu" [disabled]="loading" type="button" mat-button class="mat-button-menu"
+            style="margin-top: 5px; width: 100%">
+            <span>{{'PRODUCT'|translate}}</span>
+            <i class="fa fa-caret-down" style="margin-left: 8px"></i>
+          </button>
+
+          <mat-menu #prodMenu="matMenu" y-position="below" overlapTrigger="false">
+            <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="{{'Search Products'|translate}}">
+
+            <ng-template ngFor let-prod [ngForOf]="productList">
+              <button
+                *ngIf="account.producing_products && !account.producing_products.includes(prod) && nameMatches(prod.name)"
+                mat-menu-item (click)="addProduced(prod)" style="padding: 5px auto">
+                <span style="color: #666; font-size: 12px">{{prod| tolang}}</span>
+              </button>
+            </ng-template>
+          </mat-menu>
+
+        </div>
+
+        <div class="col-lg-6">
+          <p class="small-text-2">{{'ACTIVITIES'|translate}}</p>
+          <div class="activity-box-list">
+            <ul *ngIf="activitiesSelected && activitiesSelected.length" style="list-style: none; margin: 0; padding: 0">
+              <li class="activity-list-item small-text" *ngFor="let act of activitiesSelected; let i = index">
+                {{act | tolang}}
+
+                <span class="icon fa fa-trash" (click)="deleteActivity(i)"></span>
+              </li>
+            </ul>
+            <p class="small-text col-gray padd-x10" *ngIf="activitiesSelected && !activitiesSelected.length">
+              {{'NO_ITEMS'|translate}}
+            </p>
+          </div>
+
+          <button [matMenuTriggerFor]="actMenu" [disabled]="loading" type="button" mat-button class="mat-button-menu"
+            style="margin-top: 5px; width: 100%">
+            <span>{{'ACTIVITY'|translate}}</span>
+            <i class="fa fa-caret-down" style="margin-left: 8px"></i>
+          </button>
+
+          <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
+            <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="{{'Search Activities'|translate}}">
+
+            <ng-template ngFor let-prod [ngForOf]="activities">
+              <button *ngIf="accountCopy.activities && !accountCopy.activities.includes(prod)" mat-menu-item
+                (click)="addActivity(prod)" style="padding: 5px auto">
+                <span style="color: #666; font-size: 12px">{{prod | tolang}}</span>
+              </button>
+            </ng-template>
+          </mat-menu>
+        </div>
+
+      </div>
+    </mat-tab>
 
     <mat-tab label="{{'Schedule'|translate}}" style="height: 400px" *ngIf="viewManageSchedule">
       <div class="row padd-x20">
@@ -357,20 +467,24 @@
               <td>
                 <div class="row">
                   <div class="col-lg-6">
-                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.morning.open">
+                    <input [disabled]="loading" type="time" class="user-input small" style="width: 100px"
+                      [(ngModel)]="day.morning.open">
                   </div>
                   <div class="col-lg-6">
-                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.morning.close">
+                    <input [disabled]="loading" type="time" class="user-input small" style="width: 100px"
+                      [(ngModel)]="day.morning.close">
                   </div>
                 </div>
               </td>
               <td>
                 <div class="row">
                   <div class="col-lg-6">
-                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.evening.open">
+                    <input [disabled]="loading" type="time" class="user-input small" style="width: 100px"
+                      [(ngModel)]="day.evening.open">
                   </div>
                   <div class="col-lg-6">
-                    <input type="time" class="user-input small" style="width: 100px" [(ngModel)]="day.evening.close">
+                    <input [disabled]="loading" type="time" class="user-input small" style="width: 100px"
+                      [(ngModel)]="day.evening.close">
                   </div>
                 </div>
               </td>

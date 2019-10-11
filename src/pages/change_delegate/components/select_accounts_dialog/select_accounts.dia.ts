@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef, Sort } from '@angular/material';
-import { CurrenciesService } from '../../../../services/currencies/currencies.service';
 import BaseDialog from '../../../../bases/dialog-base';
 import { CompanyService } from '../../../../services/company/company.service';
 function compare(a: number | string, b: number | string, isAsc: boolean) {
@@ -14,7 +13,7 @@ function compare(a: number | string, b: number | string, isAsc: boolean) {
   ],
   templateUrl: './select_accounts.html',
 })
-export class SelectAccountsDia extends BaseDialog implements OnInit {
+export class SelectAccountsDia extends BaseDialog {
 
   public selectedAccounts = [];
   public newSelectedAccounts = [];
@@ -25,13 +24,14 @@ export class SelectAccountsDia extends BaseDialog implements OnInit {
 
   public totalAccountsUnsorted = 0;
   public offsetUnsorted = 0;
-  public limitUnsorted = 100;
+  public limitUnsorted = 30;
   public loadingUnsorted = false;
 
   public totalAccountsSorted = 0;
   public offsetSorted = 0;
   public limitSorted = 10;
   public loadingSorted = false;
+  public showEdit = true;
 
   public unselectedSearch = '';
   public sortIDUnsorted = 'id';
@@ -40,15 +40,16 @@ export class SelectAccountsDia extends BaseDialog implements OnInit {
   public searchSelectedQwery: string = '';
   public searchSelected: any = '';
 
+  public sortType = 'PRIVATE';
+
   constructor(
-    public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<SelectAccountsDia>,
     public company: CompanyService,
   ) {
     super();
   }
 
-  public ngOnInit() {
+  public ngAfterContentInit() {
     this.getAccounts();
   }
 
@@ -58,7 +59,7 @@ export class SelectAccountsDia extends BaseDialog implements OnInit {
     this.company.getCompanies(
       this.offsetUnsorted, this.limitUnsorted,
       this.unselectedSearch, this.sortIDUnsorted,
-      this.sortDirUnsorted, 1, 'PRIVATE',
+      this.sortDirUnsorted, 1, this.sortType,
     ).subscribe((resp) => {
       this.unselectedAccounts = resp.data.elements;
       this.totalAccountsUnsorted = resp.data.total;
@@ -80,7 +81,7 @@ export class SelectAccountsDia extends BaseDialog implements OnInit {
   public unselectAccount(account) {
     const ind = this.newSelectedAccounts.indexOf(account);
     this.newSelectedAccounts.splice(ind, 1);
-    this.newSelectedAccounts.unshift(account);
+    this.sortedUnselectedAccounts.unshift(account);
   }
 
   public close(): void {

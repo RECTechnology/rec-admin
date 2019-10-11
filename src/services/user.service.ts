@@ -1,7 +1,6 @@
-import { Injectable, Output, EventEmitter } from '@angular/core';
+import { Injectable, Output, EventEmitter, defineInjectable } from '@angular/core';
 import { XHR } from './xhr/xhr';
 import { API_URL } from '../data/consts';
-import { ErrorManager } from './error-manager/error-manager';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -47,7 +46,6 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private xhr: XHR,
-    public errMan: ErrorManager,
   ) {
     this.uploadprogress$ = new Observable((observer) => this.progressObserver = observer);
   }
@@ -86,8 +84,7 @@ export class UserService {
 
   public getUserConfig(prop) {
     if (!(prop in this.userData.settings)) {
-      // tslint:disable-next-line
-      console.error(new Error(prop + ' is not a valid configuration property.'))
+      console.error(new Error(prop + ' is not a valid configuration property.'));
       return null;
     }
     return this.userData.settings[prop];
@@ -147,20 +144,17 @@ export class UserService {
    * @param {object} role - The role the user will have
    * @return {Observable<any>}
    */
-  public addUserToAccount(account_id, email, role): Observable<any> {
+  public addUserToAccount(account_id, user_dni, role): Observable<any> {
     const headers = new HttpHeaders({
       'accept': 'application/json',
       'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/x-www-form-urlencoded',
+      'content-type': 'application/json',
     });
     const options = ({ headers });
-    let params = new HttpParams();
-    params = params.set('user_dni', email);
-    params = params.set('role', role);
 
     return this.http.post(
       `${API_URL}/manager/v1/groups/${account_id}`,
-      params.toString(),
+      { user_dni, role },
       options,
     ).pipe(
       map(this.extractData),
@@ -235,7 +229,7 @@ export class UserService {
   public getCurrency() {
     return this.userData.group_data.default_currency;
   }
-  // /map/v1/visibility
+
   public getListOfRecSellers(offset, limit, search, sort = 'id', dir = 'desc') {
     const headers = this.getHeaders();
     const options: any = ({ headers, method: 'GET' });
@@ -268,7 +262,6 @@ export class UserService {
     if (filter.retailer) { params = params.set('retailer', filter.retailer); }
     if (filter.wholesale) { params = params.set('wholesale', filter.wholesale); }
 
-    // /public/map/v1/list
     return this.http.get(`${API_URL}/public/map/v1/list`, options)
       .pipe(
         map(this.extractData),
@@ -285,7 +278,6 @@ export class UserService {
       options,
     ).pipe(
       map((res: any) => {
-        console.log('res', res);
         const body = res;
         body.data.group_data.wallets[0].available = body.data.group_data.wallets[0].available / 100000000;
         body.data.group_data.wallets[0].balance = body.data.group_data.wallets[0].balance / 100000000;
@@ -295,8 +287,7 @@ export class UserService {
           body.data.kyc_validations.phone = parsed.number;
           body.data.kyc_validations.prefix = parsed.prefix;
         } catch (error) {
-          // tslint:disable-next-line
-          console.log('error', error);
+          console.log(error);
         }
 
         return body.data || body || {};
@@ -304,6 +295,7 @@ export class UserService {
       catchError(this.handleError.bind(this)),
     );
   }
+
   public updateProfile(data) {
     const headers = this.getHeaders();
     const options = ({ headers, method: 'PUT' });
@@ -423,6 +415,7 @@ export class UserService {
       url: `${API_URL}/user/v1/upload_file`,
     });
   }
+
   public uploadFile(file: File) {
     const headers = new HttpHeaders({
       accept: 'application/json',
@@ -457,38 +450,6 @@ export class UserService {
     return this.http.put(
       `${API_URL}/user/v1/profile_image`,
       { profile_image: src },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  /**
-   * @param title            { String } the report title
-   * @param description      { String } the error description
-   * @param snapshot         { File }   the site screenshot
-   * @param errors #optional { File }   the site screenshot
-   */
-  public sendErrorReport(title: string, description: string, snapshot: File, errors?) {
-
-    const options = ({
-      headers: new HttpHeaders({
-        'accept': 'application/json',
-        'authorization': 'Bearer ' + this.tokens.access_token,
-        'content-type': 'application/json',
-      }),
-      method: 'POST',
-    });
-
-    return this.http.post(
-      `${API_URL}/issue/report`,
-      {
-        description,
-        errors,
-        snapshot,
-        title,
-      },
       options,
     ).pipe(
       map(this.extractData),

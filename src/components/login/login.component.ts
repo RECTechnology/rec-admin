@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChildren, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material';
-import { LoginService, AppAuthService } from '../../services/auth.service';
+import { LoginService, AppAuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user.service';
 import { environment } from '../../environments/environment';
-import { MySnackBarSevice } from '../../bases/snackbar-base';
-import { TranslateService } from '@ngx-translate/core';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'login',
@@ -41,10 +39,8 @@ export class LoginComponent implements OnInit {
     private titleService: Title,
     private aas: AppAuthService,
     private us: UserService,
-    private dialog: MatDialog,
-    private translate: TranslateService,
     public zone: NgZone,
-    private snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) { }
 
   public ngOnInit() {
@@ -53,7 +49,6 @@ export class LoginComponent implements OnInit {
     /* This is actually not needed, but is a good way of checking if API is working */
     this.aas.doAuth((response, error) => {
       if (error) {
-        console.log(error);
         this.errorMessage = 'There has been an error, please try again later.';
       } else {
         this.gotToken = true;
@@ -102,20 +97,18 @@ export class LoginComponent implements OnInit {
         this.us.getProfile()
           .subscribe(
             (resp) => {
-              console.log('Get profile Good');
               this.us.setData(resp);
 
               if (!this.us.isSuperAdmin()) {
                 this.us.logout();
                 this.disabled = false;
                 this.loading = false;
-                this.snackbar.open('You don\'t have necesary permissions...', 'OK');
+                this.alerts.showSnackbar('You don\'t have necesary permissions...', 'OK');
                 return;
               }
 
               setTimeout(async (x) => {
                 // If its all accepted we proceed to login
-                console.log('dataProtectionAccepted && tosAccepted');
 
                 // reset tokens as they have accepted and they can login now
                 this.us.tokens = tokens;
@@ -126,18 +119,15 @@ export class LoginComponent implements OnInit {
                 const onFinishLogin = () => {
                   // Emit the login event, so actions that need to be done after login can be done
                   this.loginService.onLogin.emit(true);
-                  console.log('Login completed');
                 };
 
                 // Now user can navigate to app
-                console.log('!this.us.needChangePassword');
                 this.router.navigate(['/dashboard']);
                 onFinishLogin();
               }, 10);
               this.loginService.isLoggedIn_ = true;
             },
             (error) => {
-              console.log('Get profile bad', error);
               this.errorMessage = error ? error.error_description : 'error';
               this.loading = false;
               this.disabled = false;
@@ -147,7 +137,6 @@ export class LoginComponent implements OnInit {
               localStorage.removeItem('login_date');
             });
       }, (error) => {
-        console.log('Loggin bad', error);
         this.errorMessage = error ? error.error_description : 'error';
         this.loading = false;
         this.disabled = false;

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../services/user.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import BaseDialog from '../../../bases/dialog-base';
 
 @Component({
@@ -20,7 +19,6 @@ export class ManageSms extends BaseDialog {
 
   constructor(
     public dialogRef: MatDialogRef<ManageSms>,
-    public snackBar: MySnackBarSevice,
     private us: UserService,
   ) {
     super();

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../services/user.service';
-import { MySnackBarSevice } from '../../../bases/snackbar-base';
 import BaseDialog from '../../../bases/dialog-base';
 import { environment } from '../../../environments/environment';
 import { UtilsService } from '../../../services/utils/utils.service';
@@ -19,7 +18,6 @@ export class ViewDetailsAccount extends BaseDialog implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ViewDetailsAccount>,
-    public snackBar: MySnackBarSevice,
     private us: UserService,
     public utils: UtilsService,
   ) {

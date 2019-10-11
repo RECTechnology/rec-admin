@@ -20,6 +20,7 @@ import { AccountDocuments } from './tab_documents/account_documents.tab';
 import { MatTabsModule } from '@angular/material';
 import { MaterialModule } from 'src/shared/md-module';
 import { CountryPickerModule } from 'ngx-country-picker';
+import { B2BModuleTab } from './tab_b2b/tab_b2b.tab';
 
 const accountRoutes: Routes = [
   {
@@ -43,6 +44,7 @@ const accountRoutes: Routes = [
     EditAccountData,
     AccountDetailsTab,
     AccountDocuments,
+    B2BModuleTab,
   ],
   entryComponents: [
     EditUserData,
@@ -52,6 +54,7 @@ const accountRoutes: Routes = [
     ShowMovements,
     AccountUsersTab,
     AccountDocuments,
+    B2BModuleTab,
   ],
   exports: [
     RouterModule,

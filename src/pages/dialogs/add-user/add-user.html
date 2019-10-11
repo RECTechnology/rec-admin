@@ -40,7 +40,8 @@
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
     <p class="col-error small-text" *ngIf="error" style="margin-right: 10px!important">{{error}}</p>
-    <p class="col-warning small-text" *ngIf="existingUser.role === 'ROLE_SUPER_ADMIN'" style="margin-right: 10px!important">
+    <p class="col-warning small-text" *ngIf="existingUser.role === 'ROLE_SUPER_ADMIN'"
+      style="margin-right: 10px!important">
       You are about to add a user as SUPER_ADMIN, please be cautious!
     </p>
     <btn-loader (click)="addUser(false)" [disabled]="loading" [loading]="loading" [text]="'ADD'">
@@ -66,8 +67,8 @@
 
   <div class="row" style="margin-top: 20px;">
     <div class="col-lg-7">
-      <cc-input [(value)]="existingUser.email" [label]="'DNI'" [disabled]="disabled" [type]="'text'" [placeholder]="'000000000x'"
-        style="max-width: 300px"></cc-input>
+      <cc-input [(value)]="existingUser.email" [label]="'DNI'" [disabled]="disabled" [type]="'text'"
+        [placeholder]="'000000000x'" style="max-width: 300px"></cc-input>
     </div>
     <div class="col-lg-5">
       <div class="group-col-left">

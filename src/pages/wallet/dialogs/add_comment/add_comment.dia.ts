@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { CurrenciesService } from '../../../../services/currencies/currencies.service';
 import { TransactionService } from '../../../../services/transactions/transactions.service';
-import { MySnackBarSevice } from '../../../../bases/snackbar-base';
 import BaseDialog from '../../../../bases/dialog-base';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'add_comment',
@@ -15,10 +14,9 @@ export class AddCommentDia extends BaseDialog {
   public comment = '';
 
   constructor(
-    public currencies: CurrenciesService,
     public dialogRef: MatDialogRef<AddCommentDia>,
     public txService: TransactionService,
-    private snackBar: MySnackBarSevice,
+    private alerts: AlertsService,
   ) { super(); }
 
   public addComment() {
@@ -27,7 +25,7 @@ export class AddCommentDia extends BaseDialog {
       .subscribe(
         (resp) => {
           const message = `Added comment correctly!`;
-          this.snackBar.open(message, 'ok', { duration: 3500 });
+          this.alerts.showSnackbar(message, 'ok', { duration: 3500 });
           this.loading = false;
           this.close();
         },
