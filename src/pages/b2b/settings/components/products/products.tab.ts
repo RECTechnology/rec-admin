@@ -20,7 +20,8 @@ export class ProductsTabComponent extends EntityTabBase {
         public dialog: MatDialog,
         public alerts: AlertsService,
         public translate: TranslateService,
-    ) { super(dialog, alerts);
+    ) {
+        super(dialog, alerts);
         this.translate.onLangChange.subscribe(() => {
             this.search();
         });
@@ -127,5 +128,9 @@ export class ProductsTabComponent extends EntityTabBase {
                     }
                 },
             );
+    }
+
+    public aproveProduct($event) {
+        console.log('$event', $event);
     }
 }
