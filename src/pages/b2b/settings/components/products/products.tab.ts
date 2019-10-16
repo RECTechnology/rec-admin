@@ -130,7 +130,20 @@ export class ProductsTabComponent extends EntityTabBase {
             );
     }
 
-    public aproveProduct($event) {
-        console.log('$event', $event);
+    public aproveProduct(product) {
+        this.confirm('Confirm product', 'Are you sure you want to aprove this product?', 'aprove', 'warning')
+            .subscribe(
+                (aprove) => {
+                    if (aprove) {
+                        this.productsCrud.update(product.id, { status: 'aproved' }).subscribe(
+                            (resp) => {
+                                this.alerts.showSnackbar('Deleted Product', 'ok');
+                                this.search();
+                            },
+                            (error) => this.alerts.showSnackbar(error.message),
+                        );
+                    }
+                },
+            );
     }
 }
