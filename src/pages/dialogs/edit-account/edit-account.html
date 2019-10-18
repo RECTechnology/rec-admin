@@ -150,7 +150,7 @@
           </div>
           <div class="group-col-left">
             <span class="small-text-2">{{'Language'|translate}}</span>
-            <lang-selector mode="event" (changed)="setLanguage($event)" [lang]="accountCopy.kyc_manager.locale"></lang-selector>
+            <lang-selector mode="event" (changed)="setLanguage($event)" [lang]="accountCopy.kyc_manager.locale || 'es'"></lang-selector>
           </div>
         </div>
 
