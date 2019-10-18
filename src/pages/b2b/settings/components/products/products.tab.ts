@@ -129,13 +129,13 @@ export class ProductsTabComponent extends EntityTabBase {
     }
 
     public aproveProduct(product) {
-        this.confirm('Confirm product', 'Are you sure you want to aprove this product?', 'aprove', 'warning')
+        this.confirm('Confirm product', 'Are you sure you want to aprove this product?', 'Approve', 'warning')
             .subscribe(
                 (aprove) => {
                     if (aprove) {
                         this.productsCrud.update(product.id, { status: 'reviewed' }).subscribe(
                             (resp) => {
-                                this.alerts.showSnackbar('Deleted Product', 'ok');
+                                this.alerts.showSnackbar('Product approved', 'ok');
                                 this.search();
                             },
                             (error) => this.alerts.showSnackbar(error.message),

@@ -30,7 +30,7 @@
                 <i class="fa fa-ellipsis-v"></i>
             </button>
             <mat-menu #listMenu="matMenu">
-                <button mat-menu-item *ngIf="element.status === 'created'" (click)="onAprove.emit(element)" matTooltip="Revise Item">
+                <button mat-menu-item *ngIf="element.status === 'created' && hasStatus" (click)="onAprove.emit(element)" matTooltip="Revise Item">
                     <span class="center v"><i class="fa fa-check" style="margin-right: 8px"></i>
                         {{'REVISE'|translate}}</span>
                 </button>
@@ -72,7 +72,7 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="translatable-table-row"
-        [class.pending]="row.status == 'created'"></tr>
+        [class.pending]="row.status == 'created' && hasStatus"></tr>
 </table>
 
 <div *ngIf="!data.length" style="padding: 8px 15px;">

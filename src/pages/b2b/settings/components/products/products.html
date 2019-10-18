@@ -8,7 +8,7 @@
                     </p>
                 </button>
             </tl-header>
-            <translatable-list [(limit)]="limit" [total]="total" (onSort)="sortData($event)" (aprove)="aproveProduct($event)"
+            <translatable-list [hasStatus]="true" [(limit)]="limit" [total]="total" (onSort)="sortData($event)" (aprove)="aproveProduct($event)"
                 (changedPage)="changedPage($event)" [loading]="loading" (edit)="editProducts($event)"
                 (delete)="deleteProduct($event)" [(data)]="sortedData" [displayedColumns]="productsColumns">
             </translatable-list>
