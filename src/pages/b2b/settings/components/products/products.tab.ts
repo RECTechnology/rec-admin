@@ -30,7 +30,7 @@ export class ProductsTabComponent extends EntityTabBase {
     public search() {
         this.loading = true;
         this.productsCrud.search({
-            dir: this.sortDir,
+            order: this.sortDir,
             limit: this.limit,
             offset: this.offset,
             search: this.query || '',
@@ -96,7 +96,6 @@ export class ProductsTabComponent extends EntityTabBase {
                     name_es: created.name_es,
                     description: '',
                     status: 'reviewed',
-                    upc_code: created.upc_code,
                 }, 'en').subscribe(
                     (prod) => {
                         this.alerts.showSnackbar('Created Product', 'ok');

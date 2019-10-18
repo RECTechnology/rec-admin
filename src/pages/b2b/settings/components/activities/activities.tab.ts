@@ -6,7 +6,6 @@ import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
-
 @Component({
     selector: 'tab-activities',
     templateUrl: './activities.html',
@@ -26,7 +25,7 @@ export class ActivitiesTabComponent extends EntityTabBase {
     public search() {
         this.loading = true;
         this.activitiesCrud.search({
-            dir: this.sortDir,
+            order: this.sortDir,
             limit: this.limit,
             offset: this.offset,
             search: this.query || '',
@@ -60,6 +59,7 @@ export class ActivitiesTabComponent extends EntityTabBase {
                                 name_ca: updated.name_ca,
                                 name_es: updated.name_es,
                                 name: updated.name,
+                                upc_code: updated.upc_code,
                             }, 'en').subscribe(
                                 (resp) => {
                                     this.alerts.showSnackbar('Updated Activity: ' + activity.id, 'ok');
@@ -89,6 +89,7 @@ export class ActivitiesTabComponent extends EntityTabBase {
                     name_es: created.name_es,
                     name_ca: created.name_ca,
                     description: '',
+                    upc_code: created.upc_code,
                 }, 'en')
                     .subscribe(
                         (act) => {

@@ -30,7 +30,7 @@
                     <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.name"
                         placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
-                <div class="group-col-left" style="width: 100%" *ngIf="isProduct">
+                <div class="group-col-left" style="width: 100%" *ngIf="!isProduct">
                     <span class="small-text-2">{{'UPC_CODE'|translate}}</span>
                     <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.upc_code"
                         placeholder="{{'UPC_CODE'|translate}}" [disabled]="loading" (blur)="check()">
