@@ -6,6 +6,7 @@ import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
+
 @Component({
     selector: 'tab-activities',
     templateUrl: './activities.html',
