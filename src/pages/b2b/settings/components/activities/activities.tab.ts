@@ -54,18 +54,21 @@ export class ActivitiesTabComponent extends EntityTabBase {
                         itemType: 'ACTIVITY',
                     }).subscribe((updated) => {
                         if (updated) {
-                            const proms = [
-                                this.activitiesCrud.update(activity.id, { name: updated.cat }, 'ca'),
-                                this.activitiesCrud.update(activity.id, { name: updated.esp }, 'es'),
-                                this.activitiesCrud.update(activity.id, { name: updated.eng }, 'en'),
-                            ];
-
-                            forkJoin(proms).subscribe(
+                            this.loading = true;
+                            this.activitiesCrud.update(activity.id, {
+                                name_ca: updated.name_ca,
+                                name_es: updated.name_es,
+                                name: updated.name,
+                            }, 'en').subscribe(
                                 (resp) => {
                                     this.alerts.showSnackbar('Updated Activity: ' + activity.id, 'ok');
                                     this.search();
+                                    this.loading = false;
                                 },
-                                (error) => this.alerts.showSnackbar(error.message),
+                                (error) => {
+                                    this.alerts.showSnackbar(error.message);
+                                    this.loading = false;
+                                },
                             );
                         }
                     });
@@ -74,26 +77,27 @@ export class ActivitiesTabComponent extends EntityTabBase {
     }
 
     public addActivity() {
-        const ref = this.alerts.openModal(AddItemDia, {
+        this.alerts.openModal(AddItemDia, {
             isEdit: false,
             itemType: 'ACTIVITY',
         }).subscribe((created) => {
             if (created) {
-                this.activitiesCrud.create({ name: created.eng, description: '' }, 'en')
+                this.loading = true;
+                this.activitiesCrud.create({
+                    name: created.name,
+                    name_es: created.name_es,
+                    name_ca: created.name_ca,
+                    description: '',
+                }, 'en')
                     .subscribe(
                         (act) => {
-                            const proms = [
-                                this.activitiesCrud.update(act.data.id, { name: created.cat }, 'ca'),
-                                this.activitiesCrud.update(act.data.id, { name: created.esp }, 'es'),
-                            ];
-
-                            return forkJoin(proms).subscribe((resp) => {
-                                this.alerts.showSnackbar('Created Activity', 'ok');
-                                this.search();
-                            });
+                            this.alerts.showSnackbar('Created Activity', 'ok');
+                            this.search();
+                            this.loading = false;
                         },
                         (error) => {
                             this.alerts.showSnackbar(error.message);
+                            this.loading = false;
                         },
                     );
             }

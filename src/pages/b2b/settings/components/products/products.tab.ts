@@ -61,19 +61,20 @@ export class ProductsTabComponent extends EntityTabBase {
                     }).subscribe((updated) => {
                         if (updated) {
                             this.loading = true;
-                            const proms = [
-                                this.productsCrud.update(product.id, { name: updated.cat }, 'ca'),
-                                this.productsCrud.update(product.id, { name: updated.esp }, 'es'),
-                                this.productsCrud.update(product.id, { name: updated.eng }, 'en'),
-                            ];
-
-                            forkJoin(proms).subscribe(
+                            this.productsCrud.update(product.id, {
+                                name_ca: updated.name_ca,
+                                name_es: updated.name_es,
+                                name: updated.name,
+                            }, 'en').subscribe(
                                 (resp) => {
                                     this.alerts.showSnackbar('Updated product: ' + product.id, 'ok');
                                     this.loading = false;
                                     this.search();
                                 },
-                                (error) => this.alerts.showSnackbar(error.message),
+                                (error) => {
+                                    this.alerts.showSnackbar(error.message);
+                                    this.loading = false;
+                                },
                             );
                         }
                     });
@@ -89,26 +90,24 @@ export class ProductsTabComponent extends EntityTabBase {
         }).subscribe((created) => {
             if (created) {
                 this.loading = true;
-                this.productsCrud.create({ name: created.eng, description: '' }, 'en')
-                    .subscribe(
-                        (prod) => {
-                            const productID = prod.data.id;
-
-                            const proms = [
-                                this.productsCrud.update(productID, { name: created.cat }, 'ca'),
-                                this.productsCrud.update(productID, { name: created.esp }, 'es'),
-                            ];
-
-                            return forkJoin(proms).subscribe((resp) => {
-                                this.alerts.showSnackbar('Created Product', 'ok');
-                                this.loading = false;
-                                this.search();
-                            });
-                        },
-                        (error) => {
-                            this.alerts.showSnackbar(error.message);
-                        },
-                    );
+                this.productsCrud.create({
+                    name: created.name,
+                    name_ca: created.name_ca,
+                    name_es: created.name_es,
+                    description: '',
+                    status: 'reviewed',
+                    upc_code: created.upc_code,
+                }, 'en').subscribe(
+                    (prod) => {
+                        this.alerts.showSnackbar('Created Product', 'ok');
+                        this.loading = false;
+                        this.search();
+                    },
+                    (error) => {
+                        this.loading = false;
+                        this.alerts.showSnackbar(error.message);
+                    },
+                );
             }
         });
     }
@@ -135,7 +134,7 @@ export class ProductsTabComponent extends EntityTabBase {
             .subscribe(
                 (aprove) => {
                     if (aprove) {
-                        this.productsCrud.update(product.id, { status: 'aproved' }).subscribe(
+                        this.productsCrud.update(product.id, { status: 'reviewed' }).subscribe(
                             (resp) => {
                                 this.alerts.showSnackbar('Deleted Product', 'ok');
                                 this.search();

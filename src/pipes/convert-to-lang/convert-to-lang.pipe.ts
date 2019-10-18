@@ -18,8 +18,7 @@ export class ConvertToLangPipe implements PipeTransform {
   ) { }
 
   public transform(value: any, ...args: any[]): any {
-    return (value.translations && value.translations[this.langMap[this.us.lang]])
-      ? (value.translations[this.langMap[this.us.lang]].name || value.name)
-      : value.name;
+    const lang = this.langMap[this.us.lang];
+    return value['name_' + lang] || value.name;
   }
 }

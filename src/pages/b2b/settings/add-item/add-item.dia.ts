@@ -27,9 +27,10 @@ export class AddItemDia {
     public item: any = {
         default_consuming_by: [],
         default_producing_by: [],
-        cat: '',
-        eng: '',
-        esp: '',
+        name_ca: '',
+        name_es: '',
+        name: '',
+        upc_code: '',
     };
 
     public langMap = {
