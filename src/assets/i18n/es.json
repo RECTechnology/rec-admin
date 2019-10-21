@@ -987,5 +987,7 @@
 
   
   "MAIN_ACTIVITY": "Actividad Principal",
-  "SECONDARY_ACTIVITIES": "Actividades Secundarias"
+  "SECONDARY_ACTIVITIES": "Actividades Secundarias",
+  "UNREVISED_FIRST": "Muestra elementos sin revisar primero"
+
 }

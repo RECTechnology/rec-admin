@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class ProductsTabComponent extends EntityTabBase {
     public products = [];
     public productsColumns = ['id', 'cat', 'esp', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
+    public sortElementsToRevise = true;
 
     constructor(
         public productsCrud: ProductsCrud,
@@ -29,6 +30,13 @@ export class ProductsTabComponent extends EntityTabBase {
 
     public search() {
         this.loading = true;
+
+        if (this.sortElementsToRevise) {
+            this.sortID = 'status';
+        } else {
+            this.sortID = 'id';
+        }
+
         this.productsCrud.search({
             order: this.sortDir,
             limit: this.limit,

@@ -997,5 +997,7 @@
   "Phone": "Telèfon",
     
   "MAIN_ACTIVITY": "Activitat Principal",
-  "SECONDARY_ACTIVITIES": "Activitats Secundaries"
+  "SECONDARY_ACTIVITIES": "Activitats Secundaries",
+  "UNREVISED_FIRST": "Mostrar elements sense revisar primer"
+
 }

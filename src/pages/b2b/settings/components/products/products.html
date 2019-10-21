@@ -8,9 +8,17 @@
                     </p>
                 </button>
             </tl-header>
-            <translatable-list [hasStatus]="true" [(limit)]="limit" [total]="total" (onSort)="sortData($event)" (aprove)="aproveProduct($event)"
-                (changedPage)="changedPage($event)" [loading]="loading" (edit)="editProducts($event)"
-                (delete)="deleteProduct($event)" [(data)]="sortedData" [displayedColumns]="productsColumns">
+            <tl-subheader>
+                <div style="padding-left: 15px">
+                    <mat-checkbox color="primary" [(ngModel)]="sortElementsToRevise" (ngModelChange)="search()">
+                        <p class="small-text">{{'UNREVISED_FIRST'|translate}}</p>
+                    </mat-checkbox>
+                </div>
+            </tl-subheader>
+            <translatable-list [hasStatus]="true" [(limit)]="limit" [total]="total" (onSort)="sortData($event)"
+                (aprove)="aproveProduct($event)" (changedPage)="changedPage($event)" [loading]="loading"
+                (edit)="editProducts($event)" (delete)="deleteProduct($event)" [(data)]="sortedData"
+                [displayedColumns]="productsColumns">
             </translatable-list>
         </div>
     </div>
