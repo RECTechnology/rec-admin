@@ -49,6 +49,7 @@ export class EditAccountData {
   public geocoder: any;
   public productList: any[] = [];
   public actQuery = '';
+  public actMainQuery = '';
 
   public activities = [];
   public activitiesSelected = [];
@@ -81,13 +82,27 @@ export class EditAccountData {
 
   public ngOnInit() {
     this.type = this.account.type;
+
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
+
+    if (this.accountCopy.activity_main) {
+      this.accountCopy.activity_main_id = this.account.activity_main.id;
+    } else {
+      this.accountCopy.activity_main = { id: null };
+    }
+
     this.account.kyc_manager.locale = LANG_MAP[this.account.kyc_manager.locale];
 
     this.accountCopy = { ...this.account };
     this.activitiesSelected = this.accountCopy.activities.slice();
     this.schedule = this.utils.parseSchedule(this.account.schedule);
     delete this.accountCopy.kyc_validations;
+  }
+
+  public addMainActivity(act_id) {
+    this.accountCopy.activity_main_id = act_id;
+    this.accountCopy.activity_main.id = act_id;
+    this.update(false);
   }
 
   public addActivity(act) {
@@ -186,7 +201,7 @@ export class EditAccountData {
     return String(name).toLowerCase().includes(this.actQuery.toLowerCase());
   }
 
-  public update() {
+  public update(close = true) {
     const id = this.account.id;
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
 
@@ -194,6 +209,8 @@ export class EditAccountData {
     if (schedule !== this.account.schedule) {
       changedProps.schedule = schedule;
     }
+
+    delete changedProps.activity_main;
 
     console.log('edit account', id);
 
@@ -204,11 +221,11 @@ export class EditAccountData {
           (resp) => {
             this.alerts.showSnackbar('Updated account correctly!', 'ok');
             this.loading = false;
-            this.close(this.account);
+            if (close) { this.close(this.account); }
           }, (error) => {
             this.alerts.showSnackbar('Error updating account! ' + error.message, 'ok');
             this.loading = false;
-            this.close(this.account);
+            if (close) { this.close(this.account); }
           });
     } else {
       this.alerts.showSnackbar('Nothing to update', 'ok');

@@ -450,5 +450,8 @@
   "ALL_MAIL_FROM": "All mail will be sent from",
   "SEND_SCHEDULED": "Send Scheduled",
   "SEND_NOW": "Send Now",
-  "BUSSINES_DETAILS": "Organization Details"
+  "BUSSINES_DETAILS": "Organization Details",
+
+  "MAIN_ACTIVITY": "Main Activity",
+  "SECONDARY_ACTIVITIES": "Secondary Activities"
 }

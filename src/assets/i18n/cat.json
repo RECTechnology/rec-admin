@@ -994,5 +994,8 @@
   "BUSSINES_DETAILS": "Detalls de l'Organitzacio",
   "Map": "Mapa",
   "Category": "Categoria",
-  "Phone": "Telèfon"
+  "Phone": "Telèfon",
+    
+  "MAIN_ACTIVITY": "Activitat Principal",
+  "SECONDARY_ACTIVITIES": "Activitats Secundaries"
 }
