@@ -70,6 +70,9 @@ export class AddItemDia {
                 this.loading = false;
             },
             (error) => {
+                if (error.message === 'Conflict') {
+                    error.message = 'ERROR_DUP';
+                }
                 this.alerts.showSnackbar(error.message, 'ok');
                 this.loading = false;
             });

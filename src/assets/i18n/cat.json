@@ -998,6 +998,6 @@
     
   "MAIN_ACTIVITY": "Activitat Principal",
   "SECONDARY_ACTIVITIES": "Activitats Secundaries",
-  "UNREVISED_FIRST": "Mostrar elements sense revisar primer"
-
+  "UNREVISED_FIRST": "Mostrar elements sense revisar primer",
+  "ERROR_DUP": "Conflicte, comproba que el element no existeix"
 }
