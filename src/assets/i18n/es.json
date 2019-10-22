@@ -984,10 +984,10 @@
   "Map": "Mapa",
   "Category": "Categoría",
   "Phone": "Teléfono",
-
-  
   "MAIN_ACTIVITY": "Actividad Principal",
   "SECONDARY_ACTIVITIES": "Actividades Secundarias",
   "UNREVISED_FIRST": "Muestra elementos sin revisar primero",
-  "ERROR_DUP": "Conflicto, comprueba que el elemento no existe"
+  "ERROR_DUP": "Conflicto, comprueba que el elemento no existe",
+  "APROVE": "Incluir",
+  "APROVE_DESC": "¿Está seguro de que desea incluir este producto?"
 }

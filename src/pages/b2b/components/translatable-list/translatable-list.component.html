@@ -32,7 +32,7 @@
             <mat-menu #listMenu="matMenu">
                 <button mat-menu-item *ngIf="element.status === 'created' && hasStatus" (click)="onAprove.emit(element)" matTooltip="Revise Item">
                     <span class="center v"><i class="fa fa-check" style="margin-right: 8px"></i>
-                        {{'REVISE'|translate}}</span>
+                        {{'APROVE'|translate}}</span>
                 </button>
                 <button mat-menu-item (click)="onEdit.emit(element)" matTooltip="Edit Item">
                     <span class="center v"><i class="fa fa-edit" style="margin-right: 8px"></i>

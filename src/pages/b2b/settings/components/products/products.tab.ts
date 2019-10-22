@@ -54,6 +54,7 @@ export class ProductsTabComponent extends EntityTabBase {
             search: this.query || '',
             sort: this.sortID,
             activity_id,
+            // status: 'reviewed',
         }, 'all').subscribe(
             (resp) => {
                 this.data = resp.data.elements.map(this.mapTranslatedElement);
@@ -148,7 +149,7 @@ export class ProductsTabComponent extends EntityTabBase {
     }
 
     public aproveProduct(product) {
-        this.confirm('Confirm product', 'Are you sure you want to aprove this product?', 'Approve', 'warning')
+        this.confirm('Confirm product', 'APROVE_DESC', 'APROVE', 'warning')
             .subscribe(
                 (aprove) => {
                     if (aprove) {
