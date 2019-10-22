@@ -6,6 +6,7 @@ import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 
 @Component({
     selector: 'tab-products',
@@ -15,16 +16,24 @@ export class ProductsTabComponent extends EntityTabBase {
     public products = [];
     public productsColumns = ['id', 'cat', 'esp', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
     public sortElementsToRevise = true;
+    public activityFilter = null;
+
+    public activities = [];
 
     constructor(
         public productsCrud: ProductsCrud,
         public dialog: MatDialog,
         public alerts: AlertsService,
         public translate: TranslateService,
+        public actCrud: ActivitiesCrud,
     ) {
         super(dialog, alerts);
         this.translate.onLangChange.subscribe(() => {
             this.search();
+        });
+
+        this.actCrud.list().subscribe((resp) => {
+            this.activities = resp.data.elements;
         });
     }
 
@@ -36,6 +45,7 @@ export class ProductsTabComponent extends EntityTabBase {
         } else {
             this.sortID = 'id';
         }
+        const activity_id = this.activityFilter ? this.activityFilter.id : null;
 
         this.productsCrud.search({
             order: this.sortDir,
@@ -43,6 +53,7 @@ export class ProductsTabComponent extends EntityTabBase {
             offset: this.offset,
             search: this.query || '',
             sort: this.sortID,
+            activity_id,
         }, 'all').subscribe(
             (resp) => {
                 this.data = resp.data.elements.map(this.mapTranslatedElement);
@@ -151,5 +162,10 @@ export class ProductsTabComponent extends EntityTabBase {
                     }
                 },
             );
+    }
+
+    public selectActivityToFilter(activity) {
+        this.activityFilter = activity;
+        this.search();
     }
 }

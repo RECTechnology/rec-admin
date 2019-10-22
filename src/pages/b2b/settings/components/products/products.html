@@ -14,6 +14,27 @@
                         <p class="small-text">{{'UNREVISED_FIRST'|translate}}</p>
                     </mat-checkbox>
                 </div>
+
+                <div style="padding: 10px">
+                    <button [matMenuTriggerFor]="activityFilterMenu" type="button" mat-button class="mat-button-menu"
+                        style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
+                        <span
+                            style="padding-right: 8px;">{{activityFilter ? (activityFilter | tolang) : ('ACTIVITY' | translate)}}</span>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                </div>
+
+                <mat-menu #activityFilterMenu="matMenu" y-position="below" overlapTrigger="false">
+                    <button (click)="selectActivityToFilter(null)" mat-menu-item style="padding: 5px auto">
+                        <span style="color: #666; font-size: 12px">{{'None'|translate}}</span>
+                    </button>
+
+                    <button (click)="selectActivityToFilter(act)" mat-menu-item *ngFor="let act of activities"
+                        style="padding: 5px auto"
+                        [ngClass]="{'bg-gray-light': activityFilter && act.id == activityFilter.id}">
+                        <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
+                    </button>
+                </mat-menu>
             </tl-subheader>
             <translatable-list [hasStatus]="true" [(limit)]="limit" [total]="total" (onSort)="sortData($event)"
                 (aprove)="aproveProduct($event)" (changedPage)="changedPage($event)" [loading]="loading"
