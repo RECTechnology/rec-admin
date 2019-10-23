@@ -51,35 +51,26 @@ export class CreateDelivery {
     }
 
     public createDelivery(accounts) {
-        this.alerts.showConfirmation(
-            'DELIVERY_WARNIGN',
-            'Send Delivery',
-            'Send',
-            'warning',
-        ).subscribe((resp) => {
-            if (resp) {
-                this.loading = true;
-                this.selectedAccounts = accounts;
+        this.loading = true;
+        this.selectedAccounts = accounts;
 
-                const subs = [];
-                for (const account of this.selectedAccounts) {
-                    subs.push(this.mailDeliveries.create({ account_id: account.id, mailing_id: this.id }));
-                }
+        const subs = [];
+        for (const account of this.selectedAccounts) {
+            subs.push(this.mailDeliveries.create({ account_id: account.id, mailing_id: this.id }));
+        }
 
-                forkJoin(subs)
-                    .subscribe(
-                        (result) => {
-                            this.alerts.showSnackbar('Created ' + subs.length + ' deliveries correctly!', 'ok');
-                            this.loading = false;
-                            this.update.emit();
-                        },
-                        (error) => {
-                            this.alerts.showSnackbar(error.message, 'ok');
-                            this.loading = false;
-                        },
-                    );
-            }
-        });
+        forkJoin(subs)
+            .subscribe(
+                (result) => {
+                    this.alerts.showSnackbar('Created ' + subs.length + ' deliveries correctly!', 'ok');
+                    this.loading = false;
+                    this.update.emit();
+                },
+                (error) => {
+                    this.alerts.showSnackbar(error.message, 'ok');
+                    this.loading = false;
+                },
+            );
     }
 
     public removeAccount(i) {
