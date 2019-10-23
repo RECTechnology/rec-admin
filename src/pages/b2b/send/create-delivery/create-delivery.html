@@ -1,4 +1,4 @@
-<div class="modal-header bg-blue">
+<!-- <div class="modal-header bg-blue">
     {{'CREATE_DELIVERY'|translate}}
 
     <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
@@ -6,16 +6,16 @@
             <i class="fa fa-times col-white"></i>
         </span>
     </button>
-</div>
+</div> -->
 
-<div class="padd-x20 modal-body" style="height: auto">
+<div style="height: auto">
     <p class="small-text col-blue">
         {{'DELIVERY_DESC'|translate}}
     </p>
     <div class="group-row-left center v space-between bordered-bottom padd-x10">
         <p class="small-text col-gray">{{'SELECTED_ACCOUNTS'|translate}}: <b>{{selectedAccounts.length}}</b></p>
-        <button (click)="openSelectAccounts()" color="primary" mat-raised-button>
-            {{'ADD_ACCOUNTS'|translate}}
+        <button [disabled]="disabled" (click)="openSelectAccounts()" color="primary" mat-raised-button>
+            + {{'ADD_ACCOUNTS'|translate}}
         </button>
     </div>
     <div style="padding-left: 15px; width: 100%">
@@ -23,18 +23,12 @@
             <div class="group-row-left center v space-between" style="width: 100%"
                 *ngFor="let item of selectedAccounts; let i = index">
                 <div class="small-text">{{item.name}} (<code>{{item.id}}</code>)</div>
-                <button mat-icon-button class="col-error" (click)="removeAccount(i)"><i
+                <button mat-icon-button [disabled]="disabled" class="col-error" (click)="removeAccount(i)"><i
                         class="fa fa-trash"></i></button>
             </div>
         </div>
         <p class="small-text" *ngIf="!selectedAccounts.length">
             {{'NO_USERS_SELECTED'|translate}}
         </p>
-    </div>
-
-    <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
-        <btn-loader (click)="createDelivery()" [disabled]="loading" [loading]="loading"
-            [text]="'ADD_ACCOUNTS'">
-        </btn-loader>
     </div>
 </div>

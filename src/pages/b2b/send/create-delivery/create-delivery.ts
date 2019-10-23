@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,13 +15,16 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
     selector: 'create-delivery',
     templateUrl: './create-delivery.html',
 })
-export class CreateDelivery extends BaseDialog {
-    public id = null;
-    public deliveries = [];
-    public selectedAccounts = [];
+export class CreateDelivery {
+    @Input() public id = null;
+    @Input() public loading = false;
+    @Input() public deliveries = [];
+    @Input() public disabled = false;
+    @Input() public selectedAccounts = [];
+    @Output() public update: EventEmitter<any> = new EventEmitter();
 
     constructor(
-        public dialogRef: MatDialogRef<CreateDelivery>,
+        // public dialogRef: MatDialogRef<CreateDelivery>,
         public us: UserService,
         public translate: TranslateService,
         public mailDeliveries: MailingDeliveriesCrud,
@@ -31,7 +34,7 @@ export class CreateDelivery extends BaseDialog {
         public mailing: MailingCrud,
         public alerts: AlertsService,
     ) {
-        super();
+        // super();
     }
 
     public openSelectAccounts() {
@@ -42,12 +45,12 @@ export class CreateDelivery extends BaseDialog {
             sortType: '',
         }, { width: '80vw', height: '80vh' }).subscribe((result) => {
             if (result) {
-                this.selectedAccounts = result.accounts;
+                this.createDelivery(result.accounts);
             }
         });
     }
 
-    public createDelivery() {
+    public createDelivery(accounts) {
         this.alerts.showConfirmation(
             'DELIVERY_WARNIGN',
             'Send Delivery',
@@ -56,6 +59,8 @@ export class CreateDelivery extends BaseDialog {
         ).subscribe((resp) => {
             if (resp) {
                 this.loading = true;
+                this.selectedAccounts = accounts;
+
                 const subs = [];
                 for (const account of this.selectedAccounts) {
                     subs.push(this.mailDeliveries.create({ account_id: account.id, mailing_id: this.id }));
@@ -66,7 +71,7 @@ export class CreateDelivery extends BaseDialog {
                         (result) => {
                             this.alerts.showSnackbar('Created ' + subs.length + ' deliveries correctly!', 'ok');
                             this.loading = false;
-                            this.close();
+                            this.update.emit();
                         },
                         (error) => {
                             this.alerts.showSnackbar(error.message, 'ok');

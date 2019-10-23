@@ -85,10 +85,10 @@ export class EditAccountData {
 
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
 
-    if (this.accountCopy.activity_main) {
-      this.accountCopy.activity_main_id = this.account.activity_main.id;
+    if (this.account.activity_main) {
+      this.account.activity_main_id = this.account.activity_main.id;
     } else {
-      this.accountCopy.activity_main = { id: null };
+      this.account.activity_main = { id: null };
     }
 
     this.account.kyc_manager.locale = LANG_MAP[this.account.kyc_manager.locale];

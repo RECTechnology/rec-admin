@@ -8,6 +8,15 @@ import { CompanyService } from 'src/services/company/company.service';
 
 @Injectable()
 export class MailingCrud extends CrudBaseService {
+
+    // public static STATUS_SCHEDULED = 'scheduled';
+    // public static STATUS_SENT = 'sent';
+    // public static STATUS_ERRORED = 'errored';
+
+    public static STATUS_CREATED = 'created';
+    public static STATUS_SCHEDULED = 'scheduled';
+    public static STATUS_PROCESSED = 'processed';
+
     constructor(
         http: HttpClient,
         public us: UserService,
@@ -19,8 +28,7 @@ export class MailingCrud extends CrudBaseService {
         this.mapItems = true;
     }
 
-    public addAttachment(mailing_id, link) {
-        const url = [...this.getUrlBase(), '/', mailing_id, '/', 'attachments'];
-        return this.post(url, { link });
+    public addAttachment(mailing_id, attachments) {
+        return this.update(mailing_id, { attachments });
     }
 }

@@ -29,13 +29,14 @@ export class SendMail extends TablePageBase {
     public pageName = 'Send Email';
     public moreThan5 = false;
 
-    public mail = {
+    public mail: any = {
         content: '',
         scheduled_at:
             `${now.getFullYear()}-${now.getMonth().toString().padStart(2, '0')}-${
             now.getDate().toString().padStart(2, '0')}T${
             now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`,
         subject: '',
+        attachments: {},
     };
 
     public mailCopy = {
@@ -89,6 +90,12 @@ export class SendMail extends TablePageBase {
     ];
 
     public sendScheduled = false;
+    public attachments = [];
+    public validationErrors: any = [];
+    public readonly = false;
+    public addLink = false;
+    public linkName = '';
+    public linkAttachment = '';
 
     constructor(
         public us: UserService,
@@ -110,12 +117,16 @@ export class SendMail extends TablePageBase {
             if (params.id_or_new && params.id_or_new !== 'new' && /[0-9]+/.test(params.id_or_new)) {
                 this.isEdit = true;
                 this.id = params.id_or_new;
-                this.getMail();
-                this.search();
+                this.update();
             } else {
                 this.mailCopy = { ...this.mail };
             }
         });
+    }
+
+    public update() {
+        this.getMail();
+        this.search();
     }
 
     public getMail() {
@@ -123,6 +134,18 @@ export class SendMail extends TablePageBase {
             .subscribe((resp) => {
                 this.mail = resp.data;
                 const scheduled = new Date(this.mail.scheduled_at);
+
+                this.readonly = this.mail.status === MailingCrud.STATUS_PROCESSED;
+
+                this.mail.attachments = this.mail.attachments.map ? {} : this.mail.attachments;
+                this.attachments = Object.keys(this.mail.attachments).map((el) => {
+                    return {
+                        name: el,
+                        file: this.mail.attachments[el],
+                    };
+                });
+
+                this.deliveries = this.mail.deliveries.map((el) => el.account);
 
                 this.mail.scheduled_at =
                     `${scheduled.getFullYear()}-${scheduled.getMonth().toString().padStart(2, '0')}-${
@@ -171,9 +194,9 @@ export class SendMail extends TablePageBase {
 
     public getStatusColor(status) {
         switch (status) {
-            case 'errored': return 'error';
-            case 'sent': return 'success';
-            case 'scheduled': return 'primary';
+            case MailingDeliveriesCrud.STATUS_ERRORED: return 'error';
+            case MailingDeliveriesCrud.STATUS_SENT: return 'success';
+            case MailingDeliveriesCrud.STATUS_SCHEDULED: return 'primary';
         }
     }
 
@@ -190,15 +213,9 @@ export class SendMail extends TablePageBase {
             });
     }
 
-    public updateMail() {
-        this.loading = true;
-        const data: any = Object.assign({}, this.mail);
-        this.mailing.update(this.id, {
-            content: data.content,
-            scheduled_at: moment(data.scheduled_at).toISOString(),
-            subject: data.subject,
-        }).subscribe((resp) => {
-            this.alerts.showSnackbar('Edited Mail Correctly');
+    public updateMail(data, message = 'Edited Mail Correctly') {
+        this.mailing.update(this.id, data).subscribe((resp) => {
+            this.alerts.showSnackbar(message);
             this.loading = false;
             this.saved = true;
             this.mail = resp.data;
@@ -206,6 +223,25 @@ export class SendMail extends TablePageBase {
         }, (err) => {
             this.alerts.showSnackbar(err.message);
             this.loading = false;
+        });
+    }
+
+    public sendNormal() {
+        const mailData = {
+            scheduled_at: moment().toISOString(),
+            status: MailingCrud.STATUS_SCHEDULED,
+        };
+
+        this.updateMail(mailData, 'Sent mail correctly');
+    }
+
+    public saveMail(upateData = {}) {
+        this.loading = true;
+        const data: any = Object.assign({}, this.mail);
+        this.updateMail({
+            content: data.content,
+            scheduled_at: moment(data.scheduled_at).toISOString(),
+            subject: data.subject,
         });
     }
 
@@ -250,21 +286,63 @@ export class SendMail extends TablePageBase {
         this.blured = true;
     }
 
+    public addAttachment(file, name = '') {
+        const fname = name || file.split('/').pop();
+        console.log(this.mail.attachments);
+
+        const attachments = Object.assign(this.mail.attachments, {
+            [fname]: file,
+        });
+
+        this.mailing.addAttachment(this.id, attachments)
+            .subscribe(() => {
+                this.alerts.showSnackbar('Added attachment correctly');
+                this.loading = false;
+                this.getMail();
+            }, (error) => {
+                if (error.message.includes('Validation error')) {
+                    this.validationErrors = error.errors;
+                } else {
+                    this.alerts.showSnackbar(error.message, 'ok');
+                }
+                this.loading = false;
+            });
+    }
+
+    public removeAttachment(name) {
+        delete this.mail.attachments[name];
+        this.mailing.addAttachment(this.id, this.mail.attachments)
+            .subscribe(() => {
+                this.alerts.showSnackbar('Removed attachment correctly');
+                this.loading = false;
+                this.getMail();
+            }, (error) => {
+                if (error.message.includes('Validation error')) {
+                    this.validationErrors = error.errors;
+                } else {
+                    this.alerts.showSnackbar(error.message, 'ok');
+                }
+                this.loading = false;
+            });
+    }
+
+    public addLinkAttachment() {
+        this.addAttachment(this.linkAttachment, this.linkName);
+
+        this.linkAttachment = '';
+        this.linkName = '';
+        this.addLink = false;
+    }
+
     public selectFile(selectedImage?) {
+        console.log('selectedImage', selectedImage);
         this.alerts.openModal(FileUpload, {
             hasSelectedImage: !!selectedImage,
             selectedImage,
         }).subscribe((attachmentLink) => {
             if (attachmentLink) {
                 this.loading = true;
-                this.mailing.addAttachment(this.id, attachmentLink)
-                    .subscribe(() => {
-                        this.alerts.showSnackbar('Added attachment correctly');
-                        this.loading = false;
-                    }, (err) => {
-                        this.alerts.showSnackbar(err.message);
-                        this.loading = false;
-                    });
+                this.addAttachment(attachmentLink);
             }
         });
     }

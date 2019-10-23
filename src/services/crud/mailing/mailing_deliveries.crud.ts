@@ -8,6 +8,13 @@ import { CompanyService } from 'src/services/company/company.service';
 
 @Injectable()
 export class MailingDeliveriesCrud extends CrudBaseService {
+
+    public static STATUS_CREATED = 'created';
+    public static STATUS_SCHEDULED = 'scheduled';
+    public static STATUS_SENT = 'sent';
+    public static STATUS_CANCELLED = 'cancelled';
+    public static STATUS_ERRORED = 'errored';
+
     constructor(
         http: HttpClient,
         public us: UserService,

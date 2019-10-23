@@ -403,7 +403,7 @@
 
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6" *ngIf="accountCopy.activity_main">
           <p class="small-text-2">{{'MAIN_ACTIVITY'|translate}}</p>
           <mat-select [(ngModel)]="accountCopy.activity_main.id" class="mat-button-menu">
             <ng-template ngFor let-act [ngForOf]="activities">
