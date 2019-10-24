@@ -131,6 +131,7 @@ export class SendMail extends TablePageBase {
                 this.mailCopy = { ...this.mail };
             }
         });
+        super.ngOnInit();
     }
 
     public update() {

@@ -24,5 +24,12 @@
         </button>
     </div>
 
+    <div *ngIf="options.showOptions">
+        <button type="button" color="primary" mat-icon-button name="button">
+            <p class="text-small">
+                <i class="fa fa-cog"></i>
+            </p>
+        </button>
+    </div>
     <ng-content></ng-content>
 </div>

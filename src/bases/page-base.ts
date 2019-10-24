@@ -104,11 +104,25 @@ export abstract class TablePageBase extends PageBase {
   public limit: number = 10;
   public total = 0;
   public showing = 0;
+  public autoRefresh = false;
+  public autoRefreshInterval = 60e3;
+  public refreshInterval = null;
 
   public data: any[] = [];
   public sortedData: any[] = [];
 
   public abstract search(): any;
+
+  public ngOnInit() {
+    clearInterval(this.refreshInterval);
+    if (this.autoRefresh) {
+      this.refreshInterval = setInterval(this.search.bind(this), this.refreshInterval);
+    }
+  }
+
+  public ngOnDestroy() {
+    clearInterval(this.refreshInterval);
+  }
 
   public changedPage($event) {
     this.limit = $event.pageSize;

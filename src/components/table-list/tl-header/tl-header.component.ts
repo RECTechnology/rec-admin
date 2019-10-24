@@ -4,11 +4,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 export interface TableListHeaderOptions {
     input?: boolean;
     newItem?: boolean;
+    showOptions?: boolean;
 }
 
 const defaultOptions: TableListHeaderOptions = {
     input: true,
     newItem: false,
+    showOptions: false,
 };
 
 @Component({
