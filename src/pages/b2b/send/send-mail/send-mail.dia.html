@@ -37,7 +37,7 @@
                         <p class="small-text" style="margin-right: 10px!important">{{'Subject'|translate}}</p>
                         <input matInput type="text" [disabled]="readonly"
                             style="width: 100%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
-                            placeholder="{{'Subject'|translate}}" [(ngModel)]="mail.subject">
+                            placeholder="{{'Subject'|translate}}" [(ngModel)]="mail.subject" (ngModelChange)="saved = false">
                     </div>
                 </div>
 

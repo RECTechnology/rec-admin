@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
@@ -15,6 +15,7 @@ import * as moment from 'moment';
 import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { UtilsService } from 'src/services/utils/utils.service';
+import { Observable } from 'rxjs';
 
 const now = new Date();
 
@@ -25,7 +26,7 @@ const now = new Date();
 export class SendMail extends TablePageBase {
     public blured = false;
     public focused = false;
-    public saved = false;
+    public saved = true;
 
     public pageName = 'Send Email';
     public moreThan5 = false;
@@ -120,6 +121,23 @@ export class SendMail extends TablePageBase {
         super();
     }
 
+    /**
+     * Below methods are to disable navigation if not saved or item is empty
+     * And will show a confirmation modal if return -> false, and will navigate if return -> true
+     */
+    @HostListener('window:beforeunload')
+    public canDeactivate(): any {
+        return this.saved && (this.mail.subject && this.mail.content);
+    }
+    public onNavigateAway() {
+        if (!this.mail.subject && !this.mail.content) {
+            this.mailing.remove(this.mail.id)
+                .subscribe((resp) => {
+                    console.log('removed mail');
+                });
+        }
+    }
+
     public ngOnInit() {
         this.route.params.subscribe((params) => {
             if (params.id_or_new === 'new') { this.createMail(); }
@@ -193,19 +211,6 @@ export class SendMail extends TablePageBase {
     public showAll() {
         this.sortedData = this.data.slice();
         this.moreThan5 = false;
-    }
-
-    public createDelivery() {
-        this.alerts.openModal(CreateDelivery, {
-            deliveries: this.data.map((el) => el.account),
-            id: this.id,
-            selectedAccounts: this.data.map((el) => el.account),
-        }).subscribe(() => {
-            this.search();
-        }, (err) => {
-            this.alerts.showSnackbar(err.message);
-            this.loading = false;
-        });
     }
 
     public getStatusColor(status) {
@@ -286,6 +291,7 @@ export class SendMail extends TablePageBase {
 
     public changedEditor(event) {
         this.mail.content = event.html ? event.html : this.mail.content;
+        this.saved = false;
     }
 
     public focus($event) {

@@ -39,6 +39,7 @@ import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
 import { HttpErrorInterceptor } from 'src/services/interceptor';
 import { AccountModule } from 'src/pages/account/account.module';
 import { B2bService } from 'src/services/b2b/b2b.service';
+import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -107,6 +108,7 @@ const imports = [
     IsLoggedInGuard,
     IsNotLoggedInGuard,
     IsResellerGuard,
+    PendingChangesGuard,
     WalletService,
     UtilsService,
     TranslateService,

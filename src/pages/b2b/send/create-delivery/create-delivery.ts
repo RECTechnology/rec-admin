@@ -97,7 +97,6 @@ export class CreateDelivery {
 
     public removeAccount(i) {
         const acc = this.selectedAccounts[i];
-        console.log('acc', acc);
         this.selectedAccounts.splice(i, 1);
         this.mailDeliveries.remove(acc.delivery_id).subscribe(
             (result) => {

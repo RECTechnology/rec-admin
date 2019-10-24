@@ -13,6 +13,7 @@ import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.com
 import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
 import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
 import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
+import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
 
 const ROUTES: Routes = [
 
@@ -31,7 +32,10 @@ const ROUTES: Routes = [
   { path: 'treasure_account', component: TreasureAccount, canActivate: [IsLoggedInGuard] },
 
   { path: 'rec/mailing', component: B2BSendComponent, canActivate: [IsLoggedInGuard] },
-  { path: 'rec/mailing/:id_or_new', component: SendMail, canActivate: [IsLoggedInGuard] },
+  {
+    path: 'rec/mailing/:id_or_new', component: SendMail,
+    canActivate: [IsLoggedInGuard], canDeactivate: [PendingChangesGuard]
+  },
   { path: 'b2b/settings', component: B2BSettingsComponent, canActivate: [IsLoggedInGuard] },
 
 ];
