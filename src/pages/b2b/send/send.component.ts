@@ -4,7 +4,7 @@ import { B2bService } from 'src/services/b2b/b2b.service';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
 import { Router } from '@angular/router';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
-import { TlHeader, TlItemOption } from 'src/components/table-list/tl-table/tl-table.component';
+import { TlHeader, TlItemOption, TableListOptions } from 'src/components/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { Title } from '@angular/platform-browser';
@@ -28,13 +28,19 @@ export class B2BSendComponent extends TablePageBase {
             title: 'Subject',
         },
         {
+            sort: 'status',
+            title: 'Status',
+            type: 'status',
+            statusClass: (el: any) => ({
+                'col-info': true,
+                // 'col-info': el !== MailingCrud.STATUS_CREATED,
+                // 'col-info': el !== MailingCrud.STATUS_SCHEDULED,
+            }),
+        },
+        {
             accessor: (item) => item.deliveries.length,
             sort: 'deliveries',
             title: 'Deliveries',
-        },
-        {
-            sort: 'processed',
-            title: 'Processed',
         },
         {
             sort: 'created',
@@ -46,8 +52,13 @@ export class B2BSendComponent extends TablePageBase {
         {
             callback: this.editMail.bind(this),
             text: 'Edit',
+            icon: 'fa-edit',
         },
     ];
+    public options: TableListOptions = {
+        optionsType: 'buttons',
+    };
+    public loading = true;
 
     constructor(
         public controles: ControlesService,

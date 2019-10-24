@@ -6,8 +6,25 @@ declare let _;
 
 @Injectable()
 export class UtilsService {
+
+  public get isMobileDevice() {
+    return this.isMobile();
+  }
+
+  public set isMobileDevice(val) {
+    this.isMDevice = val;
+  }
   public static getLocaleFromLang(lang) {
     return lang.substr(0, 2);
+  }
+
+  public static cleanObject(obj) {
+    for (const propName in obj) {
+      if (obj[propName] === null || obj[propName] === undefined) {
+        delete obj[propName];
+      }
+    }
+    return obj;
   }
 
   public isSandbox = false;
@@ -29,14 +46,6 @@ export class UtilsService {
 
   public openIdleModal = () => { return; };
   public closeIdleModal = () => { return; };
-
-  public get isMobileDevice() {
-    return this.isMobile();
-  }
-
-  public set isMobileDevice(val) {
-    this.isMDevice = val;
-  }
 
   public parseDateToParts(date: Date) {
     const year = String(date.getFullYear());

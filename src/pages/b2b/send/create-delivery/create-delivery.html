@@ -1,4 +1,4 @@
-<div class="modal-header bg-blue">
+<!-- <div class="modal-header bg-blue">
     {{'CREATE_DELIVERY'|translate}}
 
     <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
@@ -6,35 +6,59 @@
             <i class="fa fa-times col-white"></i>
         </span>
     </button>
-</div>
+</div> -->
 
-<div class="padd-x20 modal-body" style="height: auto">
+<div style="height: auto">
     <p class="small-text col-blue">
         {{'DELIVERY_DESC'|translate}}
     </p>
     <div class="group-row-left center v space-between bordered-bottom padd-x10">
         <p class="small-text col-gray">{{'SELECTED_ACCOUNTS'|translate}}: <b>{{selectedAccounts.length}}</b></p>
-        <button (click)="openSelectAccounts()" color="primary" mat-raised-button>
-            {{'ADD_ACCOUNTS'|translate}}
+        <button [disabled]="disabled" (click)="openSelectAccounts()" color="primary" mat-raised-button>
+            + {{'ADD_ACCOUNTS'|translate}}
         </button>
     </div>
-    <div style="padding-left: 15px; width: 100%">
+    <div style="padding-left: 8px; width: 100%">
         <div class="group-col-left" style="width: 100%; max-height: 300px; overflow-y: auto">
-            <div class="group-row-left center v space-between" style="width: 100%"
+            <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+                style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
+            </validation-errors>
+            <div class="group-row-left center v space-between"
+                style="width: 100%; padding: 8px 0; border-bottom: 1px solid #ddd;"
                 *ngFor="let item of selectedAccounts; let i = index">
-                <div class="small-text">{{item.name}} (<code>{{item.id}}</code>)</div>
-                <button mat-icon-button class="col-error" (click)="removeAccount(i)"><i
-                        class="fa fa-trash"></i></button>
+                <div class="group-row-left center v">
+                    <div class="group-row-left center v">
+                        <span class="text-small">
+                            <i *ngIf="item.status === 'sent' || item.status === 'delivered' || item.status === 'opened'"
+                                matTooltip="Status: {{item.status}}" class="fa fa-check col-success marg-r-10"></i>
+                            <i *ngIf="item.status === 'errored'" matTooltip="Status: errored"
+                                class="fa fa-times col-error marg-r-10"></i>
+                            <i *ngIf="item.status === 'scheduled'" matTooltip="Status: scheduled"
+                                class="fa fa-clock col-info marg-r-10"></i>
+                            <i *ngIf="item.status === 'created'" matTooltip="Status: created"
+                                class="fa fa-circle col-info marg-r-10"></i>
+                            <i *ngIf="item.status === 'canceled'" matTooltip="Status: canceled"
+                                class="fa fa-ban col-warning marg-r-10"></i>
+                        </span>
+
+                        <span class="text-small">
+                            <i *ngIf="item.status === 'opened'" matTooltip="Mail read"
+                                class="fa fa-eye col-success marg-r-10"></i>
+                            <i *ngIf="item.status !== 'opened'" matTooltip="Mail not read"
+                                class="fa fa-eye-slash col-gray-light marg-r-10"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <div class="small-text">{{item.name}} (<code>{{item.id}}</code>)</div>
+                        <p style="font-size: 10px">{{item.email}}</p>
+                    </div>
+                </div>
+                <button mat-icon-button color="error" *ngIf="!disabled" (click)="removeAccount(i)"><i
+                        class="fa fa-trash col-error"></i></button>
             </div>
         </div>
         <p class="small-text" *ngIf="!selectedAccounts.length">
             {{'NO_USERS_SELECTED'|translate}}
         </p>
-    </div>
-
-    <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
-        <btn-loader (click)="createDelivery()" [disabled]="loading" [loading]="loading"
-            [text]="'ADD_ACCOUNTS'">
-        </btn-loader>
     </div>
 </div>

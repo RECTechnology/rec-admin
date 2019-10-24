@@ -12,6 +12,7 @@ export class TranslatableListComponent implements AfterViewInit {
 
   @Input() public data = [];
   @Input() public loading = true;
+  @Input() public hasStatus = false;
   @Input() public total = 0;
   @Input() public limit = 10;
   @Output() public dataChange: EventEmitter<any> = new EventEmitter();

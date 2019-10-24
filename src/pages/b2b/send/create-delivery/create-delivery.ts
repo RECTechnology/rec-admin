@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,13 +15,19 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
     selector: 'create-delivery',
     templateUrl: './create-delivery.html',
 })
-export class CreateDelivery extends BaseDialog {
-    public id = null;
-    public deliveries = [];
-    public selectedAccounts = [];
+export class CreateDelivery {
+    @Input() public id = null;
+    @Input() public loading = false;
+    @Input() public deliveries = [];
+    @Input() public disabled = false;
+    @Input() public selectedAccounts = [];
+    @Output() public update: EventEmitter<any> = new EventEmitter();
+
+    public validationErrors = [];
+    public validationErrorName = 'Validation Error';
 
     constructor(
-        public dialogRef: MatDialogRef<CreateDelivery>,
+        // public dialogRef: MatDialogRef<CreateDelivery>,
         public us: UserService,
         public translate: TranslateService,
         public mailDeliveries: MailingDeliveriesCrud,
@@ -31,53 +37,79 @@ export class CreateDelivery extends BaseDialog {
         public mailing: MailingCrud,
         public alerts: AlertsService,
     ) {
-        super();
+        // super();
     }
 
     public openSelectAccounts() {
-        this.alerts.openModal(SelectAccountsDia, {
+        let ref: any = this.alerts.createModal(SelectAccountsDia, {
             newSelectedAccounts: this.selectedAccounts.slice(),
             selectedAccounts: this.selectedAccounts.slice(),
             showEdit: false,
             sortType: '',
-        }, { width: '80vw', height: '80vh' }).subscribe((result) => {
+        }, { width: '80vw', height: '80vh' });
+
+        // ref.componentInstance.onSelect.subscribe((resp) => this.createDelivery([resp]));
+        // ref.componentInstance.onUnselect.subscribe((resp) => {
+        //     console.log(this.selectedAccounts);
+        //     const index = this.selectedAccounts.find(resp);
+        //     this.removeAccount(index);
+        // });
+
+        ref.afterClosed().subscribe((result) => {
             if (result) {
-                this.selectedAccounts = result.accounts;
+                this.createDelivery(result.accounts);
             }
         });
     }
 
-    public createDelivery() {
-        this.alerts.showConfirmation(
-            'DELIVERY_WARNIGN',
-            'Send Delivery',
-            'Send',
-            'warning',
-        ).subscribe((resp) => {
-            if (resp) {
-                this.loading = true;
-                const subs = [];
-                for (const account of this.selectedAccounts) {
-                    subs.push(this.mailDeliveries.create({ account_id: account.id, mailing_id: this.id }));
-                }
+    public createDelivery(accounts) {
+        this.loading = true;
 
-                forkJoin(subs)
-                    .subscribe(
-                        (result) => {
-                            this.alerts.showSnackbar('Created ' + subs.length + ' deliveries correctly!', 'ok');
-                            this.loading = false;
-                            this.close();
-                        },
-                        (error) => {
-                            this.alerts.showSnackbar(error.message, 'ok');
-                            this.loading = false;
-                        },
-                    );
+        const subs = [];
+        for (const account of accounts) {
+            const accIdMap = this.selectedAccounts.map((el) => el.id);
+            const exists = accIdMap.includes(account.id);
+            if (!exists) {
+                subs.push(this.mailDeliveries.create({ account_id: account.id, mailing_id: this.id }));
             }
-        });
+        }
+
+        forkJoin(subs)
+            .subscribe(
+                (result) => {
+                    this.alerts.showSnackbar('Created ' + subs.length + ' deliveries correctly!', 'ok');
+                    this.loading = false;
+                    this.update.emit();
+                    this.selectedAccounts = accounts;
+                },
+                (error) => {
+                    console.log(error);
+                    this.alerts.showSnackbar(error.message, 'ok');
+                    this.loading = false;
+                    if (error.message.includes('Validation error')) {
+                        this.validationErrors = error.errors;
+                    } else {
+                        this.alerts.showSnackbar(error.message, 'ok');
+                    }
+                },
+            );
     }
 
     public removeAccount(i) {
+        const acc = this.selectedAccounts[i];
+        console.log('acc', acc);
         this.selectedAccounts.splice(i, 1);
+        this.mailDeliveries.remove(acc.delivery_id).subscribe(
+            (result) => {
+                this.alerts.showSnackbar('Removed delivery correctly!', 'ok');
+                this.loading = false;
+                this.update.emit();
+            },
+            (error) => {
+                console.log(error);
+                this.alerts.showSnackbar(error.message, 'ok');
+                this.loading = false;
+            },
+        );
     }
 }

@@ -107,6 +107,8 @@ export class BaseService2 {
     const headers = this.getHeaders(overwriteHeaders);
     let searchParams: HttpParams = new HttpParams();
 
+    UtilsService.cleanObject(params);
+
     if (params instanceof Array) {
       for (const param of params) {
         if (String(param.value).toString() === '[object Object]') {
@@ -165,6 +167,8 @@ export class BaseService2 {
     const headers = this.getHeaders({ 'Content-Type': content_type, ...overwriteHeaders });
     const options = { headers };
 
+    UtilsService.cleanObject(data);
+
     let params = data;
     if (content_type === 'application/x-www-form-urlencoded') {
       params = new HttpParams();
@@ -201,6 +205,8 @@ export class BaseService2 {
     const headers = this.getHeaders(overwriteHeaders);
     const options = { headers };
 
+    UtilsService.cleanObject(data);
+
     return this.http.patch(
       this.getUrl(url),
       data,
@@ -217,6 +223,8 @@ export class BaseService2 {
   ): Observable<any> {
     const headers = this.getHeaders({ 'content-type': content_type, ...overwriteHeaders });
     const options = { headers };
+
+    UtilsService.cleanObject(data);
 
     let params = null;
     if (content_type === 'application/x-www-form-urlencoded') {

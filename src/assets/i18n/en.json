@@ -450,5 +450,12 @@
   "ALL_MAIL_FROM": "All mail will be sent from",
   "SEND_SCHEDULED": "Send Scheduled",
   "SEND_NOW": "Send Now",
-  "BUSSINES_DETAILS": "Organization Details"
+  "BUSSINES_DETAILS": "Organization Details",
+
+  "MAIN_ACTIVITY": "Main Activity",
+  "SECONDARY_ACTIVITIES": "Secondary Activities",
+  "UNREVISED_FIRST": "Show Unrevised Items First",
+  "ERROR_DUP": "Conflict, check item does not exist",
+  "APROVE": "Include",
+  "APROVE_DESC": "Are you sure you want to include this product?"
 }

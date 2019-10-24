@@ -17,18 +17,23 @@
             <div class="col-lg-4" [class.col-lg-12]="!isProduct">
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'Catalan'|translate}}</span>
-                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.cat"
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.name_ca"
                         placeholder="{{'Catalan'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'Spanish'|translate}}</span>
-                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.esp"
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.name_es"
                         placeholder="{{'Spanish'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
                 <div class="group-col-left" style="width: 100%">
                     <span class="small-text-2">{{'English'|translate}}</span>
-                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.eng"
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.name"
                         placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()">
+                </div>
+                <div class="group-col-left" style="width: 100%" *ngIf="!isProduct">
+                    <span class="small-text-2">{{'UPC_CODE'|translate}}</span>
+                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.upc_code"
+                        placeholder="{{'UPC_CODE'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
             </div>
             <div class="col-lg-8" *ngIf="isProduct && isEdit">

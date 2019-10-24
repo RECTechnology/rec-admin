@@ -27,9 +27,10 @@ export class AddItemDia {
     public item: any = {
         default_consuming_by: [],
         default_producing_by: [],
-        cat: '',
-        eng: '',
-        esp: '',
+        name_ca: '',
+        name_es: '',
+        name: '',
+        upc_code: '',
     };
 
     public langMap = {
@@ -46,7 +47,7 @@ export class AddItemDia {
         public productsCrud: ProductsCrud,
         public alerts: AlertsService,
     ) {
-        this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' }, 'all')
+        this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' }, this.langMap[this.us.lang])
             .subscribe((resp) => this.activities = resp.data.elements);
     }
 
@@ -69,6 +70,9 @@ export class AddItemDia {
                 this.loading = false;
             },
             (error) => {
+                if (error.message === 'Conflict') {
+                    error.message = 'ERROR_DUP';
+                }
                 this.alerts.showSnackbar(error.message, 'ok');
                 this.loading = false;
             });
@@ -109,6 +113,9 @@ export class AddItemDia {
     }
 
     public add() {
+        this.item.name_ca = this.item.name_ca.trim();
+        this.item.name_es = this.item.name_es.trim();
+        this.item.name = this.item.name.trim();
         this.dialogRef.close({ ...this.item });
     }
 

@@ -2,6 +2,7 @@
 <sidemenu></sidemenu>
 
 <div class="page mailing" [ngClass]="{'collapsed': !controls.sidemenuVisible}">
+    <in-development></in-development>
     <div class="padd-x20" style="width: 100%">
         <mat-card style="margin-bottom: 10px">
             <div class="center v">
@@ -15,113 +16,130 @@
                 </p>
             </div>
         </mat-card>
-        <mat-card style="margin-bottom: 10px; width: 100%; margin-top: 10px">
-            <!-- From -->
-            <div class="group-row-left bordered-bottom" style="padding-bottom: 10px!important">
-                <p class="small-text">
-                    {{'ALL_MAIL_FROM'|translate}} <a href="mailto:no-reply@email.rec.barcelona"
-                        class="col-info">no-reply@email.rec.barcelona</a></p>
-            </div>
-
-            <!-- Subject -->
-            <div class="group-row-left center v space-between" style="padding-bottom: 10px; padding-top: 10px">
-                <div class="group-row-left" style="width: 90%">
-                    <p class="small-text" style="margin-right: 10px!important">{{'Subject'|translate}}</p>
-                    <input matInput type="text"
-                        style="width: 100%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
-                        placeholder="{{'Subject'|translate}}" [(ngModel)]="mail.subject">
+        <div class="row" style="margin: 0; padding: 0">
+            <mat-card class="col-lg-8 col-md-12" style="margin-bottom: 10px; margin-top: 10px">
+                <!-- From -->
+                <div class="group-row-left bordered-bottom" style="padding-bottom: 10px!important">
+                    <p class="small-text">
+                        {{'ALL_MAIL_FROM'|translate}} <a href="mailto:no-reply@email.rec.barcelona"
+                            class="col-info">no-reply@email.rec.barcelona</a></p>
                 </div>
-            </div>
 
-            <!-- Accountws -->
-            <div class="group-row-left center v space-between" style="padding-bottom: 10px; padding-top: 10px">
-                <div class="group-row-left" style="width: 90%">
-                    <p class="small-text" style="margin-right: 10px!important">{{'To'|translate}}</p>
-                    <!-- <div matInput type="text"
-                        style="width: 100%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
-                        placeholder="{{'Subject'|translate}}" [(ngModel)]="mail.subject"> -->
-                    <mat-chip-list aria-label="Fish selection">
-                        <mat-chip selected color="{{getStatusColor(item.status)}}" *ngFor="let item of sortedData">
-                            <div class="center h v" style="height: 100%">
-                                {{item.account.name}} ({{item.account.id}})
-                                <i class="fa fa-times" (click)="deleteAccount(item)" style="margin-left: 10px"></i>
-                            </div>
-                        </mat-chip>
-                        <mat-chip *ngIf="moreThan5" (click)="showAll()">
-                            <div class="center h v" style="height: 100%">
-                                ... ({{total}} items)
-                            </div>
-                        </mat-chip>
-                        <mat-chip (click)="createDelivery()" [disabled]="!isEdit" matTooltip="Guardar/crear antes de poder asignar cuentas" color="primary" selected>
-                            <div class="center h v" style="height: 100%">
-                                <i class="fa fa-plus"></i>
-                            </div>
-                        </mat-chip>
-                    </mat-chip-list>
+                <!-- Subject -->
+                <div class="group-row-left center v space-between" style="padding-bottom: 10px; padding-top: 10px">
+                    <div class="group-row-left" style="width: 90%">
+                        <p class="small-text" style="margin-right: 10px!important">{{'Subject'|translate}}</p>
+                        <input matInput type="text" [disabled]="readonly"
+                            style="width: 100%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
+                            placeholder="{{'Subject'|translate}}" [(ngModel)]="mail.subject">
+                    </div>
                 </div>
-            </div>
 
-            <!-- Content -->
-            <div style="width: 100%;" class="group-col-left">
-                <quill-editor style="width: 100%;" [ngModel]="mail.content" format="html"
-                    [styles]="{height: '200px', width: '100%'}" (onFocus)="focus($event)"
-                    (onEditorChanged)="changedEditor($event)" (onBlur)="blur($event)"
-                    (onEditorCreated)="created($event)">
-                </quill-editor>
+                <!-- Content -->
+                <div style="width: 100%;" class="group-col-left">
+                    <quill-editor [disabled]="readonly" style="width: 100%;" [ngModel]="mail.content" format="html"
+                        [styles]="{height: '200px', width: '100%'}" (onFocus)="focus($event)"
+                        (onEditorChanged)="changedEditor($event)" (onBlur)="blur($event)"
+                        (onEditorCreated)="created($event)">
+                    </quill-editor>
+                </div>
+            </mat-card>
+            <div class="col-lg-4 col-md-12" style="margin-bottom: 10px;width: 100%; margin-top: 10px;padding-right: 0;">
+                <mat-card style="width: 100%; height: 100%;">
+                    <create-delivery [id]="id" [disabled]="readonly" [selectedAccounts]="deliveries"
+                        (update)="update()">
+                    </create-delivery>
+                </mat-card>
             </div>
-        </mat-card>
+        </div>
         <mat-card style="margin-bottom: 10px">
+            <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+                style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
+            </validation-errors>
 
-            <button mat-flat-button color="primary" disabled
-                style="border-top-right-radius: 0; border-bottom-right-radius: 0">{{'Send'|translate}}</button>
-            <button mat-flat-button color="primary" disabled style="border-top-left-radius: 0; border-bottom-left-radius: 0"
-                [matMenuTriggerFor]="menusend" aria-label="Example icon-button with a menu">
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <mat-menu #menusend="matMenu">
-                <button mat-menu-item>
-                    <i class="fa fa-paper-plane"></i>
-                    <span>{{'SEND_SCHEDULED'|translate}}</span>
+            <div class="group-row-left">
+                <button mat-flat-button color="primary" (click)="sendNormal()"
+                    [disabled]="readonly || mail.status != 'created'"
+                    style="border-top-right-radius: 0; border-bottom-right-radius: 0">{{'SEND'|translate}}</button>
+                <button mat-flat-button [disabled]="readonly || mail.status != 'created'" color="primary"
+                    style="border-top-left-radius: 0; border-bottom-left-radius: 0" [matMenuTriggerFor]="menusend"
+                    aria-label="Example icon-button with a menu">
+                    <i class="fa fa-caret-down"></i>
                 </button>
-            </mat-menu>
+                <mat-menu #menusend="matMenu">
+                    <button mat-menu-item (click)="openShowSchedule()">
+                        <i class="fa fa-paper-plane" style="margin-right: 8px;"></i>
+                        <span>{{'SEND_SCHEDULED'|translate}}</span>
+                    </button>
+                </mat-menu>
 
-            <button color="primary" *ngIf="isEdit" [disabled]="isSaveDisabled() || loading" (click)="updateMail()"
-                mat-raised-button style="margin-right: 10px;margin-left: 15px" matTooltip="{{'SAVE'|translate}}">
-                <i class="fa fa-save" style="margin-right: 8px"></i> {{'SAVE'|translate}}
-            </button>
+                <button color="primary" *ngIf="isEdit" [disabled]="isSaveDisabled() || loading || readonly"
+                    (click)="saveMail()" mat-raised-button style="margin-right: 10px;margin-left: 15px"
+                    matTooltip="{{'SAVE'|translate}}">
+                    <i class="fa fa-save" style="margin-right: 8px"></i> {{'SAVE'|translate}}
+                </button>
 
-            <button color="primary" *ngIf="!isEdit" (click)="createMail()" [disabled]="isSaveDisabled() || loading"
-                mat-raised-button style="margin-right: 10px;margin-left: 15px" matTooltip="{{'Create'|translate}}">
-                <i class="fa fa-save" style="margin-right: 8px"></i> {{'Create'|translate}}
-            </button>
+                <button color="error" *ngIf="mail.status === 'scheduled'" [disabled]="!isSaveDisabled() || loading"
+                    (click)="cancel()" mat-raised-button style="margin-right: 10px;margin-left: 15px; width: auto"
+                    matTooltip="{{'CANCEL'|translate}}">
+                    <i class="fa fa-times" style="margin-right: 8px"></i> {{'CANCEL'|translate}}
+                </button>
 
-            <!-- <button color="primary" (click)="createDelivery()" mat-raised-button [disabled]="loading || !isEdit"
-                style="margin-right: 10px"
-                matTooltip="{{(!isEdit ? 'Please, save before creating a delivery': 'CREATE_DELIVERY')|translate}}">
-                <i class="fa fa-paper-plane" style="margin-right: 8px"></i> {{'CREATE_DELIVERY'|translate}}
-            </button> -->
-            <button mat-button matTooltip="{{'ATTACH'|translate}}" [matMenuTriggerFor]="menu">
-                <span class="center v">
-                    <i class="fa fa-paperclip" style="margin-right: 10px"></i>
-                    <p>{{'ATTACH_FILES'|translate}}</p>
-                </span>
-            </button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item disabled>Clients/Providers PDF</button>
-                <button mat-menu-item (click)="selectFile()">Other</button>
-            </mat-menu>
-        </mat-card>
-        <!-- <mat-card style="padding: 0">
-            <tl-header title="DELIVERIES" [(query)]="query" (onSearch)="search()"></tl-header>
-            <tl-subheader style="position: relative">
-                <div class="abs-center-right small-text">
-                    {{'Showing'|translate}}: {{data.length}} <b>of</b> {{total}}
+                <button color="primary" *ngIf="!isEdit" (click)="createMail()"
+                    [disabled]="isSaveDisabled() || loading || readonly" mat-raised-button
+                    style="margin-right: 10px;margin-left: 15px" matTooltip="{{'Create'|translate}}">
+                    <i class="fa fa-save" style="margin-right: 8px"></i> {{'Create'|translate}}
+                </button>
+            </div>
+
+            <div style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
+                <button mat-button matTooltip="{{'ATTACH'|translate}}" [matMenuTriggerFor]="menu" [disabled]="readonly">
+                    <span class="center v">
+                        <i class="fa fa-paperclip" style="margin-right: 10px"></i>
+                        <p>{{'ATTACH_FILES'|translate}}</p>
+                    </span>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item
+                        (click)="addAttachment('b2b_report', 'b2b_report.pdf')">{{'Clients/Providers PDF'|translate}}</button>
+                    <button mat-menu-item (click)="addLink = true">{{'Link'|translate}}</button>
+                    <button mat-menu-item (click)="selectFile()" disabled>{{'Upload'|translate}}</button>
+                </mat-menu>
+
+                <mat-chip-list style="display: inline-block;margin-left: 10px">
+                    <mat-chip *ngFor="let item of attachments" [disabled]="readonly">
+                        <div class="center h v" style="height: 100%">
+                            {{item.name}}
+                            <button mat-icon-button color="primary" (click)="removeAttachment(item.name)">
+                                <i class="fa fa-times" style="margin-left: 10px"></i>
+                            </button>
+                        </div>
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+
+            <div *ngIf="addLink" style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
+                <input matInput type="text" [disabled]="readonly"
+                    style="width: 50%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
+                    placeholder="Name of file (defaults to link file name)" [(ngModel)]="linkName">
+
+                <input matInput type="text" [disabled]="readonly"
+                    style="width: 50%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
+                    placeholder="http://" [(ngModel)]="linkAttachment">
+                <div>
+                    <button mat-button (click)="addLink = false">{{'CANCEL'|translate}}</button>
+                    <button mat-button (click)="addLinkAttachment()"
+                        [disabled]="!linkAttachment">{{'ADD'|translate}}</button>
                 </div>
-            </tl-subheader>
-            <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
-                [data]="sortedData" noItemsMessage="There are no deliveries yet" [limit]="limit" [total]="total"
-                (onChangePage)="changedPage($event)">
-            </tl-table>
-        </mat-card> -->
+            </div>
+
+            <div *ngIf="sendScheduled" style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
+                <input type="date" class="input border-radius-2" [(ngModel)]="date" (keyup.enter)="createScheduled()">
+                <input type="time" class="input border-radius-2" [(ngModel)]="time" (keyup.enter)="createScheduled()">
+                <button mat-icon-button title="{{'CREATE_CHANGE'|translate}}" (click)="createScheduled()">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </mat-card>
     </div>
 </div>

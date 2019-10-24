@@ -150,7 +150,8 @@
           </div>
           <div class="group-col-left">
             <span class="small-text-2">{{'Language'|translate}}</span>
-            <lang-selector mode="event" (changed)="setLanguage($event)" [lang]="accountCopy.kyc_manager.locale"></lang-selector>
+            <lang-selector mode="event" (changed)="setLanguage($event)" [lang]="accountCopy.kyc_manager.locale || 'es'">
+            </lang-selector>
           </div>
         </div>
 
@@ -364,7 +365,6 @@
           </mat-menu>
         </div>
 
-
         <div class="col-lg-6">
           <p class="small-text-2">{{'PRODUCTS_PRODUCED'|translate}}</p>
           <div class="activity-box-list">
@@ -403,8 +403,20 @@
 
         </div>
 
+        <div class="col-lg-6" *ngIf="accountCopy.activity_main">
+          <p class="small-text-2">{{'MAIN_ACTIVITY'|translate}}</p>
+          <mat-select [(ngModel)]="accountCopy.activity_main.id" class="mat-button-menu">
+            <ng-template ngFor let-act [ngForOf]="activities">
+              <mat-option *ngIf="accountCopy.activity_main_id !== act.id" [value]="act.id"
+                (click)="addMainActivity(act.id)" style="padding: 5px auto">
+                <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
+              </mat-option>
+            </ng-template>
+          </mat-select>
+        </div>
+
         <div class="col-lg-6">
-          <p class="small-text-2">{{'ACTIVITIES'|translate}}</p>
+          <p class="small-text-2">{{'SECONDARY_ACTIVITIES'|translate}}</p>
           <div class="activity-box-list">
             <ul *ngIf="activitiesSelected && activitiesSelected.length" style="list-style: none; margin: 0; padding: 0">
               <li class="activity-list-item small-text" *ngFor="let act of activitiesSelected; let i = index">
@@ -426,7 +438,8 @@
 
           <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
             <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="{{'Search Activities'|translate}}">
+               (click)="$event.stopPropagation()" (blur)="actQuery = ''"
+              placeholder="{{'Search Activities'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="activities">
               <button *ngIf="accountCopy.activities && !accountCopy.activities.includes(prod)" mat-menu-item
@@ -436,7 +449,6 @@
             </ng-template>
           </mat-menu>
         </div>
-
       </div>
     </mat-tab>
 

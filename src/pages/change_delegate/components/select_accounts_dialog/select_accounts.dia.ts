@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { MatDialogRef, Sort } from '@angular/material';
 import BaseDialog from '../../../../bases/dialog-base';
 import { CompanyService } from '../../../../services/company/company.service';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
@@ -41,10 +42,13 @@ export class SelectAccountsDia extends BaseDialog {
   public searchSelected: any = '';
 
   public sortType = 'PRIVATE';
+  public onSelect: EventEmitter<any> = new EventEmitter();
+  public onUnselect: EventEmitter<any> = new EventEmitter();
 
   constructor(
     public dialogRef: MatDialogRef<SelectAccountsDia>,
     public company: CompanyService,
+    public accountsCrud: AccountsCrud,
   ) {
     super();
   }
@@ -56,11 +60,12 @@ export class SelectAccountsDia extends BaseDialog {
   public getAccounts() {
     this.loading = true;
     this.selectedIDs = this.selectedAccounts.slice().map((el) => (el.account ? el.account.id : el.id));
-    this.company.getCompanies(
-      this.offsetUnsorted, this.limitUnsorted,
-      this.unselectedSearch, this.sortIDUnsorted,
-      this.sortDirUnsorted, 1, this.sortType,
-    ).subscribe((resp) => {
+
+    this.accountsCrud.search({
+      offset: this.offsetUnsorted, limit: this.limitUnsorted,
+      query: { search: this.unselectedSearch }, sort: this.sortIDUnsorted,
+      order: this.sortDirUnsorted, active: 1, type: this.sortType,
+    }).subscribe((resp) => {
       this.unselectedAccounts = resp.data.elements;
       this.totalAccountsUnsorted = resp.data.total;
 
@@ -76,12 +81,16 @@ export class SelectAccountsDia extends BaseDialog {
     const ind = this.sortedUnselectedAccounts.indexOf(account);
     this.sortedUnselectedAccounts.splice(ind, 1);
     this.newSelectedAccounts.unshift(account);
+
+    this.onSelect.emit(account);
   }
 
   public unselectAccount(account) {
     const ind = this.newSelectedAccounts.indexOf(account);
     this.newSelectedAccounts.splice(ind, 1);
     this.sortedUnselectedAccounts.unshift(account);
+
+    this.onUnselect.emit(account);
   }
 
   public close(): void {
