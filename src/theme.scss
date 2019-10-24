@@ -41,12 +41,22 @@ $main-color-dark-sbox: #a89600; // the dark color of your brand
 $sidemenu-color: $main-color; // the color of your brand
 $sidemenu-color-dark: #222d31; // the dark color of your brand
 
+a {
+  color: #0098db;
+}
+
+a:hover,
+a:focus,
+a:visited {
+  color: rgb(25, 105, 180);
+}
+
 .col-orange {
   color: #e05206;
 }
 
 code {
-  color: $main-color-dark;
+  color: $main-color-dark !important;
 }
 .bg-black {
   background: #222;

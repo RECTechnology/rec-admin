@@ -43,9 +43,10 @@
                     </quill-editor>
                 </div>
             </mat-card>
-            <div class="col-lg-4 col-md-12" style="margin-bottom: 10px;width: 100%; margin-top: 10px;">
+            <div class="col-lg-4 col-md-12" style="margin-bottom: 10px;width: 100%; margin-top: 10px;padding-right: 0;">
                 <mat-card style="width: 100%; height: 100%;">
-                    <create-delivery [id]="id" [disabled]="readonly" [selectedAccounts]="deliveries" (update)="update()">
+                    <create-delivery [id]="id" [disabled]="readonly" [selectedAccounts]="deliveries"
+                        (update)="update()">
                     </create-delivery>
                 </mat-card>
             </div>
@@ -57,15 +58,15 @@
 
             <button mat-flat-button color="primary" (click)="sendNormal()"
                 [disabled]="readonly || mail.status != 'created'"
-                style="border-top-right-radius: 0; border-bottom-right-radius: 0">{{'Send'|translate}}</button>
+                style="border-top-right-radius: 0; border-bottom-right-radius: 0">{{'SEND'|translate}}</button>
             <button mat-flat-button [disabled]="readonly || mail.status != 'created'" color="primary"
                 style="border-top-left-radius: 0; border-bottom-left-radius: 0" [matMenuTriggerFor]="menusend"
                 aria-label="Example icon-button with a menu">
                 <i class="fa fa-caret-down"></i>
             </button>
             <mat-menu #menusend="matMenu">
-                <button mat-menu-item (click)="sendScheduled()">
-                    <i class="fa fa-paper-plane"></i>
+                <button mat-menu-item (click)="openShowSchedule()">
+                    <i class="fa fa-paper-plane" style="margin-right: 8px;"></i>
                     <span>{{'SEND_SCHEDULED'|translate}}</span>
                 </button>
             </mat-menu>
@@ -74,6 +75,12 @@
                 (click)="saveMail()" mat-raised-button style="margin-right: 10px;margin-left: 15px"
                 matTooltip="{{'SAVE'|translate}}">
                 <i class="fa fa-save" style="margin-right: 8px"></i> {{'SAVE'|translate}}
+            </button>
+
+            <button color="error" [disabled]="!isSaveDisabled() || loading"
+                (click)="cancel()" mat-raised-button style="margin-right: 10px;margin-left: 15px"
+                matTooltip="{{'CANCEL'|translate}}">
+                <i class="fa fa-times" style="margin-right: 8px"></i> {{'CANCEL'|translate}}
             </button>
 
             <button color="primary" *ngIf="!isEdit" (click)="createMail()"
@@ -89,10 +96,10 @@
                 </span>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="addAttachment('b2b_report', 'b2b_report.pdf')">Clients/Providers
-                    PDF</button>
-                <button mat-menu-item (click)="addLink = true">Link</button>
-                <button mat-menu-item (click)="selectFile()" disabled>Upload</button>
+                <button mat-menu-item
+                    (click)="addAttachment('b2b_report', 'b2b_report.pdf')">{{'Clients/Providers PDF'|translate}}</button>
+                <button mat-menu-item (click)="addLink = true">{{'Link'|translate}}</button>
+                <button mat-menu-item (click)="selectFile()" disabled>{{'Upload'|translate}}</button>
             </mat-menu>
 
             <mat-chip-list style="display: inline-block;margin-left: 10px">
@@ -115,9 +122,18 @@
                     style="width: 50%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
                     placeholder="http://" [(ngModel)]="linkAttachment">
                 <div>
-                    <button mat-button (click)="addLink = false">Cancel</button>
-                    <button mat-button (click)="addLinkAttachment()">Add</button>
+                    <button mat-button (click)="addLink = false">{{'CANCEL'|translate}}</button>
+                    <button mat-button (click)="addLinkAttachment()"
+                        [disabled]="!linkAttachment">{{'ADD'|translate}}</button>
                 </div>
+            </div>
+
+            <div *ngIf="sendScheduled" style="padding-top: 20px; border-top: 1px solid #ddd;">
+                <input type="date" class="input border-radius-2" [(ngModel)]="date" (keyup.enter)="createScheduled()">
+                <input type="time" class="input border-radius-2" [(ngModel)]="time" (keyup.enter)="createScheduled()">
+                <button mat-icon-button title="{{'CREATE_CHANGE'|translate}}" (click)="createScheduled()">
+                    <i class="fa fa-plus"></i>
+                </button>
             </div>
         </mat-card>
     </div>

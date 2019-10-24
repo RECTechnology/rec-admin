@@ -976,7 +976,7 @@
   "SELECTED_ACCOUNTS": "Cuentas Seleccionadas",
   "ATTACH_FILES": "Adjunta Archivos",
   "ALL_MAIL_FROM": "Todo el correo se enviará desde",
-  "SEND_SCHEDULED": "Enviar programado",
+  "SEND_SCHEDULED": "Envio programado",
   "SEND_NOW": "Enviar ahora",
   "Search Activities": "Busca Actividades",
   "Search Products": "Busca productos",
@@ -989,5 +989,8 @@
   "UNREVISED_FIRST": "Muestra elementos sin revisar primero",
   "ERROR_DUP": "Conflicto, comprueba que el elemento no existe",
   "APROVE": "Incluir",
-  "APROVE_DESC": "¿Está seguro de que desea incluir este producto?"
+  "APROVE_DESC": "¿Está seguro de que desea incluir este producto?",
+  "Clients/Providers PDF": "PDF Clientes/Proveedores",
+  "Link": "Enlace",
+  "Upload": "Subir"
 }

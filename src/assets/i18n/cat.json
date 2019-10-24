@@ -1001,5 +1001,8 @@
   "UNREVISED_FIRST": "Mostrar elements sense revisar primer",
   "ERROR_DUP": "Conflicte, comproba que el element no existeix",
   "APROVE": "Incluir",
-  "APROVE_DESC": "Estas segur que voleu inlcuir aquest producte?"
+  "APROVE_DESC": "Estas segur que voleu inlcuir aquest producte?",
+  "Clients/Providers PDF": "PDF Clients/Proveïdors",
+  "Link": "Enllaç",
+  "Upload": "Pujar"
 }

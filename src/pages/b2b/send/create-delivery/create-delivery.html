@@ -18,15 +18,36 @@
             + {{'ADD_ACCOUNTS'|translate}}
         </button>
     </div>
-    <div style="padding-left: 15px; width: 100%">
+    <div style="padding-left: 8px; width: 100%">
         <div class="group-col-left" style="width: 100%; max-height: 300px; overflow-y: auto">
-            <div class="group-row-left center v space-between" style="width: 100%"
+            <div class="group-row-left center v space-between"
+                style="width: 100%; padding: 8px 0; border-bottom: 1px solid #ddd;"
                 *ngFor="let item of selectedAccounts; let i = index">
-                <div class="small-text">{{item.name}} (<code>{{item.id}}</code>)</div>
+                <div class="group-row-left center v">
+                    <span class="text-small">
+                        <i *ngIf="item.status === 'sent'" matTooltip="Status: sent"
+                            class="fa fa-check col-success marg-r-10"></i>
+                        <i *ngIf="item.status === 'errored'" matTooltip="Status: errored"
+                            class="fa fa-times col-error marg-r-10"></i>
+                        <i *ngIf="item.status === 'scheduled'" matTooltip="Status: scheduled"
+                            class="fa fa-clock col-info marg-r-10"></i>
+                        <i *ngIf="item.status === 'created'" matTooltip="Status: created"
+                            class="fa fa-circle col-info marg-r-10"></i>
+                        <i *ngIf="item.status === 'canceled'" matTooltip="Status: canceled"
+                            class="fa fa-ban col-warning marg-r-10"></i>
+                    </span>
+                    <div>
+                        <div class="small-text">{{item.name}} (<code>{{item.id}}</code>)</div>
+                        <p style="font-size: 10px">{{item.email}}</p>
+                    </div>
+                </div>
                 <button mat-icon-button [disabled]="disabled" class="col-error" (click)="removeAccount(i)"><i
                         class="fa fa-trash"></i></button>
             </div>
         </div>
+        <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+            style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
+        </validation-errors>
         <p class="small-text" *ngIf="!selectedAccounts.length">
             {{'NO_USERS_SELECTED'|translate}}
         </p>

@@ -14,6 +14,7 @@ import { TlHeader } from 'src/components/table-list/tl-table/tl-table.component'
 import * as moment from 'moment';
 import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { UtilsService } from 'src/services/utils/utils.service';
 
 const now = new Date();
 
@@ -92,10 +93,16 @@ export class SendMail extends TablePageBase {
     public sendScheduled = false;
     public attachments = [];
     public validationErrors: any = [];
+    public validationErrorName = '';
     public readonly = false;
     public addLink = false;
     public linkName = '';
     public linkAttachment = '';
+
+    public scheduledDate = '';
+
+    public date = null;
+    public time = null;
 
     constructor(
         public us: UserService,
@@ -108,6 +115,7 @@ export class SendMail extends TablePageBase {
         public ls: LoginService,
         public titleService: Title,
         public alerts: AlertsService,
+        public utils: UtilsService,
     ) {
         super();
     }
@@ -135,7 +143,7 @@ export class SendMail extends TablePageBase {
                 this.mail = resp.data;
                 const scheduled = new Date(this.mail.scheduled_at);
 
-                this.readonly = this.mail.status === MailingCrud.STATUS_PROCESSED;
+                this.readonly = [MailingCrud.STATUS_PROCESSED, MailingCrud.STATUS_SCHEDULED].includes(this.mail.status);
 
                 this.mail.attachments = this.mail.attachments.map ? {} : this.mail.attachments;
                 this.attachments = Object.keys(this.mail.attachments).map((el) => {
@@ -145,7 +153,13 @@ export class SendMail extends TablePageBase {
                     };
                 });
 
-                this.deliveries = this.mail.deliveries.map((el) => el.account);
+                this.deliveries = this.mail.deliveries.map((el) => {
+                    return {
+                        ...el.account,
+                        ...el,
+                        delivery_id: el.id,
+                    };
+                });
 
                 this.mail.scheduled_at =
                     `${scheduled.getFullYear()}-${scheduled.getMonth().toString().padStart(2, '0')}-${
@@ -213,6 +227,10 @@ export class SendMail extends TablePageBase {
             });
     }
 
+    public cancel() {
+        this.updateMail({ status: MailingCrud.STATUS_CREATED });
+    }
+
     public updateMail(data, message = 'Edited Mail Correctly') {
         this.mailing.update(this.id, data).subscribe((resp) => {
             this.alerts.showSnackbar(message);
@@ -220,19 +238,11 @@ export class SendMail extends TablePageBase {
             this.saved = true;
             this.mail = resp.data;
             this.mailCopy = Object.assign({}, this.mail);
+            this.update();
         }, (err) => {
             this.alerts.showSnackbar(err.message);
             this.loading = false;
         });
-    }
-
-    public sendNormal() {
-        const mailData = {
-            scheduled_at: moment().toISOString(),
-            status: MailingCrud.STATUS_SCHEDULED,
-        };
-
-        this.updateMail(mailData, 'Sent mail correctly');
     }
 
     public saveMail(upateData = {}) {
@@ -345,5 +355,28 @@ export class SendMail extends TablePageBase {
                 this.addAttachment(attachmentLink);
             }
         });
+    }
+
+    public openShowSchedule() {
+        const now2 = new Date();
+        const parts = this.utils.parseDateToParts(now2);
+        this.date = parts.dateStr;
+        this.time = parts.timeStr;
+        this.sendScheduled = true;
+    }
+
+    public sendNormal(date = null) {
+        console.log('sending to date', date);
+        const mailData = {
+            scheduled_at: (date ? moment(date) : moment()).toISOString(),
+            status: MailingCrud.STATUS_SCHEDULED,
+        };
+
+        this.updateMail(mailData, 'Sent mail correctly');
+    }
+
+    public createScheduled() {
+        this.sendNormal(new Date(this.date + ' ' + this.time));
+        this.sendScheduled = false;
     }
 }

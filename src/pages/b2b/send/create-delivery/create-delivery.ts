@@ -23,6 +23,9 @@ export class CreateDelivery {
     @Input() public selectedAccounts = [];
     @Output() public update: EventEmitter<any> = new EventEmitter();
 
+    public validationErrors = [];
+    public validationErrorName = 'Validation Error';
+
     constructor(
         // public dialogRef: MatDialogRef<CreateDelivery>,
         public us: UserService,
@@ -67,13 +70,34 @@ export class CreateDelivery {
                     this.update.emit();
                 },
                 (error) => {
+
+                    console.log(error);
                     this.alerts.showSnackbar(error.message, 'ok');
                     this.loading = false;
+                    // if (error.message.includes('Validation error')) {
+                    //     this.validationErrors = error.errors;
+                    // } else {
+                    //     this.alerts.showSnackbar(error.message, 'ok');
+                    // }
                 },
             );
     }
 
     public removeAccount(i) {
+        const acc = this.selectedAccounts[i];
+        console.log('acc', acc);
         this.selectedAccounts.splice(i, 1);
+        this.mailDeliveries.remove(acc.delivery_id).subscribe(
+            (result) => {
+                this.alerts.showSnackbar('Removed delivery correctly!', 'ok');
+                this.loading = false;
+                this.update.emit();
+            },
+            (error) => {
+                console.log(error);
+                this.alerts.showSnackbar(error.message, 'ok');
+                this.loading = false;
+            },
+        );
     }
 }
