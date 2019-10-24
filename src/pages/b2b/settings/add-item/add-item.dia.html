@@ -63,14 +63,12 @@
                         </button>
                         <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
                             <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-                                 (click)="$event.stopPropagation()" (blur)="actQuery = ''"
-                                placeholder="{{'Search Activities'|translate}}">
+                                 (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
                             <ng-template ngFor let-act [ngForOf]="activities">
                                 <button
                                     *ngIf="item.default_consuming_by && !item.default_consuming_by.includes(act) && nameMatches(act.name)"
-                                    mat-menu-item (click)="addConsumed(act)" style="padding: 5px auto">
-                                    <span
-                                        style="color: #666; font-size: 12px">{{act | tolang}}</span>
+                                    mat-menu-item (click)="addConsumed(act); actQuery = ''" style="padding: 5px auto">
+                                    <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
                                 </button>
                             </ng-template>
                         </mat-menu>
@@ -101,14 +99,12 @@
                         </button>
                         <mat-menu #actMenu2="matMenu" y-position="below" overlapTrigger="false">
                             <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-                                (click)="$event.stopPropagation()" (blur)="actQuery = ''"
-                                placeholder="{{'Search Activities'|translate}}">
+                                (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
                             <ng-template ngFor let-act [ngForOf]="activities">
                                 <button
                                     *ngIf="item.default_producing_by && !item.default_producing_by.includes(act) && nameMatches(act.name)"
-                                    mat-menu-item (click)="addProduced(act)" style="padding: 5px auto">
-                                    <span
-                                        style="color: #666; font-size: 12px">{{act | tolang}}</span>
+                                    mat-menu-item (click)="addProduced(act);actQuery = ''" style="padding: 5px auto">
+                                    <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
                                 </button>
                             </ng-template>
                         </mat-menu>

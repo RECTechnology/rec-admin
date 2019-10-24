@@ -59,7 +59,7 @@ export class B2BSendComponent extends TablePageBase {
             callback: this.removeMail.bind(this),
             text: 'Remove',
             icon: 'fa-times',
-            disabled: (el) => el.status === 'created',
+            disabled: (el) => el.status !== 'created',
         },
     ];
     public options: TableListOptions = {
@@ -80,8 +80,8 @@ export class B2BSendComponent extends TablePageBase {
         super();
     }
 
-    public removeMail(id) {
-        this.mailing.remove(id)
+    public removeMail(mail) {
+        this.mailing.remove(mail.id)
             .subscribe((resp) => {
                 this.alerts.showSnackbar('Removed mailcorrectly');
                 this.search();

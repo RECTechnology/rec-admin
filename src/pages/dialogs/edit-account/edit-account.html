@@ -353,12 +353,12 @@
 
           <mat-menu #consMenu="matMenu" y-position="below" overlapTrigger="false">
             <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="{{'Search Products'|translate}}">
+               (click)="$event.stopPropagation()" placeholder="{{'Search Products'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="productList">
               <button
                 *ngIf="account.consuming_products && !account.consuming_products.includes(prod) && nameMatches(prod.name)"
-                mat-menu-item (click)="addConsumed(prod)" style="padding: 5px auto">
+                mat-menu-item (click)="addConsumed(prod); actQuery = ''" style="padding: 5px auto">
                 <span style="color: #666; font-size: 12px">{{prod | tolang}}</span>
               </button>
             </ng-template>
@@ -390,12 +390,12 @@
 
           <mat-menu #prodMenu="matMenu" y-position="below" overlapTrigger="false">
             <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" (blur)="actQuery = ''" placeholder="{{'Search Products'|translate}}">
+               (click)="$event.stopPropagation()" placeholder="{{'Search Products'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="productList">
               <button
                 *ngIf="account.producing_products && !account.producing_products.includes(prod) && nameMatches(prod.name)"
-                mat-menu-item (click)="addProduced(prod)" style="padding: 5px auto">
+                mat-menu-item (click)="addProduced(prod); actQuery = ''" style="padding: 5px auto">
                 <span style="color: #666; font-size: 12px">{{prod| tolang}}</span>
               </button>
             </ng-template>
@@ -438,12 +438,11 @@
 
           <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
             <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" (blur)="actQuery = ''"
-              placeholder="{{'Search Activities'|translate}}">
+               (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="activities">
               <button *ngIf="accountCopy.activities && !accountCopy.activities.includes(prod)" mat-menu-item
-                (click)="addActivity(prod)" style="padding: 5px auto">
+                (click)="addActivity(prod);actQuery = ''" style="padding: 5px auto">
                 <span style="color: #666; font-size: 12px">{{prod | tolang}}</span>
               </button>
             </ng-template>
