@@ -54,6 +54,7 @@ export class B2BSendComponent extends TablePageBase {
             text: 'Edit',
         },
     ];
+    public loading = true;
 
     constructor(
         public controles: ControlesService,
