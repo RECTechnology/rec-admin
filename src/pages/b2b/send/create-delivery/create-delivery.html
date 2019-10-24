@@ -31,13 +31,20 @@
                         <span class="text-small">
                             <i *ngIf="item.status === 'sent' || item.status === 'delivered' || item.status === 'opened'"
                                 matTooltip="Status: {{item.status}}" class="fa fa-check col-success marg-r-10"></i>
-                            <i *ngIf="item.status === 'errored'" matTooltip="Status: errored"
+
+                            <i *ngIf="item.status === 'errored'" matTooltip="Status: {{item.status}}"
                                 class="fa fa-times col-error marg-r-10"></i>
-                            <i *ngIf="item.status === 'scheduled'" matTooltip="Status: scheduled"
+
+                            <i *ngIf="item.status === 'scheduled'" matTooltip="Status: {{item.status}}"
                                 class="fa fa-clock col-info marg-r-10"></i>
-                            <i *ngIf="item.status === 'created'" matTooltip="Status: created"
+
+                            <i *ngIf="item.status === 'created'" matTooltip="Status: {{item.status}}"
                                 class="fa fa-circle col-info marg-r-10"></i>
-                            <i *ngIf="item.status === 'canceled'" matTooltip="Status: canceled"
+
+                            <i *ngIf="item.status === 'canceled'" matTooltip="Status: {{item.status}}"
+                                class="fa fa-ban col-warning marg-r-10"></i>
+
+                            <i *ngIf="item.status === 'failed'" matTooltip="Status: {{item.status}} | {{item.failure_reason}} "
                                 class="fa fa-ban col-warning marg-r-10"></i>
                         </span>
 

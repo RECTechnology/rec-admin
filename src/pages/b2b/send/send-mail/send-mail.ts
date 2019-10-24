@@ -127,14 +127,16 @@ export class SendMail extends TablePageBase {
      */
     @HostListener('window:beforeunload')
     public canDeactivate(): any {
-        return this.saved && (this.mail.subject && this.mail.content);
+        console.log('this.id', this.id);
+        return true//this.saved && (this.mail.subject && this.mail.content);
     }
+
     public onNavigateAway() {
         if (!this.mail.subject && !this.mail.content) {
-            this.mailing.remove(this.mail.id)
-                .subscribe((resp) => {
-                    console.log('removed mail');
-                });
+            // this.mailing.remove(this.mail.id)
+            //     .subscribe((resp) => {
+            //         console.log('removed mail');
+            //     });
         }
     }
 

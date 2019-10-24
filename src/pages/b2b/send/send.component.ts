@@ -8,6 +8,7 @@ import { TlHeader, TlItemOption, TableListOptions } from 'src/components/table-l
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { Title } from '@angular/platform-browser';
+import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
     selector: 'b2b-send',
@@ -54,6 +55,12 @@ export class B2BSendComponent extends TablePageBase {
             text: 'Edit',
             icon: 'fa-edit',
         },
+        {
+            callback: this.removeMail.bind(this),
+            text: 'Remove',
+            icon: 'fa-times',
+            disabled: (el) => el.status === 'created',
+        },
     ];
     public options: TableListOptions = {
         optionsType: 'buttons',
@@ -68,8 +75,19 @@ export class B2BSendComponent extends TablePageBase {
         public router: Router,
         public ls: LoginService,
         public titleService: Title,
+        public alerts: AlertsService,
     ) {
         super();
+    }
+
+    public removeMail(id) {
+        this.mailing.remove(id)
+            .subscribe((resp) => {
+                this.alerts.showSnackbar('Removed mailcorrectly');
+                this.search();
+            }, (error) => {
+                this.alerts.showSnackbar(error.message);
+            });
     }
 
     public createMail() {

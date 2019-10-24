@@ -42,9 +42,8 @@ export class ProductsTabComponent extends EntityTabBase {
 
         if (this.sortElementsToRevise) {
             this.sortID = 'status';
-        } else {
-            this.sortID = 'id';
         }
+        
         const activity_id = this.activityFilter ? this.activityFilter.id : null;
 
         this.productsCrud.search({
