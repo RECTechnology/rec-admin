@@ -55,11 +55,17 @@ export class CreateDelivery {
 
     public createDelivery(accounts) {
         this.loading = true;
-        this.selectedAccounts = accounts;
+
+        console.log('this.seefdef', this.selectedAccounts);
+        console.log('accounts', accounts);
 
         const subs = [];
-        for (const account of this.selectedAccounts) {
-            subs.push(this.mailDeliveries.create({ account_id: account.id, mailing_id: this.id }));
+        for (const account of accounts) {
+            const accIdMap = this.selectedAccounts.map((el) => el.id);
+            const exists = accIdMap.includes(account.id);
+            if (!exists) {
+                subs.push(this.mailDeliveries.create({ account_id: account.id, mailing_id: this.id }));
+            }
         }
 
         forkJoin(subs)
@@ -68,17 +74,17 @@ export class CreateDelivery {
                     this.alerts.showSnackbar('Created ' + subs.length + ' deliveries correctly!', 'ok');
                     this.loading = false;
                     this.update.emit();
+                    this.selectedAccounts = accounts;
                 },
                 (error) => {
-
                     console.log(error);
                     this.alerts.showSnackbar(error.message, 'ok');
                     this.loading = false;
-                    // if (error.message.includes('Validation error')) {
-                    //     this.validationErrors = error.errors;
-                    // } else {
-                    //     this.alerts.showSnackbar(error.message, 'ok');
-                    // }
+                    if (error.message.includes('Validation error')) {
+                        this.validationErrors = error.errors;
+                    } else {
+                        this.alerts.showSnackbar(error.message, 'ok');
+                    }
                 },
             );
     }

@@ -18,8 +18,8 @@
                 </div>
             </tl-subheader>
             <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
-                [data]="sortedData" [itemOptions]="itemOptions" noItemsMessage="There are no mails yet" [limit]="limit"
-                [total]="total" (onChangePage)="changedPage($event)">
+                [data]="sortedData" [itemOptions]="itemOptions" [options]="options" noItemsMessage="There are no mails yet" [limit]="limit"
+                [total]="total" (onChangePage)="changedPage($event)" showLoader="true">
             </tl-table>
         </mat-card>
     </div>
