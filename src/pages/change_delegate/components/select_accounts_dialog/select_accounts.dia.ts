@@ -64,7 +64,7 @@ export class SelectAccountsDia extends BaseDialog {
     this.accountsCrud.list({
       offset: this.offsetUnsorted, limit: this.limitUnsorted,
       search: this.unselectedSearch, sort: this.sortIDUnsorted,
-      order: this.sortDirUnsorted, active: 1
+      order: this.sortDirUnsorted, active: 1,
     }).subscribe((resp) => {
       this.unselectedAccounts = resp.data.elements;
       this.totalAccountsUnsorted = resp.data.total;
