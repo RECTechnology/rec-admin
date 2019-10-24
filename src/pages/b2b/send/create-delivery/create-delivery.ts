@@ -41,12 +41,21 @@ export class CreateDelivery {
     }
 
     public openSelectAccounts() {
-        this.alerts.openModal(SelectAccountsDia, {
+        let ref: any = this.alerts.createModal(SelectAccountsDia, {
             newSelectedAccounts: this.selectedAccounts.slice(),
             selectedAccounts: this.selectedAccounts.slice(),
             showEdit: false,
             sortType: '',
-        }, { width: '80vw', height: '80vh' }).subscribe((result) => {
+        }, { width: '80vw', height: '80vh' });
+
+        // ref.componentInstance.onSelect.subscribe((resp) => this.createDelivery([resp]));
+        // ref.componentInstance.onUnselect.subscribe((resp) => {
+        //     console.log(this.selectedAccounts);
+        //     const index = this.selectedAccounts.find(resp);
+        //     this.removeAccount(index);
+        // });
+
+        ref.afterClosed().subscribe((result) => {
             if (result) {
                 this.createDelivery(result.accounts);
             }
@@ -55,9 +64,6 @@ export class CreateDelivery {
 
     public createDelivery(accounts) {
         this.loading = true;
-
-        console.log('this.seefdef', this.selectedAccounts);
-        console.log('accounts', accounts);
 
         const subs = [];
         for (const account of accounts) {

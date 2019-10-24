@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { MatDialogRef, Sort } from '@angular/material';
 import BaseDialog from '../../../../bases/dialog-base';
 import { CompanyService } from '../../../../services/company/company.service';
@@ -42,6 +42,8 @@ export class SelectAccountsDia extends BaseDialog {
   public searchSelected: any = '';
 
   public sortType = 'PRIVATE';
+  public onSelect: EventEmitter<any> = new EventEmitter();
+  public onUnselect: EventEmitter<any> = new EventEmitter();
 
   constructor(
     public dialogRef: MatDialogRef<SelectAccountsDia>,
@@ -79,12 +81,16 @@ export class SelectAccountsDia extends BaseDialog {
     const ind = this.sortedUnselectedAccounts.indexOf(account);
     this.sortedUnselectedAccounts.splice(ind, 1);
     this.newSelectedAccounts.unshift(account);
+
+    this.onSelect.emit(account);
   }
 
   public unselectAccount(account) {
     const ind = this.newSelectedAccounts.indexOf(account);
     this.newSelectedAccounts.splice(ind, 1);
     this.sortedUnselectedAccounts.unshift(account);
+
+    this.onUnselect.emit(account);
   }
 
   public close(): void {
