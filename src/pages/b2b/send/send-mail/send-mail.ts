@@ -122,6 +122,7 @@ export class SendMail extends TablePageBase {
 
     public ngOnInit() {
         this.route.params.subscribe((params) => {
+            if (params.id_or_new === 'new') { this.createMail(); }
             if (params.id_or_new && params.id_or_new !== 'new' && /[0-9]+/.test(params.id_or_new)) {
                 this.isEdit = true;
                 this.id = params.id_or_new;
