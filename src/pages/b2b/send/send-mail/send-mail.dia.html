@@ -77,9 +77,8 @@
                 <i class="fa fa-save" style="margin-right: 8px"></i> {{'SAVE'|translate}}
             </button>
 
-            <button color="error" [disabled]="!isSaveDisabled() || loading"
-                (click)="cancel()" mat-raised-button style="margin-right: 10px;margin-left: 15px"
-                matTooltip="{{'CANCEL'|translate}}">
+            <button color="error" *ngIf="mail.status === 'scheduled'" [disabled]="!isSaveDisabled() || loading" (click)="cancel()" mat-raised-button
+                style="margin-right: 10px;margin-left: 15px; width: auto" matTooltip="{{'CANCEL'|translate}}">
                 <i class="fa fa-times" style="margin-right: 8px"></i> {{'CANCEL'|translate}}
             </button>
 
@@ -89,31 +88,33 @@
                 <i class="fa fa-save" style="margin-right: 8px"></i> {{'Create'|translate}}
             </button>
 
-            <button mat-button matTooltip="{{'ATTACH'|translate}}" [matMenuTriggerFor]="menu" [disabled]="readonly">
-                <span class="center v">
-                    <i class="fa fa-paperclip" style="margin-right: 10px"></i>
-                    <p>{{'ATTACH_FILES'|translate}}</p>
-                </span>
-            </button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item
-                    (click)="addAttachment('b2b_report', 'b2b_report.pdf')">{{'Clients/Providers PDF'|translate}}</button>
-                <button mat-menu-item (click)="addLink = true">{{'Link'|translate}}</button>
-                <button mat-menu-item (click)="selectFile()" disabled>{{'Upload'|translate}}</button>
-            </mat-menu>
+            <div style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
+                <button mat-button matTooltip="{{'ATTACH'|translate}}" [matMenuTriggerFor]="menu" [disabled]="readonly">
+                    <span class="center v">
+                        <i class="fa fa-paperclip" style="margin-right: 10px"></i>
+                        <p>{{'ATTACH_FILES'|translate}}</p>
+                    </span>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item
+                        (click)="addAttachment('b2b_report', 'b2b_report.pdf')">{{'Clients/Providers PDF'|translate}}</button>
+                    <button mat-menu-item (click)="addLink = true">{{'Link'|translate}}</button>
+                    <button mat-menu-item (click)="selectFile()" disabled>{{'Upload'|translate}}</button>
+                </mat-menu>
 
-            <mat-chip-list style="display: inline-block;margin-left: 10px">
-                <mat-chip *ngFor="let item of attachments">
-                    <div class="center h v" style="height: 100%">
-                        {{item.name}}
-                        <button mat-icon-button color="primary" (click)="removeAttachment(item.name)">
-                            <i class="fa fa-times" style="margin-left: 10px"></i>
-                        </button>
-                    </div>
-                </mat-chip>
-            </mat-chip-list>
+                <mat-chip-list style="display: inline-block;margin-left: 10px">
+                    <mat-chip *ngFor="let item of attachments" [disabled]="readonly">
+                        <div class="center h v" style="height: 100%">
+                            {{item.name}}
+                            <button mat-icon-button color="primary" (click)="removeAttachment(item.name)">
+                                <i class="fa fa-times" style="margin-left: 10px"></i>
+                            </button>
+                        </div>
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
 
-            <div *ngIf="addLink" style="padding-top: 20px; border-top: 1px solid #ddd;">
+            <div *ngIf="addLink" style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
                 <input matInput type="text" [disabled]="readonly"
                     style="width: 50%; font-size: 12px;padding:3px 6px; border: 1px solid #ddd; border-radius: 2px"
                     placeholder="Name of file (defaults to link file name)" [(ngModel)]="linkName">
@@ -128,7 +129,7 @@
                 </div>
             </div>
 
-            <div *ngIf="sendScheduled" style="padding-top: 20px; border-top: 1px solid #ddd;">
+            <div *ngIf="sendScheduled" style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
                 <input type="date" class="input border-radius-2" [(ngModel)]="date" (keyup.enter)="createScheduled()">
                 <input type="time" class="input border-radius-2" [(ngModel)]="time" (keyup.enter)="createScheduled()">
                 <button mat-icon-button title="{{'CREATE_CHANGE'|translate}}" (click)="createScheduled()">

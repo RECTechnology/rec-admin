@@ -455,8 +455,10 @@ wallet .mat-expansion-panel-body {
 }
 
 .mat-raised-button,
+.mat-flat-button,
 .mat-button,
 .mat-raised-button p,
+.mat-flat-button p,
 .mat-button p {
   line-height: 28px !important;
 }

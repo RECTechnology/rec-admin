@@ -41,8 +41,8 @@
                         <p style="font-size: 10px">{{item.email}}</p>
                     </div>
                 </div>
-                <button mat-icon-button [disabled]="disabled" class="col-error" (click)="removeAccount(i)"><i
-                        class="fa fa-trash"></i></button>
+                <button mat-icon-button color="error" *ngIf="!disabled" (click)="removeAccount(i)"><i
+                        class="fa fa-trash col-error"></i></button>
             </div>
         </div>
         <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
