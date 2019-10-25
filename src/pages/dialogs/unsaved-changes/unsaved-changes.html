@@ -1,0 +1,28 @@
+<div class="modal-header bg-warning">
+  <span>{{'DISCARD_MAILING' | translate : ({ title: title })}}</span>
+
+  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="group-col-left padd-x20">
+
+  <div>
+    <p>{{'DISCARD_MAILING_DESC' | translate : ({ title: title })}}</p>
+  </div>
+
+  <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">
+    <button type="button" mat-button name="button" (click)="discard()" style="margin-right: 10px">
+      {{'DISCARD_CHANGES'|translate}}
+    </button>
+    <button type="button" mat-button name="button" (click)="continue()" style="margin-right: 10px">
+      {{'CONTINUE_EDITING'|translate}}
+    </button>
+    <button type="button" mat-raised-button color="primary" name="button" (click)="save()">
+      <b>{{'SAVE_DRAFT'|translate}}</b>
+    </button>
+  </div>
+</div>

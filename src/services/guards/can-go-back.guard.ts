@@ -2,10 +2,14 @@ import { CanDeactivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlertsService } from '../alerts/alerts.service';
+import { UnsavedChangesDialog } from 'src/pages/dialogs/unsaved-changes/unsaved-changes.dia';
 
 export interface ComponentCanDeactivate {
     canDeactivate: () => boolean | Observable<boolean>;
-    onNavigateAway?: () => boolean | Observable<boolean>;
+    onSaveDraft: () => any;
+    onDiscard: () => any;
+    onContinueEditing?: () => any;
+    title: string;
 }
 
 @Injectable()
@@ -19,27 +23,31 @@ export class PendingChangesGuard implements CanDeactivate<ComponentCanDeactivate
         // if there are no pending changes, just allow deactivation; else confirm first
         return new Observable((observer) => {
             const canIt = component.canDeactivate();
+            const title = component.title;
 
             if (!canIt) {
-                this.showAlert().subscribe((resp) => {
-                    observer.next(resp);
-                    if (resp) {
-                        component.onNavigateAway();
-                    }
-                });
+                this.showAlert(title).afterClosed()
+                    .subscribe((resp) => {
+                        if (resp === 'save' && typeof component.onSaveDraft === 'function') {
+                            component.onSaveDraft();
+                            observer.next(true);
+                        } else if (resp === 'discard' && typeof component.onDiscard === 'function') {
+                            component.onDiscard();
+                            observer.next(true);
+                        } else if (resp === 'continue' && typeof component.onContinueEditing === 'function') {
+                            component.onContinueEditing();
+                            observer.next(false);
+                        }
+                    });
             } else {
                 observer.next(true);
             }
         });
     }
 
-    public showAlert() {
-        return this.alerts.showConfirmation(
-            'WARNING: You have unsaved changes or content is empty. Press Cancel to go back\
-             and save these changes, or Exit to lose these changes.',
-            'Confirm',
-            'Exit',
-            'warning',
-        );
+    public showAlert(title) {
+        const ref: any = this.alerts.createModal(UnsavedChangesDialog);
+        ref.componentInstance.title = title;
+        return ref;
     }
 }

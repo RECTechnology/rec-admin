@@ -992,5 +992,10 @@
   "APROVE_DESC": "¿Está seguro de que desea incluir este producto?",
   "Clients/Providers PDF": "PDF Clientes/Proveedores",
   "Link": "Enlace",
-  "Upload": "Subir"
+  "Upload": "Subir",
+  "DISCARD_MAILING": "¿Está seguro de que desea descartar este correo, titulado '{{title}}'",
+  "DISCARD_MAILING_DESC": "Ha guardado los cambios, haga clic en Descartar si no desea guardar los cambios o Guardar borrador si desea continuar en una fecha posterior",
+  "DISCARD_CHANGES": "Descartar cambios",
+  "CONTINUE_EDITING": "Continuar editando",
+  "SAVE_DRAFT": "Guardar borrador"
 }

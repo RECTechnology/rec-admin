@@ -457,5 +457,12 @@
   "UNREVISED_FIRST": "Show Unrevised Items First",
   "ERROR_DUP": "Conflict, check item does not exist",
   "APROVE": "Include",
-  "APROVE_DESC": "Are you sure you want to include this product?"
+  "APROVE_DESC": "Are you sure you want to include this product?",
+
+  "DISCARD_MAILING": "Are you sure you want to discard this mailing, titled '{{title}}'",
+  "DISCARD_MAILING_DESC": "You have unsaved changes, click Discard if you don't want to save the changes or Save Draft if you want to continue on a later date",
+  "DISCARD_CHANGES": "Discard Changes",
+  "CONTINUE_EDITING": "Continue Editing",
+  "SAVE_DRAFT": "Save Draft"
+
 }

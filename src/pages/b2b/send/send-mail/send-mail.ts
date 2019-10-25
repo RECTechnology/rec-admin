@@ -16,6 +16,7 @@ import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { Observable } from 'rxjs';
+import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
 
 const now = new Date();
 
@@ -23,7 +24,7 @@ const now = new Date();
     selector: 'send-mail',
     templateUrl: './send-mail.dia.html',
 })
-export class SendMail extends TablePageBase {
+export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public blured = false;
     public focused = false;
     public saved = true;
@@ -105,6 +106,8 @@ export class SendMail extends TablePageBase {
     public date = null;
     public time = null;
 
+    public title = '';
+
     constructor(
         public us: UserService,
         public translate: TranslateService,
@@ -127,22 +130,24 @@ export class SendMail extends TablePageBase {
      */
     @HostListener('window:beforeunload')
     public canDeactivate(): any {
-        console.log('this.id', this.id);
-        return true//this.saved && (this.mail.subject && this.mail.content);
+        this.title = this.mail.subject;
+        return this.saved && (this.mail.subject && this.mail.content);
     }
 
-    public onNavigateAway() {
-        if (!this.mail.subject && !this.mail.content) {
-            // this.mailing.remove(this.mail.id)
-            //     .subscribe((resp) => {
-            //         console.log('removed mail');
-            //     });
-        }
+    public onDiscard() {
+        this.mailing.remove(this.id).subscribe((resp) => {
+            this.alerts.showSnackbar('Deleted mail (' + this.id + ')');
+        });
+    }
+
+    public onSaveDraft() {
+        console.log('save draft', this.id, this.isEdit);
+        this.isEdit ? this.saveMail() : this.createMail(false);
     }
 
     public ngOnInit() {
         this.route.params.subscribe((params) => {
-            if (params.id_or_new === 'new') { this.createMail(); }
+            // if (params.id_or_new === 'new') { this.createMail(); }
             if (params.id_or_new && params.id_or_new !== 'new' && /[0-9]+/.test(params.id_or_new)) {
                 this.isEdit = true;
                 this.id = params.id_or_new;
@@ -240,9 +245,9 @@ export class SendMail extends TablePageBase {
         this.updateMail({ status: MailingCrud.STATUS_CREATED });
     }
 
-    public updateMail(data, message = 'Edited Mail Correctly') {
+    public updateMail(data, message = 'Saved Mail Correctly') {
         this.mailing.update(this.id, data).subscribe((resp) => {
-            this.alerts.showSnackbar(message);
+            this.alerts.showSnackbar(message + ': (' + this.id + ')');
             this.loading = false;
             this.saved = true;
             this.mail = resp.data;
@@ -264,7 +269,7 @@ export class SendMail extends TablePageBase {
         });
     }
 
-    public createMail() {
+    public createMail(navigateToMailing = true) {
         this.loading = true;
         const data: any = Object.assign({}, this.mail);
         this.mailing.create({
@@ -276,7 +281,10 @@ export class SendMail extends TablePageBase {
             this.loading = false;
             this.isEdit = true;
             this.id = resp.data.id;
-            this.router.navigate(['/rec/mailing/' + this.id]);
+
+            if (navigateToMailing) {
+                this.router.navigate(['/rec/mailing/' + this.id]);
+            }
         }, (err) => {
             this.alerts.showSnackbar(err.message);
             this.loading = false;
@@ -375,8 +383,7 @@ export class SendMail extends TablePageBase {
         this.sendScheduled = true;
     }
 
-    public sendNormal(date = null) {
-        console.log('sending to date', date);
+    public sendNormal(date = null, message = 'Sent mail correctly') {
         const mailData = {
             scheduled_at: (date ? moment(date) : moment()).toISOString(),
             status: MailingCrud.STATUS_SCHEDULED,
@@ -386,7 +393,7 @@ export class SendMail extends TablePageBase {
     }
 
     public createScheduled() {
-        this.sendNormal(new Date(this.date + ' ' + this.time));
+        this.sendNormal(new Date(this.date + ' ' + this.time), 'Scheduled mail correctly');
         this.sendScheduled = false;
     }
 }

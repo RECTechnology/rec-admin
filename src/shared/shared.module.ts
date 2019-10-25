@@ -69,6 +69,7 @@ import { EscapeHtmlPipe } from 'src/pipes/safe-html/safe-html.pipe';
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { UnsavedChangesDialog } from 'src/pages/dialogs/unsaved-changes/unsaved-changes.dia';
 
 @NgModule({
   declarations: [
@@ -125,6 +126,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
     CreateDelivery,
     ConvertToLangPipe,
     EscapeHtmlPipe,
+    UnsavedChangesDialog,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -141,6 +143,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
     AddNeighbourhoodDia,
     SendMail,
     CreateDelivery,
+    UnsavedChangesDialog,
   ],
   exports: [
     SidemenuComponent,
