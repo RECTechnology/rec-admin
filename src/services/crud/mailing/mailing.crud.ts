@@ -5,6 +5,7 @@ import { UserService } from 'src/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CompanyService } from 'src/services/company/company.service';
+import { RecLang } from 'src/types';
 
 @Injectable()
 export class MailingCrud extends CrudBaseService {
@@ -28,7 +29,7 @@ export class MailingCrud extends CrudBaseService {
         this.mapItems = true;
     }
 
-    public addAttachment(mailing_id, attachments) {
-        return this.update(mailing_id, { attachments });
+    public addAttachment(mailing_id, attachments, lang: any) {
+        return this.update(mailing_id, { attachments }, lang);
     }
 }

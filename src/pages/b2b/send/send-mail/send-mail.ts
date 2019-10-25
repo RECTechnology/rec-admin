@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild, Input } from '@angular/core';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
@@ -17,6 +17,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { Observable } from 'rxjs';
 import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
+import { LANGS, LANG_MAP } from 'src/data/consts';
 
 const now = new Date();
 
@@ -106,8 +107,16 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public date = null;
     public time = null;
     public title = '';
-
+    public justCreated = false;
     public firstRun = true;
+
+    public langs = LANGS;
+    public lang = LANG_MAP[localStorage.getItem('lang') || 'en'] || LANGS[1];
+    public langMap = {
+        cat: 'ca',
+        en: 'en',
+        es: 'es',
+    };
 
     constructor(
         public us: UserService,
@@ -123,6 +132,13 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         public utils: UtilsService,
     ) {
         super();
+
+        this.lang[this.lang.abrev] = LANG_MAP[this.us.userData.locale];
+
+        console.log('this.lang[this.lang.abrev]', this.langMap[this.lang.abrev]);
+        translate.onLangChange.subscribe(() => {
+            this.update();
+        });
     }
 
     /**
@@ -132,10 +148,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     @HostListener('window:beforeunload')
     public canDeactivate(): any {
         this.title = this.mail.subject;
-        console.log('saved', this.saved);
-        console.log('subject', this.mail.subject);
-        console.log('content', this.mail.content);
-        return this.saved && (this.mail.subject || this.mail.content);
+        return this.justCreated ? this.justCreated = true : this.saved && (this.mail.subject || this.mail.content);
     }
 
     public onDiscard() {
@@ -169,7 +182,8 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public getMail() {
-        this.mailing.find(this.id)
+        console.log('getMail', this.langMap[this.lang.abrev]);
+        this.mailing.find(this.id, this.langMap[this.lang.abrev])
             .subscribe((resp) => {
                 this.mail = resp.data;
                 const scheduled = moment(this.mail.scheduled_at).toDate();
@@ -247,7 +261,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public updateMail(data, message = 'Saved Mail Correctly') {
-        this.mailing.update(this.id, data).subscribe((resp) => {
+        this.mailing.update(this.id, data, this.langMap[this.lang.abrev]).subscribe((resp) => {
             this.alerts.showSnackbar(message + ': (' + this.id + ')');
             this.loading = false;
             this.saved = true;
@@ -277,11 +291,12 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             content: data.content,
             scheduled_at: new Date(data.scheduled_at).toISOString(),
             subject: data.subject,
-        }).subscribe((resp) => {
+        }, this.langMap[this.lang.abrev]).subscribe((resp) => {
             this.alerts.showSnackbar('Created Mail Correctly');
             this.loading = false;
             this.isEdit = true;
             this.id = resp.data.id;
+            this.justCreated = true;
 
             if (navigateToMailing) {
                 this.router.navigate(['/rec/mailing/' + this.id]);
@@ -330,7 +345,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             [fname]: file,
         });
 
-        this.mailing.addAttachment(this.id, attachments)
+        this.mailing.addAttachment(this.id, attachments, this.langMap[this.lang.abrev])
             .subscribe(() => {
                 this.alerts.showSnackbar('Added attachment correctly');
                 this.loading = false;
@@ -347,7 +362,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public removeAttachment(name) {
         delete this.mail.attachments[name];
-        this.mailing.addAttachment(this.id, this.mail.attachments)
+        this.mailing.addAttachment(this.id, this.mail.attachments, this.langMap[this.lang.abrev])
             .subscribe(() => {
                 this.alerts.showSnackbar('Removed attachment correctly');
                 this.loading = false;
@@ -408,5 +423,10 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public createScheduled() {
         this.sendNormal(new Date(this.date + ' ' + this.time), 'Scheduled mail correctly');
         this.sendScheduled = false;
+    }
+
+    public selectLang(lang) {
+        this.lang = lang;
+        this.update();
     }
 }
