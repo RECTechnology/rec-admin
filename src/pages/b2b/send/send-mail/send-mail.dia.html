@@ -91,7 +91,7 @@
             </div>
 
 
-            <div class="group-row-left">
+            <div class="group-row-left" style="width: 100%">
                 <button mat-flat-button color="primary" (click)="sendNormal()"
                     [disabled]="readonly || mail.status != 'created'"
                     style="border-top-right-radius: 0; border-bottom-right-radius: 0">{{'SEND'|translate}}</button>
@@ -124,6 +124,8 @@
                     style="margin-right: 10px;margin-left: 15px" matTooltip="{{'Create'|translate}}">
                     <i class="fa fa-save" style="margin-right: 8px"></i> {{'Create'|translate}}
                 </button>
+ 
+                <p class="small-text" style="margin-right: 0; margin-left: auto" *ngIf="mail.status === 'scheduled'">{{'Scheduled'|translate}}: <code>{{mail.scheduled_at | date}}</code></p>
             </div>
 
             <div *ngIf="addLink" style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
@@ -141,11 +143,15 @@
                 </div>
             </div>
 
-            <div *ngIf="sendScheduled" style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
-                <input type="date" class="input border-radius-2" [(ngModel)]="date" (keyup.enter)="createScheduled()">
-                <input type="time" class="input border-radius-2" [(ngModel)]="time" (keyup.enter)="createScheduled()">
-                <button mat-icon-button title="{{'CREATE_CHANGE'|translate}}" (click)="createScheduled()">
+            <div *ngIf="sendScheduled" class="group-row-left"
+                style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
+                <input type="date" style="width: 45%" class="input border-radius-2" [(ngModel)]="date" (keyup.enter)="createScheduled()">
+                <input type="time" style="width: 45%; margin-left: 10px;" class="input border-radius-2" [(ngModel)]="time" (keyup.enter)="createScheduled()">
+                <button mat-icon-button (click)="createScheduled()">
                     <i class="fa fa-plus"></i>
+                </button>
+                <button mat-icon-button (click)="closeScheduled()">
+                    <i class="fa fa-times"></i>
                 </button>
             </div>
         </mat-card>

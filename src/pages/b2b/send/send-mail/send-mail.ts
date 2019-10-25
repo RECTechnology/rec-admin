@@ -105,8 +105,9 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public date = null;
     public time = null;
-
     public title = '';
+
+    public firstRun = true;
 
     constructor(
         public us: UserService,
@@ -131,7 +132,10 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     @HostListener('window:beforeunload')
     public canDeactivate(): any {
         this.title = this.mail.subject;
-        return this.saved && (this.mail.subject && this.mail.content);
+        console.log('saved', this.saved);
+        console.log('subject', this.mail.subject);
+        console.log('content', this.mail.content);
+        return this.saved && (this.mail.subject || this.mail.content);
     }
 
     public onDiscard() {
@@ -168,7 +172,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         this.mailing.find(this.id)
             .subscribe((resp) => {
                 this.mail = resp.data;
-                const scheduled = new Date(this.mail.scheduled_at);
+                const scheduled = moment(this.mail.scheduled_at).toDate();
 
                 this.readonly = [MailingCrud.STATUS_PROCESSED, MailingCrud.STATUS_SCHEDULED].includes(this.mail.status);
 
@@ -188,10 +192,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
                     };
                 });
 
-                this.mail.scheduled_at =
-                    `${scheduled.getFullYear()}-${scheduled.getMonth().toString().padStart(2, '0')}-${
-                    scheduled.getDate().toString().padStart(2, '0')}T${
-                    scheduled.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                this.saved = true;
                 this.mailCopy = { ...this.mail };
             });
     }
@@ -300,8 +301,15 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public changedEditor(event) {
+        console.log('asjkdhasidhasñdhjo');
         this.mail.content = event.html ? event.html : this.mail.content;
-        this.saved = false;
+
+        // It triggers change on init, and messed up with save logic
+        if (!this.firstRun) {
+            this.saved = false;
+        } else {
+            this.firstRun = false;
+        }
     }
 
     public focus($event) {
@@ -376,11 +384,16 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public openShowSchedule() {
-        const now2 = new Date();
+        console.log('this.mail.scheduled_at', this.mail);
+        const now2 = this.mail.scheduled_at ? moment(this.mail.scheduled_at).toDate() : new Date();
         const parts = this.utils.parseDateToParts(now2);
         this.date = parts.dateStr;
         this.time = parts.timeStr;
         this.sendScheduled = true;
+    }
+
+    public closeScheduled() {
+        this.sendScheduled = false;
     }
 
     public sendNormal(date = null, message = 'Sent mail correctly') {
