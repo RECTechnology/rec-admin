@@ -78,7 +78,7 @@
             </mat-card>
             <div class="col-lg-4 col-md-12" style="margin-bottom: 10px;width: 100%; margin-top: 10px;padding-right: 0;">
                 <mat-card style="width: 100%; height: 100%;">
-                    <create-delivery [id]="id" [disabled]="readonly" [selectedAccounts]="deliveries"
+                    <create-delivery [id]="id" [disabled]="readonly || !isEdit" [selectedAccounts]="deliveries"
                         (update)="update()">
                     </create-delivery>
                 </mat-card>
@@ -175,7 +175,7 @@
                 <input type="time" style="width: 45%; margin-left: 10px;" class="input border-radius-2"
                     [(ngModel)]="time" (keyup.enter)="createScheduled()">
                 <button mat-icon-button (click)="createScheduled()">
-                    <i class="fa fa-plus"></i>
+                    <i class="fa fa-check"></i>
                 </button>
                 <button mat-icon-button (click)="closeScheduled()">
                     <i class="fa fa-times"></i>

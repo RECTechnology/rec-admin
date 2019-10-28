@@ -35,20 +35,14 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public mail: any = {
         content: '',
-        scheduled_at:
-            `${now.getFullYear()}-${now.getMonth().toString().padStart(2, '0')}-${
-            now.getDate().toString().padStart(2, '0')}T${
-            now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`,
+        scheduled_at: moment().toISOString(),
         subject: '',
         attachments: {},
     };
 
     public mailCopy = {
         content: '',
-        scheduled_at:
-            `${now.getFullYear()}-${now.getMonth().toString().padStart(2, '0')}-${
-            now.getDate().toString().padStart(2, '0')}T${
-            now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`,
+        scheduled_at: moment().toISOString(),
         subject: '',
     };
 
@@ -101,15 +95,12 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public addLink = false;
     public linkName = '';
     public linkAttachment = '';
-
     public scheduledDate = '';
-
     public date = null;
     public time = null;
     public title = '';
     public justCreated = false;
     public firstRun = true;
-
     public langs = LANGS;
     public lang = LANG_MAP[localStorage.getItem('lang') || 'en'] || LANGS[1];
     public langMap = {
@@ -137,6 +128,12 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         translate.onLangChange.subscribe(() => {
             this.update();
         });
+
+        this.refreshInterval = setInterval(this.update.bind(this), this.autoRefreshInterval);
+    }
+
+    public ngOnDestroy() {
+        clearInterval(this.refreshInterval);
     }
 
     /**
