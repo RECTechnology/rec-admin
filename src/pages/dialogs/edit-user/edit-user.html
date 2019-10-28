@@ -93,7 +93,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3" *ngIf="user && user.locale">
+        <div class="col-lg-3">
           <div class="group-col-left">
             <span class="small-text-2">{{'Language'|translate}}</span>
             <lang-selector mode="event" (changed)="setLanguage($event)" [lang]="userCopy.locale">
