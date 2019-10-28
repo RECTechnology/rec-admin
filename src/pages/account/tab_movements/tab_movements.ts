@@ -1,19 +1,19 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, Sort } from '@angular/material';
-import { ControlesService } from '../../../services/controles/controles.service';
-import { TxFilter } from '../../../components/filter/filter';
-import { TransactionService } from '../../../services/transactions/transactions.service';
-import { TxDetails } from '../../../pages/wallet/dialogs/tx_details/tx_details.dia';
-import { environment } from '../../../environments/environment';
-import { UtilsService } from '../../../services/utils/utils.service';
-import { CashOutDia } from '../../../pages/wallet/dialogs/cash-out/cash-out.dia';
-import { getDateDMY } from '../../../shared/utils.fns';
-import { ExportTxsDia } from '../../../pages/wallet/dialogs/export-txs/export-txs.dia';
 import * as moment from 'moment';
 
+import { ControlesService } from 'src/services/controles/controles.service';
+import { TxFilter } from 'src/components/filter/filter';
+import { TransactionService } from 'src/services/transactions/transactions.service';
+import { TxDetails } from 'src/pages/wallet/dialogs/tx_details/tx_details.dia';
+import { environment } from 'src/environments/environment';
+import { UtilsService } from 'src/services/utils/utils.service';
+import { CashOutDia } from 'src/pages/wallet/dialogs/cash-out/cash-out.dia';
+import { getDateDMY } from 'src/shared/utils.fns';
+import { ExportTxsDia } from 'src/pages/wallet/dialogs/export-txs/export-txs.dia';
+
 @Component({
-  providers: [],
   selector: 'movements-tab',
   styleUrls: ['./tab_movements.css'],
   templateUrl: './tab_movements.html',
@@ -30,10 +30,8 @@ export class MovementsTab implements AfterContentInit {
   public filter: TxFilter;
   public account_id: string;
   public Brand: any = environment.Brand;
-
   public sortID: string = 'id';
   public sortDir: string = 'desc';
-
   public dateTo = getDateDMY(new Date(), '-');
   public dateFrom = getDateDMY(new Date(Date.now() - (30 * 2 * 24 * 60 * 60 * 1000 * 4)), '-');
 
@@ -45,7 +43,6 @@ export class MovementsTab implements AfterContentInit {
     public controles: ControlesService,
     public utils: UtilsService,
   ) {
-
     this.route.params.subscribe((params) => {
       this.account_id = params.id;
 
