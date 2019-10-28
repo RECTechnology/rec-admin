@@ -53,6 +53,8 @@ export class EditAccountData {
 
   public activities = [];
   public activitiesSelected = [];
+  public validationErrors: any = [];
+  public validationErrorName = '';
 
   constructor(
     public dialogRef: MatDialogRef<EditAccountData>,
@@ -223,9 +225,12 @@ export class EditAccountData {
             this.loading = false;
             if (close) { this.close(this.account); }
           }, (error) => {
-            this.alerts.showSnackbar('Error updating account! ' + error.message, 'ok');
+            if (error.message.includes('Validation error')) {
+              this.validationErrors = error.errors;
+            } else {
+              this.alerts.showSnackbar('Error updating account! ' + error.message, 'ok');
+            }
             this.loading = false;
-            if (close) { this.close(this.account); }
           });
     } else {
       this.alerts.showSnackbar('Nothing to update', 'ok');

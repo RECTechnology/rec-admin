@@ -9,6 +9,9 @@
 </div>
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
+  <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+    style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
+  </validation-errors>
   <mat-tab-group class="profile-tabs" [(selectedIndex)]="currentTab" (selectedIndexChange)="currentTab = $event"
     style="width: 100%">
     <mat-tab label="{{'BASIC_INFO'|translate}}" style="height: 400px">
@@ -164,6 +167,7 @@
         </div>
       </div>
     </mat-tab>
+
     <mat-tab label="{{'LOCALIZATION'|translate}}" style="height: 400px">
       <div class="row padd-x20">
         <div class="col-lg-12">
@@ -261,6 +265,7 @@
         </div>
       </div>
     </mat-tab>
+
     <mat-tab label="{{'MARKETING'|translate}}" style="height: 400px" [disabled]="type === 'PRIVATE'">
       <div class="row padd-x20" style="width: 100%">
         <div class="col-lg-12" style="height: auto">
@@ -326,6 +331,7 @@
         </div>
       </div>
     </mat-tab>
+
     <mat-tab label="{{'B2B'|translate}}" style="height: 400px" [disabled]="type === 'PRIVATE'">
       <div class="row padd-x20" style="width: 100%">
         <div class="col-lg-6">
