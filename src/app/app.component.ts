@@ -1,5 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material';
+import { interval } from 'rxjs';
+
 import { AppService } from 'src/services/app/app.service';
 import { environment } from 'src/environments/environment';
 import { UtilsService } from 'src/services/utils/utils.service';
@@ -9,9 +13,6 @@ import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { AdminService } from 'src/services/admin/admin.service';
 import { IdleNotification } from 'src/components/dialogs/idle-notification/idle.dia';
-import { TranslateService } from '@ngx-translate/core';
-import { MatDialog } from '@angular/material';
-import { interval } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
@@ -101,7 +102,7 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         }, (error) => { return; });
 
-        this.as.checkWithdrawals();
+        // this.as.checkWithdrawals();
 
         this.companyService.listCategories()
           .subscribe((categories) => {
@@ -112,7 +113,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   /* Setup translate, and set default lang */
   public setupLang() {
-    const availableLangs = this.translate.getLangs();
     const browserLang = this.translate.getBrowserLang();
     const localSavedLang = localStorage.getItem('lang');
     const currentLang = localSavedLang || browserLang || 'en';
@@ -152,9 +152,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.idleObs = interval(1e3).subscribe((x) => this.utils.checkIdleTime());
   }
 
-  /**
-   * Shows "Are you there" modal, to reset session or cancel it and do logout
-   */
   private showIdleMessage(): void {
     this.idleModal = this.dialog.open(IdleNotification);
     this.idleModal.afterClosed().subscribe(
@@ -162,7 +159,6 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  /* Hides "Are you there" dialog */
   private closeIdleMessage(): void {
     if (this.idleModal) { this.idleModal.close(); }
   }

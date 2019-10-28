@@ -1,25 +1,21 @@
-import { Component, HostListener, ViewChild, Input } from '@angular/core';
-import { UserService } from 'src/services/user.service';
-import { TranslateService } from '@ngx-translate/core';
-import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
+import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { Title } from '@angular/platform-browser';
+import * as moment from 'moment';
+
+import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
+import { UserService } from 'src/services/user.service';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
-import { CreateDelivery } from '../create-delivery/create-delivery';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
-import { Title } from '@angular/platform-browser';
 import { TlHeader } from 'src/components/table-list/tl-table/tl-table.component';
-
-import * as moment from 'moment';
 import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { UtilsService } from 'src/services/utils/utils.service';
-import { Observable } from 'rxjs';
 import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
 import { LANGS, LANG_MAP } from 'src/data/consts';
-
-const now = new Date();
 
 @Component({
     selector: 'send-mail',

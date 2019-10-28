@@ -83,7 +83,6 @@ export class MovementsTab implements AfterContentInit {
         this.loading = false;
       },
     );
-    // Perform search
   }
 
   public sendRecs() {
