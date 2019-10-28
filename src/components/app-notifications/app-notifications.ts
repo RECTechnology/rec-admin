@@ -19,7 +19,9 @@ export class AppNotifications {
 
   constructor(
     public ns: NotificationService,
-  ) { }
+  ) {
+    this.hasNotifications = false//this.ns.count > 0;
+  }
 
   public clicked(notif) {
     this.ns.removeNotification(notif);

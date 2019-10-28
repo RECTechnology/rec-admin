@@ -30,7 +30,6 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
   templateUrl: '../../pages/wallet/wallet.html',
 })
 export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLogout, OnLogin {
-
   public pageName = 'Wallet';
   public showActions = false;
   public accountToView = null;
