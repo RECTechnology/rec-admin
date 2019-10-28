@@ -28,16 +28,12 @@ export class EditAccountData {
   public ACCOUNT_SUB_TYPES_COMPANY = ['WHOLESALE', 'RETAILER'];
   public type = 'PRIVATE';
   public lang: any = 'esp';
-
   public currentTab = 0;
-
   public viewManageSchedule = false;
   public viewManageOffers = false;
-
   public schedule = '';
   public error: string;
   public loading: boolean;
-
   public langMap = {
     cat: 'ca',
     en: 'en',
@@ -45,12 +41,10 @@ export class EditAccountData {
     es: 'es',
     esp: 'es',
   };
-
   public geocoder: any;
   public productList: any[] = [];
   public actQuery = '';
   public actMainQuery = '';
-
   public activities = [];
   public activitiesSelected = [];
   public validationErrors: any = [];
@@ -90,6 +84,7 @@ export class EditAccountData {
     if (this.account.activity_main) {
       this.account.activity_main_id = this.account.activity_main.id;
     } else {
+      this.account.activity_main_id = null;
       this.account.activity_main = { id: null };
     }
 
@@ -223,6 +218,9 @@ export class EditAccountData {
           (resp) => {
             this.alerts.showSnackbar('Updated account correctly!', 'ok');
             this.loading = false;
+            this.account = resp.data;
+            this.ngOnInit();
+
             if (close) { this.close(this.account); }
           }, (error) => {
             if (error.message.includes('Validation error')) {

@@ -41,9 +41,7 @@ export class EditUserData {
     public dialog: MatDialog,
     public usersCrud: UsersCrud,
     public alerts: AlertsService,
-  ) {
-    // this.lang = this.langMap[us.lang];
-  }
+  ) { }
 
   public ngOnInit() {
     this.getUser();
@@ -58,12 +56,8 @@ export class EditUserData {
       .subscribe((resp) => {
         this.user = resp.data;
         this.user.kyc_validations.lastName = this.user.kyc_validations.last_name;
-        console.log('Locale', this.user.locale);
         this.user.locale = LANG_MAP[this.user.locale] || LANG_MAP['es'];
         this.lang = this.langMap[this.user.locale];
-
-        console.log('Locale', this.user.locale);
-
         this.userCopy = { ...this.user };
         this.userCopy.kyc_validations = { ...this.user.kyc_validations };
       });

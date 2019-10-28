@@ -134,8 +134,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         super();
 
         this.lang[this.lang.abrev] = LANG_MAP[this.us.userData.locale];
-
-        console.log('this.lang[this.lang.abrev]', this.langMap[this.lang.abrev]);
         translate.onLangChange.subscribe(() => {
             this.update();
         });
@@ -148,9 +146,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     @HostListener('window:beforeunload')
     public canDeactivate(): any {
         this.title = this.mail.subject;
-        console.log('justCreated', this.justCreated);
-        console.log('saved', this.saved);
-        console.log('(this.mail.subject || this.mail.content)', (this.mail.subject || this.mail.content));
         return this.justCreated ? this.justCreated = true : this.saved && (this.mail.subject || this.mail.content);
     }
 
@@ -161,7 +156,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public onSaveDraft() {
-        console.log('save draft', this.id, this.isEdit);
         this.isEdit ? this.saveMail() : this.createMail(false);
     }
 
