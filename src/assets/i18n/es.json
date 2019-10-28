@@ -997,5 +997,9 @@
   "DISCARD_MAILING_DESC": "Ha guardado los cambios, haga clic en Descartar si no desea guardar los cambios o Guardar borrador si desea continuar en una fecha posterior",
   "DISCARD_CHANGES": "Descartar cambios",
   "CONTINUE_EDITING": "Continuar editando",
-  "SAVE_DRAFT": "Guardar borrador"
+  "SAVE_DRAFT": "Guardar borrador",
+  "Subtype": "Subtipo",
+  "Account Active": "Cuenta Activa",
+  "Update": "Actualizar",
+  "ACCOUNT_ACTIVE_DESC": "Si la cuenta no está activa, el usuario no podrá iniciar sesión"
 }

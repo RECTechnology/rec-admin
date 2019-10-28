@@ -995,7 +995,6 @@
   "Map": "Mapa",
   "Category": "Categoria",
   "Phone": "Telèfon",
-    
   "MAIN_ACTIVITY": "Activitat Principal",
   "SECONDARY_ACTIVITIES": "Activitats Secundaries",
   "UNREVISED_FIRST": "Mostrar elements sense revisar primer",
@@ -1006,8 +1005,10 @@
   "Link": "Enllaç",
   "Upload": "Pujar",
   "DISCARD_MAILING": "Esteu segur que voleu descartar aquest correu, titulat '{{title}}'",
-   "DISCARD_MAILING_DESC": "Teniu els canvis no desats, feu clic a Eliminar si no voleu desar els canvis o Desa l'esborrany si voleu continuar en una data posterior",
-   "DISCARD_CHANGES": "Eliminar els canvis",
-   "CONTINUE_EDITING": "Continua editant",
-   "SAVE_DRAFT": "Desar l'esborrany"
+  "DISCARD_MAILING_DESC": "Teniu els canvis no desats, feu clic a Eliminar si no voleu desar els canvis o Desa l'esborrany si voleu continuar en una data posterior",
+  "DISCARD_CHANGES": "Eliminar els canvis",
+  "CONTINUE_EDITING": "Continua editant",
+  "SAVE_DRAFT": "Desar l'esborrany",
+  "Language": "Llenguatge",
+  "ACCOUNT_ACTIVE_DESC": "Si es desactiva aquest compte l'usuari no podrà accedir-hi"
 }

@@ -21,7 +21,10 @@ export class CountrySelector implements OnInit {
     public ngOnInit() {
         this.value = this.value || 'ESP';
         this.countryPicker.getCountries().subscribe((countries) => {
-            this.countries = countries;
+            this.countries = countries.sort((a) => {
+                if (a.cca3 === 'ESP') { return -1; }
+                return 0;
+            });
         }, (err) => {
             this.error = err;
         });

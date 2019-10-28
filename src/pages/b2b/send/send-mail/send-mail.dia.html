@@ -150,7 +150,7 @@
                 </button>
 
                 <p class="small-text" style="margin-right: 0; margin-left: auto" *ngIf="mail.status === 'scheduled'">
-                    {{'Scheduled'|translate}}: <code>{{mail.scheduled_at | date}}</code></p>
+                    {{'Scheduled'|translate}}: <code>{{mail.scheduled_at | date: 'medium'}}</code></p>
             </div>
 
             <div *ngIf="addLink" style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">

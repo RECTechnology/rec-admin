@@ -21,7 +21,7 @@ export class LangSelector {
     private ls: LoginService,
   ) { }
 
-  public ngOnInit(){
+  public ngOnInit() {
     console.log('lang', this.lang);
   }
 

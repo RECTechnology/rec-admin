@@ -8,6 +8,7 @@ import { AdminService } from '../../../services/admin/admin.service';
 import { forkJoin } from 'rxjs';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { LANG_MAP } from 'src/data/consts';
 
 @Component({
   providers: [
@@ -21,6 +22,15 @@ export class EditUserData {
   public userCopy: any = { kyc_validations: {} };
   public loading = false;
   public error = '';
+  public lang: any = 'esp';
+
+  public langMap = {
+    cat: 'ca',
+    en: 'en',
+    eng: 'en',
+    es: 'es',
+    esp: 'es',
+  };
 
   constructor(
     public dialogRef: MatDialogRef<EditUserData>,
@@ -31,7 +41,9 @@ export class EditUserData {
     public dialog: MatDialog,
     public usersCrud: UsersCrud,
     public alerts: AlertsService,
-  ) { }
+  ) {
+    this.lang = this.langMap[us.lang];
+  }
 
   public ngOnInit() {
     this.getUser();
@@ -46,6 +58,8 @@ export class EditUserData {
       .subscribe((resp) => {
         this.user = resp.data;
         this.user.kyc_validations.lastName = this.user.kyc_validations.last_name;
+        this.user.locale = LANG_MAP[this.user.locale || 'es'];
+
         this.userCopy = { ...this.user };
         this.userCopy.kyc_validations = { ...this.user.kyc_validations };
       });
@@ -143,5 +157,11 @@ export class EditUserData {
       hasSelectedImage: !!selectedImage,
       selectedImage,
     });
+  }
+
+  public setLanguage($event) {
+    this.userCopy.locale = $event;
+    // this.user.locale = $event;
+    this.lang = $event;
   }
 }

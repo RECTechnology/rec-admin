@@ -145,17 +145,17 @@
 
         <!-- Active -->
         <div class="col-lg-3">
-          <div class="group-col-left">
+          <div class="group-col-left" matTooltip="{{'ACCOUNT_ACTIVE_DESC'|translate}}">
             <span class="small-text-2">{{'Account Active'|translate}}</span>
             <mat-checkbox color="primary" [(ngModel)]="accountCopy.active">
               <span class="small-text-2">{{(accountCopy.active ? 'Active': 'Inactive')|translate}}</span>
             </mat-checkbox>
           </div>
-          <div class="group-col-left">
+          <!-- <div class="group-col-left">
             <span class="small-text-2">{{'Language'|translate}}</span>
             <lang-selector mode="event" (changed)="setLanguage($event)" [lang]="accountCopy.kyc_manager.locale || 'es'">
             </lang-selector>
-          </div>
+          </div> -->
         </div>
 
         <div class="col-lg-12">
