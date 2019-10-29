@@ -167,6 +167,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
         this.sortedData = this.data.slice();
         this.showing = this.data.length;
         this.loading = false;
+        console.log('dasdjklaskda', this.data);
       },
       (error) => {
         this.loading = false;

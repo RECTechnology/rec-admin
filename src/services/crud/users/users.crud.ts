@@ -5,6 +5,7 @@ import { UserService } from 'src/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CompanyService } from 'src/services/company/company.service';
+import { User } from 'src/shared/entities/user.ent';
 
 @Injectable()
 export class UsersCrud extends CrudBaseService {
@@ -17,5 +18,9 @@ export class UsersCrud extends CrudBaseService {
         this.basePath = '/users';
         this.userRole = 'admin';
         this.mapItems = true;
+    }
+
+    public mapper(item) {
+        return new User(item);
     }
 }

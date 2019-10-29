@@ -1,6 +1,6 @@
 import { padStart } from '../../utils.fns';
 
-export class Wallet {
+export class WalletEnt {
 
   public currency: string = '';
   public scale: number = 0;

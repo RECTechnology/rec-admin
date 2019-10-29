@@ -4,6 +4,7 @@ import { API_URL } from '../data/consts';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { User } from 'src/shared/entities/user.ent';
 
 @Injectable()
 export class UserService {
@@ -290,7 +291,7 @@ export class UserService {
           console.log(error);
         }
 
-        return body.data || body || {};
+        return new User(body.data || body || {});
       }),
       catchError(this.handleError.bind(this)),
     );

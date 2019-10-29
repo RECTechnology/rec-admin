@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CompanyService } from 'src/services/company/company.service';
 import { RecLang, REC_LANGS } from 'src/types';
+import { Account } from 'src/shared/entities/account.ent';
 
 @Injectable()
 export class AccountsCrud extends CrudBaseService {
@@ -21,6 +22,10 @@ export class AccountsCrud extends CrudBaseService {
         this.basePath = '/accounts';
         this.userRole = 'admin';
         this.mapItems = true;
+    }
+
+    public mapper(item) {
+        return new Account(item);
     }
 
     public getPdf(account_id, lang: RecLang = REC_LANGS.ES) {
@@ -71,7 +76,7 @@ export class AccountsCrud extends CrudBaseService {
         return this.delete(url).pipe(this.itemMapper());
     }
 
-    public mapper(item: any) {
-        return this.cs.mapCompany(item);
-    }
+    // public mapper(item: any) {
+    //     return this.cs.mapCompany(item);
+    // }
 }

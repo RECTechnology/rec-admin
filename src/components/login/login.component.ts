@@ -108,8 +108,6 @@ export class LoginComponent implements OnInit {
               }
 
               setTimeout(async (x) => {
-                // If its all accepted we proceed to login
-
                 // reset tokens as they have accepted and they can login now
                 this.us.tokens = tokens;
                 localStorage.setItem('user.tokens', JSON.stringify(tokens));

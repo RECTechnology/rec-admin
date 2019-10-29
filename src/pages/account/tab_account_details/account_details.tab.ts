@@ -29,9 +29,7 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
     public utils: UtilsService,
     public crudAccounts: AccountsCrud,
     public alerts: AlertsService,
-  ) {
-
-  }
+  ) { }
 
   public ngOnInit() {
     this.route.params
@@ -62,14 +60,7 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
     });
   }
 
-  public openDeleteAccount() {
-    // let dialogRef = this.dialog.open();
-    // dialogRef.componentInstance.account = this.companyService.selectedCompany;
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   dialogRef = null;
-    // });
-  }
+  public openDeleteAccount() { }
 
   public expelUser() {
     return;

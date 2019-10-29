@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { CrudBaseService } from 'src/services/base/crud.base';
 import { UserService } from 'src/services/user.service';
 import { HttpClient } from '@angular/common/http';
+import { Product } from 'src/shared/entities/translatable/product.ent';
 
 @Injectable()
 export class ProductsCrud extends CrudBaseService {
@@ -13,6 +14,11 @@ export class ProductsCrud extends CrudBaseService {
         super(http, us);
         this.basePath = '/product_kinds';
         this.setFlag('translateHeaders');
+        this.mapItems = true;
+    }
+
+    public mapper(item) {
+        return new Product(item);
     }
 
     public addConsumedByToProduct(product_id, activity_id) {
