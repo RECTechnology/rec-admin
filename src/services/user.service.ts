@@ -233,15 +233,17 @@ export class UserService {
 
   public getListOfRecSellers(offset, limit, search, sort = 'id', dir = 'desc') {
     const headers = this.getHeaders();
-    const options: any = ({ headers, method: 'GET' });
-    options.search = new HttpParams({
-      fromObject: {
-        dir,
-        limit,
-        offset,
-        search,
-        sort,
-      },
+    const options: any = ({
+      headers, method: 'GET',
+      search: new HttpParams({
+        fromObject: {
+          dir,
+          limit,
+          offset,
+          search,
+          sort,
+        },
+      }),
     });
 
     return this.http.get(`${API_URL}/user/v1/wallet/exchangers`, options)
@@ -442,9 +444,11 @@ export class UserService {
       'authorization': 'Bearer ' + this.tokens.access_token,
       'content-type': 'application/x-www-form-urlencoded',
     });
-    const options = ({ headers, method: 'PUT' });
-
-    const params = new HttpParams().set('profile_image', src);
+    const options = ({
+      headers,
+      method: 'PUT',
+      params: new HttpParams().set('profile_image', src),
+    });
 
     return this.http.put(
       `${API_URL}/user/v1/profile_image`,

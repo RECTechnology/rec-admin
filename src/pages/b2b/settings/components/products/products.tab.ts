@@ -53,7 +53,6 @@ export class ProductsTabComponent extends EntityTabBase {
             order: 'asc',
         }, this.langMap[this.us.lang]).subscribe((resp) => {
             this.activities = resp.data.elements;
-            console.log('this.activities', this.activities);
         });
     }
 
