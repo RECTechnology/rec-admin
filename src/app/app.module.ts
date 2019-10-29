@@ -89,7 +89,7 @@ const imports = [
     filename: 'countries.json',
   }),
   QuillModule.forRoot(),
-  NgxLoggingModule.forRoot({ enabled: !environment.production }),
+  // NgxLoggingModule.forRoot({ enabled: !environment.production }),
 ];
 
 @NgModule({

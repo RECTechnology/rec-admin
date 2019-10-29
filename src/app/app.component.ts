@@ -52,7 +52,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
-  @logMethod
   public ngOnInit() {
 
     this.aas.doAuth((response, error) => { return; });
