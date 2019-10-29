@@ -19,7 +19,15 @@
       "es2018",
       "dom"
     ],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "ngx-logging": [
+        "dist/ngx-logging"
+      ],
+      "ngx-logging/*": [
+        "dist/ngx-logging/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

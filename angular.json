@@ -140,6 +140,41 @@
           }
         }
       }
+    },
+    "ngx-logging": {
+      "projectType": "library",
+      "root": "projects/ngx-logging",
+      "sourceRoot": "projects/ngx-logging/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-logging/tsconfig.lib.json",
+            "project": "projects/ngx-logging/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-logging/src/test.ts",
+            "tsConfig": "projects/ngx-logging/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-logging/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-logging/tsconfig.lib.json",
+              "projects/ngx-logging/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "rec-admin"
