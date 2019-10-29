@@ -26,6 +26,12 @@
       ],
       "ngx-logging/*": [
         "dist/ngx-logging/*"
+      ],
+      "ngx-rec-api": [
+        "dist/ngx-rec-api"
+      ],
+      "ngx-rec-api/*": [
+        "dist/ngx-rec-api/*"
       ]
     }
   },

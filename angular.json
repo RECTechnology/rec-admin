@@ -175,6 +175,41 @@
           }
         }
       }
+    },
+    "ngx-rec-api": {
+      "projectType": "library",
+      "root": "projects/ngx-rec-api",
+      "sourceRoot": "projects/ngx-rec-api/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-rec-api/tsconfig.lib.json",
+            "project": "projects/ngx-rec-api/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-rec-api/src/test.ts",
+            "tsConfig": "projects/ngx-rec-api/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-rec-api/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-rec-api/tsconfig.lib.json",
+              "projects/ngx-rec-api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "rec-admin"

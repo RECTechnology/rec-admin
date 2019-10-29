@@ -14,7 +14,6 @@ import { UserService } from 'src/services/user.service';
 import { AdminService } from 'src/services/admin/admin.service';
 import { IdleNotification } from 'src/components/dialogs/idle-notification/idle.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
-import { logMethod } from 'projects/ngx-logging/src/public-api';
 
 @Component({
   providers: [AppService],
@@ -43,6 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private us: UserService,
     public as: AdminService,
     public alerts: AlertsService,
+    // public test: UsersCrudService,
   ) {
     this.utils.isSandbox = this.isSandbox = environment.test;
 
