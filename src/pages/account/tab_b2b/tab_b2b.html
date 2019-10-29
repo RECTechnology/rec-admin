@@ -6,9 +6,16 @@
           {{'B2B_MODULE'|translate}}</p>
 
         <div>
-          <button style="margin-right: 10px" type="button" color="primary" mat-raised-button name="button" (click)="sendB2b()">
+          <button style="margin-right: 10px" type="button" color="primary" mat-raised-button name="button"
+            (click)="sendB2b()">
             <p class="text-small">
-              {{'Download Pdf'|translate}}
+              <i class="fa fa-download" style="margin-right: 8px;"></i> {{'Download Pdf'|translate}}
+            </p>
+          </button>
+          <button style="margin-right: 10px" type="button" color="primary" mat-raised-button name="button"
+            routerLink="/rec/mailing/new" [queryParams]="{ acc_id: id, attach: 'b2b_report' }">
+            <p class="text-small">
+              <i class="fa fa-paper-plane" style="margin-right: 8px;"></i> {{'Send By Mail'|translate}}
             </p>
           </button>
 

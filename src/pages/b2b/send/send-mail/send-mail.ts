@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
@@ -16,6 +16,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
 import { LANGS, LANG_MAP } from 'src/data/consts';
+import { CreateDelivery } from '../create-delivery/create-delivery';
 
 @Component({
     selector: 'send-mail',
@@ -105,6 +106,8 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         es: 'es',
     };
 
+    @ViewChild(CreateDelivery, { static: true }) public createDelivery: CreateDelivery;
+
     constructor(
         public us: UserService,
         public translate: TranslateService,
@@ -119,6 +122,21 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         public utils: UtilsService,
     ) {
         super();
+
+        this.route.queryParams.subscribe((params) => {
+            if (params.acc_id || params.attach) {
+                this.createMail()
+                    .then((resp) => {
+                        if (params.acc_id) {
+                            this.createDelivery.id = this.id;
+                            this.createDelivery.createDelivery([{ id: params.acc_id }]);
+                        }
+                        if (params.attach === 'b2b_report') {
+                            this.addAttachment('b2b_report', 'b2b_report.pdf');
+                        }
+                    });
+            }
+        });
 
         this.lang[this.lang.abrev] = LANG_MAP[this.us.userData.locale];
         translate.onLangChange.subscribe(() => {
@@ -277,24 +295,26 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public createMail(navigateToMailing = true) {
         this.loading = true;
         const data: any = Object.assign({}, this.mail);
-        this.mailing.create({
+        return this.mailing.create({
             content: data.content,
             scheduled_at: new Date(data.scheduled_at).toISOString(),
             subject: data.subject,
-        }, this.langMap[this.lang.abrev]).subscribe((resp) => {
-            this.alerts.showSnackbar('Created Mail Correctly');
-            this.loading = false;
-            this.isEdit = true;
-            this.id = resp.data.id;
-            this.justCreated = true;
+        }, this.langMap[this.lang.abrev])
+            .toPromise()
+            .then((resp) => {
+                this.alerts.showSnackbar('Created Mail Correctly');
+                this.loading = false;
+                this.isEdit = true;
+                this.id = resp.data.id;
+                this.justCreated = true;
 
-            if (navigateToMailing) {
-                this.router.navigate(['/rec/mailing/' + this.id]);
-            }
-        }, (err) => {
-            this.alerts.showSnackbar(err.message);
-            this.loading = false;
-        });
+                if (navigateToMailing) {
+                    this.router.navigate(['/rec/mailing/' + this.id]);
+                }
+            }).catch((err) => {
+                this.alerts.showSnackbar(err.message);
+                this.loading = false;
+            });
     }
 
     public isSaveDisabled() {
