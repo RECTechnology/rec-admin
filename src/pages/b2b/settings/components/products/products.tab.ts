@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { Product } from 'src/shared/entities/translatable/product.ent';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';
+import { UserService } from 'src/services/user.service';
 
 @Component({
     selector: 'tab-products',
@@ -18,8 +19,14 @@ export class ProductsTabComponent extends EntityTabBase {
     public products: Product[] = [];
     public productsColumns = ['id', 'cat', 'esp', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
     public sortElementsToRevise = true;
-    public activityFilter = null;
+    public activityConsumedFilter = null;
+    public activityProducedFilter = null;
     public activities: Activity[] = [];
+    public langMap = {
+        cat: 'ca',
+        en: 'en',
+        es: 'es',
+    };
 
     constructor(
         public productsCrud: ProductsCrud,
@@ -27,14 +34,26 @@ export class ProductsTabComponent extends EntityTabBase {
         public alerts: AlertsService,
         public translate: TranslateService,
         public actCrud: ActivitiesCrud,
+        public us: UserService,
     ) {
         super(dialog, alerts);
         this.translate.onLangChange.subscribe(() => {
             this.search();
+            this.getActivities();
         });
 
-        this.actCrud.list().subscribe((resp) => {
+        this.getActivities();
+    }
+
+    public getActivities() {
+        this.actCrud.list({
+            offset: 0,
+            limit: 300,
+            sort: 'name',
+            order: 'asc',
+        }, this.langMap[this.us.lang]).subscribe((resp) => {
             this.activities = resp.data.elements;
+            console.log('this.activities', this.activities);
         });
     }
 
@@ -45,7 +64,8 @@ export class ProductsTabComponent extends EntityTabBase {
             this.sortID = 'status';
         }
 
-        const activity_id = this.activityFilter ? this.activityFilter.id : null;
+        const default_consuming_by = [this.activityConsumedFilter ? this.activityConsumedFilter.id : null];
+        const default_producing_by = [this.activityProducedFilter ? this.activityProducedFilter.id : null];
 
         this.productsCrud.search({
             order: this.sortDir,
@@ -53,8 +73,8 @@ export class ProductsTabComponent extends EntityTabBase {
             offset: this.offset,
             search: this.query || '',
             sort: this.sortID,
-            activity_id,
-            // status: 'reviewed',
+            default_consuming_by,
+            default_producing_by,
         }, 'all').subscribe(
             (resp) => {
                 this.data = resp.data.elements.map(this.mapTranslatedElement);
@@ -165,8 +185,8 @@ export class ProductsTabComponent extends EntityTabBase {
             );
     }
 
-    public selectActivityToFilter(activity) {
-        this.activityFilter = activity;
+    public selectActivityConsumedToFilter(activity) {
+        this.activityConsumedFilter = activity;
         this.search();
     }
 }

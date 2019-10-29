@@ -416,6 +416,8 @@
   "ADD": "Add",
   "ACTIVITIES_PRODUCED": "Activities Produced",
   "ACTIVITIES_CONSUMED": "Activities Consumed",
+  "ACTIVITY_PRODUCED": "Activity Produced",
+  "ACTIVITY_CONSUMED": "Activity Consumed",
   "NO_ITEMS": "There are no items",
   "NEW_PRODUCT": "New Product",
   "NEIGHBORHOODS": "Neighbourhoods",

@@ -21,10 +21,9 @@
         </div>
       </tl-subheader>
 
-      <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
-        [itemOptions]="itemOptions"
-        noItemsMessage="There are no exchangers yet, try another search or change the filters!" [limit]="limit"
-        [total]="total" (onChangePage)="changedPage($event)">
+      <tl-table [loading]="loading" [sort]="true" [headers]="headers" [data]="sortedData" [itemOptions]="itemOptions"
+        [total]="total" [limit]="limit" (onChangePage)="changedPage($event)" (onSort)="sortData($event)"
+        noItemsMessage="There are no exchangers yet, try another search or change the filters!">
       </tl-table>
     </mat-card>
   </div>

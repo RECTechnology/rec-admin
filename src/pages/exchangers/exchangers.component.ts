@@ -9,6 +9,7 @@ import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { Account } from 'src/shared/entities/account.ent';
 
 @Component({
   selector: 'exchangers',
@@ -22,6 +23,7 @@ export class ExchangersComponent extends TablePageBase {
   public wholesale = 1;
   public retailer = 1;
   public only_offers = false;
+  public loading = true;
 
   public filterChanged = false;
   public filterActive = 3; // 3 is an invalid filter so it will be unselected
@@ -44,6 +46,9 @@ export class ExchangersComponent extends TablePageBase {
       sort: 'amount',
       title: 'Amount',
       type: 'code',
+      accessor: (account: Account) => {
+        return account.getBalance('REC') + ' Ɍ';
+      },
     },
   ];
 

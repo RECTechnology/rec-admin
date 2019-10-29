@@ -954,6 +954,8 @@
   "ADD_ITEM": "Anyadeix Element",
   "ACTIVITIES_PRODUCED": "Activitats produïdes",
   "ACTIVITIES_CONSUMED": "Activitats consumides",
+  "ACTIVITY_PRODUCED": "Activitat Produïda",
+  "ACTIVITY_CONSUMED": "Activitat Consumida",
   "NO_ITEMS": "No hi ha articles",
   "NEW_PRODUCT": "Nou producte",
   "NEW_NEIGBORHOOD": "Nou barri",

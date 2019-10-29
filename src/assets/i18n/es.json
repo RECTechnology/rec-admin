@@ -942,6 +942,8 @@
   "ADD_ITEM": "Añadir Elemento",
   "ACTIVITIES_PRODUCED": "Actividades producidas",
   "ACTIVITIES_CONSUMED": "Actividades consumidas",
+  "ACTIVITY_PRODUCED": "Actividad Producida",
+  "ACTIVITY_CONSUMED": "Actividad Consumida",
   "NO_ITEMS": "No hay elementos",
   "NEW_PRODUCT": "Nuevo producto",
   "NEW_NEIGBORHOOD": "Nuevo barrio",

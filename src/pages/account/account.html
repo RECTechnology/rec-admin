@@ -13,11 +13,11 @@
       <img src="{{companyService.selectedCompany.company_image || Brand.account_default_image}}" alt="">
     </div>
     <span style="margin-left: 10px">{{companyService.selectedCompany.name}}</span>
-    <code class="small-text">
-      {{companyService.selectedCompany.available}} REC
+    <code class="small-text" style="margin-right: 10px;">
+      {{companyService.selectedCompany.available | number}} Ɍ
     </code>
     <code class="small-text">
-      {{companyService.selectedCompany.available_eur}} EUR
+      {{companyService.selectedCompany.available_eur | number}} €
     </code>
   </div>
 </header-nav>
