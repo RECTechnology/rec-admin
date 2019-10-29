@@ -68,16 +68,16 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   public itemOptions: TlItemOption[] = [
     {
       callback: this.openViewDetails.bind(this),
-      text: 'View Details',
+      text: 'View',
       icon: 'fa-eye',
     }, {
       callback: this.openEditUser.bind(this),
-      text: 'Edit User',
+      text: 'Edit',
       icon: 'fa-edit',
     }, {
       callback: this.openDeleteUser.bind(this),
       class: 'col-red col-error',
-      text: 'DELETE',
+      text: 'Delete',
       icon: 'fa-trash',
     }];
   public defaultExportKvp = [

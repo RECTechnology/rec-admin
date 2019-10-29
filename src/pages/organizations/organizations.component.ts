@@ -168,6 +168,7 @@ export class OrganizationsComponent extends TablePageBase {
       offset: this.offset,
       order: this.sortDir,
       sort: this.sortID,
+      search: query || this.query,
       query: {
         subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
         type: 'COMPANY',

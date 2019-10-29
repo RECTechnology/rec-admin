@@ -58,7 +58,8 @@ export class B2BSendComponent extends TablePageBase {
         {
             callback: this.removeMail.bind(this),
             text: 'Remove',
-            icon: 'fa-times',
+            icon: 'fa-trash',
+            class: 'col-error',
             disabled: (el) => el.status !== 'created',
         },
     ];
