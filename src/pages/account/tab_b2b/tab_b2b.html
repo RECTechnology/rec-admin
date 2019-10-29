@@ -13,7 +13,11 @@
             </p>
           </button>
           <button style="margin-right: 10px" type="button" color="primary" mat-raised-button name="button"
-            routerLink="/rec/mailing/new" [queryParams]="{ acc_id: id, attach: 'b2b_report' }">
+            routerLink="/rec/mailing/new" [queryParams]="{ 
+              acc_id: id, 
+              attach: 'b2b_report',
+              concept: 'B2B Report'
+            }">
             <p class="text-small">
               <i class="fa fa-paper-plane" style="margin-right: 8px;"></i> {{'Send By Mail'|translate}}
             </p>

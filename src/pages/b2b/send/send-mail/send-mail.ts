@@ -124,7 +124,18 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         super();
 
         this.route.queryParams.subscribe((params) => {
+            /**
+             * Below code is for creating a mailing from link,
+             * mainly so it can be generated from `Account -> B2B Module`
+             */
             if (params.acc_id || params.attach) {
+                if (params.concept) {
+                    this.mail.concept = params.concept;
+                }
+                if (params.content) {
+                    this.mail.content = params.content;
+                }
+
                 this.createMail()
                     .then((resp) => {
                         if (params.acc_id) {
