@@ -21,6 +21,7 @@ export interface User {
     access_key: string;
     access_secret: string;
     active_group: Account;
+    accounts: Account[];
     created: string;
     company_image: string;
     dni: string;
@@ -63,6 +64,8 @@ export class User implements User {
                 this.active_group = new Account(userInfo[prop]);
             } else if (prop === 'group_data') {
                 this.group_data = new Account(userInfo[prop]);
+            } else if (prop === 'accounts') {
+                this.accounts = userInfo[prop].map((el) => new Account(el));
             } else {
                 this[prop] = userInfo[prop];
             }

@@ -106,6 +106,7 @@ export class LoginComponent implements OnInit {
                 this.alerts.showSnackbar('You don\'t have necesary permissions...', 'OK');
                 return;
               }
+              console.log('hjaskdhjakd');
 
               setTimeout(async (x) => {
                 // reset tokens as they have accepted and they can login now

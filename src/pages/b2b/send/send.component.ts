@@ -82,7 +82,7 @@ export class B2BSendComponent extends TablePageBase {
     public removeMail(mail) {
         this.mailing.remove(mail.id)
             .subscribe((resp) => {
-                this.alerts.showSnackbar('Removed mailcorrectly');
+                this.alerts.showSnackbar('Removed mail correctly');
                 this.search();
             }, (error) => {
                 this.alerts.showSnackbar(error.message);
