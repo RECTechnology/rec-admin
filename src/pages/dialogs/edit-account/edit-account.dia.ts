@@ -84,8 +84,8 @@ export class EditAccountData {
     if (this.account.activity_main) {
       this.account.activity_main_id = this.account.activity_main.id;
     } else {
-      this.account.activity_main_id = null;
-      this.account.activity_main = { id: null };
+      this.account.activity_main_id = 'none';
+      this.account.activity_main = { id: 'none' };
     }
 
     this.account.kyc_manager.locale = LANG_MAP[this.account.kyc_manager.locale];

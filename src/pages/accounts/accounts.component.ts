@@ -122,7 +122,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       });
   }
 
-  public ngAfterContentInit() {
+  public afterContentInit() {
     const roles = this.us.userData.group_data.roles;
     this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY');
     this.route.queryParams.subscribe((params) => {
@@ -130,7 +130,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
         this.search();
       }
     });
-    this.setTitle(this.Brand.title + ' | ' + this.pageName);
   }
 
   public getCleanParams(query?: string) {

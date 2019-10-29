@@ -74,7 +74,6 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   }
 
   public ngAfterContentInit() {
-
     if (typeof this.afterContentInit === 'function') {
       this.afterContentInit();
     }

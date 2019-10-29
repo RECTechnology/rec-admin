@@ -420,7 +420,6 @@
           <mat-menu #mainAct="matMenu" y-position="below" overlapTrigger="false">
             <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
                (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
-
             <ng-template ngFor let-act [ngForOf]="activities">
               <button *ngIf="accountCopy.activity_main_id !== act.id" mat-menu-item
                 (click)="addMainActivity(act.id); actQuery = ''" style="padding: 5px auto">

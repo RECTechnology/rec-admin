@@ -113,13 +113,12 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     super();
   }
 
-  public ngAfterContentInit() {
+  public afterContentInit() {
     this.route.queryParams.subscribe((params) => {
       if (!params.sort) {
         this.search();
       }
     });
-    this.setTitle(this.Brand.title + ' | ' + this.pageName);
   }
 
   public getCleanParams(query?: string) {
