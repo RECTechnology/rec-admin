@@ -56,15 +56,15 @@
                 <ng-template ngFor let-option [ngForOf]="itemOptions">
                     <button *ngIf="option.icon" mat-icon-button 
                         [disabled]="isOptionDisabled(option, entry)" (click)="option.callback(entry)"
-                        class="{{option.class}}" matTooltip="{{getOptionText(option)|translate}}"
+                        class="mat-icon-button btn-icon-sm {{option.class}}" matTooltip="{{getOptionText(option)|translate}}"
                         style="min-width: 0; margin-right: 8px">
-                        <span class="center h v">
+                        <span class="center h v small-text">
                             <i class="fa {{option.icon}}"></i>
                         </span>
                     </button>
 
                     <button *ngIf="!option.icon" mat-button color="primary" [disabled]="isOptionDisabled(option, entry)"
-                        (click)="option.callback(entry)" class="{{option.class}}"
+                        (click)="option.callback(entry)" class="mat-button {{option.class}}"
                         style="min-width: 0; margin-right: 8px">
                         <p class="small-text {{option.class}}"> <i *ngIf="option.icon" class="fa {{option.icon}}"></i>
                             {{getOptionText(option)|translate}}</p>

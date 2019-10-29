@@ -69,13 +69,16 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     {
       callback: this.openViewDetails.bind(this),
       text: 'View Details',
+      icon: 'fa-eye',
     }, {
       callback: this.openEditUser.bind(this),
       text: 'Edit User',
+      icon: 'fa-edit',
     }, {
       callback: this.openDeleteUser.bind(this),
       class: 'col-red col-error',
       text: 'DELETE',
+      icon: 'fa-trash',
     }];
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },
