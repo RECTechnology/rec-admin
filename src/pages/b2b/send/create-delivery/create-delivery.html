@@ -44,8 +44,13 @@
                             <i *ngIf="item.status === 'canceled'" matTooltip="Status: {{item.status}}"
                                 class="fa fa-ban col-warning marg-r-10"></i>
 
-                            <i *ngIf="item.status === 'failed'" matTooltip="Status: {{item.status}} | {{item.failure_reason}} "
+                            <i *ngIf="item.status === 'failed'"
+                                matTooltip="Status: {{item.status}} | {{item.failure_reason}} "
                                 class="fa fa-ban col-warning marg-r-10"></i>
+
+                            <i *ngIf="item.status === 'unsubscribed'"
+                                matTooltip="Status: {{item.status}} "
+                                class="fa fa-times col-warning marg-r-10"></i>
                         </span>
 
                         <span class="text-small">
