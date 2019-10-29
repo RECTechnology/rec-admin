@@ -1010,5 +1010,7 @@
   "CONTINUE_EDITING": "Continua editant",
   "SAVE_DRAFT": "Desar l'esborrany",
   "Language": "Llenguatge",
-  "ACCOUNT_ACTIVE_DESC": "Si es desactiva aquest compte l'usuari no podrà accedir-hi"
+  "ACCOUNT_ACTIVE_DESC": "Si es desactiva aquest compte l'usuari no podrà accedir-hi",
+  "Download Pdf": "Desar Pdf",
+  "Send By Mail": "Enviar per correu"
 }

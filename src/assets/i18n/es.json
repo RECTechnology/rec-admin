@@ -1001,5 +1001,7 @@
   "Subtype": "Subtipo",
   "Account Active": "Cuenta Activa",
   "Update": "Actualizar",
-  "ACCOUNT_ACTIVE_DESC": "Si la cuenta no está activa, el usuario no podrá iniciar sesión"
+  "ACCOUNT_ACTIVE_DESC": "Si la cuenta no está activa, el usuario no podrá iniciar sesión",
+  "Download Pdf": "Descargar Pdf",
+  "Send By Mail": "Enviar por correo"
 }
