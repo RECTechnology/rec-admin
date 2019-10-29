@@ -185,7 +185,9 @@ export class LoginService extends BaseService {
       'wallet_balance': currentStorage.wallet_balance,
     };
 
-    const savedConfigs = {};
+    const savedConfigs = {
+      lang: currentStorage.lang,
+    };
 
     for (const key in currentStorage) {
       if (key.indexOf('ticker') !== -1) {
