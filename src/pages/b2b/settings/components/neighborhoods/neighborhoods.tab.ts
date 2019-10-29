@@ -9,13 +9,14 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { CrudBaseService } from 'src/services/base/crud.base';
 import { REC_LANGS } from 'src/types';
 import { forkJoin } from 'rxjs';
+import { Neighborhood } from 'src/shared/entities/translatable/neighborhood.ent';
 
 @Component({
     selector: 'tab-neighborhoods',
     templateUrl: './neighborhoods.html',
 })
 export class NeighborhoodsTabComponent extends EntityTabBase {
-    public data = [];
+    public data: Neighborhood[] = [];
     public headerOpts: TableListHeaderOptions = { input: true };
     public headers: TlHeader[] = [
         {

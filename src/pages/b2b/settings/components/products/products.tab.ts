@@ -7,18 +7,19 @@ import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
+import { Product } from 'src/shared/entities/translatable/product.ent';
+import { Activity } from 'src/shared/entities/translatable/activity.ent';
 
 @Component({
     selector: 'tab-products',
     templateUrl: './products.html',
 })
 export class ProductsTabComponent extends EntityTabBase {
-    public products = [];
+    public products: Product[] = [];
     public productsColumns = ['id', 'cat', 'esp', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
     public sortElementsToRevise = true;
     public activityFilter = null;
-
-    public activities = [];
+    public activities: Activity[] = [];
 
     constructor(
         public productsCrud: ProductsCrud,
@@ -43,7 +44,7 @@ export class ProductsTabComponent extends EntityTabBase {
         if (this.sortElementsToRevise) {
             this.sortID = 'status';
         }
-        
+
         const activity_id = this.activityFilter ? this.activityFilter.id : null;
 
         this.productsCrud.search({

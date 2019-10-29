@@ -5,13 +5,14 @@ import { MatDialog } from '@angular/material';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { Activity } from 'src/shared/entities/translatable/activity.ent';
 
 @Component({
     selector: 'tab-activities',
     templateUrl: './activities.html',
 })
 export class ActivitiesTabComponent extends EntityTabBase {
-    public activities = [];
+    public activities: Activity[] = [];
     public loading = true;
 
     constructor(

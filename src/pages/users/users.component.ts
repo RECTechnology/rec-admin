@@ -17,6 +17,7 @@ import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { User } from 'src/shared/entities/user.ent';
 
 @Component({
   selector: 'users',
@@ -25,8 +26,13 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 })
 export class UsersPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Users';
-  public sortedData: any[] = [];
+  public sortedData: User[] = [];
   public loading = true;
+  public activeUsers = false;
+  public inactiveUsers = false;
+  public profesionalUsers = false;
+  public particularUsers = false;
+
   public headerOpts = { input: true };
   public headers: TlHeader[] = [
     {
@@ -71,10 +77,6 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
       class: 'col-red col-error',
       text: 'DELETE',
     }];
-  public activeUsers = false;
-  public inactiveUsers = false;
-  public profesionalUsers = false;
-  public particularUsers = false;
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },
     { key: 'username', value: '$.username', active: true },

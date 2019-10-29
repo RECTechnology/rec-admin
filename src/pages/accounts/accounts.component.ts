@@ -25,10 +25,9 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 export class AccountsPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Accounts';
   public canAddUser = false;
-  public sortedData: any[] = [];
+  public sortedData: Account[] = [];
   public accountID = null;
   public openDetails = false;
-
   public active = true;
   public type = '';
 
@@ -51,7 +50,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     { key: 'neighbourhood_name', value: '$.neighbourhood.name', active: true },
     { key: 'activities', value: '$.activities[*]', active: true },
   ];
-
   public headerOpts: TableListHeaderOptions = { input: true };
   public headers: TlHeader[] = [
     {
@@ -96,11 +94,9 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     icon: 'fa-edit',
     text: 'Edit Account',
   }];
-
   public tableOptions: TableListOptions = {
     optionsType: 'buttons',
   };
-
   public isComp = false;
   public isPriv = false;
 
