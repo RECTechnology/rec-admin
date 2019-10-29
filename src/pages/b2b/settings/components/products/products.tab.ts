@@ -189,4 +189,9 @@ export class ProductsTabComponent extends EntityTabBase {
         this.activityConsumedFilter = activity;
         this.search();
     }
+
+    public selectActivityProducedToFilter(activity) {
+        this.activityProducedFilter = activity;
+        this.search();
+    }
 }

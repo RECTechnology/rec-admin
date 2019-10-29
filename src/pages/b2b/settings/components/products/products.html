@@ -50,11 +50,11 @@
                 </div>
 
                 <mat-menu #activityProducedFilterMenu="matMenu" y-position="below" overlapTrigger="false">
-                    <button (click)="selectActivityConsumedToFilter(null)" mat-menu-item style="padding: 5px auto">
+                    <button (click)="selectActivityProducedToFilter(null)" mat-menu-item style="padding: 5px auto">
                         <span style="color: #666; font-size: 12px">{{'None'|translate}}</span>
                     </button>
 
-                    <button (click)="selectActivityConsumedToFilter(act)" mat-menu-item *ngFor="let act of activities"
+                    <button (click)="selectActivityProducedToFilter(act)" mat-menu-item *ngFor="let act of activities"
                         style="padding: 5px auto"
                         [ngClass]="{'bg-gray-light': activityProducedFilter && act.id == activityProducedFilter.id}">
                         <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
