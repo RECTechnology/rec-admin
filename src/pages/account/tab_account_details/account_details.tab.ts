@@ -1,4 +1,4 @@
-import { Component, AfterContentInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { ControlesService } from '../../../services/controles/controles.service';
@@ -14,7 +14,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
   styleUrls: ['./tab_account_details.css'],
   templateUrl: './tab_account_details.html',
 })
-export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
+export class AccountDetailsTab implements OnDestroy, OnInit {
   public loading = false;
   public account_id = null;
   public Brand: any = environment.Brand;
@@ -52,13 +52,6 @@ export class AccountDetailsTab implements AfterContentInit, OnDestroy, OnInit {
       }, (error) => {
         this.loading = false;
       });
-  }
-
-  public ngAfterContentInit() {
-    // this.loading = true;
-    // let roles = this.us.userData.group_data.roles;
-    // this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY'); // <<< TODO: Improve
-    // this.getUsers();
   }
 
   public openEditAccount() {

@@ -22,11 +22,10 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   public pageName = 'Account';
   public currentTab = 0;
   public account_id = null;
-
+  public sub: any = null;
   public pdfHtml = '';
-  private sub: any = null;
-  private tab: string = '';
-  private tabMap = {
+  public tab: string = '';
+  public tabMap = {
     details: 0,
     users: 1,
     movements: 2,
@@ -66,19 +65,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.account_id = params.id;
       this.pageName = 'Account (' + this.account_id + ')';
-      this.setUp();
     });
-  }
-
-  public setUp() {
-    // this.crudAccounts.find(this.account_id)
-    //   .subscribe((resp) => {
-    //     this.companyService.selectedCompany = resp;
-    //     this.controles.showAccountDetails = true;
-    //   }, (error) => {
-    //     this.alerts.showSnackbar('Account not found!', 'ok');
-    //     this.router.navigate([`/dashboard`]);
-    //   });
   }
 
   /* Called when tab change, so url changes also */

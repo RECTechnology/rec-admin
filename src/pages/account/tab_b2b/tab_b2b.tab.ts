@@ -46,9 +46,7 @@ export class B2BModuleTab {
   @Input() public id = '';
   @Input() public pdfHtml = '';
   @Input() public langs = LANGS;
-  @Input() public account: any = {
-    kyc_manager: { locale: 'es' },
-  };
+  @Input() public account: any = { kyc_manager: { locale: 'es' } };
   @Input() public lang = LANG_MAP[localStorage.getItem('lang') || 'en'] || LANGS[1];
 
   public langMap = {

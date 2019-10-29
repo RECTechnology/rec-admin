@@ -17,7 +17,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 export class B2BSendComponent extends TablePageBase {
     public pageName = 'Mailing';
     public mails = [];
-
+    public loading = true;
     public headers: TlHeader[] = [
         {
             sort: 'id',
@@ -65,7 +65,6 @@ export class B2BSendComponent extends TablePageBase {
     public options: TableListOptions = {
         optionsType: 'buttons',
     };
-    public loading = true;
 
     constructor(
         public controles: ControlesService,

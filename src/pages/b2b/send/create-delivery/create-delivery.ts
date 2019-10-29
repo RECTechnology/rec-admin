@@ -18,9 +18,11 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 export class CreateDelivery {
     @Input() public id = null;
     @Input() public loading = false;
-    @Input() public deliveries = [];
     @Input() public disabled = false;
+
+    @Input() public deliveries = [];
     @Input() public selectedAccounts = [];
+
     @Output() public update: EventEmitter<any> = new EventEmitter();
 
     public validationErrors = [];

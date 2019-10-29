@@ -23,12 +23,20 @@ import { CreateDelivery } from '../create-delivery/create-delivery';
     templateUrl: './send-mail.dia.html',
 })
 export class SendMail extends TablePageBase implements ComponentCanDeactivate {
+    public pageName = 'Send Email';
+
+    public id = null;
+
     public blured = false;
     public focused = false;
     public saved = true;
-
-    public pageName = 'Send Email';
+    public isEdit = false;
     public moreThan5 = false;
+    public sendScheduled = false;
+    public readonly = false;
+    public addLink = false;
+    public justCreated = false;
+    public firstRun = true;
 
     public mail: any = {
         content: '',
@@ -36,19 +44,9 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         subject: '',
         attachments: {},
     };
-
-    public mailCopy = {
-        content: '',
-        scheduled_at: moment().toISOString(),
-        subject: '',
-    };
-
-    public isEdit = false;
-    public id = null;
-
+    public mailCopy = { ...this.mail };
     public deliveries = [];
     public totalDeliveries = 0;
-
     public headers: TlHeader[] = [
         {
             sort: 'id',
@@ -84,20 +82,15 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         },
     ];
 
-    public sendScheduled = false;
     public attachments = [];
     public validationErrors: any = [];
     public validationErrorName = '';
-    public readonly = false;
-    public addLink = false;
     public linkName = '';
     public linkAttachment = '';
     public scheduledDate = '';
     public date = null;
     public time = null;
     public title = '';
-    public justCreated = false;
-    public firstRun = true;
     public langs = LANGS;
     public lang = LANG_MAP[localStorage.getItem('lang') || 'en'] || LANGS[1];
     public langMap = {
@@ -105,7 +98,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         en: 'en',
         es: 'es',
     };
-
     @ViewChild(CreateDelivery, { static: true }) public createDelivery: CreateDelivery;
 
     constructor(
