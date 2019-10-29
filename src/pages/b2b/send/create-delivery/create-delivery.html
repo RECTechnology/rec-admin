@@ -45,18 +45,17 @@
                                 class="fa fa-ban col-warning marg-r-10"></i>
 
                             <i *ngIf="item.status === 'failed'"
-                                matTooltip="Status: {{item.status}} | {{item.failure_reason}} "
+                                matTooltip="Status: {{item.status}} | {{item.failure_reason}}"
                                 class="fa fa-ban col-warning marg-r-10"></i>
 
-                            <i *ngIf="item.status === 'unsubscribed'"
-                                matTooltip="Status: {{item.status}} "
+                            <i *ngIf="item.status === 'unsubscribed'" matTooltip="Status: {{item.status}} - User will not receive mails now"
                                 class="fa fa-times col-warning marg-r-10"></i>
                         </span>
 
                         <span class="text-small">
                             <i *ngIf="item.status === 'opened'" matTooltip="Mail read"
                                 class="fa fa-eye col-success marg-r-10"></i>
-                            <i *ngIf="item.status !== 'opened'" matTooltip="Mail not read"
+                            <i *ngIf="item.status === 'sent'" matTooltip="Mail not read"
                                 class="fa fa-eye-slash col-gray-light marg-r-10"></i>
                         </span>
                     </div>
