@@ -64,8 +64,8 @@ export class ProductsTabComponent extends EntityTabBase {
             this.sortID = 'status';
         }
 
-        const default_consuming_by = [this.activityConsumedFilter ? this.activityConsumedFilter.id : null];
-        const default_producing_by = [this.activityProducedFilter ? this.activityProducedFilter.id : null];
+        const default_consuming_by = this.activityConsumedFilter ? [this.activityConsumedFilter.id] : null;
+        const default_producing_by = this.activityProducedFilter ? [this.activityProducedFilter.id] : null;
 
         this.productsCrud.search({
             order: this.sortDir,
