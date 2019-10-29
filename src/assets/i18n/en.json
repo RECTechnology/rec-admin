@@ -443,7 +443,7 @@
   "CREATE_MAIL": "Create Mail",
   "CREATE_DELIVERY": "Create Delivery",
   "ATTACH": "Add Attachment",
-  "DELIVERY_DESC": "Select a set of account, email will be sent to all accounts that have an email address assigmen",
+  "DELIVERY_DESC": "Select a set of account, email will be sent to all accounts",
   "SELECTED_ACCOUNTS": "Selected Accounts",
   "ATTACH_FILES": "Attach Files",
   "ALL_MAIL_FROM": "All mail will be sent from",

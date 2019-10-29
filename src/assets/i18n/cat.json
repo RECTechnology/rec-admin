@@ -984,7 +984,7 @@
   "CREATE_DELIVERY": "Crear Lliurament",
   "Account Email": "Correu Compte",
   "ATTACH": "Afegir Adjunt",
-  "DELIVERY_DESC": "Seleccioneu un conjunt de comptes, s'enviarà un correu electrònic a tots els comptes que tinguin una adreça de correu electrònic assigmen",
+  "DELIVERY_DESC": "Seleccioneu un conjunt de comptes, s'enviarà un correu electrònic a tots els comptes",
   "SELECTED_ACCOUNTS": "Comptes Seleccionats",
   "ATTACH_FILES": "Adjuntar Archius",
   "ALL_MAIL_FROM": "Tot el correu serà enviat des de",

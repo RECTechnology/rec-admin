@@ -972,7 +972,7 @@
   "CREATE_DELIVERY": "Crear Entrega",
   "Account Email": "Correo Cuenta",
   "ATTACH": "Añadir Adjunto",
-  "DELIVERY_DESC": "Seleccione un conjunto de cuenta, se enviará un correo electrónico a todas las cuentas que tengan un asistente de dirección de correo electrónico",
+  "DELIVERY_DESC": "Seleccione un conjunto de cuenta, se enviará un correo electrónico a todas las cuentas",
   "SELECTED_ACCOUNTS": "Cuentas Seleccionadas",
   "ATTACH_FILES": "Adjunta Archivos",
   "ALL_MAIL_FROM": "Todo el correo se enviará desde",
