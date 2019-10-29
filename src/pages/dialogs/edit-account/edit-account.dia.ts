@@ -209,8 +209,6 @@ export class EditAccountData {
 
     delete changedProps.activity_main;
 
-    console.log('edit account', id);
-
     if (Object.keys(changedProps).length) {
       this.loading = true;
       this.crudAccounts.update(id, changedProps)

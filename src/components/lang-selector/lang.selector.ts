@@ -22,7 +22,6 @@ export class LangSelector {
   ) { }
 
   public ngOnInit() {
-    console.log('lang', this.lang);
     if (!this.lang) {
       this.lang = LANGS[1];
     }

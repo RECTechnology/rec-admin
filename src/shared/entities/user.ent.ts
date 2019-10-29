@@ -71,8 +71,6 @@ export class User implements User {
             }
         }
 
-        console.log('User', this);
-
         this._isAdmin = this.isAdmin();
         this._isReadonly = this.isReadonly();
         this._isCompany = this.isCompany();

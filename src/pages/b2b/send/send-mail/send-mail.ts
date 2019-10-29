@@ -193,7 +193,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public getMail() {
-        console.log('getMail', this.langMap[this.lang.abrev]);
         this.mailing.find(this.id, this.langMap[this.lang.abrev])
             .subscribe((resp) => {
                 this.mail = resp.data;
@@ -329,7 +328,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public changedEditor(event) {
-        console.log('asjkdhasidhasñdhjo');
         this.mail.content = event.html ? event.html : this.mail.content;
 
         // It triggers change on init, and messed up with save logic
@@ -352,7 +350,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public addAttachment(file, name = '') {
         const fname = name || file.split('/').pop();
-        console.log(this.mail.attachments);
 
         const attachments = Object.assign(this.mail.attachments, {
             [fname]: file,
@@ -399,7 +396,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public selectFile(selectedImage?) {
-        console.log('selectedImage', selectedImage);
         this.alerts.openModal(FileUpload, {
             hasSelectedImage: !!selectedImage,
             selectedImage,
@@ -412,7 +408,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public openShowSchedule() {
-        console.log('this.mail.scheduled_at', this.mail);
         const now2 = this.mail.scheduled_at ? moment(this.mail.scheduled_at).toDate() : new Date();
         const parts = this.utils.parseDateToParts(now2);
         this.date = parts.dateStr;

@@ -287,9 +287,7 @@ export class UserService {
           const parsed = JSON.parse(body.data.kyc_validations.phone);
           body.data.kyc_validations.phone = parsed.number;
           body.data.kyc_validations.prefix = parsed.prefix;
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (error) { }
 
         return new User(body.data || body || {});
       }),

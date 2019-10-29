@@ -37,7 +37,6 @@ export class BussinessDetailsDia extends BaseDialog implements OnInit {
     }
     this.address = this.utils.constructAddressString(this.bussiness);
     this.schedule = this.utils.parseSchedule(this.bussiness.schedule);
-    console.log('Schedule', this.schedule);
   }
 
   public setUp() {

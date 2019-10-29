@@ -99,7 +99,6 @@ export class B2BSendComponent extends TablePageBase {
     }
 
     public ngOnInit() {
-        console.log('ngOnInit');
         this.search();
     }
 

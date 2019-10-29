@@ -23,22 +23,7 @@ export class AlertsService {
   }
 
   public openModal(C, props = {}, modalOptions = {}) {
-    const dialogRef = this.dialog.open(C, modalOptions);
-
-    /**
-     * This (passing parameters to the modal)
-     * can now be done by passing params into dialog.open(C, { params: {} })
-     *
-     * But most of the modals don't use it, and asume the params will be injected on creation
-     */
-    // TODO: Need to change modals to accept new way of passing parameters
-    for (const key in props) {
-      if (key) {
-        dialogRef.componentInstance[key] = props[key];
-      }
-    }
-
-    return dialogRef.afterClosed();
+    return this.createModal(C, props, modalOptions).afterClosed();
   }
 
   public createModal(C, props = {}, modalOptions = {}) {

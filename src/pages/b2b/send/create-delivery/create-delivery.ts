@@ -38,24 +38,15 @@ export class CreateDelivery {
         public controls: ControlesService,
         public mailing: MailingCrud,
         public alerts: AlertsService,
-    ) {
-        // super();
-    }
+    ) { }
 
     public openSelectAccounts() {
-        let ref: any = this.alerts.createModal(SelectAccountsDia, {
+        const ref: any = this.alerts.createModal(SelectAccountsDia, {
             newSelectedAccounts: this.selectedAccounts.slice(),
             selectedAccounts: this.selectedAccounts.slice(),
             showEdit: false,
             sortType: '',
         }, { width: '80vw', height: '80vh' });
-
-        // ref.componentInstance.onSelect.subscribe((resp) => this.createDelivery([resp]));
-        // ref.componentInstance.onUnselect.subscribe((resp) => {
-        //     console.log(this.selectedAccounts);
-        //     const index = this.selectedAccounts.find(resp);
-        //     this.removeAccount(index);
-        // });
 
         ref.afterClosed().subscribe((result) => {
             if (result) {
@@ -85,7 +76,6 @@ export class CreateDelivery {
                     this.selectedAccounts = accounts;
                 },
                 (error) => {
-                    console.log(error);
                     this.alerts.showSnackbar(error.message, 'ok');
                     this.loading = false;
                     if (error.message.includes('Validation error')) {
@@ -107,7 +97,6 @@ export class CreateDelivery {
                 this.update.emit();
             },
             (error) => {
-                console.log(error);
                 this.alerts.showSnackbar(error.message, 'ok');
                 this.loading = false;
             },
