@@ -119,6 +119,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
         this.search();
       }
     });
+    this.setTitle(this.Brand.title + ' | ' + this.pageName);
   }
 
   public getCleanParams(query?: string) {

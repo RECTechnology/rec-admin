@@ -1,5 +1,4 @@
 import { NgModule, InjectionToken, ModuleWithProviders } from '@angular/core';
-import { NgxRecApiComponent } from './ngx-rec-api.component';
 import { AccountsCrudService } from './services/accounts/accounts.crud';
 import { ProductsCrudService } from './services/products/products.crud';
 import { ActivitiesCrudService } from './services/activities/activities.crud';
@@ -11,9 +10,8 @@ import { LoggingServiceOptions } from 'projects/ngx-logging/src/lib/services/log
 export const FOR_ROOT_OPTIONS_TOKEN = new InjectionToken<NgxModuleOptions>('forRoot() NgxRecApi configuration.');
 
 @NgModule({
-  declarations: [NgxRecApiComponent],
-  imports: [
-  ],
+  declarations: [],
+  imports: [],
   providers: [
     AccountsCrudService,
     ProductsCrudService,
@@ -30,7 +28,6 @@ export const FOR_ROOT_OPTIONS_TOKEN = new InjectionToken<NgxModuleOptions>('forR
       deps: [FOR_ROOT_OPTIONS_TOKEN],
     },
   ],
-  exports: [NgxRecApiComponent],
 })
 export class NgxRecApiModule {
   public static forRoot(options?: NgxModuleOptions): ModuleWithProviders {
