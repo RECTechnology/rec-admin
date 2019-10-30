@@ -50,18 +50,8 @@ export class TableListHeader {
     }
 
     public ngOnInit() {
-        this.route.queryParams
-            .subscribe((params) => {
-                this.query = params.query;
-                if (this.query) {
-                    // this.onQuery.emit(this.query);
-                    // this.onSearch.emit(this.query);
-                }
-            });
-
         if (this.options.input) {
             setTimeout(() => {
-                console.log('options', this.options, this.searchElement);
                 this.setupDebounce(this.searchElement.nativeElement);
             }, 100);
         }

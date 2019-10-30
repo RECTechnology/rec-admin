@@ -261,7 +261,7 @@
             <b class="small-text-3" style="margin: 15px 0 10px 0">{{'On Map'|translate}}</b>
             <div class="group-col-left">
               <mat-slide-toggle color="primary" [disabled]="loading" [(ngModel)]="accountCopy.on_map"
-                (change)="changeMapVisibility(accountCopy.id, $event)">
+                (change)="changeMapVisibility(accountCopy.id, $event, 0)">
               </mat-slide-toggle>
             </div>
           </div>
