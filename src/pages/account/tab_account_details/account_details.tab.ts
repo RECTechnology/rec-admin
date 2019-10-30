@@ -8,6 +8,7 @@ import { UtilsService } from '../../../services/utils/utils.service';
 import { EditAccountData } from '../../../pages/dialogs/edit-account/edit-account.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { Account } from 'src/shared/entities/account.ent';
 
 @Component({
   selector: 'account-details-tab',
@@ -43,7 +44,7 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
     this.loading = true;
     this.crudAccounts.find(this.account_id)
       .subscribe((resp: any) => {
-        this.companyService.selectedCompany = resp.data;
+        this.companyService.selectedCompany = new Account(resp.data);
         this.controles.showAccountDetails = true;
         this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
         this.loading = false;

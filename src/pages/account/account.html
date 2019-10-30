@@ -14,10 +14,10 @@
     </div>
     <span style="margin-left: 10px">{{companyService.selectedCompany.name}}</span>
     <code class="small-text" style="margin-right: 10px;">
-      {{companyService.selectedCompany.available | number}} Ɍ
+      {{companyService.selectedCompany.getBalance('REC') | number}} Ɍ
     </code>
     <code class="small-text">
-      {{companyService.selectedCompany.available_eur | number}} €
+      {{companyService.selectedCompany.getBalance('EUR') | number}} €
     </code>
   </div>
 </header-nav>
