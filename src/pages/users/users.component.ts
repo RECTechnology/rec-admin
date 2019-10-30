@@ -113,14 +113,6 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     super();
   }
 
-  public afterContentInit() {
-    // this.route.queryParams.subscribe((params) => {
-    //   if (!params.sort) {
-    //     this.search();
-    //   }
-    // });
-  }
-
   public getCleanParams(query?: string) {
     const data: ListAccountsParams = {
       field_map: {},
