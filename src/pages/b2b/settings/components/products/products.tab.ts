@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { EntityTabBase } from '../base.tab';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSort } from '@angular/material';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -54,6 +54,15 @@ export class ProductsTabComponent extends EntityTabBase {
         }, this.langMap[this.us.lang]).subscribe((resp) => {
             this.activities = resp.data.elements;
         });
+    }
+
+    public sortData(sort: MatSort) {
+        if (!sort.active || sort.direction === '') {
+            this.sortElementsToRevise = true;
+        } else if (sort.active !== 'status') {
+            this.sortElementsToRevise = false;
+        }
+        super.sortData(sort);
     }
 
     public search() {
