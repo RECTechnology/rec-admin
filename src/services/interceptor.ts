@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import { AlertsService } from './alerts/alerts.service';
 import * as Sentry from '@sentry/browser';
 import { UserService } from './user.service';
+import { MySentry } from 'src/shared/sentry';
 
 export class HttpErrorInterceptor implements HttpInterceptor {
 
@@ -47,7 +48,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     }
 
                     if (environment.sentry.active) {
-                        Sentry.captureException(new Error(cleanError.message || cleanError));
+                        MySentry.createException(error.name, error.message);
                     }
 
                     return throwError(cleanError);
