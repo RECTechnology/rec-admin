@@ -65,7 +65,7 @@ export class ProductsTabComponent extends EntityTabBase {
         super.sortData(sort);
     }
 
-    public search() {
+    public search(query?) {
         this.loading = true;
 
         if (this.sortElementsToRevise) {
@@ -79,7 +79,7 @@ export class ProductsTabComponent extends EntityTabBase {
             order: this.sortDir,
             limit: this.limit,
             offset: this.offset,
-            search: this.query || '',
+            search: query || this.query || '',
             sort: this.sortID,
             default_consuming_by,
             default_producing_by,

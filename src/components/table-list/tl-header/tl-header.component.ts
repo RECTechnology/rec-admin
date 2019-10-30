@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { fromEvent } from 'rxjs';
+import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 export interface TableListHeaderOptions {
     input?: boolean;
@@ -31,6 +33,8 @@ export class TableListHeader {
     @Output() public queryChange: EventEmitter<string>;
     @Output() public onAdd: EventEmitter<any>;
 
+    @ViewChild('search', { static: false }) public searchElement: ElementRef;
+
     constructor(
         public router: Router,
         public route: ActivatedRoute,
@@ -45,7 +49,7 @@ export class TableListHeader {
         };
     }
 
-    public ngAfterContentInit() {
+    public ngOnInit() {
         this.route.queryParams
             .subscribe((params) => {
                 this.query = params.query;
@@ -54,6 +58,13 @@ export class TableListHeader {
                     // this.onSearch.emit(this.query);
                 }
             });
+
+        if (this.options.input) {
+            setTimeout(() => {
+                console.log('options', this.options, this.searchElement);
+                this.setupDebounce(this.searchElement.nativeElement);
+            }, 100);
+        }
     }
 
     public searchChanged() {
@@ -67,5 +78,16 @@ export class TableListHeader {
 
     public addItem() {
         this.onAdd.emit();
+    }
+
+    public setupDebounce(element) {
+        fromEvent(element, 'keyup').pipe(
+            map((event: any) => event.target.value),
+            debounceTime(250),
+            distinctUntilChanged(),
+        ).subscribe((text: string) => {
+            this.query = text;
+            this.onSearch.emit(text);
+        });
     }
 }

@@ -16,6 +16,7 @@ import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { Account } from 'src/shared/entities/account.ent';
 
 @Component({
   selector: 'accounts',
@@ -80,9 +81,12 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       title: 'Type',
       type: 'status',
     }, {
-      accessor: 'available',
+      accessor: (account: Account) => {
+        return account.getBalance('REC') + ' Ɍ';
+      },
       sort: 'amount',
       title: 'Amount',
+      type: 'code'
     },
   ];
   public itemOptions: TlItemOption[] = [{

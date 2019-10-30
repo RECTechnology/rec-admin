@@ -23,13 +23,13 @@ export class ActivitiesTabComponent extends EntityTabBase {
         super(dialog, alerts);
     }
 
-    public search() {
+    public search(query?) {
         this.loading = true;
         this.activitiesCrud.search({
             order: this.sortDir,
             limit: this.limit,
             offset: this.offset,
-            search: this.query || '',
+            search: query || this.query || '',
             sort: this.sortID,
         }).subscribe(
             (resp) => {

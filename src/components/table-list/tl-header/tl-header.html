@@ -2,9 +2,8 @@
     <p class="no-margin no-padding small-text col-blue" style="width: auto; margin: 0 !important">
         {{title|translate}}</p>
 
-    <input *ngIf="options.input" type="text" class="{{inputClass}}" style="max-width: 70%;margin: 0 15px"
-        placeholder="{{searchPlaceholder|translate}}..." [(ngModel)]="query" (ngModelChange)="searchChanged()"
-        (keyup.enter)="search();">
+    <input *ngIf="options.input" #search type="text" class="{{inputClass}}" style="max-width: 70%;margin: 0 15px"
+        placeholder="{{searchPlaceholder|translate}}...">
 
     <div *ngIf="options.input">
         <button type="button" color="primary" mat-raised-button (click)="search();" name="button">
