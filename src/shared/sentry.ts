@@ -1,4 +1,3 @@
-import { SentryErrorHandler } from './entry-error-handler';
 import * as Sentry from '@sentry/browser';
 
 // tslint:disable-next-line: no-namespace
@@ -40,5 +39,3 @@ export namespace MySentry {
 
     export const sentry = Sentry;
 }
-// tslint:disable-next-line: variable-name
-export const SentryIonicErrorHandler = SentryErrorHandler;
