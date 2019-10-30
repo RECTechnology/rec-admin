@@ -8,6 +8,7 @@ import { UtilsService } from '../../../services/utils/utils.service';
 import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
 import { AdminService } from '../../../services/admin/admin.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 @Component({
   selector: 'documents-tab',
@@ -125,6 +126,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
     public adminService: AdminService,
     public utils: UtilsService,
     public alerts: AlertsService,
+    public crudAccounts: AccountsCrud,
   ) { }
 
   public ngOnInit() {
@@ -137,7 +139,7 @@ export class AccountDocuments implements OnDestroy, OnInit {
 
   public setUp() {
     this.loading = true;
-    this.companyService.getAccount(this.account_id)
+    this.crudAccounts.find(this.account_id)
       .subscribe((resp) => {
         this.companyService.selectedCompany = resp;
         this.controles.showAccountDetails = true;

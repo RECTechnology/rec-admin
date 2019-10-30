@@ -9,6 +9,7 @@ import { map } from 'rxjs/internal/operators/map';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AlertsService } from '../alerts/alerts.service';
+import { Account } from 'src/shared/entities/account.ent';
 
 interface Category {
   cat: string;
@@ -232,9 +233,7 @@ export class CompanyService extends BaseService {
   public getAccount(account_id: string): Observable<any> {
     return this.get(null, null, `${API_URL}/admin/v3/accounts/${account_id}`)
       .pipe(
-        map((resp) => {
-          return this.mapCompany(resp.data);
-        }),
+        map((resp) => new Account(resp.data)),
       );
   }
 

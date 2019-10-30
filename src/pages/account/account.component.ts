@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ControlesService } from '../../services/controles/controles.service';
-import { UserService } from '../../services/user.service';
-import { PageBase } from '../../bases/page-base';
-import { LoginService } from '../../services/auth/auth.service';
-import { MatDialog } from '../../../node_modules/@angular/material';
-import { CompanyService } from '../../services/company/company.service';
-import { UtilsService } from '../../services/utils/utils.service';
+import { ControlesService } from 'src/services/controles/controles.service';
+import { UserService } from 'src/services/user.service';
+import { PageBase } from 'src/bases/page-base';
+import { LoginService } from 'src/services/auth/auth.service';
+import { MatDialog } from 'node_modules/@angular/material';
+import { CompanyService } from 'src/services/company/company.service';
+import { UtilsService } from 'src/services/utils/utils.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
