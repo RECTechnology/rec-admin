@@ -369,13 +369,13 @@
           </button>
 
           <mat-menu #consMenu="matMenu" y-position="below" overlapTrigger="false">
-            <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" placeholder="{{'Search Products'|translate}}">
+            <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="prodQuery"
+               (click)="$event.stopPropagation()" #searchConsumed placeholder="{{'Search Products'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="productList">
               <button
                 *ngIf="account.consuming_products && !account.consuming_products.includes(prod) && nameMatches(prod.name)"
-                mat-menu-item (click)="addConsumed(prod); actQuery = ''" style="padding: 5px auto">
+                mat-menu-item (click)="addConsumed(prod); prodQuery = ''" style="padding: 5px auto">
                 <span style="color: #666; font-size: 12px">{{prod | tolang}}</span>
               </button>
             </ng-template>
@@ -406,7 +406,7 @@
           </button>
 
           <mat-menu #prodMenu="matMenu" y-position="below" overlapTrigger="false">
-            <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+            <input [disabled]="loading" #searchProduced type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
                (click)="$event.stopPropagation()" placeholder="{{'Search Products'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="productList">

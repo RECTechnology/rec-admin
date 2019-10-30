@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
@@ -11,6 +11,8 @@ import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { LANG_MAP } from 'src/data/consts';
+import { Observable, Subject, fromEvent } from 'rxjs';
+import { debounceTime, map, filter, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   providers: [
@@ -44,11 +46,16 @@ export class EditAccountData {
   public geocoder: any;
   public productList: any[] = [];
   public actQuery = '';
+  public prodQuery = '';
   public actMainQuery = '';
   public activities = [];
   public activitiesSelected = [];
   public validationErrors: any = [];
   public validationErrorName = '';
+  public isSearching = false;
+
+  @ViewChild('searchConsumed', { static: true }) public searchConsumed: ElementRef;
+  @ViewChild('searchProduced', { static: true }) public searchProduced: ElementRef;
 
   constructor(
     public dialogRef: MatDialogRef<EditAccountData>,
@@ -69,11 +76,19 @@ export class EditAccountData {
         this.companyService.categories = resp.data;
       });
 
-    this.productsCrud.list({ limit: 300, sort: 'name', order: 'asc' }, this.lang)
+    this.productsCrud.search({ limit: 300, sort: 'name', order: 'asc' }, this.lang)
       .subscribe((resp) => this.productList = resp.data.elements);
 
     this.activitiesCrud.list({ limit: 300, sort: 'name', order: 'asc' }, this.lang)
       .subscribe((resp) => this.activities = resp.data.elements);
+  }
+
+  public getProducts() {
+    this.productsCrud.search({ limit: 50, sort: 'name', order: 'asc', search: this.prodQuery }, this.lang)
+      .subscribe((resp) => {
+        this.productList = resp.data.elements;
+        this.isSearching = false;
+      });
   }
 
   public ngOnInit() {
@@ -94,6 +109,21 @@ export class EditAccountData {
     this.activitiesSelected = this.accountCopy.activities.slice();
     this.schedule = this.utils.parseSchedule(this.account.schedule);
     delete this.accountCopy.kyc_validations;
+
+    this.setupDebounce(this.searchConsumed.nativeElement);
+    this.setupDebounce(this.searchProduced.nativeElement);
+  }
+
+  public setupDebounce(element) {
+    fromEvent(element, 'keyup').pipe(
+      map((event: any) => event.target.value),
+      debounceTime(100),
+      distinctUntilChanged(),
+    ).subscribe((text: string) => {
+      this.prodQuery = text;
+      this.isSearching = true;
+      this.getProducts();
+    });
   }
 
   public addMainActivity(act_id) {
@@ -311,4 +341,9 @@ export class EditAccountData {
         },
       );
   }
+
+  public onSearch(terms: Observable<string>) {
+    return debounceTime(400);
+  }
+
 }
