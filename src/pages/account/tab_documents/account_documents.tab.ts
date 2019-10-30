@@ -141,14 +141,14 @@ export class AccountDocuments implements OnDestroy, OnInit {
     this.loading = true;
     this.crudAccounts.find(this.account_id)
       .subscribe((resp) => {
-        this.companyService.selectedCompany = resp;
+        this.companyService.selectedCompany = resp.data;
         this.controles.showAccountDetails = true;
         this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
         this.owner = this.companyService.selectedCompany.kyc_manager.id;
-        this.loading = false;
         this.type = this.companyService.selectedCompany.type;
         this.lemonId = this.companyService.selectedCompany.lemon_id;
         this.alreadyValidated = !!this.lemonId;
+        this.loading = false;
 
         this.getDocuments();
       }, (error) => {
