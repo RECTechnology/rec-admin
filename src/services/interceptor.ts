@@ -47,7 +47,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     }
 
                     if (environment.sentry.active) {
-                        Sentry.captureException(error.error || error);
+                        Sentry.captureException(new Error(cleanError.message || cleanError));
                     }
 
                     return throwError(cleanError);
