@@ -40,9 +40,11 @@ import { HttpErrorInterceptor } from 'src/services/interceptor';
 import { AccountModule } from 'src/pages/account/account.module';
 import { B2bService } from 'src/services/b2b/b2b.service';
 import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
-// import { NgxLoggingModule } from 'projects/ngx-logging/src/public-api';
-// import { environment } from 'src/environments/environment';
-// import { NgxRecApiModule } from 'projects/ngx-rec-api/src/lib/ngx-rec-api.module';
+import { MySentry, SentryIonicErrorHandler } from 'src/shared/sentry';
+import { environment } from 'src/environments/environment';
+import { SentryErrorHandler } from 'src/shared/entry-error-handler';
+
+MySentry.setup(environment);
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -142,6 +144,7 @@ const imports = [
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
     },
+    { provide: ErrorHandler, useClass: SentryErrorHandler },
   ],
 })
 export class AppModule { }

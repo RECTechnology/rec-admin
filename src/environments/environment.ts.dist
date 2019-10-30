@@ -10,6 +10,10 @@ export const environment = {
   url: '$PANEL_API_URL',
   version: pkg.version,
   test: false,
+  sentry: {
+    dsn: "$SENTRY_DSN",
+    active: true
+  },
   Brand: {
     "title": "$PANEL_TITLE",
     "name": "$PANEL_ORGANIZATION_NAME",

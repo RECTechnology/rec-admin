@@ -14,6 +14,7 @@ import { UserService } from 'src/services/user.service';
 import { AdminService } from 'src/services/admin/admin.service';
 import { IdleNotification } from 'src/components/dialogs/idle-notification/idle.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { MySentry } from 'src/shared/sentry';
 
 @Component({
   providers: [AppService],
@@ -96,6 +97,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.us.getProfile().subscribe((profile) => {
           this.us.userData = profile;
+          MySentry.setUser(profile);
+
           if (!this.us.isSuperAdmin()) {
             this.us.logout();
             this.alerts.showSnackbar('You don\'t have necesary permissions...', 'OK');
