@@ -83,7 +83,7 @@ export class TableListHeader {
     public setupDebounce(element) {
         fromEvent(element, 'keyup').pipe(
             map((event: any) => event.target.value),
-            debounceTime(250),
+            debounceTime(400),
             distinctUntilChanged(),
         ).subscribe((text: string) => {
             this.query = text;
