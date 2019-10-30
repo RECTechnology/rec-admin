@@ -413,15 +413,15 @@
           <p class="small-text-2">{{'MAIN_ACTIVITY'|translate}}</p>
           <button [matMenuTriggerFor]="mainAct" [disabled]="loading" type="button" mat-button class="mat-button-menu"
             style="margin-top: 5px; width: 100%">
-            <span>{{accountCopy.activity_main ? accountCopy.activity_main.name : 'MAIN_ACTIVITY'|translate}}</span>
+            <span>{{accountCopy.activity_main ? (accountCopy.activity_main | tolang) : 'MAIN_ACTIVITY'|translate}}</span>
             <i class="fa fa-caret-down" style="margin-left: 8px"></i>
           </button>
 
           <mat-menu #mainAct="matMenu" y-position="below" overlapTrigger="false">
             <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
                (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
-            <ng-template ngFor let-act [ngForOf]="activities">
-              <button *ngIf="accountCopy.activity_main_id !== act.id" mat-menu-item
+            <ng-template ngFor let-act [ngForOf]="activities" [ngForTrackBy]="trackByFn">
+              <button *ngIf="accountCopy.activity_main_id !== act.id && matchesActivity(act, actQuery)" mat-menu-item
                 (click)="addMainActivity(act.id); actQuery = ''" style="padding: 5px auto">
                 <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
               </button>
@@ -455,7 +455,7 @@
                (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="activities">
-              <button *ngIf="accountCopy.activities && !accountCopy.activities.includes(prod)" mat-menu-item
+              <button *ngIf="accountCopy.activities && !accountCopy.activities.includes(prod) && matchesActivity(prod, actQuery)" mat-menu-item
                 (click)="addActivity(prod);actQuery = ''" style="padding: 5px auto">
                 <span style="color: #666; font-size: 12px">{{prod | tolang}}</span>
               </button>

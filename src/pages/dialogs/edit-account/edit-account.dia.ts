@@ -198,6 +198,21 @@ export class EditAccountData {
     return String(name).toLowerCase().includes(this.actQuery.toLowerCase());
   }
 
+  public matchesActivity(act, query) {
+    const toLower = (str: string) => str.toLowerCase();
+    const queryLower = toLower(query);
+
+    // console.log('act', act);
+    // console.log('queryLower', queryLower);
+    return toLower(act.name).includes(queryLower)
+      || toLower(act.name_es).includes(queryLower)
+      || toLower(act.name_ca).includes(queryLower);
+  }
+
+  public trackByFn(i, item) {
+    return item.id;
+  }
+
   public update(close = true) {
     const id = this.account.id;
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
