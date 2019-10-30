@@ -57,11 +57,11 @@ export class EditAccountData {
     public dialog: MatDialog,
     public translate: TranslateService,
     public companyService: CompanyService,
-    public adminService: AdminService,
     public crudAccounts: AccountsCrud,
     public productsCrud: ProductsCrud,
     public activitiesCrud: ActivitiesCrud,
     public alerts: AlertsService,
+    public as: AdminService,
   ) {
     this.lang = this.langMap[us.lang];
     this.companyService.listCategories()
@@ -292,5 +292,23 @@ export class EditAccountData {
     } else if (type === 'PRIVATE') {
       this.accountCopy.subtype = this.ACCOUNT_SUB_TYPES_PRIVATE[0];
     }
+  }
+
+  public changeMapVisibility(id, visible, i) {
+    this.loading = true;
+    this.as.setMapVisibility(id, visible.checked)
+      .subscribe(
+        (resp) => {
+          this.alerts.showSnackbar(visible.checked
+            ? 'Organization is shown in map'
+            : 'Organization is hidden from map', 'ok',
+          );
+          this.loading = false;
+        },
+        (error) => {
+          this.alerts.showSnackbar(error.message, 'ok');
+          this.loading = false;
+        },
+      );
   }
 }

@@ -256,6 +256,17 @@
           </div>
         </div>
 
+        <div class="col-lg-6">
+          <div class="group-col-left">
+            <b class="small-text-3" style="margin: 15px 0 10px 0">{{'On Map'|translate}}</b>
+            <div class="group-col-left">
+              <mat-slide-toggle color="primary" [disabled]="loading" [(ngModel)]="accountCopy.on_map"
+                (change)="changeMapVisibility(accountCopy.id, $event)">
+              </mat-slide-toggle>
+            </div>
+          </div>
+        </div>
+
         <div class="col-lg-12">
           <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
             <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
@@ -455,8 +466,9 @@
                (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="activities">
-              <button *ngIf="accountCopy.activities && !accountCopy.activities.includes(prod) && matchesActivity(prod, actQuery)" mat-menu-item
-                (click)="addActivity(prod);actQuery = ''" style="padding: 5px auto">
+              <button
+                *ngIf="accountCopy.activities && !accountCopy.activities.includes(prod) && matchesActivity(prod, actQuery)"
+                mat-menu-item (click)="addActivity(prod);actQuery = ''" style="padding: 5px auto">
                 <span style="color: #666; font-size: 12px">{{prod | tolang}}</span>
               </button>
             </ng-template>
