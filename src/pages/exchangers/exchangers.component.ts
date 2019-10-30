@@ -72,7 +72,7 @@ export class ExchangersComponent extends TablePageBase {
   }
 
   public ngOnInit() {
-    this.search();
+    // this.search();
   }
 
   public search(query: string = '') {

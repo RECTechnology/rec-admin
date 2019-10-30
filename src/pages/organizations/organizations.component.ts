@@ -135,7 +135,7 @@ export class OrganizationsComponent extends TablePageBase {
   ) {
     super();
     this.lang = this.langMap[us.lang];
-    this.search();
+    // this.search();
   }
 
   public ngAfterContentInit() {

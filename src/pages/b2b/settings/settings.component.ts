@@ -47,7 +47,7 @@ export class B2BSettingsComponent extends PageBase {
 
         this.router.navigate(['/b2b/settings'], {
             queryParams: { tab: this.tabMap[$event] },
-            queryParamsHandling: 'merge',
+            // queryParamsHandling: '',
         });
     }
 }

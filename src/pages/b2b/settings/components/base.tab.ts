@@ -26,7 +26,7 @@ export abstract class EntityTabBase {
     public abstract search(): any;
 
     public ngAfterViewInit() {
-        this.search();
+        // this.search();
     }
 
     public confirm(title, message, btnText = 'Delete', status = 'error', skip = false, icon = 'warning') {

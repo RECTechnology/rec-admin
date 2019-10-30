@@ -114,11 +114,11 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   }
 
   public afterContentInit() {
-    this.route.queryParams.subscribe((params) => {
-      if (!params.sort) {
-        this.search();
-      }
-    });
+    // this.route.queryParams.subscribe((params) => {
+    //   if (!params.sort) {
+    //     this.search();
+    //   }
+    // });
   }
 
   public getCleanParams(query?: string) {

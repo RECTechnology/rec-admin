@@ -98,10 +98,6 @@ export class B2BSendComponent extends TablePageBase {
         this.router.navigate(['/rec/mailing/' + item.id]);
     }
 
-    public ngOnInit() {
-        this.search();
-    }
-
     public search(query?) {
         this.loading = true;
         this.mailing.search({

@@ -129,11 +129,11 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public afterContentInit() {
     const roles = this.us.userData.group_data.roles;
     this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY');
-    this.route.queryParams.subscribe((params) => {
-      if (!params.sort) {
-        this.search();
-      }
-    });
+    // this.route.queryParams.subscribe((params) => {
+    //   if (!params.sort) {
+    //     this.search();
+    //   }
+    // });
   }
 
   public getCleanParams(query?: string) {

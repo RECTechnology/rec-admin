@@ -7,12 +7,14 @@ export interface TableListHeaderOptions {
     input?: boolean;
     newItem?: boolean;
     showOptions?: boolean;
+    deepLinkQuery?: boolean;
 }
 
 const defaultOptions: TableListHeaderOptions = {
     input: true,
     newItem: false,
     showOptions: false,
+    deepLinkQuery: false,
 };
 
 @Component({
@@ -50,11 +52,24 @@ export class TableListHeader {
     }
 
     public ngOnInit() {
-        if (this.options.input) {
-            setTimeout(() => {
-                this.setupDebounce(this.searchElement.nativeElement);
-            }, 100);
-        }
+        setTimeout(() => {
+            // Setup debounced search
+            if (this.options.input) {
+                this.setupDebouncedSearch(this.searchElement.nativeElement);
+            }
+
+            this.route.queryParams.subscribe((params) => {
+                if (params.query) {
+                    this.query = params.query;
+                    if (this.searchElement.nativeElement.value !== this.query) {
+                        this.searchElement.nativeElement.value = this.query;
+                        this.searchElement.nativeElement.dispatchEvent(new Event('keyup'));
+                    }
+                } else {
+                    this.search();
+                }
+            });
+        }, 100);
     }
 
     public searchChanged() {
@@ -70,7 +85,7 @@ export class TableListHeader {
         this.onAdd.emit();
     }
 
-    public setupDebounce(element) {
+    public setupDebouncedSearch(element) {
         fromEvent(element, 'keyup').pipe(
             map((event: any) => event.target.value),
             debounceTime(400),
@@ -78,6 +93,17 @@ export class TableListHeader {
         ).subscribe((text: string) => {
             this.query = text;
             this.onSearch.emit(text);
+
+            // Add query params for deeplinking
+            console.log('alksjdalkjds');
+            this.router.navigate([], {
+                relativeTo: this.route,
+                queryParams: {
+                    query: this.query,
+                },
+                queryParamsHandling: 'merge',
+                // skipLocationChange: true,
+            });
         });
     }
 }
