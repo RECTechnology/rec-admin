@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CompanyService } from 'src/services/company/company.service';
 import { RecLang } from 'src/types';
+import { NgxRecOptions } from '../../options';
 
 @Injectable()
 export class MailingCrudService extends CrudBaseService {
@@ -20,10 +21,9 @@ export class MailingCrudService extends CrudBaseService {
 
     constructor(
         http: HttpClient,
-        public us: UserService,
-        public cs: CompanyService,
+        options: NgxRecOptions,
     ) {
-        super(http, us);
+        super(http, options);
         this.basePath = '/mailings';
         this.userRole = 'admin';
         this.mapItems = true;

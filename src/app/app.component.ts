@@ -8,7 +8,6 @@ import { AppService } from 'src/services/app/app.service';
 import { environment } from 'src/environments/environment';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { ControlesService } from 'src/services/controles/controles.service';
-import { CompanyService } from 'src/services/company/company.service';
 import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { AdminService } from 'src/services/admin/admin.service';
@@ -35,7 +34,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private utils: UtilsService,
     private cs: ControlesService,
-    private companyService: CompanyService,
     private dialog: MatDialog,
     private title: Title,
     private ls: LoginService,
@@ -43,7 +41,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private us: UserService,
     public as: AdminService,
     public alerts: AlertsService,
-    // public test: UsersCrudService,
   ) {
     this.utils.isSandbox = this.isSandbox = environment.test;
 
@@ -105,13 +102,6 @@ export class AppComponent implements OnInit, OnDestroy {
             return;
           }
         }, (error) => { return; });
-
-        // this.as.checkWithdrawals();
-
-        this.companyService.listCategories()
-          .subscribe((categories) => {
-            this.companyService.categories = categories.data;
-          });
       });
   }
 

@@ -10,7 +10,6 @@ import { catchError } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 import { AlertsService } from './alerts/alerts.service';
-import * as Sentry from '@sentry/browser';
 import { UserService } from './user.service';
 import { MySentry } from 'src/shared/sentry';
 

@@ -4,7 +4,6 @@ import { UserService } from '../../services/user.service';
 import { LoginService } from '../../services/auth/auth.service';
 import { WalletService } from '../../services/wallet/wallet.service';
 import { UtilsService } from '../../services/utils/utils.service';
-import { CompanyService } from '../../services/company/company.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -23,7 +22,6 @@ export class HeaderComponent {
     public ls: LoginService,
     public ws: WalletService,
     public utils: UtilsService,
-    public companyService: CompanyService,
   ) { }
 
   public logout(): void {
