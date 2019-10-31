@@ -7,6 +7,11 @@ import { PageBase, OnLogout } from '../../bases/page-base';
 import { AppService } from '../../services/app/app.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { CompanyService } from 'src/services/company/company.service';
+import { Account } from 'src/shared/entities/account.ent';
+import { Observable } from 'rxjs';
+import { TransactionService } from 'src/services/transactions/transactions.service';
+import { map } from 'rxjs/operators';
+import { getDateDMY } from 'src/shared/utils.fns';
 
 declare const Morris;
 
@@ -24,6 +29,11 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   };
   public exceptions: string[];
   public loadingStatus = false;
+  public totalCompanies: Observable<number>;
+  public totalPrivates: Observable<number>;
+  public totalTransactions: Observable<number>;
+  public txColors = ['#e05206', '#de8657'];
+
   private refreshInterval: number = 60e3; // Miliseconds
   private refreshObs: any;
 
@@ -35,8 +45,16 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     public ls: LoginService,
     public crudAccounts: AccountsCrud,
     public companyService: CompanyService,
+    public tx: TransactionService,
   ) {
     super();
+
+    const dateTo = getDateDMY(new Date(0), '-');
+    const dateFrom = getDateDMY(new Date(), '-');
+
+    this.totalCompanies = crudAccounts.listGetTotal({ type: Account.TYPE_COMPANY });
+    this.totalPrivates = crudAccounts.listGetTotal({ type: Account.TYPE_PRIVATE });
+    this.totalTransactions = tx.listTx('', 0, 10, 'id', 'desc', dateTo, dateFrom).pipe(map((el) => el.total));
   }
 
   public onLogout() {

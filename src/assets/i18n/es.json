@@ -1005,5 +1005,7 @@
   "Update": "Actualizar",
   "ACCOUNT_ACTIVE_DESC": "Si la cuenta no está activa, el usuario no podrá iniciar sesión",
   "Download Pdf": "Descargar Pdf",
-  "Send By Mail": "Enviar por correo"
+  "Send By Mail": "Enviar por correo",
+  "DASH_CHART_REGISTERS": "Altas particulares/empresas",
+  "DASH_CHART_TXS": "Transacciones y masa monetaria"
 }

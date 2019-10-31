@@ -60,6 +60,7 @@ code {
 }
 .bg-black {
   background: #222;
+  color: #fff !important;
 }
 .validate-btn {
   width: auto;
@@ -694,4 +695,28 @@ a {
 .accounts .mat-radio-label {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.dark-theme {
+  .menu {
+    background: #424242 !important;
+  }
+  .menu-list .item {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+  .menu-list .item:not(.separate):hover {
+    background: #2e2e2e !important;
+  }
+}
+
+.bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: auto;
+}
+
+.space-around {
+  justify-content: space-around;
 }

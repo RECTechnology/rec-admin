@@ -26,7 +26,7 @@
     <kvp-list [(hidden)]="hidden" [items]="list" (onReset)="reset()" (onChange)="changedItems($event)"></kvp-list>
 
     <div class="center v">
-        <button mat-raised-button [disabled]="!fileName || loading" (click)="export()"
+        <button mat-raised-button [disabled]="!fileName || loading" (click)="export()" id="export-dia-export-btn"
             style="margin-left: 8px!important; padding-right: 10px!important">
             <span class="center h v">
                 <i class="fa fa-download"></i> {{'EXPORT'|translate}}

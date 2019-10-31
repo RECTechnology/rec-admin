@@ -7,7 +7,7 @@
   transition: 0.3s ease-in-out;
   overflow: hidden;
   z-index: 999999999;
-  box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.30) !important;
+  box-shadow: 1px 0 5px 0 rgba(0, 0, 0, 0.3) !important;
 }
 
 .backdrop-mobile:not(.collapsed) {
@@ -27,7 +27,7 @@
 .collapse-menu {
   padding-left: 10px;
   height: 47px;
-  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.30) !important;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.3) !important;
   display: flex;
   align-items: center;
 }
@@ -60,7 +60,7 @@
   font-size: 14px;
   font-weight: 300;
   color: #fff !important;
-  margin-left: 10px
+  margin-left: 10px;
 }
 
 .content {
@@ -76,7 +76,7 @@
 .user-info {
   width: 100%;
   height: 130px;
-  padding: 15px
+  padding: 15px;
 }
 
 .menu {
@@ -84,6 +84,7 @@
   width: 200px;
   background: #fff;
 }
+
 
 .menu-list,
 .dropdown-developers,
@@ -97,7 +98,7 @@
 .menu-list .separator {
   height: 1px;
   border-bottom: 1px solid rgb(202, 202, 202);
-  margin: 10px 0
+  margin: 10px 0;
 }
 
 .reseller-developers,
@@ -151,7 +152,6 @@
   /* padding-bottom: 8px; */
 }
 
-
 .item.opened {
   background: rgba(255, 255, 255, 0.3) !important;
   color: #fff !important;
@@ -197,7 +197,7 @@
 .reseller-developers .item .fa,
 .dropdown-developers .item .fa,
 .menu-list .item .fa {
-  margin-right: 10px
+  margin-right: 10px;
 }
 
 .user-info .user-data {
@@ -242,7 +242,7 @@
 .user-company p {
   font-size: 12px;
   margin: 0;
-  margin-bottom: 6px
+  margin-bottom: 6px;
 }
 
 .quick_access {
@@ -250,7 +250,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 8px
+  margin-top: 8px;
 }
 
 .quick_access_btn {

@@ -84,13 +84,18 @@ export class TransactionService extends BaseService {
     );
   }
 
-  public listTx(search, offset = 0, limit = 10, sort = 'id', order = 'desc', start_date, finish_date): Observable<any> {
+  public listTx(
+    search = '', offset = 0,
+    limit = 10, sort = 'id',
+    order = 'desc', start_date?, finish_date?,
+  ): Observable<any> {
     return this.get(null, {
       finish_date, limit,
       offset, order, sort, start_date,
     }, `${API_URL}/admin/v1/transaction/list`).pipe(
       map(
         (resp) => {
+          console.log('resp');
           const res = {
             data: [],
             total: resp.data.total,

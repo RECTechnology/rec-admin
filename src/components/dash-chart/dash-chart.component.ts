@@ -1,29 +1,8 @@
 /* tslint:disable */
-import { Component, AfterViewInit, ElementRef, ViewChild, Input } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { ControlesService } from '../../services/controles/controles.service';
 
 declare let Morris, _;
-
-const morrisData = function (id) {
-  return {
-    element: id,
-    data: [
-      { d: 0, a: 100, b: 90 },
-      { d: 0, a: 75, b: 65 },
-      { d: 0, a: 50, b: 40 },
-      { d: 0, a: 75, b: 65 },
-      { d: 0, a: 50, b: 40 },
-      { d: 0, a: 75, b: 65 },
-      { d: 0, a: 100, b: 90 },
-    ],
-    xkey: 'd',
-    ykeys: ['a', 'b'],
-    labels: ['Series A', 'Series B'],
-    xLabelFormat(d) {
-      return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
-    },
-  };
-};
 
 @Component({
   selector: 'dash-chart',
@@ -33,38 +12,50 @@ const morrisData = function (id) {
   templateUrl: './dash-chart.component.html',
 })
 export class DashChart implements AfterViewInit {
-  // tslint:disable-next-line: variable-name
   chart_: any;
   public id: string = String(Math.random());
   @Input() public title = '';
+  @Input() public timeframes = DashChart.DefaultTimeframes;
+  @Input() public selectedTimeframe = DashChart.DefaultTimeframes[0];
+  @Input() public colors = DashChart.DefaultColors;
+  @Input() public labels = ['A', 'B'];
+  @Output() public changedTimeframe: EventEmitter<any> = new EventEmitter();
 
-  public morris = {
-    element: this.id,
-    data: [
-      { d: '06-08-2018', a: 100, b: 90 },
-      { d: '06-09-2018', a: 75, b: 65 },
-      { d: '06-10-2018', a: 50, b: 40 },
-      { d: '06-11-2018', a: 75, b: 65 },
-      { d: '06-12-2018', a: 50, b: 40 },
-      { d: '06-13-2018', a: 75, b: 65 },
-      { d: '06-14-2018', a: 100, b: 90 },
-    ],
-    xkey: 'd',
-    lineColors: ['#0098db', '#9ed7f1'],
-    height: 120,
-    smooth: false,
-    ykeys: ['a', 'b'],
-    labels: ['Particular', 'Empresas'],
-    xLabelFormat(d) {
-      return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
-    },
-  };
+  public morris = {};
 
   constructor(
     private controles: ControlesService,
-  ) { }
+  ) {
+
+  }
 
   public ngAfterViewInit() {
+
+    this.morris = {
+      element: this.id,
+      data: [
+        { d: '06-08-2018', a: 100, b: 90 },
+        { d: '06-09-2018', a: 75, b: 65 },
+        { d: '06-10-2018', a: 50, b: 40 },
+        { d: '06-11-2018', a: 75, b: 65 },
+        { d: '06-12-2018', a: 50, b: 40 },
+        { d: '06-13-2018', a: 75, b: 65 },
+        { d: '06-14-2018', a: 100, b: 90 },
+      ],
+      xkey: 'd',
+      lineColors: this.colors,
+      lineWidth: 1.5,
+      height: 300,
+      smooth: false,
+      fillOpacity: 0.4,
+      ykeys: ['a', 'b'],
+      labels: this.labels,
+      pointSize: 0,
+      xLabelFormat(d) {
+        return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
+      },
+    }
+
     this.chart_ = new Morris.Area(this.morris);
     (window as any).addEventListener('resize', () => {
       this.chart_.redraw();
@@ -89,4 +80,32 @@ export class DashChart implements AfterViewInit {
     }
     return formated;
   }
+
+  public selectTimeframe(timeframe) {
+    this.selectedTimeframe = timeframe;
+    this.changedTimeframe.emit(timeframe);
+  }
+
+  static DefaultTimeframes = [
+    {
+      name: '1 Year',
+      value: '1y',
+    },
+    {
+      name: '1 Month',
+      value: '1m',
+    },
+    {
+      name: '1 Week',
+      value: '1w',
+    },
+    {
+      name: '1 Day',
+      value: '1d',
+    },
+  ];
+
+  static DefaultColors = [
+    '#0098db', '#9ed7f1'
+  ];
 }

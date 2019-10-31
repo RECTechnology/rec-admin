@@ -93,6 +93,10 @@ export class CrudBaseService extends BaseService2 {
             .pipe(this.itemMapper());
     }
 
+    public listGetTotal(query?: CrudQueryOptions, lang: RecLang = REC_LANGS.ALL) {
+        return this.list(query, lang).pipe(map((el) => el.data.total));
+    }
+
     public getUrlBase() {
         return ['/', this.userRole, '/', this.version, this.basePath];
     }
