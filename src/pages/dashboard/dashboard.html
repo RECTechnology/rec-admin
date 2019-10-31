@@ -56,8 +56,8 @@
       <h4 style="padding: 15px 0; font-weight: 200;">{{'General view'|translate}}</h4>
     </div>
     <div class="col-lg-8 col-md-12 col-sm-12">
-      <dash-chart title="DASH_CHART_REGISTERS" [labels]="['PRIVATE', 'COMPANY']"></dash-chart>
-      <dash-chart title="DASH_CHART_TXS" [colors]="txColors" [labels]="['TRANSACTIONS', 'VOLUME']"></dash-chart>
+      <dash-chart [data]="registerTimeseries" title="DASH_CHART_REGISTERS" [labels]="['PRIVATE', 'COMPANY']"></dash-chart>
+      <dash-chart [data]="transactionsTimeseries" title="DASH_CHART_TXS" [colors]="txColors" [labels]="['TRANSACTIONS', 'VOLUME']"></dash-chart>
     </div>
     <div class="col-lg-4 col-md-12 col-sm-12">
       <mat-card style="height: calc(100% - 20px)">

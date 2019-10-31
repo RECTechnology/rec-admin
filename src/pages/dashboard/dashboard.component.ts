@@ -31,6 +31,9 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public totalPrivates: Observable<number>;
   public totalTransactions: Observable<number>;
   public totalBalance: Observable<number>;
+  public registerTimeseries: Observable<any[]>;
+  public transactionsTimeseries: Observable<any[]>;
+
   public txColors = ['#e05206', '#de8657'];
 
   private refreshInterval: number = 60e3; // Miliseconds
@@ -53,11 +56,12 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.totalPrivates = dashService.getStatistics('private');
     this.totalTransactions = dashService.getStatistics('transactions');
     this.totalBalance = dashService.getStatistics('balance');
+    this.registerTimeseries = dashService.getTimeseries('registers', 'year');
+    this.transactionsTimeseries = dashService.getTimeseries('registers', 'year');
 
-    this.dashService.getTimeseries('registers', 'year')
-      .subscribe(resp => {
-        console.log(resp);
-      });
+    this.registerTimeseries.subscribe((resp) => {
+      console.log(resp);
+    });
   }
 
   public onLogout() {
