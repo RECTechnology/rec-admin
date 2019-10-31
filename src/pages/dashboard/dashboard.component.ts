@@ -7,11 +7,8 @@ import { PageBase, OnLogout } from '../../bases/page-base';
 import { AppService } from '../../services/app/app.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { CompanyService } from 'src/services/company/company.service';
-import { Account } from 'src/shared/entities/account.ent';
 import { Observable } from 'rxjs';
 import { TransactionService } from 'src/services/transactions/transactions.service';
-import { map } from 'rxjs/operators';
-import { getDateDMY } from 'src/shared/utils.fns';
 
 declare const Morris;
 
@@ -33,7 +30,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public totalPrivates: Observable<number>;
   public totalTransactions: Observable<number>;
   public totalBalance: Observable<number>;
-
   public txColors = ['#e05206', '#de8657'];
 
   private refreshInterval: number = 60e3; // Miliseconds
