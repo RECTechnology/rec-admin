@@ -5,7 +5,7 @@ export namespace MySentry {
     export function setup(env) {
         if (env.sentry && env.sentry.active) {
             console.log('sentry init');
-            Sentry.init({ dsn: env.sentry.dsn });
+            Sentry.init({ dsn: env.sentry.dsn, release: env.version });
             Sentry.configureScope((scope) => {
                 scope.setTag('type', 'normal');
             });
