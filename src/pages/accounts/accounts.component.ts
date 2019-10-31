@@ -215,7 +215,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public viewAccount(account, tab = 'details') {
-    this.router.navigate([`/account/${account.id}`], { queryParams: { tab } });
+    this.router.navigate([`/accounts/${account.id}`], { queryParams: { tab } });
   }
 
   public viewEditAccount(account) {

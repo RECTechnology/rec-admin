@@ -26,7 +26,7 @@ const accountRoutes: Routes = [
   {
     canActivate: [IsLoggedInGuard],
     component: AccountComponent,
-    path: 'account/:id',
+    path: 'accounts/:id',
   },
 ];
 

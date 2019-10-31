@@ -95,14 +95,12 @@ export class TableListHeader {
             this.onSearch.emit(text);
 
             // Add query params for deeplinking
-            console.log('alksjdalkjds');
             this.router.navigate([], {
                 relativeTo: this.route,
                 queryParams: {
                     query: this.query,
                 },
                 queryParamsHandling: 'merge',
-                // skipLocationChange: true,
             });
         });
     }

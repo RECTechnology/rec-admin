@@ -235,7 +235,11 @@ a {
 .status-stopped,
 .status-disabled,
 .status-cancelled {
-  color: #ef5350 !important;
+  color: #ef5350;
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.26) !important;
+  }
 }
 .bg-error {
   background: #ef5350 !important;
