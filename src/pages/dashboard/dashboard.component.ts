@@ -9,6 +9,7 @@ import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { CompanyService } from 'src/services/company/company.service';
 import { Observable } from 'rxjs';
 import { TransactionService } from 'src/services/transactions/transactions.service';
+import { DashboardService } from 'src/services/dashboard/dashboard.service';
 
 declare const Morris;
 
@@ -44,14 +45,19 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     public crudAccounts: AccountsCrud,
     public companyService: CompanyService,
     public tx: TransactionService,
-    public appService: AppService,
+    public dashService: DashboardService,
   ) {
     super();
 
-    this.totalCompanies = appService.getStatistics('company');
-    this.totalPrivates = appService.getStatistics('private');
-    this.totalTransactions = appService.getStatistics('transactions');
-    this.totalBalance = appService.getStatistics('balance');
+    this.totalCompanies = dashService.getStatistics('company');
+    this.totalPrivates = dashService.getStatistics('private');
+    this.totalTransactions = dashService.getStatistics('transactions');
+    this.totalBalance = dashService.getStatistics('balance');
+
+    this.dashService.getTimeseries('registers', 'year')
+      .subscribe(resp => {
+        console.log(resp);
+      });
   }
 
   public onLogout() {

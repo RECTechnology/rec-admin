@@ -1014,5 +1014,14 @@
   "Language": "Llenguatge",
   "ACCOUNT_ACTIVE_DESC": "Si es desactiva aquest compte l'usuari no podrà accedir-hi",
   "Download Pdf": "Desar Pdf",
-  "Send By Mail": "Enviar per correu"
+  "Send By Mail": "Envia per correu",
+  "DASH_CHART_REGISTERS": "Altes particulars / empreses",
+  "DASH_CHART_TXS": "Transaccions i massa monetària",
+  "Last Year": "Ultim any",
+  "Last Month": "Ultim mes",
+  "Last Day": "Ultim dia",
+  "PRIVATE": "Particulars",
+  "COMPANY": "Empreses",
+  "General view": "Vista General",
+  "VOLUME": "Volum"
 }

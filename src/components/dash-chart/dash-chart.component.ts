@@ -18,13 +18,13 @@ export class DashChart implements AfterViewInit {
   @Input() public colors = DashChart.DefaultColors;
   @Input() public labels = ['A', 'B'];
   @Input() public data = [
-    { d: '06-08-2018 12:00:00', a: 100, b: 90 },
-    { d: '06-09-2018 12:00:00', a: 75, b: 65 },
-    { d: '06-10-2018 12:00:00', a: 50, b: 40 },
-    { d: '06-11-2018 12:00:00', a: 75, b: 65 },
-    { d: '06-12-2018 12:00:00', a: 50, b: 40 },
-    { d: '06-13-2018 12:00:00', a: 75, b: 65 },
-    { d: '06-14-2018 12:00:00', a: 100, b: 90 },
+    { d: '2018-06-08 12:00:00', a: 100, b: 90 },
+    { d: '2018-06-09 12:00:00', a: 75, b: 65 },
+    { d: '2018-06-10 12:00:00', a: 50, b: 40 },
+    { d: '2018-06-11 12:00:00', a: 75, b: 65 },
+    { d: '2018-06-12 12:00:00', a: 50, b: 40 },
+    { d: '2018-06-13 12:00:00', a: 75, b: 65 },
+    { d: '2018-06-14 12:00:00', a: 100, b: 90 },
   ];
   @Output() public changedTimeframe: EventEmitter<any> = new EventEmitter();
 
@@ -44,12 +44,13 @@ export class DashChart implements AfterViewInit {
       hideHover: true,
       gridTextColor: '#bababa',
       xLabelFormat: (d: Date) => {
+        console.log(d);
         if (this.selectedTimeframe.value === 'year') {
           return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
         } else if (this.selectedTimeframe.value === 'month') {
-          return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][d.getDay()];
+          return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][d.getDay()] + ' ' + d.getDate();
         } else if (this.selectedTimeframe.value === 'day') {
-          return d.getHours();
+          return d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
         }
       },
     }
@@ -64,28 +65,13 @@ export class DashChart implements AfterViewInit {
     (window as any).removeAllListeners('resize');
   }
 
-  private formatChartData(data: any): any[] {
-    const formated = [];
-    for (const key in data) {
-      if (key != 'scale' && key != 'currency') {
-        const value: any = data[key];
-        // value = value / Math.pow(10, data.scale);
-        formated.push({
-          month: key,
-          v: +value.toFixed(data.scale),
-        });
-      }
-    }
-    return formated;
-  }
-
   public selectTimeframe(timeframe) {
     this.selectedTimeframe = timeframe;
     this.changedTimeframe.emit(timeframe);
     try {
       this.chart_.redraw();
     } catch (error) {
-      
+
     }
   }
 
