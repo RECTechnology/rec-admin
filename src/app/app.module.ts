@@ -42,6 +42,7 @@ import { B2bService } from 'src/services/b2b/b2b.service';
 import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
 import { MySentry } from 'src/shared/sentry';
 import { environment } from 'src/environments/environment';
+import { SentryErrorHandler } from 'src/shared/sentry-error-handler';
 
 MySentry.setup(environment);
 
@@ -143,6 +144,7 @@ const imports = [
       provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
     },
+    { provide: ErrorHandler, useClass: SentryErrorHandler },
   ],
 })
 export class AppModule { }
