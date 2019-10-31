@@ -32,6 +32,8 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public totalCompanies: Observable<number>;
   public totalPrivates: Observable<number>;
   public totalTransactions: Observable<number>;
+  public totalBalance: Observable<number>;
+
   public txColors = ['#e05206', '#de8657'];
 
   private refreshInterval: number = 60e3; // Miliseconds
@@ -53,6 +55,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.totalCompanies = appService.getStatistics('company');
     this.totalPrivates = appService.getStatistics('private');
     this.totalTransactions = appService.getStatistics('transactions');
+    this.totalBalance = appService.getStatistics('balance');
   }
 
   public onLogout() {
@@ -106,9 +109,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.dialog.closeAll();
   }
 
-  /**
-   * Set a interval every this.refreshInterval
-   */
   private setRefresh(): void {
     this.refreshObs = setInterval((_) => {
       this.getStatus();

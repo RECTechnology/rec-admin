@@ -1,18 +1,13 @@
-import { Injectable, VERSION } from '@angular/core';
-import { BaseService } from '../base/base.service';
+import { Injectable } from '@angular/core';
 import { UserService } from '../user.service';
-import { API_URL } from '../../data/consts';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { BaseService2 } from '../base/base.service-v2';
 
-type DashboardStatisticsSubject = 'private' | 'company' | 'transactions';
+type DashboardStatisticsSubject = 'private' | 'company' | 'transactions' | 'balance';
 
 @Injectable()
 export class AppService extends BaseService2 {
-
-  public API_VERSION = 'pre';
-
   constructor(
     http: HttpClient,
     public us: UserService,

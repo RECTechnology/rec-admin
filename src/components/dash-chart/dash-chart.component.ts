@@ -1,7 +1,5 @@
 /* tslint:disable */
 import { Component, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
-import { ControlesService } from '../../services/controles/controles.service';
-
 declare let Morris, _;
 
 @Component({
