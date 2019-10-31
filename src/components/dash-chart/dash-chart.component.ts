@@ -26,7 +26,7 @@ export class DashChart implements AfterViewInit {
     { d: '2018-06-13 12:00:00', a: 75, b: 65 },
     { d: '2018-06-14 12:00:00', a: 100, b: 90 },
   ];
-  @Output() public changedTimeframe: EventEmitter<any> = new EventEmitter();
+  @Output('changed') public changedTimeframe: EventEmitter<any> = new EventEmitter();
 
   public ngAfterViewInit() {
     const morrisData = {
@@ -67,7 +67,7 @@ export class DashChart implements AfterViewInit {
 
   public selectTimeframe(timeframe) {
     this.selectedTimeframe = timeframe;
-    this.changedTimeframe.emit(timeframe);
+    this.changedTimeframe.emit(timeframe.value);
     try {
       this.chart_.redraw();
     } catch (error) {

@@ -4,9 +4,9 @@ import { UserService } from '../user.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-type DashboardStatisticsSubject = 'private' | 'company' | 'transactions' | 'balance';
-type DashboarValidIntervals = 'year' | 'month' | 'day';
-type DashboarValidSeries = 'registers' | 'transactions';
+export type DashboardStatisticsSubject = 'private' | 'company' | 'transactions' | 'balance';
+export type DashboardValidIntervals = 'year' | 'month' | 'day';
+export type DashboardValidSeries = 'registers' | 'transactions';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,8 @@ export class DashboardService extends BaseService2 {
     return this.get(`/admin/v3/dashboard/total/${subject}`).pipe(map((resp) => resp.data.total));
   }
 
-  public getTimeseries(series: DashboarValidSeries, interval: DashboarValidIntervals = 'year') {
+  public getTimeseries(series: DashboardValidSeries, interval: DashboardValidIntervals = 'year') {
     return this.get(`/admin/v3/dashboard/timeseries/${series}/${interval}`);
+
   }
 }

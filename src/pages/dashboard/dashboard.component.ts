@@ -9,7 +9,7 @@ import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { CompanyService } from 'src/services/company/company.service';
 import { Observable } from 'rxjs';
 import { TransactionService } from 'src/services/transactions/transactions.service';
-import { DashboardService } from 'src/services/dashboard/dashboard.service';
+import { DashboardService, DashboardValidIntervals } from 'src/services/dashboard/dashboard.service';
 
 declare const Morris;
 
@@ -31,8 +31,8 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public totalPrivates: Observable<number>;
   public totalTransactions: Observable<number>;
   public totalBalance: Observable<number>;
-  public registerTimeseries: Observable<any[]>;
-  public transactionsTimeseries: Observable<any[]>;
+  public registerTimeseries: any[];
+  public transactionsTimeseries: any[];
 
   public txColors = ['#e05206', '#de8657'];
 
@@ -56,11 +56,21 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.totalPrivates = dashService.getStatistics('private');
     this.totalTransactions = dashService.getStatistics('transactions');
     this.totalBalance = dashService.getStatistics('balance');
-    this.registerTimeseries = dashService.getTimeseries('registers', 'year');
-    this.transactionsTimeseries = dashService.getTimeseries('registers', 'year');
 
-    this.registerTimeseries.subscribe((resp) => {
+    this.getRegisterTS('year');
+    this.getTransactionsTS('year');
+  }
+
+  public getRegisterTS(interval: DashboardValidIntervals) {
+    this.dashService.getTimeseries('registers', interval).subscribe((resp) => {
       console.log(resp);
+      this.registerTimeseries = resp.data;
+    });
+  }
+
+  public getTransactionsTS(interval: DashboardValidIntervals) {
+    this.dashService.getTimeseries('transactions', interval).subscribe((resp) => {
+      this.transactionsTimeseries = resp.data;
     });
   }
 
