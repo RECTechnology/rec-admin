@@ -4,7 +4,11 @@ import * as Sentry from '@sentry/browser';
 export namespace MySentry {
     export function setup(env) {
         if (env.sentry && env.sentry.active) {
-            Sentry.init({ dsn: env.sentry.dsn, release: env.version });
+            Sentry.init({
+                dsn: env.sentry.dsn,
+                release: env.version,
+                environment: env.prod ? 'Production' : 'Staging',
+            });
             Sentry.configureScope((scope) => {
                 scope.setTag('type', 'normal');
             });
