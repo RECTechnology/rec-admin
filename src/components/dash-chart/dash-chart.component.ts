@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { Component, AfterViewInit, ElementRef, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import { ControlesService } from '../../services/controles/controles.service';
 
 declare let Morris, _;
@@ -19,29 +19,21 @@ export class DashChart implements AfterViewInit {
   @Input() public selectedTimeframe = DashChart.DefaultTimeframes[0];
   @Input() public colors = DashChart.DefaultColors;
   @Input() public labels = ['A', 'B'];
+  @Input() public data = [
+    { d: '06-08-2018 12:00:00', a: 100, b: 90 },
+    { d: '06-09-2018 12:00:00', a: 75, b: 65 },
+    { d: '06-10-2018 12:00:00', a: 50, b: 40 },
+    { d: '06-11-2018 12:00:00', a: 75, b: 65 },
+    { d: '06-12-2018 12:00:00', a: 50, b: 40 },
+    { d: '06-13-2018 12:00:00', a: 75, b: 65 },
+    { d: '06-14-2018 12:00:00', a: 100, b: 90 },
+  ];
   @Output() public changedTimeframe: EventEmitter<any> = new EventEmitter();
 
-  public morris = {};
-
-  constructor(
-    private controles: ControlesService,
-  ) {
-
-  }
-
   public ngAfterViewInit() {
-
-    this.morris = {
+    const morrisData = {
       element: this.id,
-      data: [
-        { d: '06-08-2018', a: 100, b: 90 },
-        { d: '06-09-2018', a: 75, b: 65 },
-        { d: '06-10-2018', a: 50, b: 40 },
-        { d: '06-11-2018', a: 75, b: 65 },
-        { d: '06-12-2018', a: 50, b: 40 },
-        { d: '06-13-2018', a: 75, b: 65 },
-        { d: '06-14-2018', a: 100, b: 90 },
-      ],
+      data: this.data,
       xkey: 'd',
       lineColors: this.colors,
       lineWidth: 1.5,
@@ -51,12 +43,20 @@ export class DashChart implements AfterViewInit {
       ykeys: ['a', 'b'],
       labels: this.labels,
       pointSize: 0,
-      xLabelFormat(d) {
-        return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
+      hideHover: true,
+      gridTextColor: '#bababa',
+      xLabelFormat: (d: Date) => {
+        if (this.selectedTimeframe.value === 'year') {
+          return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
+        } else if (this.selectedTimeframe.value === 'month') {
+          return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][d.getDay()];
+        } else if (this.selectedTimeframe.value === 'day') {
+          return d.getHours();
+        }
       },
     }
 
-    this.chart_ = new Morris.Area(this.morris);
+    this.chart_ = new Morris.Area(morrisData);
     (window as any).addEventListener('resize', () => {
       this.chart_.redraw();
     });
@@ -84,24 +84,25 @@ export class DashChart implements AfterViewInit {
   public selectTimeframe(timeframe) {
     this.selectedTimeframe = timeframe;
     this.changedTimeframe.emit(timeframe);
+    try {
+      this.chart_.redraw();
+    } catch (error) {
+      
+    }
   }
 
   static DefaultTimeframes = [
     {
-      name: '1 Year',
-      value: '1y',
+      name: 'Last Year',
+      value: 'year',
     },
     {
-      name: '1 Month',
-      value: '1m',
+      name: 'Last Month',
+      value: 'month',
     },
     {
-      name: '1 Week',
-      value: '1w',
-    },
-    {
-      name: '1 Day',
-      value: '1d',
+      name: 'Last Day',
+      value: 'day',
     },
   ];
 

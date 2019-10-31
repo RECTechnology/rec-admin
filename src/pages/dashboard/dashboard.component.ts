@@ -46,15 +46,13 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     public crudAccounts: AccountsCrud,
     public companyService: CompanyService,
     public tx: TransactionService,
+    public appService: AppService,
   ) {
     super();
 
-    const dateTo = getDateDMY(new Date(0), '-');
-    const dateFrom = getDateDMY(new Date(), '-');
-
-    this.totalCompanies = crudAccounts.listGetTotal({ type: Account.TYPE_COMPANY });
-    this.totalPrivates = crudAccounts.listGetTotal({ type: Account.TYPE_PRIVATE });
-    this.totalTransactions = tx.listTx('', 0, 10, 'id', 'desc', dateTo, dateFrom).pipe(map((el) => el.total));
+    this.totalCompanies = appService.getStatistics('company');
+    this.totalPrivates = appService.getStatistics('private');
+    this.totalTransactions = appService.getStatistics('transactions');
   }
 
   public onLogout() {
