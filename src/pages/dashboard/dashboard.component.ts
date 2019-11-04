@@ -36,6 +36,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public transactionsTimeseries: any[] = [];
 
   @ViewChild('registerChart', { static: false }) public registerChart: DashChart;
+  @ViewChild('txChart', { static: false }) public txChart: DashChart;
 
   public txColors = ['#e05206', '#de8657'];
   public regColors = ['#0098db', '#de8657'];
@@ -60,7 +61,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.totalPrivates = dashService.getStatistics('private');
     this.totalTransactions = dashService.getStatistics('transaction');
     this.totalBalance = dashService.getStatistics('balance');
-
   }
 
   public ngAfterViewInit() {
@@ -68,6 +68,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.getStatus();
     this.setRefresh();
     this.getRegisterTS(this.registerChart.selectedTimeframe.value);
+    this.getTransactionsTS(this.txChart.selectedTimeframe.value);
   }
 
   public getNeighbourhoods() {
