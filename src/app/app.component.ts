@@ -48,6 +48,8 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isSandbox) {
       document.body.classList.add('sandbox');
     }
+
+    console.log('aspkojdaosidaoisuhjdopì');
   }
 
   public ngOnInit() {
@@ -109,7 +111,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public setupLang() {
     const browserLang = this.translate.getBrowserLang();
     const localSavedLang = localStorage.getItem('lang');
-    const currentLang = localSavedLang || browserLang || 'en';
+    const currentLang = localSavedLang != 'undefined' ? localSavedLang : browserLang || 'en';
     this.us.lang = this.utils.userLang = currentLang;
     localStorage.setItem('lang', currentLang);
 

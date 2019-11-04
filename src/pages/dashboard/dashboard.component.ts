@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Title } from '@angular/platform-browser';
 import { ControlesService } from '../../services/controles/controles.service';
@@ -10,6 +10,7 @@ import { CompanyService } from 'src/services/company/company.service';
 import { Observable } from 'rxjs';
 import { TransactionService } from 'src/services/transactions/transactions.service';
 import { DashboardService, DashboardValidIntervals } from 'src/services/dashboard/dashboard.service';
+import { DashChart } from 'src/components/dash-chart/dash-chart.component';
 
 declare const Morris;
 
@@ -31,10 +32,13 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public totalPrivates: Observable<number>;
   public totalTransactions: Observable<number>;
   public totalBalance: Observable<number>;
-  public registerTimeseries: any[];
-  public transactionsTimeseries: any[];
+  public registerTimeseries: any[] = [];
+  public transactionsTimeseries: any[] = [];
+
+  @ViewChild('registerChart', { static: false }) public registerChart: DashChart;
 
   public txColors = ['#e05206', '#de8657'];
+  public regColors = ['#0098db', '#de8657'];
 
   private refreshInterval: number = 60e3; // Miliseconds
   private refreshObs: any;
@@ -57,34 +61,30 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.totalTransactions = dashService.getStatistics('transactions');
     this.totalBalance = dashService.getStatistics('balance');
 
-    this.getRegisterTS('year');
-    this.getTransactionsTS('year');
   }
 
-  public getRegisterTS(interval: DashboardValidIntervals) {
-    this.dashService.getTimeseries('registers', interval).subscribe((resp) => {
-      console.log(resp);
-      this.registerTimeseries = resp.data;
-    });
-  }
-
-  public getTransactionsTS(interval: DashboardValidIntervals) {
-    this.dashService.getTimeseries('transactions', interval).subscribe((resp) => {
-      this.transactionsTimeseries = resp.data;
-    });
-  }
-
-  public onLogout() {
-    this.ngOnDestroy();
-  }
-
-  public afterContentInit() {
+  public ngAfterViewInit() {
+    this.getNeighbourhoods();
     this.getStatus();
     this.setRefresh();
+    this.getRegisterTS(this.registerChart.selectedTimeframe.value);
+  }
 
+  public getNeighbourhoods() {
+    this.dashService.getNeighbourhoodStatistics().subscribe((resp) => {
+      console.log(resp);
+      this.updateDonutChart(resp.data.map((el) => ({
+        label: el.name,
+        value: Number(el.accounts_total),
+      })));
+    });
+  }
+
+  public updateDonutChart(data?) {
+    document.getElementById('donut').innerHTML = '';
     const donut = new Morris.Donut({
       colors: ['#0098db', '#9ed7f1', '#e05206', '#f0ab87', '#0555a5'],
-      data: [
+      data: data || [
         { label: 'Barrio 1', value: 12 },
         { label: 'Barrio 2', value: 30 },
         { label: 'Barrio 3', value: 20 },
@@ -96,6 +96,25 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
 
     (window as any).addEventListener('resize', () => {
       donut.redraw();
+    });
+  }
+
+  public onLogout() {
+    this.ngOnDestroy();
+  }
+
+  public getRegisterTS(interval: DashboardValidIntervals) {
+    this.dashService.getTimeseries('registers', interval).subscribe((resp) => {
+      this.registerTimeseries = resp.data.map((el) => {
+        return { d: el.time, a: el.private || 0, b: el.company || 0 };
+      });
+      this.registerChart.update(this.registerTimeseries);
+    });
+  }
+
+  public getTransactionsTS(interval: DashboardValidIntervals) {
+    this.dashService.getTimeseries('transactions', interval).subscribe((resp) => {
+      this.transactionsTimeseries = resp.data;
     });
   }
 

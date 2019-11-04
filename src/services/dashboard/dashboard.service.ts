@@ -23,8 +23,11 @@ export class DashboardService extends BaseService2 {
     return this.get(`/admin/v3/dashboard/total/${subject}`).pipe(map((resp) => resp.data.total));
   }
 
+  public getNeighbourhoodStatistics() {
+    return this.get(`/admin/v3/dashboard/neighbourhoods`);
+  }
+
   public getTimeseries(series: DashboardValidSeries, interval: DashboardValidIntervals = 'year') {
     return this.get(`/admin/v3/dashboard/timeseries/${series}/${interval}`);
-
   }
 }

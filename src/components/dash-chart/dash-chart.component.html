@@ -1,5 +1,9 @@
 <mat-card>
-  <h4 style="font-size: 20px; font-weight: 200; margin-bottom: 15px;text-align: center;text-transform: uppercase;">{{title | translate}}</h4>
+  <h4 style="font-size: 20px; font-weight: 200; margin-bottom: 15px;text-align: center;text-transform: uppercase;">
+    {{title | translate}}</h4>
+  <button class="abs-top-right" color="primary" mat-icon-button (click)="selectTimeframe(selectedTimeframe)">
+    <i class="fa fa-refresh"></i>
+  </button>
   <div class="row">
     <div class="col-lg-12">
       <div class="group-row-left center h v">
@@ -13,7 +17,8 @@
     </div>
     <div class="col-lg-2" *ngIf="timeframes && timeframes.length">
       <div class="group-col-left center h v space-around" style="height: 100%">
-        <button mat-raised-button (click)="selectTimeframe(timeframe)" color="{{timeframe === selectedTimeframe ? 'primary': ''}}" *ngFor="let timeframe of timeframes"
+        <button mat-raised-button (click)="selectTimeframe(timeframe)"
+          color="{{timeframe === selectedTimeframe ? 'primary': ''}}" *ngFor="let timeframe of timeframes"
           style="width: 100%; margin-bottom: 10px">
           {{timeframe.name|translate}}
         </button>

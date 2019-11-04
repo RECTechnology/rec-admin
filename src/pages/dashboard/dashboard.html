@@ -57,17 +57,20 @@
       <h4 style="padding: 15px 0; font-weight: 200;">{{'General view'|translate}}</h4>
     </div>
     <div class="col-lg-8 col-md-12 col-sm-12">
-      <dash-chart (changed)="getRegisterTS($event)" *ngIf="registerTimeseries" [data]="registerTimeseries"
-        title="DASH_CHART_REGISTERS" [labels]="['PRIVATE', 'COMPANY']"></dash-chart>
-      <dash-chart (changed)="getTransactionsTS($event)" *ngIf="transactionsTimeseries"
-        [data]="transactionsTimeseries" title="DASH_CHART_TXS" [colors]="txColors"
-        [labels]="['TRANSACTIONS', 'VOLUME']"></dash-chart>
+      <dash-chart #registerChart (changed)="getRegisterTS($event)" [data]="registerTimeseries"
+        title="DASH_CHART_REGISTERS" [colors]="regColors" [labels]="['PRIVATE', 'COMPANY']"></dash-chart>
+      <dash-chart (changed)="getTransactionsTS($event)" [data]="transactionsTimeseries" title="DASH_CHART_TXS"
+        [colors]="txColors" [labels]="['TRANSACTIONS', 'VOLUME']"></dash-chart>
     </div>
     <div class="col-lg-4 col-md-12 col-sm-12">
-      <mat-card style="height: calc(100% - 20px)">
+      <mat-card style="height: calc(100% - 20px); position: relative;">
         <h4
           style="font-size: 20px; font-weight: 200; margin-bottom: 15px;text-align: center;text-transform: uppercase;">
-          {{'NEIGHBOURHOODS' | translate}}</h4>
+          {{'NEIGHBOURHOODS' | translate}}
+        </h4>
+        <button class="abs-top-right" color="primary" mat-icon-button (click)="getNeighbourhoods()">
+          <i class="fa fa-refresh"></i>
+        </button>
         <div id="donut" style="width: 100%"></div>
       </mat-card>
     </div>

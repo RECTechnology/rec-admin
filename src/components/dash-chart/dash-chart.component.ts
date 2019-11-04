@@ -1,5 +1,9 @@
 /* tslint:disable */
-import { Component, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, AfterViewInit, Input, Output, EventEmitter, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { DashboardValidIntervals } from 'src/services/dashboard/dashboard.service';
+import * as moment from 'moment';
+
 declare let Morris, _;
 
 @Component({
@@ -14,7 +18,7 @@ export class DashChart implements AfterViewInit {
   public id: string = String(Math.random());
   @Input() public title = '';
   @Input() public timeframes = DashChart.DefaultTimeframes;
-  @Input() public selectedTimeframe = DashChart.DefaultTimeframes[0];
+  @Input() public selectedTimeframe: any = DashChart.DefaultTimeframes[0];
   @Input() public colors = DashChart.DefaultColors;
   @Input() public labels = ['A', 'B'];
   @Input() public data = [
@@ -28,10 +32,26 @@ export class DashChart implements AfterViewInit {
   ];
   @Output('changed') public changedTimeframe: EventEmitter<any> = new EventEmitter();
 
+
+  constructor(@Inject(DOCUMENT) public document) {
+
+  }
+
+  /**
+   * ngAfterViewInit
+   */
   public ngAfterViewInit() {
+    this.update();
+  }
+
+  public update(data?) {
+    if (!data || data.length <= 0) {
+      data = DashChart.getEmptyData(this.selectedTimeframe.value);
+    }
+
     const morrisData = {
       element: this.id,
-      data: this.data,
+      data: data || this.data,
       xkey: 'd',
       lineColors: this.colors,
       lineWidth: 1.5,
@@ -44,7 +64,6 @@ export class DashChart implements AfterViewInit {
       hideHover: true,
       gridTextColor: '#bababa',
       xLabelFormat: (d: Date) => {
-        console.log(d);
         if (this.selectedTimeframe.value === 'year') {
           return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
         } else if (this.selectedTimeframe.value === 'month') {
@@ -55,7 +74,11 @@ export class DashChart implements AfterViewInit {
       },
     }
 
+    if (this.chart_) {
+      document.getElementById(this.id).innerHTML = '';
+    }
     this.chart_ = new Morris.Area(morrisData);
+
     (window as any).addEventListener('resize', () => {
       this.chart_.redraw();
     });
@@ -93,4 +116,26 @@ export class DashChart implements AfterViewInit {
   static DefaultColors = [
     '#0098db', '#9ed7f1'
   ];
+
+  static getEmptyData(timeframe: DashboardValidIntervals) {
+    let today = moment();
+    let data = [];
+
+    if (timeframe === 'year') {
+      let yearAgo = today.clone().subtract(1, 'year');
+      data.push({ d: yearAgo.toDate().getTime(), a: 0, b: 0 });
+      data.push({ d: today.toDate().getTime(), a: 0, b: 0 });
+    } else if (timeframe === 'month') {
+      let monthAgo = today.clone().subtract(1, 'month');
+      data.push({ d: monthAgo.toDate().getTime(), a: 0, b: 0 });
+      data.push({ d: today.toDate().getTime(), a: 0, b: 0 });
+    } else if (timeframe === 'day') {
+      data.push({ d: today.toDate().getTime(), a: 0, b: 0 });
+      for (let i = 1; i <= 25; i++) {
+        let dayAgo = today.clone().subtract(i, 'hour');
+        data.push({ d: dayAgo.toDate().getTime(), a: 0, b: 0 });
+      }
+    }
+    return data.reverse();
+  };
 }
