@@ -4,9 +4,9 @@ import { UserService } from '../user.service';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-export type DashboardStatisticsSubject = 'private' | 'company' | 'transactions' | 'balance';
+export type DashboardStatisticsSubject = 'private' | 'company' | 'transaction' | 'balance';
 export type DashboardValidIntervals = 'year' | 'month' | 'day';
-export type DashboardValidSeries = 'registers' | 'transactions';
+export type DashboardValidSeries = 'registers' | 'transaction';
 
 @Injectable({
   providedIn: 'root',

@@ -56,7 +56,7 @@ export class DashChart implements AfterViewInit {
       lineColors: this.colors,
       lineWidth: 1.5,
       height: 300,
-      smooth: false,
+      smooth: true,
       fillOpacity: 0.4,
       ykeys: ['a', 'b'],
       labels: this.labels,
