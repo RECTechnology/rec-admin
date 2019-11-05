@@ -10,15 +10,12 @@ import { Tier1Form } from './tab_kyc/tier_validation/tier_validation.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ViewDetails } from '../dialogs/view-details/view-details.dia';
 import { ViewDetailsAccount } from '../dialogs/view-details-account/view-details-account.dia';
-import { ShowMovements } from '../dialogs/show-movements/show-movements.dia';
 import { MovementsTab } from './tab_movements/tab_movements';
 import { AccountUsersTab } from './tab_account_users/account_users.tab';
 import { AccountDetailsTab } from './tab_account_details/account_details.tab';
 import { EditUserData } from '../dialogs/edit-user/edit-user.dia';
 import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
 import { AccountDocuments } from './tab_documents/account_documents.tab';
-import { MatTabsModule } from '@angular/material';
-import { MaterialModule } from 'src/shared/md-module';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { B2BModuleTab } from './tab_b2b/tab_b2b.tab';
 
@@ -38,7 +35,6 @@ const accountRoutes: Routes = [
     Tier1Form,
     ViewDetails,
     ViewDetailsAccount,
-    ShowMovements,
     AccountUsersTab,
     MovementsTab,
     EditAccountData,
@@ -51,7 +47,6 @@ const accountRoutes: Routes = [
     EditAccountData,
     ViewDetails,
     ViewDetailsAccount,
-    ShowMovements,
     AccountUsersTab,
     AccountDocuments,
     B2BModuleTab,
@@ -66,7 +61,6 @@ const accountRoutes: Routes = [
     FormsModule,
     TranslateModule.forRoot(),
     CountryPickerModule,
-    // MaterialModule,
   ],
 })
 export class AccountModule { }

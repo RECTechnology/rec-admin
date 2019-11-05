@@ -1,8 +1,8 @@
-import { Injectable, Output, EventEmitter, defineInjectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { XHR } from './xhr/xhr';
 import { API_URL } from '../data/consts';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { User } from 'src/shared/entities/user.ent';
 
@@ -26,23 +26,6 @@ export class UserService {
   public uploadprogress$;
   public progressObserver;
   @Output() public onLogout: EventEmitter<any> = new EventEmitter();
-
-  private disabled_items_props = {
-    1: [
-      'email',
-    ],
-    2: [
-      'name',
-      'last_name',
-      'date_birth',
-      'country',
-      'prefix',
-      'email',
-      'phone',
-      'address',
-      'card_info',
-    ],
-  };
 
   constructor(
     private http: HttpClient,
@@ -121,11 +104,6 @@ export class UserService {
     return true;
   }
 
-  /**
-   * Gets group data with specified id
-   * @param {string} id - The id of the group/account/company
-   * @return {Observable<any>}
-   */
   public getGroup(id: string): Observable<any> {
     return this.http.get(
       `${API_URL}/groups/v1/show/` + id,
@@ -138,13 +116,6 @@ export class UserService {
       );
   }
 
-  /**
-   * Adds a user to your account
-   * @param {string} account_id - The id of the group/account/company
-   * @param {object} email - The email of the user to add
-   * @param {object} role - The role the user will have
-   * @return {Observable<any>}
-   */
   public addUserToAccount(account_id, user_dni, role): Observable<any> {
     const headers = new HttpHeaders({
       'accept': 'application/json',
@@ -163,11 +134,6 @@ export class UserService {
     );
   }
 
-  /**
-   * Adds a user to your account
-   * @param {object} data - The data for the new user
-   * @return {Observable<any>}
-   */
   public createAndAddUser(data): Observable<any> {
     const headers = new HttpHeaders({
       'accept': 'application/json',

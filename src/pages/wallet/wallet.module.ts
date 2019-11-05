@@ -7,8 +7,6 @@ import { WalletComponent } from './wallet.component';
 import { AddCommentDia } from './dialogs/add_comment/add_comment.dia';
 
 import { TranslateModule } from '@ngx-translate/core';
-import { ServiceUnavailable } from './service-unavailable/service-unavailable';
-import { FeeResume } from './fee-resume/fee-resume';
 import { ExportTxsDia } from './dialogs/export-txs/export-txs.dia';
 import { CashOutDia } from './dialogs/cash-out/cash-out.dia';
 import { CashOutTesoroDia } from './dialogs/cash-out-tesoro/cash-out-tesoro.dia';
@@ -18,8 +16,6 @@ import { TxDetails } from './dialogs/tx_details/tx_details.dia';
   declarations: [
     WalletComponent,
     AddCommentDia,
-    ServiceUnavailable,
-    FeeResume,
     ExportTxsDia,
     CashOutDia,
     CashOutTesoroDia,

@@ -68,7 +68,6 @@ const imports = [
   FormsModule,
   HttpClientModule,
   BrowserAnimationsModule,
-  // TableListModule,
   SharedModule, // Contains shared imports and Routes
   DashboardModule,
   WalletModule,

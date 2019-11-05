@@ -1,17 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Sort } from '@angular/material';
-import { UserService } from '../../services/user.service';
 import { LoginService } from '../../services/auth/auth.service';
-import { WalletService } from '../../services/wallet/wallet.service';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { TransactionService } from '../../services/transactions/transactions.service';
 import { AddCommentDia } from './dialogs/add_comment/add_comment.dia';
 import { TxDetails } from './dialogs/tx_details/tx_details.dia';
-import { TranslateService } from '@ngx-translate/core';
 import { getDateDMY } from '../../shared/utils.fns';
 import { CompanyService } from '../../services/company/company.service';
 import { PageBase, OnLogout, OnLogin } from '../../bases/page-base';
@@ -31,21 +28,10 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 })
 export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLogout, OnLogin {
   public pageName = 'Wallet';
-  public showActions = false;
-  public accountToView = null;
-
   public sortID: string = 'id';
   public sortDir: string = 'desc';
-  public currencies: any[] = [];
-  public notUsedMethods: any[] = [];
-  public cryptoCurrencies: any[] = ['CREA', 'ETH', 'BTC', 'FAIR', 'FAC'];
-  public cash_in_methods: any[] = [];
-  public cash_out_methods: any[] = [];
-  public exchange_methods: any[] = [];
-  public wallet2wallet_methods: any[] = [];
+
   public loadingTransactions: boolean = false;
-  public reloadingCurrency: boolean = false;
-  public showZeroBalances: boolean = localStorage.getItem('showZeroBalances') === 'hide' ? false : true;
   public default_currency: string = '';
   public refreshInterval: number = 25e3; // Miliseconds
   public totalWalletTransactions: number = 0;
@@ -53,7 +39,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
   public sortedData;
   public refreshObs;
   public filter;
-  public userFavs = [];
   public dateTo = getDateDMY(new Date(), '-');
   public dateFrom = getDateDMY(new Date(Date.now() - (30 * 2 * 24 * 60 * 60 * 1000 * 4)), '-');
   public querySub: any;
@@ -61,16 +46,11 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
   constructor(
     public titleService: Title,
     public route: ActivatedRoute,
-    public router: Router,
-
     public controles: ControlesService,
-    public us: UserService,
     public txService: TransactionService,
     public dialog: MatDialog,
-    public ws: WalletService,
     public utils: UtilsService,
     public ls: LoginService,
-    public translate: TranslateService,
     public companyService: CompanyService,
     public alerts: AlertsService,
   ) {
@@ -85,8 +65,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
           for (const k in params) {
             if (k !== 'account') {
               this.filter.addFilter(k, params[k], {});
-            } else {
-              this.accountToView = params[k];
             }
           }
         }
@@ -94,15 +72,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
         this.getMethods();
         this.companyService.doGetCompanies();
       });
-  }
-
-  public changeAccount(account) {
-    this.accountToView = account.company.id;
-    this.router.navigate(['/transactions'], {
-      queryParams: { account: account.company.id },
-      queryParamsHandling: 'merge',
-    });
-    this.getTransactions();
   }
 
   // Custom hooks
@@ -142,11 +111,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     this.setRefresh();
     this.getMethods();
     this.getTransactions();
-  }
-
-  // Called when user clicks show/hide zero balances
-  public showZeroBalanceChanged() {
-    localStorage.setItem('showZeroBalances', this.showZeroBalances ? 'show' : 'hide');
   }
 
   public getTx(id) {
