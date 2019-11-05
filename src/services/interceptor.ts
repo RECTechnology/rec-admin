@@ -38,8 +38,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                         cleanError = errStr;
                     }
 
+                    console.log(cleanError);
+
                     if (environment.sentry.active) {
-                        MySentry.createException(cleanError.name, cleanError.message, { params: request.body });
+                        MySentry.createException(
+                            cleanError.name || cleanError.status_text, cleanError.message, { params: request.body });
                     }
 
                     return throwError(cleanError);
