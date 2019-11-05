@@ -26,11 +26,6 @@ import { SharedModule } from 'src/shared/shared.module';
 import { MdI18n } from 'src/shared/md-i18n';
 import { MaterialModule } from 'src/shared/md-module';
 import { MatPaginatorIntl, RippleGlobalOptions, MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material';
-
-import { registerLocaleData } from '@angular/common';
-import localeEs from '@angular/common/locales/es';
-import localeEn from '@angular/common/locales/en';
-import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { QuillModule } from 'ngx-quill';
 
@@ -43,15 +38,16 @@ import { MySentry } from 'src/shared/sentry';
 import { environment } from 'src/environments/environment';
 import { SentryErrorHandler } from 'src/shared/sentry-error-handler';
 
-MySentry.setup(environment);
 
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
-}
-
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import localeEn from '@angular/common/locales/en';
+import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
 registerLocaleData(localeCat);
 registerLocaleData(localeEn);
 registerLocaleData(localeEs);
+
+MySentry.setup(environment);
 
 const globalRippleConfig: RippleGlobalOptions = {
   animation: {
@@ -62,7 +58,6 @@ const globalRippleConfig: RippleGlobalOptions = {
 };
 
 const LOCALE = navigator.languages[1];
-
 const imports = [
   BrowserModule,
   FormsModule,
@@ -77,7 +72,9 @@ const imports = [
     loader: {
       deps: [HttpClient],
       provide: TranslateLoader,
-      useFactory: (createTranslateLoader),
+      useFactory: (function createTranslateLoader(http: HttpClient) {
+        return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+      }),
     },
   }),
   BrowserAnimationsModule,
@@ -92,11 +89,6 @@ const imports = [
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  /**
-   * Root Component is 'AppComponent'
-   * AppComponent is the first component to be rendered,
-   * and all the other components are rendered inside <router-outlet> based on the route
-   */
   imports,
   providers: [
     LoginService,
