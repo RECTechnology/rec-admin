@@ -28,8 +28,9 @@ export namespace MySentry {
     }
 
     export function createException(name, message, opts: any = {}) {
-        const error = new Error(message);
+        const error: any = new Error(message);
         error.name = name || 'UnkownError';
+        error.params = opts.params;
 
         if (opts.tags) {
             for (const tag of opts.tags) {

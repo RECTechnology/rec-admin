@@ -28,14 +28,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     let cleanError: any = error;
                     const errStr = error.error || error;
 
-                    if (error.status === 500 && !environment.error_500_details) {
-                        this.alerts.showSnackbar('ERROR_500', 'ok');
-                        return throwError({
-                            message: 'ERROR_500',
-                            status: 500,
-                        });
-                    }
-
                     if (typeof errStr === 'string') {
                         try {
                             cleanError = JSON.parse(errStr);
@@ -47,7 +39,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     }
 
                     if (environment.sentry.active) {
-                        MySentry.createException(cleanError.name, cleanError.message);
+                        MySentry.createException(cleanError.name, cleanError.message, { params: request.body });
                     }
 
                     return throwError(cleanError);
