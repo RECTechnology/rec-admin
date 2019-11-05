@@ -102,7 +102,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public getRegisterTS(interval: DashboardValidIntervals) {
     this.dashService.getTimeseries('registers', interval).subscribe((resp) => {
       this.registerTimeseries = resp.data.map((el) => {
-        return { d: el.time, a: el.private || 0, b: el.company || 0 };
+        return { d: el.label, a: el.private || 0, b: el.company || 0 };
       });
       this.registerChart.update(this.registerTimeseries);
     });

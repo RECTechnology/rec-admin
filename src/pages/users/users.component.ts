@@ -61,7 +61,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
       sort: 'phone',
       title: 'Phone',
     }, {
-      accessor: (el) => el.companies ? el.companies.length : 0,
+      accessor: (el) => el.accounts ? el.accounts.length : 0,
       sort: 'companies',
       title: 'Companies',
     }];
