@@ -24,6 +24,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public pageName = 'Dashboard';
   public statusMask = { bnode: false, nrdb: false, rdb: false };
   public exceptions: string[];
+  public neighbourhoods: any[] = [];
   public loadingStatus = false;
   public totalCompanies: Observable<number>;
   public totalPrivates: Observable<number>;
@@ -37,6 +38,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
 
   public txColors = ['#e05206', '#de8657'];
   public regColors = ['#0098db', '#de8657'];
+  public neighColors = ['#0098db', '#9ed7f1', '#e05206', '#f0ab87', '#0555a5'];
   private refreshInterval: number = 60e3; // Miliseconds
   private refreshObs: any;
 
@@ -70,6 +72,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public getNeighbourhoods() {
     this.dashService.getNeighbourhoodStatistics().subscribe((resp) => {
       console.log(resp);
+      this.neighbourhoods = resp.data;
       this.updateDonutChart(resp.data.map((el) => ({
         label: el.name,
         value: Number(el.accounts_total),

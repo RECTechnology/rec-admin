@@ -72,6 +72,15 @@
           <i class="fa fa-refresh"></i>
         </button>
         <div id="donut" style="width: 100%"></div>
+
+        <div class="group-col-left">
+          <div *ngFor="let neighbourhood of neighbourhoods; let i = index" style="margin-right: 10px;width: 100%">
+            <p class="group-row-left center v space-between" style="width: 100%">
+              <span><i class="fa fa-square" [style.color]="neighColors[i % neighColors.length]"></i>
+                {{neighbourhood.name|translate}}</span> <span><code>{{neighbourhood.accounts_total}}</code></span>
+            </p>
+          </div>
+        </div>
       </mat-card>
     </div>
   </div>
