@@ -63,21 +63,14 @@ export class DashChart implements AfterViewInit {
       pointSize: 0,
       hideHover: true,
       gridTextColor: '#bababa',
-      xLabelFormat: (d: Date) => {
-        if (this.selectedTimeframe.value === 'year') {
-          return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getMonth()];
-        } else if (this.selectedTimeframe.value === 'month') {
-          return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][d.getDay()] + ' ' + d.getDate();
-        } else if (this.selectedTimeframe.value === 'day') {
-          return d.getHours().toString().padStart(2, '0') + ':' + d.getMinutes().toString().padStart(2, '0');
-        }
-      },
+      parseTime: false,
     }
 
     if (this.chart_) {
-      document.getElementById(this.id).innerHTML = '';
+      this.chart_.setData(data || this.data);
+    } else {
+      this.chart_ = new Morris.Area(morrisData);
     }
-    this.chart_ = new Morris.Area(morrisData);
 
     (window as any).addEventListener('resize', () => {
       this.chart_.redraw();
@@ -133,7 +126,7 @@ export class DashChart implements AfterViewInit {
       data.push({ d: today.toDate().getTime(), a: 0, b: 0 });
       for (let i = 1; i <= 25; i++) {
         let dayAgo = today.clone().subtract(i, 'hour');
-        data.push({ d: dayAgo.toDate().getTime(), a: 0, b: 0 });
+        data.push({ d: dayAgo.format('hh:mm'), a: 0, b: 0 });
       }
     }
     return data.reverse();
