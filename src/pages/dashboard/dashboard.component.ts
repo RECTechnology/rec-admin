@@ -111,6 +111,8 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public getTransactionsTS(interval: DashboardValidIntervals) {
     this.dashService.getTimeseries('transaction', interval).subscribe((resp) => {
       this.transactionsTimeseries = resp.data;
+      this.txChart.update(this.transactionsTimeseries);
+
     });
   }
 
