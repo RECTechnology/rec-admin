@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { TransactionService } from 'src/services/transactions/transactions.service';
 import { DashboardService, DashboardValidIntervals } from 'src/services/dashboard/dashboard.service';
 import { DashChart } from 'src/components/dash-chart/dash-chart.component';
+import { map } from 'rxjs/operators';
 
 declare const Morris;
 
@@ -55,7 +56,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.totalCompanies = dashService.getStatistics('company');
     this.totalPrivates = dashService.getStatistics('private');
     this.totalTransactions = dashService.getStatistics('transaction');
-    this.totalBalance = dashService.getStatistics('balance');
+    this.totalBalance = dashService.getStatistics('balance').pipe(map((total) => total / 1e8));
   }
 
   public ngAfterViewInit() {

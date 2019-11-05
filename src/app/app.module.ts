@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AgmCoreModule } from '@agm/core';
 
 // Components & dialogs
 import { AppComponent } from './app.component';
@@ -84,19 +83,11 @@ const imports = [
   }),
   BrowserAnimationsModule,
   MaterialModule,
-  AgmCoreModule.forRoot({
-    apiKey: 'AIzaSyADIHp2sxXZ4eNC-gkVnoaFmUPNx1rUcCY',
-  }),
   CountryPickerModule.forRoot({
     baseUrl: '/assets/countries/',
     filename: 'countries.json',
   }),
   QuillModule.forRoot(),
-  // NgxRecApiModule.forRoot({
-  //   client_id: environment.clientID,
-  //   client_secret: environment.clientSecret,
-  // }),
-  // NgxLoggingModule.forRoot({ enabled: !environment.production }),
 ];
 
 @NgModule({
