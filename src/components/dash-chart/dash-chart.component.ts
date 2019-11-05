@@ -14,32 +14,20 @@ declare let Morris, _;
   templateUrl: './dash-chart.component.html',
 })
 export class DashChart implements AfterViewInit {
-  chart_: any;
+  public chart_: any;
   public id: string = String(Math.random());
+
   @Input() public title = '';
   @Input() public timeframes = DashChart.DefaultTimeframes;
   @Input() public selectedTimeframe: any = DashChart.DefaultTimeframes[0];
   @Input() public colors = DashChart.DefaultColors;
   @Input() public labels = ['A', 'B'];
-  @Input() public data = [
-    { d: '2018-06-08 12:00:00', a: 100, b: 90 },
-    { d: '2018-06-09 12:00:00', a: 75, b: 65 },
-    { d: '2018-06-10 12:00:00', a: 50, b: 40 },
-    { d: '2018-06-11 12:00:00', a: 75, b: 65 },
-    { d: '2018-06-12 12:00:00', a: 50, b: 40 },
-    { d: '2018-06-13 12:00:00', a: 75, b: 65 },
-    { d: '2018-06-14 12:00:00', a: 100, b: 90 },
-  ];
+  @Input() public data = [];
   @Output('changed') public changedTimeframe: EventEmitter<any> = new EventEmitter();
 
 
-  constructor(@Inject(DOCUMENT) public document) {
+  constructor(@Inject(DOCUMENT) public document) {}
 
-  }
-
-  /**
-   * ngAfterViewInit
-   */
   public ngAfterViewInit() {
     this.update();
   }
@@ -116,12 +104,12 @@ export class DashChart implements AfterViewInit {
 
     if (timeframe === 'year') {
       let yearAgo = today.clone().subtract(1, 'year');
-      data.push({ d: yearAgo.toDate().getTime(), a: 0, b: 0 });
-      data.push({ d: today.toDate().getTime(), a: 0, b: 0 });
+      data.push({ d: yearAgo.format('DD-MM-YYYY'), a: 0, b: 0 });
+      data.push({ d: today.format('DD-MM-YYYY'), a: 0, b: 0 });
     } else if (timeframe === 'month') {
       let monthAgo = today.clone().subtract(1, 'month');
-      data.push({ d: monthAgo.toDate().getTime(), a: 0, b: 0 });
-      data.push({ d: today.toDate().getTime(), a: 0, b: 0 });
+      data.push({ d: monthAgo.format('MM-YYYY'), a: 0, b: 0 });
+      data.push({ d: today.format('MM-YYYY'), a: 0, b: 0 });
     } else if (timeframe === 'day') {
       data.push({ d: today.toDate().getTime(), a: 0, b: 0 });
       for (let i = 1; i <= 25; i++) {
