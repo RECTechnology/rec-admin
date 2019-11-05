@@ -21,11 +21,7 @@ declare const Morris;
 })
 export class DashboardComponent extends PageBase implements OnDestroy, OnLogout {
   public pageName = 'Dashboard';
-  public statusMask = {
-    bnode: false,
-    nrdb: false,
-    rdb: false,
-  };
+  public statusMask = { bnode: false, nrdb: false, rdb: false };
   public exceptions: string[];
   public loadingStatus = false;
   public totalCompanies: Observable<number>;
@@ -40,7 +36,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
 
   public txColors = ['#e05206', '#de8657'];
   public regColors = ['#0098db', '#de8657'];
-
   private refreshInterval: number = 60e3; // Miliseconds
   private refreshObs: any;
 
@@ -68,7 +63,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.getStatus();
     this.setRefresh();
     this.getRegisterTS(this.registerChart.selectedTimeframe.value);
-    this.getTransactionsTS(this.txChart.selectedTimeframe.value);
+    // this.getTransactionsTS(this.txChart.selectedTimeframe.value);
   }
 
   public getNeighbourhoods() {
