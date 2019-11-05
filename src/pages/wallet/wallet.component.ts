@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Sort } from '@angular/material';
+
 import { LoginService } from '../../services/auth/auth.service';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UtilsService } from '../../services/utils/utils.service';
