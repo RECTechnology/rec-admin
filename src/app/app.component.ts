@@ -85,6 +85,7 @@ export class AppComponent implements OnInit, OnDestroy {
      */
     this.ls.onLogin
       .subscribe((resp) => {
+        console.log('resp');
         if (resp && !this.initedIdle) {
           this.initCheckIdle();
           this.initedIdle = true;
@@ -111,10 +112,10 @@ export class AppComponent implements OnInit, OnDestroy {
     const localSavedLang = localStorage.getItem('lang');
     let currentLang = localSavedLang !== 'undefined' ? localSavedLang : browserLang || 'en';
 
-    if (!(currentLang in ['es', 'cat', 'en'])) {
+    if (!['es', 'cat', 'en'].includes(currentLang)) {
       currentLang = 'en';
     }
-
+    
     this.us.lang = this.utils.userLang = currentLang;
     localStorage.setItem('lang', currentLang);
 
