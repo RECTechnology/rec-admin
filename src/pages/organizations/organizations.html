@@ -36,12 +36,6 @@
         [headers]="headers" [data]="sortedData" [itemOptions]="itemOptions" noItemsMessage="There are no bussiness yet"
         [limit]="limit" [total]="total" (onChangePage)="changedPage($event)">
       </tl-table>
-
-      <div style="height: 300px;" *ngIf="showType === 'map' && sortedData.length">
-        <agm-map>
-          <agm-marker *ngFor="let item of sortedData" [latitude]="item.lat" [longitude]="item.lon"></agm-marker>
-        </agm-map>
-      </div>
     </mat-card>
   </div>
   <page-footer></page-footer>

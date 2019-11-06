@@ -104,6 +104,10 @@ export class OrganizationsComponent extends TablePageBase {
       icon: 'eye',
       text: 'View',
     }, {
+      callback: this.viewAccount.bind(this),
+      icon: 'eye',
+      text: 'View Account',
+    }, {
       callback: this.editDetails.bind(this),
       icon: 'edit',
       text: 'Edit',
@@ -296,6 +300,10 @@ export class OrganizationsComponent extends TablePageBase {
     }).subscribe((result) => {
       this.search();
     });
+  }
+
+  public viewAccount(data) {
+    this.router.navigate(['/accounts/' + data.id]);
   }
 
   public openMaps(coord) {

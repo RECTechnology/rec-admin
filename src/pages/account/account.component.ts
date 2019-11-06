@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { UserService } from 'src/services/user.service';
 import { PageBase } from 'src/bases/page-base';
@@ -13,9 +14,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
   selector: 'account',
-  styleUrls: [
-    './account.css',
-  ],
+  styleUrls: ['./account.css'],
   templateUrl: './account.html',
 })
 export class AccountComponent extends PageBase implements OnInit, OnDestroy {
@@ -50,6 +49,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public crudAccounts: AccountsCrud,
     public alerts: AlertsService,
+    private location: Location,
   ) {
     super();
   }
@@ -80,5 +80,9 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
 
   public ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  public goBack() {
+    this.location.back();
   }
 }

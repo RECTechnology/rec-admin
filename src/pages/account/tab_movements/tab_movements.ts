@@ -46,7 +46,7 @@ export class MovementsTab implements AfterContentInit {
     this.route.params.subscribe((params) => {
       this.account_id = params.id;
 
-      this.filter = new TxFilter(this.router, '/account/' + this.account_id);
+      this.filter = new TxFilter(this.router, '/accounts/' + this.account_id);
       this.filter.reloader = this.search.bind(this); // Call for when filter changes
 
       this.search();
