@@ -53,7 +53,7 @@ export class DashChart implements AfterViewInit {
       gridTextColor: '#bababa',
       parseTime: false,
       behaveLikeLine: true
-    }
+    };
 
     if (this.chart_) {
       this.chart_.setData(data || this.data);
