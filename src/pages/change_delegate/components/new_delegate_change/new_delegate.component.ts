@@ -260,6 +260,7 @@ export class NewDelegateComponent extends PageBase {
 
         this.alerts.openModal(SelectAccountsDia, {
             selectedAccounts: this.savedItems.slice(),
+            sortType: 'COMPANY',
         }, { width: '80vw', height: '80vh' }).subscribe((result) => {
             if (result) {
                 this.total = this.sortedData.length + (result.accounts.length - this.sortedData.length);

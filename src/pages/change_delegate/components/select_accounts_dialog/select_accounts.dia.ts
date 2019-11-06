@@ -61,11 +61,17 @@ export class SelectAccountsDia extends BaseDialog {
     this.loading = true;
     this.selectedIDs = this.selectedAccounts.slice().map((el) => (el.account ? el.account.id : el.id));
 
-    this.accountsCrud.list({
+    const opts: any = {
       offset: this.offsetUnsorted, limit: this.limitUnsorted,
       search: this.unselectedSearch, sort: this.sortIDUnsorted,
       order: this.sortDirUnsorted, active: 1,
-    }).subscribe((resp) => {
+    };
+
+    if (this.sortType) {
+      opts.type = this.sortType;
+    }
+
+    this.accountsCrud.list(opts).subscribe((resp) => {
       this.unselectedAccounts = resp.data.elements;
       this.totalAccountsUnsorted = resp.data.total;
 

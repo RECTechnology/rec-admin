@@ -74,7 +74,6 @@
               <span class="circle bg-{{change.status}}" *ngIf="utils.isMobileDevice"></span>
             </td>
             <td>
-
               <button mat-button *ngIf="change.status == 'scheduled'" (click)="cancelChange()">
                 {{'Cancel'|translate}}
               </button>
@@ -111,7 +110,6 @@
         [pageSizeOptions]="[5, 10, 25, 100]">
       </mat-paginator>
     </div>
-
   </div>
   <page-footer></page-footer>
 </div>
