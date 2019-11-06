@@ -466,7 +466,7 @@
   "ACCOUNT_ACTIVE_DESC": "If this account is deactivated the user will not be able to log in",
   "Send By Mail": "Send by mail",
   "DASH_CHART_REGISTERS": "Registers Private/Companies",
-  "DASH_CHART_TXS": "Transactions and money supply",
+  "DASH_CHART_TXS": "Transactions and volume",
   "VOLUME": "Volume",
   "PRIVATE": "Private",
   "COMPANY": "Company"
