@@ -49,6 +49,10 @@ registerLocaleData(localeEs);
 
 MySentry.setup(environment);
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
+}
+
 const globalRippleConfig: RippleGlobalOptions = {
   animation: {
     enterDuration: 300,
@@ -63,7 +67,7 @@ const imports = [
   FormsModule,
   HttpClientModule,
   BrowserAnimationsModule,
-  SharedModule, // Contains shared imports and Routes
+  SharedModule,
   DashboardModule,
   WalletModule,
   ChangeDelegateModule,
@@ -72,9 +76,7 @@ const imports = [
     loader: {
       deps: [HttpClient],
       provide: TranslateLoader,
-      useFactory: (function createTranslateLoader(http: HttpClient) {
-        return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
-      }),
+      useFactory: (createTranslateLoader),
     },
   }),
   BrowserAnimationsModule,
