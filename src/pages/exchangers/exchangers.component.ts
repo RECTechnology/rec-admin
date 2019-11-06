@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from '../../services/controles/controles.service';
 import { TablePageBase } from '../../bases/page-base';
 import { LoginService } from '../../services/auth/auth.service';
-import { TlHeader } from '../../components/table-list/tl-table/tl-table.component';
+import { TlHeader, TlItemOption } from '../../components/table-list/tl-table/tl-table.component';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
@@ -57,7 +57,12 @@ export class ExchangersComponent extends TablePageBase {
     { key: 'name', value: '$.name', active: true },
   ];
 
-  public itemOptions: any = {};
+  public itemOptions: TlItemOption[] = [
+    {
+      callback: this.viewAccount.bind(this),
+      icon: 'eye',
+      text: 'View Account',
+    }];
 
   constructor(
     public titleService: Title,
@@ -121,5 +126,9 @@ export class ExchangersComponent extends TablePageBase {
       fn: this.accountsCrud.export.bind(this.accountsCrud),
       list: [...this.defaultExportKvp],
     });
+  }
+
+  public viewAccount(data) {
+    this.router.navigate(['/accounts/' + data.id]);
   }
 }
