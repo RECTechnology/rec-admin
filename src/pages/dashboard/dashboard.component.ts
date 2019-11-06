@@ -66,7 +66,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.getStatus();
     this.setRefresh();
     this.getRegisterTS(this.registerChart.selectedTimeframe.value);
-    // this.getTransactionsTS(this.txChart.selectedTimeframe.value);
+    this.getTransactionsTS(this.txChart.selectedTimeframe.value);
   }
 
   public getNeighbourhoods() {
@@ -113,10 +113,12 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   }
 
   public getTransactionsTS(interval: DashboardValidIntervals) {
-    this.dashService.getTimeseries('transaction', interval).subscribe((resp) => {
-      this.transactionsTimeseries = resp.data;
+    this.dashService.getTimeseries('transactions', interval).subscribe((resp) => {
+      console.log('sadasdas', resp);
+      this.transactionsTimeseries = resp.data.map((el) => {
+        return { d: el.label, a: el.count || 0, b: el.volume / 1e8 || 0 };
+      });
       this.txChart.update(this.transactionsTimeseries);
-
     });
   }
 

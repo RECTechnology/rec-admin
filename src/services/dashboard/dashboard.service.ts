@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 export type DashboardStatisticsSubject = 'private' | 'company' | 'transaction' | 'balance';
 export type DashboardValidIntervals = 'year' | 'month' | 'day';
-export type DashboardValidSeries = 'registers' | 'transaction';
+export type DashboardValidSeries = 'registers' | 'transactions';
 
 @Injectable({
   providedIn: 'root',

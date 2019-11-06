@@ -58,8 +58,8 @@
     </div>
     <div class="col-lg-8 col-md-12 col-sm-12">
       <dash-chart #registerChart (changed)="getRegisterTS($event)" [data]="registerTimeseries"
-        title="DASH_CHART_REGISTERS" [colors]="regColors" [labels]="['PRIVATE', 'COMPANY']"></dash-chart>
-      <dash-chart #txChart (changed)="getTransactionsTS($event)" [data]="transactionsTimeseries" title="DASH_CHART_TXS"
+        [title]="'DASH_CHART_REGISTERS'" [colors]="regColors" [labels]="['PRIVATE', 'COMPANY']"></dash-chart>
+      <dash-chart #txChart (changed)="getTransactionsTS($event)" [data]="transactionsTimeseries" [title]="'DASH_CHART_TXS'"
         [colors]="txColors" [labels]="['TRANSACTIONS', 'VOLUME']"></dash-chart>
     </div>
     <div class="col-lg-4 col-md-12 col-sm-12">

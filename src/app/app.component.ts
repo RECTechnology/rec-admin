@@ -3,7 +3,6 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material';
 import { interval } from 'rxjs';
-
 import { AppService } from 'src/services/app/app.service';
 import { environment } from 'src/environments/environment';
 import { UtilsService } from 'src/services/utils/utils.service';
@@ -107,11 +106,10 @@ export class AppComponent implements OnInit, OnDestroy {
       });
   }
 
-  /* Setup translate, and set default lang */
   public setupLang() {
     const browserLang = this.translate.getBrowserLang();
     const localSavedLang = localStorage.getItem('lang');
-    const currentLang = localSavedLang != 'undefined' ? localSavedLang : browserLang || 'en';
+    const currentLang = localSavedLang !== 'undefined' ? localSavedLang : browserLang || 'en';
     this.us.lang = this.utils.userLang = currentLang;
     localStorage.setItem('lang', currentLang);
 
@@ -126,10 +124,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.dialog.closeAll();
   }
 
-  /**
-   * Starts idle checking interval,
-   * and tracks any action the user does and resets counter back to 0
-   */
   public initCheckIdle(): void {
     this.utils.checkIdleTime();
     localStorage.setItem('session_status', 'active');
