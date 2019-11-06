@@ -39,9 +39,9 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public txColors = ['#e05206', '#de8657'];
   public regColors = ['#0098db', '#de8657'];
   public neighColors = ['#0098db', '#9ed7f1', '#e05206', '#f0ab87', '#0555a5'];
-  private refreshInterval: number = 60; // Miliseconds
-  private refreshObs: any;
-  private refreshEnabled = true;
+  public refreshInterval: number = 60; // Miliseconds
+  public refreshObs: any;
+  public refreshEnabled = true;
 
   constructor(
     public titleService: Title,
@@ -157,7 +157,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.setRefresh();
   }
 
-  private setRefresh(): void {
+  public setRefresh(): void {
     console.log('setRefresh', this.refreshEnabled);
     console.log('refreshInterval', this.refreshInterval);
     if (this.refreshEnabled) {
