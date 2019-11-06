@@ -469,5 +469,6 @@
   "DASH_CHART_TXS": "Transactions and volume",
   "VOLUME": "Volume",
   "PRIVATE": "Private",
-  "COMPANY": "Company"
+  "COMPANY": "Company",
+  "CURRENCY_TOTAL": "Currency Total"
 }

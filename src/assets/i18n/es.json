@@ -1014,6 +1014,7 @@
   "PRIVATE": "Particulares",
   "COMPANY": "Empresas",
   "General view": "Vista General",
-  "VOLUME": "Volumen"
+  "VOLUME": "Volumen",
+  "CURRENCY_TOTAL": "Moneda en circulación"
 
 }
