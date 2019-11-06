@@ -9,7 +9,7 @@
     <div class="user-image center h column" style="height: auto" [ngClass]="{
         'company-border': companyService.selectedCompany.type == 'COMPANY',
         'private-border': companyService.selectedCompany.type == 'PRIVATE'
-      }" routerLink="/account/{{companyService.selectedCompany.id}}">
+      }" routerLink="/accounts/{{companyService.selectedCompany.id}}">
       <img src="{{companyService.selectedCompany.company_image || Brand.account_default_image}}" alt="">
     </div>
     <span style="margin-left: 10px">{{companyService.selectedCompany.name}}</span>

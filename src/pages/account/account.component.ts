@@ -71,7 +71,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   /* Called when tab change, so url changes also */
   public changeUrl($event) {
     if (this.account_id) {
-      this.router.navigate(['/account/' + this.account_id], {
+      this.router.navigate(['/accounts/' + this.account_id], {
         queryParams: { tab: this.tabMap[$event] },
         queryParamsHandling: 'merge',
       });
