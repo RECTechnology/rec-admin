@@ -33,6 +33,7 @@
 
 <div class="page padd-x20" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
   <div class="row">
+    <div></div>
     <div class="col-lg-3 col-md-6 col-sm-12 padd-right-x10">
       <dash-agregation title="PRIVATE" value="{{totalPrivates | async | number}}" classes="bg-white col-blue">
       </dash-agregation>
@@ -54,13 +55,36 @@
 
   <div class="row">
     <div class="col-lg-12">
-      <h4 style="padding: 15px 0; font-weight: 200;">{{'General view'|translate}}</h4>
+      <div class="group-row-left center v space-between" style="width: 100%">
+        <h4 style="padding: 15px 0; font-weight: 200;">{{'General view'|translate}}</h4>
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <i class="fa fa-cog"></i>
+          </button>
+          <mat-menu #menu="matMenu" class="padd-x10">
+            <h4>
+              Dashboard Settings
+            </h4>
+            <mat-checkbox [checked]="refreshEnabled" (click)="$event.stopPropagation()"
+              (change)="refreshChanged($event)">
+              Refresh Enabled</mat-checkbox>
+            <div>
+              <select matNativeControl [(ngModel)]="refreshInterval" (ngModelChange)="setRefresh();" (click)="$event.stopPropagation()">
+                <option value="10" (click)="$event.preventDefault()">10s</option>
+                <option value="30" (click)="$event.preventDefault()">30s</option>
+                <option value="60" (click)="$event.preventDefault()">1m</option>
+                <option value="300" (click)="$event.preventDefault()">5m</option>
+              </select>
+            </div>
+          </mat-menu>
+        </div>
+      </div>
     </div>
     <div class="col-lg-8 col-md-12 col-sm-12">
       <dash-chart #registerChart (changed)="getRegisterTS($event)" [data]="registerTimeseries"
         [title]="'DASH_CHART_REGISTERS'" [colors]="regColors" [labels]="['PRIVATE', 'COMPANY']"></dash-chart>
-      <dash-chart #txChart (changed)="getTransactionsTS($event)" [data]="transactionsTimeseries" [title]="'DASH_CHART_TXS'"
-        [colors]="txColors" [labels]="['TRANSACTIONS', 'VOLUME']"></dash-chart>
+      <dash-chart #txChart (changed)="getTransactionsTS($event)" [data]="transactionsTimeseries"
+        [title]="'DASH_CHART_TXS'" [colors]="txColors" [labels]="['TRANSACTIONS', 'VOLUME']"></dash-chart>
     </div>
     <div class="col-lg-4 col-md-12 col-sm-12">
       <mat-card style="height: calc(100% - 20px); position: relative;">

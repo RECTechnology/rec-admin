@@ -68,7 +68,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     /**
      * Subscription for when user logs out
-     * In case we need to unsubscribe observables from outside LoginSerice
+     * In case we need to unsubscribe observables from outside LoginService
      */
     this.ls.onLogout
       .subscribe((resp) => {
@@ -115,7 +115,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (!['es', 'cat', 'en'].includes(currentLang)) {
       currentLang = 'en';
     }
-    
+
     this.us.lang = this.utils.userLang = currentLang;
     localStorage.setItem('lang', currentLang);
 

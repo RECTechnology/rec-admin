@@ -39,8 +39,9 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public txColors = ['#e05206', '#de8657'];
   public regColors = ['#0098db', '#de8657'];
   public neighColors = ['#0098db', '#9ed7f1', '#e05206', '#f0ab87', '#0555a5'];
-  private refreshInterval: number = 60e3; // Miliseconds
+  private refreshInterval: number = 60; // Miliseconds
   private refreshObs: any;
+  private refreshEnabled = true;
 
   constructor(
     public titleService: Title,
@@ -54,19 +55,22 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     public dashService: DashboardService,
   ) {
     super();
-
-    this.totalCompanies = dashService.getStatistics('company');
-    this.totalPrivates = dashService.getStatistics('private');
-    this.totalTransactions = dashService.getStatistics('transaction');
-    this.totalBalance = dashService.getStatistics('balance').pipe(map((total) => total / 1e8));
   }
 
   public ngAfterViewInit() {
+    this.setRefresh();
+    this.getAggregations();
     this.getNeighbourhoods();
     this.getStatus();
-    this.setRefresh();
     this.getRegisterTS(this.registerChart.selectedTimeframe.value);
     this.getTransactionsTS(this.txChart.selectedTimeframe.value);
+  }
+
+  public getAggregations() {
+    this.totalCompanies = this.dashService.getStatistics('company');
+    this.totalPrivates = this.dashService.getStatistics('private');
+    this.totalTransactions = this.dashService.getStatistics('transaction');
+    this.totalBalance = this.dashService.getStatistics('balance').pipe(map((total) => total / 1e8));
   }
 
   public getNeighbourhoods() {
@@ -148,9 +152,23 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.dialog.closeAll();
   }
 
+  public refreshChanged($evt) {
+    this.refreshEnabled = $evt.checked;
+    this.setRefresh();
+  }
+
   private setRefresh(): void {
-    this.refreshObs = setInterval((_) => {
-      this.getStatus();
-    }, this.refreshInterval);
+    console.log('setRefresh', this.refreshEnabled);
+    console.log('refreshInterval', this.refreshInterval);
+    if (this.refreshEnabled) {
+      this.refreshObs = setInterval((_) => {
+        this.getStatus();
+        this.getRegisterTS(this.registerChart.selectedTimeframe.value);
+        this.getTransactionsTS(this.txChart.selectedTimeframe.value);
+        this.getAggregations();
+      }, Number(this.refreshInterval) * 1000);
+    } else {
+      clearInterval(this.refreshObs);
+    }
   }
 }
