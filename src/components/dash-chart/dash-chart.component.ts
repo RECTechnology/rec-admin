@@ -18,6 +18,12 @@ noData(Highcharts);
 More(Highcharts);
 noData(Highcharts);
 
+const formatters = {
+  year: (val) => Highcharts.dateFormat('%b \'%y', val),
+  month: (val) => Highcharts.dateFormat('%e of %b', val),
+  day: (val) => Highcharts.dateFormat('%H:%M', val),
+}
+
 @Component({
   selector: 'dash-chart',
   styleUrls: [
@@ -53,6 +59,8 @@ export class DashChart implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
+    console.log('this.ssefjkajk', this.selectedTimeframe);
+    let self = this;
     this.options = {
       chart: {
         type: 'area',
@@ -79,14 +87,14 @@ export class DashChart implements AfterViewInit {
       colors: this.colors,
       tooltip: {
         formatter: function () {
-          return 'x: ' + this.x + '\ny: ' + this.y.toFixed(2);
+          return 'x: ' + formatters[self.selectedTimeframe.value](this.x) + '\ny: ' + this.y.toFixed(2);
         }
       },
       xAxis: {
-        type: 'string',
+        type: 'datetime',
         labels: {
           formatter: function () {
-            return this.value;
+            return formatters[self.selectedTimeframe.value](this.value); //Highcharts.dateFormat('%Y %M %d',this.value);
           }
         }
       },
