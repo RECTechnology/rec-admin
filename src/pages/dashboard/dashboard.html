@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="status-badge marg-right-x10">
-      <p class="label_txt">None Relational DB</p>
+      <p class="label_txt">Non Relational DB</p>
       <div class="value bg-success" *ngIf="statusMask.nrdb">
         <i class="fa fa-check"></i>
       </div>
@@ -63,11 +63,11 @@
           </button>
           <mat-menu #menu="matMenu" class="padd-x10">
             <h4>
-              Dashboard Settings
+              {{'DASHBOARD_SETTINGS' | translate}}
             </h4>
             <mat-checkbox color="primary" [checked]="refreshEnabled" (click)="$event.stopPropagation()"
               (change)="refreshChanged($event)">
-              Refresh Enabled</mat-checkbox>
+              {{'REFRESH_ENABLED' | translate}}</mat-checkbox>
             <div>
               <select matNativeControl [(ngModel)]="refreshInterval" (ngModelChange)="setRefresh();" (click)="$event.stopPropagation()">
                 <option value="10" (click)="$event.preventDefault()">10s</option>
