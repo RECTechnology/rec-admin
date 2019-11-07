@@ -110,8 +110,18 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
 
   public getRegisterTS(interval: DashboardValidIntervals) {
     this.dashService.getTimeseries('registers', interval).subscribe((resp) => {
-      const dataPrivate = resp.data.map((el) => el.private);
-      const dataCompany = resp.data.map((el) => el.company);
+      const dataPrivate = []; // resp.data.map((el) => el.count);
+      const dataCompany = []; // resp.data.map((el) => el.volume / 1e8);
+      console.log(resp.data);
+      resp.data = resp.data.sort((a, b) => {
+        return new Date(a.time).getTime() - new Date(b.time).getTime();
+      });
+
+      for (const point of resp.data) {
+        dataPrivate.push({ x: new Date(point.time).getTime(), y: +point.private || 0 });
+        dataCompany.push({ x: new Date(point.time).getTime(), y: +point.company || 0 });
+      }
+      console.log(dataPrivate, dataCompany);
       this.registerChart.update(dataPrivate, dataCompany);
     });
   }
@@ -119,8 +129,12 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public getTransactionsTS(interval: DashboardValidIntervals) {
     this.dashService.getTimeseries('transactions', interval).subscribe((resp) => {
       console.log('sadasdas', resp);
-      const txCount = resp.data.map((el) => el.count);
-      const txVolume = resp.data.map((el) => el.volume / 1e8);
+      const txCount = []; // resp.data.map((el) => el.count);
+      const txVolume = []; // resp.data.map((el) => el.volume / 1e8);
+      for (const point of resp.data) {
+        txCount.push({ x: new Date(point.time).getTime(), y: point.count || 0 });
+        txVolume.push({ x: new Date(point.time).getTime(), y: point.volume / 1e8 || 0 });
+      }
       this.txChart.update(txCount, txVolume);
     });
   }

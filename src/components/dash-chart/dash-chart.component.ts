@@ -22,7 +22,13 @@ const formatters = {
   year: (val) => Highcharts.dateFormat('%b \'%y', val),
   month: (val) => Highcharts.dateFormat('%e of %b', val),
   day: (val) => Highcharts.dateFormat('%H:%M', val),
-}
+};
+
+const intervals = {
+  year: 30 * 24 * 3600 * 1000,
+  month: 24 * 3600 * 1000,
+  day: 3600 * 1000
+};
 
 @Component({
   selector: 'dash-chart',
@@ -31,7 +37,7 @@ const formatters = {
   ],
   templateUrl: './dash-chart.component.html',
 })
-export class DashChart implements AfterViewInit {
+export class DashChart {
   public chart_: Highcharts.Chart;
   public id: string = String(Math.random());
 
@@ -58,7 +64,7 @@ export class DashChart implements AfterViewInit {
     });
   }
 
-  public ngAfterViewInit() {
+  public update(dataA: any, dataB) {
     console.log('this.ssefjkajk', this.selectedTimeframe);
     let self = this;
     this.options = {
@@ -69,14 +75,14 @@ export class DashChart implements AfterViewInit {
       plotOptions: {
         area: {
           fillOpacity: 0.4,
-          opacity: 0.6
+          opacity: 0.6,
         },
         series: {
           marker: {
             radius: 2,
             lineWidth: 1
-          },
-        }
+          }
+        },
       },
       title: {
         text: this.translate.instant(this.title)
@@ -94,7 +100,7 @@ export class DashChart implements AfterViewInit {
         type: 'datetime',
         labels: {
           formatter: function () {
-            return formatters[self.selectedTimeframe.value](this.value); //Highcharts.dateFormat('%Y %M %d',this.value);
+            return formatters[self.selectedTimeframe.value](this.value);
           }
         }
       },
@@ -137,23 +143,18 @@ export class DashChart implements AfterViewInit {
       series: [
         {
           name: this.labels[0],
-          data: [],
+          data: dataA,
           yAxis: 0
         },
         {
           name: this.labels[1],
-          data: [],
+          data: dataB,
           yAxis: this.twoAxis ? 1 : 0
         }
       ]
     };
 
     this.chart_ = Highcharts.chart(this.id, this.options);
-  }
-
-  public update(dataA: any, dataB) {
-    this.chart_.series[0].setData(dataA, true, true);
-    this.chart_.series[1].setData(dataB, true, true);
   }
 
   public ngOnDestroy() {
