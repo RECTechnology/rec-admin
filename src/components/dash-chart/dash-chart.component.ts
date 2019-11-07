@@ -81,7 +81,7 @@ export class DashChart {
           marker: {
             radius: 2,
             lineWidth: 1
-          }
+          },
         },
       },
       title: {
@@ -102,7 +102,8 @@ export class DashChart {
           formatter: function () {
             return formatters[self.selectedTimeframe.value](this.value);
           }
-        }
+        },
+        // pointStart: moment().subtract(1, this.selectedTimeframe.value).toDate().getUTCDate(),
       },
       yAxis: [{ // left y axis
         title: {
