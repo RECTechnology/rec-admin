@@ -470,5 +470,7 @@
   "VOLUME": "Volume",
   "PRIVATE": "Private",
   "COMPANY": "Company",
-  "CURRENCY_TOTAL": "Currency Total"
+  "CURRENCY_TOTAL": "Currency Total",
+  "DASHBOARD_SETTINGS": "Dashboard settings",
+  "REFRESH_ENABLED": "Refresh enabled"
 }
