@@ -12,6 +12,7 @@ import { TransactionService } from 'src/services/transactions/transactions.servi
 import { DashboardService, DashboardValidIntervals } from 'src/services/dashboard/dashboard.service';
 import { DashChart } from 'src/components/dash-chart/dash-chart.component';
 import { map } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 declare const Morris;
 
@@ -76,7 +77,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public getNeighbourhoods() {
     this.dashService.getNeighbourhoodStatistics().subscribe((resp) => {
       console.log(resp);
-      this.neighbourhoods = resp.data;
+      this.neighbourhoods = resp.data.sort((a, b) => a.accounts_total - b.accounts_total);
       this.updateDonutChart(resp.data.map((el) => ({
         label: el.name,
         value: Number(el.accounts_total),
@@ -109,20 +110,18 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
 
   public getRegisterTS(interval: DashboardValidIntervals) {
     this.dashService.getTimeseries('registers', interval).subscribe((resp) => {
-      this.registerTimeseries = resp.data.map((el) => {
-        return { d: el.label, a: el.private || 0, b: el.company || 0 };
-      });
-      this.registerChart.update(this.registerTimeseries);
+      const dataPrivate = resp.data.map((el) => el.private);
+      const dataCompany = resp.data.map((el) => el.company);
+      this.registerChart.update(dataPrivate, dataCompany);
     });
   }
 
   public getTransactionsTS(interval: DashboardValidIntervals) {
     this.dashService.getTimeseries('transactions', interval).subscribe((resp) => {
       console.log('sadasdas', resp);
-      this.transactionsTimeseries = resp.data.map((el) => {
-        return { d: el.label, a: el.count || 0, b: el.volume / 1e8 || 0 };
-      });
-      this.txChart.update(this.transactionsTimeseries);
+      const txCount = resp.data.map((el) => el.count);
+      const txVolume = resp.data.map((el) => el.volume / 1e8);
+      this.txChart.update(txCount, txVolume);
     });
   }
 

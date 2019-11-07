@@ -3,8 +3,20 @@ import { Component, AfterViewInit, Input, Output, EventEmitter, Inject } from '@
 import { DOCUMENT } from '@angular/common';
 import { DashboardValidIntervals } from 'src/services/dashboard/dashboard.service';
 import * as moment from 'moment';
+import * as Highcharts from 'highcharts';
+import { TranslateService } from '@ngx-translate/core';
 
 declare let Morris, _;
+
+declare var require: any;
+let Boost = require('highcharts/modules/boost');
+let noData = require('highcharts/modules/no-data-to-display');
+let More = require('highcharts/highcharts-more');
+
+Boost(Highcharts);
+noData(Highcharts);
+More(Highcharts);
+noData(Highcharts);
 
 @Component({
   selector: 'dash-chart',
@@ -14,7 +26,7 @@ declare let Morris, _;
   templateUrl: './dash-chart.component.html',
 })
 export class DashChart implements AfterViewInit {
-  public chart_: any;
+  public chart_: Highcharts.Chart;
   public id: string = String(Math.random());
 
   @Input() public title = '';
@@ -23,47 +35,117 @@ export class DashChart implements AfterViewInit {
   @Input() public colors = DashChart.DefaultColors;
   @Input() public labels = ['A', 'B'];
   @Input() public data = [];
+  @Input() public twoAxis = false;
   @Output('changed') public changedTimeframe: EventEmitter<any> = new EventEmitter();
 
+  public options: any = {};
 
-  constructor(@Inject(DOCUMENT) public document) {}
-
-  public ngAfterViewInit() {
-    this.update();
+  constructor(
+    @Inject(DOCUMENT) public document,
+    public translate: TranslateService,
+  ) {
+    translate.onLangChange.subscribe(res => {
+      console.log('changed lang');
+      if (this.chart_) {
+        this.chart_.setTitle({ text: this.translate.instant(this.title) }, null, true);
+      }
+    });
   }
 
-  public update(data?) {
-    if (!data || data.length <= 0) {
-      data = DashChart.getEmptyData(this.selectedTimeframe.value);
-    }
-
-    const morrisData = {
-      element: this.id,
-      data: data || this.data,
-      xkey: 'd',
-      lineColors: this.colors,
-      lineWidth: 1.5,
-      height: 300,
-      smooth: true,
-      fillOpacity: 0.4,
-      ykeys: ['a', 'b'],
-      labels: this.labels,
-      pointSize: 0,
-      hideHover: true,
-      gridTextColor: '#bababa',
-      parseTime: false,
-      behaveLikeLine: true
+  public ngAfterViewInit() {
+    this.options = {
+      chart: {
+        type: 'area',
+        height: 250,
+      },
+      plotOptions: {
+        area: {
+          fillOpacity: 0.4,
+          opacity: 0.6
+        },
+        series: {
+          marker: {
+            radius: 2,
+            lineWidth: 1
+          },
+        }
+      },
+      title: {
+        text: this.translate.instant(this.title)
+      },
+      credits: {
+        enabled: false
+      },
+      colors: this.colors,
+      tooltip: {
+        formatter: function () {
+          return 'x: ' + this.x + '\ny: ' + this.y.toFixed(2);
+        }
+      },
+      xAxis: {
+        type: 'string',
+        labels: {
+          formatter: function () {
+            return this.value;
+          }
+        }
+      },
+      yAxis: [{ // left y axis
+        title: {
+          text: null,
+          style: {
+            color: this.colors[0]
+          }
+        },
+        labels: {
+          align: 'left',
+          x: -10,
+          y: 16,
+          format: '{value:.,0f}',
+          style: {
+            color: this.colors[0]
+          }
+        },
+        showFirstLabel: false,
+      }, this.twoAxis ? { // right y axis
+        opposite: true,
+        title: {
+          text: null,
+          style: {
+            color: this.colors[1],
+          }
+        },
+        labels: {
+          align: 'right',
+          x: -10,
+          y: 16,
+          format: '{value:.,0f} recs',
+          style: {
+            color: this.colors[1]
+          }
+        },
+        showFirstLabel: false
+      } : null].filter(_ => _),
+      series: [
+        {
+          name: this.labels[0],
+          data: [],
+          yAxis: 0
+        },
+        {
+          name: this.labels[1],
+          data: [],
+          yAxis: this.twoAxis ? 1 : 0
+        }
+      ]
     };
 
-    if (this.chart_) {
-      this.chart_.setData(data || this.data);
-    } else {
-      this.chart_ = new Morris.Area(morrisData);
-    }
+    this.chart_ = Highcharts.chart(this.id, this.options);
+  }
 
-    (window as any).addEventListener('resize', () => {
-      this.chart_.redraw();
-    });
+  public update(dataA: any, dataB) {
+    this.chart_.series[0].setData(dataA, true, true);
+    this.chart_.series[1].setData(dataB, true, true);
   }
 
   public ngOnDestroy() {
