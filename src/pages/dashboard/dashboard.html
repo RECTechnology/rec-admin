@@ -63,11 +63,11 @@
           </button>
           <mat-menu #menu="matMenu" class="padd-x10">
             <h4>
-              Dashboard Settings
+              {{'DASHBOARD_SETTINGS' | translate}}
             </h4>
             <mat-checkbox color="primary" [checked]="refreshEnabled" (click)="$event.stopPropagation()"
               (change)="refreshChanged($event)">
-              Refresh Enabled</mat-checkbox>
+              {{'REFRESH_ENABLED' | translate}}</mat-checkbox>
             <div>
               <select matNativeControl [(ngModel)]="refreshInterval" (ngModelChange)="setRefresh();" (click)="$event.stopPropagation()">
                 <option value="10" (click)="$event.preventDefault()">10s</option>
