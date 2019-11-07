@@ -1025,4 +1025,6 @@
   "General view": "Vista General",
   "VOLUME": "Volum",
   "CURRENCY_TOTAL": "Moneda en circulació"
+  "DASHBOARD_SETTINGS": "OPCIONS PANELL",
+  "REFRESH_ENABLED": "Auto-refrescar"
 }
