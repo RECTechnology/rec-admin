@@ -24,9 +24,7 @@ import { CreateDelivery } from '../create-delivery/create-delivery';
 })
 export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public pageName = 'Send Email';
-
     public id = null;
-
     public blured = false;
     public focused = false;
     public saved = true;
