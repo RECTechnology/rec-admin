@@ -58,7 +58,7 @@
       <b>{{'Accounts'|translate}}: </b>
       <div class="group-row-left" style="flex-wrap: wrap; padding: 4px 15px"
         *ngIf="user.accounts && user.accounts.length">
-        <mat-chip *ngFor="let comp of user.accounts" style="margin-bottom: 8px; overflow: hidden;width: 140px"
+        <mat-chip *ngFor="let comp of user.accounts" style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
           routerLink="/accounts/{{comp.id}}" (click)="close()" matTooltip="View account">
           <div class="group-row-left center h v">
             <img src="{{comp.company_image || Brand.account_default_image}}" alt="" height="25px" width="25px"
@@ -70,7 +70,6 @@
                 *ngIf="comp.user_roles && comp.user_roles.length">{{comp.user_roles[0]}}</span>
             </div>
           </div>
-
         </mat-chip>
         <!-- <span class="small-text-2 badge badge-gray" style="margin-right: 8px">{{user.roles ? user.roles[0] : 'ROLE_READONLY'}}</span> -->
       </div>
