@@ -1025,5 +1025,10 @@
   "VOLUME": "Volum",
   "CURRENCY_TOTAL": "Moneda en circulació",
   "DASHBOARD_SETTINGS": "OPCIONS PANELL",
-  "REFRESH_ENABLED": "Auto-refrescar"
+  "REFRESH_ENABLED": "Auto-refrescar",
+  "Gender": "Sexe",
+  "Langage": "Llengua",
+  "Profile Image": "Imatge de perfil",
+  "Document Front":"Document Avant",
+  "Document Rear":"Document Revers"
 }

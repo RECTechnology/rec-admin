@@ -1017,5 +1017,13 @@
   "VOLUME": "Volumen",
   "CURRENCY_TOTAL": "Moneda en circulación",
   "DASHBOARD_SETTINGS": "AJUSTES PANEL",
-  "REFRESH_ENABLED": "Auto-refrescar"
+  "REFRESH_ENABLED": "Auto-refrescar",
+  "Birth Date": "Fecha nacimiento",
+  "Street": "Calle",
+  "Gender": "Sexo",
+  "Langage": "Lenguage",
+  "Profile Image": "Imagen de perfil",
+  "Document Front":"Documento Delante",
+  "Document Rear":"Documento Reverso"
+
 }
