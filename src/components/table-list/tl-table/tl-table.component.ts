@@ -40,7 +40,7 @@ export class TableListTable implements AfterContentInit {
     @Input() public showLoader: boolean = true;
     @Input() public showPaginator: boolean = true;
     @Input() public itemOptions: TlItemOption[];
-    @Input() public noItemsMessage: string = 'There are no items';
+    @Input() public noItemsMessage: string = 'NO_ITEMS';
     @Input() public options: TableListOptions = {
         optionsType: 'menu',
     };

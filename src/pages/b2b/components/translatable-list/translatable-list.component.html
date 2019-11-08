@@ -76,7 +76,7 @@
 </table>
 
 <div *ngIf="!data.length" style="padding: 8px 15px;">
-    <p>No items here!</p>
+    <p style="text-align: center;">{{'NO_ITEMS'|translate}}</p>
 </div>
 
 <mat-paginator [(pageSize)]="limit" [length]="total" (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 20, 100]"
