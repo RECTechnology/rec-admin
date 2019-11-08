@@ -32,7 +32,7 @@
                     (change)="header.slideAction(entry, $event)"></mat-slide-toggle>
 
                 <div *ngIf="header.type === 'avatar'">
-                    <img src="{{getEntry(entry, header.avatar) || Brand.account_default_image}}" alt=""
+                    <img src="{{getEntry(entry, header.avatar) || '../../../assets/resources/img/User-default.png'}}" alt=""
                         style="width: 25px; height: 25px; border-radius: 50%;margin-right: 10px">
                     <span>{{getEntry(entry, header)}}</span>
                 </div>
