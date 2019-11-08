@@ -102,10 +102,10 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
 
   public confirm(): void {
 
-    if (!this.utils.validPAN(this.pan)) {
-      this.error = 'PAN Number is not correct';
-      return;
-    }
+    // if (!this.utils.validPAN(String(this.pan))) {
+    //   this.error = 'PAN Number is not correct';
+    //   return;
+    // }
 
     if (!this.utils.validCVV(this.cvv2)) {
       this.error = 'CVV is not correct';
