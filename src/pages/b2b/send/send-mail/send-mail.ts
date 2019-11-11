@@ -169,7 +169,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public onDiscard() {
         this.mailing.remove(this.id).subscribe((resp) => {
-            this.alerts.showSnackbar('Deleted mail (' + this.id + ')');
+            this.alerts.showSnackbar('Deleted mail');
         });
     }
 
@@ -277,7 +277,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public updateMail(data, message = 'Saved Mail Correctly') {
         return this.mailing.update(this.id, data, this.langMap[this.lang.abrev])
             .toPromise().then((resp) => {
-                this.alerts.showSnackbar(message + ': (' + this.id + ')');
+                this.alerts.showSnackbar(message);
                 this.loading = false;
                 this.saved = true;
                 this.mail = resp.data;
