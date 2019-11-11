@@ -25,6 +25,9 @@
             <th md-sort-header="name" style="color: #555!important">
               {{'Name'|translate}}
             </th>
+            <th md-sort-header="email" style="color: #555!important">
+              {{'Email'|translate}}
+            </th>
             <th md-sort-header="type" style="color: #555!important">
               {{'Type'|translate}}
             </th>
@@ -34,6 +37,7 @@
           <tr *ngFor="let account of sortedUnselectedAccounts" class="user-select" (click)="selectAccount(account)">
             <td>{{account.id}}</td>
             <td>{{account.name}}</td>
+            <td>{{account.email}}</td>
             <td style="position: relative">{{account.type}} <i class="icon fa fa-arrow-right"></i></td>
           </tr>
         </tbody>

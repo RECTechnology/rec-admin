@@ -168,9 +168,11 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public onDiscard() {
-        this.mailing.remove(this.id).subscribe((resp) => {
-            this.alerts.showSnackbar('Deleted mail');
-        });
+        if (!this.mail.concept && !this.mail.content) {
+            this.mailing.remove(this.id).subscribe((resp) => {
+                this.alerts.showSnackbar('Deleted mail');
+            });
+        }
     }
 
     public onSaveDraft() {
