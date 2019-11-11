@@ -126,7 +126,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
                     this.mail.content = params.content;
                 }
 
-                this.createMail()
+                this.createMail(false)
                     .then((resp) => {
                         if (params.acc_id) {
                             this.createDelivery.id = this.id;
@@ -158,7 +158,9 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     @HostListener('window:beforeunload')
     public canDeactivate(): any {
         this.title = this.mail.subject;
+        console.log('justCreated', this.justCreated);
         return (
+            (this.justCreated) ||
             (this.mail.status === 'processed') &&
             (this.justCreated ? this.justCreated = true : this.saved) &&
             (this.mail.subject || this.mail.content)
@@ -273,27 +275,28 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public updateMail(data, message = 'Saved Mail Correctly') {
-        this.mailing.update(this.id, data, this.langMap[this.lang.abrev]).subscribe((resp) => {
-            this.alerts.showSnackbar(message + ': (' + this.id + ')');
-            this.loading = false;
-            this.saved = true;
-            this.mail = resp.data;
-            this.mailCopy = Object.assign({}, this.mail);
-            this.update();
-        }, (err) => {
-            this.alerts.showSnackbar(err.message);
-            this.loading = false;
-        });
+        return this.mailing.update(this.id, data, this.langMap[this.lang.abrev])
+            .toPromise().then((resp) => {
+                this.alerts.showSnackbar(message + ': (' + this.id + ')');
+                this.loading = false;
+                this.saved = true;
+                this.mail = resp.data;
+                this.mailCopy = Object.assign({}, this.mail);
+                this.update();
+            }).catch((err) => {
+                this.alerts.showSnackbar(err.message);
+                this.loading = false;
+            });
     }
 
     public saveMail(upateData = {}) {
         this.loading = true;
         const data: any = Object.assign({}, this.mail);
-        this.updateMail({
+        return this.updateMail({
             content: data.content,
             scheduled_at: moment(data.scheduled_at).toISOString(),
             subject: data.subject,
-        });
+        }).then((res) => this.saved = true);
     }
 
     public createMail(navigateToMailing = true) {
@@ -357,7 +360,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             [fname]: file,
         });
 
-        this.mailing.addAttachment(this.id, attachments, this.langMap[this.lang.abrev])
+        this.mailing.addAttachment(this.id, attachments, 'en')
             .subscribe(() => {
                 this.alerts.showSnackbar('Added attachment correctly');
                 this.loading = false;
@@ -436,7 +439,14 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public selectLang(lang) {
-        this.lang = lang;
-        this.update();
+        if (!this.saved) {
+            this.saveMail().then((res) => {
+                this.lang = lang;
+                this.update();
+            });
+        } else {
+            this.lang = lang;
+            this.update();
+        }
     }
 }

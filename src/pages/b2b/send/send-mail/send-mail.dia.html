@@ -44,7 +44,8 @@
                             </button>
                         </mat-menu>
 
-                        <button mat-icon-button matTooltip="Translate mail, can be created in 3 languages and it will be sent in the language the Account has selected">
+                        <button mat-icon-button
+                            matTooltip="Translate mail, can be created in 3 languages and it will be sent in the language the Account has selected">
                             <i class="fa fa-question"></i>
                         </button>
                     </div>
@@ -93,8 +94,10 @@
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item
                         (click)="addAttachment('b2b_report', 'b2b_report.pdf')">{{'Clients/Providers PDF'|translate}}</button>
-                    <button mat-menu-item (click)="addLink = true">{{'Link'|translate}}</button>
-                    <button mat-menu-item (click)="selectFile()" disabled>{{'Upload'|translate}}</button>
+                    <button mat-menu-item (click)="addLink = true" disabled
+                        matTooltip="Work in progress">{{'Link'|translate}}</button>
+                    <button mat-menu-item (click)="selectFile()" disabled
+                        matTooltip="Work in progress">{{'Upload'|translate}}</button>
                 </mat-menu>
 
                 <mat-chip-list style="display: inline-block;margin-left: 10px">

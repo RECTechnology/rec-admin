@@ -54,6 +54,17 @@ export class B2BSendComponent extends TablePageBase {
             callback: this.editMail.bind(this),
             text: 'Edit',
             icon: 'fa-edit',
+            ngIf: (item) => {
+                return item.status !== 'processed';
+            },
+        },
+        {
+            callback: this.editMail.bind(this),
+            text: 'View',
+            icon: 'fa-eye',
+            ngIf: (item) => {
+                return item.status === 'processed';
+            },
         },
         {
             callback: this.removeMail.bind(this),

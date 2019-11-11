@@ -22,6 +22,7 @@ export interface TlItemOption {
     class?: string;
     icon?: string;
     disabled?: boolean | ((el: any) => any);
+    ngIf?: boolean | ((el: any) => any);
 }
 
 export interface TableListOptions {
@@ -127,5 +128,12 @@ export class TableListTable implements AfterContentInit {
         } else {
             return false;
         }
+    }
+
+    public isEnabled(option, entry) {
+        if (option.ngIf && typeof option.ngIf === 'function') {
+            return option.ngIf(entry);
+        }
+        return true;
     }
 }
