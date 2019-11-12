@@ -113,38 +113,38 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     ) {
         super();
 
-        this.route.queryParams.subscribe((params) => {
-            /**
-             * Below code is for creating a mailing from link,
-             * mainly so it can be generated from `Account -> B2B Module`
-             */
-            if (params.acc_id || params.attach) {
-                if (params.concept) {
-                    this.mail.concept = params.concept;
-                }
-                if (params.content) {
-                    this.mail.content = params.content;
-                }
+        // this.route.queryParams.subscribe((params) => {
+        //     /**
+        //      * Below code is for creating a mailing from link,
+        //      * mainly so it can be generated from `Account -> B2B Module`
+        //      */
+        //     if (params.acc_id || params.attach) {
+        //         if (params.concept) {
+        //             this.mail.concept = params.concept;
+        //         }
+        //         if (params.content) {
+        //             this.mail.content = params.content;
+        //         }
 
-                this.createMail(false)
-                    .then((resp) => {
-                        if (params.acc_id) {
-                            this.createDelivery.id = this.id;
-                            this.createDelivery.createDelivery([{ id: params.acc_id }]);
-                        }
-                        if (params.attach === 'b2b_report') {
-                            this.addAttachment('b2b_report', 'b2b_report.pdf');
-                        }
-                    });
-            }
-        });
+        //         this.createMail(false)
+        //             .then((resp) => {
+        //                 if (params.acc_id) {
+        //                     this.createDelivery.id = this.id;
+        //                     this.createDelivery.createDelivery([{ id: params.acc_id }]);
+        //                 }
+        //                 if (params.attach === 'b2b_report') {
+        //                     this.addAttachment('b2b_report', 'b2b_report.pdf');
+        //                 }
+        //             });
+        //     }
+        // });
 
-        this.lang[this.lang.abrev] = LANG_MAP[this.us.userData.locale];
-        translate.onLangChange.subscribe(() => {
-            this.update();
-        });
+        // this.lang[this.lang.abrev] = LANG_MAP[this.us.userData.locale];
+        // translate.onLangChange.subscribe(() => {
+        //     this.update();
+        // });
 
-        this.refreshInterval = setInterval(this.update.bind(this), 30e3);
+        // this.refreshInterval = setInterval(this.update.bind(this), 30e3);
     }
 
     public ngOnDestroy() {
@@ -429,7 +429,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         this.sendScheduled = false;
     }
 
-    public sendNormal(date = null, message = 'Sent mail correctly') {
+    public sendNormal(date = null, message = 'Scheduled mail correctly') {
         const mailData = {
             scheduled_at: (date ? moment(date) : moment()).toISOString(),
             status: MailingCrud.STATUS_SCHEDULED,

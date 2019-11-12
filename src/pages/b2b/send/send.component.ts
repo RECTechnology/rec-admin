@@ -78,7 +78,7 @@ export class B2BSendComponent extends TablePageBase {
         optionsType: 'buttons',
     };
 
-    public selectedStatus = MailingCrud.STATUS_CREATED;
+    public selectedStatus = null;
     public STATUSES = [
         MailingCrud.STATUS_CREATED,
         MailingCrud.STATUS_SCHEDULED,
