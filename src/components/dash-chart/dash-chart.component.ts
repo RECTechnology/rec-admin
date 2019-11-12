@@ -130,7 +130,7 @@ export class DashChart {
         },
         labels: {
           align: 'right',
-          x: -10,
+          x: 10,
           y: 16,
           format: '{value:.,0f} recs',
           style: {
