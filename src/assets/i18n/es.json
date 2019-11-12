@@ -1027,6 +1027,7 @@
   "Document Rear":"Documento Reverso",
   "LEMONWAY_INFO": "Configuración Lemonway",
   "FILL_FIELDS_WITHDRAWAL": "Rellena los siguientes campos",
-  "NOT_ENOUGH_FUNDS": "No tiene fondos disponibles"
+  "NOT_ENOUGH_FUNDS": "No tiene fondos disponibles",
+  "NEW_WITHDRAWAL": "Crear un retiro de cuenta"
 
 }
