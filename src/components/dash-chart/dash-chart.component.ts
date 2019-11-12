@@ -5,7 +5,7 @@ import { DashboardValidIntervals } from 'src/services/dashboard/dashboard.servic
 import * as moment from 'moment';
 import * as Highcharts from 'highcharts';
 import { TranslateService } from '@ngx-translate/core';
- 
+
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -130,11 +130,19 @@ export class DashChart {
         },
         labels: {
           align: 'right',
-          x: -10,
+          x: 10,
           y: 16,
           format: '{value:.,0f} recs',
           style: {
             color: this.colors[1]
+          },
+          formatter: function () {
+            if (this.value >= 1E6) {
+              return this.value / 1000000 + 'M';
+            } else if (this.value < 1000) {
+              return this.value;
+            }
+            return this.value / 1000 + 'k';
           }
         },
         showFirstLabel: false
