@@ -22,12 +22,6 @@ const formatters = {
   day: (val) => Highcharts.dateFormat('%H:%M', val),
 };
 
-const intervals = {
-  year: 30 * 24 * 3600 * 1000,
-  month: 24 * 3600 * 1000,
-  day: 3600 * 1000
-};
-
 @Component({
   selector: 'dash-chart',
   styleUrls: [
@@ -55,7 +49,6 @@ export class DashChart {
     public translate: TranslateService,
   ) {
     translate.onLangChange.subscribe(res => {
-      console.log('changed lang');
       if (this.chart_) {
         this.chart_.setTitle({ text: this.translate.instant(this.title) }, null, true);
       }
@@ -63,7 +56,6 @@ export class DashChart {
   }
 
   public update(dataA: any, dataB) {
-    console.log('this.ssefjkajk', this.selectedTimeframe);
     let self = this;
     this.options = {
       chart: {
