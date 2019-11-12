@@ -27,10 +27,10 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public exceptions: string[];
   public neighbourhoods: any[] = [];
   public loadingStatus = false;
-  public totalCompanies: Observable<number>;
-  public totalPrivates: Observable<number>;
-  public totalTransactions: Observable<number>;
-  public totalBalance: Observable<number>;
+  public totalCompanies: number;
+  public totalPrivates: number;
+  public totalTransactions: number;
+  public totalBalance: number;
   public registerTimeseries: any[] = [];
   public transactionsTimeseries: any[] = [];
 
@@ -67,11 +67,12 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.getTransactionsTS(this.txChart.selectedTimeframe.value);
   }
 
-  public getAggregations() {
-    this.totalCompanies = this.dashService.getStatistics('company');
-    this.totalPrivates = this.dashService.getStatistics('private');
-    this.totalTransactions = this.dashService.getStatistics('transaction');
-    this.totalBalance = this.dashService.getStatistics('balance').pipe(map((total) => total / 1e8));
+  public async getAggregations() {
+    this.totalCompanies = await this.dashService.getStatistics('company').toPromise();
+    this.totalPrivates = await this.dashService.getStatistics('private').toPromise();
+    this.totalTransactions = await this.dashService.getStatistics('transaction').toPromise();
+    this.totalBalance = await this.dashService.getStatistics('balance')
+      .pipe(map((total) => total / 1e8)).toPromise();
   }
 
   public getNeighbourhoods() {

@@ -35,20 +35,20 @@
   <div class="row">
     <div></div>
     <div class="col-lg-3 col-md-6 col-sm-12 padd-right-x10">
-      <dash-agregation title="PRIVATE" value="{{totalPrivates | async | number}}" classes="bg-white col-blue">
+      <dash-agregation title="PRIVATE" value="{{(totalPrivates | number)}}" classes="bg-white col-blue">
       </dash-agregation>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12 padd-right-x10">
-      <dash-agregation title="COMPANY" value="{{totalCompanies | async | number}}" classes="bg-white col-orange">
+      <dash-agregation title="COMPANY" value="{{totalCompanies | number}}" classes="bg-white col-orange">
       </dash-agregation>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12 padd-right-x10">
-      <dash-agregation title="{{'CURRENCY_TOTAL'|translate}}" value="{{totalBalance | async | number}} Ɍ"
+      <dash-agregation title="{{'CURRENCY_TOTAL'|translate}}" value="{{totalBalance | number}} Ɍ"
         classes="bg-white col-black">
       </dash-agregation>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-12 padd-right-x10">
-      <dash-agregation title="Transaciones" value="{{totalTransactions | async | number}}" classes="bg-white no-shadow">
+      <dash-agregation title="Transaciones" value="{{totalTransactions | number}}" classes="bg-white no-shadow">
       </dash-agregation>
     </div>
   </div>
