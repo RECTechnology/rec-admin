@@ -276,7 +276,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public cancel() {
-        this.updateMail({ status: MailingCrud.STATUS_CANCELED });
+        this.updateMail({ status: MailingCrud.STATUS_PROCESSED });
     }
 
     public updateMail(data, message = 'Saved Mail Correctly') {

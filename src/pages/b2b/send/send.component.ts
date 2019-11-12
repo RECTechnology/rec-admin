@@ -78,6 +78,13 @@ export class B2BSendComponent extends TablePageBase {
         optionsType: 'buttons',
     };
 
+    public selectedStatus = MailingCrud.STATUS_CREATED;
+    public STATUSES = [
+        MailingCrud.STATUS_CREATED,
+        MailingCrud.STATUS_SCHEDULED,
+        MailingCrud.STATUS_PROCESSED,
+    ];
+
     constructor(
         public controles: ControlesService,
         public b2bCrud: B2bService,
@@ -89,6 +96,11 @@ export class B2BSendComponent extends TablePageBase {
         public alerts: AlertsService,
     ) {
         super();
+    }
+
+    public filterStatus(status) {
+        this.selectedStatus = status;
+        this.search();
     }
 
     public removeMail(mail) {
@@ -117,6 +129,7 @@ export class B2BSendComponent extends TablePageBase {
             offset: this.offset,
             search: query || this.query,
             sort: this.sortID,
+            status: this.selectedStatus,
         }).subscribe((resp) => {
             this.data = resp.data.elements;
             this.sortedData = this.data.slice();

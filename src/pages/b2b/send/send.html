@@ -12,14 +12,27 @@
                     </p>
                 </button>
             </tl-header>
-            <tl-subheader style="position: relative">
+            <tl-subheader style="position: relative; padding: 4px 10">
                 <div class="abs-center-right small-text">
                     {{'Showing'|translate}}: {{showing}} of {{total}}
                 </div>
+
+                <button *ngIf="selectedStatus" [matMenuTriggerFor]="statusMenu" type="button" mat-button class="mat-button-menu"
+                    style="text-align: left; margin: 4px 0 4px 10px!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
+                    <span>{{selectedStatus}}</span>
+                    <i class="fa fa-caret-down" style="margin-left: 8px;"></i>
+                </button>
+                <mat-menu #statusMenu="matMenu" y-position="below" overlapTrigger="false">
+                    <button (click)="filterStatus(status)" mat-menu-item *ngFor="let status of STATUSES">
+                        <span style="color: #666; font-size: 12px">{{status}}</span>
+                    </button>
+                </mat-menu>
+
             </tl-subheader>
             <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
-                [data]="sortedData" [itemOptions]="itemOptions" [options]="options" noItemsMessage="There are no mails yet" [limit]="limit"
-                [total]="total" (onChangePage)="changedPage($event)" showLoader="true">
+                [data]="sortedData" [itemOptions]="itemOptions" [options]="options"
+                noItemsMessage="There are no mails yet" [limit]="limit" [total]="total"
+                (onChangePage)="changedPage($event)" showLoader="true">
             </tl-table>
         </mat-card>
     </div>
