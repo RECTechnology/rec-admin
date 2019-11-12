@@ -5,9 +5,7 @@ import { DashboardValidIntervals } from 'src/services/dashboard/dashboard.servic
 import * as moment from 'moment';
 import * as Highcharts from 'highcharts';
 import { TranslateService } from '@ngx-translate/core';
-
-declare let Morris, _;
-
+ 
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
