@@ -11,6 +11,8 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './lemonway.html',
 })
 export class LemonWayTab {
+  @Input() public id = '';
+
   constructor(
     public b2bCrud: B2bService,
     public crudAccounts: AccountsCrud,
