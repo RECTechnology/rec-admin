@@ -17,6 +17,7 @@ export class MailingCrud extends CrudBaseService {
     public static STATUS_CREATED = 'created';
     public static STATUS_SCHEDULED = 'scheduled';
     public static STATUS_PROCESSED = 'processed';
+    public static STATUS_CANCELED = 'cancelled';
 
     constructor(
         http: HttpClient,

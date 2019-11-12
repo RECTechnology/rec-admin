@@ -158,9 +158,13 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     @HostListener('window:beforeunload')
     public canDeactivate(): any {
         this.title = this.mail.subject;
+        console.log('justCreated', this.justCreated);
+        console.log('status', this.mail.status);
+        console.log('a', this.justCreated ? this.justCreated = true : this.saved);
+        console.log('b', this.mail.subject || this.mail.content);
         return (
             (this.justCreated) ||
-            (this.mail.status === 'processed') &&
+            (this.mail.status === 'processed') ||
             (this.justCreated ? this.justCreated = true : this.saved) &&
             (this.mail.subject || this.mail.content)
         );
@@ -272,7 +276,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public cancel() {
-        this.updateMail({ status: MailingCrud.STATUS_CREATED });
+        this.updateMail({ status: MailingCrud.STATUS_CANCELED });
     }
 
     public updateMail(data, message = 'Saved Mail Correctly') {
