@@ -77,7 +77,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
 
   public getNeighbourhoods() {
     this.dashService.getNeighbourhoodStatistics().subscribe((resp) => {
-      console.log(resp);
       this.neighbourhoods = resp.data.sort((a, b) => a.accounts_total - b.accounts_total);
       this.updateDonutChart(resp.data.map((el) => ({
         label: el.name,
@@ -173,8 +172,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   }
 
   public setRefresh(): void {
-    console.log('setRefresh', this.refreshEnabled);
-    console.log('refreshInterval', this.refreshInterval);
     if (this.refreshEnabled) {
       this.refreshObs = setInterval((_) => {
         this.getStatus();

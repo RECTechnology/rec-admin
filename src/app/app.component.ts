@@ -47,8 +47,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isSandbox) {
       document.body.classList.add('sandbox');
     }
-
-    console.log('aspkojdaosidaoisuhjdopì');
   }
 
   public ngOnInit() {
@@ -85,7 +83,6 @@ export class AppComponent implements OnInit, OnDestroy {
      */
     this.ls.onLogin
       .subscribe((resp) => {
-        console.log('resp');
         if (resp && !this.initedIdle) {
           this.initCheckIdle();
           this.initedIdle = true;
