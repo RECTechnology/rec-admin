@@ -18,6 +18,7 @@ import { EditAccountData } from '../dialogs/edit-account/edit-account.dia';
 import { AccountDocuments } from './tab_documents/account_documents.tab';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { B2BModuleTab } from './tab_b2b/tab_b2b.tab';
+import { LemonWayTab } from './tab_lemonway/lemonway.tab';
 
 const accountRoutes: Routes = [
   {
@@ -41,6 +42,7 @@ const accountRoutes: Routes = [
     AccountDetailsTab,
     AccountDocuments,
     B2BModuleTab,
+    LemonWayTab,
   ],
   entryComponents: [
     EditUserData,
@@ -49,6 +51,7 @@ const accountRoutes: Routes = [
     ViewDetailsAccount,
     AccountUsersTab,
     AccountDocuments,
+    LemonWayTab,
     B2BModuleTab,
   ],
   exports: [

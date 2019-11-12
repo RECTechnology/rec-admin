@@ -472,5 +472,6 @@
   "COMPANY": "Company",
   "CURRENCY_TOTAL": "Currency Total",
   "DASHBOARD_SETTINGS": "Dashboard settings",
-  "REFRESH_ENABLED": "Refresh enabled"
+  "REFRESH_ENABLED": "Refresh enabled",
+  "LEMONWAY_INFO": "Lemonway Info"
 }
