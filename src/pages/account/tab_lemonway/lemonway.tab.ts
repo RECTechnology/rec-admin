@@ -52,7 +52,6 @@ export class LemonWayTab extends TablePageBase {
       },
     },
   ];
-
   public options: TableListOptions = {
     optionsType: 'buttons',
   };

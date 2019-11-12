@@ -93,7 +93,7 @@ export class DashChart {
       colors: this.colors,
       tooltip: {
         formatter: function () {
-          return 'x: ' + formatters[self.selectedTimeframe.value](this.x) + '\ny: ' + this.y.toFixed(2);
+          return 'Date: ' + formatters[self.selectedTimeframe.value](this.x) + '\n Value: ' + this.y.toFixed(2);
         }
       },
       xAxis: {
