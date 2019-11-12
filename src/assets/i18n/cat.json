@@ -1029,9 +1029,10 @@
   "Gender": "Sexe",
   "Langage": "Llengua",
   "Profile Image": "Imatge de perfil",
-  "Document Front":"Document Avant",
-  "Document Rear":"Document Revers",
+  "Document Front": "Document Avant",
+  "Document Rear": "Document Revers",
   "Available": "Disponible",
-  "LEMONWAY_INFO": "Info. Lemonway"
-
+  "LEMONWAY_INFO": "Configuració Lemonway",
+  "FILL_FIELDS_WITHDRAWAL": "Omplix els seguents camps",
+  "NOT_ENOUGH_FUNDS": "No te fons disponibles"
 }

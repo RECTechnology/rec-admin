@@ -2,7 +2,7 @@ import { CanDeactivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlertsService } from '../alerts/alerts.service';
-import { UnsavedChangesDialog } from 'src/pages/dialogs/unsaved-changes/unsaved-changes.dia';
+import { UnsavedChangesDialog } from 'src/dialogs/unsaved-changes/unsaved-changes.dia';
 
 export interface ComponentCanDeactivate {
     canDeactivate: () => boolean | Observable<boolean>;

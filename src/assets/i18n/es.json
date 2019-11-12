@@ -473,7 +473,7 @@
   "Withdraw Funds / Bank Transfer": "Retirar Funds / Bank Transfer",
   "Click the \"Withdraw\" button, click on the option \"Fiat Coins\"": "Clique el boton de \"Retirar Fondos\", clique la opción de \"Monedas Fiat\"",
   "Withdraw Funds / Bank Transfer / Fill in the data": "'Retirar Fondos / Transferencia Bancaria / Rellene los datos",
-  "FILL_FIELDS": "Ahora debe rellenar los campos, con los datos de la cuenta bancaria a la que desea enviar el dinero",
+  "_WITHDRAWAL": "Ahora debe rellenar los campos, con los datos de la cuenta bancaria a la que desea enviar el dinero",
   "View a introductory video": "Vea un video introductorio",
   "Check the following video to get a filling about trading": "Consulte el siguiente video para obtener una idea sobre trading",
   "Start Trading": "Comience a hacer trading",
@@ -1025,6 +1025,8 @@
   "Profile Image": "Imagen de perfil",
   "Document Front":"Documento Delante",
   "Document Rear":"Documento Reverso",
-  "LEMONWAY_INFO": "Info. Lemonway"
+  "LEMONWAY_INFO": "Configuración Lemonway",
+  "FILL_FIELDS_WITHDRAWAL": "Rellena los siguientes campos",
+  "NOT_ENOUGH_FUNDS": "No tiene fondos disponibles"
 
 }

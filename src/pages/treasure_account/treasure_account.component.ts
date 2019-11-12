@@ -4,7 +4,7 @@ import { ControlesService } from '../../services/controles/controles.service';
 import { AdminService } from '../../services/admin/admin.service';
 import { TlItemOption, TlHeader } from '../../components/table-list/tl-table/tl-table.component';
 import { MatDialog } from '@angular/material';
-import { VoteWithdrawal } from '../dialogs/vote-withdrawal/vote-withdrawal.dia';
+import { VoteWithdrawal } from '../../dialogs/vote-withdrawal/vote-withdrawal.dia';
 import { UserService } from '../../services/user.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 

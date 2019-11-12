@@ -36,7 +36,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     2: 'movements',
     3: 'documents',
     4: 'b2b',
-    5: 'lemonway',
+    5: 'lemonway ',
   };
 
   constructor(

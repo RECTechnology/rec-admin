@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { UserService } from '../../../services/user.service';
-import BaseDialog from '../../../bases/dialog-base';
+import { UserService } from '../../services/user.service';
+import BaseDialog from '../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({

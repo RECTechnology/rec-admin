@@ -1,11 +1,11 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
-import { UserService } from '../../../services/user.service';
-import { CompanyService } from '../../../services/company/company.service';
-import { UtilsService } from '../../../services/utils/utils.service';
-import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
+import { UserService } from '../../services/user.service';
+import { CompanyService } from '../../services/company/company.service';
+import { UtilsService } from '../../services/utils/utils.service';
+import { FileUpload } from '../../components/dialogs/file-upload/file-upload.dia';
 import { TranslateService } from '@ngx-translate/core';
-import { AdminService } from '../../../services/admin/admin.service';
+import { AdminService } from '../../services/admin/admin.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';

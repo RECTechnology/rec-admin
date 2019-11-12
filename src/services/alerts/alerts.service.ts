@@ -27,7 +27,7 @@ export class AlertsService {
   }
 
   public createModal(C, props = {}, modalOptions = {}) {
-    const dialogRef: any = this.dialog.open(C, modalOptions);
+    const dialogRef = this.dialog.open(C, modalOptions);
 
     /**
      * This (passing parameters to the modal)

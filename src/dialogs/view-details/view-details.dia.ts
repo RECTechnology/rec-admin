@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
-import BaseDialog from '../../../bases/dialog-base';
-import { environment } from '../../../environments/environment';
-import { SmsService } from '../../../services/sms/sms.service';
-import { ConfirmationMessage } from '../../../components/dialogs/confirmation-message/confirmation.dia';
+import BaseDialog from '../../bases/dialog-base';
+import { environment } from '../../environments/environment';
+import { SmsService } from '../../services/sms/sms.service';
+import { ConfirmationMessage } from '../../components/dialogs/confirmation-message/confirmation.dia';
 import { ManageSms } from '../manage-sms/manage-sms.dia';
-import { CompanyService } from '../../../services/company/company.service';
-import { AdminService } from '../../../services/admin/admin.service';
+import { CompanyService } from '../../services/company/company.service';
+import { AdminService } from '../../services/admin/admin.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({

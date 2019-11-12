@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
-import { CompanyService } from '../../../services/company/company.service';
-import { UtilsService } from '../../../services/utils/utils.service';
-import { AdminService } from '../../../services/admin/admin.service';
+import { CompanyService } from '../../services/company/company.service';
+import { UtilsService } from '../../services/utils/utils.service';
+import { AdminService } from '../../services/admin/admin.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({

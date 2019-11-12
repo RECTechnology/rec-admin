@@ -473,5 +473,7 @@
   "CURRENCY_TOTAL": "Currency Total",
   "DASHBOARD_SETTINGS": "Dashboard settings",
   "REFRESH_ENABLED": "Refresh enabled",
-  "LEMONWAY_INFO": "Lemonway Info"
+  "LEMONWAY_INFO": "Lemonway Config.",
+  "FILL_FIELDS_WITHDRAWAL": "Fill in the following fields",
+  "NOT_ENOUGH_FUNDS": "Not enough funds"
 }

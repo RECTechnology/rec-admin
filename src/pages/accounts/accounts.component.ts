@@ -7,7 +7,7 @@ import { UserService } from 'src/services/user.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { CompanyService } from 'src/services/company/company.service';
 import { ControlesService } from 'src/services/controles/controles.service';
-import { EditAccountData } from 'src/pages/dialogs/edit-account/edit-account.dia';
+import { EditAccountData } from 'src/dialogs/edit-account/edit-account.dia';
 import { TlHeader, TlItemOption, TableListOptions } from 'src/components/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from 'src/components/table-list/tl-header/tl-header.component';
 import { ExportDialog } from 'src/components/dialogs/export-dialog/export.dia';

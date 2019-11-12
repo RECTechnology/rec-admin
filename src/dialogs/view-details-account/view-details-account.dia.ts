@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { UserService } from '../../../services/user.service';
-import BaseDialog from '../../../bases/dialog-base';
-import { environment } from '../../../environments/environment';
-import { UtilsService } from '../../../services/utils/utils.service';
+import { UserService } from '../../services/user.service';
+import BaseDialog from '../../bases/dialog-base';
+import { environment } from '../../environments/environment';
+import { UtilsService } from '../../services/utils/utils.service';
 
 @Component({
   selector: 'view-details-account',

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material';
-import { ControlesService } from '../../../services/controles/controles.service';
-import { UserService } from '../../../services/user.service';
-import { UtilsService } from '../../../services/utils/utils.service';
-import { environment } from '../../../environments/environment';
-import BaseDialog from '../../../bases/dialog-base';
+import { ControlesService } from '../../services/controles/controles.service';
+import { UserService } from '../../services/user.service';
+import { UtilsService } from '../../services/utils/utils.service';
+import { environment } from '../../environments/environment';
+import BaseDialog from '../../bases/dialog-base';
 
 @Component({
   selector: 'bussiness-details',

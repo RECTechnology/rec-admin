@@ -1,13 +1,13 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { AddUser } from '../dialogs/add-user/add-user.dia';
+import { AddUser } from '../../dialogs/add-user/add-user.dia';
 import { MatDialog } from '@angular/material';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { CompanyService } from '../../services/company/company.service';
-import { ViewDetails } from '../dialogs/view-details/view-details.dia';
-import { EditUserData } from '../dialogs/edit-user/edit-user.dia';
+import { ViewDetails } from '../../dialogs/view-details/view-details.dia';
+import { EditUserData } from '../../dialogs/edit-user/edit-user.dia';
 import { ControlesService } from '../../services/controles/controles.service';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';

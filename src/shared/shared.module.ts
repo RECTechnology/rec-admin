@@ -12,7 +12,7 @@ import { InfoMessage } from '../components/dialogs/info-message/info.dia';
 import { FileUpload } from '../components/dialogs/file-upload/file-upload.dia';
 import { CompanyService } from '../services/company/company.service';
 import { IdleNotification } from '../components/dialogs/idle-notification/idle.dia';
-import { AddUser } from '../pages/dialogs/add-user/add-user.dia';
+import { AddUser } from '../dialogs/add-user/add-user.dia';
 import { ButtonLoader } from '../components/button-loader/button-loader';
 import { CCInput } from '../components/cc-input/cc-input';
 import { CCInputEditable } from '../components/cc-input/cc-input';
@@ -21,8 +21,8 @@ import { FilterComponent } from '../components/filter/filter-component';
 import { Agregation } from '../components/agregation/agregation.component';
 import { DashChart } from '../components/dash-chart/dash-chart.component';
 import { InDevelopment } from '../components/in-development/in-development';
-import { ManageSms } from '../pages/dialogs/manage-sms/manage-sms.dia';
-import { BussinessDetailsDia } from '../pages/dialogs/bussiness_detailes/bussiness_details.component';
+import { ManageSms } from '../dialogs/manage-sms/manage-sms.dia';
+import { BussinessDetailsDia } from '../dialogs/bussiness_detailes/bussiness_details.component';
 import { ValidationErrorsComponent } from '../components/validation-errors/validation-errors.component';
 import { CountrySelector } from '../components/country-selector/country-selector.component';
 import { AppNotifications } from '../components/app-notifications/app-notifications';
@@ -42,7 +42,7 @@ import { OrganizationsComponent } from 'src/pages/organizations/organizations.co
 import { LoginComponent } from 'src/components/login/login.component';
 import { ExportDialog } from 'src/components/dialogs/export-dialog/export.dia';
 import { UsersPage } from 'src/pages/users/users.component';
-import { VoteWithdrawal } from 'src/pages/dialogs/vote-withdrawal/vote-withdrawal.dia';
+import { VoteWithdrawal } from 'src/dialogs/vote-withdrawal/vote-withdrawal.dia';
 import { TableListHeader } from 'src/components/table-list/tl-header/tl-header.component';
 import { TableListSubHeader } from 'src/components/table-list/tl-subheader/tl-subheader.component';
 import { TableListTable } from 'src/components/table-list/tl-table/tl-table.component';
@@ -69,7 +69,7 @@ import { EscapeHtmlPipe } from 'src/pipes/safe-html/safe-html.pipe';
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 import { AlertsService } from 'src/services/alerts/alerts.service';
-import { UnsavedChangesDialog } from 'src/pages/dialogs/unsaved-changes/unsaved-changes.dia';
+import { UnsavedChangesDialog } from 'src/dialogs/unsaved-changes/unsaved-changes.dia';
 
 @NgModule({
   declarations: [
