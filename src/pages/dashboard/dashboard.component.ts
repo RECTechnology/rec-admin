@@ -64,7 +64,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     this.getNeighbourhoods();
     this.getStatus();
     this.getRegisterTS(this.registerChart.selectedTimeframe.value);
-    // this.getTransactionsTS(this.txChart.selectedTimeframe.value);
+    this.getTransactionsTS(this.txChart.selectedTimeframe.value);
   }
 
   public getAggregations() {
@@ -178,7 +178,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
       this.refreshObs = setInterval((_) => {
         this.getStatus();
         this.getRegisterTS(this.registerChart.selectedTimeframe.value);
-        // this.getTransactionsTS(this.txChart.selectedTimeframe.value);
+        this.getTransactionsTS(this.txChart.selectedTimeframe.value);
         this.getAggregations();
       }, Number(this.refreshInterval) * 1000);
     } else {
