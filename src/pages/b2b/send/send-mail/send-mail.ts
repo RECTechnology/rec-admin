@@ -162,10 +162,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     @HostListener('window:beforeunload')
     public canDeactivate(): any {
         this.title = this.mail.subject;
-        console.log('justCreated', this.justCreated);
-        console.log('status', this.mail.status);
-        console.log('a', this.justCreated ? this.justCreated = true : this.saved);
-        console.log('b', this.mail.subject || this.mail.content);
         return (
             (this.justCreated) ||
             (this.mail.status === 'processed') ||
@@ -176,9 +172,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public onDiscard() {
         if (!this.mail.concept && !this.mail.content && !this.mail.id) {
-            this.mailing.remove(this.id).subscribe((resp) => {
-                this.alerts.showSnackbar('Deleted mail');
-            });
+            this.alerts.showSnackbar('Discarded changes');
         }
     }
 
@@ -296,14 +290,17 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             });
     }
 
-    public saveMail(upateData = {}) {
+    public saveMail({ goBack } = { goBack: false }) {
         this.loading = true;
         const data: any = Object.assign({}, this.mail);
         return this.updateMail({
             content: data.content,
             scheduled_at: moment(data.scheduled_at).toISOString(),
             subject: data.subject,
-        }).then((res) => { this.saved = true; this.router.navigate(['/rec/mailing']); });
+        }).then((res) => {
+            this.saved = true;
+            if (goBack) { this.router.navigate(['/rec/mailing']); }
+        });
     }
 
     public createMail(navigateToMailing = true) {

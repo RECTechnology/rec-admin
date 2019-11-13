@@ -25,7 +25,7 @@
                             class="col-info">no-reply@email.rec.barcelona</a></p>
 
                     <div>
-                        <button [matMenuTriggerFor]="langMenu" type="button" mat-button class="mat-button-menu"
+                        <button [matMenuTriggerFor]="langMenu" type="button" mat-button class="mat-button-menu" [disabled]="loading || readonly"
                             style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
                             <span *ngIf="lang.icon == 'cat'" class="flag_cataluña"></span>
                             <span *ngIf="lang.icon != 'cat'" class="flag-icon flag-icon-{{lang.icon}}"
@@ -125,7 +125,7 @@
                 </mat-menu>
 
                 <button color="primary" *ngIf="isEdit" [disabled]="isSaveDisabled() || loading || readonly"
-                    (click)="saveMail()" mat-raised-button style="margin-right: 10px;margin-left: 15px"
+                    (click)="saveMail({ goBack: true })" mat-raised-button style="margin-right: 10px;margin-left: 15px"
                     matTooltip="{{'SAVE'|translate}}">
                     <i class="fa fa-save" style="margin-right: 8px"></i> {{'SAVE_DRAFT'|translate}}
                 </button>

@@ -1236,7 +1236,7 @@ a:hover {
   border-radius: 2px;
 }
 
-.mat-button-menu:hover {
+.mat-button-menu:hover:not(:disabled) {
   background: #e7e7e7 !important;
 }
 
