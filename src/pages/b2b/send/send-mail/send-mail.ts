@@ -161,7 +161,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         console.log('justCreated', this.justCreated);
         return (
             (this.justCreated) ||
-            (this.mail.status === 'processed') &&
+            (this.mail.status === 'processed') ||
             (this.justCreated ? this.justCreated = true : this.saved) &&
             (this.mail.subject || this.mail.content)
         );
@@ -202,8 +202,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         this.mailing.find(this.id, this.langMap[this.lang.abrev])
             .subscribe((resp) => {
                 this.mail = resp.data;
-                const scheduled = moment(this.mail.scheduled_at).toDate();
-
                 this.readonly = [MailingCrud.STATUS_PROCESSED, MailingCrud.STATUS_SCHEDULED].includes(this.mail.status);
 
                 this.mail.attachments = this.mail.attachments.map ? {} : this.mail.attachments;
