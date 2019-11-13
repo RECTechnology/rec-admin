@@ -276,7 +276,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public cancel() {
-        this.updateMail({ status: MailingCrud.STATUS_PROCESSED });
+        this.updateMail({ status: MailingCrud.STATUS_CREATED });
     }
 
     public updateMail(data, message = 'Saved Mail Correctly') {
@@ -435,7 +435,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             status: MailingCrud.STATUS_SCHEDULED,
         };
 
-        this.updateMail(mailData, 'Sent mail correctly');
+        this.updateMail(mailData, message);
     }
 
     public createScheduled() {
