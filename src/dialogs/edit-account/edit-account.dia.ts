@@ -232,8 +232,6 @@ export class EditAccountData {
     const toLower = (str: string) => str.toLowerCase();
     const queryLower = toLower(query);
 
-    // console.log('act', act);
-    // console.log('queryLower', queryLower);
     return toLower(act.name).includes(queryLower)
       || toLower(act.name_es).includes(queryLower)
       || toLower(act.name_ca).includes(queryLower);
