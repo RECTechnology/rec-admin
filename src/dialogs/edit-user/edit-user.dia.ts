@@ -56,7 +56,7 @@ export class EditUserData {
       .subscribe((resp) => {
         this.user = resp.data;
         this.user.kyc_validations.lastName = this.user.kyc_validations.last_name;
-        this.user.locale = LANG_MAP[this.user.locale] || LANG_MAP['es'];
+        this.user.locale = LANG_MAP[this.user.locale] || LANG_MAP.es;
         this.lang = this.langMap[this.user.locale];
         this.userCopy = { ...this.user };
         this.userCopy.kyc_validations = { ...this.user.kyc_validations };

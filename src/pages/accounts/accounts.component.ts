@@ -86,7 +86,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       },
       sort: 'amount',
       title: 'Amount',
-      type: 'code'
+      type: 'code',
     },
   ];
   public itemOptions: TlItemOption[] = [{

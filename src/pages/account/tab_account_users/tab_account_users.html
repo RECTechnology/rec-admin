@@ -50,7 +50,7 @@
           <th></th>
         </tr>
 
-        <tr *ngFor="let user of sortedData; let i = index" (focus)="keyPressed($event, user)">
+        <tr *ngFor="let user of sortedData; let i = index">
           <td>{{user.id}}</td>
           <td *ngIf="!utils.isMobileDevice">
             <img src="{{user.profile_image || brand.profile_default_image}}" alt="" style="width: 30px; height: 30px; border-radius: 50%">
