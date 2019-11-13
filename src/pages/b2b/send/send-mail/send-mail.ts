@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
@@ -21,6 +21,8 @@ import { CreateDelivery } from '../create-delivery/create-delivery';
 @Component({
     selector: 'send-mail',
     templateUrl: './send-mail.dia.html',
+    styleUrls: ['./send-mail.scss'],
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public pageName = 'Send Email';
@@ -35,6 +37,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public addLink = false;
     public justCreated = false;
     public firstRun = true;
+    public showPreview = false;
 
     public mail: any = {
         content: '',

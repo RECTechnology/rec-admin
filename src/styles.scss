@@ -81,3 +81,64 @@ agm-map {
 .text-big {
   font-size: 28px;
 }
+
+.mail-preview {
+  width: 100%;
+  header {
+    width: 100%;
+    margin: 0 auto;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#218fec+48,1976cb+100 */
+    background: radial-gradient(
+      ellipse at center,
+      #218fec 48%,
+      #1976cb 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#218fec', endColorstr='#1976cb',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  }
+  header img {
+    width: 200px;
+    padding: 20px 0 10px;
+    display: block;
+    margin: 0 auto;
+  }
+  h2 {
+    font-weight: lighter;
+    text-align: center;
+    color: #fff;
+    background-color: #204d74;
+    margin: 10px 0 10px;
+  }
+  article {
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px 0;
+  }
+  article p {
+    color: #4d4d4d;
+    font-size: 13px;
+    text-align: justify;
+  }
+  article div {
+    text-align: center;
+    margin: 40px 0;
+  }
+  article div p {
+    text-align: center;
+  }
+  article a {
+    color: #218fec!important;
+  }
+  footer {
+    background: #4d4d4d;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+  footer a {
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    font-weight: lighter;
+  }
+}

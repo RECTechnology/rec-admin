@@ -1035,5 +1035,7 @@
   "LEMONWAY_INFO": "Configuració Lemonway",
   "FILL_FIELDS_WITHDRAWAL": "Omplix els seguents camps",
   "NOT_ENOUGH_FUNDS": "No te fons disponibles",
-  "NEW_WITHDRAWAL": "Crear una retirada per al compte"
+  "NEW_WITHDRAWAL": "Crear una retirada per al compte",
+  "Hide Preview": "Ocultar Vista Previa"
+
 }
