@@ -476,5 +476,6 @@
   "LEMONWAY_INFO": "Lemonway Config.",
   "FILL_FIELDS_WITHDRAWAL": "Fill in the following fields",
   "NOT_ENOUGH_FUNDS": "Not enough funds",
-  "NEW_WITHDRAWAL": "Create a withdrawal for account"
+  "NEW_WITHDRAWAL": "Create a withdrawal for account",
+  "PREVIEW_NOT_ACCURATE": "Preview is not 100% exact"
 }

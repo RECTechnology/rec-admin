@@ -1036,6 +1036,6 @@
   "FILL_FIELDS_WITHDRAWAL": "Omplix els seguents camps",
   "NOT_ENOUGH_FUNDS": "No te fons disponibles",
   "NEW_WITHDRAWAL": "Crear una retirada per al compte",
-  "Hide Preview": "Ocultar Vista Previa"
-
+  "Hide Preview": "Ocultar Vista Previa",
+  "PREVIEW_NOT_ACCURATE": "Vista Previa no es 100% exacta"
 }
