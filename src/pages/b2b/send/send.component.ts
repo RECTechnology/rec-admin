@@ -36,8 +36,6 @@ export class B2BSendComponent extends TablePageBase {
                 'col-info': el === MailingCrud.STATUS_CREATED,
                 'col-warning': el === MailingCrud.STATUS_SCHEDULED,
                 'col-success': el === MailingCrud.STATUS_PROCESSED,
-                // 'col-info': el !== MailingCrud.STATUS_CREATED,
-                // 'col-info': el !== MailingCrud.STATUS_SCHEDULED,
             }),
             translate: true,
         },
