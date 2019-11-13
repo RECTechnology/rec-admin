@@ -1021,7 +1021,7 @@
   "Birth Date": "Fecha nacimiento",
   "Street": "Calle",
   "Gender": "Sexo",
-  "Langage": "Lenguage",
+  "Language": "Lenguage",
   "Profile Image": "Imagen de perfil",
   "Document Front":"Documento Delante",
   "Document Rear":"Documento Reverso",
@@ -1034,5 +1034,10 @@
   "VIEW_MAIL": "Ver Correo",
   "processed": "procesado",
   "created": "creado",
-  "scheduled": "programado"
+  "scheduled": "programado",
+  "Disable": "Deshabilitar",
+  "View SMS": "Ver Codigo SMS",
+  "Resend SMS": "Re-enviar Codigo SMS",
+  "Validate Phone": "Validar Telefono",
+  "Street Number": "Numero"
 }

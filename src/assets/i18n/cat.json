@@ -1027,7 +1027,7 @@
   "DASHBOARD_SETTINGS": "OPCIONS PANELL",
   "REFRESH_ENABLED": "Auto-refrescar",
   "Gender": "Sexe",
-  "Langage": "Llengua",
+  "Language": "Llengua",
   "Profile Image": "Imatge de perfil",
   "Document Front": "Document Avant",
   "Document Rear": "Document Revers",
@@ -1041,6 +1041,10 @@
   "VIEW_MAIL": "Veure Correu",
   "processed": "processat",
   "created": "creat",
-  "scheduled": "programat"
+  "scheduled": "programat",
+  "Disable": "Deshabilitar",
+  "View SMS": "Veure Codi SMS",
+  "Resend SMS": "Re-enviar Codi SMS",
+  "Validate Phone": "Validar Telèfon"
 
 }
