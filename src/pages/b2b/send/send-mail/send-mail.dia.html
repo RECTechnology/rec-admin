@@ -5,15 +5,24 @@
     <in-development></in-development>
     <div class="padd-x20" style="width: 100%">
         <mat-card style="margin-bottom: 10px">
-            <div class="center v">
-                <button mat-icon-button routerLink="/rec/mailing" class="icon-btn-small" style="margin-right: 10px">
-                    <div class="center h v">
-                        <i class="fa fa-angle-left"></i>
+            <div class="center v space-between">
+                <div class="center v">
+                    <button mat-icon-button routerLink="/rec/mailing" class="icon-btn-small" style="margin-right: 10px">
+                        <div class="center h v">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+                    </button>
+                    <p class="col-blue small-text">
+                        {{((isEdit && !readonly) ? 'EDIT_MAIL': (readonly ? 'VIEW_MAIL': 'CREATE_MAIL'))|translate}}
+                    </p>
+                </div>
+
+                <div class="status-badge marg-right-x10">
+                    <p class="label_txt">{{'Status'|translate}}</p>
+                    <div class="value bg-{{getMailStatusColor(mail.status)}}">
+                        {{mail.status|translate}}
                     </div>
-                </button>
-                <p class="col-blue small-text">
-                    {{(isEdit ? 'EDIT_MAIL': 'CREATE_MAIL')|translate}}
-                </p>
+                </div>
             </div>
         </mat-card>
         <div class="row" style="margin: 0; padding: 0">

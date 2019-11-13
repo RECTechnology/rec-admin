@@ -33,10 +33,13 @@ export class B2BSendComponent extends TablePageBase {
             title: 'Status',
             type: 'status',
             statusClass: (el: any) => ({
-                'col-info': true,
+                'col-info': el === MailingCrud.STATUS_CREATED,
+                'col-warning': el === MailingCrud.STATUS_SCHEDULED,
+                'col-success': el === MailingCrud.STATUS_PROCESSED,
                 // 'col-info': el !== MailingCrud.STATUS_CREATED,
                 // 'col-info': el !== MailingCrud.STATUS_SCHEDULED,
             }),
+            translate: true,
         },
         {
             accessor: (item) => item.deliveries.length,

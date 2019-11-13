@@ -1030,6 +1030,9 @@
   "NOT_ENOUGH_FUNDS": "No tiene fondos disponibles",
   "NEW_WITHDRAWAL": "Crear un retiro de cuenta",
   "Hide Preview": "Ocultar Vista Previa",
-  "PREVIEW_NOT_ACCURATE": "Vista Previa no es 100% exacta"
-
+  "PREVIEW_NOT_ACCURATE": "Vista Previa no es 100% exacta",
+  "VIEW_MAIL": "Ver Correo",
+  "processed": "procesado",
+  "created": "creado",
+  "scheduled": "programado"
 }

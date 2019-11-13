@@ -260,6 +260,14 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         }
     }
 
+    public getMailStatusColor(status) {
+        switch (status) {
+            case MailingCrud.STATUS_CREATED: return 'info';
+            case MailingCrud.STATUS_PROCESSED: return 'info';
+            case MailingCrud.STATUS_SCHEDULED: return 'warning';
+        }
+    }
+
     public deleteAccount(item) {
         this.loading = true;
         this.mailDeliveries.remove(item.id)

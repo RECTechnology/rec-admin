@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, AfterContentInit } from
 import { Sort, SortDirection } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface TlHeader {
     sort: string;
@@ -11,8 +12,9 @@ export interface TlHeader {
     accessor?: string | ((el: any) => any);
     statusClass?: ((status: string) => any);
     avatar?: TlHeader;
-    buttonAction?: (any) => any;
+    translate?: boolean;
     buttonImg?: string;
+    buttonAction?: (any) => any;
     slideAction?: (any) => any;
 }
 
@@ -60,6 +62,7 @@ export class TableListTable implements AfterContentInit {
     constructor(
         public router: Router,
         public route: ActivatedRoute,
+        public translate: TranslateService,
     ) {
         this.onSort = new EventEmitter<Sort>();
         this.onChangePage = new EventEmitter<Sort>();
@@ -80,14 +83,17 @@ export class TableListTable implements AfterContentInit {
             });
     }
 
-    public getEntry(entry, header: TlHeader) {
+    public getEntry(entry, header: TlHeader, translate = true) {
+        let val = '';
         if (!header.accessor) {
-            return entry[header.sort];
+            val = entry[header.sort];
         } else if (typeof header.accessor === 'string') {
-            return entry[header.accessor];
+            val = entry[header.accessor];
         } else if (typeof header.accessor === 'function') {
-            return header.accessor(entry);
+            val = header.accessor(entry);
         }
+
+        return (translate && header.translate) ? this.translate.instant(val) : val;
     }
 
     public trackByFn(index, item) {
