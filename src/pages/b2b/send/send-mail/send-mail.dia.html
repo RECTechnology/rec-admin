@@ -127,7 +127,7 @@
                 <button color="primary" *ngIf="isEdit" [disabled]="isSaveDisabled() || loading || readonly"
                     (click)="saveMail()" mat-raised-button style="margin-right: 10px;margin-left: 15px"
                     matTooltip="{{'SAVE'|translate}}">
-                    <i class="fa fa-save" style="margin-right: 8px"></i> {{'SAVE'|translate}}
+                    <i class="fa fa-save" style="margin-right: 8px"></i> {{'SAVE_DRAFT'|translate}}
                 </button>
 
                 <button color="error" *ngIf="mail.status === 'scheduled'" [disabled]="!isSaveDisabled() || loading"
@@ -136,11 +136,11 @@
                     <i class="fa fa-times" style="margin-right: 8px"></i> {{'CANCEL'|translate}}
                 </button>
 
-                <button color="primary" *ngIf="!isEdit" (click)="createMail()"
+                <!-- <button color="primary" *ngIf="!isEdit" (click)="createMail()"
                     [disabled]="isSaveDisabled() || loading || readonly" mat-raised-button
                     style="margin-right: 10px;margin-left: 15px" matTooltip="{{'Create'|translate}}">
                     <i class="fa fa-save" style="margin-right: 8px"></i> {{'Create'|translate}}
-                </button>
+                </button> -->
 
                 <p class="small-text" style="margin-right: 0; margin-left: auto" *ngIf="mail.status === 'scheduled'">
                     {{'Scheduled'|translate}}: <code>{{mail.scheduled_at | date: 'medium'}}</code></p>

@@ -17,6 +17,7 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
 import { LANGS, LANG_MAP } from 'src/data/consts';
 import { CreateDelivery } from '../create-delivery/create-delivery';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'send-mail',
@@ -113,38 +114,41 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     ) {
         super();
 
-        // this.route.queryParams.subscribe((params) => {
-        //     /**
-        //      * Below code is for creating a mailing from link,
-        //      * mainly so it can be generated from `Account -> B2B Module`
-        //      */
-        //     if (params.acc_id || params.attach) {
-        //         if (params.concept) {
-        //             this.mail.concept = params.concept;
-        //         }
-        //         if (params.content) {
-        //             this.mail.content = params.content;
-        //         }
+        console.log('send mail');
 
-        //         this.createMail(false)
-        //             .then((resp) => {
-        //                 if (params.acc_id) {
-        //                     this.createDelivery.id = this.id;
-        //                     this.createDelivery.createDelivery([{ id: params.acc_id }]);
-        //                 }
-        //                 if (params.attach === 'b2b_report') {
-        //                     this.addAttachment('b2b_report', 'b2b_report.pdf');
-        //                 }
-        //             });
-        //     }
-        // });
+        this.route.queryParams
+            .subscribe((queryParams) => {
+                if (queryParams.acc_id || queryParams.attach) {
+                    if (queryParams.concept) {
+                        this.mail.concept = queryParams.concept;
+                    }
+                    if (queryParams.content) {
+                        this.mail.content = queryParams.content;
 
-        // this.lang[this.lang.abrev] = LANG_MAP[this.us.userData.locale];
-        // translate.onLangChange.subscribe(() => {
-        //     this.update();
-        // });
+                        this.createMail(true)
+                            .then((resp) => {
+                                this.saved = true;
+                                this.justCreated = true;
+                                if (queryParams.acc_id) {
+                                    this.createDelivery.id = this.id;
+                                    this.createDelivery.createDelivery([{ id: queryParams.acc_id }]);
+                                }
+                                if (queryParams.attach === 'b2b_report') {
+                                    this.addAttachment('b2b_report', 'b2b_report.pdf');
+                                }
+                            });
+                    }
+                }
+            }, (error) => {
+                console.log(error);
+            });
 
-        // this.refreshInterval = setInterval(this.update.bind(this), 30e3);
+        this.lang[this.lang.abrev] = LANG_MAP[this.us.userData.locale];
+        translate.onLangChange.subscribe(() => {
+            this.update();
+        });
+
+        this.refreshInterval = setInterval(this.update.bind(this), 30e3);
     }
 
     public ngOnDestroy() {
@@ -171,7 +175,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public onDiscard() {
-        if (!this.mail.concept && !this.mail.content) {
+        if (!this.mail.concept && !this.mail.content && !this.mail.id) {
             this.mailing.remove(this.id).subscribe((resp) => {
                 this.alerts.showSnackbar('Deleted mail');
             });
@@ -184,7 +188,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public ngOnInit() {
         this.route.params.subscribe((params) => {
-            // if (params.id_or_new === 'new') { this.createMail(); }
+            if (params.id_or_new === 'new') { this.createMail(); }
             if (params.id_or_new && params.id_or_new !== 'new' && /[0-9]+/.test(params.id_or_new)) {
                 this.isEdit = true;
                 this.id = params.id_or_new;
@@ -299,7 +303,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             content: data.content,
             scheduled_at: moment(data.scheduled_at).toISOString(),
             subject: data.subject,
-        }).then((res) => this.saved = true);
+        }).then((res) => { this.saved = true; this.router.navigate(['/rec/mailing']); });
     }
 
     public createMail(navigateToMailing = true) {
@@ -433,7 +437,10 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             status: MailingCrud.STATUS_SCHEDULED,
         };
 
-        this.updateMail(mailData, message);
+        this.updateMail(mailData, message).then(() => {
+            this.justCreated = true;
+            this.router.navigate(['/rec/mailing']);
+        });
     }
 
     public createScheduled() {
