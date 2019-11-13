@@ -42,7 +42,7 @@ Please check [this wiki](https://github.com/QbitArtifacts/bootstrap/wiki/Develop
 2. App is available at: `/dist/index.html`
 3. It's ready
 
-### Commiting  
+### Commiting  
 Project uses [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages to autogenerate automatic CHANGELOG and auto increment version.
 
 ### Package Scripts
