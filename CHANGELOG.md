@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.11](https://github.com/QbitArtifacts/rec-admin/compare/v3.4.10...v3.4.11) (2019-11-13)
+
+
+### Bug Fixes
+
+* **docs:** fixed commiting section in README ([ba4b9fc](https://github.com/QbitArtifacts/rec-admin/commit/ba4b9fc1acb412e695411533031e80d4b98fddf1))
+* **docs:** fixed commiting section in README ([601c522](https://github.com/QbitArtifacts/rec-admin/commit/601c522fe1fcb8b785dd71b327d268fd6def7440))
+
 ### 3.4.10 (2019-11-13)
 
 
