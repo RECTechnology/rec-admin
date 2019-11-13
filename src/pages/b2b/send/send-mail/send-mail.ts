@@ -17,7 +17,6 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
 import { LANGS, LANG_MAP } from 'src/data/consts';
 import { CreateDelivery } from '../create-delivery/create-delivery';
-import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'send-mail',
