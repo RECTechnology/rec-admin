@@ -63,6 +63,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     }, {
       accessor: (el) => el.accounts ? el.accounts.length : 0,
       sort: 'companies',
+      sortable: false,
       title: 'Companies',
     }];
   public itemOptions: TlItemOption[] = [

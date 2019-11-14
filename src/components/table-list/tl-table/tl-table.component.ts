@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 export interface TlHeader {
-    sort: string;
+    sort: string|boolean;
     sortable?: boolean;
     title: string;
     type?: 'text' | 'checkbox' | 'status' | 'code' | 'date' | 'avatar' | 'button' | 'slidetoggle';
@@ -85,8 +85,8 @@ export class TableListTable implements AfterContentInit {
 
     public getEntry(entry, header: TlHeader, translate = true) {
         let val = '';
-        if (!header.accessor) {
-            val = entry[header.sort];
+        if (!header.accessor && header.sort) {
+            val = entry[header.sort as any];
         } else if (typeof header.accessor === 'string') {
             val = entry[header.accessor];
         } else if (typeof header.accessor === 'function') {

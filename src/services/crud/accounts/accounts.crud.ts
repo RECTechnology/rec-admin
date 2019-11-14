@@ -37,6 +37,11 @@ export class AccountsCrud extends CrudBaseService {
         }, { responseType: 'blob' });
     }
 
+    public lwGetWallet(account_id) {
+        const url = [...this.getUrlBase(), '/', account_id, '/', 'lemonway'];
+        return this.get(url, {});
+    }
+
     public getPdfAsHtml(account_id, lang: RecLang = REC_LANGS.ES) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'report_clients_providers'];
         return this.get(url, {}, {

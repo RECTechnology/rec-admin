@@ -8,6 +8,7 @@ import { ControlesService } from 'src/services/controles/controles.service';
 import { LoginService } from 'src/services/auth/auth.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { CreateLemonWithdrawalDia } from 'src/dialogs/create-lemon-withdrawal/create-lemon-withdrawal.dia';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 @Component({
   selector: 'lemonway-tab',
@@ -62,7 +63,16 @@ export class LemonWayTab extends TablePageBase {
     public ls: LoginService,
     public titleService: Title,
     public alerts: AlertsService,
+    public accCrud: AccountsCrud,
   ) { super(); }
+
+  public ngOnInit() {
+    this.accCrud.lwGetWallet(this.id)
+      .subscribe((resp) => {
+        console.log('LW', resp);
+      });
+    super.ngOnInit();
+  }
 
   public search() {
     return;
