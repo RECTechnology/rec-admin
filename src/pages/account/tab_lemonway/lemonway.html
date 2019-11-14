@@ -10,27 +10,27 @@
         <div class="group-col-left padd-x20" style="width: 100%;">
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
             <b>Internal ID </b>
-            <p>3123</p>
+            <p>{{lwInfo.LWID}}</p>
           </div>
 
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
             <b>External ID </b>
-            <p>3123</p>
+            <p>{{lwInfo.ID}}</p>
           </div>
 
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
             <b>Wallet Status  <a matTooltip="Open documentation" target="_blank" href="http://documentation.lemonway.fr/api-en/annex/status-and-types/wallet-status"><i class="fa fa-exclamation-circle col-gray-light"></i></a></b>
-            <p>registered, KYC 2</p>
+            <p>{{WALLET_STATUS_MAP[lwInfo.STATUS]}}</p>
           </div>
 
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
             <b>IBAN Status <a matTooltip="Open documentation" target="_blank" href="http://documentation.lemonway.fr/api-en/annex/status-and-types/iban-status"><i class="fa fa-exclamation-circle col-gray-light"></i></a></b>
-            <p>activated</p>
+            <p>{{lwInfo.IBAN ? IBAN_STATUS_MAP[lwInfo.IBAN.S]: 'not set'}}</p>
           </div>
 
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
             <b>Amount</b>
-            <p>1000 €</p>
+            <p>{{lwInfo.BAL|number}} €</p>
           </div>
         </div>
       </mat-card>
