@@ -7,12 +7,14 @@
     </span>
   </button>
 </div>
+
 <div class="padd-x20 modal-body" style="height: 300px">
   <div class="border-bottom marg-b-10 padding-b-15">
     <p class="small-text">
       {{'NEW_WITHDRAWAL'|translate}}: 
       <code>{{account ? account.name: ''}}</code>
-      <code class="small-text marg-l-5"> {{currentAmount}} Ɍ  </code>
+      <code class="small-text marg-l-5">{{currentAmountREC}} Ɍ</code>
+      <code class="small-text marg-l-5">{{currentAmountEUR}} €</code>
     </p>
   </div>
   <div class="row" style="width: 100%">

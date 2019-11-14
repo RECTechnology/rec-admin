@@ -8,19 +8,29 @@
         </div>
 
         <div class="group-col-left padd-x20" style="width: 100%;">
-          <div class="small-text center v space-between" style="width: 100%;">
+          <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
             <b>Internal ID </b>
             <p>3123</p>
           </div>
 
-          <div class="small-text center v space-between" style="width: 100%;">
+          <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
             <b>External ID </b>
             <p>3123</p>
           </div>
 
-          <div class="small-text center v space-between" style="width: 100%;">
-            <b>Is Pro </b>
-            <p><span class="fa fa-check col-success"></span></p>
+          <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
+            <b>Wallet Status  <a matTooltip="Open documentation" target="_blank" href="http://documentation.lemonway.fr/api-en/annex/status-and-types/wallet-status"><i class="fa fa-exclamation-circle col-gray-light"></i></a></b>
+            <p>registered, KYC 2</p>
+          </div>
+
+          <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
+            <b>IBAN Status <a matTooltip="Open documentation" target="_blank" href="http://documentation.lemonway.fr/api-en/annex/status-and-types/iban-status"><i class="fa fa-exclamation-circle col-gray-light"></i></a></b>
+            <p>activated</p>
+          </div>
+
+          <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
+            <b>Amount</b>
+            <p>1000 €</p>
           </div>
         </div>
       </mat-card>
@@ -33,7 +43,7 @@
             {{'WITHDRAWALS'|translate}}</p>
 
           <button mat-raised-button color="primary" (click)="newWithdrawal()">
-            + New Withdrawal
+            + {{'CREATE_WITHDRAWAL'|translate}}
           </button>
         </div>
         <div>

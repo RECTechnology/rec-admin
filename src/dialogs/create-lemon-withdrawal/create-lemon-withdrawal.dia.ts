@@ -14,7 +14,8 @@ import { Account } from 'projects/ngx-rec-api/src/lib/entities/account.ent';
 export class CreateLemonWithdrawalDia extends BaseDialog {
   public id: any;
   public account: Account;
-  public currentAmount: number;
+  public currentAmountREC: number;
+  public currentAmountEUR: number;
   public concept: string;
   public amount: number;
 
@@ -30,7 +31,8 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   public ngOnInit() {
     this.accountCrud.find(this.id).subscribe((resp) => {
       this.account = resp.data;
-      this.currentAmount = this.account.getBalance('REC');
+      this.currentAmountREC = this.account.getBalance('REC');
+      this.currentAmountEUR = this.account.getBalance('EUR');
     });
   }
 }

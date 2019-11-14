@@ -1039,5 +1039,7 @@
   "View SMS": "Ver Codigo SMS",
   "Resend SMS": "Re-enviar Codigo SMS",
   "Validate Phone": "Validar Telefono",
-  "Street Number": "Numero"
+  "Street Number": "Numero",
+  "CREATE_WITHDRAWAL": "Nueva Retirada"
+
 }

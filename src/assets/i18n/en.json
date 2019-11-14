@@ -478,5 +478,7 @@
   "NOT_ENOUGH_FUNDS": "Not enough funds",
   "NEW_WITHDRAWAL": "Create a withdrawal for account",
   "PREVIEW_NOT_ACCURATE": "Preview is not 100% exact",
-  "VIEW_MAIL": "View Mail"
+  "VIEW_MAIL": "View Mail",
+  "CREATE_WITHDRAWAL": "New Withdrawal"
+
 }
