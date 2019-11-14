@@ -195,7 +195,7 @@ export class EditAccountData {
 
     const act = this.account.consuming_products[i];
     this.account.consuming_products.splice(i, 1);
-    this.crudAccounts.removeConsumedProductToAccount(this.account.id, act.id)
+    this.crudAccounts.removeConsumedProductFromAccount(this.account.id, act.id)
       .subscribe((resp) => {
         this.alerts.showSnackbar('Removed product', 'ok');
         this.loading = false;
@@ -210,7 +210,7 @@ export class EditAccountData {
 
     const act = this.account.producing_products[i];
     this.account.producing_products.splice(i, 1);
-    this.crudAccounts.removeProducedProductToAccount(this.account.id, act.id)
+    this.crudAccounts.removeProducedProductFromAccount(this.account.id, act.id)
       .subscribe((resp) => {
         this.alerts.showSnackbar('Removed product', 'ok');
         this.loading = false;

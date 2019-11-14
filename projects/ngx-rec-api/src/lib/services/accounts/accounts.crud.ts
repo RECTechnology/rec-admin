@@ -53,12 +53,12 @@ export class AccountsCrudService extends CrudBaseService {
         return this.post(url, { id: product_id }).pipe(this.itemMapper());
     }
 
-    public removeConsumedProductToAccount(account_id, product_id) {
+    public removeConsumedProductFromAccount(account_id, product_id) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'consuming_products', '/', product_id];
         return this.delete(url).pipe(this.itemMapper());
     }
 
-    public removeProducedProductToAccount(account_id, product_id) {
+    public removeProducedProductFromAccount(account_id, product_id) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'producing_products', '/', product_id];
         return this.delete(url).pipe(this.itemMapper());
     }

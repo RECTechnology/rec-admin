@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { CrudBaseService } from 'src/services/base/crud.base';
 import { UserService } from 'src/services/user.service';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { CompanyService } from 'src/services/company/company.service';
 import { RecLang, REC_LANGS } from 'src/types';
 import { Account } from 'src/shared/entities/account.ent';
@@ -37,11 +36,6 @@ export class AccountsCrud extends CrudBaseService {
         }, { responseType: 'blob' });
     }
 
-    public lwGetWallet(account_id) {
-        const url = [...this.getUrlBase(), '/', account_id, '/', 'lemonway'];
-        return this.get(url, {});
-    }
-
     public getPdfAsHtml(account_id, lang: RecLang = REC_LANGS.ES) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'report_clients_providers'];
         return this.get(url, {}, {
@@ -61,12 +55,12 @@ export class AccountsCrud extends CrudBaseService {
         return this.post(url, { id: product_id }).pipe(this.itemMapper());
     }
 
-    public removeConsumedProductToAccount(account_id, product_id) {
+    public removeConsumedProductFromAccount(account_id, product_id) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'consuming_products', '/', product_id];
         return this.delete(url).pipe(this.itemMapper());
     }
 
-    public removeProducedProductToAccount(account_id, product_id) {
+    public removeProducedProductFromAccount(account_id, product_id) {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'producing_products', '/', product_id];
         return this.delete(url).pipe(this.itemMapper());
     }
@@ -81,7 +75,9 @@ export class AccountsCrud extends CrudBaseService {
         return this.delete(url).pipe(this.itemMapper());
     }
 
-    // public mapper(item: any) {
-    //     return this.cs.mapCompany(item);
-    // }
+    // Lemonway methods
+    public lwGetWallet(account_id) {
+        const url = [...this.getUrlBase(), '/', account_id, '/', 'integrations', '/', 'lemonway'];
+        return this.get(url, {});
+    }
 }
