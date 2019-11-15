@@ -226,7 +226,6 @@
   "REFERENCE": "REFERÈNCIA",
   "IMPORTANT": "IMPORTANT",
   "EXTRA NOTES": "NOTES ADDICIONALS",
-  "CASH_IN_DESC": "Per a dipositar EUR en el nostre compte CHIP-CHAP ha d'enviar una transferència bancària des del seu compte amb els següents detalls",
   "IF_DEACTIVATE_MSG": "Si desactiva una adreça, no podrà fer servir aquesta adreça en el futur.",
   "Label": "Nota",
   "Token": "Token",
@@ -1052,10 +1051,8 @@
   "WALLET_2_WALLET": "Wallet a Wallet",
   "ORIGIN_ACCOUNT": "Compte d'origen",
   "TARGET_ACCOUNT": "Compte objectiu",
-  "CASH_OUT": "Enviar a",
-  "CASH_IN": "Enviar des de",
-  "CASH_OUT": "Enviar a",
-  "CASH_OUT_DESC": "Envia diners amb aquest compte a un altre compte o a un IBAN",
-  "CASH_IN": "Enviar des de",
-  "CASH_IN_DESC": "Rep diners en aquest compte des d'un altre compte o targeta bancària"
+  "CASH_IN": "Enviar a",
+  "CASH_OUT": "Enviar desde",
+  "CASH_OUT_DESC": "Envia diners desde aquest compte a un altre compte o a un IBAN",
+  "CASH_IN_DESC": "Rep diners a aquest compte des d'un altre compte o targeta bancària"
 }

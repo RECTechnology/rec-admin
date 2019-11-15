@@ -28,11 +28,10 @@ export class AccountPickerDia {
   public search(query) {
     const opts = {
       offset: 0,
-      limit: 20,
-      sort: 'name',
-      order: 'asc',
+      limit: 50,
       type: this.type,
       search: query,
+      ...this.filters,
     };
 
     this.loading = true;

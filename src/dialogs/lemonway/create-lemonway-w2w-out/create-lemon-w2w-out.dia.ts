@@ -22,6 +22,12 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public concept: string;
   public amount: number;
 
+  public accountFilters = {
+    active: 1,
+    tier: 2,
+    type: 'COMPANY',
+  };
+
   constructor(
     public dialogRef: MatDialogRef<CreateLemonWallet2WalletOutDia>,
     private us: UserService,

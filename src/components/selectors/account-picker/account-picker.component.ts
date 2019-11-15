@@ -13,6 +13,7 @@ import { Account } from 'src/shared/entities/account.ent';
 export class AccountPickerComponent {
   @Input('id') public accountId = null;
   @Input() public disabled = false;
+  @Input() public filters = {};
 
   public selectedAccount: Account | any = {};
   public Brand = environment.Brand;
@@ -31,6 +32,7 @@ export class AccountPickerComponent {
     console.log('openSelectAccount');
     this.alerts.openModal(AccountPickerDia, {
       currentAccountId: this.selectedAccount && this.selectedAccount.id,
+      filters: this.filters,
     }).subscribe((account: Account) => {
       this.selectedAccount = account;
     });

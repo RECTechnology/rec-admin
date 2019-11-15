@@ -215,7 +215,6 @@
   "REFERENCE": "REFERENCIA",
   "IMPORTANT": "IMPORTANTE",
   "EXTRA NOTES": "NOTAS ADICIONALES",
-  "CASH_IN_DESC": "Para depositar EUR en nuestra cuenta CHIP-CHAP debe enviar una transferencia bancaria desde su cuenta con los siguientes detalles",
   "IF_DEACTIVATE_MSG": "Si desactiva una dirección, no podrá usar esta dirección en el futuro.",
   "Label": "Nota",
   "Token": "Token",
@@ -1046,8 +1045,8 @@
   "WALLET_2_WALLET": "Wallet a Wallet",
   "ORIGIN_ACCOUNT": "Cuenta de origen",
   "TARGET_ACCOUNT": "Cuenta de destino",
-  "CASH_OUT": "Enviar a",
+  "CASH_OUT": "Enviar desde",
   "CASH_OUT_DESC": "Enviar dinero de esta cuenta a otra cuenta o un IBAN",
-  "CASH_IN": "Enviar desde",
-  "CASH_IN_DESC": "Reciba dinero en esta cuenta de otra cuenta o tarjeta bancaria"
+  "CASH_IN": "Enviar a",
+  "CASH_IN_DESC": "Reciba dinero a esta cuenta de otra cuenta o tarjeta bancaria"
 }

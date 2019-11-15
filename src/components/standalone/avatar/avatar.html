@@ -6,10 +6,9 @@
 
     <img src="{{account && account[imageAccessor] || Brand.account_default_image}}" [style.height]="size + 'px'"
       [style.width]="size + 'px'">
-
   </div>
   <div>
-    <span class="name">{{account && account[nameAccessor] || 'Account'}}</span>
-    <span class="small-text description">{{account && account.description}}</span>
+    <p class="name">{{account && account[nameAccessor] || 'Account'}}</p>
+    <p class="small-text description" *ngIf="description">{{account && account.description}}</p>
   </div>
 </div>

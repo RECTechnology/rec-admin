@@ -31,12 +31,9 @@
           <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
           <account-picker [disabled]="true" [id]="id"></account-picker>
         </div>
-        <!-- <button mat-icon-button matTooltip="Switch sides" (click)="switchSides()">
-          <i class="fa fa-arrows-alt-h"></i>
-        </button> -->
         <div style="width: 45%">
           <p class="small-text-2">{{'TARGET_ACCOUNT'|translate}}: </p>
-          <account-picker [id]="targetAccountId"></account-picker>
+          <account-picker [id]="targetAccountId"  [filters]="accountFilters"></account-picker>
         </div>
       </div>
     </div>

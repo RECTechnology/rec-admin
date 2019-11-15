@@ -74,6 +74,13 @@
                 </button>
               </div>
             </div>
+            <div>
+              <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
+                [data]="sortedData" [itemOptions]="itemOptions" [options]="options"
+                noItemsMessage="There are no items yet" [limit]="limit" [total]="total"
+                (onChangePage)="changedPage($event)" showLoader="true">
+              </tl-table>
+            </div>
           </mat-tab>
         </mat-tab-group>
 
