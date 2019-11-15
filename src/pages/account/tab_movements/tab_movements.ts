@@ -4,7 +4,7 @@ import { MatDialog, Sort } from '@angular/material';
 import * as moment from 'moment';
 
 import { ControlesService } from 'src/services/controles/controles.service';
-import { TxFilter } from 'src/components/filter/filter';
+import { TxFilter } from 'src/components/other/filter/filter';
 import { TransactionService } from 'src/services/transactions/transactions.service';
 import { TxDetails } from 'src/pages/wallet/dialogs/tx_details/tx_details.dia';
 import { environment } from 'src/environments/environment';

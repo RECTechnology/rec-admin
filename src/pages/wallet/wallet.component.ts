@@ -15,7 +15,7 @@ import { CompanyService } from '../../services/company/company.service';
 import { PageBase, OnLogout, OnLogin } from '../../bases/page-base';
 import { ExportTxsDia } from './dialogs/export-txs/export-txs.dia';
 import { CashOutDia } from './dialogs/cash-out/cash-out.dia';
-import { TxFilter } from '../../components/filter/filter';
+import { TxFilter } from '../../components/other/filter/filter';
 import { CashOutTesoroDia } from './dialogs/cash-out-tesoro/cash-out-tesoro.dia';
 import Transaction from '../../shared/entities/transaction/transaction.ent';
 import { AlertsService } from 'src/services/alerts/alerts.service';

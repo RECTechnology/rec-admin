@@ -4,7 +4,7 @@ import { UserService } from '../../../../services/user.service';
 import BaseDialog from '../../../../bases/dialog-base';
 import { WalletService } from '../../../../services/wallet/wallet.service';
 import { TransactionService } from '../../../../services/transactions/transactions.service';
-import { TxFilter } from '../../../../components/filter/filter';
+import { TxFilter } from '../../../../components/other/filter/filter';
 
 @Component({
   selector: 'export-txs',

@@ -10,7 +10,7 @@ import { CompanyService } from 'src/services/company/company.service';
 import { Observable } from 'rxjs';
 import { TransactionService } from 'src/services/transactions/transactions.service';
 import { DashboardService, DashboardValidIntervals } from 'src/services/dashboard/dashboard.service';
-import { DashChart } from 'src/components/dash-chart/dash-chart.component';
+import { DashChart } from 'src/components/standalone/dash-chart/dash-chart.component';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from '../../services/controles/controles.service';
 import { TablePageBase } from '../../bases/page-base';
 import { LoginService } from '../../services/auth/auth.service';
-import { TlHeader, TlItemOption } from '../../components/table-list/tl-table/tl-table.component';
+import { TlHeader, TlItemOption } from '../../components/scaffolding/table-list/tl-table/tl-table.component';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';

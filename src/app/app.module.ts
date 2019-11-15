@@ -43,7 +43,6 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
-import { AgmCoreModule } from '@agm/core';
 registerLocaleData(localeCat);
 registerLocaleData(localeEn);
 registerLocaleData(localeEs);

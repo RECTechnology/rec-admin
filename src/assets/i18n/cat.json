@@ -1046,5 +1046,9 @@
   "View SMS": "Veure Codi SMS",
   "Resend SMS": "Re-enviar Codi SMS",
   "Validate Phone": "Validar Telèfon",
-  "CREATE_WITHDRAWAL": "Nova Retirada"
+  "CREATE_WITHDRAWAL": "Nova Retirada",
+  "WALLET_TO_WALLET": "Transf. entre wallets",
+  "WITHDRAWALS": "Retirades"
+
+
 }

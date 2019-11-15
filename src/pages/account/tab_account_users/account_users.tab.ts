@@ -7,11 +7,11 @@ import { UserService } from '../../../services/user.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { CompanyService } from '../../../services/company/company.service';
 import { ControlesService } from '../../../services/controles/controles.service';
-import { EditUserData } from '../../../dialogs/edit-user/edit-user.dia';
-import { AddUser } from '../../../dialogs/add-user/add-user.dia';
+import { EditUserData } from '../../../dialogs/management/edit-user/edit-user.dia';
+import { AddUser } from '../../../dialogs/management/add-user/add-user.dia';
 import { environment } from '../../../environments/environment';
 import { AdminService } from '../../../services/admin/admin.service';
-import { ViewDetails } from 'src/dialogs/view-details/view-details.dia';
+import { ViewDetails } from 'src/dialogs/management/view-details/view-details.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({

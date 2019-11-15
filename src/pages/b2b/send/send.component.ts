@@ -4,7 +4,7 @@ import { B2bService } from 'src/services/b2b/b2b.service';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
 import { Router } from '@angular/router';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
-import { TlHeader, TlItemOption, TableListOptions } from 'src/components/table-list/tl-table/tl-table.component';
+import { TlHeader, TlItemOption, TableListOptions } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { Title } from '@angular/platform-browser';

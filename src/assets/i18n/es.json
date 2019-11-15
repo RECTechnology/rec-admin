@@ -1040,6 +1040,10 @@
   "Resend SMS": "Re-enviar Codigo SMS",
   "Validate Phone": "Validar Telefono",
   "Street Number": "Numero",
-  "CREATE_WITHDRAWAL": "Nueva Retirada"
+  "CREATE_WITHDRAWAL": "Nueva Retirada",
+  "WALLET_TO_WALLET": "Transf. entre wallets",
+  "WITHDRAWALS": "Retiradas"
+
+
 
 }

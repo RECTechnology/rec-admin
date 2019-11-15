@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from 'src/components/login/login.component';
+import { LoginComponent } from 'src/pages/login/login.component';
 import { IsNotLoggedInGuard, IsLoggedInGuard } from 'src/services/guards/login.guard';
 import { UsersPage } from 'src/pages/users/users.component';
 import { AccountsPage } from 'src/pages/accounts/accounts.component';

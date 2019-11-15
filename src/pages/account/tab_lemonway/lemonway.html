@@ -43,7 +43,7 @@
     <div class="col-lg-9">
       <mat-card style="min-height: 200px;padding:0; overflow: hidden;">
         <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)">
-          <mat-tab label="WITHDRAWALS">
+          <mat-tab label="{{'WITHDRAWALS'|translate}}">
             <div class="header bordered-bottom" style="padding: 12px 15px">
               <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
                 {{'WITHDRAWALS'|translate}}</p>
@@ -55,13 +55,25 @@
             <div>
               <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
                 [data]="sortedData" [itemOptions]="itemOptions" [options]="options"
-                noItemsMessage="There are no withdrawals yet" [limit]="limit" [total]="total"
+                noItemsMessage="There are no items yet" [limit]="limit" [total]="total"
                 (onChangePage)="changedPage($event)" showLoader="true">
               </tl-table>
             </div>
           </mat-tab>
-          <mat-tab label="WALLET_TO_WALLET">
+          <mat-tab label="{{'WALLET_TO_WALLET'|translate}}">
+            <div class="header bordered-bottom" style="padding: 12px 15px">
+              <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
+                {{'WALLET_TO_WALLET'|translate}}</p>
 
+              <div>
+                <button style="margin-right: 10px;" mat-raised-button color="primary" (click)="newWallet2WalletOut()">
+                  + {{'CASH_OUT'|translate}}
+                </button>
+                <button mat-raised-button color="primary" (click)="newWallet2WalletIn()">
+                  + {{'CASH_IN'|translate}}
+                </button>
+              </div>
+            </div>
           </mat-tab>
         </mat-tab-group>
 

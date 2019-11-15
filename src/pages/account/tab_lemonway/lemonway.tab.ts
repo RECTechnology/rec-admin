@@ -2,12 +2,15 @@ import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { TlHeader, TlItemOption, TableListOptions } from 'src/components/table-list/tl-table/tl-table.component';
+import { TlHeader, TlItemOption, TableListOptions } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { LoginService } from 'src/services/auth/auth.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
-import { CreateLemonWithdrawalDia } from 'src/dialogs/create-lemon-withdrawal/create-lemon-withdrawal.dia';
+import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-withdrawal/create-lemon-withdrawal.dia';
+import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemonway-w2w-out/create-lemon-w2w-out.dia';
+import { CreateLemonWallet2WalletInDia } from 'src/dialogs/lemonway/create-lemonway-w2w-in/create-lemon-w2w-in.dia';
+
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 const WALLET_STATUS_MAP = {
@@ -126,6 +129,24 @@ export class LemonWayTab extends TablePageBase {
 
   public newWithdrawal() {
     const dialog = this.alerts.createModal(CreateLemonWithdrawalDia, {
+      id: this.id,
+    });
+    dialog.afterClosed().subscribe((resp) => {
+      this.search();
+    });
+  }
+
+  public newWallet2WalletOut() {
+    const dialog = this.alerts.createModal(CreateLemonWallet2WalletOutDia, {
+      id: this.id,
+    });
+    dialog.afterClosed().subscribe((resp) => {
+      this.search();
+    });
+  }
+
+  public newWallet2WalletIn() {
+    const dialog = this.alerts.createModal(CreateLemonWallet2WalletInDia, {
       id: this.id,
     });
     dialog.afterClosed().subscribe((resp) => {

@@ -479,6 +479,8 @@
   "NEW_WITHDRAWAL": "Create a withdrawal for account",
   "PREVIEW_NOT_ACCURATE": "Preview is not 100% exact",
   "VIEW_MAIL": "View Mail",
-  "CREATE_WITHDRAWAL": "New Withdrawal"
+  "CREATE_WITHDRAWAL": "New Withdrawal",
+  "WALLET_TO_WALLET": "Transf. Between Wallets",
+  "WITHDRAWALS": "Withdrawals"
 
 }

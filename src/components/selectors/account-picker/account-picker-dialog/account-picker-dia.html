@@ -1,0 +1,34 @@
+<div class="modal-header bg-blue">
+  <span>{{'Account Picker'}}</span>
+
+  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
+    <span class="center h v">
+      <i class="fa fa-times col-white"></i>
+    </span>
+  </button>
+</div>
+
+<div class="group-col-left" style="max-width: 50vw;width: 45vw; min-width: 45vw;">
+  <tl-header title="Accounts" [options]="{ input: true, deepLinkQuery: false }" (onSearch)="search($event)"
+    style="width: 100%"></tl-header>
+  <mat-action-list style="max-height: 70vh;min-height: 300px; overflow-y: auto; width: 100%">
+    <button *ngFor="let account of accounts" mat-list-item (click)="select(account)" type="button"
+      [class.disabled]="account.id == currentAccountId">
+      <img src="{{account.company_image || Brand.account_default_image}}" alt="" style="width: 20px; height: 20px">
+      {{account.name || 'Select Account'}} ({{account.id}})
+    </button>
+
+    <button mat-list-item *ngIf="loading">
+      <div class="center h v" style="width: 100%">
+        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
+      </div>
+    </button>
+
+    <button mat-list-item *ngIf="!loading && accounts.length === 0">
+      {{'No items here'|translate}}
+    </button>
+  </mat-action-list>
+
+
+</div>

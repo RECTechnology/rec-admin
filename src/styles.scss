@@ -50,11 +50,10 @@ agm-map {
   height: 300px;
 }
 
-
 .report {
   width: 100%;
   display: flex;
-  align-items: flex-start!important;
+  align-items: flex-start !important;
 
   .report-list {
     width: 45%;
@@ -126,7 +125,7 @@ agm-map {
     text-align: center;
   }
   article a {
-    color: #218fec!important;
+    color: #218fec !important;
   }
   footer {
     background: #4d4d4d;
@@ -141,4 +140,10 @@ agm-map {
     display: block;
     font-weight: lighter;
   }
+}
+
+.mat-list-item.disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5;
+  text-decoration: none;
 }

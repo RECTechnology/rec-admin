@@ -8,18 +8,20 @@ import { KycTab } from './tab_kyc/kyc.tab';
 import { IsLoggedInGuard } from '../../services/guards/login.guard';
 import { Tier1Form } from './tab_kyc/tier_validation/tier_validation.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { ViewDetails } from '../../dialogs/view-details/view-details.dia';
-import { ViewDetailsAccount } from '../../dialogs/view-details-account/view-details-account.dia';
+import { ViewDetails } from '../../dialogs/management/view-details/view-details.dia';
+import { ViewDetailsAccount } from '../../dialogs/management/view-details-account/view-details-account.dia';
 import { MovementsTab } from './tab_movements/tab_movements';
 import { AccountUsersTab } from './tab_account_users/account_users.tab';
 import { AccountDetailsTab } from './tab_account_details/account_details.tab';
-import { EditUserData } from '../../dialogs/edit-user/edit-user.dia';
-import { EditAccountData } from '../../dialogs/edit-account/edit-account.dia';
+import { EditUserData } from '../../dialogs/management/edit-user/edit-user.dia';
+import { EditAccountData } from '../../dialogs/management/edit-account/edit-account.dia';
 import { AccountDocuments } from './tab_documents/account_documents.tab';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { B2BModuleTab } from './tab_b2b/tab_b2b.tab';
 import { LemonWayTab } from './tab_lemonway/lemonway.tab';
-import { CreateLemonWithdrawalDia } from 'src/dialogs/create-lemon-withdrawal/create-lemon-withdrawal.dia';
+import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-withdrawal/create-lemon-withdrawal.dia';
+import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemonway-w2w-out/create-lemon-w2w-out.dia';
+import { CreateLemonWallet2WalletInDia } from 'src/dialogs/lemonway/create-lemonway-w2w-in/create-lemon-w2w-in.dia';
 
 const accountRoutes: Routes = [
   {
@@ -44,7 +46,6 @@ const accountRoutes: Routes = [
     AccountDocuments,
     B2BModuleTab,
     LemonWayTab,
-    CreateLemonWithdrawalDia,
   ],
   entryComponents: [
     EditUserData,
@@ -55,7 +56,6 @@ const accountRoutes: Routes = [
     AccountDocuments,
     LemonWayTab,
     B2BModuleTab,
-    CreateLemonWithdrawalDia,
   ],
   exports: [
     RouterModule,
