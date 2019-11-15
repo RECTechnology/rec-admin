@@ -17,7 +17,9 @@ export class CreateLemonWallet2WalletInDia extends BaseDialog {
   public currentAmountREC: number;
   public currentAmountEUR: number;
 
-  public originAccountId;
+  public originAccountId = null;
+  public targetAccountId = null;
+
   public concept: string;
   public amount: number;
 

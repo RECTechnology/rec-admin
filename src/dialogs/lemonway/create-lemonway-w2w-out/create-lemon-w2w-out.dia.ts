@@ -21,6 +21,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public targetAccountId = null;
   public concept: string;
   public amount: number;
+  public iban: string;
 
   public accountFilters = {
     active: 1,

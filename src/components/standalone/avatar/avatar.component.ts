@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Account } from 'src/shared/entities/account.ent';
 import { environment } from 'src/environments/environment';
 
 @Component({

@@ -28,7 +28,7 @@
         <span class="small-text-2">{{'Amount'|translate}}</span>
         <input type="number" class="user-input small" [(ngModel)]="amount" placeholder="{{'Amount'|translate}}">
 
-        <p *ngIf="amount > currentAmount" class="small-text col-error">{{'NOT_ENOUGH_FUNDS'|translate}}</p>
+        <p *ngIf="amount > currentAmountEUR" class="small-text col-error">{{'NOT_ENOUGH_FUNDS'|translate}}</p>
       </div>
     </div>
     <div class="col-lg-12">
