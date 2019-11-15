@@ -1023,8 +1023,8 @@
   "Gender": "Sexo",
   "Language": "Lenguage",
   "Profile Image": "Imagen de perfil",
-  "Document Front":"Documento Delante",
-  "Document Rear":"Documento Reverso",
+  "Document Front": "Documento Delante",
+  "Document Rear": "Documento Reverso",
   "LEMONWAY_INFO": "Configuración Lemonway",
   "FILL_FIELDS_WITHDRAWAL": "Rellena los siguientes campos",
   "NOT_ENOUGH_FUNDS": "No tiene fondos disponibles",
@@ -1042,8 +1042,12 @@
   "Street Number": "Numero",
   "CREATE_WITHDRAWAL": "Nueva Retirada",
   "WALLET_TO_WALLET": "Transf. entre wallets",
-  "WITHDRAWALS": "Retiradas"
-
-
-
+  "WITHDRAWALS": "Retiradas",
+  "WALLET_2_WALLET": "Wallet a Wallet",
+  "ORIGIN_ACCOUNT": "Cuenta de origen",
+  "TARGET_ACCOUNT": "Cuenta de destino",
+  "CASH_OUT": "Enviar a",
+  "CASH_OUT_DESC": "Enviar dinero de esta cuenta a otra cuenta o un IBAN",
+  "CASH_IN": "Enviar desde",
+  "CASH_IN_DESC": "Reciba dinero en esta cuenta de otra cuenta o tarjeta bancaria"
 }

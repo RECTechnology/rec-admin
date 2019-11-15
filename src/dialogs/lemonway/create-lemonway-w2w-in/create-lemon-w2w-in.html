@@ -1,5 +1,5 @@
 <div class="modal-header bg-blue">
-  {{'WALLET_2_WALLET'|translate}} ({{'lw:in'|translate}})
+  {{'CASH_IN'|translate}}
 
   <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
     <span class="center h v">
@@ -8,29 +8,34 @@
   </button>
 </div>
 
-<div class="padd-x20 modal-body" style="height: 300px">
+<div class="padd-x20 modal-body" style="min-height: 300px">
   <div class="border-bottom marg-b-10 padding-b-15">
-    <p class="small-text">
-      {{'WALLET_2_WALLET'|translate}}:
+    <p class="small-text-2">
+      {{'CASH_IN'|translate}}:
       <code>{{account ? account.name: ''}}</code>
       <code class="small-text marg-l-5">{{currentAmountREC}} Ɍ</code>
       <code class="small-text marg-l-5">{{currentAmountEUR}} €</code>
     </p>
+    <p class="small-text">{{'CASH_IN_DESC'|translate}}</p>
   </div>
   <div class="row" style="width: 100%">
     <div class="col-lg-12">
       <p class="small-text">
-        {{'FILL_FIELDS_WITHDRAWAL'|translate}}
+        {{'FILL_FIELDS_WITHDRAWAL'|translate}}:
       </p>
     </div>
 
     <div class="col-lg-12">
-      <div class="group-row-left center v space-between">
-        <div>
-          <p>From: </p>
-          <input type="number" class="user-input small" [value]="amount" placeholder="{{'Amount'|translate}}">
+      <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
+        <div style="width: 45%">
+          <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
+          <account-picker [id]="targetAccountId"></account-picker>
         </div>
-        <div></div>
+
+        <div style="width: 45%">
+          <p class="small-text-2">{{'TARGET_ACCOUNT'|translate}}: </p>
+          <account-picker [disabled]="true" [id]="id"></account-picker>
+        </div>
       </div>
     </div>
 
@@ -51,6 +56,6 @@
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
-    <btn-loader [loading]="loading" [text]="'ADD'"></btn-loader>
+    <btn-loader [loading]="loading" [text]="'SEND'"></btn-loader>
   </div>
 </div>

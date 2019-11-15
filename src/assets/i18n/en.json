@@ -125,8 +125,6 @@
   "NO_CLIENTS_YET": "There are no clients yet.",
   "ADD_COMMENT_TO": "Add comment to transaction",
   "Comment": "Comment",
-  "CASH_IN_DESC": "In order to deposit EUR into our CHIP-CHAP account you must send a bank transfer from your account with the following details",
-  "IF_DEACTIVATE_MSG": "If you deactivate one address you can't use this address in the future.",
   "Label": "Label",
   "Token": "Token",
   "NO_ITEMS_YET": "No items yet",
@@ -481,6 +479,12 @@
   "VIEW_MAIL": "View Mail",
   "CREATE_WITHDRAWAL": "New Withdrawal",
   "WALLET_TO_WALLET": "Transf. Between Wallets",
-  "WITHDRAWALS": "Withdrawals"
-
+  "WITHDRAWALS": "Withdrawals",
+  "WALLET_2_WALLET": "Wallet to Wallet",
+  "ORIGIN_ACCOUNT": "Origin Account",
+  "TARGET_ACCOUNT": "Target Account",
+  "CASH_OUT": "Send To",
+  "CASH_OUT_DESC": "Send money from this account to another account or an IBAN",
+  "CASH_IN": "Send From",
+  "CASH_IN_DESC": "Receive money in this account from another account or bankc card"
 }

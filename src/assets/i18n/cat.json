@@ -1048,7 +1048,14 @@
   "Validate Phone": "Validar Telèfon",
   "CREATE_WITHDRAWAL": "Nova Retirada",
   "WALLET_TO_WALLET": "Transf. entre wallets",
-  "WITHDRAWALS": "Retirades"
-
-
+  "WITHDRAWALS": "Retirades",
+  "WALLET_2_WALLET": "Wallet a Wallet",
+  "ORIGIN_ACCOUNT": "Compte d'origen",
+  "TARGET_ACCOUNT": "Compte objectiu",
+  "CASH_OUT": "Enviar a",
+  "CASH_IN": "Enviar des de",
+  "CASH_OUT": "Enviar a",
+  "CASH_OUT_DESC": "Envia diners amb aquest compte a un altre compte o a un IBAN",
+  "CASH_IN": "Enviar des de",
+  "CASH_IN_DESC": "Rep diners en aquest compte des d'un altre compte o targeta bancària"
 }
