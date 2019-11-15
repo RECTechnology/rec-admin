@@ -67,7 +67,19 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.account_id = params.id;
       this.pageName = 'Account (' + this.account_id + ')';
+      this.setup();
     });
+  }
+
+  public setup() {
+    this.loading = true;
+    this.crudAccounts.find(this.account_id)
+      .subscribe((resp: any) => {
+        this.companyService.selectedCompany = resp.data;
+        this.loading = false;
+      }, (error) => {
+        this.loading = false;
+      });
   }
 
   /* Called when tab change, so url changes also */

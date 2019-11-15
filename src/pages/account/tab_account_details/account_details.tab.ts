@@ -41,16 +41,8 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
   }
 
   public setUp() {
-    this.loading = true;
-    this.crudAccounts.find(this.account_id)
-      .subscribe((resp: any) => {
-        this.companyService.selectedCompany = resp.data;
-        this.controles.showAccountDetails = true;
-        this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
-        this.loading = false;
-      }, (error) => {
-        this.loading = false;
-      });
+    this.controles.showAccountDetails = true;
+    this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
   }
 
   public openEditAccount() {

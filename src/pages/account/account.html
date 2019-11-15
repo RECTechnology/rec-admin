@@ -19,7 +19,8 @@
 <sidemenu></sidemenu>
 
 <div class="page account" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
-  <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)">
+  <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)"
+    *ngIf="companyService.selectedCompany">
     <mat-tab label="{{'DETAILS'|translate}}">
       <account-details-tab></account-details-tab>
     </mat-tab>
@@ -35,9 +36,14 @@
     <mat-tab label="{{'B2B_MODULE'|translate}}">
       <b2b-module [id]="account_id" [account]="companyService.selectedCompany"></b2b-module>
     </mat-tab>
-    <mat-tab label="{{'LEMONWAY_INFO'|translate}}">
+    <mat-tab *ngIf="companyService.selectedCompany && companyService.selectedCompany.isCompany()"
+      label="{{'LEMONWAY_INFO'|translate}}">
       <lemonway-tab [id]="account_id"></lemonway-tab>
     </mat-tab>
   </mat-tab-group>
+  <div class="center h v" *ngIf="!companyService.selectedCompany" style="width: 100%">
+    <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+    </mat-progress-spinner>
+  </div>
   <page-footer style="margin-top: 30px"></page-footer>
 </div>

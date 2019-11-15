@@ -67,6 +67,10 @@ export interface Account {
     wallets: Wallet[];
     web: string;
     zip: string;
+
+    _isReadonly?: boolean;
+    _isCompany?: boolean;
+    _isAdmin?: boolean;
 }
 export class Account implements Account {
 
@@ -86,6 +90,22 @@ export class Account implements Account {
                 this[prop] = accountInfo[prop];
             }
         }
+
+        this._isReadonly = this.isReadonly();
+        this._isCompany = this.isCompany();
+        this._isAdmin = this.isAdmin();
+    }
+
+    public isCompany() {
+        return this && this.type === 'COMPANY';
+    }
+
+    public isAdmin() {
+        return this.roles ? this.roles.indexOf(User.ROLE_ADMIN) !== -1 : false;
+    }
+
+    public isReadonly() {
+        return this.roles ? this.roles.indexOf(User.ROLE_READONLY) !== -1 : false;
     }
 
     public getBalance(currency: string) {
