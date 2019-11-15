@@ -1,29 +1,22 @@
 <div style="height: 100%; padding: 20px">
   <mat-card style="padding: 20px">
     <div *ngIf="!loading && companyService.selectedCompany">
-      <div class="group-col-left" style="width: 100%; padding: 20px">
-        <div class="group-row-left center h v" style="position: relative;width: 100%">
-          <img src="{{companyService.selectedCompany.company_image || Brand.account_default_image}}" alt=""
-            style="margin-right: 10px; width: 40px; height: 40px; border-radius: 50%;">
-          <div class="group-col-left">
-            <b class="small-text-3">{{companyService.selectedCompany.name}}</b>
-            <i class="col-gray-light">{{companyService.selectedCompany.description}}</i>
+      <div class="group-row-left" style="position:relative;width: 100%; padding: 20px">
+        <avatar [account]="companyService.selectedCompany" [size]="30" [description]="true"></avatar>
+        <span class="abs-center-right group-row-left center v">
+          <div class="status-badge marg-right-x10">
+            <p class="label_txt">Tier</p>
+            <div class="value bg-blue">
+              {{companyService.selectedCompany.tier}}
+            </div>
           </div>
-          <span class="abs-center-right group-row-left center v">
-            <div class="status-badge marg-right-x10">
-              <p class="label_txt">Tier</p>
-              <div class="value bg-blue">
-                {{companyService.selectedCompany.tier}}
-              </div>
+          <div class="status-badge marg-right-x10">
+            <p class="label_txt">{{'Type'|translate}}</p>
+            <div class="value bg-{{companyService.selectedCompany.type === 'COMPANY' ? 'orange': 'blue'}}">
+              {{companyService.selectedCompany.type}}
             </div>
-            <div class="status-badge marg-right-x10">
-              <p class="label_txt">{{'Type'|translate}}</p>
-              <div class="value bg-{{companyService.selectedCompany.type === 'COMPANY' ? 'orange': 'blue'}}">
-                {{companyService.selectedCompany.type}}
-              </div>
-            </div>
-          </span>
-        </div>
+          </div>
+        </span>
       </div>
       <div class="group-col-left" style="border-top: 1px solid #ddd">
         <div class="group-col-left" style="padding-top: 15px">
@@ -68,7 +61,7 @@
         <div class="group-col-left" style="padding-top: 15px">
           <b>{{'Available'|translate}}: </b>
           <div class="group-row-left">
-            <code style="margin-left: 10px" 
+            <code style="margin-left: 10px"
               class="small-text-2">{{companyService.selectedCompany.getBalance('REC') | number}} Ɍ</code>
             <code style="margin-left: 10px"
               class="small-text-2">{{companyService.selectedCompany.getBalance('EUR') | number}} €</code>

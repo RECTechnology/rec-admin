@@ -6,13 +6,8 @@
   </button>
 
   <div class="group-row-left center v" *ngIf="companyService.selectedCompany && companyService.selectedCompany.id">
-    <div class="user-image center h column" style="height: auto" [ngClass]="{
-        'company-border': companyService.selectedCompany.type == 'COMPANY',
-        'private-border': companyService.selectedCompany.type == 'PRIVATE'
-      }" routerLink="/accounts/{{companyService.selectedCompany.id}}">
-      <img src="{{companyService.selectedCompany.company_image || Brand.account_default_image}}" alt="">
-    </div>
-    <span style="margin-left: 10px">{{companyService.selectedCompany.name}}</span>
+    <avatar [account]="companyService.selectedCompany" [size]="30"></avatar>
+
     <code class="small-text" style="margin-right: 10px;">
       {{companyService.selectedCompany.getBalance('REC') | number}} Ɍ
     </code>

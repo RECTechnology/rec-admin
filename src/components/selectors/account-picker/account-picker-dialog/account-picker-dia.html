@@ -14,8 +14,7 @@
   <mat-action-list style="max-height: 70vh;min-height: 300px; overflow-y: auto; width: 100%">
     <button *ngFor="let account of accounts" mat-list-item (click)="select(account)" type="button"
       [class.disabled]="account.id == currentAccountId">
-      <img src="{{account.company_image || Brand.account_default_image}}" alt="" style="width: 20px; height: 20px">
-      {{account.name || 'Select Account'}} ({{account.id}})
+      <avatar [account]="account"></avatar>
     </button>
 
     <button mat-list-item *ngIf="loading">

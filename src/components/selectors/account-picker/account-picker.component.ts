@@ -14,7 +14,7 @@ export class AccountPickerComponent {
   @Input('id') public accountId = null;
   @Input() public disabled = false;
 
-  public selectedAccount: Account | any;
+  public selectedAccount: Account | any = {};
   public Brand = environment.Brand;
 
   constructor(

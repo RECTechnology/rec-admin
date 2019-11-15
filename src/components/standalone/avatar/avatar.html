@@ -1,0 +1,15 @@
+<div class="avatar">
+  <div class="account-image center h column" [ngClass]="{
+      'company-border': account && account.type == 'COMPANY',
+      'private-border': account && account.type == 'PRIVATE'
+    }" [style.height]="size + 2 + 'px'" [style.width]="size + 2 + 'px'">
+
+    <img src="{{account && account[imageAccessor] || Brand.account_default_image}}" [style.height]="size + 'px'"
+      [style.width]="size + 'px'">
+
+  </div>
+  <div>
+    <span class="name">{{account && account[nameAccessor] || 'Account'}}</span>
+    <span class="small-text description">{{account && account.description}}</span>
+  </div>
+</div>
