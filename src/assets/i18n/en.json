@@ -483,8 +483,8 @@
   "WALLET_2_WALLET": "Wallet to Wallet",
   "ORIGIN_ACCOUNT": "Origin Account",
   "TARGET_ACCOUNT": "Target Account",
-  "CASH_OUT": "Send From",
+  "CASH_OUT": "Send",
   "CASH_OUT_DESC": "Send money from this account to another account or an IBAN",
-  "CASH_IN": "Send To",
+  "CASH_IN": "Receive",
   "CASH_IN_DESC": "Receive money to this account from another account or bankc card"
 }

@@ -1045,8 +1045,8 @@
   "WALLET_2_WALLET": "Wallet a Wallet",
   "ORIGIN_ACCOUNT": "Cuenta de origen",
   "TARGET_ACCOUNT": "Cuenta de destino",
-  "CASH_OUT": "Enviar desde",
+  "CASH_OUT": "Enviar",
   "CASH_OUT_DESC": "Enviar dinero de esta cuenta a otra cuenta o un IBAN",
-  "CASH_IN": "Enviar a",
+  "CASH_IN": "Recibir",
   "CASH_IN_DESC": "Reciba dinero a esta cuenta de otra cuenta o tarjeta bancaria"
 }
