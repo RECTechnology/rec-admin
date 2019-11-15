@@ -8,10 +8,11 @@ export interface TlHeader {
     sort: string|boolean;
     sortable?: boolean;
     title: string;
-    type?: 'text' | 'checkbox' | 'status' | 'code' | 'date' | 'avatar' | 'button' | 'slidetoggle';
+    type?: 'text' | 'checkbox' | 'status' | 'code' | 'date' | 'avatar' | 'button' | 'slidetoggle' | 'image';
     accessor?: string | ((el: any) => any);
     statusClass?: ((status: string) => any);
     avatar?: TlHeader;
+    image?: TlHeader;
     translate?: boolean;
     buttonImg?: string;
     buttonAction?: (any) => any;

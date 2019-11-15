@@ -76,7 +76,7 @@ export class OrganizationsComponent extends TablePageBase {
       accessor: (el: any) => {
         return el.offer_count;
       },
-      avatar: {
+      image: {
         accessor: () => '/assets/resources/offerta-small.png',
         sort: 'offer',
         title: 'offer',
@@ -84,7 +84,7 @@ export class OrganizationsComponent extends TablePageBase {
       sort: 'offer_count',
       sortable: false,
       title: 'Offers',
-      type: 'avatar',
+      type: 'image',
     }, {
       buttonAction: this.openMaps.bind(this),
       buttonImg: '/assets/resources/marcador.png',

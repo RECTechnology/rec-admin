@@ -32,10 +32,17 @@
                     (change)="header.slideAction(entry, $event)"></mat-slide-toggle>
 
                 <div *ngIf="header.type === 'avatar'">
-                    <img src="{{getEntry(entry, header.avatar) || '../../../assets/resources/img/User-default.png'}}" alt=""
-                        style="width: 25px; height: 25px; border-radius: 50%;margin-right: 10px">
-                    <span>{{getEntry(entry, header)}}</span>
+                    <avatar [account]="entry" [imageAccessor]="entry.company_image ? 'company_image': 'profile_image'"></avatar>
+
+                    <!-- <img src="{{getEntry(entry, header.avatar) || '../../../assets/resources/img/User-default.png'}}"
+                        alt="" style="width: 25px; height: 25px; border-radius: 50%;margin-right: 10px">
+                    <span>{{getEntry(entry, header)}}</span> -->
                 </div>
+                <div *ngIf="header.type === 'image'">
+                        <img src="{{getEntry(entry, header.image) || '../../../assets/resources/img/User-default.png'}}"
+                            alt="" style="width: 25px; height: 25px; border-radius: 50%;margin-right: 10px">
+                        <span>{{getEntry(entry, header)}}</span>
+                    </div>
                 <span *ngIf="!header.type">{{getEntry(entry, header)}}</span>
             </td>
             <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'menu'">
@@ -54,18 +61,18 @@
             </td>
             <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'buttons'">
                 <ng-template ngFor let-option [ngForOf]="itemOptions">
-                    <button *ngIf="option.icon && isEnabled(option, entry)" mat-icon-button 
+                    <button *ngIf="option.icon && isEnabled(option, entry)" mat-icon-button
                         [disabled]="isOptionDisabled(option, entry)" (click)="option.callback(entry)"
-                        class="mat-icon-button btn-icon-sm {{option.class}}" matTooltip="{{getOptionText(option)|translate}}"
-                        style="min-width: 0; margin-right: 8px">
+                        class="mat-icon-button btn-icon-sm {{option.class}}"
+                        matTooltip="{{getOptionText(option)|translate}}" style="min-width: 0; margin-right: 8px">
                         <span class="center h v small-text">
                             <i class="fa {{option.icon}}"></i>
                         </span>
                     </button>
 
-                    <button *ngIf="!option.icon && isEnabled(option, entry)" mat-button color="primary" [disabled]="isOptionDisabled(option, entry)"
-                        (click)="option.callback(entry)" class="mat-button {{option.class}}"
-                        style="min-width: 0; margin-right: 8px">
+                    <button *ngIf="!option.icon && isEnabled(option, entry)" mat-button color="primary"
+                        [disabled]="isOptionDisabled(option, entry)" (click)="option.callback(entry)"
+                        class="mat-button {{option.class}}" style="min-width: 0; margin-right: 8px">
                         <p class="small-text {{option.class}}"> <i *ngIf="option.icon" class="fa {{option.icon}}"></i>
                             {{getOptionText(option)|translate}}</p>
                     </button>
