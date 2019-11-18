@@ -80,4 +80,14 @@ export class AccountsCrud extends CrudBaseService {
         const url = [...this.getUrlBase(), '/', account_id, '/', 'integrations', '/', 'lemonway'];
         return this.get(url, {});
     }
+
+    public lwSendFrom(amount, to, from) {
+        const url = [...this.getUrlBase(), '/', to, '/', 'integrations', '/', 'lemonway', '/', 'send-from'];
+        return this.post(url, { amount, from });
+    }
+
+    public lwSendTo(amount, from, to) {
+        const url = [...this.getUrlBase(), '/', from, '/', 'integrations', '/', 'lemonway', '/', 'send-to'];
+        return this.post(url, { amount, to });
+    }
 }

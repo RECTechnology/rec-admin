@@ -29,7 +29,7 @@
       <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
         <div style="width: 45%">
           <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
-          <account-picker [id]="targetAccountId"></account-picker>
+          <account-picker [disabled]="loading" [id]="targetAccountId"></account-picker>
         </div>
 
         <div style="width: 45%">
@@ -42,7 +42,8 @@
     <div class="col-lg-12">
       <div class="group-col-left">
         <span class="small-text-2">{{'Amount'|translate}}</span>
-        <input type="number" class="user-input small" [(ngModel)]="amount" placeholder="{{'Amount'|translate}}">
+        <input type="number" [disabled]="loading" class="user-input small" [(ngModel)]="amount"
+          placeholder="{{'Amount'|translate}}">
 
         <p *ngIf="amount > currentAmountREC" class="small-text col-error">{{'NOT_ENOUGH_FUNDS'|translate}}</p>
       </div>
@@ -50,12 +51,13 @@
     <div class="col-lg-12">
       <div class="group-col-left">
         <span class="small-text-2">{{'Concept'|translate}}</span>
-        <input type="text" class="user-input small" [(ngModel)]="concept" placeholder="{{'Concept'|translate}}">
+        <input type="text" [disabled]="loading" class="user-input small" [(ngModel)]="concept"
+          placeholder="{{'Concept'|translate}}">
       </div>
     </div>
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
-    <btn-loader [loading]="loading" [text]="'SEND'"></btn-loader>
+    <btn-loader [loading]="loading" [text]="'SEND'" (click)="proceed"></btn-loader>
   </div>
 </div>

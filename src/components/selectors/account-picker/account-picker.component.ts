@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { environment } from 'src/environments/environment';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -11,7 +11,8 @@ import { Account } from 'src/shared/entities/account.ent';
   styleUrls: ['./account-picker.component.scss'],
 })
 export class AccountPickerComponent {
-  @Input('id') public accountId = null;
+  @Input() public id = null;
+  @Output() public idChange: EventEmitter<any> = new EventEmitter();
   @Input() public disabled = false;
   @Input() public filters = {};
 
@@ -24,24 +25,25 @@ export class AccountPickerComponent {
   ) { }
 
   public ngOnChanges() {
-    console.log('changed', this.accountId);
+    console.log('changed', this.id);
     this.search();
   }
 
   public openSelectAccount() {
     console.log('openSelectAccount');
     this.alerts.openModal(AccountPickerDia, {
-      currentAccountId: this.selectedAccount && this.selectedAccount.id,
+      currentid: this.selectedAccount && this.selectedAccount.id,
       filters: this.filters,
     }).subscribe((account: Account) => {
       this.selectedAccount = account;
+      this.idChange.emit(this.selectedAccount.id);
     });
   }
 
   public search() {
-    if (this.accountId) {
-      console.log('this.account', this.accountId);
-      this.accountCrud.find(this.accountId)
+    if (this.id) {
+      console.log('this.account', this.id);
+      this.accountCrud.find(this.id)
         .subscribe((account) => {
           this.selectedAccount = account.data;
         });

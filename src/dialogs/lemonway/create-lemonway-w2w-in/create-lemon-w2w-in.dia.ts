@@ -39,4 +39,17 @@ export class CreateLemonWallet2WalletInDia extends BaseDialog {
       this.currentAmountEUR = this.account.getBalance('EUR');
     });
   }
+
+  public proceed() {
+    this.loading = true;
+    this.accountCrud.lwSendFrom(this.amount, this.originAccountId, this.targetAccountId)
+      .subscribe((resp) => {
+        this.loading = true;
+        this.alerts.showSnackbar('Success');
+        this.close();
+      }, (err) => {
+        this.alerts.showSnackbar(err.message);
+        this.loading = false;
+      });
+  }
 }

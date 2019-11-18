@@ -20,7 +20,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public originAccountId = null;
   public targetAccountId = null;
   public concept: string;
-  public amount: number;
+  public amount: number = 0;
   public iban: string;
 
   public accountFilters = {
@@ -53,5 +53,18 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
       this.currentAmountREC = this.account.getBalance('REC');
       this.currentAmountEUR = this.account.getBalance('EUR');
     });
+  }
+
+  public proceed() {
+    this.loading = true;
+    this.accountCrud.lwSendTo(this.amount, this.targetAccountId, this.originAccountId)
+      .subscribe((resp) => {
+        this.loading = true;
+        this.alerts.showSnackbar('Success');
+        this.close();
+      }, (err) => {
+        this.alerts.showSnackbar(err.message);
+        this.loading = false;
+      });
   }
 }
