@@ -22,6 +22,7 @@ export const environment = {
     "web_url": "$PANEL_WEB_URL",
     "logo_url": "../assets/resources/logo_white.png",
     "loading_logo_url": "../assets/resources/logo_round.png",
+     account_default_image: '../assets/resources/img/User-default.png',
     "favicon": "$PANEL_FAVICON_URL",
     "terms_of_service_url": "$PANEL_TOS_URL",
     "copyright_year": "$PANEL_COPYRIGHT_YEAR",
