@@ -19,8 +19,8 @@ export class CreateLemonWallet2WalletInDia extends BaseDialog {
   public originAccountId = null;
   public targetAccountId = null;
 
-  public concept: string;
-  public amount: number;
+  public concept: string = 'Money-in NOVACT rec moneda ciutadana';
+  public amount: number = 0;
 
   constructor(
     public dialogRef: MatDialogRef<CreateLemonWallet2WalletInDia>,
