@@ -73,7 +73,6 @@ import { UnsavedChangesDialog } from 'src/dialogs/unsaved-changes/unsaved-change
 import { AccountPickerComponent } from 'src/components/selectors/account-picker/account-picker.component';
 import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-withdrawal/create-lemon-withdrawal.dia';
 import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemonway-w2w-out/create-lemon-w2w-out.dia';
-import { CreateLemonWallet2WalletInDia } from 'src/dialogs/lemonway/create-lemonway-w2w-in/create-lemon-w2w-in.dia';
 import { AccountPickerDia } from 'src/components/selectors/account-picker/account-picker-dialog/account-picker.dia';
 import { Avatar } from 'src/components/standalone/avatar/avatar.component';
 
@@ -136,7 +135,6 @@ import { Avatar } from 'src/components/standalone/avatar/avatar.component';
     AccountPickerComponent,
     CreateLemonWithdrawalDia,
     CreateLemonWallet2WalletOutDia,
-    CreateLemonWallet2WalletInDia,
     AccountPickerDia,
     Avatar,
   ],
@@ -159,7 +157,6 @@ import { Avatar } from 'src/components/standalone/avatar/avatar.component';
     AccountPickerComponent,
     CreateLemonWithdrawalDia,
     CreateLemonWallet2WalletOutDia,
-    CreateLemonWallet2WalletInDia,
     AccountPickerDia,
   ],
   exports: [

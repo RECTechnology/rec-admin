@@ -67,16 +67,16 @@
 
               <div>
                 <button style="margin-right: 10px;" mat-raised-button color="primary" (click)="newWallet2WalletOut()">
-                  + {{'CASH_OUT'|translate}}
+                  + {{'CASH_OUT'|translate}}/{{'CASH_IN'|translate}}
                 </button>
-                <button mat-raised-button color="primary" (click)="newWallet2WalletIn()">
+                <!-- <button mat-raised-button color="primary" (click)="newWallet2WalletIn()">
                   + {{'CASH_IN'|translate}}
-                </button>
+                </button> -->
               </div>
             </div>
             <div>
               <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
-                [data]="sortedData" [itemOptions]="itemOptions" [options]="options"
+                [data]="sortedDataP2P" [itemOptions]="itemOptions" [options]="options"
                 noItemsMessage="There are no items yet" [limit]="limit" [total]="total"
                 (onChangePage)="changedPage($event)" showLoader="true">
               </tl-table>

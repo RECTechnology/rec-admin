@@ -487,8 +487,8 @@
   "CASH_IN_TITLE": "RECEIVE € FROM A LW WALLET",
   "CASH_OUT": "Enviar",
   "CASH_IN": "Recibir",
-  "CASH_OUT_DESC": "Send money from this account to another account or an IBAN",
-  "CASH_IN_DESC": "Receive money to this account from another account or bankc card",
+  "CASH_OUT_DESC": "Send money from this account to another account",
+  "CASH_IN_DESC": "Receive money to this account from another account",
   "WALLET_2_WALLET_DESC": "Transfer",
   "SYNC_LW": "Sync. Lemonway Info"
 }

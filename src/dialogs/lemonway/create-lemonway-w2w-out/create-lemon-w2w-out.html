@@ -29,12 +29,16 @@
       <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
         <div style="width: 45%">
           <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
-          <account-picker [disabled]="true" [id]="id"></account-picker>
+          <account-picker [disabled]="loading" [(account)]="originAccount"></account-picker>
+        </div>
+        <div>
+          <button mat-icon-button matTooltip="Change sides" (click)="switchSides()">
+            <i class="fa fa-arrows-alt-h"></i>
+          </button>
         </div>
         <div style="width: 45%">
           <p class="small-text-2" style="position: relative;">{{'TARGET_ACCOUNT'|translate}}:</p>
-          <account-picker [(id)]="targetAccountId" [filters]="accountFilters"
-            [disabled]="loading">
+          <account-picker [(account)]="targetAccount" [filters]="accountFilters" [disabled]="loading">
           </account-picker>
         </div>
       </div>
@@ -53,7 +57,7 @@
       <div class="group-col-left">
         <span class="small-text-2">{{'Concept'|translate}}</span>
         <input type="text" [disabled]="loading" class="user-input small" [(ngModel)]="concept"
-          placeholder="{{'Concept'|translate}}">
+          placeholder="{{'Concept'|translate}}" maxlength="140">
       </div>
     </div>
   </div>

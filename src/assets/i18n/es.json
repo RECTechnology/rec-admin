@@ -1049,8 +1049,8 @@
   "CASH_IN_TITLE": "RECIBIR € DESDE WALLET LW",
   "CASH_OUT": "Enviar",
   "CASH_IN": "Recibir",
-  "CASH_OUT_DESC": "Enviar dinero de esta cuenta a otra cuenta o un IBAN",
-  "CASH_IN_DESC": "Reciba dinero a esta cuenta de otra cuenta o tarjeta bancaria",
+  "CASH_OUT_DESC": "Enviar dinero de esta cuenta a otra cuenta",
+  "CASH_IN_DESC": "Reciba dinero a esta cuenta de otra cuenta",
   "SYNC_LW": "Sync. Info Lemonway",
   "There are no items yet": "No hay elementos todavía",
   "WALLET_2_WALLET_DESC": "Traspaso"

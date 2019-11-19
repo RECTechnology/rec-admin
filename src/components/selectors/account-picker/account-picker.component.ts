@@ -11,8 +11,8 @@ import { Account } from 'src/shared/entities/account.ent';
   styleUrls: ['./account-picker.component.scss'],
 })
 export class AccountPickerComponent {
-  @Input() public id = null;
-  @Output() public idChange: EventEmitter<any> = new EventEmitter();
+  @Input() public account = null;
+  @Output() public accountChange: EventEmitter<any> = new EventEmitter();
   @Input() public disabled = false;
   @Input() public filters = {};
 
@@ -25,33 +25,27 @@ export class AccountPickerComponent {
   ) { }
 
   public ngOnChanges() {
-    console.log('changed', this.id);
     this.search();
   }
 
   public openSelectAccount() {
-    console.log('openSelectAccount');
     this.alerts.openModal(AccountPickerDia, {
       currentid: this.selectedAccount && this.selectedAccount.id,
       filters: this.filters,
     }).subscribe((account: Account) => {
       this.selectedAccount = account;
-      this.idChange.emit(this.selectedAccount.id);
+      this.accountChange.emit(this.selectedAccount);
     });
   }
 
   public search() {
-    if (this.id) {
-      console.log('this.account', this.id);
-      this.accountCrud.find(this.id)
+    if (this.account && this.account.id) {
+      this.accountCrud.find(this.account.id)
         .subscribe((account) => {
           this.selectedAccount = account.data;
         });
     } else {
-      console.log('!this.account');
       this.selectedAccount = {};
     }
-
-    console.log('this.account', this.selectedAccount);
   }
 }

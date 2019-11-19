@@ -93,13 +93,24 @@ export class AccountsCrud extends CrudBaseService {
         return this.post(url, { amount, to });
     }
 
+    public lwGateway(funct, data) {
+        const url = ['/', this.userRole, '/', this.version, '/gateway/lemonway/', funct];
+        return this.post(url, data);
+    }
+
     public lwSendPayment(from, to, amount, concept) {
-        const url = ['/', this.userRole, '/', this.version, '/gateway/lemonway/SendPayment'];
-        return this.post(url, {
+        return this.lwGateway('SendPayment', {
             amount: String(amount.toFixed(2)),
             debitWallet: String(from),
             creditWallet: String(to),
             message: concept,
+        });
+    }
+
+    public lwGetP2PList(wallets: string[]) {
+        return this.lwGateway('GetP2PTransactions', {
+            endData: Date.now(),
+            wallets,
         });
     }
 }

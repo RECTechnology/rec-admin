@@ -17,8 +17,8 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public currentAmountREC: number;
   public currentAmountEUR: number;
 
-  public originAccountId = null;
-  public targetAccountId = null;
+  public originAccount: any = {};
+  public targetAccount: any = {};
   public concept: string = 'Transfer';
   public amount: number = 0;
   public iban: string;
@@ -39,14 +39,15 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   }
 
   public switchSides() {
-    const temp = this.originAccountId;
-    this.originAccountId = this.targetAccountId;
-    this.targetAccountId = temp;
+    const temp = this.originAccount;
+    this.originAccount = this.targetAccount;
+    this.targetAccount = temp;
+
+    this.ngOnInit();
   }
 
   public ngOnInit() {
-    this.originAccountId = this.id;
-    this.accountCrud.find(this.id).subscribe((resp) => {
+    this.accountCrud.find(this.originAccount.id).subscribe((resp) => {
       this.account = resp.data;
       this.currentAmountREC = this.account.getBalance('REC');
       this.currentAmountEUR = this.account.getBalance('EUR');
@@ -55,7 +56,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
 
   public proceed() {
     this.loading = true;
-    this.accountCrud.lwSendPayment(this.targetAccountId, this.originAccountId, this.amount, this.concept)
+    this.accountCrud.lwSendPayment(this.account.cif, this.targetAccount.cif, this.amount, this.concept)
       .subscribe((resp) => {
         this.loading = true;
         this.alerts.showSnackbar('Success');

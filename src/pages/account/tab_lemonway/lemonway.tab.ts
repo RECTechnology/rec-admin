@@ -2,16 +2,18 @@ import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { TlHeader, TlItemOption, TableListOptions } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
+import {
+  TlHeader, TlItemOption, TableListOptions,
+} from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { LoginService } from 'src/services/auth/auth.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-withdrawal/create-lemon-withdrawal.dia';
 import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemonway-w2w-out/create-lemon-w2w-out.dia';
-import { CreateLemonWallet2WalletInDia } from 'src/dialogs/lemonway/create-lemonway-w2w-in/create-lemon-w2w-in.dia';
-
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+
+import * as moment from 'moment';
 
 const WALLET_STATUS_MAP = {
   '-1': 'wallet SC',
@@ -43,37 +45,33 @@ export class LemonWayTab extends TablePageBase {
   public loading = true;
   public headers: TlHeader[] = [
     {
-      sort: 'id',
+      sort: 'ID',
       title: 'ID',
       type: 'code',
     }, {
-      sort: 'concept',
-      title: 'Concept',
-      type: 'text',
-    }, {
-      sort: 'amount',
+      sort: 'DEB',
       title: 'Amount',
       type: 'code',
+    }, {
+      sort: 'SEN',
+      title: 'Envia',
+    }, {
+      sort: 'REC',
+      title: 'Recibe',
+    }, {
+      sort: 'STATUS',
+      title: 'Status',
+      type: 'code',
+    }, {
+      sort: 'DATE',
+      title: 'Date',
+      type: 'date',
+    }, {
+      sort: 'MSG',
+      title: 'Concept',
     },
   ];
-  public itemOptions: TlItemOption[] = [
-    {
-      callback: () => { },
-      text: 'Edit',
-      icon: 'fa-edit',
-      ngIf: (item) => {
-        return item.status !== 'processed';
-      },
-    },
-    {
-      callback: () => { },
-      text: 'View',
-      icon: 'fa-eye',
-      ngIf: (item) => {
-        return item.status === 'processed';
-      },
-    },
-  ];
+  public itemOptions: TlItemOption[] = [];
   public options: TableListOptions = {
     optionsType: 'buttons',
   };
@@ -87,6 +85,7 @@ export class LemonWayTab extends TablePageBase {
     0: 'withdrawals',
     1: 'wallet2wallet',
   };
+  public sortedDataP2P: any = [];
 
   constructor(
     public controles: ControlesService,
@@ -102,6 +101,8 @@ export class LemonWayTab extends TablePageBase {
     this.accCrud.lwGetWallet(this.id)
       .subscribe((resp) => {
         this.lwInfo = resp.data;
+        this.getP2PTxs();
+
         console.log('LW', resp);
       });
 
@@ -136,18 +137,31 @@ export class LemonWayTab extends TablePageBase {
     });
   }
 
-  public newWallet2WalletOut() {
-    const dialog = this.alerts.createModal(CreateLemonWallet2WalletOutDia, {
-      id: this.id,
-    });
-    dialog.afterClosed().subscribe((resp) => {
-      this.search();
-    });
+  public getP2PTxs() {
+    this.accCrud.lwGetP2PList([this.lwInfo.ID])
+      .subscribe((resp) => {
+        console.log(resp);
+        this.total = resp.data.COUNT;
+        this.sortedDataP2P = resp.data.TRANS.map((res) => {
+
+          // F*** lemonway man!
+          const parts = res.DATE.split('/');
+          const temp = parts[0];
+          parts[0] = parts[1];
+          parts[1] = temp;
+
+          res.DATE = parts.join('/');
+
+          return res;
+        });
+      });
   }
 
-  public newWallet2WalletIn() {
-    const dialog = this.alerts.createModal(CreateLemonWallet2WalletInDia, {
-      id: this.id,
+  public newWallet2WalletOut() {
+    const dialog = this.alerts.createModal(CreateLemonWallet2WalletOutDia, {
+      originAccount: {
+        id: this.id,
+      },
     });
     dialog.afterClosed().subscribe((resp) => {
       this.search();
