@@ -19,7 +19,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
 
   public originAccountId = null;
   public targetAccountId = null;
-  public concept: string = 'Money-out NOVACT rec moneda ciutadana';
+  public concept: string = 'Transfer';
   public amount: number = 0;
   public iban: string;
 

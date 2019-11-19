@@ -483,9 +483,12 @@
   "WALLET_2_WALLET": "Wallet to Wallet",
   "ORIGIN_ACCOUNT": "Origin Account",
   "TARGET_ACCOUNT": "Target Account",
-  "CASH_OUT": "SEND € TO A LW WALLET",
-  "CASH_IN": "RECEIVE € FROM A LW WALLET",
+  "CASH_OUT_TITLE": "SEND € TO A LW WALLET",
+  "CASH_IN_TITLE": "RECEIVE € FROM A LW WALLET",
+  "CASH_OUT": "Enviar",
+  "CASH_IN": "Recibir",
   "CASH_OUT_DESC": "Send money from this account to another account or an IBAN",
   "CASH_IN_DESC": "Receive money to this account from another account or bankc card",
+  "WALLET_2_WALLET_DESC": "Transfer",
   "SYNC_LW": "Sync. Lemonway Info"
 }

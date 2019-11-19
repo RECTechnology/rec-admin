@@ -19,7 +19,7 @@ export class CreateLemonWallet2WalletInDia extends BaseDialog {
   public originAccountId = null;
   public targetAccountId = null;
 
-  public concept: string = 'Money-in NOVACT rec moneda ciutadana';
+  public concept: string = '';
   public amount: number = 0;
 
   constructor(
