@@ -1054,5 +1054,7 @@
   "CASH_IN": "Enviar",
   "CASH_OUT": "Rebre",
   "CASH_OUT_DESC": "Envia diners desde aquest compte a un altre compte o a un IBAN",
-  "CASH_IN_DESC": "Rep diners a aquest compte des d'un altre compte o targeta bancària"
+  "CASH_IN_DESC": "Rep diners a aquest compte des d'un altre compte o targeta bancària",
+  "SYNC_LW": "Sync. Info Lemonway"
+
 }

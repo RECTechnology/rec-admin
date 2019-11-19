@@ -486,5 +486,6 @@
   "CASH_OUT": "Send",
   "CASH_OUT_DESC": "Send money from this account to another account or an IBAN",
   "CASH_IN": "Receive",
-  "CASH_IN_DESC": "Receive money to this account from another account or bankc card"
+  "CASH_IN_DESC": "Receive money to this account from another account or bankc card",
+  "SYNC_LW": "Sync. Lemonway Info"
 }

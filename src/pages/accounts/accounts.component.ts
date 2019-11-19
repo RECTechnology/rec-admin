@@ -238,6 +238,10 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     });
   }
 
+  public syncLW() {
+
+  }
+
   public sortData(sort: Sort): void {
     if (!sort.active || sort.direction === '') {
       this.sortedData = this.data.slice();

@@ -5,6 +5,9 @@
   <div class="row" style="margin: 0; padding: 20px;">
     <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
       <tl-header title="Accounts" [(query)]="query" [options]="headerOpts" (onSearch)="search($event)">
+        <button mat-raised-button color="primary" (click)="syncLW()" class="small-text-2">
+          <i class="fa fa-sync"></i> {{'SYNC_LW'|translate}}
+        </button>
         <button mat-icon-button style="margin-left: 8px" (click)="export()" matTooltip="{{'EXPORT_AS_CSV'|translate}}">
           <span class="center h v">
             <i class="fa fa-download small-text-2"></i>
@@ -28,19 +31,21 @@
             </mat-radio-button>
           </mat-radio-group>
 
-          <mat-checkbox style="margin-left: 15px;" color="primary" [(ngModel)]="onlyExchanges" (ngModelChange)="search()">
+          <mat-checkbox style="margin-left: 15px;" color="primary" [(ngModel)]="onlyExchanges"
+            (ngModelChange)="search()">
             <span class="small-text">{{'EXCHANGERS' | translate}}</span>
           </mat-checkbox>
 
           <div class="abs-center-right small-text col-gray-light" style="padding: 8px 15px;">
-            {{'Showing'|translate}}: {{showing}} {{'of'|translate}} {{total}}
+
+            <span>{{'Showing'|translate}}: {{showing}} {{'of'|translate}} {{total}}</span>
           </div>
         </div>
       </tl-subheader>
 
-      <tl-table [loading]="loading" [options]="tableOptions" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
-        [itemOptions]="itemOptions" [limit]="limit"
-        [total]="total" (onChangePage)="changedPage($event)">
+      <tl-table [loading]="loading" [options]="tableOptions" [sort]="true" (onSort)="sortData($event)"
+        [headers]="headers" [data]="sortedData" [itemOptions]="itemOptions" [limit]="limit" [total]="total"
+        (onChangePage)="changedPage($event)">
       </tl-table>
     </mat-card>
   </div>
