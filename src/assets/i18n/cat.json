@@ -1051,8 +1051,8 @@
   "WALLET_2_WALLET": "Wallet a Wallet",
   "ORIGIN_ACCOUNT": "Compte d'origen",
   "TARGET_ACCOUNT": "Compte objectiu",
-  "CASH_IN": "Rebre",
-  "CASH_OUT": "Enviar",
+  "CASH_OUT": "ENVIAR € A WALLET LW",
+  "CASH_IN": "REBRE € DESDE WALLET LW",
   "CASH_OUT_DESC": "Envia diners desde aquest compte a un altre compte o a un IBAN",
   "CASH_IN_DESC": "Rep diners a aquest compte des d'un altre compte o targeta bancària",
   "SYNC_LW": "Sync. Info Lemonway"
