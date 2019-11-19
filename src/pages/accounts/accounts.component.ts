@@ -31,6 +31,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public openDetails = false;
   public active = true;
   public type = '';
+  public onlyExchanges = false;
 
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },
@@ -103,6 +104,10 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   };
   public isComp = false;
   public isPriv = false;
+  public exchangersFilters = {
+    tier: 2,
+    type: 'COMPANY',
+  };
 
   constructor(
     public titleService: Title,
@@ -132,7 +137,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public getCleanParams(query?: string) {
-    const data: ListAccountsParams = {
+    let data: ListAccountsParams = {
       active: this.active ? 1 : 0,
       field_map: {},
       limit: this.limit,
@@ -142,6 +147,13 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       sort: this.sortID,
       type: this.type,
     };
+
+    if (this.onlyExchanges) {
+      data = {
+        ...data,
+        ...this.exchangersFilters,
+      };
+    }
 
     if (!data.type) {
       delete data.type;

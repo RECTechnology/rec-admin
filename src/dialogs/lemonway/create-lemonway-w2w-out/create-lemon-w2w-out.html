@@ -32,16 +32,10 @@
           <account-picker [disabled]="true" [id]="id"></account-picker>
         </div>
         <div style="width: 45%">
-          <p class="small-text-2" style="position: relative;">
-            {{'TARGET_ACCOUNT'|translate}}:
-            <mat-slide-toggle class="abs-center-right small-text marg-l-5" [(ngModel)]="targetIsAccount">IBAN/Account
-            </mat-slide-toggle>
-          </p>
-          <account-picker *ngIf="targetIsAccount" [(id)]="targetAccountId" [filters]="accountFilters"
+          <p class="small-text-2" style="position: relative;">{{'TARGET_ACCOUNT'|translate}}:</p>
+          <account-picker [(id)]="targetAccountId" [filters]="accountFilters"
             [disabled]="loading">
           </account-picker>
-          <input *ngIf="!targetIsAccount" type="string" class="user-input small" [(ngModel)]="iban"
-            placeholder="{{'IBAN'|translate}}">
         </div>
       </div>
     </div>

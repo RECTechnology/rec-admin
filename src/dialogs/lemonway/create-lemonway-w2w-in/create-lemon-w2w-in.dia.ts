@@ -10,7 +10,6 @@ import { Account } from 'src/shared/entities/account.ent';
   selector: 'create-lemon-w2w-in',
   templateUrl: './create-lemon-w2w-in.html',
 })
-
 export class CreateLemonWallet2WalletInDia extends BaseDialog {
   public id: any;
   public account: Account;

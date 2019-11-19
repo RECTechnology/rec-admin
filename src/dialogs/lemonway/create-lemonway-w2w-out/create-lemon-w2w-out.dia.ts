@@ -29,8 +29,6 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
     type: 'COMPANY',
   };
 
-  public targetIsAccount = true;
-
   constructor(
     public dialogRef: MatDialogRef<CreateLemonWallet2WalletOutDia>,
     private us: UserService,

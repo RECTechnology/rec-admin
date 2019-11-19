@@ -28,6 +28,10 @@
             </mat-radio-button>
           </mat-radio-group>
 
+          <mat-checkbox style="margin-left: 15px;" color="primary" [(ngModel)]="onlyExchanges" (ngModelChange)="search()">
+            <span class="small-text">{{'EXCHANGERS' | translate}}</span>
+          </mat-checkbox>
+
           <div class="abs-center-right small-text col-gray-light" style="padding: 8px 15px;">
             {{'Showing'|translate}}: {{showing}} {{'of'|translate}} {{total}}
           </div>
