@@ -48,12 +48,14 @@
               <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
                 {{'WITHDRAWALS'|translate}}</p>
 
-              <button mat-raised-button color="primary" (click)="newWithdrawal()">
-                + {{'CREATE_WITHDRAWAL'|translate}}
-              </button>
-              <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="search()">
-                <i class="fa fa-refresh"></i>
-              </button>
+              <div>
+                <button mat-raised-button color="primary" (click)="newWithdrawal()">
+                  + {{'CREATE_WITHDRAWAL'|translate}}
+                </button>
+                <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="search()">
+                  <i class="fa fa-refresh"></i>
+                </button>
+              </div>
             </div>
             <div>
               <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
@@ -76,9 +78,6 @@
                 <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="search()">
                   <i class="fa fa-refresh"></i>
                 </button>
-                <!-- <button mat-raised-button color="primary" (click)="newWallet2WalletIn()">
-                  + {{'CASH_IN'|translate}}
-                </button> -->
               </div>
             </div>
             <div>
