@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { CompanyService } from 'src/services/company/company.service';
 import { RecLang, REC_LANGS } from 'src/types';
 import { Account } from 'src/shared/entities/account.ent';
-
-export type LW_FUNCTIONS = 'SendPayment';
+import * as moment from 'moment';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AccountsCrud extends CrudBaseService {
@@ -107,9 +107,22 @@ export class AccountsCrud extends CrudBaseService {
         });
     }
 
+    public lwMoneyOut(from, to, amount, concept) {
+        return this.lwGateway('MoneyOut', {});
+    }
+
     public lwGetP2PList(wallets: string[]) {
         return this.lwGateway('GetP2PTransactions', {
-            endData: Date.now(),
+            startDate: moment().subtract('1', 'year').unix(),
+            endDate: moment().unix(),
+            wallets,
+        });
+    }
+
+    public lwGetMoneyTxList(wallets: string[]) {
+        return this.lwGateway('GetMoneyTransactions', {
+            startDate: moment().subtract('2', 'month').unix(),
+            endDate: moment().unix(),
             wallets,
         });
     }

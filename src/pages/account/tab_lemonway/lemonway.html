@@ -51,6 +51,9 @@
               <button mat-raised-button color="primary" (click)="newWithdrawal()">
                 + {{'CREATE_WITHDRAWAL'|translate}}
               </button>
+              <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="search()">
+                <i class="fa fa-refresh"></i>
+              </button>
             </div>
             <div>
               <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
@@ -69,13 +72,17 @@
                 <button style="margin-right: 10px;" mat-raised-button color="primary" (click)="newWallet2WalletOut()">
                   + {{'CASH_OUT'|translate}}/{{'CASH_IN'|translate}}
                 </button>
+
+                <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="search()">
+                  <i class="fa fa-refresh"></i>
+                </button>
                 <!-- <button mat-raised-button color="primary" (click)="newWallet2WalletIn()">
                   + {{'CASH_IN'|translate}}
                 </button> -->
               </div>
             </div>
             <div>
-              <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
+              <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headersP2P"
                 [data]="sortedDataP2P" [itemOptions]="itemOptions" [options]="options"
                 noItemsMessage="There are no items yet" [limit]="limit" [total]="total"
                 (onChangePage)="changedPage($event)" showLoader="true">

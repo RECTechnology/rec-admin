@@ -49,6 +49,31 @@ export class LemonWayTab extends TablePageBase {
       title: 'ID',
       type: 'code',
     }, {
+      sort: 'CRED',
+      title: 'Amount',
+      type: 'code',
+      accessor: (el) => {
+        return el.CRED || el.DEB;
+      },
+    }, {
+      sort: 'TYPE',
+      title: 'Status',
+      type: 'code',
+    }, {
+      sort: 'DATE',
+      title: 'Date',
+      type: 'date',
+    }, {
+      sort: 'MSG',
+      title: 'Concept',
+    },
+  ];
+  public headersP2P: TlHeader[] = [
+    {
+      sort: 'ID',
+      title: 'ID',
+      type: 'code',
+    }, {
       sort: 'DEB',
       title: 'Amount',
       type: 'code',
@@ -102,6 +127,8 @@ export class LemonWayTab extends TablePageBase {
       .subscribe((resp) => {
         this.lwInfo = resp.data;
         this.getP2PTxs();
+        this.getMoneyTxs();
+        this.registerIban();
 
         console.log('LW', resp);
       });
@@ -142,7 +169,27 @@ export class LemonWayTab extends TablePageBase {
       .subscribe((resp) => {
         console.log(resp);
         this.total = resp.data.COUNT;
-        this.sortedDataP2P = resp.data.TRANS.map((res) => {
+        this.sortedDataP2P = resp.data.TRANS.reverse().map((res) => {
+
+          // F*** lemonway man!
+          const parts = res.DATE.split('/');
+          const temp = parts[0];
+          parts[0] = parts[1];
+          parts[1] = temp;
+
+          res.DATE = parts.join('/');
+
+          return res;
+        });
+      });
+  }
+
+  public getMoneyTxs() {
+    this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
+      .subscribe((resp) => {
+        console.log(resp);
+        this.total = resp.data.COUNT;
+        this.sortedData = resp.data.TRANS.reverse().map((res) => {
 
           // F*** lemonway man!
           const parts = res.DATE.split('/');
@@ -167,4 +214,15 @@ export class LemonWayTab extends TablePageBase {
       this.search();
     });
   }
+
+  public registerIban() {
+    this.accCrud.lwGateway('RegisterIBAN', {
+      wallet: this.lwInfo.ID,
+      holder: 'Fruteria Fermín 3',
+      iban: 'ES4000753519585468652967'
+    }).subscribe(resp => {
+
+    });
+  }
+
 }

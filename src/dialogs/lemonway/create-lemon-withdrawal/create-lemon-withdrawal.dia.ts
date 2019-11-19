@@ -18,6 +18,7 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   public currentAmountEUR: number;
   public concept: string = 'Money-out NOVACT rec moneda ciutadana';
   public amount: number = 0;
+  public lwInfo: any;
 
   constructor(
     public dialogRef: MatDialogRef<CreateLemonWithdrawalDia>,
@@ -29,6 +30,10 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   }
 
   public ngOnInit() {
+    this.accountCrud.lwGetWallet(this.id)
+      .subscribe((resp) => {
+        this.lwInfo = resp;
+      });
     this.accountCrud.find(this.id).subscribe((resp) => {
       this.account = resp.data;
       this.currentAmountREC = this.account.getBalance('REC');
