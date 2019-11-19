@@ -7,6 +7,8 @@ import { CompanyService } from 'src/services/company/company.service';
 import { RecLang, REC_LANGS } from 'src/types';
 import { Account } from 'src/shared/entities/account.ent';
 
+export type LW_FUNCTIONS = 'SendPayment';
+
 @Injectable()
 export class AccountsCrud extends CrudBaseService {
 
@@ -89,5 +91,15 @@ export class AccountsCrud extends CrudBaseService {
     public lwSendTo(amount, from, to) {
         const url = [...this.getUrlBase(), '/', from, '/', 'integrations', '/', 'lemonway', '/', 'send-to'];
         return this.post(url, { amount, to });
+    }
+
+    public lwSendPayment(from, to, amount, concept) {
+        const url = ['/', this.userRole, '/', this.version, '/gateway/lemonway/SendPayment'];
+        return this.post(url, {
+            amount: String(amount.toFixed(2)),
+            debitWallet: String(from),
+            creditWallet: String(to),
+            message: concept,
+        });
     }
 }

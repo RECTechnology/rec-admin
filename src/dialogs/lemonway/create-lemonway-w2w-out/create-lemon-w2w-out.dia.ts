@@ -55,7 +55,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
 
   public proceed() {
     this.loading = true;
-    this.accountCrud.lwSendTo(this.amount, this.targetAccountId, this.originAccountId)
+    this.accountCrud.lwSendPayment(this.targetAccountId, this.originAccountId, this.amount, this.concept)
       .subscribe((resp) => {
         this.loading = true;
         this.alerts.showSnackbar('Success');
