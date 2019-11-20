@@ -76,6 +76,8 @@ import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemo
 import { AccountPickerDia } from 'src/components/selectors/account-picker/account-picker-dialog/account-picker.dia';
 import { Avatar } from 'src/components/standalone/avatar/avatar.component';
 import { BadgeComponent } from 'src/components/standalone/badge/badge.component';
+import { InfoFieldComponent } from 'src/components/standalone/info-field/info-field.component';
+import { BetaBadgeComponent } from 'src/components/standalone/beta-badge/beta-badge.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +141,8 @@ import { BadgeComponent } from 'src/components/standalone/badge/badge.component'
     AccountPickerDia,
     Avatar,
     BadgeComponent,
+    InfoFieldComponent,
+    BetaBadgeComponent,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -201,6 +205,8 @@ import { BadgeComponent } from 'src/components/standalone/badge/badge.component'
     EscapeHtmlPipe,
     Avatar,
     BadgeComponent,
+    InfoFieldComponent,
+    BetaBadgeComponent,
   ],
   imports: [
     BrowserModule,

@@ -42,7 +42,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
-import { InfoFieldComponent } from '../components/standalone/info-field/info-field.component';
+
 registerLocaleData(localeCat);
 registerLocaleData(localeEn);
 registerLocaleData(localeEs);
@@ -90,7 +90,7 @@ const imports = [
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent, InfoFieldComponent],
+  declarations: [AppComponent],
   imports,
   providers: [
     LoginService,
