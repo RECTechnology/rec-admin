@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService2 } from '../base/base.service-v2';
 import { UserService } from '../user.service';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs/internal/operators/map';
 
 export type DashboardStatisticsSubject = 'private' | 'company' | 'transaction' | 'balance';
 export type DashboardValidIntervals = 'year' | 'month' | 'day';

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../user.service';
 import { API_URL } from '../../data/consts';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { BaseService } from '../base/base.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable()
 export class SmsService extends BaseService {

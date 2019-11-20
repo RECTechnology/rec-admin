@@ -2,9 +2,11 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { XHR } from './xhr/xhr';
 import { API_URL } from '../data/consts';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
 import { User } from 'src/shared/entities/user.ent';
+import { Observable } from 'rxjs/internal/Observable';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { map } from 'rxjs/internal/operators/map';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 @Injectable()
 export class UserService {
@@ -104,18 +106,6 @@ export class UserService {
     return true;
   }
 
-  public getGroup(id: string): Observable<any> {
-    return this.http.get(
-      `${API_URL}/groups/v1/show/` + id,
-      {
-        headers: this.getHeaders(),
-      })
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this)),
-      );
-  }
-
   public addUserToAccount(account_id, user_dni, role): Observable<any> {
     const headers = new HttpHeaders({
       'accept': 'application/json',
@@ -197,6 +187,9 @@ export class UserService {
     return this.userData.group_data.default_currency;
   }
 
+  /**
+   *  @deprecated
+   */
   public getListOfRecSellers(offset, limit, search, sort = 'id', dir = 'desc') {
     const headers = this.getHeaders();
     const options: any = ({
@@ -309,66 +302,6 @@ export class UserService {
         map(this.extractData),
         catchError(this.handleError.bind(this)),
       );
-  }
-
-  public request2faCode() {
-    const headers = this.getHeaders();
-    const options = ({ headers, method: 'PUT' });
-
-    return this.http.put(
-      `${API_URL}/user/v1/active2fa`,
-      {},
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public validate2fa(code) {
-    const headers = this.getHeaders();
-    const options = ({ headers, method: 'PUT' });
-
-    return this.http.put(
-      `${API_URL}/user/v1/validate2fa`,
-      { pin: code },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public show2fa(code) {
-    const headers = new HttpHeaders({
-      'accept': 'application/json',
-      'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/x-www-form-urlencoded',
-    });
-    const options = ({ headers, method: 'POST' });
-
-    return this.http.post(
-      `${API_URL}/user/v1/show2fa`,
-      { pin: code },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public deactivate2FA(code) {
-    const headers = this.getHeaders();
-    const options = ({ headers, method: 'PUT' });
-
-    return this.http.put(
-      `${API_URL}/user/v1/deactive2fa`,
-      { pin: code },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
   }
 
   public uploadFileWithProgress(file): Observable<any> {

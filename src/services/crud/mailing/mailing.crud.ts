@@ -3,17 +3,10 @@ import { Injectable } from '@angular/core';
 import { CrudBaseService } from 'src/services/base/crud.base';
 import { UserService } from 'src/services/user.service';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { CompanyService } from 'src/services/company/company.service';
-import { RecLang } from 'src/types';
 
 @Injectable()
 export class MailingCrud extends CrudBaseService {
-
-    // public static STATUS_SCHEDULED = 'scheduled';
-    // public static STATUS_SENT = 'sent';
-    // public static STATUS_ERRORED = 'errored';
-
     public static STATUS_CREATED = 'created';
     public static STATUS_SCHEDULED = 'scheduled';
     public static STATUS_PROCESSED = 'processed';

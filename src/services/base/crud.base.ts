@@ -3,9 +3,9 @@ import { BaseService2 } from './base.service-v2';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../user.service';
 import { ListAccountsParams } from 'src/interfaces/search';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { RecLang, REC_LANGS, CrudRole } from 'src/types';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/internal/operators/map';
 
 export interface CrudQueryOptions {
     search?: string;

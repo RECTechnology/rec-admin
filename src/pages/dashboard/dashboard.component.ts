@@ -7,12 +7,10 @@ import { PageBase, OnLogout } from '../../bases/page-base';
 import { AppService } from '../../services/app/app.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { CompanyService } from 'src/services/company/company.service';
-import { Observable } from 'rxjs';
 import { TransactionService } from 'src/services/transactions/transactions.service';
 import { DashboardService, DashboardValidIntervals } from 'src/services/dashboard/dashboard.service';
 import { DashChart } from 'src/components/standalone/dash-chart/dash-chart.component';
-import { map } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
+import { map } from 'rxjs/internal/operators/map';
 
 declare const Morris;
 

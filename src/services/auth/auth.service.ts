@@ -7,9 +7,11 @@ import { BaseService } from '../base/base.service';
 import { UserStorage } from '../user-storage/user-storage';
 import { MatDialog } from '@angular/material';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Observer, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
 import { AlertsService } from '../alerts/alerts.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/internal/operators/map';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { Observer } from 'rxjs/internal/types';
 
 @Injectable()
 export class AppAuthService extends BaseService {

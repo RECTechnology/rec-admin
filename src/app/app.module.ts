@@ -38,7 +38,6 @@ import { MySentry } from 'src/shared/sentry';
 import { environment } from 'src/environments/environment';
 import { SentryErrorHandler } from 'src/shared/sentry-error-handler';
 
-
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';

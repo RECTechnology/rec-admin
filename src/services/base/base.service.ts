@@ -4,8 +4,10 @@ import { UserService } from '../user.service';
 import { environment } from '../../environments/environment';
 import { XHR } from '../xhr/xhr';
 import { API_URL } from '../../data/consts';
-import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/internal/operators/map';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 export interface BaseServiceOptions {
   flags?: {

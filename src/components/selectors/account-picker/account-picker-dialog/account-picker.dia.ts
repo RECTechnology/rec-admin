@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
-import { Observable } from 'rxjs';
 import { Account } from 'src/shared/entities/account.ent';
-import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Component({

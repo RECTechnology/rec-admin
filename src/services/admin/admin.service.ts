@@ -6,9 +6,10 @@ import { API_URL } from '../../data/consts';
 import { NotificationService } from '../notifications/notifications.service';
 import { SearchAccountsParams, ListAccountsParams } from '../../interfaces/search';
 import { CompanyService } from '../company/company.service';
-import { map, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/internal/operators/map';
+import { Observable } from 'rxjs/internal/Observable';
+import { catchError } from 'rxjs/internal/operators/catchError';
 
 @Injectable()
 export class AdminService extends BaseService {

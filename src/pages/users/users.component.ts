@@ -65,6 +65,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
       sort: 'companies',
       sortable: false,
       title: 'Companies',
+      type: 'number',
     }];
   public itemOptions: TlItemOption[] = [
     {

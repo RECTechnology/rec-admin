@@ -7,7 +7,6 @@ import { CompanyService } from 'src/services/company/company.service';
 import { RecLang, REC_LANGS } from 'src/types';
 import { Account } from 'src/shared/entities/account.ent';
 import * as moment from 'moment';
-import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AccountsCrud extends CrudBaseService {

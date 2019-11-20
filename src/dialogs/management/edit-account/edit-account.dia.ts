@@ -11,8 +11,11 @@ import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { LANG_MAP } from 'src/data/consts';
-import { Observable, Subject, fromEvent } from 'rxjs';
-import { debounceTime, map, filter, distinctUntilChanged } from 'rxjs/operators';
+import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import { map } from 'rxjs/internal/operators/map';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   providers: [

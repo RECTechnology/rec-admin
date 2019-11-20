@@ -5,13 +5,14 @@ import {
     HttpRequest,
     HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/internal/operators/catchError';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 import { AlertsService } from './alerts/alerts.service';
 import { UserService } from './user.service';
 import { MySentry } from 'src/shared/sentry';
+import { Observable } from 'rxjs/internal/Observable';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 export class HttpErrorInterceptor implements HttpInterceptor {
 
@@ -21,7 +22,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         public us: UserService,
     ) { }
 
-    public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
         return next.handle(request)
             .pipe(
                 catchError((error: HttpErrorResponse) => {

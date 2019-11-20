@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../user.service';
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs/internal/operators/map';
 import { HttpClient } from '@angular/common/http';
 import { BaseService2 } from '../base/base.service-v2';
 

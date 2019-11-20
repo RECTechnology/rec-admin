@@ -5,8 +5,9 @@ import { API_URL } from '../../data/consts';
 import Transaction from '../../shared/entities/transaction/transaction.ent';
 import { WalletService } from '../wallet/wallet.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/internal/operators/map';
+import { catchError } from 'rxjs/internal/operators/catchError';
 
 function formatTX(tx) {
   const new_tx = new Transaction();
