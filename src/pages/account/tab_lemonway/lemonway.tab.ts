@@ -128,8 +128,6 @@ export class LemonWayTab extends TablePageBase {
         this.lwInfo = resp.data;
         this.getP2PTxs();
         this.getMoneyTxs();
-        this.registerIban();
-
         console.log('LW', resp);
       });
 
@@ -214,15 +212,4 @@ export class LemonWayTab extends TablePageBase {
       this.search();
     });
   }
-
-  public registerIban() {
-    this.accCrud.lwGateway('RegisterIBAN', {
-      wallet: this.lwInfo.ID,
-      holder: 'Fruteria Fermín 3',
-      iban: 'ES4000753519585468652967'
-    }).subscribe(resp => {
-
-    });
-  }
-
 }

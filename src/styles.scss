@@ -147,3 +147,10 @@ agm-map {
   opacity: 0.5;
   text-decoration: none;
 }
+
+.overflow-ellipsis  {
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

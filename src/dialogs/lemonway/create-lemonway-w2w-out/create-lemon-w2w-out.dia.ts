@@ -58,7 +58,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
     this.loading = true;
     this.accountCrud.lwSendPayment(this.account.cif, this.targetAccount.cif, this.amount, this.concept)
       .subscribe((resp) => {
-        this.loading = true;
+        this.loading = false;
         this.alerts.showSnackbar('Success');
         this.close();
       }, (err) => {

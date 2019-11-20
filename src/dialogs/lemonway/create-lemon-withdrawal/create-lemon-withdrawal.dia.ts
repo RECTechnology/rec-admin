@@ -20,6 +20,8 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   public amount: number = 0;
   public lwInfo: any;
 
+  public ibans: any[] = [];
+
   constructor(
     public dialogRef: MatDialogRef<CreateLemonWithdrawalDia>,
     private us: UserService,
@@ -32,12 +34,26 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   public ngOnInit() {
     this.accountCrud.lwGetWallet(this.id)
       .subscribe((resp) => {
-        this.lwInfo = resp;
+        this.lwInfo = resp.data;
+        this.ibans = this.lwInfo.IBANS;
       });
     this.accountCrud.find(this.id).subscribe((resp) => {
       this.account = resp.data;
       this.currentAmountREC = this.account.getBalance('REC');
       this.currentAmountEUR = this.account.getBalance('EUR');
     });
+  }
+
+  public proceed() {
+    this.loading = true;
+    this.accountCrud.lwMoneyOut(this.lwInfo.ID, this.amount.toFixed(2), this.concept)
+      .subscribe((resp) => {
+        this.loading = false;
+        this.alerts.showSnackbar('Success');
+        this.close();
+      }, (err) => {
+        this.alerts.showSnackbar(err.message);
+        this.loading = false;
+      });
   }
 }
