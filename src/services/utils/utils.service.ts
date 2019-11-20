@@ -33,8 +33,7 @@ export class UtilsService {
     for (const key in lwError) {
       errors.push({
         property: key,
-        code: lwError[key].ERROR,
-        message: lwError[key].MESSAGE,
+        message: lwError[key].MESSAGE + ' - code: ' + lwError[key].ERROR,
       });
     }
 
