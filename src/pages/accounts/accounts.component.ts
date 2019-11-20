@@ -74,6 +74,10 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       sort: 'email',
       title: 'Email',
     }, {
+      sort: 'lw_balance',
+      title: 'LW Balance',
+      type: 'code',
+    }, {
       sort: 'type',
       statusClass: (el: any) => ({
         'col-blue': el !== 'COMPANY',
@@ -236,10 +240,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     }).subscribe((result) => {
       this.search();
     });
-  }
-
-  public syncLW() {
-
   }
 
   public sortData(sort: Sort): void {
