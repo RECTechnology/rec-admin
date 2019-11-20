@@ -5,7 +5,8 @@
         <avatar [account]="companyService.selectedCompany" [size]="30" [description]="true"></avatar>
         <span class="abs-center-right group-row-left center v">
           <badge label="Tier" [value]="companyService.selectedCompany.tier"></badge>
-          <badge label="Type" [value]="companyService.selectedCompany.type" [color]="companyService.selectedCompany.type === 'COMPANY' ? 'orange': 'blue'"></badge>
+          <badge label="Type" [value]="companyService.selectedCompany.type"
+            [color]="companyService.selectedCompany.type === 'COMPANY' ? 'orange': 'blue'"></badge>
         </span>
       </div>
       <div class="group-col-left" style="border-top: 1px solid #ddd">

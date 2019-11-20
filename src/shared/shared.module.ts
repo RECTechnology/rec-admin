@@ -34,7 +34,6 @@ import { KeyValuePair } from '../components/standalone/kvp/kvp-list/kvp-list';
 import { KeyValueItem } from '../components/standalone/kvp/kvp-item/kvp-item';
 import { TwoFaDia } from 'src/components/dialogs/two_fa_prompt/two_fa_prompt.dia';
 import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
-import { ExchangersComponent } from 'src/pages/exchangers/exchangers.component';
 import { MapComponent } from 'src/pages/map/map.component';
 import { AccountsPage } from 'src/pages/accounts/accounts.component';
 import { OrganizationsComponent } from 'src/pages/organizations/organizations.component';
@@ -57,7 +56,9 @@ import { ProductsTabComponent } from 'src/pages/b2b/settings/components/products
 import { ActivitiesTabComponent } from 'src/pages/b2b/settings/components/activities/activities.tab';
 import { NeighborhoodsTabComponent } from 'src/pages/b2b/settings/components/neighborhoods/neighborhoods.tab';
 import { AddNeighbourhoodDia } from 'src/pages/b2b/settings/components/neighborhoods/add/add.dia';
-import { NeighbourhoodSelector } from 'src/components/selectors/neighbourhood-selector/neighbourhood-selector.component';
+import {
+  NeighbourhoodSelector,
+} from 'src/components/selectors/neighbourhood-selector/neighbourhood-selector.component';
 import { QuillModule } from 'ngx-quill';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
@@ -77,6 +78,7 @@ import { Avatar } from 'src/components/standalone/avatar/avatar.component';
 import { BadgeComponent } from 'src/components/standalone/badge/badge.component';
 import { InfoFieldComponent } from 'src/components/standalone/info-field/info-field.component';
 import { BetaBadgeComponent } from 'src/components/standalone/beta-badge/beta-badge.component';
+import { IconBtnComponent } from 'src/components/standalone/icon-btn/icon-btn.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +110,6 @@ import { BetaBadgeComponent } from 'src/components/standalone/beta-badge/beta-ba
     KeyValueItem,
     TwoFaDia,
     TreasureAccount,
-    ExchangersComponent,
     MapComponent,
     OrganizationsComponent,
     LoginComponent,
@@ -141,6 +142,7 @@ import { BetaBadgeComponent } from 'src/components/standalone/beta-badge/beta-ba
     BadgeComponent,
     InfoFieldComponent,
     BetaBadgeComponent,
+    IconBtnComponent,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -204,6 +206,7 @@ import { BetaBadgeComponent } from 'src/components/standalone/beta-badge/beta-ba
     BadgeComponent,
     InfoFieldComponent,
     BetaBadgeComponent,
+    IconBtnComponent,
   ],
   imports: [
     BrowserModule,

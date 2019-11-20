@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-info-field',
+  selector: 'info-field',
   templateUrl: './info-field.component.html',
-  styleUrls: ['./info-field.component.scss']
+  styles: [
+    `:host  { display: block; width: auto; height; auto; }`,
+  ],
 })
-export class InfoFieldComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class InfoFieldComponent {
+  @Input() public title: string;
+  @Input() public value: string;
 }
