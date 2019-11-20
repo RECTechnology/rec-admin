@@ -4,18 +4,8 @@
       <div class="group-row-left" style="position:relative;width: 100%; padding: 20px">
         <avatar [account]="companyService.selectedCompany" [size]="30" [description]="true"></avatar>
         <span class="abs-center-right group-row-left center v">
-          <div class="status-badge marg-right-x10">
-            <p class="label_txt">Tier</p>
-            <div class="value bg-blue">
-              {{companyService.selectedCompany.tier}}
-            </div>
-          </div>
-          <div class="status-badge marg-right-x10">
-            <p class="label_txt">{{'Type'|translate}}</p>
-            <div class="value bg-{{companyService.selectedCompany.type === 'COMPANY' ? 'orange': 'blue'}}">
-              {{companyService.selectedCompany.type}}
-            </div>
-          </div>
+          <badge label="Tier" [value]="companyService.selectedCompany.tier"></badge>
+          <badge label="Type" [value]="companyService.selectedCompany.type" [color]="companyService.selectedCompany.type === 'COMPANY' ? 'orange': 'blue'"></badge>
         </span>
       </div>
       <div class="group-col-left" style="border-top: 1px solid #ddd">

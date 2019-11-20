@@ -75,6 +75,7 @@ import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-with
 import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemonway-w2w-out/create-lemon-w2w-out.dia';
 import { AccountPickerDia } from 'src/components/selectors/account-picker/account-picker-dialog/account-picker.dia';
 import { Avatar } from 'src/components/standalone/avatar/avatar.component';
+import { BadgeComponent } from 'src/components/standalone/badge/badge.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { Avatar } from 'src/components/standalone/avatar/avatar.component';
     CreateLemonWallet2WalletOutDia,
     AccountPickerDia,
     Avatar,
+    BadgeComponent,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -198,6 +200,7 @@ import { Avatar } from 'src/components/standalone/avatar/avatar.component';
     ConvertToLangPipe,
     EscapeHtmlPipe,
     Avatar,
+    BadgeComponent,
   ],
   imports: [
     BrowserModule,

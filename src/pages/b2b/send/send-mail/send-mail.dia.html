@@ -17,12 +17,7 @@
                     </p>
                 </div>
 
-                <div class="status-badge marg-right-x10">
-                    <p class="label_txt">{{'Status'|translate}}</p>
-                    <div class="value bg-{{getMailStatusColor(mail.status)}}">
-                        {{mail.status|translate}}
-                    </div>
-                </div>
+                <badge label="Status" [value]="mail.status" [color]="getMailStatusColor(mail.status)"></badge>
             </div>
         </mat-card>
         <div class="row" style="margin: 0; padding: 0">
