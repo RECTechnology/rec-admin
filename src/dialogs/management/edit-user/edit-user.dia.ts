@@ -66,12 +66,17 @@ export class EditUserData {
   public async update() {
     const id = this.user.id;
     const kycId = this.user.kyc_validations && this.user.kyc_validations.id;
-    const data = this.userCopy;
 
-    const changedProps: any = this.utils.deepDiff(data, this.user);
-    const changedPropsKyc: any = this.utils.deepDiff(data.kyc_validations, this.user.kyc_validations);
+    const changedProps: any = this.utils.deepDiff(this.userCopy, this.user);
+    const changedPropsKyc: any = this.utils.deepDiff(this.userCopy.kyc_validations, this.user.kyc_validations);
 
     delete changedProps.kyc_validations;
+
+    // deepDiff seems to modify objects into arrays
+    // so we set it from userCopy
+    if (changedProps.locale && this.userCopy.locale) {
+      changedProps.locale = this.userCopy.locale.abrev;
+    }
 
     if (changedPropsKyc.last_name) {
       changedPropsKyc.lastName = changedPropsKyc.last_name;
@@ -158,8 +163,6 @@ export class EditUserData {
   }
 
   public setLanguage($event) {
-    this.userCopy.locale = $event;
-    // this.user.locale = $event;
-    this.lang = $event;
+    this.userCopy.locale = this.lang = $event;
   }
 }
