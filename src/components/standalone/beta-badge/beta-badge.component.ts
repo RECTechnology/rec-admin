@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-beta-badge',
+  selector: 'beta-badge',
   templateUrl: './beta-badge.component.html',
-  styleUrls: ['./beta-badge.component.scss']
+  styles: [`
+    .beta-badge {
+      padding: 5px 15px;
+      border-
+    }
+  `],
 })
-export class BetaBadgeComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class BetaBadgeComponent {
+  
 }

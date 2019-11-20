@@ -20,7 +20,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
 
   public originAccount: any = {};
   public targetAccount: any = {};
-  public concept: string = 'Transfer';
+  public concept: string = 'Traspaso';
   public amount: number = 0;
   public iban: string;
 

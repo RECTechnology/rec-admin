@@ -148,9 +148,20 @@ agm-map {
   text-decoration: none;
 }
 
-.overflow-ellipsis  {
+.overflow-ellipsis {
   max-width: 80%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.beta-badge {
+  margin-left: 8px;
+  width: auto;
+  padding: 0 15px;
+  height: 25px;
+  border-radius: 12px;
+  color: white;
+  font-size: 10px!important;
+  background: linear-gradient(75deg, rgba(0, 153, 219, 0.851), rgba(242, 114, 35, 0.845));
 }

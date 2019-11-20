@@ -20,7 +20,6 @@ import { LangSelector } from '../components/selectors/lang-selector/lang.selecto
 import { FilterComponent } from '../components/other/filter/filter-component';
 import { Agregation } from '../components/standalone/agregation/agregation.component';
 import { DashChart } from '../components/standalone/dash-chart/dash-chart.component';
-import { InDevelopment } from '../components/standalone/in-development/in-development';
 import { ManageSms } from '../dialogs/management/manage-sms/manage-sms.dia';
 import { BussinessDetailsDia } from '../dialogs/management/bussiness_detailes/bussiness_details.component';
 import { ValidationErrorsComponent } from '../components/scaffolding/validation-errors/validation-errors.component';
@@ -97,7 +96,6 @@ import { BetaBadgeComponent } from 'src/components/standalone/beta-badge/beta-ba
     FilterComponent,
     Agregation,
     DashChart,
-    InDevelopment,
     ManageSms,
     BussinessDetailsDia,
     ValidationErrorsComponent,
@@ -182,7 +180,6 @@ import { BetaBadgeComponent } from 'src/components/standalone/beta-badge/beta-ba
     FilterComponent,
     Agregation,
     DashChart,
-    InDevelopment,
     ValidationErrorsComponent,
     CountrySelector,
     MaterialModule,
