@@ -1,5 +1,5 @@
 <div style="height: 100%">
-  <div class="row" style="margin: 0; padding: 20px;">
+  <div class="row" style="margin: 0; padding: 20px;" *ngIf="!error && !loading">
     <div class="col-lg-3">
       <mat-card style="min-height: 200px;padding:0;">
         <div class="header bordered-bottom" style="padding: 14px 15px">
@@ -92,5 +92,20 @@
 
       </mat-card>
     </div>
+  </div>
+  <div class="center v h" style="margin: 0; padding: 20px;width: 100%;" *ngIf="error && !loading">
+    <mat-card class="col-error">
+      <div class="group-row-left center v">
+        <i class="fa fa-exclamation-circle marg-r-10"></i>
+        <span><b>Error</b>: <p>{{error.message}}</p></span>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="center h v" *ngIf="loading" style="width: 100%">
+    <mat-card class="col-error">
+      <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+      </mat-progress-spinner>
+    </mat-card>
   </div>
 </div>

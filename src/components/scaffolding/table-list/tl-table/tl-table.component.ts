@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterContentInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterContentInit } from '@angular/core';
 import { Sort, SortDirection } from '@angular/material';
 import { environment } from '../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
+// TODO: Add prefix/suffix option, to add to fields
 
 export interface TlHeader {
     sort: string|boolean;

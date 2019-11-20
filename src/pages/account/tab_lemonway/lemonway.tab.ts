@@ -14,6 +14,7 @@ import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemo
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 import * as moment from 'moment';
+import { UtilsService } from 'src/services/utils/utils.service';
 
 const WALLET_STATUS_MAP = {
   '-1': 'wallet SC',
@@ -111,6 +112,7 @@ export class LemonWayTab extends TablePageBase {
     1: 'wallet2wallet',
   };
   public sortedDataP2P: any = [];
+  public error = null;
 
   constructor(
     public controles: ControlesService,
@@ -123,12 +125,18 @@ export class LemonWayTab extends TablePageBase {
   ) { super(); }
 
   public ngOnInit() {
+    this.loading = true;
     this.accCrud.lwGetWallet(this.id)
       .subscribe((resp) => {
         this.lwInfo = resp.data;
         this.getP2PTxs();
         this.getMoneyTxs();
-        console.log('LW', resp);
+        this.loading = false;
+      }, (err) => {
+        if (err.errors) {
+          this.error = UtilsService.normalizeLwError(err.errors).pop();
+        }
+        this.loading = false;
       });
 
     this.route.queryParams
