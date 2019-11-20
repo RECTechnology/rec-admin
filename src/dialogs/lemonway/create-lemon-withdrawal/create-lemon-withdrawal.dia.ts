@@ -5,6 +5,7 @@ import BaseDialog from '../../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { Account } from 'src/shared/entities/account.ent';
+import { UtilsService } from 'src/services/utils/utils.service';
 
 @Component({
   selector: 'create-lemon-withdrawal',
@@ -21,6 +22,7 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   public lwInfo: any;
 
   public ibans: any[] = [];
+  public validationErrors: any[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<CreateLemonWithdrawalDia>,
@@ -52,7 +54,12 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
         this.alerts.showSnackbar('Success');
         this.close();
       }, (err) => {
-        this.alerts.showSnackbar(err.message);
+        if (err.errors) {
+          this.validationErrors = UtilsService.normalizeLwError(err.errors);
+          console.log(this.validationErrors);
+        } else {
+          this.alerts.showSnackbar(err.message);
+        }
         this.loading = false;
       });
   }

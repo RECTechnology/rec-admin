@@ -23,22 +23,13 @@
         {{'FILL_FIELDS_WITHDRAWAL'|translate}}
       </p>
     </div>
-    <!-- <div class="col-lg-12">
-      <div class="group-col-left">
-        <span class="small-text-2">{{'IBAN'|translate}}</span>
-        <mat-select>
-          <mat-option *ngFor="let iban of ibans" [value]="iban">
-            {{iban.ID}} (iban.DATA)
-          </mat-option>
-        </mat-select>
-      </div>
-    </div> -->
+    <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+      style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
+    </validation-errors>
     <div class="col-lg-12">
       <div class="group-col-left">
         <span class="small-text-2">{{'Amount'|translate}}</span>
         <input type="number" class="user-input small" [(ngModel)]="amount" placeholder="{{'Amount'|translate}}">
-
-        <!-- <p *ngIf="amount > currentAmountEUR" class="small-text col-error">{{'NOT_ENOUGH_FUNDS'|translate}}</p> -->
       </div>
     </div>
     <div class="col-lg-12">
@@ -47,6 +38,7 @@
         <input type="text" class="user-input small" [(ngModel)]="concept" placeholder="{{'Concept'|translate}}">
       </div>
     </div>
+
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>

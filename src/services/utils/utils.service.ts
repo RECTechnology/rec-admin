@@ -27,6 +27,20 @@ export class UtilsService {
     return obj;
   }
 
+  public static normalizeLwError(lwError) {
+    const errors = [];
+    // tslint:disable-next-line: forin
+    for (const key in lwError) {
+      errors.push({
+        property: key,
+        code: lwError[key].ERROR,
+        message: lwError[key].MESSAGE,
+      });
+    }
+
+    return errors;
+  }
+
   public isSandbox = false;
   // tslint:disable-next-line
   public _idleSecondsCounter = 0;
@@ -266,5 +280,4 @@ export class UtilsService {
   public validCVV(val) {
     return (typeof val === 'string' && val.length === 3) || typeof val === 'number';
   }
-
 }

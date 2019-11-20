@@ -5,6 +5,7 @@ import BaseDialog from '../../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { Account } from 'src/shared/entities/account.ent';
+import { UtilsService } from 'src/services/utils/utils.service';
 
 @Component({
   selector: 'create-lemon-w2w-out',
@@ -22,6 +23,8 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public concept: string = 'Transfer';
   public amount: number = 0;
   public iban: string;
+
+  public validationErrors: any[] = [];
 
   public accountFilters = {
     active: 1,
@@ -62,7 +65,12 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
         this.alerts.showSnackbar('Success');
         this.close();
       }, (err) => {
-        this.alerts.showSnackbar(err.message);
+        if (err.errors) {
+          this.validationErrors = UtilsService.normalizeLwError(err.errors);
+          console.log(this.validationErrors);
+        } else {
+          this.alerts.showSnackbar(err.message);
+        }
         this.loading = false;
       });
   }

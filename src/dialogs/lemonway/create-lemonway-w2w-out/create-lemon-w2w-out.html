@@ -24,7 +24,9 @@
         {{'FILL_FIELDS_WITHDRAWAL'|translate}}:
       </p>
     </div>
-
+    <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+      style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
+    </validation-errors>
     <div class="col-lg-12">
       <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
         <div style="width: 45%">
