@@ -14,6 +14,7 @@ export class IconBtnComponent {
   @Input() public class: string;
   @Input() public matTooltip: string;
   @Input() public disabled: boolean;
+  @Input() public routerLink: string;
 
-  @Output() public clicked: EventEmitter<any> = new EventEmitter();
+  @Output() public click: EventEmitter<any> = new EventEmitter();
 }

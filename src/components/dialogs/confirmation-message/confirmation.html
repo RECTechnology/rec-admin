@@ -1,13 +1,6 @@
-<div class="modal-header bg-{{status}}">
+<modal-header [status]="status" title="{{title|translate:data}}" (click)="close(false)">
   <i *ngIf="headerIcon" class="fa fa-{{headerIcon}}" style="margin-right: 10px"></i>
-  <span [innerHTML]="title|translate:data"></span>
-
-  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
-    <span class="center h v">
-      <i class="fa fa-times col-white"></i>
-    </span>
-  </button>
-</div>
+</modal-header>
 
 <div class="group-col-left padd-x20" style="max-width: 50vw">
 

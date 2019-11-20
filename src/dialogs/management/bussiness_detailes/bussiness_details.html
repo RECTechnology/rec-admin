@@ -1,12 +1,4 @@
-<div class="modal-header bg-blue">
-  {{'BUSSINES_DETAILS'|translate}}
-
-  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
-    <span class="center h v">
-      <i class="fa fa-times col-white"></i>
-    </span>
-  </button>
-</div>
+<modal-header title="{{'BUSSINES_DETAILS'|translate}}" (click)="close(false)"></modal-header>
 
 <div class="modal-body no-padd" style="min-height: 300px; padding: 0!important">
   <div class="bussiness-details">

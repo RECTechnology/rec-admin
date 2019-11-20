@@ -6,11 +6,14 @@
         <mat-card style="margin-bottom: 10px">
             <div class="center v space-between">
                 <div class="center v">
-                    <button mat-icon-button routerLink="/rec/mailing" class="icon-btn-small" style="margin-right: 10px">
+                    <icon-btn icon="fa-angle-left" routerLink="/rec/mailing"
+                        class="icon-btn-small"></icon-btn>
+
+                    <!-- <button mat-icon-button routerLink="/rec/mailing" class="icon-btn-small" style="margin-right: 10px">
                         <div class="center h v">
                             <i class="fa fa-angle-left"></i>
                         </div>
-                    </button>
+                    </button> -->
                     <p class="col-blue small-text">
                         {{((isEdit && !readonly) ? 'EDIT_MAIL': (readonly ? 'VIEW_MAIL': 'CREATE_MAIL'))|translate}}
                     </p>

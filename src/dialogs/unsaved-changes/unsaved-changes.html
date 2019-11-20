@@ -1,15 +1,6 @@
-<div class="modal-header bg-warning">
-  <span>{{'DISCARD_MAILING' | translate : ({ title: title })}}</span>
-
-  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
-    <span class="center h v">
-      <i class="fa fa-times col-white"></i>
-    </span>
-  </button>
-</div>
+<modal-header title="{{'DISCARD_MAILING'|translate}}" (click)="close(false)" status="warning"></modal-header>
 
 <div class="group-col-left padd-x20">
-
   <div>
     <p>{{'DISCARD_MAILING_DESC' | translate : ({ title: title })}}</p>
   </div>

@@ -1,17 +1,6 @@
-<div class="modal-header bg-blue">
-  <span>
-    {{'2FA_CONFIRM'|translate}}
-  </span>
-
-  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
-    <span class="center h v">
-      <i class="fa fa-times col-white"></i>
-    </span>
-  </button>
-</div>
+<modal-header title="{{'2FA_CONFIRM'|translate}}" (click)="close(false)"></modal-header>
 
 <div class="group-col-left padd-x20" *ngIf="has2FAActivated">
-
   <div class="group-col-left center h v">
     <h4>{{'ENTER_2FA_CODE'|translate}}</h4>
 

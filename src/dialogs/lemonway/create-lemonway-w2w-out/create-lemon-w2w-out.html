@@ -1,12 +1,4 @@
-<div class="modal-header bg-blue">
-  {{'CASH_OUT_TITLE'|translate}}
-
-  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
-    <span class="center h v">
-      <i class="fa fa-times col-white"></i>
-    </span>
-  </button>
-</div>
+<modal-header title="{{'CASH_OUT_TITLE'|translate}}" (click)="close(false)"></modal-header>
 
 <div class="padd-x20 modal-body" style="min-height: 300px;min-width: 50vw;">
   <div class="border-bottom marg-b-10 padding-b-15">

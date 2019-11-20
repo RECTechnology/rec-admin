@@ -1,12 +1,4 @@
-<div class="modal-header bg-blue">
-  <span>{{title|translate}}</span>
-
-  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close(false)" title="close">
-    <span class="center h v">
-      <i class="fa fa-times col-white"></i>
-    </span>
-  </button>
-</div>
+<modal-header title="{{title|translate}}" (click)="close(false)"></modal-header>
 
 <div class="group-col-left padd-x20">
   <pre *ngIf="code" id="code" style="width: 100%; height: auto; background: #dedede; border: 1px solid #eee">

@@ -1,12 +1,4 @@
-<div class="modal-header bg-blue">
-  {{'Edit User'|translate}}
-
-  <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
-    <span class="center h v">
-      <i class="fa fa-times col-white"></i>
-    </span>
-  </button>
-</div>
+<modal-header title="{{'Edit User'|translate}}" (click)="close(false)"></modal-header>
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
   <mat-tab-group class="profile-tabs">
