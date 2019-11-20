@@ -168,11 +168,11 @@ export class LemonWayTab extends TablePageBase {
         this.loading = false;
       });
 
-    // this.route.queryParams
-    //   .subscribe((params) => {
-    //     const tab = params.ltab || 'withdrawals';
-    //     this.currentTab = this.tabMap[tab] || 0;
-    //   });
+    this.route.queryParams
+      .subscribe((params) => {
+        const tab = params.ltab || 'withdrawals';
+        this.currentTab = this.tabMap[tab] || 0;
+      });
 
     super.ngOnInit();
   }
