@@ -21,6 +21,7 @@ export interface TlHeader {
     preffix?: string;
     buttonAction?: (any) => any;
     slideAction?: (any) => any;
+    tooltip?: (any) => any;
 }
 
 export interface TlItemOption {

@@ -11,36 +11,47 @@
             <th *ngIf="itemOptions"></th>
         </tr>
         <tr *ngFor="let entry of data; let i = index; trackBy: trackByFn">
-            <td *ngFor="let header of headers">
+            <td *ngFor="let header of headers; trackBy: trackByFn">
                 <mat-checkbox *ngIf="header.type === 'checkbox'" color="primary" [ngModel]="getEntry(entry, header)"
                     disabled></mat-checkbox>
 
                 <span *ngIf="header.type === 'status'"
                     [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry, header)}}</span>
 
-                <code *ngIf="header.type === 'code'">{{getEntry(entry, header)}}</code>
-                <code *ngIf="header.type === 'number'">{{header.prefix}} {{(getEntry(entry, header) || 0) | number}} {{header.suffix}}</code>
+                <code *ngIf="header.type === 'code'"
+                    [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</code>
 
-                <i *ngIf="header.type === 'date'">{{getEntry(entry, header) | date}}</i>
+                <code *ngIf="header.type === 'number'"
+                    [matTooltip]="header.tooltip && header.tooltip(entry)">{{header.prefix}} {{(getEntry(entry, header) || 0) | number}} {{header.suffix}}</code>
 
-                <button *ngIf="header.type === 'button'" mat-icon-button (click)="header.buttonAction(entry)">
+                <i *ngIf="header.type === 'date'"
+                    [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header) | date}}</i>
+
+                <button *ngIf="header.type === 'button'" mat-icon-button (click)="header.buttonAction(entry)"
+                    [matTooltip]="header.tooltip && header.tooltip(entry)">
                     <img *ngIf="header.buttonImg" src="{{header.buttonImg}}" alt=""
                         style="height: 25px;margin-right: 10px">
                     <span *ngIf="header.icon" class="fa fa-{{header.icon}}"></span>
                 </button>
 
                 <mat-slide-toggle *ngIf="header.type === 'slidetoggle'" color="primary" [(ngModel)]="entry[header.sort]"
-                    (change)="header.slideAction(entry, $event)"></mat-slide-toggle>
+                    (change)="header.slideAction(entry, $event)" [matTooltip]="header.tooltip && header.tooltip(entry)">
+                </mat-slide-toggle>
 
                 <div *ngIf="header.type === 'avatar'">
-                    <avatar [account]="entry" [imageAccessor]="entry.company_image ? 'company_image': 'profile_image'"></avatar>
+                    <avatar [account]="entry" [imageAccessor]="entry.company_image ? 'company_image': 'profile_image'"
+                        [matTooltip]="header.tooltip && header.tooltip(entry)">
+                    </avatar>
                 </div>
-                <div *ngIf="header.type === 'image'">
-                        <img src="{{getEntry(entry, header.image) || '../../../assets/resources/img/User-default.png'}}"
-                            alt="" style="width: 25px; height: 25px; border-radius: 50%;margin-right: 10px">
-                        <span>{{getEntry(entry, header)}}</span>
-                    </div>
-                <span *ngIf="!header.type">{{getEntry(entry, header)}}</span>
+                
+                <div *ngIf="header.type === 'image'" [matTooltip]="header.tooltip && header.tooltip(entry)">
+                    <img src="{{getEntry(entry, header.image) || '../../../assets/resources/img/User-default.png'}}"
+                        alt="" style="width: 25px; height: 25px; border-radius: 50%;margin-right: 10px">
+                    <span>{{getEntry(entry, header)}}</span>
+                </div>
+
+                <span *ngIf="!header.type"
+                    [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</span>
             </td>
             <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'menu'">
                 <button mat-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">

@@ -33,6 +33,29 @@ const WALLET_STATUS_MAP = {
   '16': 'wallet technique',
 };
 
+const LW_ERROR_MONEY_OUT = {
+  3: 'money-out successful',
+  4: 'error',
+};
+
+const LW_ERROR_P2P = {
+  0: 'pending payment',
+  3: 'payment successful and terminated',
+  4: 'error',
+};
+
+const processLwTx = (res) => {
+  // F*** lemonway man!
+  const parts = res.DATE.split('/');
+  const temp = parts[0];
+  parts[0] = parts[1];
+  parts[1] = temp;
+
+  res.DATE = parts.join('/');
+
+  return res;
+};
+
 @Component({
   selector: 'lemonway-tab',
   templateUrl: './lemonway.html',
@@ -60,6 +83,9 @@ export class LemonWayTab extends TablePageBase {
       sort: 'TYPE',
       title: 'Status',
       type: 'code',
+      tooltip(el) {
+        return el.status_text + ' (' + el.STATUS + ')';
+      },
     }, {
       sort: 'DATE',
       title: 'Date',
@@ -88,6 +114,9 @@ export class LemonWayTab extends TablePageBase {
       sort: 'STATUS',
       title: 'Status',
       type: 'code',
+      tooltip(el) {
+        return el.status_text + ' (' + el.STATUS + ')';
+      },
     }, {
       sort: 'DATE',
       title: 'Date',
@@ -173,40 +202,26 @@ export class LemonWayTab extends TablePageBase {
   public getP2PTxs() {
     this.accCrud.lwGetP2PList([this.lwInfo.ID])
       .subscribe((resp) => {
-        console.log(resp);
         this.total = resp.data.COUNT;
-        this.sortedDataP2P = resp.data.TRANS.reverse().map((res) => {
-
-          // F*** lemonway man!
-          const parts = res.DATE.split('/');
-          const temp = parts[0];
-          parts[0] = parts[1];
-          parts[1] = temp;
-
-          res.DATE = parts.join('/');
-
-          return res;
-        });
+        this.sortedDataP2P = resp.data.TRANS.reverse()
+          .map(processLwTx)
+          .map((el) => {
+            el.status_text = LW_ERROR_P2P[el.STATUS];
+            return el;
+          });
       });
   }
 
   public getMoneyTxs() {
     this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
       .subscribe((resp) => {
-        console.log(resp);
         this.total = resp.data.COUNT;
-        this.sortedData = resp.data.TRANS.reverse().map((res) => {
-
-          // F*** lemonway man!
-          const parts = res.DATE.split('/');
-          const temp = parts[0];
-          parts[0] = parts[1];
-          parts[1] = temp;
-
-          res.DATE = parts.join('/');
-
-          return res;
-        });
+        this.sortedData = resp.data.TRANS.reverse()
+          .map(processLwTx)
+          .map((el) => {
+            el.status_text = LW_ERROR_MONEY_OUT[el.STATUS];
+            return el;
+          });
       });
   }
 
