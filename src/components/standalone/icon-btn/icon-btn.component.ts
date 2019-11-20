@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   selector: 'icon-btn',
   templateUrl: './icon-btn.component.html',
   styles: [
-    `:host { display: block; }`,
+    `:host { display: inline-block; margin: 0 10px}`,
   ],
 })
 export class IconBtnComponent {
