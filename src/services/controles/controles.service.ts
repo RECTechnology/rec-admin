@@ -6,7 +6,7 @@ export class ControlesService {
   public profileDropDownActive: boolean = false;
   public devDropdownExpanded: boolean = false;
   public chatVisible: boolean = false;
-  public managementExpanded: boolean = false;
+  public managementExpanded: boolean = true;
   public errorReporterOpened: boolean = false;
   public showAccountDetails: boolean = false;
   public currencySelected = false;
