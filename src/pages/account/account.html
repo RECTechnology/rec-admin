@@ -38,7 +38,7 @@
     </mat-tab>
     <mat-tab *ngIf="companyService.selectedCompany && companyService.selectedCompany.isCompany()"
       label="{{'LEMONWAY_INFO'|translate}}">
-      <lemonway-tab [id]="account_id"></lemonway-tab>
+      <lemonway-tab  *ngIf="currentTab === 5" [id]="account_id"></lemonway-tab>
     </mat-tab>
   </mat-tab-group>
   <div class="center h v" *ngIf="!companyService.selectedCompany" style="width: 100%">
