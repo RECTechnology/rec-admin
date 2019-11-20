@@ -1,10 +1,6 @@
 <header-nav>
-  <button mat-icon-button (click)="goBack()" class="icon-btn-small">
-    <div class="center h v">
-      <i class="fa fa-angle-left"></i>
-    </div>
-  </button>
-
+  <icon-btn icon="fa-angle-left" (click)="goBack()" class="icon-btn-small"></icon-btn>
+  
   <div class="group-row-left center v" *ngIf="companyService.selectedCompany && companyService.selectedCompany.id">
     <avatar [account]="companyService.selectedCompany" [size]="30"></avatar>
 
