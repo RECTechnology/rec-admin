@@ -7,16 +7,18 @@ import { TranslateService } from '@ngx-translate/core';
 // TODO: Add prefix/suffix option, to add to fields
 
 export interface TlHeader {
-    sort: string|boolean;
+    sort: string | boolean;
     sortable?: boolean;
     title: string;
-    type?: 'text' | 'checkbox' | 'status' | 'code' | 'date' | 'avatar' | 'button' | 'slidetoggle' | 'image';
+    type?: 'text' | 'checkbox' | 'status' | 'code' | 'date' | 'avatar' | 'button' | 'slidetoggle' | 'image' | 'number';
     accessor?: string | ((el: any) => any);
     statusClass?: ((status: string) => any);
     avatar?: TlHeader;
     image?: TlHeader;
     translate?: boolean;
     buttonImg?: string;
+    suffix?: string;
+    preffix?: string;
     buttonAction?: (any) => any;
     slideAction?: (any) => any;
 }
@@ -96,7 +98,8 @@ export class TableListTable implements AfterContentInit {
             val = header.accessor(entry);
         }
 
-        return (translate && header.translate) ? this.translate.instant(val) : val;
+        const resVal = (translate && header.translate) ? this.translate.instant(val) : val;
+        return resVal;
     }
 
     public trackByFn(index, item) {

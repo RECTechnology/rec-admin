@@ -75,8 +75,10 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       title: 'Email',
     }, {
       sort: 'lw_balance',
+      accessor: 'lw_balance',
       title: 'LW Balance',
-      type: 'code',
+      type: 'number',
+      suffix: '€',
     }, {
       sort: 'type',
       statusClass: (el: any) => ({
@@ -86,12 +88,11 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       title: 'Type',
       type: 'status',
     }, {
-      accessor: (account: Account) => {
-        return account.getBalance('REC') + ' Ɍ';
-      },
+      accessor: (account: Account) => account.getBalance('REC'),
       sort: 'amount',
       title: 'Amount',
-      type: 'code',
+      type: 'number',
+      suffix: 'Ɍ',
     },
   ];
   public itemOptions: TlItemOption[] = [{

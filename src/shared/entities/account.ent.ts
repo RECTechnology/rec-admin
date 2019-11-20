@@ -67,6 +67,7 @@ export interface Account {
     wallets: Wallet[];
     web: string;
     zip: string;
+    lw_balance: number;
 
     _isReadonly?: boolean;
     _isCompany?: boolean;
