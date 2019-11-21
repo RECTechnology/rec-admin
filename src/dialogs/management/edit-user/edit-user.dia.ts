@@ -75,7 +75,7 @@ export class EditUserData {
     // deepDiff seems to modify objects into arrays
     // so we set it from userCopy
     if (changedProps.locale && this.userCopy.locale) {
-      changedProps.locale = this.userCopy.locale.abrev;
+      changedProps.locale = this.langMap[this.userCopy.locale.abrev];
     }
 
     if (changedPropsKyc.last_name) {

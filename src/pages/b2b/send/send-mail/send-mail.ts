@@ -151,7 +151,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             this.update();
         });
 
-        this.refreshInterval = setInterval(this.update.bind(this), 30e3);
+        this.refreshInterval = setInterval(this.update.bind(this), 15e3);
     }
 
     public ngOnDestroy() {
