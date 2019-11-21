@@ -12,5 +12,22 @@
         (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder}}">
         <mat-option [value]="opt.value || opt" *ngFor="let opt of options">{{(opt.name || opt)|translate}}</mat-option>
     </mat-select>
+
+
+    <!-- <div *ngIf="!isNormalInput && type === 'menu'">
+        <button mat-button [matMenuTriggerFor]="inMenu" class="mat-button-menu"
+            style="width: 100%; margin-bottom: 10px">
+            <span class="center space-between">
+                <span class="small-text">value</span>
+                <i class="fa fa-caret-right"></i>
+            </span>
+        </button>
+        <mat-menu #inMenu="matMenu">
+            <button mat-menu-item *ngFor="let type of ACCOUNT_TYPES" (click)="setType(type)">
+                <p class="small-text">{{type}}</p>
+            </button>
+        </mat-menu>
+    </div> -->
+
     <ng-content></ng-content>
 </div>

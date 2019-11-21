@@ -114,9 +114,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         public utils: UtilsService,
     ) {
         super();
-
-        console.log('send mail');
-
         this.route.queryParams
             .subscribe((queryParams) => {
                 if (queryParams.acc_id || queryParams.attach) {
@@ -195,7 +192,11 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         super.ngOnInit();
     }
 
-    public update() {
+    public async update() {
+        if (!this.saved) {
+            await this.saveMail();
+        }
+
         this.getMail();
         this.search();
     }

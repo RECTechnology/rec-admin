@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 // TODO: Add prefix/suffix option, to add to fields
 
 export interface TlHeader {
-    sort: string | boolean;
+    sort?: string | boolean;
     sortable?: boolean;
     title: string;
     type?: 'text' | 'checkbox' | 'status' | 'code' | 'date' | 'avatar' | 'button' | 'slidetoggle' | 'image' | 'number';

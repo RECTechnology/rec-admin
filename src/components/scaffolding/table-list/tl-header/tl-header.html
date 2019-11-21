@@ -2,16 +2,21 @@
     <p class="no-margin no-padding small-text col-blue" style="width: auto; margin: 0 !important">
         {{title|translate}}</p>
 
-    <input id="tl-header-search-bar" *ngIf="options.input" #search type="text" class="{{inputClass}}" style="max-width: 70%;margin: 0 15px"
-        placeholder="{{searchPlaceholder|translate}}...">
+    <input id="tl-header-search-bar" *ngIf="options.input" #search type="text" class="{{inputClass}}"
+        style="max-width: 70%;margin: 0 15px" placeholder="{{searchPlaceholder|translate}}...">
 
     <div *ngIf="options.input">
-        <button type="button" id="tl-header-search-btn" color="primary" mat-raised-button (click)="search();" name="button">
+        <button type="button" id="tl-header-search-btn" color="primary" mat-raised-button (click)="search();"
+            name="button">
             <p class="text-small">
                 <i class="fa fa-search"></i>
                 {{searchPlaceholder|translate}}
             </p>
         </button>
+    </div>
+
+    <div *ngIf="options.refresh">
+        <icon-btn icon="fa-refresh" (click)="search()" matTooltip="Refresh data"></icon-btn>
     </div>
 
     <div *ngIf="options.newItem">

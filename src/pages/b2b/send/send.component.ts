@@ -31,6 +31,11 @@ export class B2BSendComponent extends TablePageBase {
             title: 'Subject',
         },
         {
+            sortable: false,
+            title: 'Attachments',
+            accessor: (item) => item.attachments.length,
+        },
+        {
             sort: 'status',
             title: 'Status',
             type: 'status',
@@ -43,7 +48,7 @@ export class B2BSendComponent extends TablePageBase {
         },
         {
             accessor: (item) => item.deliveries.length,
-            sort: 'deliveries',
+            sortable: false,
             title: 'Deliveries',
             type: 'number',
         },

@@ -7,13 +7,15 @@ import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChang
 
 export interface TableListHeaderOptions {
     input?: boolean;
+    refresh?: boolean;
     newItem?: boolean;
     showOptions?: boolean;
     deepLinkQuery?: boolean;
 }
 
 const defaultOptions: TableListHeaderOptions = {
-    input: true,
+    input: false,
+    refresh: true,
     newItem: false,
     showOptions: false,
     deepLinkQuery: false,
