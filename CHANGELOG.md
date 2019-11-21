@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.1...v3.5.2) (2019-11-21)
+
+
+### Bug Fixes
+
+* **table-search:** fixed table search, pagination removed query from request ([a886165](https://github.com/QbitArtifacts/rec-admin/commit/a886165f57aa4778222ba950cf4869c11b3192fb))
+
 ### [3.5.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.0...v3.5.1) (2019-11-21)
 
 
