@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.0...v3.5.1) (2019-11-21)
+
+
+### Bug Fixes
+
+* **accounts:** scale lw_wallet as its returned in cents ([8ac1c29](https://github.com/QbitArtifacts/rec-admin/commit/8ac1c29ab53e185db078626e081e9f6a090d55e3))
+
 ## [3.5.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.4.11...v3.5.0) (2019-11-21)
 
 
