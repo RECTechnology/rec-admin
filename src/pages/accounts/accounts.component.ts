@@ -167,7 +167,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     return data;
   }
 
-  public search(query: string = '') {
+  public search(query: string = this.query) {
     const data: any = this.getCleanParams(query);
 
     this.loading = true;
@@ -253,6 +253,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       this.sortID = sort.active;
       this.sortDir = sort.direction;
     }
-    this.search();
+    this.search(this.query);
   }
 }

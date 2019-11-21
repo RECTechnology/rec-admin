@@ -99,6 +99,7 @@ export class TableListHeader {
         ).subscribe((text: string) => {
             this.query = text;
             this.onSearch.emit(text);
+            this.queryChange.emit(text);
 
             // Add query params for deeplinking
             this.router.navigate([], {

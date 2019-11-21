@@ -185,7 +185,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     });
   }
 
-  public search(query: string = '') {
+  public search(query: string = this.query) {
     this.loading = true;
     const data: ListAccountsParams = this.getCleanParams(query);
 

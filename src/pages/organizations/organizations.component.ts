@@ -165,7 +165,7 @@ export class OrganizationsComponent extends TablePageBase {
     }
   }
 
-  public search(query: string = '') {
+  public search(query: string = this.query) {
     this.loading = true;
     const filters = this.getFilters();
     const data: any = {
@@ -315,6 +315,6 @@ export class OrganizationsComponent extends TablePageBase {
   public changedFilter() {
     this.limit = 10;
     this.offset = 0;
-    this.search();
+    this.search(this.query);
   }
 }
