@@ -1,0 +1,6 @@
+<button mat-raised-button class="mat-raised-button {{class}}" [color]="color" [routerLink]="routerLink"
+    (click)="clicked()" [matTooltip]="matTooltip">
+    <span class="center h v">
+        <i *ngIf="icon" class="fa {{icon}} small-text-2"></i> <span *ngIf="text">{{text | translate}}</span>
+    </span>
+</button>

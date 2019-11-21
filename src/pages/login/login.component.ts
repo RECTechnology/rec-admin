@@ -28,8 +28,6 @@ export class LoginComponent implements OnInit {
   public date_timestamp = Date.now();
   public needs_two_fa = false;
   public Brand: any = environment.Brand;
-  public recaptchaResponse = '';
-  public captchaErrorMsg = '';
 
   constructor(
     private loginService: LoginService,
@@ -58,18 +56,6 @@ export class LoginComponent implements OnInit {
 
   public retry() {
     window.location.reload();
-  }
-
-  // Event for when we get the captcha confirmation
-  public gotCaptcha(evt) {
-    this.zone.run(() => {
-      this.recaptchaResponse = evt;
-      this.credentials.username = this.credentials.username;
-    });
-  }
-
-  public capthaError() {
-    this.errorMessage = 'There has been an error with the reCAPTCHA, please try again later.';
   }
 
   // Does login
