@@ -87,6 +87,8 @@ export class Account implements Account {
         for (const prop in accountInfo) {
             if (prop === 'wallets') {
                 this[prop] = accountInfo[prop].map((el) => new Wallet(el));
+            } else if (prop === 'lw_balance') {
+                this[prop] = accountInfo[prop] / 100;
             } else {
                 this[prop] = accountInfo[prop];
             }
