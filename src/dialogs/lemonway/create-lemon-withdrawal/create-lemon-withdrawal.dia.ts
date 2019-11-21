@@ -18,7 +18,7 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   public currentAmountREC: number;
   public currentAmountEUR: number;
   public concept: string = 'Money-out NOVACT rec moneda ciutadana';
-  public amount: number = 0;
+  public amount: number;
   public lwInfo: any;
 
   public ibans: any[] = [];

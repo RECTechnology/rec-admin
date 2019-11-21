@@ -126,10 +126,6 @@ export class LemonWayTab extends TablePageBase {
       title: 'Concept',
     },
   ];
-  public itemOptions: TlItemOption[] = [];
-  public options: TableListOptions = {
-    optionsType: 'buttons',
-  };
 
   public WALLET_STATUS_MAP = WALLET_STATUS_MAP;
   public currentTab = 0;
