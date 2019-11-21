@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
-// TODO: also add button with text
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { BaseBtnComponent } from 'src/bases/base-btn';
 
 @Component({
   selector: 'icon-btn',
@@ -9,17 +8,4 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     `:host { display: inline-block; margin: 0 10px}`,
   ],
 })
-export class IconBtnComponent {
-  @Input() public icon: string;
-  @Input() public class: string;
-  @Input() public matTooltip: string;
-  @Input() public disabled: boolean;
-  @Input() public routerLink: string;
-
-  @Output() public clickChange: EventEmitter<any> = new EventEmitter();
-
-  public clicked() {
-    console.log('click');
-    this.clickChange.emit();
-  }
-}
+export class IconBtnComponent extends BaseBtnComponent { }

@@ -81,6 +81,7 @@ import { BetaBadgeComponent } from 'src/components/ui/beta-badge/beta-badge.comp
 import { IconBtnComponent } from 'src/components/ui/icon-btn/icon-btn.component';
 import { ModalHeaderComponent } from 'src/components/scaffolding/modal-header/modal-header.component';
 import { InputFieldComponent } from 'src/components/ui/input-field/input-field.component';
+import { RaisedBtnComponent } from 'src/components/ui/raised-btn/raised-btn.component';
 
 @NgModule({
   declarations: [
@@ -147,6 +148,7 @@ import { InputFieldComponent } from 'src/components/ui/input-field/input-field.c
     IconBtnComponent,
     ModalHeaderComponent,
     InputFieldComponent,
+    RaisedBtnComponent,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -213,6 +215,7 @@ import { InputFieldComponent } from 'src/components/ui/input-field/input-field.c
     IconBtnComponent,
     ModalHeaderComponent,
     InputFieldComponent,
+    RaisedBtnComponent,
   ],
   imports: [
     BrowserModule,

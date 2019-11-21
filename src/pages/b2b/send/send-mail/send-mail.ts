@@ -18,6 +18,9 @@ import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
 import { LANGS, LANG_MAP } from 'src/data/consts';
 import { CreateDelivery } from '../create-delivery/create-delivery';
 
+
+// TODO: cleanup this class a bit
+
 @Component({
     selector: 'send-mail',
     templateUrl: './send-mail.dia.html',

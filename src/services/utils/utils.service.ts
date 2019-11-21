@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { LoginService } from '../auth/auth.service';
 import * as deepmerge from 'deepmerge';
+import { retryWhen } from 'rxjs/internal/operators/retryWhen';
+import { concat } from 'rxjs/internal/operators/concat';
+import { delay } from 'rxjs/internal/operators/delay';
+import { take } from 'rxjs/internal/operators/take';
+import { iif, of, throwError } from 'rxjs';
 
 declare let _;
 
@@ -280,3 +285,6 @@ export class UtilsService {
     return (typeof val === 'string' && val.length === 3) || typeof val === 'number';
   }
 }
+
+export const retryPipeline =
+  retryWhen((errors) => errors.pipe(delay(5000), take(2), concat(throwError(errors))));

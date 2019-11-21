@@ -45,13 +45,15 @@ export class LoginComponent implements OnInit {
     this.titleService.setTitle(this.Brand.title + ' | Login');
 
     /* This is actually not needed, but is a good way of checking if API is working */
-    this.aas.doAuth((response, error) => {
-      if (error) {
-        this.errorMessage = 'There has been an error, please try again later.';
-      } else {
-        this.gotToken = true;
-      }
-    });
+    this.aas.doAuth().subscribe(
+      (resp) => { return; },
+      (error) => {
+        if (error) {
+          this.errorMessage = 'There has been an error, please try again later.';
+        } else {
+          this.gotToken = true;
+        }
+      });
   }
 
   public retry() {

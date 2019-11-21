@@ -6,13 +6,7 @@
         style="max-width: 70%;margin: 0 15px" placeholder="{{searchPlaceholder|translate}}...">
 
     <div *ngIf="options.input">
-        <button type="button" id="tl-header-search-btn" color="primary" mat-raised-button (click)="search();"
-            name="button">
-            <p class="text-small">
-                <i class="fa fa-search"></i>
-                {{searchPlaceholder|translate}}
-            </p>
-        </button>
+        <raised-btn icon="fa-search" [text]="searchPlaceholder" (click)="search();"></raised-btn>
     </div>
 
     <div *ngIf="options.refresh">
@@ -20,20 +14,11 @@
     </div>
 
     <div *ngIf="options.newItem">
-        <button type="button" color="primary" mat-raised-button (click)="addItem();" name="button">
-            <p class="text-small">
-                <i class="fa {{newItemIcon}}"></i>
-                {{newItemText|translate}}
-            </p>
-        </button>
+        <raised-btn icon="{{newItemIcon}}" [text]="newItemText" (click)="addItem();"></raised-btn>
     </div>
 
     <div *ngIf="options.showOptions">
-        <button type="button" color="primary" mat-icon-button name="button">
-            <p class="text-small">
-                <i class="fa fa-cog"></i>
-            </p>
-        </button>
+        <icon-btn icon="fa-cog"></icon-btn>
     </div>
     <ng-content></ng-content>
 </div>

@@ -51,7 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
 
-    this.aas.doAuth((response, error) => { return; });
+    this.aas.doAuth().subscribe((response) => { return; });
 
     this.title.setTitle(this.Brand.name);
 
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
      */
     this.ls.onLogout
       .subscribe((resp) => {
-        this.aas.doAuth((response, error) => { return; });
+        this.aas.doAuth().subscribe((response) => { return; });
         this.initedIdle = false;
         if (this.idleObs) { this.idleObs.unsubscribe(); }
         if (this.refreshObs) { this.refreshObs.unsubscribe(); }

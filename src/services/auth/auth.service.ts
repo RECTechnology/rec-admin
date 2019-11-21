@@ -12,6 +12,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { Observer } from 'rxjs/internal/types';
+import { retryPipeline } from '../utils/utils.service';
 
 @Injectable()
 export class AppAuthService extends BaseService {
@@ -44,6 +45,7 @@ export class AppAuthService extends BaseService {
         }),
       }),
     ).pipe(
+      retryPipeline,
       map(this.extractData),
       catchError(this.handleError.bind(this)),
     );
@@ -60,22 +62,8 @@ export class AppAuthService extends BaseService {
     );
   }
 
-  public doAuth(cback?) {
-    if (!this.clientID || !this.clientSecret) {
-      this.AppToken()
-        .subscribe(
-          (resp) => {
-            localStorage.setItem('app.tokens', JSON.stringify(resp));
-            cback(resp);
-          }, (error) => cback(null, error));
-    } else {
-      this.authSub = this.AppToken()
-        .subscribe(
-          (resp) => {
-            localStorage.setItem('app.tokens', JSON.stringify(resp));
-            cback(resp);
-          }, (error) => cback(null, error));
-    }
+  public doAuth() {
+    return this.AppToken();
   }
 }
 
