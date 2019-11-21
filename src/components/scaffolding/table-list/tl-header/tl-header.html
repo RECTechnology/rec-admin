@@ -5,20 +5,23 @@
     <input id="tl-header-search-bar" *ngIf="options.input" #search type="text" class="{{inputClass}}"
         style="max-width: 70%;margin: 0 15px" placeholder="{{searchPlaceholder|translate}}...">
 
-    <div *ngIf="options.input && options.search">
-        <raised-btn icon="fa-search" [text]="searchPlaceholder" (click)="search();"></raised-btn>
+    <div class="group-row-left">
+        <div *ngIf="options.input && options.search">
+            <raised-btn icon="fa-search" [text]="searchPlaceholder" (click)="search();"></raised-btn>
+        </div>
+
+        <div *ngIf="options.refresh">
+            <icon-btn icon="fa-refresh" (click)="search()" matTooltip="Refresh data"></icon-btn>
+        </div>
+
+        <div *ngIf="options.newItem">
+            <raised-btn icon="{{newItemIcon}}" [text]="newItemText" (click)="addItem();"></raised-btn>
+        </div>
+
+        <div *ngIf="options.showOptions">
+            <icon-btn icon="fa-cog"></icon-btn>
+        </div>
+        <ng-content></ng-content>
     </div>
 
-    <div *ngIf="options.refresh">
-        <icon-btn icon="fa-refresh" (click)="search()" matTooltip="Refresh data"></icon-btn>
-    </div>
-
-    <div *ngIf="options.newItem">
-        <raised-btn icon="{{newItemIcon}}" [text]="newItemText" (click)="addItem();"></raised-btn>
-    </div>
-
-    <div *ngIf="options.showOptions">
-        <icon-btn icon="fa-cog"></icon-btn>
-    </div>
-    <ng-content></ng-content>
 </div>

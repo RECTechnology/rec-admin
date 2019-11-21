@@ -33,7 +33,7 @@ export class B2BSendComponent extends TablePageBase {
         {
             sortable: false,
             title: 'Attachments',
-            accessor: (item) => item.attachments.length,
+            accessor: (item) => Object.keys(item.attachments).length,
         },
         {
             sort: 'status',

@@ -52,7 +52,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     { key: 'neighbourhood_name', value: '$.neighbourhood.name', active: true },
     { key: 'activities', value: '$.activities[*]', active: true },
   ];
-  public headerOpts: TableListHeaderOptions = { input: true };
+  public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
   public headers: TlHeader[] = [
     {
       sort: 'active',

@@ -46,6 +46,7 @@ export class OrganizationsComponent extends TablePageBase {
   };
   public headerOpts: TableListHeaderOptions = {
     input: true,
+    refresh: true,
   };
   public headers: TlHeader[] = [
     {

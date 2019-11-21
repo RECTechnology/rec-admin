@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { Observer } from 'rxjs/internal/types';
-import { retryPipeline } from '../utils/utils.service';
+import { retryPipeline } from 'src/shared/rxjs-pipelines';
 
 @Injectable()
 export class AppAuthService extends BaseService {
