@@ -444,10 +444,16 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             status: MailingCrud.STATUS_SCHEDULED,
         };
 
-        this.updateMail(mailData, message).then(() => {
+        const send = () => this.updateMail(mailData, message).then(() => {
             this.justCreated = true;
             this.router.navigate(['/rec/mailing']);
         });
+
+        if (!this.saved) {
+            this.saveMail().then(send);
+        } else {
+            send();
+        }
     }
 
     public createScheduled() {
