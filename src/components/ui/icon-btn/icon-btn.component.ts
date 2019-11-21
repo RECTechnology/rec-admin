@@ -16,5 +16,10 @@ export class IconBtnComponent {
   @Input() public disabled: boolean;
   @Input() public routerLink: string;
 
-  @Output() public click: EventEmitter<any> = new EventEmitter();
+  @Output() public clickChange: EventEmitter<any> = new EventEmitter();
+
+  public clicked() {
+    console.log('click');
+    this.clickChange.emit();
+  }
 }

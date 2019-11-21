@@ -6,20 +6,20 @@ import { FormsModule } from '@angular/forms';
 import { SidemenuComponent } from '../components/scaffolding/sidemenu/sidemenu.component';
 import { HeaderComponent } from '../components/scaffolding/header/header.component';
 import { PageFooterComponent } from '../components/scaffolding/page-footer/page-footer.component';
-import { CollapseCardComponent } from '../components/standalone/collapse-card/collapse-card.component';
+import { CollapseCardComponent } from '../components/ui/collapse-card/collapse-card.component';
 import { ConfirmationMessage } from '../components/dialogs/confirmation-message/confirmation.dia';
 import { InfoMessage } from '../components/dialogs/info-message/info.dia';
 import { FileUpload } from '../components/dialogs/file-upload/file-upload.dia';
 import { CompanyService } from '../services/company/company.service';
 import { IdleNotification } from '../components/dialogs/idle-notification/idle.dia';
 import { AddUser } from '../dialogs/management/add-user/add-user.dia';
-import { ButtonLoader } from '../components/standalone/button-loader/button-loader';
-import { CCInput } from '../components/standalone/cc-input/cc-input';
-import { CCInputEditable } from '../components/standalone/cc-input/cc-input';
+import { ButtonLoader } from '../components/ui/button-loader/button-loader';
+import { CCInput } from '../components/ui/cc-input/cc-input';
+import { CCInputEditable } from '../components/ui/cc-input/cc-input';
 import { LangSelector } from '../components/selectors/lang-selector/lang.selector';
 import { FilterComponent } from '../components/other/filter/filter-component';
-import { Agregation } from '../components/standalone/agregation/agregation.component';
-import { DashChart } from '../components/standalone/dash-chart/dash-chart.component';
+import { Agregation } from '../components/ui/agregation/agregation.component';
+import { DashChart } from '../components/ui/dash-chart/dash-chart.component';
 import { ManageSms } from '../dialogs/management/manage-sms/manage-sms.dia';
 import { BussinessDetailsDia } from '../dialogs/management/bussiness_detailes/bussiness_details.component';
 import { ValidationErrorsComponent } from '../components/scaffolding/validation-errors/validation-errors.component';
@@ -30,8 +30,8 @@ import { AppRoutingModule } from '../app/app.routing';
 import { AccountSelector } from '../components/selectors/account-selector/account.selector';
 import { ChangePhone } from '../pages/dashboard/dialogs/change-phone/change-phone.dia';
 import { StreetTypeSelector } from '../components/selectors/street-selector/street-selector.component';
-import { KeyValuePair } from '../components/standalone/kvp/kvp-list/kvp-list';
-import { KeyValueItem } from '../components/standalone/kvp/kvp-item/kvp-item';
+import { KeyValuePair } from '../components/ui/kvp/kvp-list/kvp-list';
+import { KeyValueItem } from '../components/ui/kvp/kvp-item/kvp-item';
 import { TwoFaDia } from 'src/components/dialogs/two_fa_prompt/two_fa_prompt.dia';
 import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
 import { MapComponent } from 'src/pages/map/map.component';
@@ -74,12 +74,13 @@ import { AccountPickerComponent } from 'src/components/selectors/account-picker/
 import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-withdrawal/create-lemon-withdrawal.dia';
 import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemonway-w2w-out/create-lemon-w2w-out.dia';
 import { AccountPickerDia } from 'src/components/selectors/account-picker/account-picker-dialog/account-picker.dia';
-import { Avatar } from 'src/components/standalone/avatar/avatar.component';
-import { BadgeComponent } from 'src/components/standalone/badge/badge.component';
-import { InfoFieldComponent } from 'src/components/standalone/info-field/info-field.component';
-import { BetaBadgeComponent } from 'src/components/standalone/beta-badge/beta-badge.component';
-import { IconBtnComponent } from 'src/components/standalone/icon-btn/icon-btn.component';
+import { Avatar } from 'src/components/ui/avatar/avatar.component';
+import { BadgeComponent } from 'src/components/ui/badge/badge.component';
+import { InfoFieldComponent } from 'src/components/ui/info-field/info-field.component';
+import { BetaBadgeComponent } from 'src/components/ui/beta-badge/beta-badge.component';
+import { IconBtnComponent } from 'src/components/ui/icon-btn/icon-btn.component';
 import { ModalHeaderComponent } from 'src/components/scaffolding/modal-header/modal-header.component';
+import { InputFieldComponent } from 'src/components/ui/input-field/input-field.component';
 
 @NgModule({
   declarations: [
@@ -145,6 +146,7 @@ import { ModalHeaderComponent } from 'src/components/scaffolding/modal-header/mo
     BetaBadgeComponent,
     IconBtnComponent,
     ModalHeaderComponent,
+    InputFieldComponent,
   ],
   entryComponents: [
     ConfirmationMessage,
@@ -210,6 +212,7 @@ import { ModalHeaderComponent } from 'src/components/scaffolding/modal-header/mo
     BetaBadgeComponent,
     IconBtnComponent,
     ModalHeaderComponent,
+    InputFieldComponent,
   ],
   imports: [
     BrowserModule,

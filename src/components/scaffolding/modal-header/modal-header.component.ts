@@ -6,6 +6,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ModalHeaderComponent {
   @Input() public title: string;
-  @Input() public status: string = 'info';
+  @Input() public status: string = 'blue';
   @Output() public click: EventEmitter<any> = new EventEmitter();
 }

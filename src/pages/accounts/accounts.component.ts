@@ -236,6 +236,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public viewEditAccount(account) {
+    console.log('ahjsdhjasd');
     this.alerts.openModal(EditAccountData, {
       account: { ...account },
     }).subscribe((result) => {

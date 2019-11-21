@@ -18,6 +18,7 @@ import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
 import { LANGS, LANG_MAP } from 'src/data/consts';
 import { CreateDelivery } from '../create-delivery/create-delivery';
 
+
 @Component({
     selector: 'send-mail',
     templateUrl: './send-mail.dia.html',
@@ -369,10 +370,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public addAttachment(file, name = '') {
         const fname = name || file.split('/').pop();
-
-        const attachments = Object.assign(this.mail.attachments, {
-            [fname]: file,
-        });
+        const attachments = Object.assign(this.mail.attachments, { [fname]: file });
 
         this.mailing.addAttachment(this.id, attachments, 'en')
             .subscribe(() => {

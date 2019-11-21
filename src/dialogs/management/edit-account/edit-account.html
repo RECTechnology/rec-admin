@@ -1,4 +1,4 @@
-<modal-header title="{{title|translate}}" (click)="close(false)"></modal-header>
+<modal-header title="{{title|translate}}" (click)="close(false)" color="blue"></modal-header>
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
   <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
@@ -17,11 +17,7 @@
 
         <!-- name -->
         <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Name'|translate}}</span>
-            <input [disabled]="loading" type="text" class="user-input small" style="max-width: 300px"
-              [(ngModel)]="accountCopy.name" placeholder="Name">
-          </div>
+          <input-field [(value)]="accountCopy.name" label="Name" [disabled]="loading"></input-field>
         </div>
 
         <!-- Phone -->
@@ -43,20 +39,12 @@
 
         <!-- Email -->
         <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Email'|translate}}</span>
-            <input [disabled]="loading" type="email" class="user-input small" [(ngModel)]="accountCopy.email"
-              placeholder="Email address">
-          </div>
+          <input-field type="email" [(value)]="accountCopy.email" label="Email" [disabled]="loading"></input-field>
         </div>
 
         <!-- Nif -->
         <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'NIF'|translate}}</span>
-            <input [disabled]="loading" type="tel" class="user-input small" [(ngModel)]="accountCopy.cif"
-              placeholder="NIF">
-          </div>
+          <input-field type="text" [(value)]="accountCopy.cif" label="NIF" [disabled]="loading"></input-field>
         </div>
 
         <!-- Types -->
@@ -137,17 +125,9 @@
 
         <!-- Active -->
         <div class="col-lg-3">
-          <div class="group-col-left" matTooltip="{{'ACCOUNT_ACTIVE_DESC'|translate}}">
-            <span class="small-text-2">{{'Account Active'|translate}}</span>
-            <mat-checkbox color="primary" [(ngModel)]="accountCopy.active">
-              <span class="small-text-2">{{(accountCopy.active ? 'Active': 'Inactive')|translate}}</span>
-            </mat-checkbox>
-          </div>
-          <!-- <div class="group-col-left">
-            <span class="small-text-2">{{'Language'|translate}}</span>
-            <lang-selector mode="event" (changed)="setLanguage($event)" [lang]="accountCopy.kyc_manager.locale || 'es'">
-            </lang-selector>
-          </div> -->
+          <input-field type="checkbox" [(value)]="accountCopy.active" label="Account Active"
+            matTooltip="{{'ACCOUNT_ACTIVE_DESC'|translate}}" [disabled]="loading"
+            placeholder="{{(accountCopy.active ? 'Active': 'Inactive')|translate}}"></input-field>
         </div>
 
         <div class="col-lg-12">
@@ -181,25 +161,16 @@
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="group-col-left">
-                  <span class="small-text-2">{{'City'|translate}}</span>
-                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
-                    [(ngModel)]="accountCopy.city" placeholder="{{'City'|translate}}">
-                </div>
+                <input-field type="text" [(value)]="accountCopy.city" label="City" [disabled]="loading">
+                </input-field>
               </div>
               <div class="col-lg-4">
-                <div class="group-col-left">
-                  <span class="small-text-2">{{'Street'|translate}}</span>
-                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
-                    [(ngModel)]="accountCopy.street" placeholder="{{'Street'|translate}}">
-                </div>
+                <input-field type="text" [(value)]="accountCopy.street" label="Street" [disabled]="loading">
+                </input-field>
               </div>
               <div class="col-lg-4">
-                <div class="group-col-left">
-                  <span class="small-text-2">{{'Number'|translate}}</span>
-                  <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 300px"
-                    [(ngModel)]="accountCopy.address_number" placeholder="{{'Number'|translate}}">
-                </div>
+                <input-field type="number" [(value)]="accountCopy.address_number" label="Number" [disabled]="loading">
+                </input-field>
               </div>
               <div class="col-lg-4">
                 <div class="group-col-left">
@@ -208,18 +179,14 @@
                 </div>
               </div>
               <div class="col-lg-4">
-                <div class="group-col-left">
-                  <span class="small-text-2">{{'ZIP'|translate}}</span>
-                  <input [disabled]="loading" type="number" class="user-input small" style="max-width: 300px"
-                    [(ngModel)]="accountCopy.zip" placeholder="{{'Zip code'|translate}}">
-                </div>
+                <input-field type="number" [(value)]="accountCopy.zip" label="ZIP" [disabled]="loading">
+                </input-field>
               </div>
               <div class="col-lg-6">
                 <div class="group-col-left">
                   <span class="small-text-2">{{'BARRIO'|translate}}</span>
                   <neighbourhood-selector [disabled]="loading" [(value)]="accountCopy.neighbourhood_id">
                   </neighbourhood-selector>
-                  <!-- <input [disabled]="loading" type="text" class="user-input small" [(ngModel)]="accountCopy.neighborhood"> -->
                 </div>
               </div>
             </div>
@@ -232,17 +199,12 @@
             <b class="small-text-3" style="margin: 15px 0 10px 0">{{'Coordenates'|translate}}</b>
             <div class="row">
               <div class="col-lg-6">
-                <div class="group-col-left">
-                  <span class="small-text-2">{{'Latitude'|translate}}</span>
-                  <input [disabled]="loading" type="number" class="user-input small" [(ngModel)]="accountCopy.latitude">
-                </div>
+                <input-field type="number" [(value)]="accountCopy.latitude" label="Latitude" [disabled]="loading">
+                </input-field>
               </div>
               <div class="col-lg-6">
-                <div class="group-col-left">
-                  <span class="small-text-2">{{'Longitude'|translate}}</span>
-                  <input [disabled]="loading" type="number" class="user-input small"
-                    [(ngModel)]="accountCopy.longitude">
-                </div>
+                <input-field type="number" [(value)]="accountCopy.longitude" label="Longitude" [disabled]="loading">
+                </input-field>
               </div>
             </div>
           </div>
@@ -398,8 +360,8 @@
           </button>
 
           <mat-menu #prodMenu="matMenu" y-position="below" overlapTrigger="false">
-            <input [disabled]="loading" #searchProduced type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-               (click)="$event.stopPropagation()" placeholder="{{'Search Products'|translate}}">
+            <input [disabled]="loading" #searchProduced type="text" class="user-input small" style="width: 100%"
+              [(ngModel)]="actQuery"  (click)="$event.stopPropagation()" placeholder="{{'Search Products'|translate}}">
 
             <ng-template ngFor let-prod [ngForOf]="productList">
               <button
