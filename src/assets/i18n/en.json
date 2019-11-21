@@ -490,5 +490,6 @@
   "CASH_OUT_DESC": "Send money from this account to another account",
   "CASH_IN_DESC": "Receive money to this account from another account",
   "WALLET_2_WALLET_DESC": "Transfer",
-  "SYNC_LW": "Sync. Lemonway Info"
+  "SYNC_LW": "Sync. Lemonway Info",
+  "USER_LANG_DESC": "PDF is generated in the user's language"
 }

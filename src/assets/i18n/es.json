@@ -1053,7 +1053,6 @@
   "CASH_IN_DESC": "Reciba dinero a esta cuenta de otra cuenta",
   "SYNC_LW": "Sync. Info Lemonway",
   "There are no items yet": "No hay elementos todavía",
-  "WALLET_2_WALLET_DESC": "Traspaso"
-
-
+  "WALLET_2_WALLET_DESC": "Traspaso",
+  "USER_LANG_DESC": "El PDF esta generado en el idioma del usuario"
 }

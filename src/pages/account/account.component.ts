@@ -97,6 +97,6 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   }
 
   public goBack() {
-    this.location.back();
+    this.router.navigate(['/accounts']);
   }
 }

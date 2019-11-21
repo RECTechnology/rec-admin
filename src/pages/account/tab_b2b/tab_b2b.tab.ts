@@ -65,15 +65,6 @@ export class B2BModuleTab {
     public translate: TranslateService,
   ) {
     this.lang = LANG_MAP[this.account.kyc_manager.locale];
-    translate.onLangChange.subscribe(() => {
-      this.getPdfAsHtml();
-    });
-  }
-
-  public selectLang(lang) {
-    this.lang = lang;
-    this.us.lang = lang.abrev;
-    this.getPdfAsHtml();
   }
 
   public ngAfterContentInit() {
