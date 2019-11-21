@@ -33,7 +33,6 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   public profesionalUsers = false;
   public particularUsers = false;
 
-  public headerOpts = { input: true };
   public headers: TlHeader[] = [
     {
       sort: 'id',
