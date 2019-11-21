@@ -83,6 +83,7 @@ export class Account implements Account {
 
     public static SUBTYPE_COMPANY_NORMAL: AccountSubtype = 'NORMAL';
     public static SUBTYPE_COMPANY_BMINCOME: AccountSubtype = 'BMINCOME';
+
     constructor(accountInfo?: Account) {
         for (const prop in accountInfo) {
             if (prop === 'wallets') {
