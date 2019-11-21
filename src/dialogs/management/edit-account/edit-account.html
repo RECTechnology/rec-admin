@@ -4,6 +4,7 @@
   <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
     style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
   </validation-errors>
+  
   <mat-tab-group class="profile-tabs" [(selectedIndex)]="currentTab" (selectedIndexChange)="currentTab = $event"
     style="width: 100%">
     <mat-tab label="{{'BASIC_INFO'|translate}}" style="height: 400px">
@@ -26,12 +27,10 @@
             <span class="small-text-2">{{'Phone'|translate}}</span>
             <div class="row">
               <div class="col-lg-4">
-                <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 100%"
-                  [(ngModel)]="accountCopy.prefix" placeholder="Phone prefix">
+                <input-field [(value)]="accountCopy.prefix" type="tel" [disabled]="loading"></input-field>
               </div>
               <div class="col-lg-8">
-                <input [disabled]="loading" type="tel" class="user-input small" style="max-width: 100%"
-                  [(ngModel)]="accountCopy.phone" placeholder="Phone number">
+                <input-field [(value)]="accountCopy.phone" type="tel" [disabled]="loading"></input-field>
               </div>
             </div>
           </div>

@@ -24,7 +24,7 @@ export class InputFieldComponent {
       'date', 'email',
       'color', 'button',
       'file', 'password',
-      'image',
+      'image', 'tel',
     ].includes(this.type);
   }
 }
