@@ -32,6 +32,8 @@ export class EditUserData {
     esp: 'es',
   };
 
+  public genders = [{ name: 'MALE', value: 'M' }, { name: 'FEMALE', value: 'F' }];
+
   constructor(
     public dialogRef: MatDialogRef<EditUserData>,
     public us: UserService,

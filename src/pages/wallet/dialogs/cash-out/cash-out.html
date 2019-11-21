@@ -49,7 +49,7 @@
 
       <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
         <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
-        <btn-loader (click)="makeTx()" [loading]="loading" [text]="'SEND'">
+        <btn-loader (click)="makeTx()" [loading]="loading" [disabled]="loading" [text]="'SEND'">
         </btn-loader>
       </div>
     </div>

@@ -20,6 +20,7 @@ export class CashOutDia extends BaseDialog {
     sms_code: '',
   };
   public available: number = 0;
+  public loading = false;
 
   constructor(
     public dialogRef: MatDialogRef<CashOutDia>,
@@ -28,17 +29,21 @@ export class CashOutDia extends BaseDialog {
     public alerts: AlertsService,
   ) {
     super();
-    // this.available = this.ws.getAvailable('REC', true);
   }
 
   public makeTx() {
+    // if (this.loading) {
+    //   return;
+    // }
+
+    // this.loading = true;
     this.txService.sendTx(this.tx.sender, this.tx.receiver, this.tx.concept, this.tx.sms_code, this.tx.amount)
       .subscribe((resp) => {
         this.alerts.showSnackbar('Sent correclty');
         this.close(true);
       }, (err) => {
         this.alerts.showSnackbar(err.message);
-        this.close(false);
+        // this.loading = false;
       });
   }
 }

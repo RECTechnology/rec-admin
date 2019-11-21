@@ -18,19 +18,16 @@
     <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
       style="border-bottom: 1px solid #ddd!important; width: 100%">
     </validation-errors>
+
     <div class="col-lg-12">
-      <div class="group-col-left">
-        <span class="small-text-2">{{'Amount'|translate}}</span>
-        <input type="number" class="user-input small" [(ngModel)]="amount" placeholder="{{'Amount'|translate}}">
-      </div>
-    </div>
-    <div class="col-lg-12">
-      <div class="group-col-left">
-        <span class="small-text-2">{{'Concept'|translate}}</span>
-        <input type="text" class="user-input small" [(ngModel)]="concept" placeholder="{{'Concept'|translate}}">
-      </div>
+      <input-field type="number" [(value)]="amount" label="Amount" [disabled]="loading">
+      </input-field>
     </div>
 
+    <div class="col-lg-12">
+      <input-field type="number" [(value)]="concept" label="Concept" [disabled]="loading">
+      </input-field>
+    </div>
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>

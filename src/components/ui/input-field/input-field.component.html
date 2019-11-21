@@ -7,5 +7,10 @@
         (ngModelChange)="valueChange.emit($event)">
         <span class="small-text-2">{{placeholder|translate}}</span>
     </mat-checkbox>
+
+    <mat-select class="mat-button-menu" *ngIf="!isNormalInput && type === 'select'" [ngModel]="value"
+        (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder}}">
+        <mat-option [value]="opt.value || opt" *ngFor="let opt of options">{{(opt.name || opt)|translate}}</mat-option>
+    </mat-select>
     <ng-content></ng-content>
 </div>

@@ -9,35 +9,22 @@
           <p class="small-text col-gray-light">{{'BASIC_INFO_DESC'|translate}}</p>
         </div>
         <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Name'|translate}}</span>
-            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.name"
-              placeholder="{{'Name'|translate}}">
-          </div>
+          <input-field [(value)]="userCopy.name" label="Name" [disabled]="loading"></input-field>
         </div>
 
         <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Lastname'|translate}}</span>
-            <input type="text" class="user-input small" style="max-width: 300px"
-              [(ngModel)]="userCopy.kyc_validations.last_name" placeholder="{{'Lastname'|translate}}">
-          </div>
+          <input-field [(value)]="userCopy.kyc_validations.last_name" label="Lastname" [disabled]="loading">
+          </input-field>
         </div>
 
         <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Username'|translate}}</span>
-            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.username"
-              placeholder="{{'Username'|translate}}">
-          </div>
+          <input-field [(value)]="userCopy.username" label="Username" [disabled]="loading">
+          </input-field>
         </div>
 
         <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Email'|translate}}</span>
-            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.email"
-              placeholder="{{'Email'|translate}}">
-          </div>
+          <input-field type="email" [(value)]="userCopy.email" label="Email" [disabled]="loading">
+          </input-field>
         </div>
 
         <div class="col-lg-6">
@@ -62,27 +49,18 @@
         </div>
 
         <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Birth Date'|translate}}</span>
-            <input type="date" class="user-input small" style="max-width: 300px"
-              [(ngModel)]="userCopy.kyc_validations.date_birth" placeholder="Email">
-          </div>
+          <input-field type="date" [(value)]="userCopy.kyc_validations.date_birth" label="Birth Date"
+            [disabled]="loading">
+          </input-field>
         </div>
         <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Identity Document'|translate}}</span>
-            <input type="text" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.username"
-              placeholder="Username">
-          </div>
+          <input-field type="text" [(value)]="userCopy.username" label="Identity Document" [disabled]="loading">
+          </input-field>
         </div>
         <div class="col-lg-3">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Gender'|translate}}</span>
-            <mat-select [(ngModel)]="userCopy.kyc_validations.gender">
-              <mat-option value="M">{{'MALE'|translate}}</mat-option>
-              <mat-option value="F">{{'FEMALE'|translate}}</mat-option>
-            </mat-select>
-          </div>
+          <input-field type="select" [options]="genders" [(value)]="userCopy.kyc_validations.gender"
+            label="Gender" [disabled]="loading">
+          </input-field>
         </div>
 
         <div class="col-lg-3">
@@ -104,18 +82,14 @@
                 </div>
               </div>
               <div class="col-lg-3">
-                <div class="group-col-left">
-                  <span class="small-text-2">{{'Street'|translate}}</span>
-                  <input type="text" class="user-input small" style="max-width: 300px"
-                    [(ngModel)]="userCopy.kyc_validations.street_name" placeholder="{{'Street'|translate}}">
-                </div>
+                <input-field type="text" [(value)]="userCopy.kyc_validations.street_name" label="Street"
+                  [disabled]="loading">
+                </input-field>
               </div>
               <div class="col-lg-3">
-                <div class="group-col-left">
-                  <span class="small-text-2">{{'Street Number'|translate}}</span>
-                  <input type="text" class="user-input small" style="max-width: 300px"
-                    [(ngModel)]="userCopy.kyc_validations.street_number" placeholder="{{'Street Number'|translate}}">
-                </div>
+                <input-field type="number" [(value)]="userCopy.kyc_validations.street_number" label="Street Number"
+                  [disabled]="loading">
+                </input-field>
               </div>
               <div class="col-lg-3">
                 <div class="group-col-left">
@@ -124,10 +98,9 @@
                 </div>
               </div>
               <div class="col-lg-6">
-                <div class="group-col-left">
-                  <span class="small-text-2">{{'BARRIO'|translate}}</span>
-                  <input type="text" class="user-input small" [(ngModel)]="userCopy.kyc_validations.neighborhood">
-                </div>
+                <input-field type="text" [(value)]="userCopy.kyc_validations.neighborhood" label="Street Number"
+                  [disabled]="loading">
+                </input-field>
               </div>
               <div class="col-lg-6">
                 <div class="group-col-left">
@@ -138,7 +111,6 @@
             </div>
           </div>
         </div>
-
 
         <div class="col-lg-12">
           <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">

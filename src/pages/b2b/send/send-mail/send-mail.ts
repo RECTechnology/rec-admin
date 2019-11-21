@@ -18,12 +18,10 @@ import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
 import { LANGS, LANG_MAP } from 'src/data/consts';
 import { CreateDelivery } from '../create-delivery/create-delivery';
 
-
 @Component({
     selector: 'send-mail',
     templateUrl: './send-mail.dia.html',
     styleUrls: ['./send-mail.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public pageName = 'Send Email';
