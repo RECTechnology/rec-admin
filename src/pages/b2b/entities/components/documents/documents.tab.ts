@@ -35,6 +35,14 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
             type: 'avatar',
         },
         {
+            sort: 'kind',
+            title: 'Kind',
+            type: 'code',
+            accessor(el) {
+                return el.kind.id;
+            },
+        },
+        {
             sort: 'name',
             title: 'Name',
             accessor: 'name',
