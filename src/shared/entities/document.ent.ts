@@ -6,11 +6,11 @@ export interface Document {
     id?: string | number;
     status?: string;
     content?: string;
-    account?: Account | number;
+    account?: Account;
     account_id?: number;
     documents?: Document[];
     kind?: DocumentKind;
-    kind_id?: number;
+    kind_id?: string | number;
 }
 
 export class Document implements Document {

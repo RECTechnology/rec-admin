@@ -7,6 +7,7 @@ import { Document } from 'src/shared/entities/document.ent';
 import { DocumentCrud } from 'src/services/crud/documents/documents';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 import { UtilsService } from 'src/services/utils/utils.service';
+import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
 
 @Component({
   selector: 'add-document',
@@ -18,6 +19,7 @@ export class AddDocumentDia extends BaseDialog {
     name: '',
     kind_id: null,
     account_id: null,
+    content: '',
   };
   public itemType = 'Document';
   public docKinds = [];
@@ -45,6 +47,12 @@ export class AddDocumentDia extends BaseDialog {
 
         console.log('Doc kinds');
       });
+  }
+
+  public ngOnInit() {
+    this.item.account_id = this.item.account && this.item.account.id;
+    this.item.kind_id = this.item.kind && this.item.kind.id;
+    console.log('init', this.item);
   }
 
   public proceed() {

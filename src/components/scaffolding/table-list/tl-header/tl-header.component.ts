@@ -102,13 +102,16 @@ export class TableListHeader {
             this.queryChange.emit(text);
 
             // Add query params for deeplinking
-            this.router.navigate([], {
-                relativeTo: this.route,
-                queryParams: {
-                    query: this.query,
-                },
-                queryParamsHandling: 'merge',
-            });
+            if (this.options.deepLinkQuery) {
+                this.router.navigate([], {
+                    relativeTo: this.route,
+                    queryParams: {
+                        query: this.query,
+                    },
+                    queryParamsHandling: 'merge',
+                });
+            }
         });
     }
+
 }

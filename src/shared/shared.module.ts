@@ -96,6 +96,7 @@ import { EditAccountData } from 'src/dialogs/management/edit-account/edit-accoun
 import { AddDocumentKindDia } from 'src/dialogs/entities/add-document-kind/add-document-kind.dia';
 import { AddDocumentDia } from 'src/dialogs/entities/add-document/add-document.dia';
 import { AddTierDia } from 'src/dialogs/entities/add-tier/add-tier.dia';
+import { FileSelector } from 'src/components/selectors/file-selector/file-selector';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -180,6 +181,7 @@ const DIALOGS = [
     DocumentKindsTabComponent,
     DocumentTabComponent,
     TiersTabComponent,
+    FileSelector,
     ...DIALOGS,
   ],
   entryComponents: DIALOGS,
@@ -225,6 +227,7 @@ const DIALOGS = [
     DocumentKindsTabComponent,
     DocumentTabComponent,
     TiersTabComponent,
+    FileSelector,
     ...DIALOGS,
   ],
   imports: [

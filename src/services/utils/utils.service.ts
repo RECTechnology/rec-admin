@@ -45,7 +45,9 @@ export class UtilsService {
     delete ent.updated;
     delete ent.documents;
     delete ent.document_kinds;
-    console.log('entity', ent);
+    delete ent.account;
+    delete ent.kind;
+
     return ent;
   }
 
