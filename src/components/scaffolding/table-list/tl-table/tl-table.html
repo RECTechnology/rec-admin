@@ -53,7 +53,7 @@
                 <span *ngIf="!header.type"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</span>
             </td>
-            <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'menu'">
+            <td *ngIf="itemOptions && itemOptions.length && options && options.optionsType === 'menu'">
                 <button mat-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
                     <span class="center h v">
                         <i class="fa fa-ellipsis-v"></i>

@@ -5,7 +5,7 @@ import { UserService } from 'src/services/user.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class DelegatedChangesCrud extends CrudBaseService {
+export class DelegatedChangesCrud extends CrudBaseService<any> {
     constructor(
         http: HttpClient,
         public us: UserService,

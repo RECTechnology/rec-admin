@@ -15,7 +15,7 @@ export interface CrudQueryOptions {
 }
 
 @Injectable()
-export class CrudBaseService extends BaseService2 {
+export class CrudBaseService<T> extends BaseService2 {
 
     public static PATH_LIST = '';
     public static PATH_SEARCH = '/search';
@@ -50,19 +50,19 @@ export class CrudBaseService extends BaseService2 {
     }
 
     // Crud methods
-    public create(data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
+    public create(data: T, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
         return this.post(url, data, 'application/json',
             lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
         ).pipe(this.itemMapper());
     }
 
-    public remove(id: string): Observable<any> {
+    public remove(id: any): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.delete(url);
     }
 
-    public update(id: string, data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
+    public update(id: any, data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.put(url, data, 'application/json',
             lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
@@ -81,7 +81,7 @@ export class CrudBaseService extends BaseService2 {
             .pipe(this.itemMapper());
     }
 
-    public find(id: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
+    public find(id: any, lang: RecLang = REC_LANGS.EN): Observable<{ data: T, [key: string]: any } | any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.get(url, null, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());

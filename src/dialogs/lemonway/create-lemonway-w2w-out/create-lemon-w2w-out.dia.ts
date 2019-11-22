@@ -18,8 +18,8 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public currentAmountREC: number;
   public currentAmountEUR: number;
 
-  public originAccount: any = {};
-  public targetAccount: any = {};
+  public originAccount;
+  public targetAccount;
   public concept: string = 'Traspaso';
   public amount: number;
   public iban: string;
@@ -53,7 +53,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
     this.accountCrud.find(this.originAccount.id).subscribe((resp) => {
       this.account = resp.data;
       this.currentAmountREC = this.account.getBalance('REC');
-      this.currentAmountEUR = this.account.getBalance('EUR');
+      this.currentAmountEUR = this.account.lw_balance;
     });
   }
 

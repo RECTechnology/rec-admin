@@ -9,7 +9,7 @@ import { Account } from 'src/shared/entities/account.ent';
 import * as moment from 'moment';
 
 @Injectable()
-export class AccountsCrud extends CrudBaseService {
+export class AccountsCrud extends CrudBaseService<Account> {
 
     public pdfHtml: string = '';
 

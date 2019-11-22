@@ -1,7 +1,7 @@
 <div class="group-col-left">
     <span class="small-text-2" *ngIf="label">{{label|translate}}</span>
     <input *ngIf="isNormalInput" [disabled]="disabled" [type]="type" class="user-input small" [ngModel]="value"
-        (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder}}" name="{{name}}">
+        (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder|translate}}" name="{{name}}">
 
     <mat-checkbox *ngIf="!isNormalInput && type === 'checkbox'" color="primary" [ngModel]="value"
         (ngModelChange)="valueChange.emit($event)">

@@ -1,7 +1,7 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { AddUser } from '../../dialogs/management/add-user/add-user.dia';
+import { AddUserDia } from '../../dialogs/management/add-user/add-user.dia';
 import { MatDialog } from '@angular/material';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils/utils.service';
@@ -128,8 +128,8 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   }
 
   // Opens add user modal
-  public openAddUser() {
-    this.alerts.openModal(AddUser, {
+  public openAddUserDia() {
+    this.alerts.openModal(AddUserDia, {
       addReseller: false,
       showCreateNewUser: false,
     }).subscribe((result) => {

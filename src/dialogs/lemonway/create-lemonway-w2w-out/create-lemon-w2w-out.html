@@ -23,7 +23,7 @@
       <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
         <div style="width: 45%">
           <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
-          <account-picker [disabled]="loading" [(account)]="originAccount"></account-picker>
+          <account-picker [disabled]="loading" [(id)]="originAccount"></account-picker>
         </div>
         <div>
           <button mat-icon-button matTooltip="Change sides" (click)="switchSides()">
@@ -32,7 +32,7 @@
         </div>
         <div style="width: 45%">
           <p class="small-text-2" style="position: relative;">{{'TARGET_ACCOUNT'|translate}}:</p>
-          <account-picker [(account)]="targetAccount" [filters]="accountFilters" [disabled]="loading">
+          <account-picker [(id)]="targetAccount" [filters]="accountFilters" [disabled]="loading">
           </account-picker>
         </div>
       </div>

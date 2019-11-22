@@ -4,6 +4,9 @@ import { ProductsCrud } from './products/products.crud';
 import { ActivitiesCrud } from './activities/activities.crud';
 import { NeighborhoodsCrud } from './neighborhoods/neighborhoods.crud';
 import { UsersCrud } from './users/users.crud';
+import { DocumentKindsCrud } from './document_kinds/document_kinds';
+import { DocumentCrud } from './documents/documents';
+import { TiersCrud } from './tiers/tiers';
 
 @NgModule({
     providers: [
@@ -12,6 +15,9 @@ import { UsersCrud } from './users/users.crud';
         ActivitiesCrud,
         NeighborhoodsCrud,
         UsersCrud,
+        DocumentKindsCrud,
+        DocumentCrud,
+        TiersCrud,
     ],
 })
 export class CrudModule { }

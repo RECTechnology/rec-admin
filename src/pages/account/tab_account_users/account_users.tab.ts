@@ -8,7 +8,7 @@ import { UtilsService } from '../../../services/utils/utils.service';
 import { CompanyService } from '../../../services/company/company.service';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { EditUserData } from '../../../dialogs/management/edit-user/edit-user.dia';
-import { AddUser } from '../../../dialogs/management/add-user/add-user.dia';
+import { AddUserDia } from '../../../dialogs/management/add-user/add-user.dia';
 import { environment } from '../../../environments/environment';
 import { AdminService } from '../../../services/admin/admin.service';
 import { ViewDetails } from 'src/dialogs/management/view-details/view-details.dia';
@@ -69,7 +69,7 @@ export class AccountUsersTab implements AfterContentInit {
   }
 
   public openAddUser() {
-    this.alerts.openModal(AddUser, {
+    this.alerts.openModal(AddUserDia, {
       group_id: this.account_id,
     }).subscribe(() => {
       this.getUsers();

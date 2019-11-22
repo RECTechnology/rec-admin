@@ -49,3 +49,16 @@ export default abstract class BaseDialog {
     this.dialogRef.close();
   }
 }
+
+export abstract class CreationDialogBase extends BaseDialog {
+  constructor(dialog?: MatDialog) {
+    super(dialog);
+  }
+
+  public abstract delete(): any;
+
+
+  public openDelete() {
+    
+  }
+}

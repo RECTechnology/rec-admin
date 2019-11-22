@@ -39,6 +39,16 @@ export class UtilsService {
     return errors;
   }
 
+  public static sanitizeEntityForEdit(ent: any) {
+    delete ent.id;
+    delete ent.created;
+    delete ent.updated;
+    delete ent.documents;
+    delete ent.document_kinds;
+    console.log('entity', ent);
+    return ent;
+  }
+
   public isSandbox = false;
   // tslint:disable-next-line
   public _idleSecondsCounter = 0;

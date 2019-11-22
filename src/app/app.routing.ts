@@ -10,7 +10,7 @@ import { OrganizationsComponent } from 'src/pages/organizations/organizations.co
 import { MapComponent } from 'src/pages/map/map.component';
 import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
 import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
-import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
+import { B2BSettingsComponent } from 'src/pages/b2b/entities/settings.component';
 import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
 import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
 

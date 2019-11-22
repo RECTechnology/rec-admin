@@ -7,7 +7,7 @@ import { CompanyService } from 'src/services/company/company.service';
 import { User } from 'src/shared/entities/user.ent';
 
 @Injectable()
-export class UsersCrud extends CrudBaseService {
+export class UsersCrud extends CrudBaseService<any> {
     constructor(
         http: HttpClient,
         public us: UserService,

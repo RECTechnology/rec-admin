@@ -10,7 +10,6 @@ import { DelegateHeaderComponent } from './components/delegate_header/delegate_h
 import { NewDelegateComponent } from './components/new_delegate_change/new_delegate.component';
 import { SelectAccountsDia } from './components/select_accounts_dialog/select_accounts.dia';
 import { CsvUpload } from './components/csv-upload/csv-upload.dia';
-import { EditAccountsDia } from './components/edit_users/edit_accounts.dia';
 import { ActivateResume } from './components/activate-resume/activate-resume.dia';
 
 const profileRoutes: Routes = [
@@ -33,13 +32,11 @@ const profileRoutes: Routes = [
     NewDelegateComponent,
     SelectAccountsDia,
     CsvUpload,
-    EditAccountsDia,
     ActivateResume,
   ],
   entryComponents: [
     SelectAccountsDia,
     CsvUpload,
-    EditAccountsDia,
     ActivateResume,
   ],
   exports: [

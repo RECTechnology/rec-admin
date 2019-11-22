@@ -1054,5 +1054,11 @@
   "SYNC_LW": "Sync. Info Lemonway",
   "There are no items yet": "No hay elementos todavía",
   "WALLET_2_WALLET_DESC": "Traspaso",
-  "USER_LANG_DESC": "El PDF esta generado en el idioma del usuario"
+  "USER_LANG_DESC": "El PDF esta generado en el idioma del usuario",
+  "DOCUMENT_KINDS": "Tipos de documentos",
+  "DOCUMENTOS": "Documentos",
+  "TIERS": "Niveles",
+  "AVAILABLE_DOCUMENT_KINDS": "Tipos de documentos disponibles",
+  "AVAILABLE_DOCUMENTS": "Documentos disponibles",
+  "AVAILABLE_TIERS": "Niveles disponibles"
 }

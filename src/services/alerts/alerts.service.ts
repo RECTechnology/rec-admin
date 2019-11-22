@@ -22,6 +22,10 @@ export class AlertsService {
     });
   }
 
+  public confirmDeletion(itemName = 'Item') {
+    return this.showConfirmation('Are you sure you want to delete that?', 'Delete ' + itemName + '?', 'ok');
+  }
+
   public openModal(C, props = {}, modalOptions = {}) {
     return this.createModal(C, props, modalOptions).afterClosed();
   }

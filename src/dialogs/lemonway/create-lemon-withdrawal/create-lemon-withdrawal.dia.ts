@@ -42,7 +42,7 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
     this.accountCrud.find(this.id).subscribe((resp) => {
       this.account = resp.data;
       this.currentAmountREC = this.account.getBalance('REC');
-      this.currentAmountEUR = this.account.getBalance('EUR');
+      this.currentAmountEUR = this.account.lw_balance;
     });
   }
 
