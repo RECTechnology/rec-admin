@@ -18,6 +18,8 @@ import { LoginService } from 'src/services/auth/auth.service';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { User } from 'src/shared/entities/user.ent';
+import { TlHeaders } from 'src/data/tl-headers';
+import { TlItemOptions } from 'src/data/tl-item-options';
 
 @Component({
   selector: 'users',
@@ -34,53 +36,18 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   public particularUsers = false;
 
   public headers: TlHeader[] = [
-    {
-      sort: 'id',
-      title: 'ID',
-      type: 'code',
-    }, {
-      avatar: {
-        sort: 'profile_image',
-        title: 'Profile Image',
-      },
-      sort: 'name',
-      title: 'Name',
-      type: 'avatar',
-    }, {
-      sort: 'username',
-      title: 'Username',
-    }, {
-      sort: 'email',
-      title: 'Email',
-    }, {
-      accessor: (el) => {
-        const hasPlus = String(el.prefix).includes('+');
-        return (!hasPlus ? '+' : '') + (el.prefix || '--') + ' ' + (el.phone || 'not-set');
-      },
-      sort: 'phone',
-      title: 'Phone',
-    }, {
-      accessor: (el) => el.accounts ? el.accounts.length : 0,
-      sort: 'companies',
-      sortable: false,
-      title: 'Companies',
-      type: 'number',
-    }];
+    TlHeaders.Id,
+    TlHeaders.Avatar,
+    TlHeaders.generate('username'),
+    TlHeaders.Email,
+    TlHeaders.Phone,
+    TlHeaders.CompaniesTotal,
+  ];
   public itemOptions: TlItemOption[] = [
-    {
-      callback: this.openViewDetails.bind(this),
-      text: 'View',
-      icon: 'fa-eye',
-    }, {
-      callback: this.openEditUser.bind(this),
-      text: 'Edit',
-      icon: 'fa-edit',
-    }, {
-      callback: this.openDeleteUser.bind(this),
-      class: 'col-red col-error',
-      text: 'Delete',
-      icon: 'fa-trash',
-    }];
+    TlItemOptions.View(this.openViewDetails.bind(this)),
+    TlItemOptions.Edit(this.openEditUser.bind(this)),
+    TlItemOptions.Delete(this.openDeleteUser.bind(this)),
+  ];
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },
     { key: 'username', value: '$.username', active: true },

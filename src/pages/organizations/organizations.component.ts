@@ -16,6 +16,8 @@ import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { TlHeaders } from 'src/data/tl-headers';
+import { TlItemOptions } from 'src/data/tl-item-options';
 
 const FILTERS = {
   only_offers: 0,
@@ -49,70 +51,24 @@ export class OrganizationsComponent extends TablePageBase {
     refresh: true,
   };
   public headers: TlHeader[] = [
+    TlHeaders.Id,
+    TlHeaders.AvatarCompany,
+    TlHeaders.Phone,
+    TlHeaders.Email,
+    TlHeaders.OfferCount,
+    TlHeaders.onMap(this.openMaps.bind(this)),
     {
-      sort: 'id',
-      title: 'ID',
-    }, {
-      avatar: {
-        sort: 'company_image',
-        title: 'Company Image',
-      },
-      sort: 'name',
-      title: 'Name',
-      type: 'avatar',
-    }, {
-      accessor: (el) => '+' + (el.prefix || '--') + ' ' + el.phone,
-      sort: 'phone',
-      title: 'Phone',
-    }, {
-      sort: 'email',
-      title: 'Email',
-    }, {
-      accessor: (el: any) => {
-        return el.category ? el.category[this.lang] : '...';
-      },
-      sort: 'category',
-      title: 'Category',
-    }, {
-      accessor: (el: any) => {
-        return el.offer_count;
-      },
-      image: {
-        accessor: () => '/assets/resources/offerta-small.png',
-        sort: 'offer',
-        title: 'offer',
-      },
-      sort: 'offer_count',
-      sortable: false,
-      title: 'Offers',
-      type: 'image',
-    }, {
-      buttonAction: this.openMaps.bind(this),
-      buttonImg: '/assets/resources/marcador.png',
-      sort: 'coordenates',
-      sortable: false,
-      title: 'Coordenates',
-      type: 'button',
-    }, {
       slideAction: this.changeMapVisibility.bind(this),
       sort: 'on_map',
       title: 'Map',
       type: 'slidetoggle',
-    }];
+    },
+  ];
+
   public itemOptions: TlItemOption[] = [
-    {
-      callback: this.viewDetails.bind(this),
-      icon: 'eye',
-      text: 'View',
-    }, {
-      callback: this.viewAccount.bind(this),
-      icon: 'eye',
-      text: 'View Account',
-    }, {
-      callback: this.editDetails.bind(this),
-      icon: 'edit',
-      text: 'Edit',
-    }];
+    TlItemOptions.View(this.viewDetails.bind(this)),
+    TlItemOptions.Edit(this.editDetails.bind(this)),
+  ];
   public defaultExportKvp = [
     { key: 'id', value: '$.id', active: true },
     { key: 'name', value: '$.name', active: true },

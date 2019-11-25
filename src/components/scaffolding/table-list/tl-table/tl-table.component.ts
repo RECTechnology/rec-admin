@@ -29,14 +29,42 @@ export interface TlHeader {
     slideAction?: (any) => any;
     tooltip?: (any) => any;
 }
+export class TlHeader implements TlHeader {
+    constructor(opts: TlHeader) {
+        this.extend(opts);
+    }
+
+    public extend?(opts: TlHeader) {
+        // tslint:disable-next-line: forin
+        for (const prop in opts) {
+            this[prop] = opts[prop];
+        }
+
+        return this;
+    }
+}
 
 export interface TlItemOption {
-    text: string | ((el: any) => string);
-    callback: (any) => any;
+    text?: string | ((el: any) => string);
+    callback?: (any) => any;
     class?: string;
     icon?: string;
     disabled?: boolean | ((el: any) => any);
     ngIf?: boolean | ((el: any) => any);
+}
+export class TlItemOption implements TlItemOption {
+    constructor(opts: TlItemOption) {
+        this.extend(opts);
+    }
+
+    public extend?(opts: TlItemOption) {
+        // tslint:disable-next-line: forin
+        for (const prop in opts) {
+            this[prop] = opts[prop];
+        }
+
+        return this;
+    }
 }
 
 export interface TableListOptions {

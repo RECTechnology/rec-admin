@@ -19,6 +19,8 @@ import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Account } from 'src/shared/entities/account.ent';
+import { TlHeaders } from 'src/data/tl-headers';
+import { TlItemOptions } from 'src/data/tl-item-options';
 
 @Component({
   selector: 'accounts',
@@ -56,56 +58,18 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   ];
   public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
   public headers: TlHeader[] = [
-    {
-      sort: 'active',
-      title: 'Active',
-      type: 'checkbox',
-    }, {
-      sort: 'id',
-      title: 'ID',
-      type: 'code',
-    }, {
-      avatar: {
-        sort: 'company_image',
-        title: 'Company Image',
-      },
-      sort: 'name',
-      title: 'Name',
-      type: 'avatar',
-    }, {
-      sort: 'email',
-      title: 'Email',
-    }, {
-      sort: 'lw_balance',
-      accessor: 'lw_balance',
-      title: 'LW Balance',
-      type: 'number',
-      suffix: '€',
-    }, {
-      sort: 'type',
-      statusClass: (el: any) => ({
-        'col-blue': el !== 'COMPANY',
-        'col-orange': el === 'COMPANY',
-      }),
-      title: 'Type',
-      type: 'status',
-    }, {
-      accessor: (account: Account) => account.getBalance('REC'),
-      sort: 'amount',
-      title: 'Amount',
-      type: 'number',
-      suffix: 'Ɍ',
-    },
+    TlHeaders.Active,
+    TlHeaders.Id,
+    TlHeaders.AvatarCompany,
+    TlHeaders.Email,
+    TlHeaders.LwBalance,
+    TlHeaders.AccountType,
+    TlHeaders.AccountAmountREC,
   ];
-  public itemOptions: TlItemOption[] = [{
-    callback: this.viewAccount.bind(this),
-    icon: 'fa-eye',
-    text: 'View',
-  }, {
-    callback: this.viewEditAccount.bind(this),
-    icon: 'fa-edit',
-    text: 'Edit Account',
-  }];
+  public itemOptions: TlItemOption[] = [
+    TlItemOptions.View(this.viewAccount.bind(this)),
+    TlItemOptions.Edit(this.viewEditAccount.bind(this)),
+  ];
   public tableOptions: TableListOptions = {
     optionsType: 'buttons',
   };

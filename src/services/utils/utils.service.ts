@@ -53,6 +53,10 @@ export class UtilsService {
     return ent;
   }
 
+  public static capitalize(s: string) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
   public static deepDiff(original, compare) {
     const r = {};
     _.each(original, (v, k) => {
