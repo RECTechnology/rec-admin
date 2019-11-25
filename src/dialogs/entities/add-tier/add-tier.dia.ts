@@ -18,7 +18,7 @@ export class AddTierDia extends BaseDialog {
   public item: Tier = {
     code: '',
     description: '',
-    document_kinds_id: [],
+    // document_kinds_id: [],
   };
   public itemType = 'Tier';
   public docKinds: DocumentKind[] = [];
@@ -32,22 +32,33 @@ export class AddTierDia extends BaseDialog {
     public docKindCrud: DocumentKindsCrud,
   ) {
     super();
-    this.search();
+  }
+
+  public ngOnInit() {
+    if (this.isEdit) {
+      this.search();
+    }
   }
 
   public search() {
     this.docKindCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc', query: this.query })
       .subscribe((resp) => {
-        this.docKinds = resp.data.total;
+        this.docKinds = resp.data.elements;
       });
   }
 
-  public deleteDoc(doc: DocumentType) {
-    // this.tiersCrud.
+  public deleteDoc(doc: DocumentKind) {
+    this.docKindCrud.unsetTier(doc.id)
+      .subscribe((resp) => {
+        console.log('askdasñd', resp);
+      });
   }
 
-  public addDocKind(doc: DocumentType) {
-    // this.tiersCrud.addDocumentKind(this.ti);
+  public addDocKind(doc: DocumentKind) {
+    doc.setTier(this.item.id)
+      .subscribe((resp) => {
+        console.log('askdasñd', resp);
+      });
   }
 
   public proceed() {
@@ -65,6 +76,7 @@ export class AddTierDia extends BaseDialog {
       this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Tier correctly!', 'ok');
       this.loading = false;
       this.isEdit = true;
+      this.search();
     }, (err) => {
       this.alerts.showSnackbar(err.message, 'ok');
       this.loading = false;

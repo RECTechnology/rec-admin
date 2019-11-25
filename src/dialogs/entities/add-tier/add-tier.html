@@ -20,7 +20,7 @@
       <div class="activity-box-list">
         <ul *ngIf="item.document_kinds && item.document_kinds.length" style="list-style: none; margin: 0; padding: 0">
           <li class="activity-list-item small-text" *ngFor="let doc of item.document_kinds; let i = index">
-            {{doc}}
+            {{doc.name}}
             <span class="icon fa fa-trash col-error" (click)="deleteDoc(doc)"></span>
           </li>
         </ul>
@@ -37,10 +37,10 @@
       <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
         <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="query"
            (click)="$event.stopPropagation()" placeholder="{{'Search Document Kinds'|translate}}">
-        <ng-template ngFor let-doc [ngForOf]="documentKinds">
+        <ng-template ngFor let-doc [ngForOf]="docKinds">
           <button *ngIf="item.document_kinds && !item.document_kinds.includes(doc)" mat-menu-item
             (click)="addDocKind(doc); query = ''" style="padding: 5px auto">
-            <span style="color: #666; font-size: 12px">{{doc}}</span>
+            <span style="color: #666; font-size: 12px">{{doc.name}}</span>
           </button>
         </ng-template>
       </mat-menu>

@@ -21,6 +21,8 @@ export class UtilsService {
     for (const propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined) {
         delete obj[propName];
+      } else if (obj[propName] === 'null') {
+        obj[propName] = null;
       }
     }
     return obj;
