@@ -21,6 +21,9 @@
                 <code *ngIf="header.type === 'code'"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</code>
 
+                <a *ngIf="header.type === 'link'" href="javascript:;" (click)="navigateTo(header.link ? header.link(entry): {})"
+                    [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</a>
+
                 <code *ngIf="header.type === 'number'"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">{{header.prefix}} {{(getEntry(entry, header) || 0) | number}} {{header.suffix}}</code>
 
@@ -39,7 +42,8 @@
                 </mat-slide-toggle>
 
                 <div *ngIf="header.type === 'avatar'">
-                    <avatar [account]="getEntry(entry, header)" [imageAccessor]="getEntry(entry, header).company_image ? 'company_image': 'profile_image'"
+                    <avatar [account]="getEntry(entry, header)"
+                        [imageAccessor]="getEntry(entry, header).company_image ? 'company_image': 'profile_image'"
                         [matTooltip]="header.tooltip && header.tooltip(entry)">
                     </avatar>
                 </div>

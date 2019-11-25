@@ -67,10 +67,6 @@ export class DocumentKindsTabComponent extends EntityTabBase<DocumentKind> {
         });
     }
 
-    public sortData(sort: MatSort) {
-        super.sortData(sort);
-    }
-
     public search(query?) {
         this.loading = true;
         this.crud.search({

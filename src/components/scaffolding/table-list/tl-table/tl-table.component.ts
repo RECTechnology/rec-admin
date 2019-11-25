@@ -4,13 +4,21 @@ import { environment } from '../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+export type TlHeaderType = (
+    'text' | 'checkbox' | 'status' |
+    'code' | 'date' | 'avatar' |
+    'button' | 'slidetoggle' |
+    'image' | 'number' | 'link'
+);
+
 export interface TlHeader {
     sort?: string | boolean;
     sortable?: boolean;
     title: string;
-    type?: 'text' | 'checkbox' | 'status' | 'code' | 'date' | 'avatar' | 'button' | 'slidetoggle' | 'image' | 'number';
+    type?: TlHeaderType;
     accessor?: string | ((el: any) => any);
     statusClass?: ((status: string) => any);
+    link?: (any) => any;
     avatar?: TlHeader;
     image?: TlHeader;
     translate?: boolean;
@@ -146,5 +154,14 @@ export class TableListTable implements AfterContentInit {
             return option.ngIf(entry);
         }
         return true;
+    }
+
+    public navigateTo(data: { link?: string, params?: any } = {}) {
+        console.log('navigateTo', data);
+        this.router.navigate([data.link], {
+            queryParams: data.params,
+            queryParamsHandling: 'merge',
+            preserveQueryParams: true,
+        });
     }
 }

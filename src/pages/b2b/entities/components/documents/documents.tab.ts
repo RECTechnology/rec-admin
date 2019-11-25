@@ -114,10 +114,6 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         this.search();
     }
 
-    public sortData(sort: MatSort) {
-        super.sortData(sort);
-    }
-
     public search(query?) {
         this.loading = true;
         this.crud.search({
