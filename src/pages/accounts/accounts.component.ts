@@ -52,7 +52,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     { key: 'amount', value: '$.wallets[0].available', active: true },
     { key: 'neighbourhood_id', value: '$.neighbourhood.id', active: true },
     { key: 'neighbourhood_name', value: '$.neighbourhood.name', active: true },
-    { key: 'activities', value: '$.activities[*]', active: true },
+    { key: 'activities', value: '$.activities[*].name', active: true },
   ];
   public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
   public headers: TlHeader[] = [

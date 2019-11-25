@@ -14,6 +14,23 @@ export interface Document {
 }
 
 export class Document implements Document {
+
+    public static STATUS_CREATED = 'created';
+    public static STATUS_UPLOADED = 'uploaded';
+    public static STATUS_SUBMITTED = 'submitted';
+    public static STATUS_DECLINED = 'declined';
+    public static STATUS_APROVED = 'aproved';
+    public static STATUS_ARCHIVED = 'archived';
+
+    public static ALL_STATUSES = [
+        Document.STATUS_CREATED,
+        Document.STATUS_APROVED,
+        Document.STATUS_UPLOADED,
+        Document.STATUS_SUBMITTED,
+        Document.STATUS_DECLINED,
+        Document.STATUS_ARCHIVED,
+    ];
+
     constructor(txInfo?: Document) {
         // tslint:disable-next-line: forin
         for (const prop in txInfo) {

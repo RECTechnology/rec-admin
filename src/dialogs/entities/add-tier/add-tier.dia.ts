@@ -6,6 +6,8 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Tier } from 'src/shared/entities/tier.ent';
 import { TiersCrud } from 'src/services/crud/tiers/tiers';
 import { UtilsService } from 'src/services/utils/utils.service';
+import { DocumentKind } from 'src/shared/entities/document_kind.ent';
+import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 
 @Component({
   selector: 'add-tier',
@@ -16,17 +18,36 @@ export class AddTierDia extends BaseDialog {
   public item: Tier = {
     code: '',
     description: '',
+    document_kinds_id: [],
   };
   public itemType = 'Tier';
-  public docKinds = [];
+  public docKinds: DocumentKind[] = [];
+  public query: string;
 
   constructor(
     public dialogRef: MatDialogRef<AddTierDia>,
     private us: UserService,
     public alerts: AlertsService,
     public tiersCrud: TiersCrud,
+    public docKindCrud: DocumentKindsCrud,
   ) {
     super();
+    this.search();
+  }
+
+  public search() {
+    this.docKindCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc', query: this.query })
+      .subscribe((resp) => {
+        this.docKinds = resp.data.total;
+      });
+  }
+
+  public deleteDoc(doc: DocumentType) {
+    // this.tiersCrud.
+  }
+
+  public addDocKind(doc: DocumentType) {
+    // this.tiersCrud.addDocumentKind(this.ti);
   }
 
   public proceed() {
@@ -43,7 +64,7 @@ export class AddTierDia extends BaseDialog {
     call.subscribe((resp) => {
       this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Tier correctly!', 'ok');
       this.loading = false;
-      this.close();
+      this.isEdit = true;
     }, (err) => {
       this.alerts.showSnackbar(err.message, 'ok');
       this.loading = false;

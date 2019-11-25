@@ -1,10 +1,10 @@
 <modal-header title="{{title|translate}}" (click)="close(false)"></modal-header>
 
-<div class="group-col-left padd-x20" style="">
+<div class="group-col-left padd-x20">
 
   <div class="group-row-left" style="width: 100%; align-items: flex-start">
     <div class="" style="height: 150px; width: 150px">
-      <img src="{{selectedImage || brand[noImageName]}}" alt="" style="width: 150px; height: auto">
+      <img src="{{selectedImage || brand[noImageName]}}" style="width: 150px; height: auto">
     </div>
 
     <div class="group-col-left" style="overflow: visible; height: auto;width: 100%;">
@@ -15,12 +15,14 @@
         <span class="small-text" style="margin-left: 10px">{{selectedImageName|translate}}</span>
         <input type="file" name="" value="" id="image" style="display: none" (change)="changedImage($event)">
       </div>
-      <div class="" *ngIf="hasSelectedImage" style="width: 100%;">
-        <button (click)="uploadFile()" type="button" mat-raised-button color="primary" name="button" style="margin-top: 15px; margin-left: 15px; width: 100%">
+      <div style="width: 100%;">
+        <button (click)="uploadFile()" [disabled]="!selectedImageName && !hasSelectedImage" type="button"
+          mat-raised-button color="primary" name="button" style="margin-top: 15px; margin-left: 15px; width: 100%">
           {{'Upload'|translate}}
         </button>
         <p class="text-danger small-text" *ngIf="error">{{error|translate}}</p>
-        <div class="group-row-left center v" style="margin-top: 15px; margin-left: 15px; width: 100%" *ngIf="progress > 0">
+        <div class="group-row-left center v" style="margin-top: 15px; margin-left: 15px; width: 100%"
+          *ngIf="progress > 0">
           <mat-progress-bar mode="determinate" color="primary" [value]="progress"></mat-progress-bar>
           <span class="small-text">
             <b>{{ progress }}</b>% </span>

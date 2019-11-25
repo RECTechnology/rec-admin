@@ -30,8 +30,12 @@ export class FileSelector implements OnInit {
             selectedImage: this.file,
         }).subscribe(
             (resp) => {
-                console.log('Selcted', resp);
-                this.fileChange.emit(resp);
+                if (resp) {
+                    console.log('Selcted', resp);
+                    this.fileChange.emit(resp);
+                } else {
+                    this.fileChange.emit(this.file);
+                }
             },
             (err) => {
                 this.error.emit(err);

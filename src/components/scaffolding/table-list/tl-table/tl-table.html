@@ -39,7 +39,7 @@
                 </mat-slide-toggle>
 
                 <div *ngIf="header.type === 'avatar'">
-                    <avatar [account]="entry" [imageAccessor]="entry.company_image ? 'company_image': 'profile_image'"
+                    <avatar [account]="getEntry(entry, header)" [imageAccessor]="getEntry(entry, header).company_image ? 'company_image': 'profile_image'"
                         [matTooltip]="header.tooltip && header.tooltip(entry)">
                     </avatar>
                 </div>

@@ -58,8 +58,8 @@
           </input-field>
         </div>
         <div class="col-lg-3">
-          <input-field type="select" [options]="genders" [(value)]="userCopy.kyc_validations.gender"
-            label="Gender" [disabled]="loading">
+          <input-field type="select" [options]="genders" [(value)]="userCopy.kyc_validations.gender" label="Gender"
+            [disabled]="loading">
           </input-field>
         </div>
 
@@ -128,54 +128,16 @@
             {{'PROFILE_APEARANCE_DESC'|translate}}
           </p>
         </div>
-        <div class="col-lg-12">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Profile Image'|translate}}</span>
-            <div class="row">
-              <div class="col-lg-12">
-                <div style="height: 100px; width: 100px; background: #ddd">
-                  <img style="height: 100px; width: 100px;" src="{{userCopy.profile_image}}" alt="" class="user-image">
-                </div>
-              </div>
-            </div>
-            <button mat-raised-button (click)="selectProfileImage()" class="marg-top-x10">
-              {{'CHANGE'|translate}}
-            </button>
-          </div>
+        <div class="col-lg-4">
+          <file-selector label="Profile Image" [(file)]="userCopy.profile_image"></file-selector>
         </div>
 
-        <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Document Front'|translate}}</span>
-            <div class="row">
-              <div class="col-lg-12">
-                <div style="height: 100px; width: 100px; background: #ddd">
-                  <img style="height: 100px; width: 100px;" src="{{userCopy.kyc_validations.document_front}}" alt=""
-                    class="user-image">
-                </div>
-              </div>
-            </div>
-            <button mat-raised-button (click)="selectDocFront()" class="marg-top-x10">
-              {{'CHANGE'|translate}}
-            </button>
-          </div>
+        <div class="col-lg-4">
+          <file-selector label="Document Front" [(file)]="userCopy.kyc_validations.document_front"></file-selector>
         </div>
 
-        <div class="col-lg-6">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Document Rear'|translate}}</span>
-            <div class="row">
-              <div class="col-lg-12">
-                <div style="height: 100px; width: 100px; background: #ddd">
-                  <img style="height: 100px; width: 100px;" src="{{userCopy.kyc_validations.document_rear}}" alt=""
-                    class="user-image">
-                </div>
-              </div>
-            </div>
-            <button mat-raised-button (click)="selectDocRear()" class="marg-top-x10">
-              {{'CHANGE'|translate}}
-            </button>
-          </div>
+        <div class="col-lg-4">
+          <file-selector label="Document Rear" [(file)]="userCopy.kyc_validations.document_rear"></file-selector>
         </div>
 
         <div class="col-lg-12">

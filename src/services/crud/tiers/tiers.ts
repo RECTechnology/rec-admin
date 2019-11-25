@@ -25,4 +25,9 @@ export class TiersCrud extends CrudBaseService<Tier> {
     public mapper(item) {
         return new Tier(item);
     }
+
+    public addDocumentKind(tier_id, doc_kind_id) {
+        const url = [...this.getUrlBase(), '/', tier_id, '/', 'document_kinds'];
+        return this.post(url, { id: doc_kind_id }).pipe(this.itemMapper());
+    }
 }

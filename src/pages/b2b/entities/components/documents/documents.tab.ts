@@ -3,16 +3,16 @@ import { EntityTabBase } from '../base.tab';
 import { MatDialog, MatSort } from '@angular/material';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { UserService } from 'src/services/user.service';
 import {
     TlHeader, TlItemOption, TableListOptions,
 } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
-import { noop } from 'rxjs';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 import { DocumentCrud } from 'src/services/crud/documents/documents';
 import { Document } from 'src/shared/entities/document.ent';
 import { AddDocumentDia } from 'src/dialogs/entities/add-document/add-document.dia';
+import { DocumentKind } from 'src/shared/entities/document_kind.ent';
+import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 
 @Component({
     selector: 'tab-documents',
@@ -20,6 +20,7 @@ import { AddDocumentDia } from 'src/dialogs/entities/add-document/add-document.d
 })
 export class DocumentTabComponent extends EntityTabBase<Document> {
     public document: Document[] = [];
+    public documentKinds: DocumentKind[] = [];
     public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
     public headers: TlHeader[] = [
         {
@@ -29,9 +30,9 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
             accessor: 'id',
         },
         {
-            sort: 'account',
-            title: 'Account',
-            accessor: 'account',
+            accessor: (v) => v.account,
+            sortable: false,
+            title: 'Name',
             type: 'avatar',
         },
         {
@@ -39,7 +40,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
             title: 'Kind',
             type: 'code',
             accessor(el) {
-                return el.kind.id;
+                return el.kind.name + ' (' + el.kind.id + ')';
             },
         },
         {
@@ -74,9 +75,15 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         optionsType: 'menu',
     };
 
+    public STATUSES = Document.ALL_STATUSES;
+
     public addComponent = AddDocumentDia;
     public editComponent = AddDocumentDia;
     public entityName = 'Document';
+
+    public productKindFilter = null;
+    public accountFilter = null;
+    public statusFilter = null;
 
     constructor(
         public crud: DocumentCrud,
@@ -84,11 +91,27 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         public alerts: AlertsService,
         public translate: TranslateService,
         public us: UserService,
+        public dkCrud: DocumentKindsCrud,
     ) {
         super();
         this.translate.onLangChange.subscribe(() => {
             this.search();
         });
+
+        this.dkCrud.list({ sort: 'name', dir: 'asc', limit: 100 })
+            .subscribe((resp) => {
+                this.documentKinds = resp.data.elements;
+            });
+    }
+
+    public filterStatus(status) {
+        this.statusFilter = status;
+        this.search();
+    }
+
+    public selectDocKind(doc) {
+        this.productKindFilter = doc;
+        this.search();
     }
 
     public sortData(sort: MatSort) {
@@ -103,6 +126,8 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
             offset: this.offset,
             search: query || this.query || '',
             sort: this.sortID,
+            kind: this.productKindFilter ? this.productKindFilter.id : null,
+            account: this.accountFilter,
         }).subscribe(
             (resp) => {
                 this.data = resp.data.elements;

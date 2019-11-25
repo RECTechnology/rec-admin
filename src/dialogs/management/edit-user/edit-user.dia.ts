@@ -130,40 +130,6 @@ export class EditUserData {
     ).toPromise();
   }
 
-  public selectProfileImage() {
-    this.openUpdateImage(this.user.profile_image)
-      .subscribe((resp) => {
-        this.userCopy.profile_image = resp;
-      }, (error) => {
-        return;
-      });
-  }
-
-  public selectDocFront() {
-    this.openUpdateImage(this.user.kyc_validations.document_front)
-      .subscribe((resp) => {
-        this.userCopy.kyc_validations.document_front = resp;
-      }, (error) => {
-        return;
-      });
-  }
-
-  public selectDocRear() {
-    this.openUpdateImage(this.user.kyc_validations.document_rear)
-      .subscribe((resp) => {
-        this.userCopy.kyc_validations.document_rear = resp;
-      }, (error) => {
-        return;
-      });
-  }
-
-  public openUpdateImage(selectedImage) {
-    return this.alerts.openModal(FileUpload, {
-      hasSelectedImage: !!selectedImage,
-      selectedImage,
-    });
-  }
-
   public setLanguage($event) {
     this.userCopy.locale = this.lang = $event;
   }

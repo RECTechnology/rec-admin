@@ -35,6 +35,10 @@ export class AccountPickerComponent {
       currentid: this.selectedAccount && this.selectedAccount.id,
       filters: this.filters,
     }).subscribe((account: Account) => {
+      if (!account || !account.id) {
+        return;
+      }
+
       this.selectedAccount = account;
       this.accountChange.emit(this.selectedAccount);
       this.idChange.emit(this.selectedAccount.id);
