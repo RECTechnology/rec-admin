@@ -4,6 +4,9 @@ import { TranslatableListComponent } from '../../components/translatable-list/tr
 import { Observable } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { CrudBaseService } from 'src/services/base/crud.base';
+import { TlItemOption } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
+import { TlItemOptions } from 'src/data/tl-item-options';
+import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 
 export abstract class EntityTabBase<T> {
     public query: string = '';
@@ -21,6 +24,12 @@ export abstract class EntityTabBase<T> {
     public addComponent: any;
 
     @ViewChild(TranslatableListComponent, { static: true }) public list: TranslatableListComponent;
+
+    public itemOptions: TlItemOption[] = [
+        TlItemOptions.Edit(this.editItem.bind(this)),
+        TlItemOptions.Delete(this.deleteItem.bind(this)),
+    ];
+    public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
 
     public dialog: MatDialog;
     public alerts: AlertsService;

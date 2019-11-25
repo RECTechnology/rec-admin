@@ -19,26 +19,15 @@ import { TlItemOptions } from 'src/data/tl-item-options';
     templateUrl: './tiers.html',
 })
 export class TiersTabComponent extends EntityTabBase<Tier> {
-    public document: Tier[] = [];
-    public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
+    public entityName = 'Tier';
     public headers: TlHeader[] = [
         TlHeaders.Id,
         TlHeaders.generate('code'),
         TlHeaders.Description,
     ];
 
-    public itemOptions: TlItemOption[] = [
-        TlItemOptions.Edit(this.editItem.bind(this)),
-        TlItemOptions.Delete(this.deleteItem.bind(this)),
-    ];
-
-    public tableOptions: TableListOptions = {
-        optionsType: 'buttons',
-    };
-
     public addComponent = AddTierDia;
     public editComponent = AddTierDia;
-    public entityName = 'Document Kind';
 
     constructor(
         public crud: TiersCrud,

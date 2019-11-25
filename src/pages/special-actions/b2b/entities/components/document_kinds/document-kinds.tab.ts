@@ -19,22 +19,13 @@ import { TlItemOptions } from 'src/data/tl-item-options';
     templateUrl: './document-kinds.html',
 })
 export class DocumentKindsTabComponent extends EntityTabBase<DocumentKind> {
-    public documentKinds: DocumentKind[] = [];
-    public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
     public headers: TlHeader[] = [
         TlHeaders.Id,
         TlHeaders.Name,
         TlHeaders.Description,
         TlHeaders.Updated,
     ];
-    public itemOptions: TlItemOption[] = [
-        TlItemOptions.Edit(this.editItem.bind(this)),
-        TlItemOptions.Delete(this.deleteItem.bind(this)),
-    ];
 
-    public tableOptions: TableListOptions = {
-        optionsType: 'menu',
-    };
     public addComponent = AddDocumentKindDia;
     public editComponent = AddDocumentKindDia;
     public entityName = 'Document Kind';

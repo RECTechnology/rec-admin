@@ -9,9 +9,8 @@
                 </button>
             </tl-header>
             <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
-                [data]="sortedData" [itemOptions]="itemOptions" [options]="tableOptions"
-                noItemsMessage="There are no items yet" [limit]="limit" [total]="total"
-                (onChangePage)="changedPage($event)" showLoader="true">
+                [data]="sortedData" [itemOptions]="itemOptions" noItemsMessage="There are no items yet" [limit]="limit"
+                [total]="total" (onChangePage)="changedPage($event)" showLoader="true">
             </tl-table>
         </div>
     </div>

@@ -21,9 +21,8 @@ import { TlItemOptions } from 'src/data/tl-item-options';
     templateUrl: './documents.html',
 })
 export class DocumentTabComponent extends EntityTabBase<Document> {
-    public document: Document[] = [];
+    public entityName = 'Document';
     public documentKinds: DocumentKind[] = [];
-    public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
     public headers: TlHeader[] = [
         TlHeaders.Id,
         {
@@ -38,20 +37,9 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Description,
     ];
 
-    public itemOptions: TlItemOption[] = [
-        TlItemOptions.Edit(this.editItem.bind(this)),
-        TlItemOptions.Delete(this.deleteItem.bind(this)),
-    ];
-
-    public tableOptions: TableListOptions = {
-        optionsType: 'menu',
-    };
-
     public STATUSES = Document.ALL_STATUSES;
-
     public addComponent = AddDocumentDia;
     public editComponent = AddDocumentDia;
-    public entityName = 'Document';
 
     public productKindFilter = null;
     public accountFilter = null;
