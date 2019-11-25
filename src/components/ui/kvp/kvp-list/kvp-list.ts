@@ -16,6 +16,12 @@ function array_move(arr, old_index, new_index) {
   return arr; // for testing purposes
 }
 
+export interface KvpItem {
+  key: string;
+  value: string;
+  active: boolean;
+}
+
 @Component({
   selector: 'kvp-list',
   styles: [
@@ -23,8 +29,8 @@ function array_move(arr, old_index, new_index) {
   ],
   templateUrl: './kvp-list.html',
 })
-export class KeyValuePair implements OnInit {
-  @Input() public items: Array<{ key: string, value: string, active: boolean }> = [];
+export class KeyValuePair {
+  @Input() public items: KvpItem[] = [];
   @Input() public hidden: boolean = false;
   @Output('onChange') public onChange: EventEmitter<any> = new EventEmitter();
   @Output('onReset') public onReset: EventEmitter<any> = new EventEmitter();
@@ -34,9 +40,6 @@ export class KeyValuePair implements OnInit {
 
   public reset() {
     this.onReset.emit();
-  }
-
-  public ngOnInit() {
   }
 
   public trackByFn(index, item) {

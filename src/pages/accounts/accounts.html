@@ -32,8 +32,7 @@
       </tl-subheader>
 
       <tl-table [loading]="loading" [options]="tableOptions" [sort]="true" (onSort)="sortData($event)"
-        [headers]="headers" [data]="sortedData" [itemOptions]="itemOptions" [limit]="limit" [total]="total"
-        (onChangePage)="changedPage($event)">
+        [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total" (onChangePage)="changedPage($event)">
       </tl-table>
     </mat-card>
   </div>

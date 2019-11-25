@@ -20,6 +20,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { User } from 'src/shared/entities/user.ent';
 import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
+import { UsersExportDefaults } from 'src/data/export-defaults';
 
 @Component({
   selector: 'users',
@@ -48,22 +49,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     TlItemOptions.Edit(this.openEditUser.bind(this)),
     TlItemOptions.Delete(this.openDeleteUser.bind(this)),
   ];
-  public defaultExportKvp = [
-    { key: 'id', value: '$.id', active: true },
-    { key: 'username', value: '$.username', active: true },
-    { key: 'email', value: '$.email', active: true },
-    { key: 'enabled', value: '$.enabled', active: true },
-    { key: 'locked', value: '$.locked', active: true },
-    { key: 'expired', value: '$.expired', active: true },
-    { key: 'roles', value: '$.roles[*]', active: true },
-    { key: 'name', value: '$.name', active: true },
-    { key: 'created', value: '$.created', active: true },
-    { key: 'dni', value: '$.dni', active: true },
-    { key: 'prefix', value: '$.prefix', active: true },
-    { key: 'phone', value: '$.phone', active: true },
-    { key: 'pin', value: '$.pin', active: true },
-    { key: 'public_phone', value: '$.public_phone', active: true },
-  ];
+  public defaultExportKvp = UsersExportDefaults;
 
   constructor(
     public titleService: Title,

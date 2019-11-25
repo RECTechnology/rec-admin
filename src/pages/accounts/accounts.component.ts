@@ -21,6 +21,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Account } from 'src/shared/entities/account.ent';
 import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
+import { AccountsExportDefaults } from 'src/data/export-defaults';
 
 @Component({
   selector: 'accounts',
@@ -37,25 +38,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public type = '';
   public onlyExchanges = false;
 
-  public defaultExportKvp = [
-    { key: 'id', value: '$.id', active: true },
-    { key: 'company_name', value: '$.name', active: true },
-    { key: 'cif', value: '$.cif', active: true },
-    { key: 'type', value: '$.type', active: true },
-    { key: 'subtype', value: '$.subtype', active: true },
-    { key: 'name', value: '$.kyc_manager.name', active: true },
-    { key: 'lastname', value: '$.kyc_manager.kyc_validations.last_name', active: true },
-    { key: 'street_type', value: '$.street_type', active: true },
-    { key: 'street', value: '$.street', active: true },
-    { key: 'address_number', value: '$.address_number', active: true },
-    { key: 'dni', value: '$.kyc_manager.dni', active: true },
-    { key: 'phone', value: '$.phone', active: true },
-    { key: 'alias', value: '$.kyc_manager.active_card.alias', active: true },
-    { key: 'amount', value: '$.wallets[0].available', active: true },
-    { key: 'neighbourhood_id', value: '$.neighbourhood.id', active: true },
-    { key: 'neighbourhood_name', value: '$.neighbourhood.name', active: true },
-    { key: 'activities', value: '$.activities[*].name', active: true },
-  ];
+  public defaultExportKvp = AccountsExportDefaults;
   public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
   public headers: TlHeader[] = [
     TlHeaders.Active,
@@ -70,9 +53,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     TlItemOptions.View(this.viewAccount.bind(this)),
     TlItemOptions.Edit(this.viewEditAccount.bind(this)),
   ];
-  public tableOptions: TableListOptions = {
-    optionsType: 'buttons',
-  };
   public isComp = false;
   public isPriv = false;
   public exchangersFilters = {
@@ -202,7 +182,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public viewEditAccount(account) {
-    console.log('ahjsdhjasd');
     this.alerts.openModal(EditAccountData, {
       account: { ...account },
     }).subscribe((result) => {

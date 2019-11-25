@@ -18,6 +18,7 @@ import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
+import { OrgsExportDefaults } from 'src/data/export-defaults';
 
 const FILTERS = {
   only_offers: 0,
@@ -69,18 +70,7 @@ export class OrganizationsComponent extends TablePageBase {
     TlItemOptions.View(this.viewDetails.bind(this)),
     TlItemOptions.Edit(this.editDetails.bind(this)),
   ];
-  public defaultExportKvp = [
-    { key: 'id', value: '$.id', active: true },
-    { key: 'name', value: '$.name', active: true },
-    { key: 'cif', value: '$.cif', active: true },
-    { key: 'type', value: '$.type', active: true },
-    { key: 'subtype', value: '$.subtype', active: true },
-    { key: 'street_type', value: '$.street_type', active: true },
-    { key: 'street', value: '$.street', active: true },
-    { key: 'address_number', value: '$.address_number', active: true },
-    { key: 'dni', value: '$.kyc_manager.dni', active: true },
-    { key: 'phone', value: '$.phone', active: true },
-  ];
+  public defaultExportKvp = OrgsExportDefaults;
 
   constructor(
     public titleService: Title,
