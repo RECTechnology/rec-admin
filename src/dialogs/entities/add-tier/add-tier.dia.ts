@@ -50,14 +50,16 @@ export class AddTierDia extends BaseDialog {
   public deleteDoc(doc: DocumentKind) {
     this.docKindCrud.unsetTier(doc.id)
       .subscribe((resp) => {
-        console.log('askdasñd', resp);
+        this.search();
+        this.alerts.showSnackbar('Removed document');
       });
   }
 
   public addDocKind(doc: DocumentKind) {
-    doc.setTier(this.item.id)
+    this.docKindCrud.setTier(this.item.id, this.item.id)
       .subscribe((resp) => {
-        console.log('askdasñd', resp);
+        this.search();
+        this.alerts.showSnackbar('Added document');
       });
   }
 

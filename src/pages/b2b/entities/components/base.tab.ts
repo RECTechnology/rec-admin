@@ -44,6 +44,9 @@ export abstract class EntityTabBase<T> {
     }
 
     public sortData(sort: Sort): void {
+        if (this.loading) { return; }
+
+        this.loading = true;
         if (!sort.active || sort.direction === '') {
             this.sortedData = this.data.slice();
             this.sortID = 'id';

@@ -21,6 +21,12 @@ export class AddDocumentDia extends BaseDialog {
     account_id: null,
     content: '',
   };
+  public itemCopy: Document = {
+    name: '',
+    kind_id: null,
+    account_id: null,
+    content: '',
+  };
   public itemType = 'Document';
   public docKinds = [];
 
@@ -52,6 +58,8 @@ export class AddDocumentDia extends BaseDialog {
   public ngOnInit() {
     this.item.account_id = this.item.account && this.item.account.id;
     this.item.kind_id = this.item.kind && this.item.kind.id;
+
+    this.itemCopy = Object.assign({}, this.item);
     console.log('init', this.item);
   }
 
@@ -62,9 +70,18 @@ export class AddDocumentDia extends BaseDialog {
 
     this.loading = true;
 
+    let data: any = this.item;
+    if (this.isEdit) {
+      data = UtilsService.deepDiff(this.item, this.itemCopy);
+    }
+
+    if (!Object.keys(data).length) {
+      return this.alerts.showSnackbar('Nothing to update...');
+    }
+
     const call = (!this.isEdit)
-      ? this.docCrud.create(this.item)
-      : this.docCrud.update(this.item.id, UtilsService.sanitizeEntityForEdit(this.item));
+      ? this.docCrud.create(data)
+      : this.docCrud.update(this.item.id, UtilsService.sanitizeEntityForEdit(data));
 
     call.subscribe((resp) => {
       this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Document correctly!', 'ok');

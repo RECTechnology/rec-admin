@@ -53,6 +53,16 @@ export class UtilsService {
     return ent;
   }
 
+  public static deepDiff(original, compare) {
+    const r = {};
+    _.each(original, (v, k) => {
+      if (_.isArray(v || k)) { return; }
+      if (compare[k] === v) { return; }
+      r[k] = _.isObject(v) ? _.difference(v, compare[k]) : v;
+    });
+    return r;
+  }
+
   public isSandbox = false;
   // tslint:disable-next-line
   public _idleSecondsCounter = 0;
@@ -188,13 +198,7 @@ export class UtilsService {
    * @return {Object} - Will return a new object containing the changed properties
    */
   public deepDiff(original: any, compare: any): any {
-    const r = {};
-    _.each(original, (v, k) => {
-      if (_.isArray(v || k)) { return; }
-      if (compare[k] === v) { return; }
-      r[k] = _.isObject(v) ? _.difference(v, compare[k]) : v;
-    });
-    return r;
+    return UtilsService.deepDiff(original, compare);
   }
 
   /**

@@ -23,7 +23,7 @@ export class DocumentKindsCrud extends CrudBaseService<DocumentKind> {
     }
 
     public mapper(item) {
-        return new DocumentKind(item, this);
+        return new DocumentKind(item);
     }
 
     public setTier(id, tier_id) {
