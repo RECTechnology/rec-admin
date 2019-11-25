@@ -1,0 +1,1 @@
+Check out this wiki page for info on components: https://github.com/QbitArtifacts/rec-admin/wiki/COMPONENTS
