@@ -18,7 +18,8 @@ import {
     MatListModule,
     MatTableModule,
     MatButtonToggleModule,
-
+    MatExpansionModule,
+    MatIconModule,
 } from '@angular/material';
 
 const MODULES = [
@@ -44,6 +45,9 @@ const MODULES = [
     MatListModule,
     MatTableModule,
     MatButtonToggleModule,
+    MatExpansionModule,
+    MatIconModule,
+
 ];
 
 @NgModule({

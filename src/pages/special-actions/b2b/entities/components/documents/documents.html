@@ -1,65 +1,63 @@
-<div style="height: 100%">
-    <div class="row" style="margin: 0; padding: 20px;">
-        <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
-            <tl-header title="AVAILABLE_DOCUMENTS" [(query)]="query" (onSearch)="search($event)">
-                <button type="button" color="primary" mat-raised-button name="button" (click)="addItem()">
-                    <p class="text-small">
-                        <i class="fa fa-plus"></i> {{'DOCUMENTS'|translate}}
-                    </p>
+<div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
+    <tl-header [title]="title" [(query)]="query" (onSearch)="search($event)">
+        <button type="button" color="primary" mat-raised-button name="button" (click)="addItem()">
+            <p class="text-small">
+                <i class="fa fa-plus"></i> {{'DOCUMENTS'|translate}}
+            </p>
+        </button>
+    </tl-header>
+    <tl-subheader>
+        <div class="center v">
+            <div style="padding: 10px">
+                <button [disabled]="disableDocumentKindFilter" matTooltip="Filter by type"
+                    [matMenuTriggerFor]="docKindMenu" type="button" mat-button class="mat-button-menu"
+                    style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
+                    <span
+                        style="padding-right: 8px;">{{productKindFilter ? (productKindFilter.name) : ('PRODUCT_KIND' | translate)}}</span>
+                    <i class="fa fa-caret-down"></i>
                 </button>
-            </tl-header>
-            <tl-subheader>
-                <div class="center v">
-                    <div style="padding: 10px">
-                        <button matTooltip="Filter by type" [matMenuTriggerFor]="productKinds" type="button" mat-button
-                            class="mat-button-menu"
-                            style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
-                            <span
-                                style="padding-right: 8px;">{{productKindFilter ? (productKindFilter.name) : ('PRODUCT_KIND' | translate)}}</span>
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                    </div>
+            </div>
 
-                    <mat-menu #productKinds="matMenu" y-position="below" overlapTrigger="false">
-                        <button (click)="selectDocKind(null)" mat-menu-item style="padding: 5px auto">
-                            <span style="color: #666; font-size: 12px">{{'None'|translate}}</span>
-                        </button>
+            <mat-menu #docKindMenu="matMenu" y-position="below" overlapTrigger="false">
+                <button (click)="selectDocKind(null)" mat-menu-item style="padding: 5px auto">
+                    <span style="color: #666; font-size: 12px">{{'None'|translate}}</span>
+                </button>
 
-                        <button (click)="selectDocKind(doc)" mat-menu-item *ngFor="let doc of documentKinds"
-                            style="padding: 5px auto"
-                            [ngClass]="{'bg-gray-light': productKindFilter && doc.id == productKindFilter.id}">
-                            <span style="color: #666; font-size: 12px">{{doc.name}}</span>
-                        </button>
-                    </mat-menu>
+                <button (click)="selectDocKind(doc)" mat-menu-item *ngFor="let doc of documentKinds"
+                    style="padding: 5px auto"
+                    [ngClass]="{'bg-gray-light': productKindFilter && doc.id == productKindFilter.id}">
+                    <span style="color: #666; font-size: 12px">{{doc.name}}</span>
+                </button>
+            </mat-menu>
 
-                    <div style="width: 140px" matTooltip="Filter by account">
-                        <account-picker style="margin: 0" [(id)]="accountFilter" (idChange)="search();">
-                        </account-picker>
-                    </div>
+            <div style="width: 140px" matTooltip="Filter by account">
+                <account-picker [disabled]="disableAccountFilter" style="margin: 0" [(id)]="accountFilter"
+                    (idChange)="search();">
+                </account-picker>
+            </div>
 
-                    <div style="margin-left: 10px;" matTooltip="Filter by status">
-                        <button [matMenuTriggerFor]="statusMenu" type="button" mat-button class="mat-button-menu"
-                            style="text-align: left; margin: 4px 0 4px 10px!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
-                            <span style="text-transform: capitalize;">{{(statusFilter || 'Status')|translate}}</span>
-                            <i class="fa fa-caret-down" style="margin-left: 8px;"></i>
-                        </button>
-                        <mat-menu #statusMenu="matMenu" y-position="below" overlapTrigger="false">
-                            <button (click)="filterStatus(status)" mat-menu-item *ngFor="let status of STATUSES">
-                                <span
-                                    style="color: #666; font-size: 12px; text-transform: capitalize;">{{status|translate}}</span>
-                            </button>
+            <div style="margin-left: 10px;" matTooltip="Filter by status">
+                <button [disabled]="disableStatusFilter" [matMenuTriggerFor]="statusMenu" type="button" mat-button
+                    class="mat-button-menu"
+                    style="text-align: left; margin: 4px 0 4px 10px!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
+                    <span style="text-transform: capitalize;">{{(statusFilter || 'Status')|translate}}</span>
+                    <i class="fa fa-caret-down" style="margin-left: 8px;"></i>
+                </button>
+                <mat-menu #statusMenu="matMenu" y-position="below" overlapTrigger="false">
+                    <button (click)="filterStatus(status)" mat-menu-item *ngFor="let status of STATUSES">
+                        <span
+                            style="color: #666; font-size: 12px; text-transform: capitalize;">{{status|translate}}</span>
+                    </button>
 
-                            <button (click)="filterStatus(null)" mat-menu-item>
-                                <span style="color: #666; font-size: 12px">{{'None'|translate}}</span>
-                            </button>
-                        </mat-menu>
-                    </div>
-                </div>
-            </tl-subheader>
-            <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
-                [data]="sortedData" [itemOptions]="itemOptions" noItemsMessage="There are no items yet" [limit]="limit"
-                [total]="total" (onChangePage)="changedPage($event)" showLoader="true">
-            </tl-table>
+                    <button (click)="filterStatus(null)" mat-menu-item>
+                        <span style="color: #666; font-size: 12px">{{'None'|translate}}</span>
+                    </button>
+                </mat-menu>
+            </div>
         </div>
-    </div>
+    </tl-subheader>
+    <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
+        [itemOptions]="itemOptions" noItemsMessage="There are no items yet" [limit]="limit" [total]="total"
+        (onChangePage)="changedPage($event)" showLoader="true">
+    </tl-table>
 </div>

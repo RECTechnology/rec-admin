@@ -35,6 +35,8 @@ export abstract class EntityTabBase<T> {
     public alerts: AlertsService;
     public crud: CrudBaseService<T>;
 
+    public addItemOptions: any = {};
+
     public abstract entityName: string;
     public abstract search(): any;
 
@@ -81,13 +83,16 @@ export abstract class EntityTabBase<T> {
     }
 
     public addItem() {
-        this.alerts.openModal(this.addComponent)
+        this.alerts.openModal(this.addComponent, this.addItemOptions)
             .subscribe(this.search.bind(this));
     }
 
     public editItem(item: T) {
-        this.alerts.openModal(this.editComponent, { isEdit: true, item: Object.assign({}, item) })
-            .subscribe(this.search.bind(this));
+        this.alerts.openModal(this.editComponent, {
+            isEdit: true,
+            item: Object.assign({}, item),
+            ...this.addItemOptions,
+        }).subscribe(this.search.bind(this));
     }
 
     public deleteItem(item: T | any) {

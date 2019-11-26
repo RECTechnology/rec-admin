@@ -38,6 +38,7 @@ export class AccountDocuments {
   ) { }
 
   public ngOnInit() {
+    this.getTiers();
     this.route.params
       .subscribe((params) => {
         this.id = params.id;
@@ -52,6 +53,7 @@ export class AccountDocuments {
     this.tiersCrud.listInOrder({ offset: 0, limit: 100 })
       .subscribe((resp) => {
         console.log('tiers', resp);
+        this.tiers = resp;
       });
   }
 }

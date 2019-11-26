@@ -29,6 +29,7 @@ export class AddDocumentDia extends BaseDialog {
   };
   public itemType = 'Document';
   public docKinds = [];
+  public disableAccountSelector = false;
 
   constructor(
     public dialogRef: MatDialogRef<AddDocumentDia>,
@@ -56,7 +57,7 @@ export class AddDocumentDia extends BaseDialog {
   }
 
   public ngOnInit() {
-    this.item.account_id = this.item.account && this.item.account.id;
+    this.item.account_id = this.item.account ? this.item.account.id : this.item.account_id;
     this.item.kind_id = this.item.kind && this.item.kind.id;
 
     this.itemCopy = Object.assign({}, this.item);

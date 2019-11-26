@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EntityTabBase } from '../base.tab';
 import { MatDialog, MatSort } from '@angular/material';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -19,6 +19,7 @@ import { TlItemOptions } from 'src/data/tl-item-options';
 @Component({
     selector: 'tab-documents',
     templateUrl: './documents.html',
+    styles: [`:host {width: 100%}`],
 })
 export class DocumentTabComponent extends EntityTabBase<Document> {
     public entityName = 'Document';
@@ -41,9 +42,14 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     public addComponent = AddDocumentDia;
     public editComponent = AddDocumentDia;
 
-    public productKindFilter = null;
-    public accountFilter = null;
-    public statusFilter = null;
+    @Input() public productKindFilter = null;
+    @Input() public accountFilter = null;
+    @Input() public statusFilter = null;
+    @Input() public title = 'AVAILABLE_DOCUMENTS';
+
+    @Input() public disableAccountFilter = false;
+    @Input() public disableStatusFilter = false;
+    @Input() public disableProductKindFilter = false;
 
     constructor(
         public crud: DocumentCrud,
@@ -72,6 +78,16 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     public selectDocKind(doc) {
         this.productKindFilter = doc;
         this.search();
+    }
+
+    public addItem() {
+        this.addItemOptions = {
+            item: {
+                account_id: this.accountFilter,
+            },
+            disableAccountSelector: this.disableAccountFilter,
+        };
+        super.addItem();
     }
 
     public search(query?) {

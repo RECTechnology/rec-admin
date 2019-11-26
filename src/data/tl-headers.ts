@@ -75,7 +75,7 @@ export const TlHeaderDocumentKind: TlHeader = new TlHeader({
     title: 'Kind',
     type: 'code',
     accessor(el) {
-        return el.kind.name + ' (' + el.kind.id + ')';
+        return el.kind ? el.kind.name + ' (' + el.kind.id + ')' : 'None';
     },
 });
 

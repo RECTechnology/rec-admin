@@ -1,5 +1,50 @@
-<div style="height: 100%; padding: 20px">
-  <div class="row">
+<div style="height: 100%;padding:20px">
+  <div class="row" style="margin: 0;">
+    <div class="col-lg-4 bg-white" style="padding-left: 0; padding-right: 0;">
+      <div class="header bordered-bottom" style="padding: 12px 15px">
+        <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
+          {{'Tiers'|translate}}</p>
+      </div>
+      <div style="padding: 4px 15px" class="bordered-bottom">
+        <p class="small-text text-gray-light">
+          To be able to validate a tier, you'll need to add all required documents first.
+        </p>
+      </div>
+      <mat-accordion class="mat-elevation-z0">
+        <mat-expansion-panel class="mat-elevation-z0" *ngFor="let tier of tiers">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span>
+                <i class="fa fa-check col-success" *ngIf="tier.validated" matTooltip="Validated"></i>
+                <i class="fa fa-times col-error" *ngIf="!tier.validated" matTooltip="Not validated"></i>
+                <span style="margin-left: 6px;">
+                  {{tier.code}}
+                </span>
+              </span>
+            </mat-panel-title>
+            <mat-panel-description>
+              {{tier.document_kinds.length}} {{'DOCUMENT_KINDS'|translate}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
 
+          <mat-list dense>
+            <h3 mat-subheader>{{'DOCUMENT_KINDS'|translate}}: </h3>
+            <mat-list-item *ngFor="let file of tier.document_kinds">
+              <span mat-list-icon class="fa fa-file text-small"
+                style="width: 15px; height: 15px; font-size: 15px;"></span>
+              <h4 mat-line class="text-small">{{file.name}}</h4>
+            </mat-list-item>
+
+            <mat-list-item *ngIf="tier.document_kinds.length === 0">
+              <h4 mat-line class="text-small">This tier has no Document Kinds attached</h4>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="col-lg-8">
+      <tab-documents [accountFilter]="account.id" [disableAccountFilter]="true" title="Documents"></tab-documents>
+    </div>
   </div>
 </div>

@@ -16,7 +16,11 @@
             <tab-document-kinds *ngIf="currentTab === 3"></tab-document-kinds>
         </mat-tab>
         <mat-tab label="{{'DOCUMENTS'|translate}}">
-            <tab-documents *ngIf="currentTab === 4"></tab-documents>
+            <div style="height: 100%; width: 100%">
+                <div class="row" style="width: 100%;margin: 0; padding: 20px;">
+                    <tab-documents *ngIf="currentTab === 4"></tab-documents>
+                </div>
+            </div>
         </mat-tab>
         <mat-tab label="{{'TIERS'|translate}}">
             <tab-tiers *ngIf="currentTab === 5"></tab-tiers>
