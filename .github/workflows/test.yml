@@ -13,7 +13,7 @@ jobs:
         run: ls -la
 
       - name: Copy env.dist.ts to dist.ts
-        run: cp ./src/environments/environment.dist.ts ./src/environments/environment.ts
+        run: cp ./src/environments/environment.ts.dist ./src/environments/environment.ts
 
       - name: Install deps
         run: npm install
