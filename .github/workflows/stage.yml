@@ -44,5 +44,5 @@ jobs:
       - name: Deploy
         uses: joelwmale/webhook-action@1.0.1
         env:
-          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK }}
+          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_STAGE }}
           data: "Hello from github actions!"
