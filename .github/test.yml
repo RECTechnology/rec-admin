@@ -1,0 +1,13 @@
+name: Test, Build and Deploy [STAGE]
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtaining the code
+        uses: actions/checkout@v1
+
+      - name: Running test suite
+        run: make test
