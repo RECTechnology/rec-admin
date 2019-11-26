@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Install deps
-        run: make install
+        run: npm install
 
       - name: Running test suite
-        run: make test
+        run: npm test
