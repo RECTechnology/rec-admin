@@ -15,21 +15,24 @@ jobs:
       - name: Running test suite
         run: make test
   dev:
-      steps:
-        - name: Login to Docker
-          env:
-            REGISTRY: reg.rallf.com:8443
-            USER: ${{secrets.DOCKER_USERNAME}}
-            PASS: ${{secrets.DOCKER_PASSWORD}}
-          run: docker login -u ${USER} -p ${PASS} reg.rallf.com:8443
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtaining the code
+        uses: actions/checkout@v1
+      - name: Login to Docker
+        env:
+          REGISTRY: reg.rallf.com:8443
+          USER: ${{secrets.DOCKER_USERNAME}}
+          PASS: ${{secrets.DOCKER_PASSWORD}}
+        run: docker login -u ${USER} -p ${PASS} reg.rallf.com:8443
 
-        - name: Build Docker image
-          run: docker build . -t reg.rallf.com:8443/rec-admin:stable
+      - name: Build Docker image
+        run: docker build . -t reg.rallf.com:8443/rec-admin:stable
 
-        - name: Push Docker image
-          run: docker push reg.rallf.com:8443/rec-admin:stable
+      - name: Push Docker image
+        run: docker push reg.rallf.com:8443/rec-admin:stable
 
-        - name: Deploy webhook
-          env:
-            WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK }}
-          run: curl -X POST ${WEBHOOK_URL}
+      - name: Deploy webhook
+        env:
+          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK }}
+        run: curl -X POST ${WEBHOOK_URL}
