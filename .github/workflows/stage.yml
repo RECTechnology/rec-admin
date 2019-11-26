@@ -18,6 +18,7 @@ jobs:
       - name: Running test suite
         run: make test
   dev:
+    runs-on: ubuntu-latest
     steps: 
       - name: Obtaining the code
         uses: actions/checkout@v1
