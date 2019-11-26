@@ -9,7 +9,6 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
-import { AdminService } from 'src/services/admin/admin.service';
 import { IdleNotification } from 'src/dialogs/other/idle-notification/idle.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { MySentry } from 'src/shared/sentry';
@@ -38,7 +37,6 @@ export class AppComponent implements OnInit, OnDestroy {
     private ls: LoginService,
     private aas: AppAuthService,
     private us: UserService,
-    public as: AdminService,
     public alerts: AlertsService,
   ) {
     this.utils.isSandbox = this.isSandbox = environment.test;
