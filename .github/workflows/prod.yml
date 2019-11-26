@@ -1,4 +1,4 @@
-name: Test, Build and Deploy [PROD]
+name: Test, Build and Deploy [STAGE]
 
 on:
   push:
@@ -15,18 +15,21 @@ jobs:
       - name: Running test suite
         run: make test
   dev:
-    # with credentials stored in the UI
-    - name: Login to Docker
-      run: docker login -u $DOCKER_USER -p $DOCKER_PASS reg.rallf.com:8443
+      steps:
+        - name: Login to Docker
+          env:
+            REGISTRY: reg.rallf.com:8443
+            USER: ${{secrets.DOCKER_USERNAME}}
+            PASS: ${{secrets.DOCKER_PASSWORD}}
+          run: docker login -u ${USER} -p ${PASS} reg.rallf.com:8443
 
-    # build the application image
-    - name: Build Docker image
-      run: docker build . -t reg.rallf.com:8443/rec-admin:stable
+        - name: Build Docker image
+          run: docker build . -t reg.rallf.com:8443/rec-admin:stable
 
-    # push the image
-    - name: Push Docker image
-      run: docker push reg.rallf.com:8443/rec-admin:stable
+        - name: Push Docker image
+          run: docker push reg.rallf.com:8443/rec-admin:stable
 
-    # use webhook to deploy
-    - name: Deploy webhook
-      run: curl -X POST $DEPLOY_WEBHOOK
+        - name: Deploy webhook
+          env:
+            WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK }}
+          run: curl -X POST ${WEBHOOK_URL}
