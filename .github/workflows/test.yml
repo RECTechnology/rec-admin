@@ -10,9 +10,6 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Copy env.dist.ts to dist.ts
-        run: ls -la
-
-      - name: Copy env.dist.ts to dist.ts
         run: cp ./src/environments/environment.ts.dist ./src/environments/environment.ts
 
       - name: Install deps

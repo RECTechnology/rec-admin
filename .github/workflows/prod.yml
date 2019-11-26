@@ -12,10 +12,18 @@ jobs:
       - name: Obtaining the code
         uses: actions/checkout@v1
 
+      - name: Copy env.dist.ts to dist.ts
+        run: cp ./src/environments/environment.ts.dist ./src/environments/environment.ts
+
+      - name: Install deps
+        run: npm install
+
       - name: Running test suite
-        run: make test
+        run: npm test
+
   dev:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Obtaining the code
         uses: actions/checkout@v1
