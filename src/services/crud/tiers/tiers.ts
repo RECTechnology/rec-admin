@@ -26,6 +26,11 @@ export class TiersCrud extends CrudBaseService<Tier> {
         return new Tier(item);
     }
 
+    public unsetDockind(dock_id, tier_id) {
+        const url = [...this.getUrlBase(), '/', tier_id, '/', 'document_kinds', '/', dock_id];
+        return this.delete(url);
+    }
+
     public setDocumentKinds(tier_id, documentKinds: any[]) {
         const url = [...this.getUrlBase(), '/', tier_id, '/', 'document_kinds'];
         return this.put(url, { id: documentKinds[0] }).pipe(this.itemMapper());

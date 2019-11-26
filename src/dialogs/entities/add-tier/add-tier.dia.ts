@@ -48,10 +48,12 @@ export class AddTierDia extends BaseDialog {
   }
 
   public deleteDoc(doc: DocumentKind) {
-    this.docKindCrud.unsetTier(doc.id)
+    this.tiersCrud.unsetDockind(doc.id, this.item.id)
       .subscribe((resp) => {
         this.search();
         this.alerts.showSnackbar('Removed document');
+      }, (err) => {
+        this.alerts.showSnackbar(err.message);
       });
   }
 
@@ -60,6 +62,8 @@ export class AddTierDia extends BaseDialog {
       .subscribe((resp) => {
         this.search();
         this.alerts.showSnackbar('Added document');
+      }, (err) => {
+        this.alerts.showSnackbar(err.message);
       });
   }
 

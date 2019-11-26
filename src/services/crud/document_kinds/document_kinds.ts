@@ -30,7 +30,13 @@ export class DocumentKindsCrud extends CrudBaseService<DocumentKind> {
         return this.update(id, { tier_id });
     }
 
-    public unsetTier(id) {
-        return this.update(id, { tier_id: 'null' });
-    }
+    // public unsetTier(id) {
+    //     return this.update(id, { tier_id: 'null' });
+    // }
+
+    // public unsetTier(dock_id, tier_id) {
+    //     const url = [...this.getUrlBase(), '/', dock_id, '/', 'tier', '/', tier_id];
+    //     return this.delete(url);
+    // }
+
 }

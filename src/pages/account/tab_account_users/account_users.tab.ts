@@ -2,7 +2,6 @@ import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Sort } from '@angular/material';
-import { WalletService } from '../../../services/wallet/wallet.service';
 import { UserService } from '../../../services/user.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { CompanyService } from '../../../services/company/company.service';
@@ -41,7 +40,6 @@ export class AccountUsersTab implements AfterContentInit {
     public utils: UtilsService,
     public router: Router,
     public controles: ControlesService,
-    public ws: WalletService,
     public alerts: AlertsService,
   ) {
 
