@@ -49,7 +49,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
 
     @Input() public disableAccountFilter = false;
     @Input() public disableStatusFilter = false;
-    @Input() public disableProductKindFilter = false;
+    @Input() public disableDocumentKindFilter = false;
 
     constructor(
         public crud: DocumentCrud,

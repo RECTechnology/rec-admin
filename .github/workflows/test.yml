@@ -9,6 +9,9 @@ jobs:
       - name: Obtaining the code
         uses: actions/checkout@v1
 
+      - name: Copy env.dist.ts to dist.ts
+        run: cp src/environments/environment.dist.ts src/environments/environment.ts
+
       - name: Install deps
         run: npm install
 
