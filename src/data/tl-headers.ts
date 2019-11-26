@@ -43,6 +43,7 @@ export const TlHeaderAvatar: TlHeader = new TlHeader({
     sortable: true,
     title: 'Name',
     type: 'avatar',
+    sort: 'name',
     accessor: (el) => el,
 });
 
