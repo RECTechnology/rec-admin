@@ -4,7 +4,7 @@
 <div class="page mailing" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
     <div class="row" style="margin: 0; padding: 20px;">
         <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
-            <tl-header title="Mailings" [(query)]="query" (onSearch)="search($event)">
+            <tl-header title="Mailings" [query]="query" (onSearch)="search($event)">
                 <button type="button" color="primary" mat-raised-button name="button" (click)="createMail()">
                     <p class="text-small">
                         <i class="fa fa-plus"></i> {{('Mail'|translate)}}

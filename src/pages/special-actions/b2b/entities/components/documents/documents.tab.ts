@@ -27,7 +27,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     public headers: TlHeader[] = [
         TlHeaders.Id,
         {
-            accessor: (v) => v.account,
+            accessor: (v) => v.account ? v.account : {},
             sortable: false,
             title: 'Name',
             type: 'avatar',
