@@ -18,7 +18,7 @@
         <mat-tab label="{{'DOCUMENTS'|translate}}">
             <div style="height: 100%; width: 100%">
                 <div class="row" style="width: 100%;margin: 0; padding: 20px;">
-                    <tab-documents *ngIf="currentTab === 4"></tab-documents>
+                    <tab-documents [disableAccountFilter]="false" *ngIf="currentTab === 4"></tab-documents>
                 </div>
             </div>
         </mat-tab>
