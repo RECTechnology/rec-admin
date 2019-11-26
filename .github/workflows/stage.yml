@@ -12,6 +12,9 @@ jobs:
       - name: Obtaining the code
         uses: actions/checkout@v1
 
+      - name: Install deps
+        run: make install
+
       - name: Running test suite
         run: make test
   dev:

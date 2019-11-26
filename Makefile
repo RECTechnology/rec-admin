@@ -1,5 +1,3 @@
-test: lint test
-
 build: clean
 	npm run build:prod
 
@@ -8,6 +6,9 @@ build-docker: build
 
 test: 
 	npm run build:prod
+
+install: 
+	npm install
 
 lint: 
 	npm run lint
