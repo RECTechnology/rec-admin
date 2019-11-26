@@ -11,7 +11,7 @@ import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { TlHeader } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
-import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
+import { FileUpload } from 'src/dialogs/other/file-upload/file-upload.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';

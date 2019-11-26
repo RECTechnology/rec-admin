@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'info',
-  templateUrl: '../../../components/dialogs/info-message/info.html',
+  templateUrl: './info.html',
 })
 
 export class InfoMessage implements AfterContentInit {

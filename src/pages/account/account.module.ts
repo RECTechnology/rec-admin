@@ -4,9 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { AccountComponent } from './account.component';
-import { KycTab } from './tab_kyc/kyc.tab';
 import { IsLoggedInGuard } from '../../services/guards/login.guard';
-import { Tier1Form } from './tab_kyc/tier_validation/tier_validation.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ViewDetails } from '../../dialogs/management/view-details/view-details.dia';
 import { MovementsTab } from './tab_movements/tab_movements';
@@ -28,8 +26,6 @@ const accountRoutes: Routes = [
 @NgModule({
   declarations: [
     AccountComponent,
-    KycTab,
-    Tier1Form,
     ViewDetails,
     AccountUsersTab,
     MovementsTab,

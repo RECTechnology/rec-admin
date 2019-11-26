@@ -7,7 +7,7 @@ import { Document } from 'src/shared/entities/document.ent';
 import { DocumentCrud } from 'src/services/crud/documents/documents';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 import { UtilsService } from 'src/services/utils/utils.service';
-import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
+import { FileUpload } from 'src/dialogs/other/file-upload/file-upload.dia';
 
 @Component({
   selector: 'add-document',

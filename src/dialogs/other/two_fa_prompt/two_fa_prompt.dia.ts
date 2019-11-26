@@ -5,7 +5,7 @@ import BaseDialog from '../../../bases/dialog-base';
 
 @Component({
   selector: 'two_fa_prompt',
-  templateUrl: '../../../components/dialogs/two_fa_prompt/two_fa_prompt.html',
+  templateUrl: './two_fa_prompt.html',
 })
 export class TwoFaDia extends BaseDialog {
 

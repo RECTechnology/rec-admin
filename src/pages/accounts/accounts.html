@@ -31,9 +31,9 @@
         </div>
       </tl-subheader>
 
-      <tl-table [loading]="loading" [options]="tableOptions" [sort]="true" (onSort)="sortData($event)"
-        [itemOptions]="itemOptions" [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total"
-        (onChangePage)="changedPage($event)">
+      <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [itemOptions]="itemOptions"
+        [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total" (onChangePage)="changedPage($event)"
+        [options]="{optionsType: 'buttons'}">
       </tl-table>
     </mat-card>
   </div>

@@ -4,7 +4,7 @@ import { UtilsService } from '../../../services/utils/utils.service';
 
 @Component({
   selector: 'idle',
-  templateUrl: '../../../components/dialogs/idle-notification/idle.html',
+  templateUrl: './idle.html',
 })
 
 export class IdleNotification {

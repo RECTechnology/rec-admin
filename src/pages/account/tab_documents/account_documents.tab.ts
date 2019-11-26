@@ -5,7 +5,7 @@ import { ControlesService } from '../../../services/controles/controles.service'
 import { environment } from '../../../environments/environment';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
+import { FileUpload } from '../../../dialogs/other/file-upload/file-upload.dia';
 import { AdminService } from '../../../services/admin/admin.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';

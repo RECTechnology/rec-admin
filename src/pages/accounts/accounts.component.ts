@@ -12,7 +12,7 @@ import {
   TlHeader, TlItemOption, TableListOptions,
 } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
-import { ExportDialog } from 'src/components/dialogs/export-dialog/export.dia';
+import { ExportDialog } from 'src/dialogs/other/export-dialog/export.dia';
 import { ListAccountsParams } from 'src/interfaces/search';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { TablePageBase } from 'src/bases/page-base';

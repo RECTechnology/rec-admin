@@ -67,8 +67,8 @@ import { DocumentKindsTabComponent } from 'src/pages/special-actions/b2b/entitie
 import { DocumentTabComponent } from 'src/pages/special-actions/b2b/entities/components/documents/documents.tab';
 import { TiersTabComponent } from 'src/pages/special-actions/b2b/entities/components/tiers/tiers.tab';
 import { BussinessDetailsDia } from 'src/dialogs/management/bussiness_detailes/bussiness_details.component';
-import { TwoFaDia } from 'src/components/dialogs/two_fa_prompt/two_fa_prompt.dia';
-import { ExportDialog } from 'src/components/dialogs/export-dialog/export.dia';
+import { TwoFaDia } from 'src/dialogs/other/two_fa_prompt/two_fa_prompt.dia';
+import { ExportDialog } from 'src/dialogs/other/export-dialog/export.dia';
 import { VoteWithdrawal } from 'src/dialogs/vote-withdrawal/vote-withdrawal.dia';
 import { AddItemDia } from 'src/pages/special-actions/b2b/entities/add-item/add-item.dia';
 import { AddNeighbourhoodDia } from 'src/pages/special-actions/b2b/entities/components/neighborhoods/add/add.dia';
@@ -79,10 +79,10 @@ import { AccountPickerDia } from 'src/components/selectors/account-picker/accoun
 import { EditAccountsDia } from 'src/pages/special-actions/change_delegate/components/edit_users/edit_accounts.dia';
 import { AddUserDia } from 'src/dialogs/management/add-user/add-user.dia';
 import { EditUserData } from 'src/dialogs/management/edit-user/edit-user.dia';
-import { ConfirmationMessage } from 'src/components/dialogs/confirmation-message/confirmation.dia';
-import { InfoMessage } from 'src/components/dialogs/info-message/info.dia';
-import { FileUpload } from 'src/components/dialogs/file-upload/file-upload.dia';
-import { IdleNotification } from 'src/components/dialogs/idle-notification/idle.dia';
+import { ConfirmationMessage } from 'src/dialogs/other/confirmation-message/confirmation.dia';
+import { InfoMessage } from 'src/dialogs/other/info-message/info.dia';
+import { FileUpload } from 'src/dialogs/other/file-upload/file-upload.dia';
+import { IdleNotification } from 'src/dialogs/other/idle-notification/idle.dia';
 import { ManageSms } from 'src/dialogs/management/manage-sms/manage-sms.dia';
 import { AddCommentDia } from 'src/dialogs/wallet/add_comment/add_comment.dia';
 import { ExportTxsDia } from 'src/dialogs/wallet/export-txs/export-txs.dia';

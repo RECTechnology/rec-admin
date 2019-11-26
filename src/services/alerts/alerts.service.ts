@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MatDialog, MatSnackBarConfig } from '@angular/material';
-import { ConfirmationMessage } from 'src/components/dialogs/confirmation-message/confirmation.dia';
+import { ConfirmationMessage } from 'src/dialogs/other/confirmation-message/confirmation.dia';
 
 @Injectable({
   providedIn: 'root',

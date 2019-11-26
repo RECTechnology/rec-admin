@@ -10,7 +10,7 @@ import { ControlesService } from 'src/services/controles/controles.service';
 import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { AdminService } from 'src/services/admin/admin.service';
-import { IdleNotification } from 'src/components/dialogs/idle-notification/idle.dia';
+import { IdleNotification } from 'src/dialogs/other/idle-notification/idle.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { MySentry } from 'src/shared/sentry';
 
