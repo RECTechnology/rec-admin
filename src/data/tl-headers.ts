@@ -182,7 +182,7 @@ export const TlHeaderOnClickMap = (action): TlHeader => new TlHeader({
 });
 
 // tslint:disable-next-line: variable-name
-export const TlHeaderGenerate = (name, data?: TlHeader) => {
+export const TlHeaderGenerate = (name, data?: any) => {
     return new TlHeader({
         sort: name,
         title: UtilsService.capitalize(name),

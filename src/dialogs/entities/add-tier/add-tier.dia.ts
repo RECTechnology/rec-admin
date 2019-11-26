@@ -4,7 +4,7 @@ import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Tier } from 'src/shared/entities/tier.ent';
-import { TiersCrud } from 'src/services/crud/tiers/tiers';
+import { TiersCrud } from 'src/services/crud/tiers/tiers.crud';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
@@ -22,6 +22,7 @@ export class AddTierDia extends BaseDialog {
   };
   public itemType = 'Tier';
   public docKinds: DocumentKind[] = [];
+  public tiers: Tier[] = [];
   public query: string;
 
   constructor(
@@ -35,9 +36,23 @@ export class AddTierDia extends BaseDialog {
   }
 
   public ngOnInit() {
+    console.log('Item', this.item);
     if (this.isEdit) {
       this.search();
     }
+    this.getTiers();
+  }
+
+  public getTiers() {
+    this.tiersCrud.list()
+      .subscribe((res) => {
+        this.tiers = res.data.elements.map((el) => {
+          return {
+            value: el.id,
+            name: el.code,
+          };
+        });
+      });
   }
 
   public search() {

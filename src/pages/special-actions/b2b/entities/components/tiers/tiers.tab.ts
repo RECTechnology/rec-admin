@@ -4,15 +4,11 @@ import { MatDialog, MatSort } from '@angular/material';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/services/user.service';
-import {
-    TlHeader, TlItemOption, TableListOptions,
-} from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
-import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
-import { TiersCrud } from 'src/services/crud/tiers/tiers';
+import { TlHeader } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
+import { TiersCrud } from 'src/services/crud/tiers/tiers.crud';
 import { Tier } from 'src/shared/entities/tier.ent';
 import { AddTierDia } from 'src/dialogs/entities/add-tier/add-tier.dia';
 import { TlHeaders } from 'src/data/tl-headers';
-import { TlItemOptions } from 'src/data/tl-item-options';
 
 @Component({
     selector: 'tab-tiers',
@@ -23,6 +19,18 @@ export class TiersTabComponent extends EntityTabBase<Tier> {
     public headers: TlHeader[] = [
         TlHeaders.Id,
         TlHeaders.generate('code'),
+        TlHeaders.generate('previous', {
+            accessor(el) {
+                return el.previous ? (el.previous).code : '';
+            },
+            type: 'code',
+        }),
+        TlHeaders.generate('next', {
+            accessor(el) {
+                return el.next ? (el.next).code : '';
+            },
+            type: 'code',
+        }),
         TlHeaders.Description,
     ];
 
@@ -40,6 +48,11 @@ export class TiersTabComponent extends EntityTabBase<Tier> {
         this.translate.onLangChange.subscribe(() => {
             this.search();
         });
+
+        this.crud.listInOrder({ offset: 0, limit: 100 })
+            .subscribe((resp) => {
+                console.log('tiers', resp);
+            });
     }
 
     public sortData(sort: MatSort) {

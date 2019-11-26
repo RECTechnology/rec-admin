@@ -27,7 +27,7 @@
       <movements-tab></movements-tab>
     </mat-tab>
     <mat-tab label="{{'DOCUMENTS'|translate}}">
-      <documents-tab></documents-tab>
+      <documents-tab [id]="account_id"  [account]="companyService.selectedCompany"></documents-tab>
     </mat-tab>
     <mat-tab label="{{'B2B_MODULE'|translate}}">
       <b2b-module [id]="account_id" [account]="companyService.selectedCompany"></b2b-module>

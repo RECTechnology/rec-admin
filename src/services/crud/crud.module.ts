@@ -6,7 +6,7 @@ import { NeighborhoodsCrud } from './neighborhoods/neighborhoods.crud';
 import { UsersCrud } from './users/users.crud';
 import { DocumentKindsCrud } from './document_kinds/document_kinds';
 import { DocumentCrud } from './documents/documents';
-import { TiersCrud } from './tiers/tiers';
+import { TiersCrud } from './tiers/tiers.crud';
 
 @NgModule({
     providers: [

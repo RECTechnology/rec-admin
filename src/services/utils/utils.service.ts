@@ -49,6 +49,7 @@ export class UtilsService {
     delete ent.document_kinds;
     delete ent.account;
     delete ent.kind;
+    delete ent.kind_id;
 
     return ent;
   }
