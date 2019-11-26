@@ -71,7 +71,7 @@ export class NewDelegateComponent extends PageBase {
         public route: ActivatedRoute,
         public router: Router,
         public company: CompanyService,
-        public adminService: AdminService,
+        public adminService: AdminService, // TODO: Remove AdminService when V3 CRUD is available
         public utils: UtilsService,
         public changeCrud: DelegatedChangesCrud,
         public changeDataCrud: DelegatedChangesDataCrud,

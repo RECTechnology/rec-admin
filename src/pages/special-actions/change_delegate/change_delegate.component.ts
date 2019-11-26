@@ -8,7 +8,6 @@ import { UtilsService } from '../../../services/utils/utils.service';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { CsvUpload } from './components/csv-upload/csv-upload.dia';
 import { CompanyService } from '../../../services/company/company.service';
-import { AdminService } from '../../../services/admin/admin.service';
 import { ActivateResume } from './components/activate-resume/activate-resume.dia';
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
@@ -43,7 +42,6 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
     public utils: UtilsService,
     public controles: ControlesService,
     public company: CompanyService,
-    public adminService: AdminService,
     public router: Router,
     public changeCrud: DelegatedChangesCrud,
     public changeDataCrud: DelegatedChangesDataCrud,
