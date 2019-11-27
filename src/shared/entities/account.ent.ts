@@ -2,6 +2,7 @@ import { User } from './user.ent';
 import { Wallet } from './wallet.ent';
 import { Activity } from './translatable/activity.ent';
 import { Product } from './translatable/product.ent';
+import { Tier } from './tier.ent';
 
 export type AccountType = 'PRIVATE' | 'COMPANY';
 export type AccountSubtype = 'RETAILER' | 'WHOLESALE' | 'NORMAL' | 'BMINCOME';
@@ -20,11 +21,9 @@ export interface Account {
     address_number: string;
     allowed_methods: any[];
     association: string;
-
     activities: Activity[];
-    producing_products: Product[];
-    consuming_products: Product[];
 
+    consuming_products: Product[];
     cash_in_tokens: any[];
     category: Category;
     cif: string;
@@ -35,12 +34,15 @@ export interface Account {
     company_token: string;
     country: string;
     description: string;
+
     email: string;
     fixed_location: true;
+
     id: number;
     kyc_manager: User;
     latitude: number;
     lemon_id: string;
+    level_id: Tier;
     limit_configuration: any[];
     limit_counts: any[];
     limits: any[];
@@ -55,6 +57,7 @@ export interface Account {
     on_map: true;
     phone: string;
     prefix: string;
+    producing_products: Product[];
     public_image: string;
     rec_address: string;
     roles: string[];
@@ -90,6 +93,8 @@ export class Account implements Account {
                 this[prop] = accountInfo[prop].map((el) => new Wallet(el));
             } else if (prop === 'lw_balance') {
                 this[prop] = accountInfo[prop] / 100;
+            } else if (prop === 'level_id') {
+                this[prop] = new Tier(accountInfo[prop]);
             } else {
                 this[prop] = accountInfo[prop];
             }

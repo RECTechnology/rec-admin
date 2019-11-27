@@ -38,9 +38,18 @@ export class AddTierDia extends BaseDialog {
   public ngOnInit() {
     console.log('Item', this.item);
     if (this.isEdit) {
+      this.getTier();
       this.search();
     }
     this.getTiers();
+  }
+
+  public getTier() {
+    this.tiersCrud.find(this.item.id)
+      .subscribe((resp) => {
+        this.item = resp.data;
+        console.log('iten', this.item);
+      });
   }
 
   public getTiers() {
@@ -63,8 +72,9 @@ export class AddTierDia extends BaseDialog {
   }
 
   public deleteDoc(doc: DocumentKind) {
-    this.tiersCrud.unsetDockind(doc.id, this.item.id)
+    this.tiersCrud.unsetDocumentKind(doc.id, this.item.id)
       .subscribe((resp) => {
+        this.getTier();
         this.search();
         this.alerts.showSnackbar('Removed document');
       }, (err) => {
@@ -73,8 +83,9 @@ export class AddTierDia extends BaseDialog {
   }
 
   public addDocKind(doc: DocumentKind) {
-    this.docKindCrud.setTier(this.item.id, this.item.id)
+    this.tiersCrud.setDocumentKind(this.item.id, doc.id)
       .subscribe((resp) => {
+        this.getTier();
         this.search();
         this.alerts.showSnackbar('Added document');
       }, (err) => {
