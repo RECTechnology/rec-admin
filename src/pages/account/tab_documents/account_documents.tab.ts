@@ -24,6 +24,8 @@ export class AccountDocuments {
   @Input() public account: Account;
   @Input() public tiers: Tier[];
 
+  public loading = false;
+
   constructor(
     private route: ActivatedRoute,
     public router: Router,
@@ -59,6 +61,20 @@ export class AccountDocuments {
           }
           return el;
         });
+      });
+  }
+
+  public tryValidateTier(tier: Tier) {
+    this.loading = true;
+    this.crudAccounts.update(this.id, { level_id: tier.id })
+      .subscribe((resp) => {
+        this.account = resp.data;
+        this.loading = false;
+        this.alerts.showSnackbar('Validate tier successfully!');
+        this.getTiers();
+      }, (err) => {
+        this.loading = false;
+        this.alerts.showSnackbar(err.message);
       });
   }
 }

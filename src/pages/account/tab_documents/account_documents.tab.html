@@ -38,6 +38,11 @@
             <mat-list-item *ngIf="tier.document_kinds.length === 0">
               <h4 mat-line class="text-small">This tier has no Document Kinds attached</h4>
             </mat-list-item>
+
+            <mat-action-row *ngIf="!tier.validated">
+              <btn-loader [loading]="loading" [disabled]="loading" [text]="'Validate'" (click)="tryValidateTier(tier)">
+              </btn-loader>
+            </mat-action-row>
           </mat-list>
         </mat-expansion-panel>
       </mat-accordion>
