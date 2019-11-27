@@ -1060,5 +1060,9 @@
   "TIERS": "Niveles",
   "AVAILABLE_DOCUMENT_KINDS": "Tipos de documentos disponibles",
   "AVAILABLE_DOCUMENTS": "Documentos disponibles",
-  "AVAILABLE_TIERS": "Niveles disponibles"
+  "AVAILABLE_TIERS": "Niveles disponibles",
+  "DOCUMENT_KIND": "Tipo de documento",
+  "Kind": "Tipo",
+  "Previous Tier": "Nivel Anterior",
+  "Next Tier": "Nivel Posterior"
 }

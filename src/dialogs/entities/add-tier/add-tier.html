@@ -13,13 +13,13 @@
     <div class="col-lg-12">
       <input-field [(value)]="item.description" label="Description" [disabled]="loading"></input-field>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-12" style="margin-bottom: 8px;">
       <input-field type="select" [(value)]="item.previous_id" label="Previous Tier" [disabled]="loading"
         [options]="tiers">
       </input-field>
       <p class="small-text">* Leave empty if this is a root Tier</p>
     </div>
-    <div class="col-lg-12">
+    <div class="col-lg-12" style="margin-bottom: 8px;">
       <input-field type="select" [(value)]="item.next_id" label="Next Tier" [disabled]="loading" [options]="tiers">
       </input-field>
       <p class="small-text">* Leave empty if this is a end Tier</p>
@@ -27,7 +27,7 @@
   </div>
   <div class="row">
     <div *ngIf="isEdit" class="col-lg-12">
-      <p class="small-text-2">{{'REQUIRED_DOCUMENT_TYPES'|translate}}</p>
+      <p class="small-text-2">{{'DOCUMENT_KINDS'|translate}}</p>
       <div class="activity-box-list">
         <ul *ngIf="item.document_kinds && item.document_kinds.length" style="list-style: none; margin: 0; padding: 0">
           <li class="activity-list-item small-text" *ngFor="let doc of item.document_kinds; let i = index">

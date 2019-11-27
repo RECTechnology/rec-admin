@@ -1,5 +1,5 @@
 <div class="group-col-left">
-    <span class="small-text-2" *ngIf="label">{{label|translate}}</span>
+    <span class="small-text-2 marg-b-5" *ngIf="label">{{label|translate}}</span>
     <input *ngIf="isNormalInput" [disabled]="disabled" [type]="type" class="user-input small" [ngModel]="value"
         (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder|translate}}" name="{{name}}">
 
@@ -9,8 +9,8 @@
     </mat-checkbox>
 
     <mat-select class="mat-button-menu" *ngIf="!isNormalInput && type === 'select'" [ngModel]="value"
-        (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder}}">
-        <mat-option [value]="opt.value || opt" *ngFor="let opt of options">{{(opt.name || opt)|translate}}</mat-option>
+        (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder|translate}}">
+        <mat-option [value]="opt.value || opt" *ngFor="let opt of options">{{(opt.name || opt) | translate}}</mat-option>
     </mat-select>
 
 
