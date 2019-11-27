@@ -42,7 +42,8 @@ export interface Account {
     kyc_manager: User;
     latitude: number;
     lemon_id: string;
-    level_id: Tier;
+    level_id: number | string;
+    level: Tier;
     limit_configuration: any[];
     limit_counts: any[];
     limits: any[];
@@ -93,8 +94,9 @@ export class Account implements Account {
                 this[prop] = accountInfo[prop].map((el) => new Wallet(el));
             } else if (prop === 'lw_balance') {
                 this[prop] = accountInfo[prop] / 100;
-            } else if (prop === 'level_id') {
+            } else if (prop === 'level') {
                 this[prop] = new Tier(accountInfo[prop]);
+                this.level_id = this[prop].id;
             } else {
                 this[prop] = accountInfo[prop];
             }

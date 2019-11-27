@@ -45,15 +45,20 @@ export class AccountDocuments {
       });
   }
 
-  public getAccount() {
-
-  }
-
   public getTiers() {
     this.tiersCrud.listInOrder({ offset: 0, limit: 100 })
-      .subscribe((resp) => {
-        console.log('tiers', resp);
-        this.tiers = resp;
+      .subscribe((tiers: Tier[]) => {
+        const currentTier: any = this.account.level || {};
+        const tIndex = tiers.findIndex((t) => t.id === currentTier.id);
+
+        this.tiers = tiers.map((el, index) => {
+          if (index <= tIndex) {
+            el.validated = true;
+          } else {
+            el.validated = false;
+          }
+          return el;
+        });
       });
   }
 }

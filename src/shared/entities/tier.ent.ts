@@ -11,6 +11,7 @@ export interface Tier {
     previous?: Tier;
     next?: Tier;
     next_id?: number | string;
+    validated?: boolean;
 }
 
 export class Tier implements Tier {
