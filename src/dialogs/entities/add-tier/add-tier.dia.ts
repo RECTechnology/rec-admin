@@ -36,7 +36,6 @@ export class AddTierDia extends BaseDialog {
   }
 
   public ngOnInit() {
-    console.log('Item', this.item);
     if (this.isEdit) {
       this.getTier();
       this.search();
@@ -48,7 +47,6 @@ export class AddTierDia extends BaseDialog {
     this.tiersCrud.find(this.item.id)
       .subscribe((resp) => {
         this.item = resp.data;
-        console.log('iten', this.item);
       });
   }
 
