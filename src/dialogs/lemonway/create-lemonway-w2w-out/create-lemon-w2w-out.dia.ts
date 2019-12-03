@@ -15,8 +15,8 @@ import { UtilsService } from 'src/services/utils/utils.service';
 export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public id: any;
   public account: Account;
-  public currentAmountREC: number;
-  public currentAmountEUR: number;
+  public currentAmountREC: number = 0;
+  public currentAmountEUR: number = 0;
 
   public originAccount;
   public targetAccount;
@@ -50,7 +50,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   }
 
   public ngOnInit() {
-    this.accountCrud.find(this.originAccount.id).subscribe((resp) => {
+    this.accountCrud.find(this.originAccount).subscribe((resp) => {
       this.account = resp.data;
       this.currentAmountREC = this.account.getBalance('REC');
       this.currentAmountEUR = this.account.lw_balance;

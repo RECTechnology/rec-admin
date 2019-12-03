@@ -119,11 +119,11 @@ export class Account implements Account {
         return this.roles ? this.roles.indexOf(User.ROLE_READONLY) !== -1 : false;
     }
 
-    public getBalance(currency: string) {
+    public getBalance(currency: string, defaultReturn = 0) {
         const currencyUpper = currency.toUpperCase();
         const balance = this.wallets && this.wallets.length
             ? (this.wallets.find((el) => el.currency === currencyUpper) || { available: 0 }).available
             : 0;
-        return balance / 1e8;
+        return (balance / 1e8) || defaultReturn;
     }
 }

@@ -15,8 +15,8 @@ import { UtilsService } from 'src/services/utils/utils.service';
 export class CreateLemonWithdrawalDia extends BaseDialog {
   public id: any;
   public account: Account;
-  public currentAmountREC: number;
-  public currentAmountEUR: number;
+  public currentAmountREC: number = 0;
+  public currentAmountEUR: number = 0;
   public concept: string = 'Money-out NOVACT rec moneda ciutadana';
   public amount: number;
   public lwInfo: any;
@@ -42,7 +42,7 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
     this.accountCrud.find(this.id).subscribe((resp) => {
       this.account = resp.data;
       this.currentAmountREC = this.account.getBalance('REC');
-      this.currentAmountEUR = this.account.lw_balance;
+      this.currentAmountEUR = this.account.lw_balance || 0;
     });
   }
 
