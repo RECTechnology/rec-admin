@@ -68,8 +68,8 @@ export class TlItemOption implements TlItemOption {
 }
 
 export interface TableListOptions {
-    optionsType: 'menu' | 'buttons';
-    sortEnabled: boolean;
+    optionsType?: 'menu' | 'buttons';
+    sortEnabled?: boolean;
 }
 
 @Component({
