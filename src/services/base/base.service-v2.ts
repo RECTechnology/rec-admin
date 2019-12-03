@@ -63,7 +63,7 @@ export class BaseService2 {
    * @return {String} the access token to be used
   */
   public getToken() {
-    return this.us.tokens.access_token;
+    return this.us.tokens ? this.us.tokens.access_token : '';
   }
 
   public getHeaders(overwriteHeaders: any = {}): HttpHeaders {
