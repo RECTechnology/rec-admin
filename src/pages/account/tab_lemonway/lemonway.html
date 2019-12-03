@@ -59,8 +59,8 @@
             </div>
             <div>
               <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
-                [data]="sortedData" noItemsMessage="There are no items yet" [limit]="limit" [total]="total"
-                (onChangePage)="changedPage($event)" showLoader="true">
+                [data]="sortedData" noItemsMessage="There are no items yet" [options]="tableOptions" [limit]="limit"
+                [total]="total" (onChangePage)="changedPage($event)" showLoader="true">
               </tl-table>
             </div>
           </mat-tab>
@@ -81,8 +81,8 @@
             </div>
             <div>
               <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headersP2P"
-                [data]="sortedDataP2P" noItemsMessage="There are no items yet" [limit]="limit" [total]="total"
-                (onChangePage)="changedPage($event)" showLoader="true">
+                [data]="sortedDataP2P" noItemsMessage="There are no items yet" [options]="tableOptions" [limit]="limit"
+                [total]="total" (onChangePage)="changedPage($event)" showLoader="true">
               </tl-table>
             </div>
           </mat-tab>

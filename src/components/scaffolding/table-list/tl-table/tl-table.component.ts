@@ -69,6 +69,7 @@ export class TlItemOption implements TlItemOption {
 
 export interface TableListOptions {
     optionsType: 'menu' | 'buttons';
+    sortEnabled: boolean;
 }
 
 @Component({
@@ -86,6 +87,7 @@ export class TableListTable implements AfterContentInit {
     @Input() public noItemsMessage: string = 'NO_ITEMS';
     @Input() public options: TableListOptions = {
         optionsType: 'menu',
+        sortEnabled: true,
     };
 
     @Input() public total: number = 0;

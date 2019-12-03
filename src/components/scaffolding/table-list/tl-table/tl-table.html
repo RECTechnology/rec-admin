@@ -3,9 +3,9 @@
         (matSortChange)="sortData($event)">
         <tr class="bordered-bottom">
             <ng-template ngFor let-header [ngForOf]="headers">
-                <th *ngIf="header.sortable === undefined  || header.sortable" mat-sort-header="{{header.sort}}">
+                <th *ngIf="options.sortEnabled && (header.sortable === undefined  || header.sortable)" mat-sort-header="{{header.sort}}">
                     {{header.title|translate}}</th>
-                <th *ngIf="header.sortable !== undefined && !header.sortable" style="text-transform: capitalize">
+                <th *ngIf="!options.sortEnabled || (header.sortable !== undefined && !header.sortable)" style="text-transform: capitalize">
                     {{header.title|translate}}</th>
             </ng-template>
             <th *ngIf="itemOptions"></th>

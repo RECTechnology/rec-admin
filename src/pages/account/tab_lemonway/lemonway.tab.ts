@@ -126,6 +126,9 @@ export class LemonWayTab extends TablePageBase {
       title: 'Concept',
     },
   ];
+  public tableOptions: Partial<TableListOptions> = {
+    sortEnabled: false,
+  };
 
   public WALLET_STATUS_MAP = WALLET_STATUS_MAP;
   public currentTab = 0;
