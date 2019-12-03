@@ -13,11 +13,13 @@ import { Account } from 'src/shared/entities/account.ent';
 export class AccountPickerComponent {
   @Input() public account = null;
   @Input() public id = null;
+  @Input() public showKeyboard = false;
   @Output() public idChange: EventEmitter<any> = new EventEmitter();
   @Output() public accountChange: EventEmitter<any> = new EventEmitter();
   @Input() public disabled = false;
   @Input() public filters = {};
 
+  public isKeyboard = false;
   public selectedAccount: Account | any = {};
   public Brand = environment.Brand;
 
@@ -34,21 +36,22 @@ export class AccountPickerComponent {
     this.alerts.openModal(AccountPickerDia, {
       currentid: this.selectedAccount && this.selectedAccount.id,
       filters: this.filters,
-    }).subscribe((account: Account) => {
-      if (!account || !account.id) {
-        this.accountChange.emit(null);
-        this.idChange.emit(null);
-        return;
-      }
+    }).subscribe(this.selectAccount.bind(this));
+  }
 
-      this.selectedAccount = account;
-      this.accountChange.emit(this.selectedAccount);
-      this.idChange.emit(this.selectedAccount.id);
-    });
+  public selectAccount(account: Partial<Account>) {
+    if (!account || !account.id) {
+      this.accountChange.emit(null);
+      this.idChange.emit(null);
+      return;
+    }
+
+    this.selectedAccount = account;
+    this.accountChange.emit(this.selectedAccount);
+    this.idChange.emit(this.selectedAccount.id);
   }
 
   public search() {
-    console.log('alskdjaslkd', this.account);
     if (this.account && this.account.id) {
       this.accountCrud.find(this.account.id)
         .subscribe((account) => {
@@ -61,5 +64,12 @@ export class AccountPickerComponent {
     } else {
       this.selectedAccount = {};
     }
+  }
+
+  public changeMode() {
+    if (this.isKeyboard) {
+      this.selectAccount({ id: this.selectedAccount.id });
+    }
+    this.isKeyboard = !this.isKeyboard;
   }
 }

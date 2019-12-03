@@ -29,7 +29,7 @@ import { UsersExportDefaults } from 'src/data/export-defaults';
 })
 export class UsersPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Users';
-  public sortedData: User[] = [];
+  public sortedData: User[] = this.usersCrud.cached;
   public loading = true;
   public activeUsers = false;
   public inactiveUsers = false;
@@ -144,6 +144,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     const data: ListAccountsParams = this.getCleanParams(query);
 
     this.usersCrud.list(data)
+      .pipe(this.usersCrud.cache())
       .subscribe(
         (resp) => {
           this.companyService.companyUsers = resp.data.elements;

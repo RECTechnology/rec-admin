@@ -30,6 +30,7 @@ export class CrudBaseService<T> extends BaseService2 {
     public basePath: string = '';
     public userRole: string = CrudBaseService.ROLE_ADMIN;
     public version: string = 'v3';
+    public cached: any = [];
 
     public mapItems: boolean = false;
 
@@ -114,5 +115,12 @@ export class CrudBaseService<T> extends BaseService2 {
                 return resp;
             });
         }
+    }
+
+    public cache(fn?) {
+        return map((resp: any) => {
+            this.cached = (fn && typeof fn === 'function') ? fn(resp) : resp.data.elements || resp.data;
+            return resp;
+        });
     }
 }

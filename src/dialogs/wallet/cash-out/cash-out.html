@@ -16,10 +16,7 @@
     <div class="col-lg-12">
       <div class="group-col-left">
         <p class="small-text-2">{{'Sender ID'|translate}}: </p>
-        <input type="text" class="user-input small" [(ngModel)]="tx.sender" style="margin-bottom: 0">
-        <p class="small-text">
-          * {{'The address of the account you want to send the recs from'|translate}}
-        </p>
+        <account-picker [showKeyboard]="true" [(id)]="tx.sender" [disabled]="loading" label="Sender"></account-picker>
       </div>
       <div class="group-col-left">
         <p class="small-text-2">{{'Amount'|translate}}: </p>
@@ -33,10 +30,7 @@
 
       <div class="group-col-left">
         <p class="small-text-2">{{'Receiver ID'|translate}}: </p>
-        <input type="text" class="user-input small" [(ngModel)]="tx.receiver" style="margin-bottom: 0">
-        <p class="small-text">
-          * {{'The id of the account you want to send the recs to'|translate}}
-        </p>
+        <account-picker [showKeyboard]="true" [(id)]="tx.receiver" [disabled]="loading" label="Receiver"></account-picker>
       </div>
 
       <div class="group-col-left">

@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { Account } from 'src/shared/entities/account.ent';
 import { environment } from 'src/environments/environment';
+import { CrudBaseService } from 'src/services/base/crud.base';
 
 @Component({
   selector: 'account-picker-dia',
@@ -11,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class AccountPickerDia {
 
   public currentAccountId = null;
-  public accounts: Account[] = [];
+  public accounts: Account[] = this.accountCrud.cached;
   public filters = {};
   public type = null;
 
@@ -21,7 +22,7 @@ export class AccountPickerDia {
   constructor(
     public dialogRef: MatDialogRef<AccountPickerDia>,
     public accountCrud: AccountsCrud,
-  ) { }
+  ) {}
 
   public search(query) {
     const opts = {
@@ -34,6 +35,7 @@ export class AccountPickerDia {
 
     this.loading = true;
     this.accountCrud.list(opts)
+      .pipe(this.accountCrud.cache())
       .subscribe((resp) => {
         this.accounts = resp.data.elements;
         this.loading = false;
