@@ -39,7 +39,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public onlyExchanges = false;
 
   public defaultExportKvp = AccountsExportDefaults;
-  public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
+  public headerOpts: TableListHeaderOptions = { input: true, refresh: true, deepLinkQuery: true };
   public headers: TlHeader[] = [
     TlHeaders.Active,
     TlHeaders.Id,
@@ -128,6 +128,8 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       (error) => {
         this.loading = false;
       });
+
+    this.query = query;
   }
 
   public exportCall(opts) {

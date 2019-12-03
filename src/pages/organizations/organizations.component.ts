@@ -135,6 +135,7 @@ export class OrganizationsComponent extends TablePageBase {
     if (data.query && !data.query.search) {
       delete data.query.search;
     }
+    this.query = query;
 
     this.accountsCrud.search(data).subscribe(
       (resp: any) => {
