@@ -19,6 +19,7 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   public currentAmountEUR: number = 0;
   public concept: string = 'Money-out NOVACT rec moneda ciutadana';
   public amount: number;
+  public otp: string;
   public lwInfo: any;
 
   public ibans: any[] = [];
@@ -48,7 +49,7 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
 
   public proceed() {
     this.loading = true;
-    this.accountCrud.lwMoneyOut(this.lwInfo.ID, this.amount.toFixed(2), this.concept)
+    this.accountCrud.lwMoneyOut(this.lwInfo.ID, this.amount.toFixed(2), this.concept, this.otp)
       .subscribe((resp) => {
         this.loading = false;
         this.alerts.showSnackbar('Success');

@@ -106,11 +106,12 @@ export class AccountsCrud extends CrudBaseService<Account> {
         });
     }
 
-    public lwMoneyOut(wallet, amountTot, message) {
+    public lwMoneyOut(wallet, amount, message, otp) {
         return this.lwGateway('MoneyOut', {
             wallet,
-            amountTot,
+            amount,
             message,
+            otp,
         });
     }
 
