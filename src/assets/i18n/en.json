@@ -500,5 +500,8 @@
   "AVAILABLE_DOCUMENTS": "Available Documents",
   "AVAILABLE_TIERS": "Available Tiers",
   "TIERS_DOCUMENTS": "Tiers & Documents",
-  "DOCUMENT_KIND": "Document Kind"
+  "DOCUMENT_KIND": "Document Kind",
+
+  "ONLY_IN_LEMONWAY:long": "This is only performed in lemonway, it doesn't affect the REC System.",
+  "ONLY_IN_LEMONWAY:short": "This is only performed in lemonway"
 }

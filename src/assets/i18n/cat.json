@@ -1070,5 +1070,7 @@
   "DOCUMENT_KIND": "Tipus de document",
   "Kind": "Tipus",
   "Previous Tier": "Nivel Anterior",
-  "Next Tier": "Nivel Posterior"
+  "Next Tier": "Nivel Posterior",
+  "ONLY_IN_LEMONWAY:long": "Això només es realitza a Lemonway, sense afectar el sistema REC.",
+  "ONLY_IN_LEMONWAY:short": "Això només es realitza a Lemonway"
 }
