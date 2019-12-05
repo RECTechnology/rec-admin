@@ -1,6 +1,5 @@
 
 export class Currency {
-
   public static TYPE_CRYPTO = 'crypto';
   public static TYPE_FIAT = 'fiat';
 
@@ -15,9 +14,11 @@ export class Currency {
 
   private symbolPriv: string = '';
   private typePriv: string = '';
+  private namePriv: string = '';
   private scalePriv: number = 0;
 
-  constructor(symbol, type = Currency.TYPE_CRYPTO, scale = 2) {
+  constructor(name: string, symbol, type = Currency.TYPE_CRYPTO, scale = 2) {
+    this.namePriv = name;
     this.symbolPriv = symbol;
     this.typePriv = type;
     this.scalePriv = scale;
@@ -39,6 +40,14 @@ export class Currency {
     this.scalePriv = scale;
   }
 
+  get name(): string {
+    return this.namePriv;
+  }
+
+  set name(name: string) {
+    this.namePriv = name;
+  }
+
   get symbol(): string {
     return this.symbolPriv;
   }
@@ -57,13 +66,19 @@ export class Currency {
 }
 
 export class Crypto extends Currency {
-  constructor(symbol: string = 'NULL', scale: number = 8) {
-    super(symbol, Currency.TYPE_CRYPTO, scale);
+  constructor(name: string, symbol: string = 'NULL', scale: number = 8) {
+    super(name, symbol, Currency.TYPE_CRYPTO, scale);
   }
 }
 
 export class Fiat extends Currency {
-  constructor(symbol: string = 'NULL', scale: number = 2) {
-    super(symbol, Currency.TYPE_FIAT, scale);
+  constructor(name: string, symbol: string = 'NULL', scale: number = 2) {
+    super(name, symbol, Currency.TYPE_FIAT, scale);
   }
 }
+
+// tslint:disable-next-line: variable-name
+export const Currencies = {
+  EUR: new Fiat('EUR', '€', 2),
+  REC: new Crypto('REC', 'Ɍ', 8),
+};

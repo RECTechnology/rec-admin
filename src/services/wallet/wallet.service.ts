@@ -10,6 +10,17 @@ const sortActive = (a, b) => (a === b) ? 0 : (a.status === 'available' ? -1 : 1)
 
 @Injectable()
 export class WalletService extends BaseService {
+
+  /**
+   * Scales a number for specified scale
+   * @param {string} amount - number to scale
+   * @param {string} scale - the scale
+   * @return {number} - return the scaled amount
+   */
+  public static scaleNum(amount: number, scale: number): number {
+    return Math.round(amount * Math.pow(10, scale));
+  }
+
   public wallets: any[] = [];
   public difference: any = null;
   public total_available: any = {
@@ -30,6 +41,10 @@ export class WalletService extends BaseService {
    */
   public getToken(): string {
     return this.us.tokens.access_token;
+  }
+
+  public scaleNum(num, scale) {
+    return WalletService.scaleNum(num, scale);
   }
 
   /**
@@ -62,15 +77,5 @@ export class WalletService extends BaseService {
   public getDescaledAmount(currency, amount) {
     const scale = this.getScaleForCurrency(currency);
     return amount * (+Math.pow(10, scale).toFixed(scale));
-  }
-
-  /**
-   * Scales a number for specified scale
-   * @param {string} amount - number to scale
-   * @param {string} scale - the scale
-   * @return {number} - return the scaled amount
-   */
-  public scaleNum(amount: number, scale: number): number {
-    return amount ? +(amount / Math.pow(10, scale)).toFixed(scale) : 0;
   }
 }

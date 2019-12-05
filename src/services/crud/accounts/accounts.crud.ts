@@ -92,6 +92,11 @@ export class AccountsCrud extends CrudBaseService<Account> {
         return this.post(url, { amount, to });
     }
 
+    public createWithdrawal(account, amount, concept, otp, currency) {
+        const url = [...this.getUrlBase(), '/', account, '/', 'withdrawals'];
+        return this.post(url, { amount, concept, otp, currency });
+    }
+
     public lwGateway(funct, data) {
         const url = ['/', this.userRole, '/', this.version, '/gateway/lemonway/', funct];
         return this.post(url, data);

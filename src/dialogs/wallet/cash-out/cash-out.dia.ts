@@ -4,6 +4,7 @@ import { TransactionService } from '../../../services/transactions/transactions.
 import BaseDialog from '../../../bases/dialog-base';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { Currencies } from 'src/shared/entities/currency/currency';
 
 @Component({
   selector: 'cash-out',
@@ -32,18 +33,21 @@ export class CashOutDia extends BaseDialog {
   }
 
   public makeTx() {
-    // if (this.loading) {
-    //   return;
-    // }
+    if (this.loading) {
+      return;
+    }
 
-    // this.loading = true;
-    this.txService.sendTx(this.tx.sender, this.tx.receiver, this.tx.concept, this.tx.sms_code, this.tx.amount)
-      .subscribe((resp) => {
-        this.alerts.showSnackbar('Sent correclty');
-        this.close(true);
-      }, (err) => {
-        this.alerts.showSnackbar(err.message);
-        // this.loading = false;
-      });
+    this.loading = true;
+    this.txService.sendTx(
+      this.tx.sender, this.tx.receiver,
+      this.tx.concept, this.tx.sms_code,
+      WalletService.scaleNum(this.tx.amount, Currencies.REC.scale),
+    ).subscribe((resp) => {
+      this.alerts.showSnackbar('Sent correclty');
+      this.close(true);
+    }, (err) => {
+      this.alerts.showSnackbar(err.message);
+      this.loading = false;
+    });
   }
 }

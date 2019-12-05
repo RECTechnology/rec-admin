@@ -85,10 +85,7 @@ export class TableListTable implements AfterContentInit {
     @Input() public showPaginator: boolean = true;
     @Input() public itemOptions: TlItemOption[];
     @Input() public noItemsMessage: string = 'NO_ITEMS';
-    @Input() public options: TableListOptions = {
-        optionsType: 'menu',
-        sortEnabled: true,
-    };
+    @Input() public options: TableListOptions = {};
 
     @Input() public total: number = 0;
     @Input() public limit: number = 0;
@@ -108,6 +105,14 @@ export class TableListTable implements AfterContentInit {
     ) {
         this.onSort = new EventEmitter<Sort>();
         this.onChangePage = new EventEmitter<Sort>();
+    }
+
+    public ngOnInit() {
+        this.options = {
+            optionsType: 'menu',
+            sortEnabled: true,
+            ...this.options,
+        };
     }
 
     public ngAfterContentInit() {
