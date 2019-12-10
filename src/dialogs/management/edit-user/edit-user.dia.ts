@@ -3,7 +3,7 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
+import { FileUpload } from '../../other/file-upload/file-upload.dia';
 import { AdminService } from '../../../services/admin/admin.service';
 import { forkJoin } from 'rxjs';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
@@ -128,40 +128,6 @@ export class EditUserData {
       `CHANGE_PHONE_DESC`, 'Change phone for user ' + this.user.name,
       'Change', 'error',
     ).toPromise();
-  }
-
-  public selectProfileImage() {
-    this.openUpdateImage(this.user.profile_image)
-      .subscribe((resp) => {
-        this.userCopy.profile_image = resp;
-      }, (error) => {
-        return;
-      });
-  }
-
-  public selectDocFront() {
-    this.openUpdateImage(this.user.kyc_validations.document_front)
-      .subscribe((resp) => {
-        this.userCopy.kyc_validations.document_front = resp;
-      }, (error) => {
-        return;
-      });
-  }
-
-  public selectDocRear() {
-    this.openUpdateImage(this.user.kyc_validations.document_rear)
-      .subscribe((resp) => {
-        this.userCopy.kyc_validations.document_rear = resp;
-      }, (error) => {
-        return;
-      });
-  }
-
-  public openUpdateImage(selectedImage) {
-    return this.alerts.openModal(FileUpload, {
-      hasSelectedImage: !!selectedImage,
-      selectedImage,
-    });
   }
 
   public setLanguage($event) {

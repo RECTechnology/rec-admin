@@ -1,7 +1,7 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { AddUser } from '../../dialogs/management/add-user/add-user.dia';
+import { AddUserDia } from '../../dialogs/management/add-user/add-user.dia';
 import { MatDialog } from '@angular/material';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils/utils.service';
@@ -11,13 +11,16 @@ import { EditUserData } from '../../dialogs/management/edit-user/edit-user.dia';
 import { ControlesService } from '../../services/controles/controles.service';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
-import { ExportDialog } from '../../components/dialogs/export-dialog/export.dia';
+import { ExportDialog } from '../../dialogs/other/export-dialog/export.dia';
 import { TlHeader, TlItemOption } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { User } from 'src/shared/entities/user.ent';
+import { TlHeaders } from 'src/data/tl-headers';
+import { TlItemOptions } from 'src/data/tl-item-options';
+import { UsersExportDefaults } from 'src/data/export-defaults';
 
 @Component({
   selector: 'users',
@@ -26,7 +29,7 @@ import { User } from 'src/shared/entities/user.ent';
 })
 export class UsersPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Users';
-  public sortedData: User[] = [];
+  public sortedData: User[] = this.usersCrud.cached;
   public loading = true;
   public activeUsers = false;
   public inactiveUsers = false;
@@ -34,69 +37,19 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   public particularUsers = false;
 
   public headers: TlHeader[] = [
-    {
-      sort: 'id',
-      title: 'ID',
-      type: 'code',
-    }, {
-      avatar: {
-        sort: 'profile_image',
-        title: 'Profile Image',
-      },
-      sort: 'name',
-      title: 'Name',
-      type: 'avatar',
-    }, {
-      sort: 'username',
-      title: 'Username',
-    }, {
-      sort: 'email',
-      title: 'Email',
-    }, {
-      accessor: (el) => {
-        const hasPlus = String(el.prefix).includes('+');
-        return (!hasPlus ? '+' : '') + (el.prefix || '--') + ' ' + (el.phone || 'not-set');
-      },
-      sort: 'phone',
-      title: 'Phone',
-    }, {
-      accessor: (el) => el.accounts ? el.accounts.length : 0,
-      sort: 'companies',
-      sortable: false,
-      title: 'Companies',
-      type: 'number',
-    }];
-  public itemOptions: TlItemOption[] = [
-    {
-      callback: this.openViewDetails.bind(this),
-      text: 'View',
-      icon: 'fa-eye',
-    }, {
-      callback: this.openEditUser.bind(this),
-      text: 'Edit',
-      icon: 'fa-edit',
-    }, {
-      callback: this.openDeleteUser.bind(this),
-      class: 'col-red col-error',
-      text: 'Delete',
-      icon: 'fa-trash',
-    }];
-  public defaultExportKvp = [
-    { key: 'id', value: '$.id', active: true },
-    { key: 'username', value: '$.username', active: true },
-    { key: 'email', value: '$.email', active: true },
-    { key: 'enabled', value: '$.enabled', active: true },
-    { key: 'locked', value: '$.locked', active: true },
-    { key: 'expired', value: '$.expired', active: true },
-    { key: 'roles', value: '$.roles[*]', active: true },
-    { key: 'name', value: '$.name', active: true },
-    { key: 'created', value: '$.created', active: true },
-    { key: 'dni', value: '$.dni', active: true },
-    { key: 'prefix', value: '$.prefix', active: true },
-    { key: 'phone', value: '$.phone', active: true },
-    { key: 'pin', value: '$.pin', active: true },
-    { key: 'public_phone', value: '$.public_phone', active: true },
+    TlHeaders.Id,
+    TlHeaders.Avatar,
+    TlHeaders.generate('username'),
+    TlHeaders.Email,
+    TlHeaders.Phone,
+    TlHeaders.CompaniesTotal,
   ];
+  public itemOptions: TlItemOption[] = [
+    TlItemOptions.View(this.openViewDetails.bind(this)),
+    TlItemOptions.Edit(this.openEditUser.bind(this)),
+    TlItemOptions.Delete(this.openDeleteUser.bind(this)),
+  ];
+  public defaultExportKvp = UsersExportDefaults;
 
   constructor(
     public titleService: Title,
@@ -128,8 +81,8 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   }
 
   // Opens add user modal
-  public openAddUser() {
-    this.alerts.openModal(AddUser, {
+  public openAddUserDia() {
+    this.alerts.openModal(AddUserDia, {
       addReseller: false,
       showCreateNewUser: false,
     }).subscribe((result) => {
@@ -187,9 +140,11 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
 
   public search(query: string = this.query) {
     this.loading = true;
+    this.query = query;
     const data: ListAccountsParams = this.getCleanParams(query);
 
     this.usersCrud.list(data)
+      .pipe(this.usersCrud.cache())
       .subscribe(
         (resp) => {
           this.companyService.companyUsers = resp.data.elements;

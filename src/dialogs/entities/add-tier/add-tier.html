@@ -1,0 +1,73 @@
+<modal-header title="{{'WIDTHDRAW'|translate}}" (click)="close(false)"></modal-header>
+
+<div class="padd-x20 modal-body" style="min-height: 300px">
+  <div class="row">
+    <div class="col-lg-12">
+      <p style="padding-bottom: 15px">
+        {{(!isEdit ? 'ADD_ITEM_DESC': 'EDIT_ITEM_DESC')|translate:({ type: itemType })}}
+      </p>
+    </div>
+    <div class="col-lg-12">
+      <input-field [(value)]="item.code" label="Code" [disabled]="loading"></input-field>
+    </div>
+    <div class="col-lg-12">
+      <input-field [(value)]="item.description" label="Description" [disabled]="loading"></input-field>
+    </div>
+    <div class="col-lg-12" style="margin-bottom: 8px;">
+      <input-field type="select" [(value)]="item.previous_id" label="Previous Tier" [disabled]="loading"
+        [options]="tiers">
+      </input-field>
+      <p class="small-text">* Leave empty if this is a root Tier</p>
+    </div>
+    <div class="col-lg-12" style="margin-bottom: 8px;">
+      <input-field type="select" [(value)]="item.next_id" label="Next Tier" [disabled]="loading" [options]="tiers">
+      </input-field>
+      <p class="small-text">* Leave empty if this is a end Tier</p>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngIf="isEdit" class="col-lg-12">
+      <p class="small-text-2">{{'DOCUMENT_KINDS'|translate}}</p>
+      <div class="activity-box-list">
+        <ul *ngIf="item.document_kinds && item.document_kinds.length" style="list-style: none; margin: 0; padding: 0">
+          <li class="activity-list-item small-text" *ngFor="let doc of item.document_kinds; let i = index">
+            {{doc.name}}
+            <span class="icon fa fa-trash col-error" (click)="deleteDoc(doc)"></span>
+          </li>
+        </ul>
+        <p class="small-text col-gray padd-x10" *ngIf="item.document_kinds && !item.document_kinds.length">
+          {{'NO_ITEMS'|translate}}
+        </p>
+      </div>
+
+      <button [matMenuTriggerFor]="actMenu" [disabled]="loading" type="button" mat-button class="mat-button-menu"
+        style="margin-top: 5px; width: 100%">
+        <span>{{'DOCUMENT_KIND' | translate}}</span>
+        <i class="fa fa-caret-down" style="margin-left: 8px"></i>
+      </button>
+      <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
+        <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="query"
+           (click)="$event.stopPropagation()" placeholder="{{'Search Document Kinds'|translate}}">
+        <ng-template ngFor let-doc [ngForOf]="docKinds">
+          <button *ngIf="item.document_kinds && !item.document_kinds.includes(doc)" mat-menu-item
+            (click)="addDocKind(doc); query = ''" style="padding: 5px auto">
+            <span style="color: #666; font-size: 12px">{{doc.name}}</span>
+          </button>
+        </ng-template>
+      </mat-menu>
+    </div>
+
+    <div class="col-lg-12" *ngIf="!isEdit">
+      <div class="alert alert-primary">
+        <p class="small-text-2 text-primary">
+          <i class="fa fa-info-circle" style="margin-right: 8px"></i>
+          {{'You can add document kinds after saving'|translate}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
+    <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
+    <btn-loader [loading]="loading" [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()"></btn-loader>
+  </div>
+</div>

@@ -8,7 +8,7 @@
       {{companyService.selectedCompany.getBalance('REC') | number}} Ɍ
     </code>
     <code class="small-text">
-      {{companyService.selectedCompany.getBalance('EUR') | number}} €
+      {{companyService.selectedCompany.lw_balance | number}} €
     </code>
   </div>
 </header-nav>
@@ -26,8 +26,8 @@
     <mat-tab label="{{'MOVEMENTS'|translate}}">
       <movements-tab></movements-tab>
     </mat-tab>
-    <mat-tab label="{{'DOCUMENTS'|translate}}">
-      <documents-tab></documents-tab>
+    <mat-tab label="{{'TIERS_DOCUMENTS'|translate}}">
+      <documents-tab [id]="account_id"  [account]="companyService.selectedCompany"></documents-tab>
     </mat-tab>
     <mat-tab label="{{'B2B_MODULE'|translate}}">
       <b2b-module [id]="account_id" [account]="companyService.selectedCompany"></b2b-module>

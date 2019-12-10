@@ -1,0 +1,48 @@
+name: Test, Build and Deploy [STAGE]
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtaining the code
+        uses: actions/checkout@v1
+
+      - name: Copy env.dist.ts to dist.ts
+        run: cp ./src/environments/environment.ts.dist ./src/environments/environment.ts
+
+      - name: Install deps
+        run: npm install
+
+      - name: Test build
+        run: npm run build:prod
+
+  dev:
+    needs: test
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Obtaining the code
+        uses: actions/checkout@v1
+
+      - name: Login to Docker
+        env:
+          REGISTRY: reg.rallf.com:8443
+          USER: ${{secrets.DOCKER_USERNAME}}
+          PASS: ${{secrets.DOCKER_PASSWORD}}
+        run: docker login -u ${USER} -p ${PASS} reg.rallf.com:8443
+
+      - name: Build Docker image
+        run: docker build . -t reg.rallf.com:8443/rec-admin:master
+
+      - name: Push Docker image
+        run: docker push reg.rallf.com:8443/rec-admin:master
+
+      - name: Deploy
+        uses: joelwmale/webhook-action@1.0.1
+        env:
+          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_STAGE }}
+          data: "Hello from github actions!"

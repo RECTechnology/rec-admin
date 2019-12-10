@@ -8,15 +8,20 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { CompanyService } from 'src/services/company/company.service';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { EditAccountData } from 'src/dialogs/management/edit-account/edit-account.dia';
-import { TlHeader, TlItemOption, TableListOptions } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
+import {
+  TlHeader, TlItemOption, TableListOptions,
+} from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
-import { ExportDialog } from 'src/components/dialogs/export-dialog/export.dia';
+import { ExportDialog } from 'src/dialogs/other/export-dialog/export.dia';
 import { ListAccountsParams } from 'src/interfaces/search';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Account } from 'src/shared/entities/account.ent';
+import { TlHeaders } from 'src/data/tl-headers';
+import { TlItemOptions } from 'src/data/tl-item-options';
+import { AccountsExportDefaults } from 'src/data/export-defaults';
 
 @Component({
   selector: 'accounts',
@@ -26,87 +31,28 @@ import { Account } from 'src/shared/entities/account.ent';
 export class AccountsPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Accounts';
   public canAddUser = false;
-  public sortedData: Account[] = [];
+  public sortedData: Account[] = this.crudAccounts.cached;
   public accountID = null;
   public openDetails = false;
   public active = true;
   public type = '';
   public onlyExchanges = false;
 
-  public defaultExportKvp = [
-    { key: 'id', value: '$.id', active: true },
-    { key: 'company_name', value: '$.name', active: true },
-    { key: 'cif', value: '$.cif', active: true },
-    { key: 'type', value: '$.type', active: true },
-    { key: 'subtype', value: '$.subtype', active: true },
-    { key: 'name', value: '$.kyc_manager.name', active: true },
-    { key: 'lastname', value: '$.kyc_manager.kyc_validations.last_name', active: true },
-    { key: 'street_type', value: '$.street_type', active: true },
-    { key: 'street', value: '$.street', active: true },
-    { key: 'address_number', value: '$.address_number', active: true },
-    { key: 'dni', value: '$.kyc_manager.dni', active: true },
-    { key: 'phone', value: '$.phone', active: true },
-    { key: 'alias', value: '$.kyc_manager.active_card.alias', active: true },
-    { key: 'amount', value: '$.wallets[0].available', active: true },
-    { key: 'neighbourhood_id', value: '$.neighbourhood.id', active: true },
-    { key: 'neighbourhood_name', value: '$.neighbourhood.name', active: true },
-    { key: 'activities', value: '$.activities[*]', active: true },
-  ];
-  public headerOpts: TableListHeaderOptions = { input: true, refresh: true };
+  public defaultExportKvp = AccountsExportDefaults;
+  public headerOpts: TableListHeaderOptions = { input: true, refresh: true, deepLinkQuery: true };
   public headers: TlHeader[] = [
-    {
-      sort: 'active',
-      title: 'Active',
-      type: 'checkbox',
-    }, {
-      sort: 'id',
-      title: 'ID',
-      type: 'code',
-    }, {
-      avatar: {
-        sort: 'company_image',
-        title: 'Company Image',
-      },
-      sort: 'name',
-      title: 'Name',
-      type: 'avatar',
-    }, {
-      sort: 'email',
-      title: 'Email',
-    }, {
-      sort: 'lw_balance',
-      accessor: 'lw_balance',
-      title: 'LW Balance',
-      type: 'number',
-      suffix: '€',
-    }, {
-      sort: 'type',
-      statusClass: (el: any) => ({
-        'col-blue': el !== 'COMPANY',
-        'col-orange': el === 'COMPANY',
-      }),
-      title: 'Type',
-      type: 'status',
-    }, {
-      accessor: (account: Account) => account.getBalance('REC'),
-      sort: 'amount',
-      title: 'Amount',
-      type: 'number',
-      suffix: 'Ɍ',
-    },
+    TlHeaders.Active,
+    TlHeaders.Id,
+    TlHeaders.AvatarCompany,
+    TlHeaders.Email,
+    TlHeaders.LwBalance,
+    TlHeaders.AccountType,
+    TlHeaders.AccountAmountREC,
   ];
-  public itemOptions: TlItemOption[] = [{
-    callback: this.viewAccount.bind(this),
-    icon: 'fa-eye',
-    text: 'View',
-  }, {
-    callback: this.viewEditAccount.bind(this),
-    icon: 'fa-edit',
-    text: 'Edit Account',
-  }];
-  public tableOptions: TableListOptions = {
-    optionsType: 'buttons',
-  };
+  public itemOptions: TlItemOption[] = [
+    TlItemOptions.View(this.viewAccount.bind(this)),
+    TlItemOptions.Edit(this.viewEditAccount.bind(this)),
+  ];
   public isComp = false;
   public isPriv = false;
   public exchangersFilters = {
@@ -171,17 +117,21 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     const data: any = this.getCleanParams(query);
 
     this.loading = true;
-    this.crudAccounts.list(data, 'all').subscribe(
-      (resp: any) => {
-        this.data = resp.data.elements;
-        this.total = resp.data.total;
-        this.sortedData = this.data.slice();
-        this.showing = this.data.length;
-        this.loading = false;
-      },
-      (error) => {
-        this.loading = false;
-      });
+    this.crudAccounts.list(data, 'all')
+      .pipe(this.crudAccounts.cache())
+      .subscribe(
+        (resp: any) => {
+          this.data = resp.data.elements;
+          this.total = resp.data.total;
+          this.sortedData = this.data.slice();
+          this.showing = this.data.length;
+          this.loading = false;
+        },
+        (error) => {
+          this.loading = false;
+        });
+
+    this.query = query;
   }
 
   public exportCall(opts) {
@@ -236,7 +186,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public viewEditAccount(account) {
-    console.log('ahjsdhjasd');
     this.alerts.openModal(EditAccountData, {
       account: { ...account },
     }).subscribe((result) => {

@@ -1,6 +1,9 @@
 <modal-header title="{{'CASH_OUT_TITLE'|translate}}" (click)="close(false)"></modal-header>
 
 <div class="padd-x20 modal-body" style="min-height: 300px;min-width: 50vw;">
+  <div class="alert alert-warning">
+    {{'ONLY_IN_LEMONWAY:long'|translate}}
+  </div>
   <div class="border-bottom marg-b-10 padding-b-15">
     <p class="small-text-2">
       {{'CASH_OUT'|translate}}:
@@ -23,7 +26,7 @@
       <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
         <div style="width: 45%">
           <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
-          <account-picker [disabled]="loading" [(account)]="originAccount"></account-picker>
+          <account-picker [disabled]="loading" [(id)]="originAccount"></account-picker>
         </div>
         <div>
           <button mat-icon-button matTooltip="Change sides" (click)="switchSides()">
@@ -32,7 +35,7 @@
         </div>
         <div style="width: 45%">
           <p class="small-text-2" style="position: relative;">{{'TARGET_ACCOUNT'|translate}}:</p>
-          <account-picker [(account)]="targetAccount" [filters]="accountFilters" [disabled]="loading">
+          <account-picker [(id)]="targetAccount" [filters]="accountFilters" [disabled]="loading">
           </account-picker>
         </div>
       </div>
@@ -46,6 +49,10 @@
     <div class="col-lg-12">
       <input-field type="text" [(value)]="concept" label="Concept" [disabled]="loading">
       </input-field>
+    </div>
+
+    <div class="col-lg-12" *ngIf="amount > currentAmountEUR">
+      <p class="small-text col-error">{{'NO_FUNDS_AVAILABLE'|translate}}</p>
     </div>
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">

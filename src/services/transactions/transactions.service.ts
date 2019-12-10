@@ -169,8 +169,7 @@ export class TransactionService extends BaseService {
 
   public sendTx(sender, receiver, concept, sec_code, amount) {
     return this.post({
-      amount: Math.round(amount * Math.pow(10, 8)),
-      concept, receiver, sec_code, sender,
+      amount, concept, receiver, sec_code, sender,
     }, null, `${API_URL}/admin/v1/third/rec`);
   }
 

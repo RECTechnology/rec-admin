@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MatDialog, MatSnackBarConfig } from '@angular/material';
-import { ConfirmationMessage } from 'src/components/dialogs/confirmation-message/confirmation.dia';
+import { ConfirmationMessage } from 'src/dialogs/other/confirmation-message/confirmation.dia';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +20,10 @@ export class AlertsService {
     return this.openModal(ConfirmationMessage, {
       btnConfirmText, headerIcon, message, status, title, opts,
     });
+  }
+
+  public confirmDeletion(itemName = 'Item') {
+    return this.showConfirmation('Are you sure you want to delete that?', 'Delete ' + itemName + '?', 'ok');
   }
 
   public openModal(C, props = {}, modalOptions = {}) {

@@ -6,12 +6,12 @@ import * as moment from 'moment';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { TxFilter } from 'src/components/other/filter/filter';
 import { TransactionService } from 'src/services/transactions/transactions.service';
-import { TxDetails } from 'src/pages/wallet/dialogs/tx_details/tx_details.dia';
+import { TxDetails } from 'src/dialogs/wallet/tx_details/tx_details.dia';
 import { environment } from 'src/environments/environment';
 import { UtilsService } from 'src/services/utils/utils.service';
-import { CashOutDia } from 'src/pages/wallet/dialogs/cash-out/cash-out.dia';
+import { CashOutDia } from 'src/dialogs/wallet/cash-out/cash-out.dia';
 import { getDateDMY } from 'src/shared/utils.fns';
-import { ExportTxsDia } from 'src/pages/wallet/dialogs/export-txs/export-txs.dia';
+import { ExportTxsDia } from 'src/dialogs/wallet/export-txs/export-txs.dia';
 
 @Component({
   selector: 'movements-tab',

@@ -1,9 +1,7 @@
 
 export interface TranslatableEntity {
-    name: string;
-    translations: {
-        [key: string]: any
-    };
+    name?: string;
+    [key: string]: any;
 }
 export class TranslatableEntity {
     public get(lang: string) {

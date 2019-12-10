@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Neighborhood } from 'src/shared/entities/translatable/neighborhood.ent';
 
 @Injectable()
-export class NeighborhoodsCrud extends CrudBaseService {
+export class NeighborhoodsCrud extends CrudBaseService<any> {
     constructor(
         http: HttpClient,
         public us: UserService,

@@ -1060,6 +1060,17 @@
   "SYNC_LW": "Sync. Info Lemonway",
   "There are no items yet": "No hi ha elements encara",
   "WALLET_2_WALLET_DESC": "Traspàs",
-  "USER_LANG_DESC": "El PDF esta generat en el idioma del usuari"
-
+  "USER_LANG_DESC": "El PDF esta generat en el idioma del usuari",
+  "DOCUMENT_KINDS": "Tipus de document",
+  "DOCUMENTS": "Documents",
+  "TIERS": "Tiers",
+  "AVAILABLE_DOCUMENT_KINDS": "Tipus de document disponibles",
+  "DISPONIBLE_DOCUMENTS": "Documents disponibles",
+  "DISPONIBLE_TIERS": "Nivells disponibles",
+  "DOCUMENT_KIND": "Tipus de document",
+  "Kind": "Tipus",
+  "Previous Tier": "Nivel Anterior",
+  "Next Tier": "Nivel Posterior",
+  "ONLY_IN_LEMONWAY:long": "Això només es realitza a Lemonway, sense afectar el sistema REC.",
+  "ONLY_IN_LEMONWAY:short": "Això només es realitza a Lemonway"
 }

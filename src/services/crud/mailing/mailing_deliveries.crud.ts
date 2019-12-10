@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { CompanyService } from 'src/services/company/company.service';
 
 @Injectable()
-export class MailingDeliveriesCrud extends CrudBaseService {
+export class MailingDeliveriesCrud extends CrudBaseService<any> {
 
     public static STATUS_CREATED = 'created';
     public static STATUS_SCHEDULED = 'scheduled';

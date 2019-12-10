@@ -3,9 +3,9 @@
         (matSortChange)="sortData($event)">
         <tr class="bordered-bottom">
             <ng-template ngFor let-header [ngForOf]="headers">
-                <th *ngIf="header.sortable === undefined  || header.sortable" mat-sort-header="{{header.sort}}">
+                <th *ngIf="options.sortEnabled && (header.sortable === undefined  || header.sortable)" mat-sort-header="{{header.sort}}">
                     {{header.title|translate}}</th>
-                <th *ngIf="header.sortable !== undefined && !header.sortable" style="text-transform: capitalize">
+                <th *ngIf="!options.sortEnabled || (header.sortable !== undefined && !header.sortable)" style="text-transform: capitalize">
                     {{header.title|translate}}</th>
             </ng-template>
             <th *ngIf="itemOptions"></th>
@@ -20,6 +20,9 @@
 
                 <code *ngIf="header.type === 'code'"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</code>
+
+                <a *ngIf="header.type === 'link'" href="javascript:;" (click)="navigateTo(header.link ? header.link(entry): {})"
+                    [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</a>
 
                 <code *ngIf="header.type === 'number'"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">{{header.prefix}} {{(getEntry(entry, header) || 0) | number}} {{header.suffix}}</code>
@@ -39,7 +42,8 @@
                 </mat-slide-toggle>
 
                 <div *ngIf="header.type === 'avatar'">
-                    <avatar [account]="entry" [imageAccessor]="entry.company_image ? 'company_image': 'profile_image'"
+                    <avatar [account]="getEntry(entry, header)"
+                        [imageAccessor]="getEntry(entry, header).company_image ? 'company_image': 'profile_image'"
                         [matTooltip]="header.tooltip && header.tooltip(entry)">
                     </avatar>
                 </div>
@@ -53,7 +57,7 @@
                 <span *ngIf="!header.type"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</span>
             </td>
-            <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'menu'">
+            <td *ngIf="itemOptions && itemOptions.length && options && options.optionsType === 'menu'">
                 <button mat-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
                     <span class="center h v">
                         <i class="fa fa-ellipsis-v"></i>

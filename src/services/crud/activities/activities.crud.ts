@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';
 
 @Injectable()
-export class ActivitiesCrud extends CrudBaseService {
+export class ActivitiesCrud extends CrudBaseService<Activity> {
     constructor(
         http: HttpClient,
         public us: UserService,

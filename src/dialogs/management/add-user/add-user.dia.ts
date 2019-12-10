@@ -9,7 +9,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
   templateUrl: './add-user.html',
 })
 
-export class AddUser extends BaseDialog {
+export class AddUserDia extends BaseDialog {
   public newUser: any = {
     role: 'ROLE_READONLY',
   };
@@ -28,7 +28,7 @@ export class AddUser extends BaseDialog {
   public addReseller = true;
 
   constructor(
-    public dialogRef: MatDialogRef<AddUser>,
+    public dialogRef: MatDialogRef<AddUserDia>,
     private us: UserService,
     public alerts: AlertsService,
   ) {

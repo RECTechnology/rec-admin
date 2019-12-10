@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
-import { ConfirmationMessage } from '../components/dialogs/confirmation-message/confirmation.dia';
+import { ConfirmationMessage } from '../dialogs/other/confirmation-message/confirmation.dia';
 import { environment } from '../environments/environment';
 
 export default abstract class BaseDialog {
@@ -47,5 +47,18 @@ export default abstract class BaseDialog {
 
   public close(confirm?: any): void {
     this.dialogRef.close();
+  }
+}
+
+export abstract class CreationDialogBase extends BaseDialog {
+  constructor(dialog?: MatDialog) {
+    super(dialog);
+  }
+
+  public abstract delete(): any;
+
+
+  public openDelete() {
+    
   }
 }

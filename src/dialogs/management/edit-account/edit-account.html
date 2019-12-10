@@ -106,20 +106,7 @@
 
         <!-- Image -->
         <div class="col-lg-3">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Organization Image'|translate}}</span>
-            <div class="row">
-              <div class="col-lg-12">
-                <div style="height: 100px; width: 100px; background: #ddd">
-                  <img style="height: 100px; width: 100px;" src="{{accountCopy.company_image}}" alt=""
-                    class="user-image">
-                </div>
-              </div>
-            </div>
-            <button mat-raised-button (click)="selectOrgImage()" style="margin-top: 10px">
-              {{'CHANGE'|translate}}
-            </button>
-          </div>
+          <file-selector label="Organization Image" [(file)]="accountCopy.company_image"></file-selector>
         </div>
 
         <!-- Active -->
@@ -127,6 +114,9 @@
           <input-field type="checkbox" [(value)]="accountCopy.active" label="Account Active"
             matTooltip="{{'ACCOUNT_ACTIVE_DESC'|translate}}" [disabled]="loading"
             placeholder="{{(accountCopy.active ? 'Active': 'Inactive')|translate}}"></input-field>
+
+          <input-field type="select" [(value)]="accountCopy.level_id" [disabled]="false" label="Tier" [options]="tiers">
+          </input-field>
         </div>
 
         <div class="col-lg-12">
@@ -241,15 +231,7 @@
 
         <!-- Public image -->
         <div class="col-lg-12" style="margin-bottom: 15px!important; ">
-          <div class="group-col-left">
-            <span class="small-text-2">{{'Public Image'|translate}}</span>
-            <div style="height: auto; min-height: 90px;max-height: 90px;max-width: 90px; width: 60%; background: #ddd">
-              <img style="width: 100%;max-height: 90px;max-width: 90px;" src="{{accountCopy.public_image}}" alt="">
-            </div>
-            <button mat-raised-button (click)="selectPublicImage()" class="marg-top-x10">
-              {{'CHANGE'|translate}}
-            </button>
-          </div>
+          <file-selector label="Public Image" [(file)]="accountCopy.public_image"></file-selector>
         </div>
 
         <!-- Description -->
