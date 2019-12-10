@@ -42,9 +42,9 @@ jobs:
 
       - name: Push Docker image
         run: docker push reg.rallf.com:8443/rec-admin:stable
-
-        - name: Deploy
-          uses: joelwmale/webhook-action@1.0.1
-          env:
-            WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_PROD }}
-            data: "Hello from github actions!"
+        
+      - name: Deploy
+        uses: joelwmale/webhook-action@1.0.1
+        env:
+          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_PROD }}
+          data: "Hello from github actions!"
