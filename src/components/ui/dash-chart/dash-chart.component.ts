@@ -93,7 +93,6 @@ export class DashChart {
             return formatters[self.selectedTimeframe.value](this.value);
           }
         },
-        // pointStart: moment().subtract(1, this.selectedTimeframe.value).toDate().getUTCDate(),
       },
       yAxis: [{ // left y axis
         title: {
