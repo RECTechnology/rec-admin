@@ -12,6 +12,10 @@
   <tl-header title="Accounts" [options]="{ input: true, deepLinkQuery: false }" (onSearch)="search($event)"
     style="width: 100%"></tl-header>
   <mat-action-list style="max-height: 70vh;min-height: 300px; overflow-y: auto; width: 100%">
+    <button mat-list-item (click)="select(null)" type="button" [class.disabled]="currentAccountId === null">
+      <avatar [account]="{name: 'None'}"></avatar>
+    </button>
+
     <button *ngFor="let account of accounts" mat-list-item (click)="select(account)" type="button"
       [class.disabled]="account.id == currentAccountId">
       <avatar [account]="account"></avatar>

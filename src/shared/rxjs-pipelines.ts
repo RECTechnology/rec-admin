@@ -5,4 +5,4 @@ import { take } from 'rxjs/internal/operators/take';
 import { throwError } from 'rxjs';
 
 export const retryPipeline =
-    retryWhen((errors) => errors.pipe(delay(5000), take(2), concat(throwError(errors))));
+    retryWhen((errors) => errors.pipe(delay(5000), take(3), concat(throwError(errors))));

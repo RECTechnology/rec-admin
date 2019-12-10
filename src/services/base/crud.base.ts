@@ -15,7 +15,7 @@ export interface CrudQueryOptions {
 }
 
 @Injectable()
-export class CrudBaseService extends BaseService2 {
+export class CrudBaseService<T> extends BaseService2 {
 
     public static PATH_LIST = '';
     public static PATH_SEARCH = '/search';
@@ -30,6 +30,7 @@ export class CrudBaseService extends BaseService2 {
     public basePath: string = '';
     public userRole: string = CrudBaseService.ROLE_ADMIN;
     public version: string = 'v3';
+    public cached: any = [];
 
     public mapItems: boolean = false;
 
@@ -50,19 +51,19 @@ export class CrudBaseService extends BaseService2 {
     }
 
     // Crud methods
-    public create(data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
+    public create(data: T, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
         return this.post(url, data, 'application/json',
             lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
         ).pipe(this.itemMapper());
     }
 
-    public remove(id: string): Observable<any> {
+    public remove(id: any): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.delete(url);
     }
 
-    public update(id: string, data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
+    public update(id: any, data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.put(url, data, 'application/json',
             lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
@@ -81,7 +82,7 @@ export class CrudBaseService extends BaseService2 {
             .pipe(this.itemMapper());
     }
 
-    public find(id: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
+    public find(id: any, lang: RecLang = REC_LANGS.EN): Observable<{ data: T, [key: string]: any } | any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         return this.get(url, null, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());
@@ -114,5 +115,12 @@ export class CrudBaseService extends BaseService2 {
                 return resp;
             });
         }
+    }
+
+    public cache(fn?) {
+        return map((resp: any) => {
+            this.cached = (fn && typeof fn === 'function') ? fn(resp) : resp.data.elements || resp.data;
+            return resp;
+        });
     }
 }

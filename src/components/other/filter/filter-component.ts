@@ -1,8 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
 import { TxFilter } from './filter';
-import { WalletService } from '../../../services/wallet/wallet.service';
-// import { EventEmitter } from 'events';
 
 @Component({
   selector: 'tx-filters',
@@ -20,7 +17,6 @@ export class FilterComponent {
   @Input() public dateTo: TxFilter;
   @Output() public dateToChanged: EventEmitter<any>;
   constructor(
-    private ws: WalletService,
   ) {
     this.dateFromChanged = new EventEmitter();
     this.dateToChanged = new EventEmitter();

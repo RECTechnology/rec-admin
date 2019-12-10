@@ -1,5 +1,12 @@
 <button mat-icon-button class="mat-icon-button icon-btn-small {{class}}" [color]="color" [routerLink]="routerLink"
-    (click)="clicked()" [matTooltip]="matTooltip">
+    [matTooltip]="matTooltip" *ngIf="routerLink">
+    <span class="center h v">
+        <i class="fa {{icon}} small-text-2"></i>
+    </span>
+</button>
+
+<button mat-icon-button class="mat-icon-button icon-btn-small {{class}}" [color]="color" (click)="clicked()"
+    [matTooltip]="matTooltip" *ngIf="!routerLink">
     <span class="center h v">
         <i class="fa {{icon}} small-text-2"></i>
     </span>

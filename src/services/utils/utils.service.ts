@@ -21,6 +21,8 @@ export class UtilsService {
     for (const propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined) {
         delete obj[propName];
+      } else if (obj[propName] === 'null') {
+        obj[propName] = null;
       }
     }
     return obj;
@@ -37,6 +39,33 @@ export class UtilsService {
     }
 
     return errors;
+  }
+
+  public static sanitizeEntityForEdit(ent: any) {
+    delete ent.id;
+    delete ent.created;
+    delete ent.updated;
+    delete ent.documents;
+    delete ent.document_kinds;
+    delete ent.account;
+    delete ent.kind;
+    delete ent.kind_id;
+
+    return ent;
+  }
+
+  public static capitalize(s: string) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+
+  public static deepDiff(original, compare) {
+    const r = {};
+    _.each(original, (v, k) => {
+      if (_.isArray(v || k)) { return; }
+      if (compare[k] === v) { return; }
+      r[k] = _.isObject(v) ? _.difference(v, compare[k]) : v;
+    });
+    return r;
   }
 
   public isSandbox = false;
@@ -174,13 +203,7 @@ export class UtilsService {
    * @return {Object} - Will return a new object containing the changed properties
    */
   public deepDiff(original: any, compare: any): any {
-    const r = {};
-    _.each(original, (v, k) => {
-      if (_.isArray(v || k)) { return; }
-      if (compare[k] === v) { return; }
-      r[k] = _.isObject(v) ? _.difference(v, compare[k]) : v;
-    });
-    return r;
+    return UtilsService.deepDiff(original, compare);
   }
 
   /**

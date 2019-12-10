@@ -8,11 +8,11 @@ import { DashboardComponent } from 'src/pages/dashboard/dashboard.component';
 import { WalletComponent } from 'src/pages/wallet/wallet.component';
 import { OrganizationsComponent } from 'src/pages/organizations/organizations.component';
 import { MapComponent } from 'src/pages/map/map.component';
-import { TreasureAccount } from 'src/pages/treasure_account/treasure_account.component';
-import { B2BSendComponent } from 'src/pages/b2b/send/send.component';
-import { B2BSettingsComponent } from 'src/pages/b2b/settings/settings.component';
-import { SendMail } from 'src/pages/b2b/send/send-mail/send-mail';
+import { TreasureAccount } from 'src/pages/special-actions/treasure_account/treasure_account.component';
+import { B2BSettingsComponent } from 'src/pages/special-actions/b2b/entities/settings.component';
 import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
+import { B2BSendComponent } from 'src/pages/special-actions/mailing/send.component';
+import { SendMail } from 'src/pages/special-actions/mailing/send-mail/send-mail';
 
 const ROUTES: Routes = [
 

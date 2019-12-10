@@ -3,7 +3,7 @@ import { MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { FileUpload } from '../../../components/dialogs/file-upload/file-upload.dia';
+import { FileUpload } from '../../other/file-upload/file-upload.dia';
 import { TranslateService } from '@ngx-translate/core';
 import { AdminService } from '../../../services/admin/admin.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
@@ -16,6 +16,8 @@ import { map } from 'rxjs/internal/operators/map';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
 import { Observable } from 'rxjs/internal/Observable';
+import { Tier } from 'src/shared/entities/tier.ent';
+import { TiersCrud } from 'src/services/crud/tiers/tiers.crud';
 
 @Component({
   providers: [
@@ -56,6 +58,7 @@ export class EditAccountData {
   public validationErrors: any = [];
   public validationErrorName = '';
   public isSearching = false;
+  public tiers: Tier[] = [];
 
   @ViewChild('searchConsumed', { static: true }) public searchConsumed: ElementRef;
   @ViewChild('searchProduced', { static: true }) public searchProduced: ElementRef;
@@ -72,8 +75,12 @@ export class EditAccountData {
     public activitiesCrud: ActivitiesCrud,
     public alerts: AlertsService,
     public as: AdminService,
+    public tiersCrud: TiersCrud,
+
   ) {
     this.lang = this.langMap[us.lang];
+    this.getTiers();
+
     this.companyService.listCategories()
       .subscribe((resp) => {
         this.companyService.categories = resp.data;
@@ -84,6 +91,18 @@ export class EditAccountData {
 
     this.activitiesCrud.list({ limit: 300, sort: 'name', order: 'asc' }, this.lang)
       .subscribe((resp) => this.activities = resp.data.elements);
+  }
+
+  public getTiers() {
+    this.tiersCrud.list()
+      .subscribe((res) => {
+        this.tiers = res.data.elements.map((el) => {
+          return {
+            value: el.id,
+            name: el.code,
+          };
+        });
+      });
   }
 
   public getProducts() {

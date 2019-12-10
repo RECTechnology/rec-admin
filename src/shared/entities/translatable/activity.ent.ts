@@ -1,9 +1,12 @@
-import { TranslatableEntity } from "./base-translatable";
+export interface Activity {
+    name?: string;
+    [key: string]: any;
+}
 
-export class Activity extends TranslatableEntity implements TranslatableEntity {
+export class Activity implements Activity {
     constructor(info?: Activity) {
-        super();
-        for (let prop in info) {
+        // tslint:disable-next-line: forin
+        for (const prop in info) {
             this[prop] = info[prop];
         }
     }

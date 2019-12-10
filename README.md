@@ -8,8 +8,6 @@
 Panel de administracion para [rec.barcelona](https://rec.barcelona)
 
 ## Information
-### Build Status
-[![CircleCI](https://circleci.com/gh/QbitArtifacts/rec-admin.svg?style=svg&circle-token=de5e8c8c8e7506b96c5c73f933530bb69b6ea988)](https://circleci.com/gh/QbitArtifacts/rec-admin)
 
 ### Project Dependencies versions
 | Angular                  | Node                       | Npm                        |

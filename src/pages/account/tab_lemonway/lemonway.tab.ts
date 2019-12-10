@@ -126,6 +126,9 @@ export class LemonWayTab extends TablePageBase {
       title: 'Concept',
     },
   ];
+  public tableOptions: Partial<TableListOptions> = {
+    sortEnabled: false,
+  };
 
   public WALLET_STATUS_MAP = WALLET_STATUS_MAP;
   public currentTab = 0;
@@ -212,7 +215,7 @@ export class LemonWayTab extends TablePageBase {
     this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
       .subscribe((resp) => {
         this.total = resp.data.COUNT;
-        this.sortedData = resp.data.TRANS.reverse()
+        this.sortedData = resp.data.TRANS
           .map(processLwTx)
           .map((el) => {
             el.status_text = LW_ERROR_MONEY_OUT[el.STATUS];
@@ -223,9 +226,7 @@ export class LemonWayTab extends TablePageBase {
 
   public newWallet2WalletOut() {
     const dialog = this.alerts.createModal(CreateLemonWallet2WalletOutDia, {
-      originAccount: {
-        id: this.id,
-      },
+      originAccount: this.id,
     });
     dialog.afterClosed().subscribe((resp) => {
       this.search();

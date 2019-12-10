@@ -8,7 +8,7 @@
       [style.width]="size + 'px'">
   </div>
   <div>
-    <p class="name">{{account && account[nameAccessor] || 'Account'}}</p>
+    <p class="name">{{account && account[nameAccessor] || ('Account'|translate)}}</p>
     <p class="small-text description" *ngIf="description">{{account && account.description}}</p>
   </div>
 </div>

@@ -10,7 +10,7 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 // Components & dialogs
 import { AppComponent } from './app.component';
 import { WalletModule } from 'src/pages/wallet/wallet.module';
-import { ChangeDelegateModule } from 'src/pages/change_delegate/change_delegate.module';
+import { ChangeDelegateModule } from 'src/pages/special-actions/change_delegate/change_delegate.module';
 import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { IsLoggedInGuard, IsNotLoggedInGuard, IsResellerGuard } from 'src/services/guards/login.guard';

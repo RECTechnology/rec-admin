@@ -4,15 +4,21 @@ import { environment } from '../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-// TODO: Add prefix/suffix option, to add to fields
+export type TlHeaderType = (
+    'text' | 'checkbox' | 'status' |
+    'code' | 'date' | 'avatar' |
+    'button' | 'slidetoggle' |
+    'image' | 'number' | 'link'
+);
 
 export interface TlHeader {
     sort?: string | boolean;
     sortable?: boolean;
     title: string;
-    type?: 'text' | 'checkbox' | 'status' | 'code' | 'date' | 'avatar' | 'button' | 'slidetoggle' | 'image' | 'number';
+    type?: TlHeaderType;
     accessor?: string | ((el: any) => any);
     statusClass?: ((status: string) => any);
+    link?: (any) => any;
     avatar?: TlHeader;
     image?: TlHeader;
     translate?: boolean;
@@ -23,18 +29,47 @@ export interface TlHeader {
     slideAction?: (any) => any;
     tooltip?: (any) => any;
 }
+export class TlHeader implements TlHeader {
+    constructor(opts: TlHeader) {
+        this.extend(opts);
+    }
+
+    public extend?(opts: TlHeader) {
+        // tslint:disable-next-line: forin
+        for (const prop in opts) {
+            this[prop] = opts[prop];
+        }
+
+        return this;
+    }
+}
 
 export interface TlItemOption {
-    text: string | ((el: any) => string);
-    callback: (any) => any;
+    text?: string | ((el: any) => string);
+    callback?: (any) => any;
     class?: string;
     icon?: string;
     disabled?: boolean | ((el: any) => any);
     ngIf?: boolean | ((el: any) => any);
 }
+export class TlItemOption implements TlItemOption {
+    constructor(opts: TlItemOption) {
+        this.extend(opts);
+    }
+
+    public extend?(opts: TlItemOption) {
+        // tslint:disable-next-line: forin
+        for (const prop in opts) {
+            this[prop] = opts[prop];
+        }
+
+        return this;
+    }
+}
 
 export interface TableListOptions {
-    optionsType: 'menu' | 'buttons';
+    optionsType?: 'menu' | 'buttons';
+    sortEnabled?: boolean;
 }
 
 @Component({
@@ -50,9 +85,7 @@ export class TableListTable implements AfterContentInit {
     @Input() public showPaginator: boolean = true;
     @Input() public itemOptions: TlItemOption[];
     @Input() public noItemsMessage: string = 'NO_ITEMS';
-    @Input() public options: TableListOptions = {
-        optionsType: 'menu',
-    };
+    @Input() public options: TableListOptions = {};
 
     @Input() public total: number = 0;
     @Input() public limit: number = 0;
@@ -72,6 +105,14 @@ export class TableListTable implements AfterContentInit {
     ) {
         this.onSort = new EventEmitter<Sort>();
         this.onChangePage = new EventEmitter<Sort>();
+    }
+
+    public ngOnInit() {
+        this.options = {
+            optionsType: 'menu',
+            sortEnabled: true,
+            ...this.options,
+        };
     }
 
     public ngAfterContentInit() {
@@ -148,5 +189,14 @@ export class TableListTable implements AfterContentInit {
             return option.ngIf(entry);
         }
         return true;
+    }
+
+    public navigateTo(data: { link?: string, params?: any } = {}) {
+        console.log('navigateTo', data);
+        this.router.navigate([data.link], {
+            queryParams: data.params,
+            queryParamsHandling: 'merge',
+            preserveQueryParams: true,
+        });
     }
 }

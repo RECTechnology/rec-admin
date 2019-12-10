@@ -109,6 +109,9 @@ export class DashChart {
           format: '{value:.,0f}',
           style: {
             color: this.colors[0]
+          },
+          formatter: function () {
+            return Math.floor(this.value);
           }
         },
         showFirstLabel: false,
@@ -188,26 +191,4 @@ export class DashChart {
   static DefaultColors = [
     '#0098db', '#9ed7f1'
   ];
-
-  static getEmptyData(timeframe: DashboardValidIntervals) {
-    let today = moment();
-    let data = [];
-
-    if (timeframe === 'year') {
-      let yearAgo = today.clone().subtract(1, 'year');
-      data.push({ d: yearAgo.format('DD-MM-YYYY'), a: 0, b: 0 });
-      data.push({ d: today.format('DD-MM-YYYY'), a: 0, b: 0 });
-    } else if (timeframe === 'month') {
-      let monthAgo = today.clone().subtract(1, 'month');
-      data.push({ d: monthAgo.format('MM-YYYY'), a: 0, b: 0 });
-      data.push({ d: today.format('MM-YYYY'), a: 0, b: 0 });
-    } else if (timeframe === 'day') {
-      data.push({ d: today.toDate().getTime(), a: 0, b: 0 });
-      for (let i = 1; i <= 25; i++) {
-        let dayAgo = today.clone().subtract(i, 'hour');
-        data.push({ d: dayAgo.format('hh:mm'), a: 0, b: 0 });
-      }
-    }
-    return data.reverse();
-  };
 }

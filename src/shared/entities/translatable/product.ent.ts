@@ -1,13 +1,16 @@
-import { TranslatableEntity } from "./base-translatable";
-import { Activity } from "./activity.ent";
+import { Activity } from './activity.ent';
 
-export class Product extends TranslatableEntity implements TranslatableEntity {
-    public default_consuming_by: Activity[];
-    public default_producing_by: Activity[];
+export interface Product {
+    name?: string;
+    [key: string]: any;
+}
+export class Product implements Product {
+    public default_consuming_by?: Activity[];
+    public default_producing_by?: Activity[];
 
     constructor(info?: Product) {
-        super();
-        for (let prop in info) {
+        // tslint:disable-next-line: forin
+        for (const prop in info) {
             this[prop] = info[prop];
         }
     }

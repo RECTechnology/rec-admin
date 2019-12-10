@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../../services/user.service';
 import BaseDialog from '../../../../bases/dialog-base';
-import { WalletService } from '../../../../services/wallet/wallet.service';
 import { TransactionService } from '../../../../services/transactions/transactions.service';
 import { TxFilter } from '../../../../components/other/filter/filter';
 
@@ -23,7 +22,6 @@ export class ExportTxsDia extends BaseDialog {
   constructor(
     public dialogRef: MatDialogRef<ExportTxsDia>,
     public us: UserService,
-    public ws: WalletService,
     public txService: TransactionService,
   ) {
     super();
