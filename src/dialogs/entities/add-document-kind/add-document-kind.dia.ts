@@ -8,6 +8,7 @@ import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
+import { LemonDocumentKindsCrud } from 'src/services/crud/lemon_document_kinds/lemon_document_kinds';
 
 @Component({
   selector: 'add-document-kind',
@@ -21,14 +22,20 @@ export class AddDocumentKindDia extends BaseDialog {
     description: '',
   };
   public itemType = 'Document Kind';
+  public isLemon = false;
 
   constructor(
     public dialogRef: MatDialogRef<AddDocumentKindDia>,
     private us: UserService,
     public alerts: AlertsService,
     public dkCrud: DocumentKindsCrud,
+    public lemonDkCrud: LemonDocumentKindsCrud,
   ) {
     super();
+  }
+
+  public getCrud() {
+    return this.isLemon ? this.lemonDkCrud : this.dkCrud;
   }
 
   public proceed() {
@@ -38,9 +45,10 @@ export class AddDocumentKindDia extends BaseDialog {
 
     this.loading = true;
 
+    const crud = this.getCrud();
     const call = (!this.isEdit)
-      ? this.dkCrud.create(this.item)
-      : this.dkCrud.update(this.item.id, UtilsService.sanitizeEntityForEdit(this.item));
+      ? crud.create(this.item)
+      : crud.update(this.item.id, UtilsService.sanitizeEntityForEdit(this.item));
 
     call.subscribe((resp) => {
       this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Document Kind correctly!', 'ok');

@@ -97,6 +97,7 @@ import { FileSelector } from 'src/components/selectors/file-selector/file-select
 import { SendMail } from 'src/pages/special-actions/mailing/send-mail/send-mail';
 import { CreateDelivery } from 'src/pages/special-actions/mailing/create-delivery/create-delivery';
 import { B2BSendComponent } from 'src/pages/special-actions/mailing/send.component';
+import { LemonDocumentKindsCrud } from 'src/services/crud/lemon_document_kinds/lemon_document_kinds';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -249,6 +250,7 @@ const DIALOGS = [
     DelegatedChangesCrud,
     DelegatedChangesDataCrud,
     AlertsService,
+    LemonDocumentKindsCrud,
   ],
 })
 export class SharedModule { }
