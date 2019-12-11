@@ -43,12 +43,15 @@ export class AccountPickerComponent {
     if (!account || !account.id) {
       this.accountChange.emit(null);
       this.idChange.emit(null);
+      this.id = null;
       return;
     }
 
     this.selectedAccount = account;
     this.accountChange.emit(this.selectedAccount);
     this.idChange.emit(this.selectedAccount.id);
+    this.id = account.id;
+
   }
 
   public search() {
@@ -58,9 +61,11 @@ export class AccountPickerComponent {
           this.selectedAccount = account;
         });
     } else if (this.id) {
-      this.accountCrud.find(this.id).subscribe((resp) => {
-        this.selectedAccount = resp.data;
-      });
+      console.log('id', this.id);
+      this.accountCrud.find(this.id)
+        .subscribe((resp) => {
+          this.selectedAccount = resp.data;
+        });
     } else {
       this.selectedAccount = {};
     }
