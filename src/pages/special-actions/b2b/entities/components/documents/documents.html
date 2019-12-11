@@ -30,7 +30,7 @@
                 </button>
             </mat-menu>
 
-            <div style="width: 140px" matTooltip="Filter by account">
+            <div style="width: 140px" matTooltip="Filter by account" *ngIf="showAccountFilter">
                 <account-picker [disabled]="disableAccountFilter" style="margin: 0" [(id)]="accountFilter"
                     (idChange)="search();">
                 </account-picker>

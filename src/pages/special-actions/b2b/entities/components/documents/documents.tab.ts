@@ -48,6 +48,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     @Input() public title = 'AVAILABLE_DOCUMENTS';
 
     @Input() public disableAccountFilter = false;
+    @Input() public showAccountFilter = true;
     @Input() public disableStatusFilter = false;
     @Input() public disableDocumentKindFilter = false;
 
