@@ -36,7 +36,7 @@ export class TiersCrud extends CrudBaseService<Tier> {
             let prevTier;
 
             const sortTier = (tier) => {
-                if (tierMap[tier.id] || !tier.previous || !tier.next) {
+                if (!tier && tierMap[tier.id] || !tier.previous || !tier.next) {
                     return;
                 } else {
                     tierMap[tier.id] = tier;

@@ -50,11 +50,13 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   }
 
   public ngOnInit() {
-    this.accountCrud.find(this.originAccount).subscribe((resp) => {
-      this.account = resp.data;
-      this.currentAmountREC = this.account.getBalance('REC');
-      this.currentAmountEUR = this.account.lw_balance;
-    });
+    if (this.originAccount) {
+      this.accountCrud.find(this.originAccount).subscribe((resp) => {
+        this.account = resp.data;
+        this.currentAmountREC = this.account.getBalance('REC');
+        this.currentAmountEUR = this.account.lw_balance;
+      });
+    }
   }
 
   public proceed() {
@@ -67,7 +69,6 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
       }, (err) => {
         if (err.errors) {
           this.validationErrors = UtilsService.normalizeLwError(err.errors);
-          console.log(this.validationErrors);
         } else {
           this.alerts.showSnackbar(err.message);
         }

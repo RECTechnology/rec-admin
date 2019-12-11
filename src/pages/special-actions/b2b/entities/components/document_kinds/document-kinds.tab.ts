@@ -22,10 +22,17 @@ export class DocumentKindsTabComponent extends EntityTabBase<DocumentKind> {
     public headers: TlHeader[] = [
         TlHeaders.Id,
         TlHeaders.Name,
+        TlHeaders.generate('isLemonway', {
+            title: 'Lemonway Doc',
+            accessor(item: DocumentKind) {
+                return item.lemon_doctype !== undefined;
+            },
+            type: 'checkbox',
+            sortable: false,
+        }),
         TlHeaders.Description,
         TlHeaders.Updated,
     ];
-
     public addComponent = AddDocumentKindDia;
     public editComponent = AddDocumentKindDia;
     public entityName = 'Document Kind';
