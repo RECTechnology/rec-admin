@@ -13,6 +13,9 @@
         <mat-option [value]="opt.value || opt" *ngFor="let opt of options">{{(opt.name || opt) | translate}}
         </mat-option>
     </mat-select>
+</div>
+
+<div class="group-row-left">
 
     <mat-slide-toggle color="primary" *ngIf="!isNormalInput && type === 'toggle'" [checked]="value"
         (change)="valueChange.emit($event)"></mat-slide-toggle>

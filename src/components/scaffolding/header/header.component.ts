@@ -15,12 +15,20 @@ export class HeaderComponent {
   public brand: any = environment.Brand;
   public refreshObs;
   public view_price = false;
+  public isChristmas = false;
+
   constructor(
     public us: UserService,
     public controles: ControlesService,
     public ls: LoginService,
     public utils: UtilsService,
-  ) { }
+  ) {
+    const date = new Date();
+    const month = date.getMonth();
+    const day = date.getDate();
+
+    this.isChristmas = (month === 12 && day > 10) || (month === 1 && day < 7);
+  }
 
   public logout(): void {
     this.ls.logout();
