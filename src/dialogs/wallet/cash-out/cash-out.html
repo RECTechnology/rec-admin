@@ -14,10 +14,27 @@
       <p style="margin-bottom: 15px">{{'Send RECs'|translate}}</p>
     </div>
     <div class="col-lg-12">
-      <div class="group-col-left">
+      <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
+        <div style="width: 45%">
+          <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
+          <account-picker [showKeyboard]="true" [disabled]="loading" [(id)]="tx.sender"></account-picker>
+        </div>
+        <div>
+          <button mat-icon-button matTooltip="Change sides" (click)="switchSides()">
+            <i class="fa fa-arrows-alt-h"></i>
+          </button>
+        </div>
+        <div style="width: 45%">
+          <p class="small-text-2" style="position: relative;">{{'TARGET_ACCOUNT'|translate}}:</p>
+          <account-picker [showKeyboard]="true" [(id)]="tx.receiver" [disabled]="loading">
+          </account-picker>
+        </div>
+      </div>
+
+      <!-- <div class="group-col-left">
         <p class="small-text-2">{{'Sender ID'|translate}}: </p>
         <account-picker [showKeyboard]="true" [(id)]="tx.sender" [disabled]="loading" label="Sender"></account-picker>
-      </div>
+      </div> -->
       <div class="group-col-left">
         <p class="small-text-2">{{'Amount'|translate}}: </p>
         <input type="text" class="user-input small" [(ngModel)]="tx.amount" placeholder="{{'Amount to pay'|translate}}">
@@ -27,11 +44,12 @@
         <input type="text" class="user-input small" [(ngModel)]="tx.concept"
           placeholder="{{'Concept for the payment'|translate}}">
       </div>
-
+      <!-- 
       <div class="group-col-left">
         <p class="small-text-2">{{'Receiver ID'|translate}}: </p>
-        <account-picker [showKeyboard]="true" [(id)]="tx.receiver" [disabled]="loading" label="Receiver"></account-picker>
-      </div>
+        <account-picker [showKeyboard]="true" [(id)]="tx.receiver" [disabled]="loading" label="Receiver">
+        </account-picker>
+      </div> -->
 
       <div class="group-col-left">
         <p class="small-text-2">{{'2FA Code'|translate}}: </p>

@@ -32,6 +32,12 @@ export class CashOutDia extends BaseDialog {
     super();
   }
 
+  public switchSides() {
+    const temp = this.tx.sender;
+    this.tx.sender = this.tx.receiver;
+    this.tx.receiver = temp;
+  }
+
   public makeTx() {
     if (this.loading) {
       return;
