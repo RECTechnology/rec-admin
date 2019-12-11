@@ -100,14 +100,9 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('session_status', 'active');
                 localStorage.setItem('login_date', loginDate);
 
-                const onFinishLogin = () => {
-                  // Emit the login event, so actions that need to be done after login can be done
-                  this.loginService.onLogin.emit(true);
-                };
-
                 // Now user can navigate to app
                 this.router.navigate(['/dashboard']);
-                onFinishLogin();
+                this.loginService.onLogin.emit(true);
               }, 10);
               this.loginService.isLoggedIn_ = true;
             },
