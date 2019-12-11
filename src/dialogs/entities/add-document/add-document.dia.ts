@@ -30,6 +30,7 @@ export class AddDocumentDia extends BaseDialog {
   public itemType = 'Document';
   public docKinds = [];
   public disableAccountSelector = false;
+  public validationErrors = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddDocumentDia>,
@@ -51,8 +52,6 @@ export class AddDocumentDia extends BaseDialog {
             name: el.name,
           };
         });
-
-        console.log('Doc kinds');
       });
   }
 
@@ -61,7 +60,6 @@ export class AddDocumentDia extends BaseDialog {
     this.item.kind_id = this.item.kind && this.item.kind.id;
 
     this.itemCopy = Object.assign({}, this.item);
-    console.log('init', this.item);
   }
 
   public proceed() {
@@ -89,7 +87,11 @@ export class AddDocumentDia extends BaseDialog {
       this.loading = false;
       this.close();
     }, (err) => {
-      this.alerts.showSnackbar(err.message, 'ok');
+      if (err.errors) {
+        this.validationErrors = UtilsService.normalizeLwError(err.errors);
+      } else {
+        this.alerts.showSnackbar(err.message);
+      }
       this.loading = false;
     });
   }

@@ -7,6 +7,7 @@ export interface DocumentKind {
     name?: string;
     description?: string;
     documents?: Document[];
+    lemon_doctype?: number;
 }
 
 export class DocumentKind implements DocumentKind {
