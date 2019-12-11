@@ -18,11 +18,8 @@ jobs:
       - name: Install deps
         run: npm install
 
-      - name: Deploy
-        uses: joelwmale/webhook-action@1.0.1
-        env:
-          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_PROD }}
-          data: "Hello from github actions!"
+      - name: Test build
+        run: npm run build:prod
 
   dev:
     runs-on: ubuntu-latest
