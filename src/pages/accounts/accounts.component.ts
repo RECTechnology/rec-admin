@@ -31,7 +31,7 @@ import { AccountsExportDefaults } from 'src/data/export-defaults';
 export class AccountsPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Accounts';
   public canAddUser = false;
-  public sortedData: Account[] = this.crudAccounts.cached;
+  public sortedData: Account[] = []//this.crudAccounts.cached;
   public accountID = null;
   public openDetails = false;
   public active = true;
@@ -80,6 +80,11 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
         this.accountID = params.id;
         this.openDetails = params.details;
       });
+
+    this.crudAccounts.find(1175)
+      .subscribe((resp) => {
+        console.log('Account: ', resp);
+      });
   }
 
   public afterContentInit() {
@@ -117,17 +122,16 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     const data: any = this.getCleanParams(query);
 
     this.loading = true;
-    this.crudAccounts.list(data, 'all')
-      .pipe(this.crudAccounts.cache())
-      .subscribe(
+    return this.crudAccounts.list(data, 'all')
+      .toPromise()
+      .then(
         (resp: any) => {
           this.data = resp.data.elements;
           this.total = resp.data.total;
           this.sortedData = this.data.slice();
           this.showing = this.data.length;
           this.loading = false;
-        },
-        (error) => {
+        }).catch((error) => {
           this.loading = false;
         });
 
