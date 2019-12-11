@@ -36,6 +36,10 @@ export class AddDocumentKindDia extends BaseDialog {
     super();
   }
 
+  public ngOnInit() {
+    this.isLemon = this.item.lemon_doctype !== undefined;
+  }
+
   public getCrud() {
     return this.isLemon ? this.lemonDkCrud : this.dkCrud;
   }
