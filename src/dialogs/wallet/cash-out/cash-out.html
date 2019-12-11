@@ -31,10 +31,6 @@
         </div>
       </div>
 
-      <!-- <div class="group-col-left">
-        <p class="small-text-2">{{'Sender ID'|translate}}: </p>
-        <account-picker [showKeyboard]="true" [(id)]="tx.sender" [disabled]="loading" label="Sender"></account-picker>
-      </div> -->
       <div class="group-col-left">
         <p class="small-text-2">{{'Amount'|translate}}: </p>
         <input type="text" class="user-input small" [(ngModel)]="tx.amount" placeholder="{{'Amount to pay'|translate}}">
@@ -44,12 +40,6 @@
         <input type="text" class="user-input small" [(ngModel)]="tx.concept"
           placeholder="{{'Concept for the payment'|translate}}">
       </div>
-      <!-- 
-      <div class="group-col-left">
-        <p class="small-text-2">{{'Receiver ID'|translate}}: </p>
-        <account-picker [showKeyboard]="true" [(id)]="tx.receiver" [disabled]="loading" label="Receiver">
-        </account-picker>
-      </div> -->
 
       <div class="group-col-left">
         <p class="small-text-2">{{'2FA Code'|translate}}: </p>
