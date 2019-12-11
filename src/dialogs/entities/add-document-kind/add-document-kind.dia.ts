@@ -20,9 +20,11 @@ export class AddDocumentKindDia extends BaseDialog {
   public item: DocumentKind = {
     name: '',
     description: '',
+    lemon_doctype: 0,
   };
   public itemType = 'Document Kind';
   public isLemon = false;
+  public validationErrors = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddDocumentKindDia>,
@@ -32,6 +34,10 @@ export class AddDocumentKindDia extends BaseDialog {
     public lemonDkCrud: LemonDocumentKindsCrud,
   ) {
     super();
+  }
+
+  public ngOnInit() {
+    this.isLemon = this.item.lemon_doctype !== undefined;
   }
 
   public getCrud() {
@@ -55,7 +61,11 @@ export class AddDocumentKindDia extends BaseDialog {
       this.loading = false;
       this.close();
     }, (err) => {
-      this.alerts.showSnackbar(err.message, 'ok');
+      if (err.errors) {
+        this.validationErrors = UtilsService.normalizeLwError(err.errors);
+      } else {
+        this.alerts.showSnackbar(err.message);
+      }
       this.loading = false;
     });
   }

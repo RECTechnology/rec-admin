@@ -9,13 +9,13 @@ export class InputFieldComponent {
   @Input() public placeholder: string;
   @Input() public name: string;
   @Input() public value: any = null;
+  @Input() public disabled: boolean = false;
+  @Input() public type: string = 'text';
 
   // Only used for 'select'
   @Input() public options: string[] = null;
 
   @Output() public valueChange: EventEmitter<any> = new EventEmitter();
-  @Input() public disabled: boolean = false;
-  @Input() public type: string = 'text';
 
   public isNormalInput = true;
 

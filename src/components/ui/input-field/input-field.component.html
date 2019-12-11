@@ -15,8 +15,7 @@
     </mat-select>
 </div>
 
-<div class="group-row-left">
-
-    <mat-slide-toggle color="primary" *ngIf="!isNormalInput && type === 'toggle'" [checked]="value"
+<div class="group-row-left" *ngIf="!isNormalInput && type === 'toggle'" >
+    <mat-slide-toggle color="primary" [checked]="value"
         (change)="valueChange.emit($event)"></mat-slide-toggle>
 </div>
