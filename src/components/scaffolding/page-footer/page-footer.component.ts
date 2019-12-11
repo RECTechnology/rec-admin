@@ -10,6 +10,7 @@ export class PageFooterComponent {
   public brand = environment.Brand;
   public env = environment;
   public year = (new Date()).getFullYear();
+  
   constructor(
     private contrService: ControlesService,
   ) { }
