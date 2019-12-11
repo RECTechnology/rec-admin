@@ -104,7 +104,7 @@ export class AccountsCrud extends CrudBaseService<Account> {
 
     public lwSendPayment(from, to, amount, concept) {
         return this.lwGateway('SendPayment', {
-            amount: String(amount.toFixed(2)),
+            amount: Number(amount).toFixed(2),
             debitWallet: String(from),
             creditWallet: String(to),
             message: concept,
