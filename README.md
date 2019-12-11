@@ -46,6 +46,15 @@ Please check [this wiki](https://github.com/QbitArtifacts/bootstrap/wiki/Develop
 2. App is available at: `/dist/index.html`
 3. It's ready
 
+### Pull request process
+1. Create new branch from most recent branch: `master`  
+   1. Example:  `nombrekeff-patch-user-profile`
+   2. Format: `{username}-{type}-{name}`
+2. `Commit` your changes
+3. `Push` changes
+4. Open `PR`
+5. If passes tests and is validated it will be merged
+
 ### Commiting  
 Project uses [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages to autogenerate automatic CHANGELOG and auto increment version.
 
