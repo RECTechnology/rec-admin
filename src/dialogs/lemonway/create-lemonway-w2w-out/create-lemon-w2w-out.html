@@ -7,11 +7,15 @@
   <div class="border-bottom marg-b-10 padding-b-15">
     <p class="small-text-2">
       {{'CASH_OUT'|translate}}:
-      <code>{{account ? account.name: ''}}</code>
+      <code>{{originAccount && originAccount.name}}</code>
       <code class="small-text marg-l-5">{{currentAmountREC}} Ɍ</code>
       <code class="small-text marg-l-5">{{currentAmountEUR}} €</code>
     </p>
     <p class="small-text">{{'CASH_OUT_DESC'|translate}}</p>
+  </div>
+  <div class="row" *ngIf="validationErrors.length > 0">
+    <validation-errors [errors]="validationErrors" style="border-bottom: 1px solid #ddd!important; width: 100%">
+    </validation-errors>
   </div>
   <div class="row" style="width: 100%">
     <div class="col-lg-12">
@@ -19,14 +23,12 @@
         {{'FILL_FIELDS_WITHDRAWAL'|translate}}:
       </p>
     </div>
-    <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
-      style="border-bottom: 1px solid #ddd!important; width: 100%">
-    </validation-errors>
     <div class="col-lg-12">
       <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
         <div style="width: 45%">
           <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
-          <account-picker [disabled]="loading" [(id)]="originAccountId" (accountChange)="originAccount = $event"></account-picker>
+          <account-picker [disabled]="loading" [showKeyboard]="true" [(id)]="originAccountId"
+            (accountChange)="originAccount = $event" [filters]="accountFilters"></account-picker>
         </div>
         <div>
           <button mat-icon-button matTooltip="Change sides" (click)="switchSides()">
@@ -35,7 +37,8 @@
         </div>
         <div style="width: 45%">
           <p class="small-text-2" style="position: relative;">{{'TARGET_ACCOUNT'|translate}}:</p>
-          <account-picker [(id)]="targetAccountId" [filters]="accountFilters" [disabled]="loading" (accountChange)="targetAccount = $event">
+          <account-picker [(id)]="targetAccountId" [showKeyboard]="true" [filters]="accountFilters" [disabled]="loading"
+            (accountChange)="targetAccount = $event">
           </account-picker>
         </div>
       </div>
@@ -53,6 +56,7 @@
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
-    <btn-loader [loading]="loading" [text]="'SEND'" [disabled]="loading || amount > currentAmountEUR" (click)="proceed()"></btn-loader>
+    <btn-loader [loading]="loading" [text]="'SEND'" [disabled]="!amount || loading || amount > currentAmountEUR"
+      (click)="proceed()"></btn-loader>
   </div>
 </div>

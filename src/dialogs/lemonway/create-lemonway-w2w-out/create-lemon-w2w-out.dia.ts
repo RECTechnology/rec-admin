@@ -6,6 +6,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
+import { escapeIdentifier } from '@angular/compiler/src/output/abstract_emitter';
 
 @Component({
   selector: 'create-lemon-w2w-out',
@@ -32,7 +33,6 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
 
   public accountFilters = {
     active: 1,
-    tier: 2,
     type: 'COMPANY',
   };
 
@@ -69,6 +69,16 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   }
 
   public proceed() {
+    if (this.loading) {
+      return;
+    }
+
+    if (!this.originAccountId) {
+      return this.validationErrors.push({ property: 'Origin Account', message: 'Origin account is required' });
+    } else if (!this.targetAccount) {
+      return this.validationErrors.push({ property: 'Target Account', message: 'Target account is required' });
+    }
+
     this.loading = true;
     this.accountCrud.lwSendPayment(this.originAccount.cif, this.targetAccount.cif, this.amount, this.concept)
       .subscribe((resp) => {

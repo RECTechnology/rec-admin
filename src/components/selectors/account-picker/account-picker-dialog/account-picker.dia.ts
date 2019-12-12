@@ -12,7 +12,7 @@ import { CrudBaseService } from 'src/services/base/crud.base';
 export class AccountPickerDia {
 
   public currentAccountId = null;
-  public accounts: Account[] = this.accountCrud.cached;
+  public accounts: Account[] = [];
   public filters = {};
   public type = null;
 
@@ -35,7 +35,6 @@ export class AccountPickerDia {
 
     this.loading = true;
     this.accountCrud.list(opts)
-      .pipe(this.accountCrud.cache())
       .subscribe((resp) => {
         this.accounts = resp.data.elements;
         this.loading = false;
