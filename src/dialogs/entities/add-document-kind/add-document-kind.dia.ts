@@ -3,8 +3,6 @@ import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
-import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
-import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
@@ -14,7 +12,6 @@ import { LemonDocumentKindsCrud } from 'src/services/crud/lemon_document_kinds/l
   selector: 'add-document-kind',
   templateUrl: './add-document-kind.html',
 })
-
 export class AddDocumentKindDia extends BaseDialog {
   public isEdit = false;
   public item: DocumentKind = {
