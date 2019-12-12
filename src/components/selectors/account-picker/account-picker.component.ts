@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountPickerDia } from './account-picker-dialog/account-picker.dia';
 import { Account } from 'src/shared/entities/account.ent';
+import { memoize } from 'src/decorators/meoize.decorator';
 
 @Component({
   selector: 'account-picker',
@@ -60,6 +61,8 @@ export class AccountPickerComponent {
   }
 
   public search() {
+    console.log('acc', this.account);
+    console.log('id', this.id);
     if (this.account && this.account.id) {
       this.getAccount(this.account.id)
         .then((account) => this.selectAccount(account))
