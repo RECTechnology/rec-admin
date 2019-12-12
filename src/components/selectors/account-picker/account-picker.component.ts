@@ -61,7 +61,6 @@ export class AccountPickerComponent {
           this.selectedAccount = account;
         });
     } else if (this.id) {
-      console.log('id', this.id);
       this.accountCrud.find(this.id)
         .subscribe((resp) => {
           this.selectedAccount = resp.data;

@@ -18,8 +18,12 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public currentAmountREC: number = 0;
   public currentAmountEUR: number = 0;
 
-  public originAccount;
-  public targetAccount;
+  public originAccountId;
+  public targetAccountId;
+
+  public originAccount: Account;
+  public targetAccount: Account;
+
   public concept: string = 'Traspaso';
   public amount: number;
   public iban: string;
@@ -42,26 +46,31 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   }
 
   public switchSides() {
-    const temp = this.originAccount;
-    this.originAccount = this.targetAccount;
-    this.targetAccount = temp;
+    const temp = this.originAccountId;
+    this.originAccountId = this.targetAccountId;
+    this.targetAccountId = temp;
 
     this.ngOnInit();
   }
 
   public ngOnInit() {
-    if (this.originAccount) {
-      this.accountCrud.find(this.originAccount).subscribe((resp) => {
-        this.account = resp.data;
-        this.currentAmountREC = this.account.getBalance('REC');
-        this.currentAmountEUR = this.account.lw_balance;
+    console.log('origin', this.originAccountId);
+    if (this.originAccountId) {
+      this.accountCrud.find(this.originAccountId).subscribe((resp) => {
+        this.originAccount = resp.data;
+        this.currentAmountREC = this.originAccount.getBalance('REC');
+        this.currentAmountEUR = this.originAccount.lw_balance;
+      });
+    } else if (this.targetAccountId) {
+      this.accountCrud.find(this.targetAccountId).subscribe((resp) => {
+        this.targetAccount = resp.data;
       });
     }
   }
 
   public proceed() {
     this.loading = true;
-    this.accountCrud.lwSendPayment(this.account.cif, this.targetAccount.cif, this.amount, this.concept)
+    this.accountCrud.lwSendPayment(this.originAccount.cif, this.targetAccount.cif, this.amount, this.concept)
       .subscribe((resp) => {
         this.loading = false;
         this.alerts.showSnackbar('Success');
