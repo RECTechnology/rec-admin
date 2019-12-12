@@ -9,7 +9,6 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { memoize } from 'src/decorators/meoize.decorator';
 
 export interface BaseService2Options {
   base_url: string;

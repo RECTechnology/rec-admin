@@ -30,12 +30,14 @@ export class UtilsService {
 
   public static normalizeLwError(lwError) {
     const errors = [];
-    // tslint:disable-next-line: forin
-    for (const key in lwError) {
-      errors.push({
-        property: key,
-        message: lwError[key].MESSAGE + ' - code: ' + lwError[key].ERROR,
-      });
+    for (const error of lwError) {
+      // tslint:disable-next-line: forin
+      for (const key in error) {
+        errors.push({
+          property: key,
+          message: error[key].MESSAGE + ' - code: ' + error[key].ERROR,
+        });
+      }
     }
 
     return errors;
