@@ -226,7 +226,7 @@ export class LemonWayTab extends TablePageBase {
 
   public newWallet2WalletOut() {
     const dialog = this.alerts.createModal(CreateLemonWallet2WalletOutDia, {
-      originAccount: this.id,
+      originAccountId: this.id,
     });
     dialog.afterClosed().subscribe((resp) => {
       this.search();

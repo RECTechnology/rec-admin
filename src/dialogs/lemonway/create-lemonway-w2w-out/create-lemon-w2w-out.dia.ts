@@ -6,6 +6,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
+import { escapeIdentifier } from '@angular/compiler/src/output/abstract_emitter';
 
 @Component({
   selector: 'create-lemon-w2w-out',
@@ -18,8 +19,12 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public currentAmountREC: number = 0;
   public currentAmountEUR: number = 0;
 
-  public originAccount;
-  public targetAccount;
+  public originAccountId;
+  public targetAccountId;
+
+  public originAccount: Account;
+  public targetAccount: Account;
+
   public concept: string = 'Traspaso';
   public amount: number;
   public iban: string;
@@ -28,7 +33,6 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
 
   public accountFilters = {
     active: 1,
-    tier: 2,
     type: 'COMPANY',
   };
 
@@ -42,26 +46,41 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   }
 
   public switchSides() {
-    const temp = this.originAccount;
-    this.originAccount = this.targetAccount;
-    this.targetAccount = temp;
+    const temp = this.originAccountId;
+    this.originAccountId = this.targetAccountId;
+    this.targetAccountId = temp;
 
     this.ngOnInit();
   }
 
   public ngOnInit() {
-    if (this.originAccount) {
-      this.accountCrud.find(this.originAccount).subscribe((resp) => {
-        this.account = resp.data;
-        this.currentAmountREC = this.account.getBalance('REC');
-        this.currentAmountEUR = this.account.lw_balance;
+    console.log('origin', this.originAccountId);
+    if (this.originAccountId) {
+      this.accountCrud.find(this.originAccountId).subscribe((resp) => {
+        this.originAccount = resp.data;
+        this.currentAmountREC = this.originAccount.getBalance('REC');
+        this.currentAmountEUR = this.originAccount.lw_balance;
+      });
+    } else if (this.targetAccountId) {
+      this.accountCrud.find(this.targetAccountId).subscribe((resp) => {
+        this.targetAccount = resp.data;
       });
     }
   }
 
   public proceed() {
+    if (this.loading) {
+      return;
+    }
+
+    if (!this.originAccountId) {
+      return this.validationErrors.push({ property: 'Origin Account', message: 'Origin account is required' });
+    } else if (!this.targetAccount) {
+      return this.validationErrors.push({ property: 'Target Account', message: 'Target account is required' });
+    }
+
     this.loading = true;
-    this.accountCrud.lwSendPayment(this.account.cif, this.targetAccount.cif, this.amount, this.concept)
+    this.accountCrud.lwSendPayment(this.originAccount.cif, this.targetAccount.cif, this.amount, this.concept)
       .subscribe((resp) => {
         this.loading = false;
         this.alerts.showSnackbar('Success');
