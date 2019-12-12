@@ -5,7 +5,6 @@ import BaseDialog from '../../../bases/dialog-base';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Currencies } from 'src/shared/entities/currency/currency';
-import { AccountPickerComponent } from 'src/components/selectors/account-picker/account-picker.component';
 
 @Component({
   selector: 'cash-out',
