@@ -98,6 +98,7 @@ import { SendMail } from 'src/pages/special-actions/mailing/send-mail/send-mail'
 import { CreateDelivery } from 'src/pages/special-actions/mailing/create-delivery/create-delivery';
 import { B2BSendComponent } from 'src/pages/special-actions/mailing/send.component';
 import { LemonDocumentKindsCrud } from 'src/services/crud/lemon_document_kinds/lemon_document_kinds';
+import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemonway_documents';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -251,6 +252,7 @@ const DIALOGS = [
     DelegatedChangesDataCrud,
     AlertsService,
     LemonDocumentKindsCrud,
+    LemonwayDocumentCrud,
   ],
 })
 export class SharedModule { }
