@@ -17,7 +17,7 @@ export interface TlHeader {
     title: string;
     type?: TlHeaderType;
     accessor?: string | ((el: any) => any);
-    statusClass?: ((status: string) => any);
+    statusClass?: ((status: any) => any);
     link?: (any) => any;
     avatar?: TlHeader;
     image?: TlHeader;
@@ -145,7 +145,7 @@ export class TableListTable implements AfterContentInit {
     }
 
     public trackByFn(index, item) {
-        return index; // or item.id
+        return item.id;
     }
 
     public sortData(sort: Sort): void {

@@ -75,9 +75,14 @@ export class LemonWayTab extends TablePageBase {
     }, {
       sort: 'CRED',
       title: 'Amount',
-      type: 'code',
+      type: 'number',
+      suffix: '€',
       accessor: (el) => {
-        return el.CRED || el.DEB;
+        return el.CRED;
+      },
+      statusClass(value) {
+        console.log('status clzss', value);
+        return (Number(value) < 0) ? 'col-error' : 'col-info';
       },
     }, {
       sort: 'TYPE',
@@ -103,7 +108,14 @@ export class LemonWayTab extends TablePageBase {
     }, {
       sort: 'DEB',
       title: 'Amount',
-      type: 'code',
+      type: 'number',
+      suffix: '€',
+      accessor: (el) => {
+        return el.DEB;
+      },
+      statusClass(value) {
+        return (Number(value) < 0) ? 'col-error' : 'col-info';
+      },
     }, {
       sort: 'SEN',
       title: 'Envia',
@@ -206,6 +218,13 @@ export class LemonWayTab extends TablePageBase {
           .map(processLwTx)
           .map((el) => {
             el.status_text = LW_ERROR_P2P[el.STATUS];
+            el.isOut = el.SEN === this.lwInfo.ID;
+            if (el.isOut) {
+              el.CRED = -Number(el.CRED);
+            }
+            if (el.isOut) {
+              el.DEB = -Number(el.DEB);
+            }
             return el;
           });
       });
