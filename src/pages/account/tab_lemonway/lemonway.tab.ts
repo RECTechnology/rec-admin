@@ -114,8 +114,8 @@ export class LemonWayTab extends TablePageBase {
       accessor: (el) => {
         return el.DEB;
       },
-      statusClass() {
-        return 'col-error';
+      statusClass(el) {
+        return el > 0 ? 'col-error' : '';
       },
     }, {
       sort: 'SEN',

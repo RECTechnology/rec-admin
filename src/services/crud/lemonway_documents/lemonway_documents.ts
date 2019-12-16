@@ -17,7 +17,7 @@ export class LemonwayDocumentCrud extends CrudBaseService<Document> {
         public cs: CompanyService,
     ) {
         super(http, us);
-        this.basePath = '/lemonway_documents';
+        this.basePath = '/lemon_documents';
         this.userRole = 'admin';
         this.mapItems = true;
     }
