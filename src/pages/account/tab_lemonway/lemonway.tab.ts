@@ -82,8 +82,7 @@ export class LemonWayTab extends TablePageBase {
         return el.CRED;
       },
       statusClass(value) {
-        console.log('status clzss', value);
-        return (Number(value) < 0) ? 'col-error' : 'col-info';
+        return 'col-error';
       },
     }, {
       sort: 'TYPE',
@@ -115,7 +114,7 @@ export class LemonWayTab extends TablePageBase {
         return el.DEB;
       },
       statusClass(el) {
-        return el > 0 ? 'col-error' : '';
+        return el < 0 ? 'col-error' : '';
       },
     }, {
       sort: 'SEN',
