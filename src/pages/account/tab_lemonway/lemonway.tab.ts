@@ -231,7 +231,7 @@ export class LemonWayTab extends TablePageBase {
   }
 
   public getMoneyTxs() {
-    this.accCrud.getWithdrawals([this.lwInfo.ID])
+    this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
       .subscribe((resp) => {
         this.total = resp.data.COUNT;
         this.sortedData = resp.data.TRANS
