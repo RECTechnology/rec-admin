@@ -1053,7 +1053,7 @@
   "TARGET_ACCOUNT": "Compte objectiu",
   "CASH_OUT_TITLE": "ENVIAR € A WALLET LW",
   "CASH_IN_TITLE": "REBRE € DESDE WALLET LW",
-  "CASH_OUT": "Enviar",
+  "CASH_OUT": "Envia",
   "CASH_IN": "Recibir",
   "CASH_OUT_DESC": "Envia diners desde aquest compte a un altre compte",
   "CASH_IN_DESC": "Rep diners a aquest compte des d'un altre compte",
