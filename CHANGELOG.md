@@ -16,7 +16,6 @@ All notable changes to this project will be documented in this file. See [standa
 * preparing Create document, to allow to add lemonway document kinds ([72df8c1](https://github.com/QbitArtifacts/rec-admin/commit/72df8c144086a20c60563d4d7c38976acc4a6aa7))
 * **MoneyOut:** Now can select accounts from selector, and user input id ([ef9c7e5](https://github.com/QbitArtifacts/rec-admin/commit/ef9c7e5ee393d860d3f20602fad8fab8ea46f28b))
 * **MoneyOut:** Now can select accounts from selector, and user input id II ([7690fd7](https://github.com/QbitArtifacts/rec-admin/commit/7690fd70b67098331ce8e177e2e5f310ce0ca09a))
-* **TlTableList:** added disable sortable headers globaly ([01f40c2](https://github.com/QbitArtifacts/rec-admin/commit/01f40c2a6de45f28f4f7a8292ab3d89eb736feba))
 
 
 ### Bug Fixes
@@ -80,7 +79,6 @@ All notable changes to this project will be documented in this file. See [standa
 * **tl-headers:** fixed tl heaer not searching after query is cleared ([5270f66](https://github.com/QbitArtifacts/rec-admin/commit/5270f66608d21b30e0412112b52a6b73ef7a416c))
 * **TlListHeader:** ignoring query on change pagination page ([864edfa](https://github.com/QbitArtifacts/rec-admin/commit/864edfa6031c2853a8f3e24c42f9ba7d0f2103f8))
 
-### [3.5.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.2...v3.5.3) (2019-11-22)
 
 ## [3.6.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.4...v3.6.0) (2019-12-12)
 
