@@ -13,11 +13,16 @@
     <div class="col-lg-12">
       <p style="margin-bottom: 15px">{{'Send RECs'|translate}}</p>
     </div>
+    <div class="col-lg-12" *ngIf="validationErrors.length > 0">
+      <validation-errors [errors]="validationErrors" style="border-bottom: 1px solid #ddd!important; width: 100%">
+      </validation-errors>
+    </div>
     <div class="col-lg-12">
       <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
         <div style="width: 45%">
           <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
-          <account-picker [showKeyboard]="true" [disabled]="loading" [(id)]="tx.sender"></account-picker>
+          <account-picker #sender [filters]="accountFilters" [showKeyboard]="true"
+            [disabled]="loading" [id]="tx.sender" (idChange)="tx.sender = $event"></account-picker>
         </div>
         <div>
           <button mat-icon-button matTooltip="Change sides" (click)="switchSides()">
@@ -26,7 +31,8 @@
         </div>
         <div style="width: 45%">
           <p class="small-text-2" style="position: relative;">{{'TARGET_ACCOUNT'|translate}}:</p>
-          <account-picker [showKeyboard]="true" [(id)]="tx.receiver" [disabled]="loading">
+          <account-picker #receiver [filters]="accountFilters" [showKeyboard]="true"
+            [id]="tx.receiver" [disabled]="loading" (idChange)="tx.receiver = $event">
           </account-picker>
         </div>
       </div>
@@ -35,6 +41,7 @@
         <p class="small-text-2">{{'Amount'|translate}}: </p>
         <input type="text" class="user-input small" [(ngModel)]="tx.amount" placeholder="{{'Amount to pay'|translate}}">
       </div>
+
       <div class="group-col-left">
         <p class="small-text-2">{{'Concept'|translate}}: </p>
         <input type="text" class="user-input small" [(ngModel)]="tx.concept"
@@ -51,7 +58,7 @@
 
       <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
         <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
-        <btn-loader (click)="makeTx()" [loading]="loading" [disabled]="loading" [text]="'SEND'">
+        <btn-loader (click)="makeTx()" [loading]="loading" [disabled]="loading || !tx.amount" [text]="'SEND'">
         </btn-loader>
       </div>
     </div>

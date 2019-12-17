@@ -34,6 +34,7 @@ const WALLET_STATUS_MAP = {
 };
 
 const LW_ERROR_MONEY_OUT = {
+  0: 'successful',
   3: 'money-out successful',
   4: 'error',
 };
@@ -75,9 +76,13 @@ export class LemonWayTab extends TablePageBase {
     }, {
       sort: 'CRED',
       title: 'Amount',
-      type: 'code',
+      type: 'number',
+      suffix: '€',
       accessor: (el) => {
-        return el.CRED || el.DEB;
+        return el.CRED;
+      },
+      statusClass(value) {
+        return 'col-error';
       },
     }, {
       sort: 'TYPE',
@@ -103,7 +108,14 @@ export class LemonWayTab extends TablePageBase {
     }, {
       sort: 'DEB',
       title: 'Amount',
-      type: 'code',
+      type: 'number',
+      suffix: '€',
+      accessor: (el) => {
+        return el.DEB;
+      },
+      statusClass(el) {
+        return el < 0 ? 'col-error' : '';
+      },
     }, {
       sort: 'SEN',
       title: 'Envia',
@@ -115,7 +127,7 @@ export class LemonWayTab extends TablePageBase {
       title: 'Status',
       type: 'code',
       tooltip(el) {
-        return el.status_text + ' (' + el.STATUS + ')';
+        return el.status_text + ' (' + el.INT_STATUS + ')';
       },
     }, {
       sort: 'DATE',
@@ -206,19 +218,26 @@ export class LemonWayTab extends TablePageBase {
           .map(processLwTx)
           .map((el) => {
             el.status_text = LW_ERROR_P2P[el.STATUS];
+            el.isOut = el.SEN === this.lwInfo.ID;
+            if (el.isOut) {
+              el.CRED = -Number(el.CRED);
+            }
+            if (el.isOut) {
+              el.DEB = -Number(el.DEB);
+            }
             return el;
           });
       });
   }
 
   public getMoneyTxs() {
-    this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
+    this.accCrud.getWithdrawals([this.lwInfo.ID])
       .subscribe((resp) => {
         this.total = resp.data.COUNT;
         this.sortedData = resp.data.TRANS
           .map(processLwTx)
           .map((el) => {
-            el.status_text = LW_ERROR_MONEY_OUT[el.STATUS];
+            el.status_text = LW_ERROR_MONEY_OUT[el.INT_STATUS];
             return el;
           });
       });
@@ -226,7 +245,7 @@ export class LemonWayTab extends TablePageBase {
 
   public newWallet2WalletOut() {
     const dialog = this.alerts.createModal(CreateLemonWallet2WalletOutDia, {
-      originAccount: this.id,
+      originAccountId: this.id,
     });
     dialog.afterClosed().subscribe((resp) => {
       this.search();

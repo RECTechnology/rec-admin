@@ -3,9 +3,11 @@
         (matSortChange)="sortData($event)">
         <tr class="bordered-bottom">
             <ng-template ngFor let-header [ngForOf]="headers">
-                <th *ngIf="options.sortEnabled && (header.sortable === undefined  || header.sortable)" mat-sort-header="{{header.sort}}">
+                <th *ngIf="options.sortEnabled && (header.sortable === undefined  || header.sortable)"
+                    mat-sort-header="{{header.sort}}">
                     {{header.title|translate}}</th>
-                <th *ngIf="!options.sortEnabled || (header.sortable !== undefined && !header.sortable)" style="text-transform: capitalize">
+                <th *ngIf="!options.sortEnabled || (header.sortable !== undefined && !header.sortable)"
+                    style="text-transform: capitalize">
                     {{header.title|translate}}</th>
             </ng-template>
             <th *ngIf="itemOptions"></th>
@@ -18,14 +20,15 @@
                 <span *ngIf="header.type === 'status'"
                     [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry, header)}}</span>
 
-                <code *ngIf="header.type === 'code'"
-                    [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</code>
+                <code *ngIf="header.type === 'code'" [matTooltip]="header.tooltip && header.tooltip(entry)"
+                    [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry, header)}}</code>
 
-                <a *ngIf="header.type === 'link'" href="javascript:;" (click)="navigateTo(header.link ? header.link(entry): {})"
+                <a *ngIf="header.type === 'link'" href="javascript:;"
+                    (click)="navigateTo(header.link ? header.link(entry): {})"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</a>
 
-                <code *ngIf="header.type === 'number'"
-                    [matTooltip]="header.tooltip && header.tooltip(entry)">{{header.prefix}} {{(getEntry(entry, header) || 0) | number}} {{header.suffix}}</code>
+                <code *ngIf="header.type === 'number'" [matTooltip]="header.tooltip && header.tooltip(entry)"
+                    [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{header.prefix}} {{(getEntry(entry, header) || 0) | number}} {{header.suffix}}</code>
 
                 <i *ngIf="header.type === 'date'"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header) | date}}</i>

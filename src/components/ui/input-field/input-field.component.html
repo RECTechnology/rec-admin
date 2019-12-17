@@ -1,7 +1,11 @@
 <div class="group-col-left">
     <span class="small-text-2 marg-b-5" *ngIf="label">{{label|translate}}</span>
-    <input *ngIf="isNormalInput" [disabled]="disabled" [type]="type" class="user-input small" [ngModel]="value"
-        (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder|translate}}" name="{{name}}">
+    <input *ngIf="isNormalInput && debounced" #input [disabled]="disabled" [type]="type" class="user-input small"
+        placeholder="{{placeholder|translate}}" name="{{name}}">
+
+    <input *ngIf="isNormalInput && !debounced" [disabled]="disabled" [type]="type" class="user-input small"
+        [ngModel]="value" (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder|translate}}"
+        name="{{name}}">
 
     <mat-checkbox *ngIf="!isNormalInput && type === 'checkbox'" color="primary" [ngModel]="value"
         (ngModelChange)="valueChange.emit($event)">
@@ -15,7 +19,6 @@
     </mat-select>
 </div>
 
-<div class="group-row-left" *ngIf="!isNormalInput && type === 'toggle'" >
-    <mat-slide-toggle color="primary" [checked]="value"
-        (change)="valueChange.emit($event)"></mat-slide-toggle>
+<div class="group-row-left" *ngIf="!isNormalInput && type === 'toggle'">
+    <mat-slide-toggle color="primary" [checked]="value" (change)="valueChange.emit($event)"></mat-slide-toggle>
 </div>
