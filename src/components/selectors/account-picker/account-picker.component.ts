@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountPickerDia } from './account-picker-dialog/account-picker.dia';
 import { Account } from 'src/shared/entities/account.ent';
+import { memoize } from 'src/decorators/meoize.decorator';
 
 @Component({
   selector: 'account-picker',
@@ -20,7 +21,7 @@ export class AccountPickerComponent {
   @Input() public filters = {};
 
   public isKeyboard = false;
-  public selectedAccount: Account | any = {};
+  public selectedAccount: any = {};
   public Brand = environment.Brand;
 
   constructor(
@@ -51,30 +52,43 @@ export class AccountPickerComponent {
     this.accountChange.emit(this.selectedAccount);
     this.idChange.emit(this.selectedAccount.id);
     this.id = account.id;
+  }
 
+  public getAccount(id) {
+    return this.accountCrud.find(id)
+      .toPromise()
+      .then((resp) => resp.data);
   }
 
   public search() {
+    console.log('acc', this.account);
+    console.log('id', this.id);
+    
     if (this.account && this.account.id) {
-      this.accountCrud.find(this.account.id)
-        .subscribe((account) => {
-          this.selectedAccount = account;
-        });
+      this.getAccount(this.account.id)
+        .then((account) => this.selectAccount(account))
+        .catch((err) => this.selectedAccount = {});
     } else if (this.id) {
-      console.log('id', this.id);
-      this.accountCrud.find(this.id)
-        .subscribe((resp) => {
-          this.selectedAccount = resp.data;
-        });
+      this.getAccount(this.id)
+        .then((account) => this.selectAccount(account))
+        .catch((err) => this.selectedAccount = {});
     } else {
       this.selectedAccount = {};
     }
   }
 
+  public onWrite($event) {
+    this.idChange.emit(Number($event));
+  }
+
   public changeMode() {
-    if (this.isKeyboard) {
-      this.selectAccount({ id: this.selectedAccount.id });
-    }
     this.isKeyboard = !this.isKeyboard;
+    if (this.isKeyboard) {
+      this.selectedAccount = { id: this.selectedAccount.id };
+      this.selectAccount(this.selectedAccount);
+    } else {
+      this.getAccount(this.selectedAccount.id)
+        .then(this.selectAccount.bind(this));
+    }
   }
 }

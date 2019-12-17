@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { TransactionService } from '../../../services/transactions/transactions.service';
 import BaseDialog from '../../../bases/dialog-base';
@@ -22,6 +22,11 @@ export class CashOutDia extends BaseDialog {
   };
   public available: number = 0;
   public loading = false;
+  public accountFilters = {
+    active: 1,
+    type: 'COMPANY',
+  };
+  public validationErrors  = [];
 
   constructor(
     public dialogRef: MatDialogRef<CashOutDia>,
@@ -41,6 +46,12 @@ export class CashOutDia extends BaseDialog {
   public makeTx() {
     if (this.loading) {
       return;
+    }
+
+    if (!this.tx.receiver) {
+      return this.validationErrors.push({ property: 'Origin Account', message: 'Origin account is required' });
+    } else if (!this.tx.sender) {
+      return this.validationErrors.push({ property: 'Target Account', message: 'Target account is required' });
     }
 
     this.loading = true;

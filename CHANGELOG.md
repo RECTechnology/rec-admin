@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.4...v3.6.0) (2019-12-12)
+
+
+### Features
+
+* added .github workflows ([d861f83](https://github.com/QbitArtifacts/rec-admin/commit/d861f83baab464ac9e9e7bf406ff30706c2f201d))
+* **BaseCrudService:** Added cache functionality, crud services can cache data ([71a4446](https://github.com/QbitArtifacts/rec-admin/commit/71a4446c7b19481db023802a640c6c326751c6df))
+* **Lemonway:** implemented api call for withdrawal ([7e02214](https://github.com/QbitArtifacts/rec-admin/commit/7e02214af92067f5caab426e63b3a9a16e22c888))
+* improved performance for lights ([5331aec](https://github.com/QbitArtifacts/rec-admin/commit/5331aec142d7c22e76d68b79dde05152f9fa821d))
+* preparing Create document, to allow to add lemonway document kinds ([e95bdfe](https://github.com/QbitArtifacts/rec-admin/commit/e95bdfe5695aeab996bdc489a40b9f665da97e59))
+* **MoneyOut:** Now can select accounts from selector, and user input id ([95ede1f](https://github.com/QbitArtifacts/rec-admin/commit/95ede1f29ccd0ce3d760255c01e51e849c76448b))
+* **MoneyOut:** Now can select accounts from selector, and user input id II ([eafa99e](https://github.com/QbitArtifacts/rec-admin/commit/eafa99e708d9d441f2bab7b6be7e5a84bd4954cc))
+* **TlTableList:** added disable sortable headers globaly ([01f40c2](https://github.com/QbitArtifacts/rec-admin/commit/01f40c2a6de45f28f4f7a8292ab3d89eb736feba))
+
+
+### Bug Fixes
+
+* **accounts:** fixed buttons not rendered ([4f3356b](https://github.com/QbitArtifacts/rec-admin/commit/4f3356bb4c008e3271b8b8f41c4bac34ad77569e))
+* **BaseTab:** set loading on sortData, to not allow users to sort compulsively ([8307266](https://github.com/QbitArtifacts/rec-admin/commit/830726688e5b7e3545cc2a384547217e79296ddc))
+* **deps:** updated sentry to 5.9.1 ([c18b5c4](https://github.com/QbitArtifacts/rec-admin/commit/c18b5c4388dd7713136f55f39642d5da6499d092))
+* fixed workflows [skip ci] ([9e33e07](https://github.com/QbitArtifacts/rec-admin/commit/9e33e0746337a277a777dad84c6b1d58022782be))
+* **DocumentKind:** hide lemonway toggle if is edit ([f37711f](https://github.com/QbitArtifacts/rec-admin/commit/f37711f741565159b42f09fc81f35715a5b8e5f9))
+* **DocumentKind:** hide lemonway toggle if is edit ([743819f](https://github.com/QbitArtifacts/rec-admin/commit/743819ff89aa2234fd1c62780700a7713c591056))
+* **documents:** added lemonway validation errors to add document ([5d72f52](https://github.com/QbitArtifacts/rec-admin/commit/5d72f522aeee911103c258d7e3e4542d54c7ba24))
+* **entities:** fixed add tier dialog, and added filters ([ecb57e5](https://github.com/QbitArtifacts/rec-admin/commit/ecb57e5c457ed152fbd8d06037a4f7de143de113))
+* **entities:** fixing tier->document_kind relation ([f525917](https://github.com/QbitArtifacts/rec-admin/commit/f5259173b90240b10761260aefcb790c77a68b60))
+* **Entities:Documents:** added kind and status ([cb06b23](https://github.com/QbitArtifacts/rec-admin/commit/cb06b239cad9e2ad2f3ebb1b2d8fdce9739e7472))
+* fixed workflows [skip ci] ([209a0f3](https://github.com/QbitArtifacts/rec-admin/commit/209a0f3044553bbe2f8032b8261aec9361b62f92))
+* **Entities:Documents:** fixed creation modal, and added some more fields ([f5fdc63](https://github.com/QbitArtifacts/rec-admin/commit/f5fdc6339e64ed0f7e06d0d9af24c3c982029191))
+*  some fixed to entities tabs ([0d5ee3c](https://github.com/QbitArtifacts/rec-admin/commit/0d5ee3c902abd2d4e1a20f9edb1d94576d76eda8))
+* added tier to edit account ([c213e6b](https://github.com/QbitArtifacts/rec-admin/commit/c213e6bf45eb406238c1a16e3d014eeb6e75ef5a))
+* added validate tier from account documents & tiers ([59c7b11](https://github.com/QbitArtifacts/rec-admin/commit/59c7b1107adc136f95ff1b83c62d3995a1f0160e))
+* added warning alert for lemonway wallet 2 wallet ([ba13a0f](https://github.com/QbitArtifacts/rec-admin/commit/ba13a0fbddd5041695e5aa029c52fe608ba08aab))
+* changed lemonway wallet 2 wallet alert message, and added translations ([867aec5](https://github.com/QbitArtifacts/rec-admin/commit/867aec5011316c027ee4756ed4462b43a4fc212d))
+* dashboard charts, round y-label value ([2204e6d](https://github.com/QbitArtifacts/rec-admin/commit/2204e6dd1e99dc93ca7901baaa16934da8665b45))
+* dashboard charts, round y-label value ([f29d7a6](https://github.com/QbitArtifacts/rec-admin/commit/f29d7a68893f0b1aa7b50fe836455334b57cccdf))
+* finishing Tier stuff ([9030e2b](https://github.com/QbitArtifacts/rec-admin/commit/9030e2bdd455e41bbc72cb371678e2c9ba1f3209))
+* fixed build error ([1880df7](https://github.com/QbitArtifacts/rec-admin/commit/1880df7ed4c2f3b0cf03829e883cacd30b5abe27))
+* fixed merge issues ([37b1a09](https://github.com/QbitArtifacts/rec-admin/commit/37b1a091ff67946417d0d84f1f08d5c9edeab1a7))
+* fixed TlHeaders.Avatar sort header ([7eeb89d](https://github.com/QbitArtifacts/rec-admin/commit/7eeb89d4092086fa934fd15549994574f69b8aac))
+* fixed weird behaviour with lemon wallet 2 wallet ([c6dbd31](https://github.com/QbitArtifacts/rec-admin/commit/c6dbd31fbc88af184fa98d19e2f56453178f33f4))
+* fixed workflows ([b0ee3d4](https://github.com/QbitArtifacts/rec-admin/commit/b0ee3d4dcf5014daab57b6ac586bbd1efab8e5d8))
+* footer in account tabs was not always visible ([4400796](https://github.com/QbitArtifacts/rec-admin/commit/4400796a1b2fe7a7d96296dc0dc74098cd282dd3))
+* implementing tiers and docs ([7dff446](https://github.com/QbitArtifacts/rec-admin/commit/7dff446485fb72a252dd7204972ad500544081d6))
+* mark tiers as validated if already set in account ([652ab9d](https://github.com/QbitArtifacts/rec-admin/commit/652ab9dda8f5f9e686021aee7516f7cd84fde17b))
+* moved components/dialogs to dialogs/ ([49325b8](https://github.com/QbitArtifacts/rec-admin/commit/49325b89c4abc2b561bf4e3912501acf0d094dec))
+* removed code smell in login ([9d07e44](https://github.com/QbitArtifacts/rec-admin/commit/9d07e447f689aaae68a83e67a7694e1f1e64b30f))
+* removed sort from account table 'amount' ([7df8e61](https://github.com/QbitArtifacts/rec-admin/commit/7df8e6102843a63fc79d5632507aedb077612934))
+* removed unused file ([e8eeba4](https://github.com/QbitArtifacts/rec-admin/commit/e8eeba4799766bffcbed9f7f8e35beb99daa1ec9))
+
+### [3.5.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.2...v3.5.3) (2019-11-22)
+
 ### [3.5.4](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.2...v3.5.4) (2019-12-10)
 
 ### [3.5.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.2...v3.5.3) (2019-11-22)
