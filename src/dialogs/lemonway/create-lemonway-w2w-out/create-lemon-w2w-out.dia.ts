@@ -59,7 +59,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
       this.accountCrud.find(this.originAccountId).subscribe((resp) => {
         this.originAccount = resp.data;
         this.currentAmountREC = this.originAccount.getBalance('REC');
-        this.currentAmountEUR = this.originAccount.lw_balance;
+        this.currentAmountEUR = this.originAccount.lw_balance || 0;
       });
     } else if (this.targetAccountId) {
       this.accountCrud.find(this.targetAccountId).subscribe((resp) => {
