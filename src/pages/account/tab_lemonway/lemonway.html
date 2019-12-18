@@ -1,5 +1,5 @@
 <div style="height: 100%">
-  <div class="row" style="margin: 0; padding: 20px;" *ngIf="!error && !loading">
+  <div class="row" style="margin: 0; padding: 20px;" *ngIf="!error">
     <div class="col-lg-3">
       <mat-card style="min-height: 200px;padding:0;">
         <div class="header bordered-bottom" style="padding: 14px 15px">
@@ -52,7 +52,7 @@
                 <button mat-raised-button color="primary" (click)="newWithdrawal()">
                   + {{'CREATE_WITHDRAWAL'|translate}}
                 </button>
-                <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="search()">
+                <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="getMoneyTxs()">
                   <i class="fa fa-refresh"></i>
                 </button>
               </div>
@@ -74,7 +74,7 @@
                   + {{'CASH_OUT'|translate}}/{{'CASH_IN'|translate}}
                 </button>
 
-                <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="search()">
+                <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="getP2PTxs()">
                   <i class="fa fa-refresh"></i>
                 </button>
               </div>
@@ -91,7 +91,7 @@
       </mat-card>
     </div>
   </div>
-  <div class="center v h" style="margin: 0; padding: 20px;width: 100%;" *ngIf="error && !loading">
+  <div class="center v h" style="margin: 0; padding: 20px;width: 100%;" *ngIf="error">
     <mat-card class="col-error">
       <div class="group-row-left center v">
         <i class="fa fa-exclamation-circle marg-r-10"></i>
@@ -100,10 +100,10 @@
     </mat-card>
   </div>
 
-  <div class="center h v" *ngIf="loading" style="width: 100%">
-    <mat-card class="col-error">
+  <!-- <div class="center h v" *ngIf="loading" style="width: 100%"> -->
+    <!-- <mat-card class="col-error">
       <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
       </mat-progress-spinner>
     </mat-card>
-  </div>
+  </div> -->
 </div>
