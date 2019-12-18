@@ -1,0 +1,40 @@
+export const WALLET_STATUS_MAP = {
+    '-1': 'wallet SC',
+    '1': 'Account not opened',
+    '2': 'registered, KYC incomplete',
+    '3': 'registered, rejected KYC',
+    '5': 'registered, KYC 1 (status given at registration)',
+    '6': 'registered, KYC 2',
+    '7': 'registered, KYC 3',
+    '8': 'registered, expired KYC',
+    '10': 'blocked',
+    '12': 'closed',
+    '13': 'registered, status is being updated from KYC 2 to KYC 3',
+    '14': 'one-time customer',
+    '15': 'special wallet for crowdlending',
+    '16': 'wallet technique',
+};
+
+export const IBAN_STATUS_MAP = {
+    1: 'None',
+    2: 'Internal',
+    3: 'Not used',
+    4: 'waiting to be verified by Lemon Way ',
+    5: 'activated',
+    6: 'rejected by the bank',
+    7: 'rejected, no owner ',
+    8: 'deactivated',
+    9: 'rejected',
+};
+
+export const LW_ERROR_MONEY_OUT = {
+    0: 'successful',
+    3: 'money-out successful',
+    4: 'error',
+};
+
+export const LW_ERROR_P2P = {
+    0: 'pending payment',
+    3: 'payment successful and terminated',
+    4: 'error',
+};
