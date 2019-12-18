@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.8.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.8.0...v3.8.1) (2019-12-18)
+
+
+### Bug Fixes
+
+* fixed lemonway IBAN_STATUS_MAP was missing ([da14cf3](https://github.com/QbitArtifacts/rec-admin/commit/da14cf3c434a010d43d448afc7c1de32b99eab0a))
+
 ## [3.8.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.7.0...v3.8.0) (2019-12-18)
 ### Bug Fixes
 
