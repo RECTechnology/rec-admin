@@ -9,7 +9,7 @@
       </div>
     </button>
     <a routerLink="/dashboard" class="navbar-brand" *ngIf="contrService.sidemenuVisible">
-      {{brand.header_title}}
+      {{brand.header_title}} <span  class="small-text monospace">{{environment.version}}</span>
     </a>
   </div>
   <div class="content" style="position:relative" *ngIf="contrService.sidemenuVisible">
