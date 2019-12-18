@@ -6,6 +6,7 @@ import { LoginService } from 'src/services/auth/auth.service';
 import { Title } from '@angular/platform-browser';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { AddIbanDia } from 'src/dialogs/entities/add-iban/add-iban.dia';
 
 @Component({
     selector: 'lw-ibans-tab',
@@ -32,7 +33,11 @@ export class LwTabIbans extends TablePageBase {
     }
 
     public newIBAN() {
-        return;
+        return this.alerts.openModal(AddIbanDia, {
+            id: this.id,
+        }).subscribe((resp) => {
+            this.search();
+        });
     }
 
     public getIbans() {
