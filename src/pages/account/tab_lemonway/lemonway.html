@@ -29,7 +29,7 @@
             <b>IBAN Status <a matTooltip="Open documentation" target="_blank"
                 href="http://documentation.lemonway.fr/api-en/annex/status-and-types/iban-status"><i
                   class="fa fa-exclamation-circle col-gray-light"></i></a></b>
-            <!-- <p>{{lwInfo.IBAN ? IBAN_STATUS_MAP[lwInfo.IBAN.S]: 'not set'}}</p> -->
+            <p>{{lwInfo.IBAN ? IBAN_STATUS_MAP[lwInfo.IBAN.S]: 'not set'}}</p>
           </div>
 
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
@@ -99,11 +99,4 @@
       </div>
     </mat-card>
   </div>
-
-  <!-- <div class="center h v" *ngIf="loading" style="width: 100%"> -->
-    <!-- <mat-card class="col-error">
-      <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-      </mat-progress-spinner>
-    </mat-card>
-  </div> -->
 </div>
