@@ -14,6 +14,9 @@ import { AccountDocuments } from './tab_documents/account_documents.tab';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { B2BModuleTab } from './tab_b2b/tab_b2b.tab';
 import { LemonWayTab } from './tab_lemonway/lemonway.tab';
+import { LwTabMoneyOut } from './tab_lemonway/tabs/money-out/money-out.component';
+import { LwTabWalletToWallet } from './tab_lemonway/tabs/wallet-to-wallet/wallet-to-wallet.component';
+import { LwTabIbans } from './tab_lemonway/tabs/ibans/ibans.component';
 
 const accountRoutes: Routes = [
   {
@@ -33,6 +36,9 @@ const accountRoutes: Routes = [
     AccountDocuments,
     B2BModuleTab,
     LemonWayTab,
+    LwTabMoneyOut,
+    LwTabWalletToWallet,
+    LwTabIbans,
   ],
   entryComponents: [
     ViewDetails,
