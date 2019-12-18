@@ -30,4 +30,12 @@ export class LwTabIbans extends TablePageBase {
     public search() {
         return;
     }
+
+    public newIBAN() {
+        return;
+    }
+
+    public getIbans() {
+        return;
+    }
 }
