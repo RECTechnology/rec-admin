@@ -29,7 +29,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         {
             accessor: (v) => v.account ? v.account : {},
             sortable: false,
-            title: 'Name',
+            title: 'Account',
             type: 'avatar',
         },
         TlHeaders.DocumentKind,

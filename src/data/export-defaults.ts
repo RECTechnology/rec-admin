@@ -36,7 +36,9 @@ export const AccountsExportDefaults: KvpItem[] = [
     { key: 'amount', value: '$.wallets[0].available', active: true },
     { key: 'neighbourhood_id', value: '$.neighbourhood.id', active: true },
     { key: 'neighbourhood_name', value: '$.neighbourhood.name', active: true },
-    { key: 'activities', value: '$.activities[*].name', active: true },
+    { key: 'activities', value: '$.activities[*].name_es', active: true },
+    { key: 'activity_main_name', value: '$.activity_main.name_es', active: true },
+    { key: 'activity_main_id', value: '$.activity_main.id', active: true },
 ];
 
 // tslint:disable-next-line: variable-name
@@ -51,4 +53,4 @@ export const OrgsExportDefaults: KvpItem[] = [
     { key: 'address_number', value: '$.address_number', active: true },
     { key: 'dni', value: '$.kyc_manager.dni', active: true },
     { key: 'phone', value: '$.phone', active: true },
-]
+];
