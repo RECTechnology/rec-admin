@@ -31,7 +31,10 @@ export interface TlHeader {
 }
 export class TlHeader implements TlHeader {
     constructor(opts: Partial<TlHeader>) {
-        this.extend(opts);
+        // tslint:disable-next-line: forin
+        for (const prop in opts) {
+            this[prop] = opts[prop];
+        }
     }
 
     public extend?(opts: Partial<TlHeader>) {
@@ -40,7 +43,7 @@ export class TlHeader implements TlHeader {
             this[prop] = opts[prop];
         }
 
-        return this;
+        return new TlHeader(this);
     }
 }
 
