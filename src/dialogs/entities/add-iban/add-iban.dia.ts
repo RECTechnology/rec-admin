@@ -20,4 +20,8 @@ export class AddIbanDia extends BaseDialog {
   ) {
     super();
   }
+
+  proceed() {
+
+  }
 }
