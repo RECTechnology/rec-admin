@@ -38,3 +38,15 @@ export const LW_ERROR_P2P = {
     3: 'payment successful and terminated',
     4: 'error',
 };
+
+export const processLwTx = (res) => {
+    // F*** lemonway man!
+    const parts = res.DATE.split('/');
+    const temp = parts[0];
+    parts[0] = parts[1];
+    parts[1] = temp;
+
+    res.DATE = parts.join('/');
+
+    return res;
+};

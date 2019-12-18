@@ -1,0 +1,19 @@
+<div class="header bordered-bottom" style="padding: 12px 15px">
+    <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
+        {{'WITHDRAWALS'|translate}}</p>
+
+    <div>
+        <button mat-raised-button color="primary" (click)="newWithdrawal()">
+            + {{'CREATE_WITHDRAWAL'|translate}}
+        </button>
+        <button style="margin-right: 10px;" mat-icon-button color="primary" (click)="getMoneyTxs()">
+            <i class="fa fa-refresh"></i>
+        </button>
+    </div>
+</div>
+<div>
+    <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
+        noItemsMessage="There are no items yet" [options]="tableOptions" [limit]="limit" [total]="total"
+        (onChangePage)="changedPage($event)" showLoader="true">
+    </tl-table>
+</div>
