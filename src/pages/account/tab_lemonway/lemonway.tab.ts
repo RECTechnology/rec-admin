@@ -211,6 +211,7 @@ export class LemonWayTab extends TablePageBase {
   }
 
   public getP2PTxs() {
+    this.loading = true;
     this.accCrud.lwGetP2PList([this.lwInfo.ID])
       .subscribe((resp) => {
         this.total = resp.data.COUNT;
@@ -227,11 +228,13 @@ export class LemonWayTab extends TablePageBase {
             }
             return el;
           });
+        this.loading = false;
       });
   }
 
   public getMoneyTxs() {
-    this.accCrud.getWithdrawals([this.lwInfo.ID])
+    this.loading = true;
+    this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
       .subscribe((resp) => {
         this.total = resp.data.COUNT;
         this.sortedData = resp.data.TRANS
@@ -240,6 +243,7 @@ export class LemonWayTab extends TablePageBase {
             el.status_text = LW_ERROR_MONEY_OUT[el.INT_STATUS];
             return el;
           });
+        this.loading = false;
       });
   }
 

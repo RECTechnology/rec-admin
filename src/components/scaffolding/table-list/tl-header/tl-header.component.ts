@@ -36,6 +36,7 @@ export class TableListHeader {
 
     @Input() public newItemText = '';
     @Input() public newItemIcon = 'fa-plus';
+    @Input() public searching = false;
 
     @Output() public onSearch: EventEmitter<string>;
     @Output() public queryChange: EventEmitter<string>;
@@ -94,7 +95,7 @@ export class TableListHeader {
     public setupDebouncedSearch(element) {
         fromEvent(element, 'keyup').pipe(
             map((event: any) => event.target.value),
-            debounceTime(400),
+            debounceTime(250),
             distinctUntilChanged(),
         ).subscribe((text: string) => {
             this.query = text;

@@ -485,7 +485,7 @@
   "TARGET_ACCOUNT": "Target Account",
   "CASH_OUT_TITLE": "SEND € TO A LW WALLET",
   "CASH_IN_TITLE": "RECEIVE € FROM A LW WALLET",
-  "CASH_OUT": "Enviar",
+  "CASH_OUT": "Envia",
   "CASH_IN": "Recibir",
   "CASH_OUT_DESC": "Send money from this account to another account",
   "CASH_IN_DESC": "Receive money to this account from another account",

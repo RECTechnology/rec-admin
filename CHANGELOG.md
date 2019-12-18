@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.8.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.7.0...v3.8.0) (2019-12-18)
+### Bug Fixes
+
+* added full date tooltip to table:date column ([4d0fd05](https://github.com/QbitArtifacts/rec-admin/commit/4d0fd054a37f2e83f8ab7457645f7f619ef98382))
+* added version to login footer ([cf6ceb5](https://github.com/QbitArtifacts/rec-admin/commit/cf6ceb5f96925323221b9667b269d77293bb6098))
+* **cash-out:** fixed cashout texts ([7d9c56f](https://github.com/QbitArtifacts/rec-admin/commit/7d9c56fad452c09ccdb7d2dede67bcc777468cdc))
+* fixed account picker text was behaving weird, made input debounced, to prevent un-needed updated ([82425ce](https://github.com/QbitArtifacts/rec-admin/commit/82425ceacc4e28f7b9566725a5f7badea03aa5a7))
+* **lemonway:** added iban status to lemonway status page ([dc07310](https://github.com/QbitArtifacts/rec-admin/commit/dc07310281471575e97fa4f15a8f0a1a28a48cff))
+* fixed lemonway add document, needs to upload lemon doc if kind is lemon ([31e36c5](https://github.com/QbitArtifacts/rec-admin/commit/31e36c5ebddd783bf125b206dfcd0401395c774f))
+* fixed money out transactions status ([38c3e09](https://github.com/QbitArtifacts/rec-admin/commit/38c3e09ff7affe014e02f97aa702e2936e121d91))
+* lemonway id column was messing up other ids ([4376aec](https://github.com/QbitArtifacts/rec-admin/commit/4376aec4cb2e43a5a00a36e491c4c8e592bd4ff6))
+* **lemonway:** fixed loading ([3d89274](https://github.com/QbitArtifacts/rec-admin/commit/3d89274f0861fd00de0e191b6e2261d89cc12585))
+* **lemonway_w2s:** fixed lemonway wallet 2 wallet table styles, added negative values in red - fixes QbitArtifacts/rec-admin/issues/67 ([7f16c93](https://github.com/QbitArtifacts/rec-admin/commit/7f16c93f3b272b8d27d1920a968e507392c02f88))
+* removed footer, added version to header instead ([a5098af](https://github.com/QbitArtifacts/rec-admin/commit/a5098af866d977efa0781833e4682b75a19bb3ca))
+* **TableList:** improved loading, and disable/spin refresh icon on load ([98c001b](https://github.com/QbitArtifacts/rec-admin/commit/98c001ba620f479c38e70aca3a656b5c746e2c98))
+
 ## [3.7.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.4...v3.7.0) (2019-12-17)
 
 
@@ -16,7 +32,6 @@ All notable changes to this project will be documented in this file. See [standa
 * preparing Create document, to allow to add lemonway document kinds ([72df8c1](https://github.com/QbitArtifacts/rec-admin/commit/72df8c144086a20c60563d4d7c38976acc4a6aa7))
 * **MoneyOut:** Now can select accounts from selector, and user input id ([ef9c7e5](https://github.com/QbitArtifacts/rec-admin/commit/ef9c7e5ee393d860d3f20602fad8fab8ea46f28b))
 * **MoneyOut:** Now can select accounts from selector, and user input id II ([7690fd7](https://github.com/QbitArtifacts/rec-admin/commit/7690fd70b67098331ce8e177e2e5f310ce0ca09a))
-* **TlTableList:** added disable sortable headers globaly ([01f40c2](https://github.com/QbitArtifacts/rec-admin/commit/01f40c2a6de45f28f4f7a8292ab3d89eb736feba))
 
 
 ### Bug Fixes
@@ -80,7 +95,6 @@ All notable changes to this project will be documented in this file. See [standa
 * **tl-headers:** fixed tl heaer not searching after query is cleared ([5270f66](https://github.com/QbitArtifacts/rec-admin/commit/5270f66608d21b30e0412112b52a6b73ef7a416c))
 * **TlListHeader:** ignoring query on change pagination page ([864edfa](https://github.com/QbitArtifacts/rec-admin/commit/864edfa6031c2853a8f3e24c42f9ba7d0f2103f8))
 
-### [3.5.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.2...v3.5.3) (2019-11-22)
 
 ## [3.6.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.5.4...v3.6.0) (2019-12-12)
 

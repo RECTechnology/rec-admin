@@ -30,17 +30,20 @@ export interface TlHeader {
     tooltip?: (any) => any;
 }
 export class TlHeader implements TlHeader {
-    constructor(opts: TlHeader) {
-        this.extend(opts);
+    constructor(opts: Partial<TlHeader>) {
+        // tslint:disable-next-line: forin
+        for (const prop in opts) {
+            this[prop] = opts[prop];
+        }
     }
 
-    public extend?(opts: TlHeader) {
+    public extend?(opts: Partial<TlHeader>) {
         // tslint:disable-next-line: forin
         for (const prop in opts) {
             this[prop] = opts[prop];
         }
 
-        return this;
+        return new TlHeader(this);
     }
 }
 

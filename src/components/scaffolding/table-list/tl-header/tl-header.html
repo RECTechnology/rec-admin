@@ -11,7 +11,7 @@
         </div>
 
         <div *ngIf="options.refresh">
-            <icon-btn icon="fa-refresh" (click)="search()" matTooltip="Refresh data"></icon-btn>
+            <icon-btn [icon]="searching ? 'fa-refresh fa-spin': 'fa-refresh'" [disabled]="searching" (click)="search()" matTooltip="Refresh data"></icon-btn>
         </div>
 
         <div *ngIf="options.newItem">
