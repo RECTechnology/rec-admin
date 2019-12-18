@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## [3.8.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.7.0...v3.8.0) (2019-12-18)
-
-
-### Features
-
-* **MoneyOut:** Now can select accounts from selector, and user input id ([95ede1f](https://github.com/QbitArtifacts/rec-admin/commit/95ede1f29ccd0ce3d760255c01e51e849c76448b))
-* **MoneyOut:** Now can select accounts from selector, and user input id II ([eafa99e](https://github.com/QbitArtifacts/rec-admin/commit/eafa99e708d9d441f2bab7b6be7e5a84bd4954cc))
-
-
 ### Bug Fixes
 
 * added full date tooltip to table:date column ([4d0fd05](https://github.com/QbitArtifacts/rec-admin/commit/4d0fd054a37f2e83f8ab7457645f7f619ef98382))
