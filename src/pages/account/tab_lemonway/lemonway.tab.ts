@@ -15,6 +15,7 @@ import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 
 import * as moment from 'moment';
 import { UtilsService } from 'src/services/utils/utils.service';
+import { TlHeaders } from 'src/data/tl-headers';
 
 const WALLET_STATUS_MAP = {
   '-1': 'wallet SC',
@@ -69,11 +70,8 @@ export class LemonWayTab extends TablePageBase {
   public pageName = 'Lemonway';
   public loading = true;
   public headers: TlHeader[] = [
+    TlHeaders.Id.extend({ accessor: 'ID' }),
     {
-      sort: 'ID',
-      title: 'ID',
-      type: 'code',
-    }, {
       sort: 'CRED',
       title: 'Amount',
       type: 'number',
@@ -101,11 +99,8 @@ export class LemonWayTab extends TablePageBase {
     },
   ];
   public headersP2P: TlHeader[] = [
+    TlHeaders.Id.extend({ accessor: 'ID' }),
     {
-      sort: 'ID',
-      title: 'ID',
-      type: 'code',
-    }, {
       sort: 'DEB',
       title: 'Amount',
       type: 'number',

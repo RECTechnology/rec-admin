@@ -4,7 +4,7 @@
 <div class="page accounts" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
   <div class="row" style="margin: 0; padding: 20px;">
     <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
-      <tl-header title="Accounts" [query]="query" [options]="headerOpts" (onSearch)="search($event)">
+      <tl-header title="Accounts" [query]="query" [options]="headerOpts" (onSearch)="search($event)" [searching]="loading">
         <icon-btn (click)="export()" matTooltip="{{'EXPORT_AS_CSV'|translate}}" icon="fa-download"></icon-btn>
       </tl-header>
       <tl-subheader>
