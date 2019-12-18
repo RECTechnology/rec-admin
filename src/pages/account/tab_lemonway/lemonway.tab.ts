@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 import {
-  TlHeader, TlItemOption, TableListOptions,
+  TlHeader, TableListOptions,
 } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { ControlesService } from 'src/services/controles/controles.service';
@@ -12,50 +12,8 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-withdrawal/create-lemon-withdrawal.dia';
 import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemonway-w2w-out/create-lemon-w2w-out.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
-
-import * as moment from 'moment';
 import { UtilsService } from 'src/services/utils/utils.service';
-
-const WALLET_STATUS_MAP = {
-  '-1': 'wallet SC',
-  '1': 'Account not opened',
-  '2': 'registered, KYC incomplete',
-  '3': 'registered, rejected KYC',
-  '5': 'registered, KYC 1 (status given at registration)',
-  '6': 'registered, KYC 2',
-  '7': 'registered, KYC 3',
-  '8': 'registered, expired KYC',
-  '10': 'blocked',
-  '12': 'closed',
-  '13': 'registered, status is being updated from KYC 2 to KYC 3',
-  '14': 'one-time customer',
-  '15': 'special wallet for crowdlending',
-  '16': 'wallet technique',
-};
-
-const IBAN_STATUS_MAP = {
-  1: 'None',
-  2: 'Internal',
-  3: 'Not used',
-  4: 'waiting to be verified by Lemon Way ',
-  5: 'activated',
-  6: 'rejected by the bank',
-  7: 'rejected, no owner ',
-  8: 'deactivated',
-  9: 'rejected',
-};
-
-const LW_ERROR_MONEY_OUT = {
-  0: 'successful',
-  3: 'money-out successful',
-  4: 'error',
-};
-
-const LW_ERROR_P2P = {
-  0: 'pending payment',
-  3: 'payment successful and terminated',
-  4: 'error',
-};
+import { WALLET_STATUS_MAP, IBAN_STATUS_MAP, LW_ERROR_P2P, LW_ERROR_MONEY_OUT } from 'src/data/lw-constants';
 
 const processLwTx = (res) => {
   // F*** lemonway man!
