@@ -33,6 +33,18 @@ const WALLET_STATUS_MAP = {
   '16': 'wallet technique',
 };
 
+const IBAN_STATUS_MAP = {
+  1: 'None',
+  2: 'Internal',
+  3: 'Not used',
+  4: 'waiting to be verified by Lemon Way ',
+  5: 'activated',
+  6: 'rejected by the bank',
+  7: 'rejected, no owner ',
+  8: 'deactivated',
+  9: 'rejected',
+};
+
 const LW_ERROR_MONEY_OUT = {
   0: 'successful',
   3: 'money-out successful',
@@ -143,6 +155,7 @@ export class LemonWayTab extends TablePageBase {
   };
 
   public WALLET_STATUS_MAP = WALLET_STATUS_MAP;
+  public IBAN_STATUS_MAP = IBAN_STATUS_MAP;
   public currentTab = 0;
 
   public tabMap = {
