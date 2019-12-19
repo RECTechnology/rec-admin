@@ -7,6 +7,7 @@ import { CompanyService } from 'src/services/company/company.service';
 import { RecLang, REC_LANGS } from 'src/types';
 import { Account } from 'src/shared/entities/account.ent';
 import * as moment from 'moment';
+import { Iban } from 'src/shared/entities/iban.ent';
 
 @Injectable()
 export class AccountsCrud extends CrudBaseService<Account> {
@@ -95,6 +96,16 @@ export class AccountsCrud extends CrudBaseService<Account> {
     public createWithdrawal(account, amount, concept, otp, currency) {
         const url = [...this.getUrlBase(), '/', account, '/', 'withdrawals'];
         return this.post(url, { amount, concept, otp, currency });
+    }
+
+    public createIBAN(account, data: Partial<Iban>) {
+        const url = [...this.getUrlBase(), '/', account, '/', 'ibans'];
+        return this.post(url, data);
+    }
+
+    public getIbans(account) {
+        const url = [...this.getUrlBase(), '/', account, '/', 'ibans'];
+        return this.get(url);
     }
 
     public getWithdrawals(account) {

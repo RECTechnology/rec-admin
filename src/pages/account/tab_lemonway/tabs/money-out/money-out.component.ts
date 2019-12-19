@@ -26,12 +26,12 @@ export class LwTabMoneyOut extends TablePageBase {
             title: 'ID',
             type: 'code',
         }, {
-            sort: 'CRED',
+            sort: 'DEB',
             title: 'Amount',
             type: 'number',
             suffix: '€',
             accessor: (el) => {
-                return el.CRED;
+                return el.DEB;
             },
             statusClass(value) {
                 return 'col-error';

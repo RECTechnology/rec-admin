@@ -26,15 +26,27 @@
           </div>
 
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
-            <b>IBAN Status <a matTooltip="Open documentation" target="_blank"
-                href="http://documentation.lemonway.fr/api-en/annex/status-and-types/iban-status"><i
-                  class="fa fa-exclamation-circle col-gray-light"></i></a></b>
-            <p>{{lwInfo.IBAN ? IBAN_STATUS_MAP[lwInfo.IBAN.S]: 'not set'}}</p>
-          </div>
-
-          <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
             <b>Amount</b>
             <p>{{lwInfo.BAL|number}} €</p>
+          </div>
+
+
+          <div class="group-col-left bordered-top small-text-2" style="margin-top: 8px; padding-top: 8px"
+            *ngIf="lwInfo && lwInfo.IBANS">
+            <b style="margin-bottom: 10px;">
+              IBAN Status <a matTooltip="Open documentation" target="_blank"
+                href="http://documentation.lemonway.fr/api-en/annex/status-and-types/iban-status"><i
+                  class="fa fa-exclamation-circle col-gray-light"></i></a>
+            </b>
+            <div class="group-row-left" *ngFor="let iban of lwInfo.IBANS">
+              <i>({{iban.ID}})</i> <b style="margin-left: 8px;">{{iban.DATA}}</b> <code
+                style="margin-left: 8px;">{{IBAN_STATUS_MAP[iban.S]}}</code>
+            </div>
+            <div class="group-row-left space-between" style="width: 100%" *ngIf="!lwInfo.IBANS.length">
+              <p>No ibans registered</p> <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="newIban()">
+                + {{'CREATE_IBAN'|translate}}
+              </button>
+            </div>
           </div>
         </div>
       </mat-card>
