@@ -37,11 +37,11 @@ export class LwTabMoneyOut extends TablePageBase {
                 return 'col-error';
             },
         }, {
-            sort: 'TYPE',
+            sort: 'INT_STATUS',
             title: 'Status',
             type: 'code',
             tooltip(el) {
-                return el.status_text + ' (' + el.STATUS + ')';
+                return el.status_text + ' (' + el.INT_STATUS + ')';
             },
         }, {
             sort: 'DATE',
