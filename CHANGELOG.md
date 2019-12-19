@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.9.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.8.1...v3.9.0) (2019-12-19)
+
+
+### Features
+
+* added add-iban dialog ([d6354cd](https://github.com/QbitArtifacts/rec-admin/commit/d6354cd162f2d351debb75e4adfd72fb58ed7ad0))
+* added create iban buttons and overall logic ([47144bc](https://github.com/QbitArtifacts/rec-admin/commit/47144bc1d68c36fb1c251d1ffea1603e3bd01baa))
+* added lemonway iban list to lemonway info, added EventsService to be able to register and dispatch events across the whole app ([ad88856](https://github.com/QbitArtifacts/rec-admin/commit/ad888560df949a2c729579a2435bb7376080b90c))
+
+
+### Bug Fixes
+
+* **money-out:** fixed money out status showing undefined ([8bc0a67](https://github.com/QbitArtifacts/rec-admin/commit/8bc0a671d2b1f8b494ac6d95a24e9320be7a79b4))
+* added missing property itemType ([bb0e944](https://github.com/QbitArtifacts/rec-admin/commit/bb0e9448104522f99b47b0c9aa9cb1848e376bf2))
+* fixed build error, undeclared functions in lemonway tabs ([db46642](https://github.com/QbitArtifacts/rec-admin/commit/db46642534b57c3ecf296d8d8ea18eb924dc5f6d))
+
 ### [3.8.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.8.0...v3.8.1) (2019-12-18)
 
 
