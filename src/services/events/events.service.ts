@@ -16,6 +16,8 @@ export class EventsService {
     }
 
     public fireEvent(name, ...args: any[]) {
-        this.events[name].emit(...args);
+        if (this.findEvent(name)) {
+            this.events[name].emit(...args);
+        }
     }
 }

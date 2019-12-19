@@ -26,84 +26,9 @@ import { EventsService } from 'src/services/events/events.service';
 export class LemonWayTab extends TablePageBase {
   @Input() public id = '';
 
-  public withdrawals = [];
   public lwInfo: any = {};
   public pageName = 'Lemonway';
   public loading = true;
-  public headers: TlHeader[] = [
-    {
-      sort: 'ID',
-      title: 'ID',
-      type: 'code',
-    }, {
-      sort: 'CRED',
-      title: 'Amount',
-      type: 'number',
-      suffix: '€',
-      accessor: (el) => {
-        return el.CRED;
-      },
-      statusClass(value) {
-        return 'col-error';
-      },
-    }, {
-      sort: 'TYPE',
-      title: 'Status',
-      type: 'code',
-      tooltip(el) {
-        return el.status_text + ' (' + el.STATUS + ')';
-      },
-    }, {
-      sort: 'DATE',
-      title: 'Date',
-      type: 'date',
-    }, {
-      sort: 'MSG',
-      title: 'Concept',
-    },
-  ];
-  public headersP2P: TlHeader[] = [
-    {
-      sort: 'ID',
-      title: 'ID',
-      type: 'code',
-    }, {
-      sort: 'DEB',
-      title: 'Amount',
-      type: 'number',
-      suffix: '€',
-      accessor: (el) => {
-        return el.DEB;
-      },
-      statusClass(el) {
-        return el < 0 ? 'col-error' : '';
-      },
-    }, {
-      sort: 'SEN',
-      title: 'Envia',
-    }, {
-      sort: 'REC',
-      title: 'Recibe',
-    }, {
-      sort: 'STATUS',
-      title: 'Status',
-      type: 'code',
-      tooltip(el) {
-        return el.status_text + ' (' + el.INT_STATUS + ')';
-      },
-    }, {
-      sort: 'DATE',
-      title: 'Date',
-      type: 'date',
-    }, {
-      sort: 'MSG',
-      title: 'Concept',
-    },
-  ];
-  public tableOptions: Partial<TableListOptions> = {
-    sortEnabled: false,
-  };
-
   public WALLET_STATUS_MAP = WALLET_STATUS_MAP;
   public IBAN_STATUS_MAP = IBAN_STATUS_MAP;
   public currentTab = 1;
@@ -135,8 +60,6 @@ export class LemonWayTab extends TablePageBase {
     this.accCrud.lwGetWallet(this.id)
       .subscribe((resp) => {
         this.lwInfo = resp.data;
-        this.getP2PTxs();
-        this.getMoneyTxs();
         this.loading = false;
       }, (err) => {
         if (err.errors) {
@@ -168,58 +91,13 @@ export class LemonWayTab extends TablePageBase {
   }
 
   public newWithdrawal() {
-    const dialog = this.alerts.createModal(CreateLemonWithdrawalDia, {
-      id: this.id,
-    });
-    dialog.afterClosed().subscribe((resp) => {
-      this.search();
-    });
-  }
-
-  public getP2PTxs() {
-    this.loading = true;
-    this.accCrud.lwGetP2PList([this.lwInfo.ID])
-      .subscribe((resp) => {
-        this.total = resp.data.COUNT;
-        this.sortedDataP2P = resp.data.TRANS.reverse()
-          .map(processLwTx)
-          .map((el) => {
-            el.status_text = LW_ERROR_P2P[el.STATUS];
-            el.isOut = el.SEN === this.lwInfo.ID;
-            if (el.isOut) {
-              el.CRED = -Number(el.CRED);
-            }
-            if (el.isOut) {
-              el.DEB = -Number(el.DEB);
-            }
-            return el;
-          });
-        this.loading = false;
-      });
-  }
-
-  public getMoneyTxs() {
-    this.loading = true;
-    this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
-      .subscribe((resp) => {
-        this.total = resp.data.COUNT;
-        this.sortedData = resp.data.TRANS
-          .map(processLwTx)
-          .map((el) => {
-            el.status_text = LW_ERROR_MONEY_OUT[el.INT_STATUS];
-            return el;
-          });
-        this.loading = false;
-      });
+    this.currentTab = 1;
+    this.events.fireEvent('cash-out:new');
   }
 
   public newWallet2WalletOut() {
-    const dialog = this.alerts.createModal(CreateLemonWallet2WalletOutDia, {
-      originAccountId: this.id,
-    });
-    dialog.afterClosed().subscribe((resp) => {
-      this.search();
-    });
+    this.currentTab = 2;
+    this.events.fireEvent('w2w:new');
   }
 
   public newIban() {
