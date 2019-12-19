@@ -22,6 +22,7 @@ export class AddIbanDia extends BaseDialog {
   };
 
   public id = null;
+  public itemType = 'Iban';
 
   constructor(
     public dialogRef: MatDialogRef<AddIbanDia>,
