@@ -27,7 +27,6 @@ export class InputFieldComponent {
   public isNormalInput = true;
 
   public ngOnInit() {
-    console.log('onInit', this.value);
     this.placeholder = this.placeholder || this.label;
     this.name = this.name || this.label;
 
@@ -42,10 +41,8 @@ export class InputFieldComponent {
     if (this.debounced) {
       setTimeout(() => {
         this.setupDebouncedSearch(this.inputElement.nativeElement);
-        console.log(this.inputElement.nativeElement);
         if (this.value) {
           this.inputElement.nativeElement.value = this.value;
-          // this.inputElement.nativeElement.emit(new Event('keyup'));
         }
       }, 100);
     }

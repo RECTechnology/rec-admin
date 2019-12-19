@@ -99,6 +99,8 @@ import { CreateDelivery } from 'src/pages/special-actions/mailing/create-deliver
 import { B2BSendComponent } from 'src/pages/special-actions/mailing/send.component';
 import { LemonDocumentKindsCrud } from 'src/services/crud/lemon_document_kinds/lemon_document_kinds';
 import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemonway_documents';
+import { MaskPipe } from 'src/pipes/mask/mask.pipe';
+import { EventsService } from 'src/services/events/events.service';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -184,6 +186,7 @@ const DIALOGS = [
     DocumentTabComponent,
     TiersTabComponent,
     FileSelector,
+    MaskPipe,
     ...DIALOGS,
   ],
   entryComponents: DIALOGS,
@@ -230,6 +233,8 @@ const DIALOGS = [
     DocumentTabComponent,
     TiersTabComponent,
     FileSelector,
+    MaskPipe,
+
     ...DIALOGS,
   ],
   imports: [
@@ -253,6 +258,7 @@ const DIALOGS = [
     AlertsService,
     LemonDocumentKindsCrud,
     LemonwayDocumentCrud,
+    EventsService,
   ],
 })
 export class SharedModule { }

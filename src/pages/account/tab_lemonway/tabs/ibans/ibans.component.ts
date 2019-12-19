@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AddIbanDia } from 'src/dialogs/entities/add-iban/add-iban.dia';
+import { EventsService } from 'src/services/events/events.service';
 
 @Component({
     selector: 'lw-ibans-tab',
@@ -26,10 +27,20 @@ export class LwTabIbans extends TablePageBase {
         public alerts: AlertsService,
         public accCrud: AccountsCrud,
         public route: ActivatedRoute,
-    ) { super(); }
+        public events: EventsService,
+    ) {
+        super();
+
+        this.events.registerEvent('ibans:new')
+            .subscribe((...args) => this.newIBAN());
+    }
+
+    public ngOnInit() {
+        this.search();
+    }
 
     public search() {
-        return;
+        this.getIbans();
     }
 
     public newIBAN() {
@@ -41,6 +52,14 @@ export class LwTabIbans extends TablePageBase {
     }
 
     public getIbans() {
-        return;
+        this.accCrud.getIbans(this.id)
+            .subscribe(
+                (resp) => {
+                    console.log('resp', resp);
+                },
+                (error) => {
+                    console.log('error', error);
+                },
+            );
     }
 }

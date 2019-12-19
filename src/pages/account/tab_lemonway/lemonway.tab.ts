@@ -17,6 +17,7 @@ import {
   WALLET_STATUS_MAP, IBAN_STATUS_MAP,
   LW_ERROR_P2P, LW_ERROR_MONEY_OUT, processLwTx,
 } from 'src/data/lw-constants';
+import { EventsService } from 'src/services/events/events.service';
 
 @Component({
   selector: 'lemonway-tab',
@@ -126,6 +127,7 @@ export class LemonWayTab extends TablePageBase {
     public alerts: AlertsService,
     public accCrud: AccountsCrud,
     public route: ActivatedRoute,
+    public events: EventsService,
   ) { super(); }
 
   public ngOnInit() {
@@ -218,5 +220,10 @@ export class LemonWayTab extends TablePageBase {
     dialog.afterClosed().subscribe((resp) => {
       this.search();
     });
+  }
+
+  public newIban() {
+    this.currentTab = 0;
+    this.events.fireEvent('ibans:new');
   }
 }
