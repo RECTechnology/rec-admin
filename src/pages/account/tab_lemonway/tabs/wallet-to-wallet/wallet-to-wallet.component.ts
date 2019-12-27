@@ -54,7 +54,7 @@ export class LwTabWalletToWallet extends TablePageBase {
       title: 'Status',
       type: 'code',
       tooltip(el) {
-        return el.status_text + ' (' + el.INT_STATUS + ')';
+        return el.status_text + ' (' + el.STATUS + ')';
       },
     }, {
       sort: 'DATE',

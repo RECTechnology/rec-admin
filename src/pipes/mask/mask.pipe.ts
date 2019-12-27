@@ -6,9 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MaskPipe implements PipeTransform {
   public transform(value: any, amount: number): any {
     const strVal = String(value);
-    const unmasked = strVal.substr(0, amount);
-    const masked = strVal.substr(amount, 8).replace(/./g, '*');
+    const start = strVal.substr(0, amount);
+    const end = strVal.substr(strVal.length - 4, strVal.length);
 
-    return unmasked + masked;
+    return start + ' ... ' + end;
   }
 }
