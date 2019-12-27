@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.10.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.8.1...v3.10.0) (2019-12-27)
+
+
+### Features
+
+* added add-iban dialog ([f8bd779](https://github.com/QbitArtifacts/rec-admin/commit/f8bd779a2d7b0bd1675362fcbb9cdc72a95777cf))
+* added add-iban dialog ([d6354cd](https://github.com/QbitArtifacts/rec-admin/commit/d6354cd162f2d351debb75e4adfd72fb58ed7ad0))
+* added create iban buttons and overall logic ([336a310](https://github.com/QbitArtifacts/rec-admin/commit/336a3107d67fe593736bdb164048662797adce39))
+* added create iban buttons and overall logic ([47144bc](https://github.com/QbitArtifacts/rec-admin/commit/47144bc1d68c36fb1c251d1ffea1603e3bd01baa))
+* added lemonway iban list to lemonway info, added EventsService to be able to register and dispatch events across the whole app ([316bcd5](https://github.com/QbitArtifacts/rec-admin/commit/316bcd596ce23af8b007cc08737cd077b35ccb57))
+* added lemonway iban list to lemonway info, added EventsService to be able to register and dispatch events across the whole app ([ad88856](https://github.com/QbitArtifacts/rec-admin/commit/ad888560df949a2c729579a2435bb7376080b90c))
+
+
+### Bug Fixes
+
+* **money-out:** fixed money out status showing undefined ([c4569cb](https://github.com/QbitArtifacts/rec-admin/commit/c4569cb7f5cbe8288b62a3aad48d39312a6d635f))
+* **money-out:** fixed money out status showing undefined ([8bc0a67](https://github.com/QbitArtifacts/rec-admin/commit/8bc0a671d2b1f8b494ac6d95a24e9320be7a79b4))
+* added missing property itemType ([b0d0c6a](https://github.com/QbitArtifacts/rec-admin/commit/b0d0c6a5ce48244d39cafa182f13155f825b2114))
+* added missing property itemType ([bb0e944](https://github.com/QbitArtifacts/rec-admin/commit/bb0e9448104522f99b47b0c9aa9cb1848e376bf2))
+* fixed build error, undeclared functions in lemonway tabs ([5873636](https://github.com/QbitArtifacts/rec-admin/commit/5873636b9379b5bfce5eb599ad3c66b7c8983eba))
+* fixed build error, undeclared functions in lemonway tabs ([db46642](https://github.com/QbitArtifacts/rec-admin/commit/db46642534b57c3ecf296d8d8ea18eb924dc5f6d))
+* fixes [#84](https://github.com/QbitArtifacts/rec-admin/issues/84) fixes [#82](https://github.com/QbitArtifacts/rec-admin/issues/82) fixes [#81](https://github.com/QbitArtifacts/rec-admin/issues/81) ([3e3c53b](https://github.com/QbitArtifacts/rec-admin/commit/3e3c53b10b762e2507ae4a8499456021c46c0524))
+* removed company filter from cashout fixes [#85](https://github.com/QbitArtifacts/rec-admin/issues/85) ([e3d0984](https://github.com/QbitArtifacts/rec-admin/commit/e3d0984588ddf90818f7319cfc669a7f63181a91))
+
 ## [3.9.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.8.1...v3.9.0) (2019-12-19)
 
 
