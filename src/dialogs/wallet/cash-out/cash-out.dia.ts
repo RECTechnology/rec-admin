@@ -23,8 +23,8 @@ export class CashOutDia extends BaseDialog {
   public available: number = 0;
   public loading = false;
   public accountFilters = {
-    active: 1,
-    type: 'COMPANY',
+    // active: 1,
+    // type: 'COMPANY',
   };
   public validationErrors  = [];
 
