@@ -67,6 +67,10 @@ export class LwTabMoneyOut extends TablePageBase {
         public route: ActivatedRoute,
     ) { super(); }
 
+    public ngOnInit() {
+        this.search();
+    }
+
     public search() {
         this.getMoneyTxs();
     }

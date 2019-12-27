@@ -39,7 +39,7 @@
                   class="fa fa-exclamation-circle col-gray-light"></i></a>
             </b>
             <div class="group-row-left" *ngFor="let iban of lwInfo.IBANS">
-              <i>({{iban.ID}})</i> <b style="margin-left: 8px;">{{iban.DATA}}</b> <code
+              <i>({{iban.ID}})</i> <b style="margin-left: 8px;">{{iban.DATA | mask: 4}}</b> <code
                 style="margin-left: 8px;">{{IBAN_STATUS_MAP[iban.S]}}</code>
             </div>
             <div class="group-row-left space-between" style="width: 100%" *ngIf="!lwInfo.IBANS.length">
