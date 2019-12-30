@@ -11,6 +11,7 @@ import { CompanyService } from 'src/services/company/company.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { EventsService } from 'src/services/events/events.service';
 
 @Component({
   selector: 'account',
@@ -51,12 +52,15 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     public dialog: MatDialog,
     public crudAccounts: AccountsCrud,
     public alerts: AlertsService,
-    private location: Location,
+    public events: EventsService,
   ) {
     super();
   }
 
   public ngOnInit() {
+    // Register account update, fire getAccount
+    this.events.registerEvent('account:update').subscribe(this.loadAccount.bind(this));
+
     // Gets the query parameters and gets 'tab' param
     this.sub = this.route.queryParams
       .subscribe((params) => {
@@ -67,11 +71,16 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     this.route.params.subscribe((params) => {
       this.account_id = params.id;
       this.pageName = 'Account (' + this.account_id + ')';
-      this.setup();
+      this.loadAccount();
     });
   }
 
-  public setup() {
+  public ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.events.removeEvent('account:update');
+  }
+
+  public loadAccount() {
     this.loading = true;
     this.crudAccounts.find(this.account_id)
       .subscribe((resp: any) => {
@@ -90,10 +99,6 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
         queryParamsHandling: 'merge',
       });
     }
-  }
-
-  public ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
   public goBack() {

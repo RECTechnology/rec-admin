@@ -11,6 +11,11 @@ export class EventsService {
         return event;
     }
 
+    public removeEvent(name) {
+        this.events[name].unsubscribe();
+        delete this.events[name];
+    }
+
     public findEvent(name): EventEmitter<any> {
         return this.events[name];
     }
