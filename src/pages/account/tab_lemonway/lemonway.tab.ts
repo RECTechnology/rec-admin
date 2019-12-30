@@ -18,6 +18,7 @@ import {
   LW_ERROR_P2P, LW_ERROR_MONEY_OUT, processLwTx,
 } from 'src/data/lw-constants';
 import { EventsService } from 'src/services/events/events.service';
+import { AddIbanDia } from 'src/dialogs/entities/add-iban/add-iban.dia';
 
 @Component({
   selector: 'lemonway-tab',
@@ -31,15 +32,15 @@ export class LemonWayTab extends TablePageBase {
   public loading = true;
   public WALLET_STATUS_MAP = WALLET_STATUS_MAP;
   public IBAN_STATUS_MAP = IBAN_STATUS_MAP;
-  public currentTab = 1;
+  public currentTab = 0;
 
   public tabMap = {
-    ibans: 0,
-    withdrawals: 1,
-    wallet2wallet: 2,
-    0: 'ibans',
-    1: 'withdrawals',
-    2: 'wallet2wallet',
+    // ibans: 0,
+    withdrawals: 0,
+    wallet2wallet: 1,
+    // 0: 'ibans',
+    0: 'withdrawals',
+    1: 'wallet2wallet',
   };
   public sortedDataP2P: any = [];
   public error = null;
@@ -88,6 +89,14 @@ export class LemonWayTab extends TablePageBase {
         queryParamsHandling: 'merge',
       });
     }
+  }
+
+  public newIBAN() {
+    return this.alerts.openModal(AddIbanDia, {
+      // id: this.id,
+    }).subscribe((resp) => {
+      this.search();
+    });
   }
 
   public newWithdrawal() {
