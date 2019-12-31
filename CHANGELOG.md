@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file. See [standa
 * **lemonway:** removed iban list from lemonway tabs ([a27163e](https://github.com/QbitArtifacts/rec-admin/commit/a27163ec465d239d3b2e2a04aa86864b38eef4f0))
 * **w2w:** fixed wallet 2 wallet not updating balances on select account fixes [#83](https://github.com/QbitArtifacts/rec-admin/issues/83) ([46373b6](https://github.com/QbitArtifacts/rec-admin/commit/46373b66c96224893d6865050902efc4c533fba8))
 
+
 ## [3.10.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.8.1...v3.10.0) (2019-12-27)
 
 
