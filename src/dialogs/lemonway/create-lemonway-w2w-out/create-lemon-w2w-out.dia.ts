@@ -16,9 +16,6 @@ import { escapeIdentifier } from '@angular/compiler/src/output/abstract_emitter'
 export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public id: any;
   public account: Account;
-  public currentAmountREC: number = 0;
-  public currentAmountEUR: number = 0;
-
   public originAccountId;
   public targetAccountId;
 
@@ -54,13 +51,11 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   }
 
   public ngOnInit() {
-    console.log('origin', this.originAccountId);
     if (this.originAccountId) {
-      this.accountCrud.find(this.originAccountId).subscribe((resp) => {
-        this.originAccount = resp.data;
-        this.currentAmountREC = resp.data.getBalance('REC');
-        this.currentAmountEUR = resp.data.lw_balance || 0;
-      });
+      this.accountCrud.find(this.originAccountId)
+        .subscribe((resp) => {
+          this.originAccount = resp.data;
+        });
     } else if (this.targetAccountId) {
       this.accountCrud.find(this.targetAccountId).subscribe((resp) => {
         this.targetAccount = resp.data;

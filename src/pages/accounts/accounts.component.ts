@@ -80,11 +80,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
         this.accountID = params.id;
         this.openDetails = params.details;
       });
-
-    this.crudAccounts.find(1175)
-      .subscribe((resp) => {
-        console.log('Account: ', resp);
-      });
   }
 
   public afterContentInit() {

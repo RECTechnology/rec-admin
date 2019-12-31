@@ -1,5 +1,6 @@
+import { EventsService } from 'src/services/events/events.service';
 
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { CrudBaseService } from 'src/services/base/crud.base';
 import { UserService } from 'src/services/user.service';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +14,7 @@ import { Iban } from 'src/shared/entities/iban.ent';
 export class AccountsCrud extends CrudBaseService<Account> {
 
     public pdfHtml: string = '';
+    @Inject(EventsService) public events: EventsService;
 
     constructor(
         http: HttpClient,
