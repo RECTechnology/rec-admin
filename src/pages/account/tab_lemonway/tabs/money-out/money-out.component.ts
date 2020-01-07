@@ -16,8 +16,8 @@ import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-with
 })
 export class LwTabMoneyOut extends TablePageBase {
     @Input() public id = '';
+    @Input() public lwInfo: any = {};
     public withdrawals = [];
-    public lwInfo: any = {};
     public pageName = 'Lemonway';
     public loading = true;
     public headers: TlHeader[] = [
@@ -69,6 +69,7 @@ export class LwTabMoneyOut extends TablePageBase {
 
     public ngOnInit() {
         this.search();
+        console.log('Meony out', this.lwInfo);
     }
 
     public search() {
@@ -84,6 +85,8 @@ export class LwTabMoneyOut extends TablePageBase {
     }
 
     public getMoneyTxs() {
+        console.log('Meony out', this.lwInfo);
+
         this.loading = true;
         this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
             .subscribe((resp) => {
