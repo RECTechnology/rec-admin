@@ -6,18 +6,16 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
-import { escapeIdentifier } from '@angular/compiler/src/output/abstract_emitter';
 
 @Component({
   selector: 'create-lemon-w2w-out',
   templateUrl: './create-lemon-w2w-out.html',
 })
-
 export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   public id: any;
   public account: Account;
-  public originAccountId;
-  public targetAccountId;
+  public originAccountId: any;
+  public targetAccountId: any;
 
   public originAccount: Account;
   public targetAccount: Account;
