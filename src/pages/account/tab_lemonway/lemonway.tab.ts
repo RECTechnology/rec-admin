@@ -27,7 +27,7 @@ import { AddIbanDia } from 'src/dialogs/entities/add-iban/add-iban.dia';
 export class LemonWayTab extends TablePageBase {
   @Input() public id = '';
 
-  public lwInfo: any = {};
+  public lwInfo: any = null;
   public pageName = 'Lemonway';
   public loading = true;
   public WALLET_STATUS_MAP = WALLET_STATUS_MAP;
