@@ -1,3 +1,4 @@
+import { take } from 'rxjs/internal/operators/take';
 import { Injectable } from '@angular/core';
 import { BaseService2 } from './base.service-v2';
 import { HttpClient } from '@angular/common/http';
@@ -6,6 +7,8 @@ import { ListAccountsParams } from 'src/interfaces/search';
 import { RecLang, REC_LANGS, CrudRole } from 'src/types';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
 
 export interface CrudQueryOptions {
     search?: string;
@@ -73,7 +76,11 @@ export class CrudBaseService<T> extends BaseService2 {
     public list(query?: CrudQueryOptions, lang: RecLang = REC_LANGS.ALL): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
         return this.get(url, query, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
-            .pipe(this.itemMapper());
+            .pipe(
+                // debounceTime(500),
+                // distinctUntilChanged(),
+                this.itemMapper(),
+            );
     }
 
     public search(data: ListAccountsParams = {}, lang: RecLang = REC_LANGS.ALL): Observable<any> {

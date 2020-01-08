@@ -1,3 +1,4 @@
+import { Observable, Subscription } from 'rxjs';
 import { BaseComponent } from './base-component';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -110,7 +111,17 @@ export abstract class TablePageBase extends PageBase {
   public data: any[] = [];
   public sortedData: any[] = [];
 
-  public abstract search(): any;
+  public searchObs: Subscription;
+
+  public abstract search(query?: string): any;
+  public searchWrapper(query: string = this.query) {
+    if (this.searchObs) {
+      this.searchObs.unsubscribe();
+      this.searchObs = null;
+    }
+
+    this.search(query);
+  }
 
   public ngOnInit() {
     clearInterval(this.refreshInterval);
