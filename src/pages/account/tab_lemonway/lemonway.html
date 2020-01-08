@@ -1,7 +1,7 @@
 <div style="height: 100%">
   <div class="row" style="margin: 0; padding: 20px;" *ngIf="!error">
     <div class="col-lg-3">
-      <mat-card style="min-height: 200px;padding:0;">
+      <mat-card *ngIf="lwInfo" style="min-height: 200px;padding:0;">
         <div class="header bordered-bottom" style="padding: 14px 15px">
           <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
             {{'INFO'|translate}}</p>
@@ -43,7 +43,8 @@
                 style="margin-left: 8px;">{{IBAN_STATUS_MAP[iban.S]}}</code>
             </div>
             <div class="group-row-left space-between" style="width: 100%" *ngIf="!lwInfo.IBANS.length">
-              <p>No ibans registered</p> <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="newIBAN()">
+              <p>No ibans registered</p> <button style="margin-left: 8px;" mat-raised-button color="primary"
+                (click)="newIBAN()">
                 + {{'CREATE_IBAN'|translate}}
               </button>
             </div>
@@ -59,7 +60,7 @@
             <lw-ibans-tab [id]="id"></lw-ibans-tab>
           </mat-tab> -->
           <mat-tab label="{{'WITHDRAWALS'|translate}}">
-            <lw-money-out-tab [lwInfo]="lwInfo" [id]="id"></lw-money-out-tab>
+            <lw-money-out-tab *ngIf="lwInfo" [lwInfo]="lwInfo" [id]="id"></lw-money-out-tab>
           </mat-tab>
           <mat-tab label="{{'WALLET_TO_WALLET'|translate}}">
             <lw-w2w-tab [id]="id"></lw-w2w-tab>

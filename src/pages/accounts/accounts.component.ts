@@ -115,22 +115,21 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
 
   public search(query: string = this.query) {
     const data: any = this.getCleanParams(query);
-
     this.loading = true;
-    return this.crudAccounts.list(data, 'all')
-      .toPromise()
-      .then(
+    this.query = query;
+
+    this.searchObs = this.crudAccounts.list(data, 'all')
+      .subscribe(
         (resp: any) => {
           this.data = resp.data.elements;
           this.total = resp.data.total;
           this.sortedData = this.data.slice();
           this.showing = this.data.length;
           this.loading = false;
-        }).catch((error) => {
+        }, (error) => {
           this.loading = false;
         });
-
-    this.query = query;
+    return this.searchObs;
   }
 
   public exportCall(opts) {

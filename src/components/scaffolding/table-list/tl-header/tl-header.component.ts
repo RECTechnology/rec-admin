@@ -95,7 +95,7 @@ export class TableListHeader {
     public setupDebouncedSearch(element) {
         fromEvent(element, 'keyup').pipe(
             map((event: any) => event.target.value),
-            debounceTime(250),
+            debounceTime(500),
             distinctUntilChanged(),
         ).subscribe((text: string) => {
             this.query = text;

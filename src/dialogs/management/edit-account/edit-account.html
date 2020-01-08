@@ -113,7 +113,7 @@
         <div class="col-lg-3">
           <input-field type="checkbox" [(value)]="accountCopy.active" label="Account Active"
             matTooltip="{{'ACCOUNT_ACTIVE_DESC'|translate}}" [disabled]="loading"
-            placeholder="{{(accountCopy.active ? 'Active': 'Inactive')|translate}}"></input-field>
+            placeholder="{{'Active'|translate}}"></input-field>
 
           <input-field type="select" [(value)]="accountCopy.level_id" [disabled]="false" label="Tier" [options]="tiers">
           </input-field>
