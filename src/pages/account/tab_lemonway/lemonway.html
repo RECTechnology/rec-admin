@@ -9,24 +9,24 @@
 
         <div class="group-col-left padd-x20" style="width: 100%;">
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
-            <b>Internal ID </b>
+            <b>{{'Internal ID'|translate}} </b>
             <p>{{lwInfo.LWID}}</p>
           </div>
 
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
-            <b>External ID </b>
+            <b>{{'External ID'|translate}} </b>
             <p>{{lwInfo.ID}}</p>
           </div>
 
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
-            <b>Wallet Status <a matTooltip="Open documentation" target="_blank"
+            <b>{{'Wallet Status'|translate}} <a matTooltip="Open documentation" target="_blank"
                 href="http://documentation.lemonway.fr/api-en/annex/status-and-types/wallet-status"><i
                   class="fa fa-exclamation-circle col-gray-light"></i></a></b>
             <p class="overflow-ellipsis">{{WALLET_STATUS_MAP[lwInfo.STATUS]}}</p>
           </div>
 
           <div class="small-text-2 center v space-between" style="width: 100%;margin-bottom: 6px;">
-            <b>Amount</b>
+            <b>{{'Amount'|translate}}</b>
             <p>{{lwInfo.BAL|number}} €</p>
           </div>
 
@@ -34,7 +34,7 @@
           <div class="group-col-left bordered-top small-text-2" style="margin-top: 8px; padding-top: 8px"
             *ngIf="lwInfo && lwInfo.IBANS">
             <b style="margin-bottom: 10px;">
-              IBAN Status <a matTooltip="Open documentation" target="_blank"
+              {{'IBAN Status'|translate}} <a matTooltip="Open documentation" target="_blank"
                 href="http://documentation.lemonway.fr/api-en/annex/status-and-types/iban-status"><i
                   class="fa fa-exclamation-circle col-gray-light"></i></a>
             </b>

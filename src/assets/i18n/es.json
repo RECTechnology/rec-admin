@@ -1069,5 +1069,10 @@
   "ONLY_IN_LEMONWAY:short": "Esto solo se realiza en lemonway",
 
   "NO_IBANS": "No hay IBANs registrados",
-  "CREATE_IBAN": "Crear IBAN"
+  "CREATE_IBAN": "Crear IBAN",
+  "External": "Externa",
+  "Wallet Status": "Estado Cartera",
+  "IBAN Status": "Estado IBAN",
+  "Internal ID": "ID Interno",
+  "External ID": "ID Externo"
 }
