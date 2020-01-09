@@ -43,7 +43,7 @@
                 style="margin-left: 8px;">{{IBAN_STATUS_MAP[iban.S]}}</code>
             </div>
             <div class="group-row-left space-between" style="width: 100%" *ngIf="!lwInfo.IBANS.length">
-              <p>No ibans registered</p> <button style="margin-left: 8px;" mat-raised-button color="primary"
+              <p>{{'NO_IBANS'|translate}}</p> <button style="margin-left: 8px;" mat-raised-button color="primary"
                 (click)="newIBAN()">
                 + {{'CREATE_IBAN'|translate}}
               </button>
