@@ -14,7 +14,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [3.10.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.1...v3.10.2) (2020-01-07)
 
-
 ### Bug Fixes
 
 * limitted show christmas light just to christmas weeks ([2ec4888](https://github.com/QbitArtifacts/rec-admin/commit/2ec4888bbdf04f1944845a48fc58e5afc679f240))
