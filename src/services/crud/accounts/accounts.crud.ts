@@ -148,7 +148,7 @@ export class AccountsCrud extends CrudBaseService<Account> {
 
     public lwGetMoneyTxList(wallets: string[]) {
         return this.lwGateway('GetMoneyTransactions', {
-            startDate: moment().subtract('2', 'month').unix(),
+            startDate: moment().subtract('1', 'year').unix(),
             endDate: moment().unix(),
             wallets,
         });
