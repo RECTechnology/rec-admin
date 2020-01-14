@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.10.4](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.3...v3.10.4) (2020-01-14)
+
+
+### Bug Fixes
+
+* **i18n:** added translations for lemonway details ([dcea127](https://github.com/QbitArtifacts/rec-admin/commit/dcea127e7a89245e30fd7325fb2f4cb0eacfd7cc))
+* added bigger time range to cash out txs ([4547330](https://github.com/QbitArtifacts/rec-admin/commit/4547330890cfa9beff008754331ac0e5083ceb37))
+
 ### [3.10.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.2...v3.10.3) (2020-01-08)
 
 
