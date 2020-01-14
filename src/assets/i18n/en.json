@@ -503,5 +503,8 @@
   "DOCUMENT_KIND": "Document Kind",
 
   "ONLY_IN_LEMONWAY:long": "This is only performed in lemonway, it doesn't affect the REC System.",
-  "ONLY_IN_LEMONWAY:short": "This is only performed in lemonway"
+  "ONLY_IN_LEMONWAY:short": "This is only performed in lemonway",
+
+  "NO_IBANS": "There are no IBANs registered",
+  "CREATE_IBAN": "Create IBAN"
 }

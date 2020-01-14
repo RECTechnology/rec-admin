@@ -1072,5 +1072,12 @@
   "Previous Tier": "Nivel Anterior",
   "Next Tier": "Nivel Posterior",
   "ONLY_IN_LEMONWAY:long": "Això només es realitza a Lemonway, sense afectar el sistema REC.",
-  "ONLY_IN_LEMONWAY:short": "Això només es realitza a Lemonway"
+  "ONLY_IN_LEMONWAY:short": "Això només es realitza a Lemonway",
+
+  "NO_IBANS": "No hi ha IBANs registrats",
+  "CREATE_IBAN": "Crear IBAN",
+  "Wallet Status": "Estat Cartera",
+  "IBAN Status": "Estat IBAN",
+  "Internal ID": "ID Intern",
+  "External ID": "ID Extern"
 }
