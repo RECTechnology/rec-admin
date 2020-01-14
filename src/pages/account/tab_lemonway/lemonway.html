@@ -43,7 +43,8 @@
                 style="margin-left: 8px;">{{IBAN_STATUS_MAP[iban.S]}}</code>
             </div>
             <div class="group-row-left space-between" style="width: 100%" *ngIf="!lwInfo.IBANS.length">
-              <p>{{'NO_IBANS'|translate}}</p> <button style="margin-left: 8px;" mat-raised-button color="primary"
+              <p>{{'NO_IBANS'|translate}}</p> 
+              <button style="margin-left: 8px;" mat-raised-button color="primary"
                 (click)="newIBAN()">
                 + {{'CREATE_IBAN'|translate}}
               </button>
@@ -56,9 +57,6 @@
     <div class="col-lg-9">
       <mat-card style="min-height: 200px;padding:0; overflow: hidden;">
         <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)">
-          <!-- <mat-tab label="{{'IBANS'|translate}}">
-            <lw-ibans-tab [id]="id"></lw-ibans-tab>
-          </mat-tab> -->
           <mat-tab label="{{'WITHDRAWALS'|translate}}">
             <lw-money-out-tab *ngIf="lwInfo" [lwInfo]="lwInfo" [id]="id"></lw-money-out-tab>
           </mat-tab>

@@ -3,15 +3,17 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ### [3.10.4](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.3...v3.10.4) (2020-01-14)
+### [3.10.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.2...v3.10.3) (2020-01-08)
 
 
 ### Bug Fixes
 
-* **i18n:** added translations for lemonway details ([dcea127](https://github.com/QbitArtifacts/rec-admin/commit/dcea127e7a89245e30fd7325fb2f4cb0eacfd7cc))
-* added bigger time range to cash out txs ([4547330](https://github.com/QbitArtifacts/rec-admin/commit/4547330890cfa9beff008754331ac0e5083ceb37))
+* fixed money out not listing on first load, [#82](https://github.com/QbitArtifacts/rec-admin/issues/82) ([2d2a6da](https://github.com/QbitArtifacts/rec-admin/commit/2d2a6da75eeea0543aea823bf10b4cdcf54aa44e))
+* fixed money out transactions not beeing fetched, nto sending id ([9d262de](https://github.com/QbitArtifacts/rec-admin/commit/9d262def2821e81e3a295e6ac336e3a50e316b54))
+* **Account:** fixed text for active account checkbox  [#95](https://github.com/QbitArtifacts/rec-admin/issues/95) ([9c4e1fc](https://github.com/QbitArtifacts/rec-admin/commit/9c4e1fce8c13305d5a77ae20f75c3a069f262d8b))
+* fixed search behaving in a weird way, cancel previous calls [#94](https://github.com/QbitArtifacts/rec-admin/issues/94) ([8ea332d](https://github.com/QbitArtifacts/rec-admin/commit/8ea332df1b0fe97d2281fd278e2a011bde247559))
 
-### [3.10.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.2...v3.10.3) (2020-01-08)
-
+### [3.10.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.1...v3.10.2) (2020-01-07)
 
 ### Bug Fixes
 
