@@ -9,6 +9,7 @@ import { forkJoin } from 'rxjs';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { LANG_MAP } from 'src/data/consts';
+import { delay } from 'rxjs/internal/operators/delay';
 
 @Component({
   providers: [
@@ -93,14 +94,15 @@ export class EditUserData {
     if (changedProps.prefix || changedProps.phone) {
       const resp = await this.confirmChangePhone();
       if (resp) {
-        await this.adminService.updateUserPhone(id, changedProps.prefix, changedProps.phone)
-          .toPromise()
-          .then(() => {
-            this.alerts.showSnackbar('Phone number changed correctly (needs to be validated)', 'ok');
-          })
-          .catch((err) => {
-            this.alerts.showSnackbar(err.message, 'ok');
-          });
+        try {
+          await this.adminService.updateUserPhone(id, changedProps.prefix, changedProps.phone)
+            .toPromise()
+            .then(() => {
+              return this.alerts.showSnackbar('Phone number changed correctly (needs to be validated)', 'ok');
+            });
+        } catch (error) {
+          return this.alerts.showSnackbar(error.message, 'ok');
+        }
       }
       delete changedProps.prefix;
       delete changedProps.phone;
@@ -111,13 +113,15 @@ export class EditUserData {
     }
 
     if (promises.length) {
-      forkJoin(promises).subscribe((resp) => {
-        this.alerts.showSnackbar('Saved correctly', 'ok');
-        this.close();
-      }, (error) => {
-        this.alerts.showSnackbar(error.message, 'ok');
-        this.close();
-      });
+      forkJoin(promises)
+        .pipe(delay(2000))
+        .subscribe((resp) => {
+          this.alerts.showSnackbar('Saved correctly', 'ok');
+          this.close();
+        }, (error) => {
+          this.alerts.showSnackbar(error.message, 'ok');
+          this.close();
+        });
     } else {
       this.alerts.showSnackbar('Nothing to update', 'ok');
     }
