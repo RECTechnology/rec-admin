@@ -100,6 +100,7 @@ export class EditUserData {
             .then(() => {
               return this.alerts.showSnackbar('Phone number changed correctly (needs to be validated)', 'ok');
             });
+          await new Promise((resolve) => setTimeout(resolve, 3000));
         } catch (error) {
           return this.alerts.showSnackbar(error.message, 'ok');
         }
@@ -114,7 +115,6 @@ export class EditUserData {
 
     if (promises.length) {
       forkJoin(promises)
-        .pipe(delay(2000))
         .subscribe((resp) => {
           this.alerts.showSnackbar('Saved correctly', 'ok');
           this.close();
