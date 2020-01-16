@@ -7,7 +7,7 @@ export namespace MySentry {
             Sentry.init({
                 dsn: env.sentry.dsn,
                 release: env.version,
-                environment: env.prod ? 'Production' : 'Staging',
+                environment: env.production ? 'Production' : 'Staging',
             });
             Sentry.configureScope((scope) => {
                 scope.setTag('type', 'normal');
