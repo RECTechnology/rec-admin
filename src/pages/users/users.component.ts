@@ -12,7 +12,9 @@ import { ControlesService } from '../../services/controles/controles.service';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../dialogs/other/export-dialog/export.dia';
-import { TlHeader, TlItemOption, TableListOptions } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
+import {
+  TlHeader, TlItemOption, TableListOptions,
+} from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
