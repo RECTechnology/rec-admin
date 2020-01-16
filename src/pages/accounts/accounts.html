@@ -33,7 +33,7 @@
 
       <tl-table [loading]="loading && !sortedData.length" [sort]="true" (onSort)="sortData($event)" [itemOptions]="itemOptions"
         [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total" (onChangePage)="changedPage($event)"
-        [options]="{optionsType: 'buttons'}">
+        [options]="tableOptions">
       </tl-table>
     </mat-card>
   </div>

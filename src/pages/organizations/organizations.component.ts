@@ -10,7 +10,7 @@ import { BussinessDetailsDia } from '../../dialogs/management/bussiness_detailes
 import { EditAccountData } from '../../dialogs/management/edit-account/edit-account.dia';
 import { ConfirmationMessage } from '../../dialogs/other/confirmation-message/confirmation.dia';
 import { TableListHeaderOptions } from '../../components/scaffolding/table-list/tl-header/tl-header.component';
-import { TlHeader, TlItemOption } from '../../components/scaffolding/table-list/tl-table/tl-table.component';
+import { TlHeader, TlItemOption, TableListOptions } from '../../components/scaffolding/table-list/tl-table/tl-table.component';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../dialogs/other/export-dialog/export.dia';
@@ -66,8 +66,13 @@ export class OrganizationsComponent extends TablePageBase {
     },
   ];
 
+  public tableOptions: TableListOptions = {
+    optionsType: 'buttons',
+    onClick: (entry) => this.viewDetails(entry),
+  };
+
   public itemOptions: TlItemOption[] = [
-    TlItemOptions.View(this.viewDetails.bind(this)),
+    TlItemOptions.View(this.viewAccount.bind(this), { text: 'View Account' }),
     TlItemOptions.Edit(this.editDetails.bind(this)),
   ];
   public defaultExportKvp = OrgsExportDefaults;

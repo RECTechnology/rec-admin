@@ -1362,7 +1362,7 @@ table .item-hoverable {
 }
 
 table .item-hoverable:hover {
-  background: #eee;
+  background: rgb(225, 225, 225);
 }
 
 .dialog-header {
@@ -1381,6 +1381,7 @@ table .item-hoverable:hover {
   transform: translateY(-50%) !important;
   right: 15px;
 }
+
 
 .abs-bottom-center {
   position: absolute;

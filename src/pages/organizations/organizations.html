@@ -30,7 +30,7 @@
 
       <tl-table *ngIf="showType === 'list'" [loading]="loading" [sort]="true" (onSort)="sortData($event)"
         [headers]="headers" [data]="sortedData" [itemOptions]="itemOptions" noItemsMessage="There are no bussiness yet"
-        [limit]="limit" [total]="total" (onChangePage)="changedPage($event)">
+        [limit]="limit" [total]="total" (onChangePage)="changedPage($event)" [options]="tableOptions">
       </tl-table>
     </mat-card>
   </div>
