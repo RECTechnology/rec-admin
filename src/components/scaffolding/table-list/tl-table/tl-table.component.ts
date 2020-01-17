@@ -73,7 +73,7 @@ export class TlItemOption implements TlItemOption {
 export interface TableListOptions {
     optionsType?: 'menu' | 'buttons';
     sortEnabled?: boolean;
-    onClick?: (entry: any, header: TlHeader) => void;
+    onClick?: (entry: any) => void;
 }
 
 @Component({
@@ -119,9 +119,9 @@ export class TableListTable implements AfterContentInit {
         };
     }
 
-    public onClickedRow(entry: any, header: TlHeader) {
+    public onClickedRow(entry: any) {
         if (this.options.onClick) {
-            this.options.onClick(entry, header);
+            this.options.onClick(entry);
         }
     }
 
