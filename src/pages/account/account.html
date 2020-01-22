@@ -14,8 +14,7 @@
 </header-nav>
 <sidemenu></sidemenu>
 
-<app-page>
-  <!-- <div class="page account" [ngClass]="{'collapsed': !controles.sidemenuVisible}"> -->
+<app-page [padding]="false">
   <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)"
     *ngIf="companyService.selectedCompany">
     <mat-tab label="{{'DETAILS'|translate}}">
