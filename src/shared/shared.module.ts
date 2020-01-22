@@ -99,7 +99,8 @@ import { LemonDocumentKindsCrud } from 'src/services/crud/lemon_document_kinds/l
 import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemonway_documents';
 import { MaskPipe } from 'src/pipes/mask/mask.pipe';
 import { EventsService } from 'src/services/events/events.service';
-import { PermissionDirective } from 'src/directives/user-permissions';
+import { CollapsableWhen } from 'src/directives/collapsable.directive';
+import { AppPage } from 'src/components/ui/page-component';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -133,7 +134,7 @@ const DIALOGS = [
 ];
 
 const DIRECTIVES = [
-  PermissionDirective,
+  CollapsableWhen,
 ];
 
 @NgModule({
@@ -188,6 +189,7 @@ const DIRECTIVES = [
     TiersTabComponent,
     FileSelector,
     MaskPipe,
+    AppPage,
     ...DIALOGS,
     ...DIRECTIVES,
   ],
@@ -235,7 +237,7 @@ const DIRECTIVES = [
     TiersTabComponent,
     FileSelector,
     MaskPipe,
-
+    AppPage,
     ...DIALOGS,
     ...DIRECTIVES,
   ],

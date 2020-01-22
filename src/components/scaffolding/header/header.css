@@ -1,5 +1,5 @@
 .page-header_{
-  padding: 0 25px;
+  padding: 0 0 0 25px;
   height: 47px;
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.30)!important;
   display: flex;
@@ -13,7 +13,6 @@
   top: 0;
   left: 200px;
   right: 0;
-  transition: all 0.3s ease-in-out;
 }
 .sidemenu-collapse-btn{
   background: transparent;

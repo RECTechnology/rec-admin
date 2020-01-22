@@ -1,4 +1,4 @@
-<div class="page-header_" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+<div class="page-header_" collapsesWhen='sidemenu'>
   <div class="christmas-easter-egg" *ngIf="isChristmas">
     <ul class="lightrope">
       <li></li>
@@ -22,14 +22,14 @@
   </div>
 
   <div class="group-row">
-    <button type="button" name="button" class="sidemenu-collapse-btn"
-      *ngIf="!controles.sidemenuVisible && utils.isMobileDevice" (click)="controles.toggleSidemenu()">
+    <button matIconButton
+      *ngIf="!controles.isToggled('sidemenu') && utils.isMobileDevice" (click)="controles.toggle('sidemenu')">
       <p class="center h v">
         <i class="fa fa-bars"></i>
       </p>
     </button>
 
-    <ng-content></ng-content>
+    <ng-content *ngIf="!utils.isMobileDevice"></ng-content>
   </div>
 
   <div class="group-row" style="overflow: visible">

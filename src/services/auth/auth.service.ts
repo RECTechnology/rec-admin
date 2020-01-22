@@ -48,6 +48,17 @@ export class AppAuthService extends BaseService {
     );
   }
 
+  public refreshToken(refresh_token): Observable<any> {
+    return this.get(
+      null, {
+      client_id: clientID,
+      client_secret: clientSecret,
+      grant_type: 'refresh_token',
+      refresh_token,
+    }, `${API_URL}/oauth/v2/token`,
+    );
+  }
+
   public doAuth() {
     return this.AppToken();
   }
@@ -154,27 +165,7 @@ export class LoginService extends BaseService {
     const dateNow = now / 1000;
     return lastSessionDate && lastSessionDate < dateNow;
   }
-
-  /* Not the most pretty code :) But does what it should */
   private loginObserver(observer) {
-    const profSuccess = (resp) => {
-      this.us.userData = resp;
-      this.isLoggedIn_ = true;
-      this.onLogin.emit(true);
-      observer.next(true);
-    };
-
-    const profError = (error) => {
-      if (error.error_description === 'User account is locked.') {
-        this.isLoggedIn_ = false;
-        observer.error('error');
-        this.alerts.showSnackbar('User account is locked.', 'ok');
-      } else {
-        this.isLoggedIn_ = false;
-        observer.error('error');
-      }
-    };
-
     this.loginObserver_ = observer;
     this.tokens = JSON.parse(localStorage.getItem('user.tokens'));
     this.app_tokens = JSON.parse(localStorage.getItem('app.tokens'));
@@ -194,26 +185,92 @@ export class LoginService extends BaseService {
           clearInterval(this.tokenTimeout);
           setTimeout((() => {
             this.tokenTimeout = null;
-            this.isLoggedIn.subscribe(noop, noop);
+            const s = this.isLoggedIn.subscribe((logged) => { return; }, (err) => { return; });
           }).bind(this), 2000);
         }).bind(this), timeoutTime);
       }
 
       if (isExpired) {
-        this.isLoggedIn_ = false;
-        this.logout();
-        observer.error('error');
+        if (this.tokens.refresh_token && !this.isSessionExpired()) {
+          this.refresh(observer);
+        } else {
+          this.isLoggedIn_ = false;
+          this.logout();
+          observer.error('error');
+        }
       } else {
         if (!this.us.userData.id) {
-          this.us.getProfile().subscribe(profSuccess, profError);
+          const profSub = this.us.getProfile()
+            .subscribe(
+              (resp) => {
+                this.us.userData = resp;
+                this.isLoggedIn_ = true;
+                this.onLogin.emit(true);
+                observer.next(true);
+              },
+              (error) => {
+                if (error.error_description === 'User account is locked.') {
+                  this.isLoggedIn_ = false;
+                  observer.error('error');
+                  this.alerts.showSnackbar('User account is locked.', 'ok');
+                } else if (this.tokens.refresh_token) {
+                  this.refresh(observer);
+                } else {
+                  this.isLoggedIn_ = false;
+                  observer.error('error');
+                }
+              });
+          this.isLoggedIn_ = true;
         } else {
           observer.next(true);
+          this.isLoggedIn_ = true;
         }
-        this.isLoggedIn_ = true;
       }
     } else {
       this.isLoggedIn_ = false;
       observer.next(false);
     }
+  }
+
+  private refresh(observer?) {
+    this.appAuthServ.refreshToken(this.tokens.refresh_token)
+      .subscribe(
+        (resp) => {
+          this.us.tokens = this.tokens = resp;
+          resp.created = new Date();
+          localStorage.setItem('user.tokens', JSON.stringify(resp));
+
+          clearInterval(this.tokenTimeout);
+
+          this.tokenTimeout = setInterval(((_) => {
+            clearInterval(this.tokenTimeout);
+            this.tokenTimeout = null;
+            this.isLoggedIn.subscribe((logged) => { return; }, (err) => { return; });
+          }).bind(this), 3200 * 1000);
+
+          this.us.getProfile()
+            .subscribe(
+              (profile) => {
+                this.us.userData = profile;
+                this.isLoggedIn_ = true;
+                this.us.isAdmin = this.us.userData.roles ? (this.us.userData.roles[0] === 'ROLE_ADMIN') : false;
+                observer.next(true);
+                observer.complete();
+              },
+              (error) => {
+                this.isLoggedIn_ = false;
+                this.logout();
+              },
+            );
+        },
+        (error) => {
+          this.isLoggedIn_ = false;
+          if (error.status !== 0) {
+            this.logout();
+          } else {
+            setTimeout(((_) => this.refresh(observer)).bind(this), 3000);
+          }
+        },
+      );
   }
 }
