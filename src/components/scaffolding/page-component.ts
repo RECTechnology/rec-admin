@@ -13,6 +13,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppPage {
     @Input('padding') public padding = true;
+    @Input('class') public className = '';
 
     constructor(
         public title: Title,
