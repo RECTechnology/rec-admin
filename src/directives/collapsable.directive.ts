@@ -23,6 +23,7 @@ export class CollapsableWhen {
         if (!this.handler) {
             this.handler = this.controles.addHandler(this.namePrivate, this.toggle.bind(this));
         }
+        this.collapsed = this.controles.isToggled(this.namePrivate);
     }
 
     public ngOnDestroy() {

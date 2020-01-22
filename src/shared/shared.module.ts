@@ -100,7 +100,7 @@ import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemon
 import { MaskPipe } from 'src/pipes/mask/mask.pipe';
 import { EventsService } from 'src/services/events/events.service';
 import { CollapsableWhen } from 'src/directives/collapsable.directive';
-import { AppPage } from 'src/components/scaffolding/page-component';
+import { AppPage } from 'src/components/scaffolding/page/page-component';
 
 const DIALOGS = [
   BussinessDetailsDia,

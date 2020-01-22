@@ -31,6 +31,7 @@ export class SidemenuComponent {
   ) { }
 
   public ngOnInit() {
+    this.toggled = this.controles.isToggled('sidemenu');
     this.handler = this.controles.addHandler('sidemenu', (toggled) => this.toggled = toggled);
   }
 
@@ -40,9 +41,11 @@ export class SidemenuComponent {
     }
   }
 
-  public clickedItem(): void {
-    if (this.utils.isMobileDevice) {
-      this.controles.toggle('sidemenu');
-    }
+  public clickedItem() {
+    // if (this.utils.isMobileDevice) {
+    //   console.log('lkamsdlka');
+    //   this.controles.toggle('sidemenu');
+    // }
+    return false;
   }
 }
