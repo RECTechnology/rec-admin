@@ -81,11 +81,6 @@ export class EditAccountData {
     this.lang = this.langMap[us.lang];
     this.getTiers();
 
-    // this.companyService.listCategories()
-    //   .subscribe((resp) => {
-    //     this.companyService.categories = resp.data;
-    //   });
-
     this.productsCrud.search({ limit: 300, sort: 'name', order: 'asc' }, this.lang)
       .subscribe((resp) => this.productList = resp.data.elements);
 
@@ -161,10 +156,7 @@ export class EditAccountData {
       .subscribe(() => {
         this.alerts.showSnackbar('Added activity', 'ok');
         this.loading = false;
-      }, (error) => {
-        this.alerts.showSnackbar(error.message, 'ok');
-        this.loading = false;
-      });
+      }, this.alerts.observableErrorSnackbar);
   }
 
   public addConsumed(product) {
@@ -174,10 +166,7 @@ export class EditAccountData {
       .subscribe(() => {
         this.alerts.showSnackbar('Added product', 'ok');
         this.loading = false;
-      }, (error) => {
-        this.alerts.showSnackbar(error.message, 'ok');
-        this.loading = false;
-      });
+      }, this.alerts.observableErrorSnackbar);
   }
 
   public addProduced(product) {
@@ -187,10 +176,7 @@ export class EditAccountData {
       .subscribe((resp) => {
         this.alerts.showSnackbar('Added product', 'ok');
         this.loading = false;
-      }, (error) => {
-        this.alerts.showSnackbar(error.message, 'ok');
-        this.loading = false;
-      });
+      }, this.alerts.observableErrorSnackbar);
   }
 
   public deleteActivity(i) {
@@ -201,10 +187,7 @@ export class EditAccountData {
       .subscribe((resp) => {
         this.alerts.showSnackbar('Removed activity', 'ok');
         this.loading = false;
-      }, (error) => {
-        this.alerts.showSnackbar(error.message, 'ok');
-        this.loading = false;
-      });
+      }, this.alerts.observableErrorSnackbar);
 
   }
 
@@ -221,10 +204,7 @@ export class EditAccountData {
       .subscribe((resp) => {
         this.alerts.showSnackbar('Removed product', 'ok');
         this.loading = false;
-      }, (error) => {
-        this.alerts.showSnackbar(error.message, 'ok');
-        this.loading = false;
-      });
+      }, this.alerts.observableErrorSnackbar);
   }
 
   public deleteProduced(i) {
@@ -236,10 +216,7 @@ export class EditAccountData {
       .subscribe((resp) => {
         this.alerts.showSnackbar('Removed product', 'ok');
         this.loading = false;
-      }, (error) => {
-        this.alerts.showSnackbar(error.message, 'ok');
-        this.loading = false;
-      });
+      }, this.alerts.observableErrorSnackbar);
   }
 
   public close(account = {}): void {
@@ -285,42 +262,27 @@ export class EditAccountData {
             this.ngOnInit();
 
             if (close) { this.close(this.account); }
-          }, (error) => {
-            if (error.message.includes('Validation error')) {
-              this.validationErrors = error.errors;
-            } else {
-              this.alerts.showSnackbar('Error updating account! ' + error.message, 'ok');
-            }
-            this.loading = false;
-          });
+          }, UtilsService.handleValidationError.bind(this, this));
     } else {
       this.alerts.showSnackbar('Nothing to update', 'ok');
     }
   }
 
   public selectPublicImage() {
-    this.openUpdateImage(this.account.public_image)
-      .subscribe((resp) => {
-        this.accountCopy.public_image = resp;
-      }, (error) => {
-        this.alerts.showSnackbar(error.message);
-      });
+    this.openUpdateImage('public_image');
   }
 
   public selectOrgImage() {
-    this.openUpdateImage(this.account.company_image)
-      .subscribe((resp) => {
-        this.accountCopy.company_image = resp;
-      }, (error) => {
-        return;
-      });
+    this.openUpdateImage('company_image');
   }
 
-  public openUpdateImage(selectedImage) {
+  public openUpdateImage(key) {
     return this.alerts.openModal(FileUpload, {
-      hasSelectedImage: !!selectedImage,
-      selectedImage,
-    });
+      hasSelectedImage: !!this.account[key],
+      selectedImage: this.account[key],
+    }).subscribe((resp) => {
+      this.accountCopy[key] = resp;
+    }, this.alerts.observableErrorSnackbar);
   }
 
   public manageSchedule() {
@@ -355,15 +317,11 @@ export class EditAccountData {
           );
           this.loading = false;
         },
-        (error) => {
-          this.alerts.showSnackbar(error.message, 'ok');
-          this.loading = false;
-        },
+        this.alerts.observableErrorSnackbar,
       );
   }
 
   public onSearch(terms: Observable<string>) {
     return debounceTime(400);
   }
-
 }

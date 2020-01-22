@@ -7,6 +7,7 @@ import { AfterContentInit, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoginService } from '../services/auth/auth.service';
 import { Sort } from '@angular/material';
+import { UtilsService } from 'src/services/utils/utils.service';
 
 export interface PageBase {
 
@@ -94,12 +95,7 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   }
 
   public handleValidationError(error) {
-    if (error.message.includes('Validation error')) {
-      this.validationErrors = error.errors;
-    } else if (this.alerts) {
-      this.alerts.showSnackbar(error.message, 'ok');
-    }
-    return error;
+    return UtilsService.handleValidationError(this, error);
   }
 }
 

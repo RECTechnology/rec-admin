@@ -82,6 +82,19 @@ export class UtilsService {
     }
   }
 
+  public static handleValidationError(self, error) {
+    if (error.message.includes('Validation error')) {
+      self.validationErrors = error.errors;
+    } else if (self.alerts) {
+      self.alerts.showSnackbar(error.message, 'ok');
+    }
+
+    if (self.loading !== undefined) {
+      self.loading = false;
+    }
+    return error;
+  }
+
   public isSandbox = false;
   // tslint:disable-next-line
   public _idleSecondsCounter = 0;

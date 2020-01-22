@@ -76,11 +76,7 @@ export class CrudBaseService<T> extends BaseService2 {
     public list(query?: CrudQueryOptions, lang: RecLang = REC_LANGS.ALL): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
         return this.get(url, query, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
-            .pipe(
-                // debounceTime(500),
-                // distinctUntilChanged(),
-                this.itemMapper(),
-            );
+            .pipe(this.itemMapper());
     }
 
     public search(data: ListAccountsParams = {}, lang: RecLang = REC_LANGS.ALL): Observable<any> {
