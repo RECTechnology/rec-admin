@@ -81,10 +81,10 @@ export class EditAccountData {
     this.lang = this.langMap[us.lang];
     this.getTiers();
 
-    this.companyService.listCategories()
-      .subscribe((resp) => {
-        this.companyService.categories = resp.data;
-      });
+    // this.companyService.listCategories()
+    //   .subscribe((resp) => {
+    //     this.companyService.categories = resp.data;
+    //   });
 
     this.productsCrud.search({ limit: 300, sort: 'name', order: 'asc' }, this.lang)
       .subscribe((resp) => this.productList = resp.data.elements);

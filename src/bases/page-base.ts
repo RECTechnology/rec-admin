@@ -1,3 +1,4 @@
+import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Observable, Subscription } from 'rxjs';
 import { BaseComponent } from './base-component';
 import { Title } from '@angular/platform-browser';
@@ -53,14 +54,11 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   public abstract pageName: string;
   public abstract ls: LoginService;
   public Brand: any = environment.Brand;
-  public loading = false;
+  public loading = true;
+  public validationErrors = [];
+  public validationErrorName = '';
 
-  constructor(
-    // public translate: TranslateService,
-  ) {
-    super();
-    this.loading = true;
-  }
+  public alerts: AlertsService;
 
   public ngOnInit() {
     if (typeof this.onLogout === 'function') {
@@ -93,6 +91,15 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
 
   public getTitle(): string {
     return this.titleService.getTitle();
+  }
+
+  public handleValidationError(error) {
+    if (error.message.includes('Validation error')) {
+      this.validationErrors = error.errors;
+    } else if (this.alerts) {
+      this.alerts.showSnackbar(error.message, 'ok');
+    }
+    return error;
   }
 }
 

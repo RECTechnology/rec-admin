@@ -70,6 +70,18 @@ export class UtilsService {
     return r;
   }
 
+  public static setIfPresent(data, changed, field) {
+    if (data[field]) {
+      changed[field] = data[field];
+    }
+  }
+
+  public static setAllIfPresent(data: any, changed: any, fields: string[]) {
+    for (const field of fields) {
+      UtilsService.setIfPresent(data, changed, field);
+    }
+  }
+
   public isSandbox = false;
   // tslint:disable-next-line
   public _idleSecondsCounter = 0;

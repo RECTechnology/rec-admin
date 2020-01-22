@@ -15,7 +15,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e --port 4201",
-    "release": "standard-version"
+    "release": "standard-version",
+    "stats": "ng build --stats-json && webpack-bundle-analyzer dist/stats-es5.json"
   },
   "private": true,
   "dependencies": {
@@ -54,6 +55,7 @@
     "@angular/compiler-cli": "^8.2.14",
     "@angular/language-service": "^8.2.14",
     "@schematics/angular": "^8.3.23",
+    "@size-limit/preset-app": "^3.0.0",
     "@types/jasmine": "^3.5.0",
     "@types/jasminewd2": "^2.0.8",
     "@types/node": "~8.9.4",

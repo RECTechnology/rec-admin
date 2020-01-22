@@ -1382,7 +1382,6 @@ table .item-hoverable:hover {
   right: 15px;
 }
 
-
 .abs-bottom-center {
   position: absolute;
   bottom: 15px;
@@ -1473,6 +1472,7 @@ table .item-hoverable:hover {
 
 .user-image {
   border-radius: 50%;
+  margin-right: 10px;
 }
 
 .badge-small.bg-gray {

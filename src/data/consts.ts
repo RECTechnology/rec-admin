@@ -24,7 +24,7 @@ export const LANGS = [
     icon: 'gb'
   },
   {
-    name: 'Caralan',
+    name: 'Catalan',
     abrev: 'cat',
     icon: 'cat'
   }

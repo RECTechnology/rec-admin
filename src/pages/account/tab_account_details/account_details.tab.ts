@@ -57,12 +57,6 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
     });
   }
 
-  public openDeleteAccount() { }
-
-  public expelUser() {
-    return;
-  }
-
   public ngOnDestroy() {
     this.companyService.selectedCompany = null;
     this.controles.showAccountDetails = false;

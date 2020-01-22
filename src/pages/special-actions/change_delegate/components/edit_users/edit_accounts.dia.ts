@@ -1,5 +1,6 @@
+import { AccountsCrud } from './../../../../../services/crud/accounts/accounts.crud';
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, Sort } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import BaseDialog from '../../../../../bases/dialog-base';
 import { CompanyService } from '../../../../../services/company/company.service';
 import { UserService } from '../../../../../services/user.service';
@@ -13,7 +14,6 @@ import { UtilsService } from 'src/services/utils/utils.service';
   templateUrl: './edit_accounts.html',
 })
 export class EditAccountsDia extends BaseDialog implements OnInit {
-
   public accountCount = 0;
   public accounts = [];
   public exchanger = { id: 0 };
@@ -35,6 +35,7 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
     public company: CompanyService,
     public us: UserService,
     public utils: UtilsService,
+    public accCrud: AccountsCrud,
   ) {
     super();
     this.getExchangersList();
@@ -48,13 +49,15 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
   }
 
   public getExchangersList() {
-    this.us.getListOfRecSellers(0, 1000, '').subscribe(
+    this.accCrud.list({
+      tier: 2,
+      type: 'COMPANY',
+      offset: 0,
+      limit: 100,
+    }).subscribe(
       (resp) => {
         this.exchangers = resp.data.elements;
         this.filtered = this.exchangers.slice();
-      },
-      (error) => {
-        return;
       },
     );
   }
@@ -101,12 +104,6 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
   }
 
   public confirm(): void {
-
-    // if (!this.utils.validPAN(String(this.pan))) {
-    //   this.error = 'PAN Number is not correct';
-    //   return;
-    // }
-
     if (!this.utils.validCVV(this.cvv2)) {
       this.error = 'CVV is not correct';
       return;

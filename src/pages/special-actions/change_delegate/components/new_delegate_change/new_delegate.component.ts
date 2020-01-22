@@ -16,11 +16,16 @@ import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/de
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
+const mapAccount = (e) => {
+    e.selected = true;
+    e.account = e.account || { id: e.id, name: e.name };
+    e.exchanger = e.exchanger || { id: e.exchanger_id };
+    return e;
+};
+
+// 29kb
 @Component({
     selector: 'new-delegate',
-    styleUrls: [
-        './new_delegate.css',
-    ],
     templateUrl: './new_delegate.html',
 })
 export class NewDelegateComponent extends PageBase {
@@ -35,10 +40,6 @@ export class NewDelegateComponent extends PageBase {
 
     public idOrNew = null;
     public isNew = true;
-
-    public validationErrors = [];
-    public validationErrorName = '';
-
     public delegate: any = {};
 
     public changeScheduled: any = false;
@@ -49,11 +50,6 @@ export class NewDelegateComponent extends PageBase {
     public objectsSent = 0;
     public objectsToSend = 0;
     public percentageSent = 0;
-    public limit = 10;
-    public offset = 0;
-    public total = 0;
-    public sortID: string = 'id';
-    public sortDir: string = 'desc';
 
     public limitSaved = 10;
     public offsetSaved = 0;
@@ -138,16 +134,15 @@ export class NewDelegateComponent extends PageBase {
             .subscribe(
                 (resp) => {
                     this.alerts.showSnackbar('Updated schedule time', 'ok');
-                    this.changeScheduled = false;
-                    this.loading = false;
-                    this.savingEntries = false;
                     this.getDelegate();
-                }, (error) => {
-                    this.alerts.showSnackbar(error.message, 'ok');
+                },
+                this.alerts.observableErrorSnackbar,
+                () => {
                     this.changeScheduled = false;
                     this.loading = false;
                     this.savingEntries = false;
-                });
+                },
+            );
     }
 
     public activateChange() {
@@ -155,7 +150,7 @@ export class NewDelegateComponent extends PageBase {
             change: this.delegate,
         }).subscribe((resp) => {
             if (resp) { this.router.navigate(['/change_delegate']); }
-        });
+        }, this.alerts.observableErrorSnackbar);
     }
 
     public changed() {
@@ -169,10 +164,6 @@ export class NewDelegateComponent extends PageBase {
         this.savedItems = this.savedItems.filter((el) => {
             return !notSavedMap.includes(el.id);
         });
-    }
-
-    public closeErrors() {
-        this.validationErrors = [];
     }
 
     public editScheduledAt() {
@@ -197,28 +188,22 @@ export class NewDelegateComponent extends PageBase {
         return [...notSaved];
     }
 
-    public openEditAccounts() {
-        const accounts = [...this.getSelected()];
+    public openEditSelected() {
+        this.openEditAccounts(
+            [...this.getSelected()],
+            (resp) => (resp && resp.accounts && this.setSelectedAccounts(resp.accounts.map(mapAccount))),
+        );
+    }
+
+    public openEditAccounts(accounts: Account[], cback: (resp: any) => any) {
         this.alerts.openModal(EditAccountsDia, {
             accountCount: accounts.length,
             accounts,
-        }).subscribe((resp) => {
-            if (resp && resp.accounts) {
-                this.setSelectedAccounts(resp.accounts.map((e) => {
-                    e.selected = true;
-                    e.account = e.account || { id: e.id, name: e.name };
-                    e.exchanger = e.exchanger || { id: e.exchanger_id };
-                    return e;
-                }));
-            }
-        });
+        }).subscribe(cback);
     }
 
     public openEditAccount(account, i, saved = false) {
-        this.alerts.openModal(EditAccountsDia, {
-            accountCount: 1,
-            accounts: [Object.assign({}, account)],
-        }).subscribe((resp) => {
+        this.openEditAccounts([Object.assign({}, account)], (resp) => {
             if (resp && resp.accounts) {
                 if (!saved) { this.notSavedItems[i] = resp.accounts[0]; }
                 if (saved) {
@@ -257,22 +242,16 @@ export class NewDelegateComponent extends PageBase {
     }
 
     public openSelectAccounts() {
-
         this.alerts.openModal(SelectAccountsDia, {
             selectedAccounts: this.savedItems.slice(),
             sortType: 'PRIVATE',
         }, { width: '80vw', height: '80vh' }).subscribe((result) => {
             if (result) {
                 this.total = this.sortedData.length + (result.accounts.length - this.sortedData.length);
-                this.setSelectedAccounts(result.accounts.map((e) => {
-                    e.selected = true;
-                    e.account = e.account || { id: e.id, name: e.name };
-                    e.exchanger = e.exchanger || { id: e.exchanger_id };
-                    return e;
-                }));
+                this.setSelectedAccounts(result.accounts.map(mapAccount));
 
                 if (result.edit) {
-                    this.openEditAccounts();
+                    this.openEditSelected();
                 }
             }
         });
@@ -286,13 +265,7 @@ export class NewDelegateComponent extends PageBase {
                         .subscribe((respDelegate) => {
                             this.alerts.showSnackbar(respDelegate.message, 'ok');
                             this.getDelegate();
-                        }, (error) => {
-                            if (error.message.includes('Validation error')) {
-                                this.validationErrors = error.errors;
-                            } else {
-                                this.alerts.showSnackbar(error.message, 'ok');
-                            }
-                        });
+                        }, this.handleValidationError);
                 }
             });
     }
@@ -312,18 +285,9 @@ export class NewDelegateComponent extends PageBase {
                 exchanger_id: data.exchanger_id || +data.exchanger.id,
             };
 
-            if (data.expiry_date) {
-                changeData.expiry_date = data.expiry_date;
-            }
-            if (data.pan) {
-                changeData.pan = data.pan;
-            }
-            if (data.cvv2) {
-                changeData.cvv2 = data.cvv2;
-            }
+            UtilsService.setAllIfPresent(data, changeData, ['expiry_date', 'pan', 'cvv2']);
 
             const isNew = !data.status;
-
             try {
                 const fn = isNew
                     ? this.changeDataCrud.create.bind(this.changeDataCrud)
@@ -333,29 +297,20 @@ export class NewDelegateComponent extends PageBase {
                 this.objectsSent += 1;
                 this.percentageSent = this.objectsSent / this.objectsToSend * 100;
             } catch (error) {
-                if (error.message.includes('Validation error')) {
-                    this.validationErrors = error.errors;
-                    this.validationErrorName = 'Entry: ' + data.id;
-                } else {
-                    this.alerts.showSnackbar(error.message + ' | id: ' + changeData.account_id);
-                }
+                this.handleValidationError(error);
                 errored = true;
             }
         }
 
         this.savingEntries = false;
-
         if (!errored) {
             this.alerts.showSnackbar(`Saved correctly...`, 'ok');
             this.validationErrors = [];
-            this.notSavedItems = [];
-            this.getDelegate();
-            this.getDelegateData();
-        } else {
-            this.notSavedItems = [];
-            this.getDelegate();
-            this.getDelegateData();
         }
+
+        this.notSavedItems = [];
+        this.getDelegate();
+        this.getDelegateData();
     }
 
     public deleteData(data, i, saved = false) {
@@ -364,9 +319,7 @@ export class NewDelegateComponent extends PageBase {
                 .subscribe((resp) => {
                     this.alerts.showSnackbar('Deleted data', 'ok');
                     this.savedItems.splice(i, 1);
-                }, (error) => {
-                    this.alerts.showSnackbar(error.message, 'ok');
-                });
+                }, this.alerts.observableErrorSnackbar);
         } else {
             this.notSavedItems.splice(i, 1);
         }

@@ -47,7 +47,6 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     TlHeaders.CompaniesTotal,
   ];
   public itemOptions: TlItemOption[] = [
-    TlItemOptions.View(this.openViewDetails.bind(this)),
     TlItemOptions.Edit(this.openEditUser.bind(this)),
     TlItemOptions.Delete(this.openDeleteUser.bind(this)),
   ];

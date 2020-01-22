@@ -4,6 +4,7 @@ import { UserService } from '../../../services/user.service';
 import { environment } from '../../../environments/environment';
 import { MatDialog } from '@angular/material';
 import { UtilsService } from '../../../services/utils/utils.service';
+import { SIDEMENU_ITEMS } from './sidemenu-items';
 
 @Component({
   selector: 'sidemenu',
@@ -14,6 +15,8 @@ export class SidemenuComponent implements OnInit {
   public brand: any = environment.Brand;
   public environment = environment;
   public loadEnded = false;
+  public items = SIDEMENU_ITEMS;
+  
   @Input() public collapsed = null;
 
   public statusMask = {
@@ -32,7 +35,6 @@ export class SidemenuComponent implements OnInit {
   public ngOnInit() {
     const roles = this.us.userData.group_data.roles;
     this.us.isAdmin = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY');
-    this.us.isReseller = roles.includes('ROLE_RESELLER');
     this.loadEnded = true;
     if (this.collapsed != null) {
       this.contrService.sidemenuVisible = !this.collapsed;

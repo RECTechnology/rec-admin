@@ -13,6 +13,7 @@ import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { Observer } from 'rxjs/internal/types';
 import { retryPipeline } from 'src/shared/rxjs-pipelines';
+import { noop } from 'rxjs';
 
 @Injectable()
 export class AppAuthService extends BaseService {
@@ -28,10 +29,6 @@ export class AppAuthService extends BaseService {
     us: UserService,
   ) {
     super(http, us);
-  }
-
-  public localConfig(): Observable<any> {
-    return this.http.get('./config.json').pipe(map((res: any) => res.json()));
   }
 
   public AppToken(): Observable<string> {
@@ -51,17 +48,6 @@ export class AppAuthService extends BaseService {
     );
   }
 
-  public refreshToken(refresh_token): Observable<any> {
-    return this.get(
-      null, {
-      client_id: clientID,
-      client_secret: clientSecret,
-      grant_type: 'refresh_token',
-      refresh_token,
-    }, `${API_URL}/oauth/v2/token`,
-    );
-  }
-
   public doAuth() {
     return this.AppToken();
   }
@@ -77,10 +63,9 @@ export class LoginService extends BaseService {
   public app_tokens: any = null;
   public accounts: Observable<any>;
   public tokenTimeout2;
+
   @Output() public onLogin: EventEmitter<any> = new EventEmitter();
   @Output() public onLogout: EventEmitter<any> = new EventEmitter();
-
-  public subs: any[] = [];
 
   public isLoggedIn: Observable<any> = new Observable(this.loginObserver.bind(this));
   private tokenTimeout = null;
@@ -94,14 +79,10 @@ export class LoginService extends BaseService {
     public alerts: AlertsService,
   ) {
     super(http, us);
-    this.us.onLogout.subscribe(
-      (resp) => {
-        this.logout();
-      },
-    );
+    this.us.onLogout.subscribe(() => this.logout());
   }
 
-  public login(username, password, otp?): Observable<any> {
+  public login(username, password, pin?): Observable<any> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     const options = ({ headers });
     return this.http.post(
@@ -109,53 +90,13 @@ export class LoginService extends BaseService {
       {
         client_id: clientID,
         client_secret: clientSecret,
-        grant_type: 'password', // https://dev.chip-chap.com/grant_types/otp_captcha
+        grant_type: 'password',
         password,
-        pin: otp, // If granttype is 'otp_captcha' change 'pin' with 'otp'
+        pin,
         username: username.trim(),
-        version: '1', // Version must be 1
+        version: '1',
       },
       options,
-    );
-  }
-
-  public loginV2(username, password, otp?, captchaCode?): Observable<string> {
-    const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    const options = ({ headers, method: 'POST' });
-    return this.http.post(
-      `${API_URL}/oauth/v3/token`,
-      {
-        captcha: captchaCode,
-        client_id: clientID,
-        client_secret: clientSecret,
-        grant_type: 'password', // https://dev.chip-chap.com/grant_types/otp_captcha
-        password,
-        pin: otp, // If granttype is 'otp_captcha' change 'pin' with 'otp'
-        username: username.trim(),
-        version: '1', // Version must be 1
-      },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public recoverPassword(token, password, repassword) {
-    const app_tokens = JSON.parse(localStorage.getItem('app.tokens'));
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + app_tokens.access_token,
-      'content-type': 'application/json',
-    });
-    const options = ({ headers, method: 'PUT' });
-    return this.http.put(
-      `${API_URL}/password_recovery/v1`,
-      { password, repassword, token },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
     );
   }
 
@@ -216,6 +157,24 @@ export class LoginService extends BaseService {
 
   /* Not the most pretty code :) But does what it should */
   private loginObserver(observer) {
+    const profSuccess = (resp) => {
+      this.us.userData = resp;
+      this.isLoggedIn_ = true;
+      this.onLogin.emit(true);
+      observer.next(true);
+    };
+
+    const profError = (error) => {
+      if (error.error_description === 'User account is locked.') {
+        this.isLoggedIn_ = false;
+        observer.error('error');
+        this.alerts.showSnackbar('User account is locked.', 'ok');
+      } else {
+        this.isLoggedIn_ = false;
+        observer.error('error');
+      }
+    };
+
     this.loginObserver_ = observer;
     this.tokens = JSON.parse(localStorage.getItem('user.tokens'));
     this.app_tokens = JSON.parse(localStorage.getItem('app.tokens'));
@@ -235,92 +194,26 @@ export class LoginService extends BaseService {
           clearInterval(this.tokenTimeout);
           setTimeout((() => {
             this.tokenTimeout = null;
-            const s = this.isLoggedIn.subscribe((logged) => { return; }, (err) => { return; });
+            this.isLoggedIn.subscribe(noop, noop);
           }).bind(this), 2000);
         }).bind(this), timeoutTime);
       }
 
       if (isExpired) {
-        if (this.tokens.refresh_token && !this.isSessionExpired()) {
-          this.refresh(observer);
-        } else {
-          this.isLoggedIn_ = false;
-          this.logout();
-          observer.error('error');
-        }
+        this.isLoggedIn_ = false;
+        this.logout();
+        observer.error('error');
       } else {
         if (!this.us.userData.id) {
-          const profSub = this.us.getProfile()
-            .subscribe(
-              (resp) => {
-                this.us.userData = resp;
-                this.isLoggedIn_ = true;
-                this.onLogin.emit(true);
-                observer.next(true);
-              },
-              (error) => {
-                if (error.error_description === 'User account is locked.') {
-                  this.isLoggedIn_ = false;
-                  observer.error('error');
-                  this.alerts.showSnackbar('User account is locked.', 'ok');
-                } else if (this.tokens.refresh_token) {
-                  this.refresh(observer);
-                } else {
-                  this.isLoggedIn_ = false;
-                  observer.error('error');
-                }
-              });
-          this.isLoggedIn_ = true;
+          this.us.getProfile().subscribe(profSuccess, profError);
         } else {
           observer.next(true);
-          this.isLoggedIn_ = true;
         }
+        this.isLoggedIn_ = true;
       }
     } else {
       this.isLoggedIn_ = false;
       observer.next(false);
     }
-  }
-
-  private refresh(observer?) {
-    this.appAuthServ.refreshToken(this.tokens.refresh_token)
-      .subscribe(
-        (resp) => {
-          this.us.tokens = this.tokens = resp;
-          resp.created = new Date();
-          localStorage.setItem('user.tokens', JSON.stringify(resp));
-
-          clearInterval(this.tokenTimeout);
-
-          this.tokenTimeout = setInterval(((_) => {
-            clearInterval(this.tokenTimeout);
-            this.tokenTimeout = null;
-            this.isLoggedIn.subscribe((logged) => { return; }, (err) => { return; });
-          }).bind(this), 3200 * 1000);
-
-          this.us.getProfile()
-            .subscribe(
-              (profile) => {
-                this.us.userData = profile;
-                this.isLoggedIn_ = true;
-                this.us.isAdmin = this.us.userData.roles ? (this.us.userData.roles[0] === 'ROLE_ADMIN') : false;
-                observer.next(true);
-                observer.complete();
-              },
-              (error) => {
-                this.isLoggedIn_ = false;
-                this.logout();
-              },
-            );
-        },
-        (error) => {
-          this.isLoggedIn_ = false;
-          if (error.status !== 0) {
-            this.logout();
-          } else {
-            setTimeout(((_) => this.refresh(observer)).bind(this), 3000);
-          }
-        },
-      );
   }
 }

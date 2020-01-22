@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/internal/Observable';
 import { Injectable } from '@angular/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MatDialog, MatSnackBarConfig } from '@angular/material';
@@ -24,6 +25,10 @@ export class AlertsService {
 
   public confirmDeletion(itemName = 'Item') {
     return this.showConfirmation('Are you sure you want to delete that?', 'Delete ' + itemName + '?', 'ok');
+  }
+
+  public observableErrorSnackbar(error) {
+    this.showSnackbar(error.message);
   }
 
   public openModal(C, props = {}, modalOptions = {}) {

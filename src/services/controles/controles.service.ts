@@ -17,6 +17,18 @@ export class ControlesService {
   public showMovements = false;
   public showUsers = false;
 
+  public toggles = {
+    sidemenu: true,
+  };
+
+  public toggle(name) {
+    this.toggles[name] = this.toggles[name] ? !this.toggles[name] : true;
+  }
+
+  public isToggled(name) {
+    return this.toggles[name];
+  }
+
   public toggleChat(state?: boolean): void {
     if (state != null && state !== undefined) {
       this.chatVisible = state;

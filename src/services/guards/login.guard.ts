@@ -63,7 +63,6 @@ export class IsNotLoggedInGuard implements CanActivate {
       this.ls.isLoggedIn.subscribe(
         (resp) => {
           if (!resp) {
-            // this.router.navigate(['/']);
             observer.next(true);
             observer.complete();
           } else {
@@ -105,38 +104,6 @@ export class IsAdminInGuard implements CanActivate {
         },
         (error) => {
           this.router.navigate(['/login']);
-          observer.next(false);
-          observer.complete();
-        },
-      );
-    });
-  }
-}
-
-@Injectable()
-export class IsResellerGuard implements CanActivate {
-  public tokens: any = {};
-  constructor(
-    private router: Router,
-    private ls: LoginService,
-    private us: UserService,
-  ) { }
-
-  public canActivate(): Observable<any> {
-    return new Observable((observer) => {
-      this.ls.isLoggedIn.subscribe(
-        (resp) => {
-          if (this.us.userData.roles && this.us.userData.roles.includes('ROLE_RESELLER')) {
-            observer.next(this.us.userData.roles.includes('ROLE_RESELLER'));
-            observer.complete();
-          } else {
-            this.router.navigate(['/dashboard']);
-            observer.next(false);
-            observer.complete();
-          }
-        },
-        (error) => {
-          this.router.navigate(['/dashboard']);
           observer.next(false);
           observer.complete();
         },
