@@ -724,3 +724,9 @@ a {
 .space-around {
   justify-content: space-around;
 }
+.menu-item {
+  &.active,
+  &:hover {
+    color: #0098db;
+  }
+}

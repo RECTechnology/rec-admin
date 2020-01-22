@@ -57,7 +57,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.isMobile = this.utils.isMobileDevice = this.utils.isMobile();
     this.utils.openIdleModal = this.showIdleMessage.bind(this);
     this.utils.closeIdleModal = this.closeIdleMessage.bind(this);
-    this.cs.sidemenuVisible = !this.utils.isMobileDevice;
 
     /* Setup translate, and set default lang */
     this.setupLang();
@@ -91,6 +90,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.us.getProfile().subscribe((profile) => {
           this.us.userData = profile;
+
+          const roles = profile.group_data.roles;
+          this.us.isAdmin = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY');
+
           MySentry.setUser(profile);
 
           if (!this.us.isSuperAdmin()) {

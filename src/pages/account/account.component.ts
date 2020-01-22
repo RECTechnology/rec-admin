@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { UserService } from 'src/services/user.service';
 import { PageBase } from 'src/bases/page-base';

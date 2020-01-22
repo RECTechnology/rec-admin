@@ -70,8 +70,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
           }
         }
         this.getTransactions();
-        this.getMethods();
-        this.companyService.doGetCompanies();
       });
   }
 
@@ -108,9 +106,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
 
   // Makes all api calls for wallet
   public refresh() {
-    // this.getCurrencies();
-    this.setRefresh();
-    this.getMethods();
     this.getTransactions();
   }
 
@@ -137,15 +132,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
 
   }
 
-  // Open add comment
-  public openAddComment(transaction): void {
-    this.createModal(AddCommentDia, { transaction });
-  }
-
-  public openCashOut() {
-    this.createModal(CashOutDia, {});
-  }
-
   public sendRecs() {
     const dialogRef = this.dialog.open(CashOutDia);
     dialogRef.afterClosed().subscribe((resp) => {
@@ -153,10 +139,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
         this.getTransactions();
       }
     });
-  }
-
-  public openCashOutTesoro() {
-    this.createModal(CashOutTesoroDia, {});
   }
 
   public sortData(sort: Sort): void {
@@ -187,22 +169,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     return ref.afterClosed();
   }
 
-  // This is to bypass webpack throwing errors if using dinamic image naming, ie: src="img/images/{{imgname}}.png"
-  // As 'img/images/{{imgname}}.png' is not a valid image path until rendered by angular
-  public getImage(type) {
-    return `../../resources/img/${type}.png`;
-  }
-
-  public getCurrencySmallImage(curr) {
-    return `../../resources/currencies/${curr}-small.png`;
-  }
-
-  // Gets methods and filters them by 'in' or 'out', also sets methods_in/out filters
-  public getMethods(): void {
-    this.filter.filterOptions.methods_in = ['rec', 'eur'];
-    this.filter.filterOptions.methods_out = ['rec', 'eur'];
-  }
-
   // Gets the transactions with filter data and calculates buy/sell price if its an exchange
   public async getTransactions() {
     this.loading = true;
@@ -219,24 +185,9 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
       this.sortedData = this.txService.walletTransactions.slice();
       this.loadingTransactions = false;
       this.loading = false;
-    }, (error) => {
-      console.log(error);
     });
   }
 
-  // Refreshes data each 'this.refreshInterval'
-  public setRefresh(): void {
-    // this.refreshObs = setInterval(_ => {
-    //   this.getTickers();
-    // }, this.refreshInterval);
-  }
-
-  /**
-   * Creates and shows a modal, with component as Component
-   * @param { any } component - A angular component
-   * @param { Object } data - Properties to override in the component
-   * @returns { afterClose: Observable, instance: Component instance}
-  */
   public createModal(component: any, data = {}): any {
     let dialogRef: any = this.dialog.open(component);
     dialogRef.componentInstance.setReference(dialogRef);
@@ -247,7 +198,6 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
       }
     }
     if ('walletComponent' in dialogRef.componentInstance) {
-      // tslint:disable-next-line
       dialogRef.componentInstance['walletComponent'] = (this as never);
     }
     if ('dialog' in dialogRef.componentInstance) {
@@ -259,9 +209,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     });
 
     return {
-      afterClosed: (x) => {
-        return dialogRef.afterClosed();
-      },
+      afterClosed: (x) => dialogRef.afterClosed(),
       instance: dialogRef.componentInstance,
     };
   }

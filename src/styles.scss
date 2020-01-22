@@ -22,6 +22,14 @@ mat-spinner svg {
   background: #f4f4f4;
   padding: 0;
 }
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.632);
+}
 
 .activity-list-item {
   cursor: pointer;
@@ -73,12 +81,56 @@ agm-map {
   }
 }
 
+.text-mid-small {
+  font-size: 14px;
+  font-weight: 300;
+}
+
 .text-medium {
   font-size: 22px;
 }
 
 .text-big {
   font-size: 28px;
+}
+
+.center-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.menu-item {
+  background: transparent;
+  transition: all 0.15s ease-in-out;
+  color: #7e7e7e;
+  font-size: 12px;
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
+  max-height: 50%;
+  overflow-y: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.separate {
+    border-bottom: 1px solid #ddd;
+    padding-left: 12px;
+    margin-bottom: 8px;
+    cursor: default;
+  }
+}
+
+.dropdown .menu-item {
+  padding: 10px 15px 10px 8px;
+}
+
+.scrollable {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.ul-no-decoration {
+  list-style: none !important;
 }
 
 .mail-preview {
@@ -204,7 +256,7 @@ agm-map {
       border-radius: 50%;
       margin: $globe-spacing/2;
       display: inline-block;
-      background: #F5624D;
+      background: #f5624d;
       // box-shadow: 0px $globe-height/6 $globe-width * 2 $globe-spread #F5624D;
       animation-name: flash-1;
       animation-duration: 2.5s;

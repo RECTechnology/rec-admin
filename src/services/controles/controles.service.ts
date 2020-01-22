@@ -1,83 +1,52 @@
+import { UtilsService } from './../utils/utils.service';
 import { Injectable } from '@angular/core';
 
+type ToggleFn = (toggled: boolean) => void;
 
-// TODO: Rethink this
 @Injectable()
 export class ControlesService {
-  public sidemenuVisible: boolean = true;
-  public profileDropDownActive: boolean = false;
-  public devDropdownExpanded: boolean = false;
-  public chatVisible: boolean = false;
-  public managementExpanded: boolean = true;
-  public errorReporterOpened: boolean = false;
-  public showAccountDetails: boolean = false;
-  public currencySelected = false;
-  public selectedCurrency: any = {};
+  private handlers = new Map<string, ToggleFn[]>();
+  private toggles = {
+    sidemenu: true,
+    UsersAndAccounts: true,
+  };
 
-  public showMovements = false;
-  public showUsers = false;
+  constructor(
+    public utils: UtilsService,
+  ) {
+    this.toggles.sidemenu = !utils.isMobileDevice;
+  }
 
-  public toggleChat(state?: boolean): void {
-    if (state != null && state !== undefined) {
-      this.chatVisible = state;
-    } else {
-      this.chatVisible = !this.chatVisible;
+  public toggle(name) {
+    const toggled = this.toggles[name] ? !this.toggles[name] : true;
+    this.toggles[name] = toggled;
+    if (this.handlers.has(name)) {
+      const fns = this.handlers.get(name);
+      fns.forEach((fn) => fn(toggled));
     }
   }
 
-  public toggleManagement(state?: boolean): void {
-    if (state != null && state !== undefined) {
-      this.managementExpanded = state;
-    } else {
-      this.managementExpanded = !this.managementExpanded;
+  public addHandler(name: string, cback: ToggleFn) {
+    let fns = [];
+    if (this.handlers.has(name)) {
+      fns = this.handlers.get(name);
+    }
+
+    const index = fns.push(cback);
+    this.handlers.set(name, fns);
+
+    return { remove: this.removeHandler.bind(this, name, index) };
+  }
+
+  public removeHandler(name, index: number) {
+    if (this.handlers.has(name)) {
+      const fns = this.handlers.get(name);
+      fns.splice(index, 1);
+      this.handlers.set(name, fns);
     }
   }
 
-  public selectCurrency(amount, currency) {
-    this.selectedCurrency = {
-      ...currency,
-      amount,
-    };
-    this.currencySelected = true;
-  }
-
-  public deselectCurrency() {
-    this.currencySelected = false;
-  }
-
-  /**
-  * @param {boolean} state #optional - If its open or closed
-  * Toggle sidemenuVisible or set to state if passed
-  */
-  public toggleSidemenu(state?: boolean): void {
-    if (state != null && state !== undefined) {
-      this.sidemenuVisible = state;
-    } else {
-      this.sidemenuVisible = !this.sidemenuVisible;
-    }
-  }
-
-  /**
-  * @param {boolean} state #optional - If its open or closed
-  * Toggle profileDropDownActive or set to state if passed
-  */
-  public toggleProfileDropDown(state?: boolean): void {
-    if (state != null && state !== undefined) {
-      this.profileDropDownActive = state;
-    } else {
-      this.profileDropDownActive = !this.profileDropDownActive;
-    }
-  }
-
-  /**
-  * @param {boolean} state #optional - If its open or closed
-  * Toggle devDropdownExpanded or set to state if passed
-  */
-  public toggledevDropdown(state?: boolean): void {
-    if (state != null && state !== undefined) {
-      this.devDropdownExpanded = state;
-    } else {
-      this.devDropdownExpanded = !this.devDropdownExpanded;
-    }
+  public isToggled(name) {
+    return this.toggles[name];
   }
 }

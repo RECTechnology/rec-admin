@@ -13,6 +13,7 @@ import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { Observer } from 'rxjs/internal/types';
 import { retryPipeline } from 'src/shared/rxjs-pipelines';
+import { noop } from 'rxjs';
 
 @Injectable()
 export class AppAuthService extends BaseService {
@@ -28,10 +29,6 @@ export class AppAuthService extends BaseService {
     us: UserService,
   ) {
     super(http, us);
-  }
-
-  public localConfig(): Observable<any> {
-    return this.http.get('./config.json').pipe(map((res: any) => res.json()));
   }
 
   public AppToken(): Observable<string> {
@@ -77,10 +74,9 @@ export class LoginService extends BaseService {
   public app_tokens: any = null;
   public accounts: Observable<any>;
   public tokenTimeout2;
+
   @Output() public onLogin: EventEmitter<any> = new EventEmitter();
   @Output() public onLogout: EventEmitter<any> = new EventEmitter();
-
-  public subs: any[] = [];
 
   public isLoggedIn: Observable<any> = new Observable(this.loginObserver.bind(this));
   private tokenTimeout = null;
@@ -94,14 +90,10 @@ export class LoginService extends BaseService {
     public alerts: AlertsService,
   ) {
     super(http, us);
-    this.us.onLogout.subscribe(
-      (resp) => {
-        this.logout();
-      },
-    );
+    this.us.onLogout.subscribe(() => this.logout());
   }
 
-  public login(username, password, otp?): Observable<any> {
+  public login(username, password, pin?): Observable<any> {
     const headers = new HttpHeaders({ 'content-type': 'application/json' });
     const options = ({ headers });
     return this.http.post(
@@ -109,53 +101,13 @@ export class LoginService extends BaseService {
       {
         client_id: clientID,
         client_secret: clientSecret,
-        grant_type: 'password', // https://dev.chip-chap.com/grant_types/otp_captcha
+        grant_type: 'password',
         password,
-        pin: otp, // If granttype is 'otp_captcha' change 'pin' with 'otp'
+        pin,
         username: username.trim(),
-        version: '1', // Version must be 1
+        version: '1',
       },
       options,
-    );
-  }
-
-  public loginV2(username, password, otp?, captchaCode?): Observable<string> {
-    const headers = new HttpHeaders({ 'content-type': 'application/json' });
-    const options = ({ headers, method: 'POST' });
-    return this.http.post(
-      `${API_URL}/oauth/v3/token`,
-      {
-        captcha: captchaCode,
-        client_id: clientID,
-        client_secret: clientSecret,
-        grant_type: 'password', // https://dev.chip-chap.com/grant_types/otp_captcha
-        password,
-        pin: otp, // If granttype is 'otp_captcha' change 'pin' with 'otp'
-        username: username.trim(),
-        version: '1', // Version must be 1
-      },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public recoverPassword(token, password, repassword) {
-    const app_tokens = JSON.parse(localStorage.getItem('app.tokens'));
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Authorization': 'Bearer ' + app_tokens.access_token,
-      'content-type': 'application/json',
-    });
-    const options = ({ headers, method: 'PUT' });
-    return this.http.put(
-      `${API_URL}/password_recovery/v1`,
-      { password, repassword, token },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
     );
   }
 
@@ -213,8 +165,6 @@ export class LoginService extends BaseService {
     const dateNow = now / 1000;
     return lastSessionDate && lastSessionDate < dateNow;
   }
-
-  /* Not the most pretty code :) But does what it should */
   private loginObserver(observer) {
     this.loginObserver_ = observer;
     this.tokens = JSON.parse(localStorage.getItem('user.tokens'));

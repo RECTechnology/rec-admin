@@ -10,13 +10,6 @@ const sortActive = (a, b) => (a === b) ? 0 : (a.status === 'available' ? -1 : 1)
 
 @Injectable()
 export class WalletService extends BaseService {
-
-  /**
-   * Scales a number for specified scale
-   * @param {string} amount - number to scale
-   * @param {string} scale - the scale
-   * @return {number} - return the scaled amount
-   */
   public static scaleNum(amount: number, scale: number): number {
     return Math.round(amount * Math.pow(10, scale));
   }
