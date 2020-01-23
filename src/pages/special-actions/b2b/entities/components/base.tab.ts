@@ -44,14 +44,14 @@ export abstract class EntityTabBase<T> {
         // this.search();
     }
 
-    public confirm(title, message, btnText = 'Delete', status = 'error', skip = false, icon = 'warning') {
+    public confirm(title, message, btnConfirmText = 'Delete', status = 'error', skip = false, icon = 'warning') {
         if (skip) {
             return new Observable((obs) => {
                 obs.next(true);
                 obs.complete();
             });
         }
-        return this.alerts.showConfirmation(message, title, btnText, status, icon);
+        return this.alerts.showConfirmation(message, title, { btnConfirmText, status, icon });
     }
 
     public sortData(sort: Sort): void {
@@ -101,7 +101,7 @@ export abstract class EntityTabBase<T> {
         }
 
         this.loading = true;
-        this.alerts.confirmDeletion(this.entityName)
+        this.alerts.confirmDeletion(this.entityName, `(${item.name || item.code})`)
             .subscribe((confirm) => {
                 if (!confirm) {
                     this.loading = false;
@@ -111,7 +111,7 @@ export abstract class EntityTabBase<T> {
                 this.loading = true;
                 this.crud.remove(item.id)
                     .subscribe((resp) => {
-                        this.alerts.showSnackbar('Removed ' + this.entityName + ' correctly!', 'ok');
+                        this.alerts.showSnackbar('Removed ' + this.entityName + ' correctly!', 'OK');
                         this.loading = false;
                         this.search();
                     }, (err) => {

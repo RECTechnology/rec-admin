@@ -104,8 +104,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
     return this.alerts.showConfirmation(
       'Are you sure you want to remove delegated change:' + change.id + '?',
       'Remove Delegated Changed',
-      'DELETE',
-      'error',
+      { btnConfirmText: 'Delete' },
     );
   }
 

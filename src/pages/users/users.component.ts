@@ -110,8 +110,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     this.alerts.showConfirmation(
       'Are you sure you want to remove user from the sistem [ ' + accName + ' ]? No going back.',
       'Remove user from system?',
-      'Delete',
-      'error',
+      { btnConfirmText: 'Delete' },
     ).subscribe((result) => {
       if (result) { this.removeUser(user); }
     });

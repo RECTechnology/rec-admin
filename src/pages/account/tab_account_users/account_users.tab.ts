@@ -86,8 +86,7 @@ export class AccountUsersTab implements AfterContentInit {
     this.alerts.showConfirmation(
       'Are you sure you want to expel user from account [ ' + this.account_id + ' ]?',
       'Expel user (' + user.username + ') from account',
-      'EXPEL',
-      'error',
+      { btnConfirmText: 'EXPEL' },
     ).subscribe((result) => {
       if (result) {
         // If user click 'Delete' we proceed to delete user

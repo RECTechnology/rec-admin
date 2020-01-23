@@ -1,3 +1,4 @@
+import { TlHeaders } from 'src/data/tl-headers';
 import { Component } from '@angular/core';
 import { NeighborhoodsCrud } from 'src/services/crud/neighborhoods/neighborhoods.crud';
 import { EntityTabBase } from '../base.tab';
@@ -6,10 +7,8 @@ import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl
 import { MatDialog } from '@angular/material';
 import { AddNeighbourhoodDia } from './add/add.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
-import { CrudBaseService } from 'src/services/base/crud.base';
-import { REC_LANGS } from 'src/types';
-import { forkJoin } from 'rxjs';
 import { Neighborhood } from 'src/shared/entities/translatable/neighborhood.ent';
+import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 
 @Component({
     selector: 'tab-neighborhoods',
@@ -20,26 +19,14 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
     public entityName = 'Neighborhood';
     public headerOpts: TableListHeaderOptions = { input: true };
     public headers: TlHeader[] = [
-        {
-            sort: 'id',
-            title: 'ID',
-            type: 'code',
-        },
+        TlHeaders.Id,
         {
             sort: 'townhall_code',
             title: 'Townhall ID',
             type: 'code',
         },
-        {
-            accessor: 'name',
-            sort: 'name',
-            title: 'Name',
-        },
-        {
-            accessor: 'description',
-            sort: 'description',
-            title: 'Description',
-        },
+        TlHeaders.Name,
+        TlHeaders.Description,
     ];
 
     public itemOptions: TlItemOption[] = [{
@@ -47,15 +34,18 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
         icon: 'fa-edit',
         text: 'Edit Neighbourhood',
     }, {
-        callback: this.deleteNeighborhood.bind(this),
+        callback: this.deleteItem.bind(this),
         class: 'col-error',
         icon: 'fa-trash',
         text: 'Delete Neighbourhood',
     }];
 
     public tableOptions: TableListOptions = {
-        optionsType: 'menu',
+        optionsType: 'buttons',
     };
+
+    public addComponent = AddNeighbourhoodDia;
+    public editComponent = AddNeighbourhoodDia;
 
     constructor(
         public crud: NeighborhoodsCrud,
@@ -88,29 +78,7 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
         this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
             .subscribe((proceed) => {
                 if (proceed) {
-                    const ref = this.alerts.openModal(AddNeighbourhoodDia, {
-                        isEdit: true,
-                        item: Object.assign({}, neighborhood),
-                    }).subscribe((updated) => {
-                        if (updated) {
-
-                            delete updated.id;
-                            delete updated.created;
-                            delete updated.updated;
-                            delete updated.accounts;
-                            delete updated.translations;
-                            delete updated.bounds;
-
-                            this.crud.update(neighborhood.id, updated).subscribe(
-                                (resp) => {
-                                    this.alerts.showSnackbar('Updated Neighbourhood: ' + neighborhood.id, 'ok');
-                                    this.search();
-                                },
-                                (error) => this.alerts.showSnackbar(error.message),
-                            );
-                        }
-                    });
-
+                    this.editItem(neighborhood);
                 }
             });
     }
@@ -142,22 +110,5 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
                     );
             }
         });
-    }
-
-    public deleteNeighborhood(neighborhood) {
-        this.confirm('Delete Neighborhood ' + neighborhood.id, 'Are you sure you want to delete that? No going back.')
-            .subscribe(
-                (del) => {
-                    if (del) {
-                        this.crud.remove(neighborhood.id).subscribe(
-                            (resp) => {
-                                this.alerts.showSnackbar('Deleted Neighbourhood', 'ok');
-                                this.search();
-                            },
-                            (error) => this.alerts.showSnackbar(error.message),
-                        );
-                    }
-                },
-            );
     }
 }

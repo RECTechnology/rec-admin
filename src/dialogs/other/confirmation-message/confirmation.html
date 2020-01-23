@@ -4,7 +4,10 @@
 
 <div class="group-col-left padd-x20" style="max-width: 50vw">
 
-  <p [innerHTML]="message|translate:data"></p>
+  <div class="group-row-left">
+    <p [innerHTML]="message|translate:data"></p>
+    <p class="marg-l-10" *ngIf="trailing">{{trailing|translate}}</p>
+  </div>
 
   <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">
     <button type="button" mat-button name="button" (click)="close(false)" style="margin-right: 10px">
