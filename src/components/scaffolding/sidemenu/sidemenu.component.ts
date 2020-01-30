@@ -42,10 +42,6 @@ export class SidemenuComponent {
   }
 
   public clickedItem() {
-    // if (this.utils.isMobileDevice) {
-    //   console.log('lkamsdlka');
-    //   this.controles.toggle('sidemenu');
-    // }
     return false;
   }
 }
