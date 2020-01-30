@@ -37,6 +37,9 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Status,
         TlHeaders.Description,
     ];
+    public itemOptions: TlItemOption[] = [
+      TlItemOptions.Delete(this.deleteItem.bind(this)),
+    ];
 
     public STATUSES = Document.ALL_STATUSES;
     public addComponent = AddDocumentDia;
