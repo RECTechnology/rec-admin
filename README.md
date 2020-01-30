@@ -30,12 +30,12 @@ Panel de administracion para [rec.barcelona](https://rec.barcelona)
 Please check [this wiki](https://github.com/QbitArtifacts/bootstrap/wiki/Development) out for internal documentation on how we develop.
 
 ### Setting Up
-1. Install dependecies `npm install`
-    1.2. Install ng cli globaly `[sudo] npm install @angular/cli -g`
-2. Copy `src/environments/environment.ts.dist` to `src/environments/environment.ts`
-    2.1 Replace placeholders with real credentials and values (ask @nombrekeff if you are missing any values)
-3. Run dev server `ng serve` will start a server at `http://localhost:4200`
-4. App starts at `app/main.ts`
+1. Install dependecies `npm install`  
+    1.2. Install ng cli globaly `[sudo] npm install @angular/cli -g`  
+2. Copy `src/environments/environment.ts.dist` to `src/environments/environment.ts`  
+    2.1 Replace placeholders with real credentials and values (ask @nombrekeff if you are missing any values)  
+3. Run dev server `ng serve` will start a server at `http://localhost:4200`  
+4. App starts at `app/main.ts`  
 
 ### Building App
 #### Development
