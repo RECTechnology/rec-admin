@@ -1362,7 +1362,7 @@ table .item-hoverable {
 }
 
 table .item-hoverable:hover {
-  background: #eee;
+  background: rgb(225, 225, 225);
 }
 
 .dialog-header {
@@ -1472,6 +1472,7 @@ table .item-hoverable:hover {
 
 .user-image {
   border-radius: 50%;
+  margin-right: 10px;
 }
 
 .badge-small.bg-gray {

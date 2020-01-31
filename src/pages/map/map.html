@@ -1,8 +1,8 @@
 <header-nav></header-nav>
-<sidemenu></sidemenu>
 
-<div class="page accounts" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+
+<app-page>
     <agm-map [latitude]="lat" [longitude]="lng">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
     </agm-map>
-</div>
+</app-page>

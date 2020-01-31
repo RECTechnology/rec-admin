@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/internal/Observable';
 import { Injectable } from '@angular/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MatDialog, MatSnackBarConfig } from '@angular/material';
@@ -16,14 +17,38 @@ export class AlertsService {
     return this.snackbar.open(message, buttonText, opts);
   }
 
-  public showConfirmation(message, title, btnConfirmText, status = 'error', headerIcon = 'warning', opts = {}) {
+  public showConfirmation(
+    message,
+    title,
+    opts: any = {},
+  ) {
     return this.openModal(ConfirmationMessage, {
-      btnConfirmText, headerIcon, message, status, title, opts,
+      ...{
+        btnConfirmText: 'OK',
+        headerIcon: false,
+        status: 'error',
+        opts: {},
+        trailing: null,
+      },
+      message,
+      title,
+      ...opts,
     });
   }
 
-  public confirmDeletion(itemName = 'Item') {
-    return this.showConfirmation('Are you sure you want to delete that?', 'Delete ' + itemName + '?', 'ok');
+  public confirmDeletion(itemName = 'Item', trailing?: string) {
+    return this.showConfirmation(
+      'DELETE_CONFIRM',
+      'Delete ' + itemName + '?',
+      {
+        btnConfirmText: 'Delete',
+        trailing,
+      },
+    );
+  }
+
+  public observableErrorSnackbar(error) {
+    this.showSnackbar(error.message);
   }
 
   public openModal(C, props = {}, modalOptions = {}) {

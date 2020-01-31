@@ -51,7 +51,6 @@ export class UtilsService {
     delete ent.document_kinds;
     delete ent.account;
     delete ent.kind;
-    delete ent.kind_id;
 
     return ent;
   }
@@ -68,6 +67,31 @@ export class UtilsService {
       r[k] = _.isObject(v) ? _.difference(v, compare[k]) : v;
     });
     return r;
+  }
+
+  public static setIfPresent(data, changed, field) {
+    if (data[field]) {
+      changed[field] = data[field];
+    }
+  }
+
+  public static setAllIfPresent(data: any, changed: any, fields: string[]) {
+    for (const field of fields) {
+      UtilsService.setIfPresent(data, changed, field);
+    }
+  }
+
+  public static handleValidationError(self, error) {
+    if (error.message.includes('Validation error')) {
+      self.validationErrors = error.errors;
+    } else if (self.alerts) {
+      self.alerts.showSnackbar(error.message, 'ok');
+    }
+
+    if (self.loading !== undefined) {
+      self.loading = false;
+    }
+    return error;
   }
 
   public isSandbox = false;

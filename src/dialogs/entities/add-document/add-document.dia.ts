@@ -30,6 +30,7 @@ export class AddDocumentDia extends BaseDialog {
   };
   public itemType = 'Document';
   public docKinds = [];
+  public docKindsFull = [];
   public disableAccountSelector = false;
   public validationErrors = [];
 
@@ -48,17 +49,19 @@ export class AddDocumentDia extends BaseDialog {
   public getDocumentKinds() {
     this.dkCrud.list({ limit: 100 })
       .subscribe((resp) => {
-        this.docKinds = resp.data.elements.map((el) => {
+        this.docKindsFull = resp.data.elements;
+        this.docKinds = this.docKindsFull.map((el) => {
           return {
-            value: el,
+            value: el.id,
             name: el.name,
           };
         });
       });
   }
 
-  public getCrud(kind) {
-    return (kind.lemon_doctype === undefined) ? this.docCrud : this.lemonDocCrud;
+  public getCrud(id) {
+    const kind = this.docKindsFull.find((el) => el.id === id);
+    return (kind && kind.lemon_doctype === undefined) ? this.docCrud : this.lemonDocCrud;
   }
 
   public ngOnInit() {
@@ -74,22 +77,17 @@ export class AddDocumentDia extends BaseDialog {
     }
 
     this.loading = true;
-
     let data: any = { ...this.item };
+
     if (this.isEdit) {
-      data = UtilsService.deepDiff(data, this.itemCopy);
+      data = UtilsService.deepDiff({ ...data }, this.itemCopy);
     }
 
     if (!Object.keys(data).length) {
       return this.alerts.showSnackbar('Nothing to update...');
     }
 
-    if (data.kind) {
-      data.kind_id = data.kind.id;
-    }
-
-    console.log('kinfd', data.kind);
-    const crud = this.getCrud(data.kind);
+    const crud = this.getCrud(data.kind_id);
     delete data.kind;
 
     const call = (!this.isEdit)
@@ -102,7 +100,7 @@ export class AddDocumentDia extends BaseDialog {
       this.close();
     }, (err) => {
       if (err.errors) {
-        this.validationErrors = err.errors; //UtilsService.normalizeLwError(err.errors);
+        this.validationErrors = err.errors;
       } else {
         this.alerts.showSnackbar(err.message);
       }

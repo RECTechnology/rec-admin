@@ -1,8 +1,7 @@
 <header-nav></header-nav>
-<sidemenu></sidemenu>
 
 
-<div class="page padd-x20" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+<app-page class="new-delegate">
   <div class="new-delegate bg-white" style="margin-top: 0; position: relative;">
 
     <!-- Header -->
@@ -49,9 +48,8 @@
           </p>
         </button>
 
-        <button type="button" [disabled]="getSelected().length <= 0"
-          style="margin-right: 10px; padding-right: 10px" color="primary" mat-button name="button"
-          (click)="openEditAccounts()">
+        <button type="button" [disabled]="getSelected().length <= 0" style="margin-right: 10px; padding-right: 10px"
+          color="primary" mat-button name="button" (click)="openEditSelected()">
           <p class="text-small">
             <i class="fa fa-edit"></i>
             {{'EDIT_ACCOUNTS'|translate}}
@@ -249,4 +247,4 @@
       </p>
     </div>
   </div>
-</div>
+</app-page>

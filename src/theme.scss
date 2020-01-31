@@ -42,7 +42,11 @@ $sidemenu-color: $main-color; // the color of your brand
 $sidemenu-color-dark: #222d31; // the dark color of your brand
 
 a {
-  color: #0098db;
+  color: #6666;
+}
+
+a:active {
+  color: #0098db !important;
 }
 
 a:hover,
@@ -719,4 +723,10 @@ a {
 
 .space-around {
   justify-content: space-around;
+}
+.menu-item {
+  &.active,
+  &:hover {
+    color: #0098db;
+  }
 }

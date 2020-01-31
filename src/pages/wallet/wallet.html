@@ -1,7 +1,7 @@
 <header-nav></header-nav>
-<sidemenu></sidemenu>
 
-<div class="page wallet" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+
+<app-page>
   <div class="wallet-transactions bg-white" style="margin-top: 0">
     <div class="group-col-left" style="margin: 0">
       <div class="fill-size center v space-between" style="padding: 10px 15px">
@@ -26,8 +26,8 @@
             <i class="fa fa-times col-error small-text-2"></i>
           </span>
         </button>
-        <button type="button" style="margin-left: 8px; padding-right: 10px; width: auto" color="primary" mat-raised-button
-          (click)="sendRecs()" name="button">
+        <button type="button" style="margin-left: 8px; padding-right: 10px; width: auto" color="primary"
+          mat-raised-button (click)="sendRecs()" name="button">
           <p class="text-small" style="width: auto">
             <i class="fa fa-plus"></i>
             {{'NEW_TX'|translate}}
@@ -138,4 +138,4 @@
       </mat-paginator>
     </div>
   </div>
-</div>
+</app-page>

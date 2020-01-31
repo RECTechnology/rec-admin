@@ -1,6 +1,6 @@
 <header-nav>
   <icon-btn icon="fa-angle-left" (click)="goBack()" class="icon-btn-small"></icon-btn>
-  
+
   <div class="group-row-left center v" *ngIf="companyService.selectedCompany && companyService.selectedCompany.id">
     <avatar [account]="companyService.selectedCompany" [size]="30"></avatar>
 
@@ -12,9 +12,9 @@
     </code>
   </div>
 </header-nav>
-<sidemenu></sidemenu>
 
-<div class="page account" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+
+<app-page [padding]="false">
   <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)"
     *ngIf="companyService.selectedCompany">
     <mat-tab label="{{'DETAILS'|translate}}">
@@ -27,18 +27,18 @@
       <movements-tab></movements-tab>
     </mat-tab>
     <mat-tab label="{{'TIERS_DOCUMENTS'|translate}}">
-      <documents-tab [id]="account_id"  [account]="companyService.selectedCompany"></documents-tab>
+      <documents-tab [id]="account_id" [account]="companyService.selectedCompany"></documents-tab>
     </mat-tab>
     <mat-tab label="{{'B2B_MODULE'|translate}}">
       <b2b-module [id]="account_id" [account]="companyService.selectedCompany"></b2b-module>
     </mat-tab>
     <mat-tab *ngIf="companyService.selectedCompany && companyService.selectedCompany.isCompany()"
       label="{{'LEMONWAY_INFO'|translate}}">
-      <lemonway-tab  *ngIf="currentTab === 5" [id]="account_id"></lemonway-tab>
+      <lemonway-tab *ngIf="currentTab === 5" [id]="account_id"></lemonway-tab>
     </mat-tab>
   </mat-tab-group>
   <div class="center h v" *ngIf="!companyService.selectedCompany" style="width: 100%">
     <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
     </mat-progress-spinner>
   </div>
-</div>
+</app-page>

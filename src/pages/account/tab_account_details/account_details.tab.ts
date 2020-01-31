@@ -44,7 +44,6 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
   }
 
   public setUp() {
-    this.controles.showAccountDetails = true;
     this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
   }
 
@@ -57,14 +56,7 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
     });
   }
 
-  public openDeleteAccount() { }
-
-  public expelUser() {
-    return;
-  }
-
   public ngOnDestroy() {
     this.companyService.selectedCompany = null;
-    this.controles.showAccountDetails = false;
   }
 }

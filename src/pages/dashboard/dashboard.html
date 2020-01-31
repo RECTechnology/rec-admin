@@ -5,9 +5,9 @@
     <badge label="BlockChain Node" [value]="statusMask.bnode" [color]="statusMask.bnode ? 'success': 'error'"></badge>
   </div>
 </header-nav>
-<sidemenu></sidemenu>
 
-<div class="page padd-x20" [ngClass]="{'collapsed': !controles.sidemenuVisible}">
+
+<app-page class="dashboard">
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-12 padd-right-x10">
       <dash-agregation title="PRIVATE" value="{{(totalPrivates | number)}}" classes="bg-white col-blue">
@@ -85,4 +85,4 @@
       </mat-card>
     </div>
   </div>
-</div>
+</app-page>

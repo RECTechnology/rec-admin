@@ -20,7 +20,6 @@ import { CountrySelector } from '../components/selectors/country-selector/countr
 import { AppNotifications } from '../components/other/app-notifications/app-notifications';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from '../app/app.routing';
-import { AccountSelector } from '../components/selectors/account-selector/account.selector';
 import { ChangePhone } from '../pages/dashboard/dialogs/change-phone/change-phone.dia';
 import { StreetTypeSelector } from '../components/selectors/street-selector/street-selector.component';
 import { KeyValuePair } from '../components/ui/kvp/kvp-list/kvp-list';
@@ -67,7 +66,6 @@ import { DocumentKindsTabComponent } from 'src/pages/special-actions/b2b/entitie
 import { DocumentTabComponent } from 'src/pages/special-actions/b2b/entities/components/documents/documents.tab';
 import { TiersTabComponent } from 'src/pages/special-actions/b2b/entities/components/tiers/tiers.tab';
 import { BussinessDetailsDia } from 'src/dialogs/management/bussiness_detailes/bussiness_details.component';
-import { TwoFaDia } from 'src/dialogs/other/two_fa_prompt/two_fa_prompt.dia';
 import { ExportDialog } from 'src/dialogs/other/export-dialog/export.dia';
 import { VoteWithdrawal } from 'src/dialogs/vote-withdrawal/vote-withdrawal.dia';
 import { AddItemDia } from 'src/pages/special-actions/b2b/entities/add-item/add-item.dia';
@@ -101,10 +99,11 @@ import { LemonDocumentKindsCrud } from 'src/services/crud/lemon_document_kinds/l
 import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemonway_documents';
 import { MaskPipe } from 'src/pipes/mask/mask.pipe';
 import { EventsService } from 'src/services/events/events.service';
+import { CollapsableWhen } from 'src/directives/collapsable.directive';
+import { AppPage } from 'src/components/scaffolding/page/page-component';
 
 const DIALOGS = [
   BussinessDetailsDia,
-  TwoFaDia,
   ExportDialog,
   VoteWithdrawal,
   AddItemDia,
@@ -134,6 +133,10 @@ const DIALOGS = [
   AddTierDia,
 ];
 
+const DIRECTIVES = [
+  CollapsableWhen,
+];
+
 @NgModule({
   declarations: [
     SidemenuComponent,
@@ -150,7 +153,6 @@ const DIALOGS = [
     ValidationErrorsComponent,
     CountrySelector,
     AppNotifications,
-    AccountSelector,
     ChangePhone,
     StreetTypeSelector,
     KeyValuePair,
@@ -187,7 +189,9 @@ const DIALOGS = [
     TiersTabComponent,
     FileSelector,
     MaskPipe,
+    AppPage,
     ...DIALOGS,
+    ...DIRECTIVES,
   ],
   entryComponents: DIALOGS,
   exports: [
@@ -206,7 +210,6 @@ const DIALOGS = [
     ValidationErrorsComponent,
     CountrySelector,
     MaterialModule,
-    AccountSelector,
     ChangePhone,
     StreetTypeSelector,
     TableListHeader,
@@ -234,8 +237,9 @@ const DIALOGS = [
     TiersTabComponent,
     FileSelector,
     MaskPipe,
-
+    AppPage,
     ...DIALOGS,
+    ...DIRECTIVES,
   ],
   imports: [
     BrowserModule,

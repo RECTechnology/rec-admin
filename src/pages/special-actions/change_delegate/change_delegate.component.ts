@@ -50,7 +50,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
     super();
   }
 
-  public async ngOnInit() {
+  public ngOnInit() {
     this.search();
   }
 
@@ -82,10 +82,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
       .subscribe((resp) => {
         this.alerts.showSnackbar('DELEGATE_CHANGE_CREATED', 'ok');
         this.router.navigate(['/change_delegate/' + resp.data.id]);
-        // this.search();
-      }, (error) => {
-        this.alerts.showSnackbar(error.message, 'ok');
-      });
+      }, this.alerts.observableErrorSnackbar);
   }
 
   public newImport(change) {
@@ -98,13 +95,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
           }).subscribe((respDelegate) => {
             this.alerts.showSnackbar(respDelegate.message, 'ok');
             this.search();
-          }, (error) => {
-            if (error.message.includes('Validation error')) {
-              this.validationErrors = error.errors;
-            } else {
-              this.alerts.showSnackbar(error.message, 'ok');
-            }
-          });
+          }, this.handleValidationError);
         }
       });
   }
@@ -113,8 +104,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
     return this.alerts.showConfirmation(
       'Are you sure you want to remove delegated change:' + change.id + '?',
       'Remove Delegated Changed',
-      'DELETE',
-      'error',
+      { btnConfirmText: 'Delete' },
     );
   }
 
@@ -126,19 +116,15 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
             .subscribe(() => {
               this.alerts.showSnackbar('DELEGATE_CHANGE_DELETED', 'ok');
               this.search();
-            }, (error) => {
-              this.alerts.showSnackbar(error.message, 'ok');
-            });
+            }, this.handleValidationError);
         }
-      }, (err) => { return; });
+      });
 
   }
 
   public activateChange(change) {
     return this.alerts.openModal(ActivateResume, { change })
-      .subscribe(() => {
-        this.search();
-      });
+      .subscribe(() => this.search());
   }
 
   public cancelChange() {

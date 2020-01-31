@@ -185,6 +185,7 @@
   "Add Users To Account": "Afegeix Usuari",
   "Show Account": "Mostra Compte",
   "Delete": "Eliminar",
+  "DELETE_CONFIRM": "Estas segur que vols suprimir-ho?",
   "Cancel": "Cancel",
   "NO_POS_YET": "No hi ha TPV encara",
   "NO_ACC_YET": "No hi ha comptes encara",

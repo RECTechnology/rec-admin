@@ -12,7 +12,8 @@
             </ng-template>
             <th *ngIf="itemOptions"></th>
         </tr>
-        <tr *ngFor="let entry of data; let i = index; trackBy: trackByFn">
+        <tr *ngFor="let entry of data; let i = index; trackBy: trackByFn" (click)="onClickedRow(entry)"
+            [ngClass]="{'item-hoverable': !!options.onClick}">
             <td *ngFor="let header of headers; trackBy: trackByFn">
                 <mat-checkbox *ngIf="header.type === 'checkbox'" color="primary" [ngModel]="getEntry(entry, header)"
                     disabled></mat-checkbox>
@@ -79,12 +80,12 @@
             <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'buttons'">
                 <ng-template ngFor let-option [ngForOf]="itemOptions">
                     <icon-btn *ngIf="option.icon && isEnabled(option, entry)"
-                        [disabled]="isOptionDisabled(option, entry)" (click)="option.callback(entry)"
+                        [disabled]="isOptionDisabled(option, entry)" (click)="$event.stopPropagation(); option.callback(entry)"
                         [icon]="option.icon" class="btn-icon-sm {{option.class}}"
                         matTooltip="{{getOptionText(option)|translate}}"></icon-btn>
 
                     <button *ngIf="!option.icon && isEnabled(option, entry)" mat-button color="primary"
-                        [disabled]="isOptionDisabled(option, entry)" (click)="option.callback(entry)"
+                        [disabled]="isOptionDisabled(option, entry)" (click)="$event.stopPropagation(); option.callback(entry)"
                         class="mat-button {{option.class}}" style="min-width: 0; margin-right: 8px">
                         <p class="small-text {{option.class}}"> <i *ngIf="option.icon" class="fa {{option.icon}}"></i>
                             {{getOptionText(option)|translate}}</p>

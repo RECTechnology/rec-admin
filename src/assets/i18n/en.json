@@ -354,6 +354,7 @@
   "DISCARD_CHANGE": "Discard Change",
   "Import": "Import",
   "DELETE": "Delete",
+  "DELETE_CONFIRM": "Are you sure you want to delete it?",
   "UPDATED": "Updated",
   "STATUS": "Status",
   "IMPORT_TOTAL": "Total Amount",

@@ -1,21 +1,22 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { UserService } from '../../../services/user.service';
 import { environment } from '../../../environments/environment';
-import { MatDialog } from '@angular/material';
 import { UtilsService } from '../../../services/utils/utils.service';
+import { SIDEMENU_ITEMS } from './sidemenu-items';
 
 @Component({
   selector: 'sidemenu',
   styleUrls: ['./sidemenu.css'],
   templateUrl: './sidemenu.html',
 })
-export class SidemenuComponent implements OnInit {
+export class SidemenuComponent {
   public brand: any = environment.Brand;
   public environment = environment;
-  public loadEnded = false;
-  @Input() public collapsed = null;
-
+  public items = SIDEMENU_ITEMS;
+  public toggled = true;
+  public handler = null;
   public statusMask = {
     bnode: false,
     nrdb: false,
@@ -23,26 +24,24 @@ export class SidemenuComponent implements OnInit {
   };
 
   constructor(
-    public contrService: ControlesService,
+    public controles: ControlesService,
     public us: UserService,
     public dialog: MatDialog,
     public utils: UtilsService,
   ) { }
 
   public ngOnInit() {
-    const roles = this.us.userData.group_data.roles;
-    this.us.isAdmin = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY');
-    this.us.isReseller = roles.includes('ROLE_RESELLER');
-    this.loadEnded = true;
-    if (this.collapsed != null) {
-      this.contrService.sidemenuVisible = !this.collapsed;
+    this.toggled = this.controles.isToggled('sidemenu');
+    this.handler = this.controles.addHandler('sidemenu', (toggled) => this.toggled = toggled);
+  }
+
+  public ngOnDestroy() {
+    if (this.handler) {
+      this.handler.remove();
     }
   }
 
-  public clickedItem(): void {
-    if (this.utils.isMobileDevice) {
-      this.contrService.toggleSidemenu();
-    }
-    this.contrService.toggleProfileDropDown(false);
+  public clickedItem() {
+    return false;
   }
 }

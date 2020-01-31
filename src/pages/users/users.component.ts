@@ -12,7 +12,9 @@ import { ControlesService } from '../../services/controles/controles.service';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../dialogs/other/export-dialog/export.dia';
-import { TlHeader, TlItemOption } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
+import {
+  TlHeader, TlItemOption, TableListOptions,
+} from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
@@ -45,11 +47,14 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     TlHeaders.CompaniesTotal,
   ];
   public itemOptions: TlItemOption[] = [
-    TlItemOptions.View(this.openViewDetails.bind(this)),
     TlItemOptions.Edit(this.openEditUser.bind(this)),
     TlItemOptions.Delete(this.openDeleteUser.bind(this)),
   ];
   public defaultExportKvp = UsersExportDefaults;
+  public tableOptions: TableListOptions = {
+    optionsType: 'buttons',
+    onClick: (entry) => this.openViewDetails(entry),
+  };
 
   constructor(
     public titleService: Title,
@@ -105,8 +110,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     this.alerts.showConfirmation(
       'Are you sure you want to remove user from the sistem [ ' + accName + ' ]? No going back.',
       'Remove user from system?',
-      'Delete',
-      'error',
+      { btnConfirmText: 'Delete' },
     ).subscribe((result) => {
       if (result) { this.removeUser(user); }
     });

@@ -18,7 +18,7 @@ export class AddTierDia extends BaseDialog {
   public item: Tier = {
     code: '',
     description: '',
-    // document_kinds_id: [],
+    document_kinds: [],
   };
   public itemType = 'Tier';
   public docKinds: DocumentKind[] = [];
@@ -65,6 +65,7 @@ export class AddTierDia extends BaseDialog {
   public search() {
     this.docKindCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc', query: this.query })
       .subscribe((resp) => {
+        console.log('lasljkad', resp);
         this.docKinds = resp.data.elements;
       });
   }
@@ -103,6 +104,7 @@ export class AddTierDia extends BaseDialog {
       : this.tiersCrud.update(this.item.id, UtilsService.sanitizeEntityForEdit(this.item));
 
     call.subscribe((resp) => {
+      this.item.id = resp.data.id;
       this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Tier correctly!', 'ok');
       this.loading = false;
       this.isEdit = true;

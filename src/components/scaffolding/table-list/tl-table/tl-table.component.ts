@@ -73,6 +73,7 @@ export class TlItemOption implements TlItemOption {
 export interface TableListOptions {
     optionsType?: 'menu' | 'buttons';
     sortEnabled?: boolean;
+    onClick?: (entry: any) => void;
 }
 
 @Component({
@@ -116,6 +117,12 @@ export class TableListTable implements AfterContentInit {
             sortEnabled: true,
             ...this.options,
         };
+    }
+
+    public onClickedRow(entry: any) {
+        if (this.options.onClick) {
+            this.options.onClick(entry);
+        }
     }
 
     public ngAfterContentInit() {

@@ -1,3 +1,4 @@
+import { AdminService } from 'src/services/admin/admin.service';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { UserService } from '../../../services/user.service';
@@ -31,46 +32,36 @@ export class AddUserDia extends BaseDialog {
     public dialogRef: MatDialogRef<AddUserDia>,
     private us: UserService,
     public alerts: AlertsService,
+    public adminService: AdminService,
   ) {
     super();
   }
 
   public addUser(newUser) {
     this.loading = true;
+
+    const onSuccess = (action) => (resp) => {
+      this.loading = false;
+      this.close();
+      this.alerts.showSnackbar(action + ' user correctly', 'ok', {
+        duration: 2000,
+      });
+    };
+
+    const onFail = () => (error) => {
+      this.error = error.message;
+      this.loading = false;
+      setTimeout((x) => this.error = '', 3e3);
+    };
+
     if (!newUser) {
-      this.us.addUserToAccount(this.group_id, this.existingUser.email, this.existingUser.role)
-        .subscribe(
-          (resp) => {
-            this.loading = false;
-            this.close();
-            this.alerts.showSnackbar('Added user correctly', 'ok', {
-              duration: 2000,
-            });
-          },
-          (error) => {
-            this.error = error.message;
-            setTimeout((x) => this.error = '', 3e3);
-            this.loading = false;
-          },
-        );
+      this.adminService.addUserToAccount(this.group_id, this.existingUser.email, this.existingUser.role)
+        .subscribe(onSuccess('Edited'), onFail());
     }
     if (newUser) {
       this.newUser.group_id = this.us.getGroupId();
-      this.us.createAndAddUser(this.newUser)
-        .subscribe(
-          (resp) => {
-            this.loading = false;
-            this.close();
-            this.alerts.showSnackbar('Created user correctly', 'ok', {
-              duration: 2000,
-            });
-          },
-          (error) => {
-            this.error = error.message;
-            setTimeout((x) => this.error = '', 3e3);
-            this.loading = false;
-          },
-        );
+      this.adminService.createAndAddUser(this.us.getGroupId(), this.newUser)
+        .subscribe(onSuccess('Edited'), onFail());
     }
   }
 

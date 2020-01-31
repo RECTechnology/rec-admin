@@ -1,30 +1,20 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { XHR } from './xhr/xhr';
-import { API_URL } from '../data/consts';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { User } from 'src/shared/entities/user.ent';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { map } from 'rxjs/internal/operators/map';
 import { throwError } from 'rxjs/internal/observable/throwError';
 
+import { XHR } from './xhr/xhr';
+import { API_URL } from '../data/consts';
+import { User } from 'src/shared/entities/user.ent';
+
 @Injectable()
 export class UserService {
   public userData: any = { group_data: {} };
   public lang = 'esp';
-  public company: any = { id: 1 };
   public tokens: any = {};
-  public companies: any[] = [];
-  public companyUsers: any[] = [];
-  public totalUsers = 0;
-  public role: string = '';
-  public strRole: string = '';
   public isAdmin = false;
-  public isReseller = false;
-  public currency = 'EUR';
-  public total_balance = 1443.23;
-  public hasAlerts = false;
-  public needChangePassword = false;
   public uploadprogress$;
   public progressObserver;
   @Output() public onLogout: EventEmitter<any> = new EventEmitter();
@@ -38,42 +28,6 @@ export class UserService {
 
   public getGroupId(): string {
     return this.userData.group_data.id;
-  }
-
-  public getUsername(): string {
-    return this.userData.username;
-  }
-
-  public getName(): string {
-    return this.userData.name;
-  }
-
-  public getSurnames(): string {
-    return this.userData.kyc_data.last_name;
-  }
-
-  public getTier(): number {
-    return this.userData.group_data.tier;
-  }
-
-  public notifyOnLogin() {
-    return this.userData.settings.login_notification;
-  }
-
-  public getReferalCode(): number {
-    return this.userData.group_data.referal_code;
-  }
-
-  public getDefaultCurrency(): string {
-    return this.userData.group_data.default_currency.toUpperCase();
-  }
-
-  public getUserConfig(prop) {
-    if (!(prop in this.userData.settings)) {
-      console.error(new Error(prop + ' is not a valid configuration property.'));
-      return null;
-    }
-    return this.userData.settings[prop];
   }
 
   public _isAdmin(): boolean {
@@ -107,11 +61,7 @@ export class UserService {
   }
 
   public addUserToAccount(account_id, user_dni, role): Observable<any> {
-    const headers = new HttpHeaders({
-      'accept': 'application/json',
-      'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/json',
-    });
+    const headers = this.getHeaders();
     const options = ({ headers });
 
     return this.http.post(
@@ -124,111 +74,8 @@ export class UserService {
     );
   }
 
-  public createAndAddUser(data): Observable<any> {
-    const headers = new HttpHeaders({
-      'accept': 'application/json',
-      'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/x-www-form-urlencoded',
-    });
-    const options = ({ headers, method: 'POST' });
-    const params = new HttpParams();
-
-    for (const key in data) {
-      if (key) {
-        params.set(key, data[key]);
-      }
-    }
-
-    return this.http.post(
-      `${API_URL}/account/${this.getGroupId()}/v1/add_user`,
-      params.toString(),
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public removeAccount(id): Observable<any> {
-    const headers = new HttpHeaders({
-      'accept': 'application/json',
-      'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/json',
-    });
-    const options = ({ headers, method: 'DELETE' });
-
-    return this.http.delete(
-      `${API_URL}/manager/v1/groups/${id}`,
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public removeAccountV2(reseller_id, user_id): Observable<any> {
-    const headers = new HttpHeaders({
-      'accept': 'application/json',
-      'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/json',
-    });
-    const options = ({ headers, method: 'DELETE' });
-
-    return this.http.delete(
-      `${API_URL}/company/${reseller_id}/v1/referer/${user_id}`,
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
   public getCurrency() {
     return this.userData.group_data.default_currency;
-  }
-
-  /**
-   *  @deprecated
-   */
-  public getListOfRecSellers(offset, limit, search, sort = 'id', dir = 'desc') {
-    const headers = this.getHeaders();
-    const options: any = ({
-      headers, method: 'GET',
-      search: new HttpParams({
-        fromObject: {
-          dir,
-          limit,
-          offset,
-          search,
-          sort,
-        },
-      }),
-    });
-
-    return this.http.get(`${API_URL}/user/v1/wallet/exchangers`, options)
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this)),
-      );
-  }
-
-  public listMap(search, filter) {
-    const headers = this.getHeaders();
-    const options: any = ({ headers, method: 'GET' });
-    let params = new HttpParams();
-
-    if (search) {
-      params = params.set('search', search);
-    }
-    if (filter.only_offers) { params = params.set('only_offers', filter.only_offers); }
-    if (filter.retailer) { params = params.set('retailer', filter.retailer); }
-    if (filter.wholesale) { params = params.set('wholesale', filter.wholesale); }
-
-    return this.http.get(`${API_URL}/public/map/v1/list`, options)
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this)),
-      );
   }
 
   public getProfile(): Observable<any> {
@@ -271,11 +118,7 @@ export class UserService {
   }
 
   public updateKyc(data) {
-    const headers = new HttpHeaders({
-      'accept': 'application/json',
-      'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/x-www-form-urlencoded',
-    });
+    const headers = this.getHeaders('application/x-www-form-urlencoded');
     const options = ({ headers, method: 'POST' });
 
     return this.http.post(
@@ -288,22 +131,6 @@ export class UserService {
     );
   }
 
-  // Send one time pin to mail
-  public sendOneTimePin() {
-    const headers = new HttpHeaders({
-      'accept': 'application/json',
-      'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/x-www-form-urlencoded',
-    });
-    const options = ({ headers, method: 'PUT' });
-
-    return this.http.put(`${API_URL}/user/v1/security/one_time_pin`, '', options)
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this)),
-      );
-  }
-
   public uploadFileWithProgress(file): Observable<any> {
     const form = new FormData();
     form.append('file', file);
@@ -314,49 +141,6 @@ export class UserService {
       onProgress: this.progressObserver,
       url: `${API_URL}/user/v1/upload_file`,
     });
-  }
-
-  public uploadFile(file: File) {
-    const headers = new HttpHeaders({
-      accept: 'application/json',
-      authorization: 'Bearer ' + this.tokens.access_token,
-    });
-
-    const options = ({ headers, method: 'POST' });
-
-    const formData: FormData = new FormData();
-    formData.append('file', file, file.name);
-
-    return this.http.post(
-      `${API_URL}/user/v1/upload_file`,
-      formData,
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
-  }
-
-  public updateImage(src) {
-    const headers = new HttpHeaders({
-      'accept': 'application/json',
-      'authorization': 'Bearer ' + this.tokens.access_token,
-      'content-type': 'application/x-www-form-urlencoded',
-    });
-    const options = ({
-      headers,
-      method: 'PUT',
-      params: new HttpParams().set('profile_image', src),
-    });
-
-    return this.http.put(
-      `${API_URL}/user/v1/profile_image`,
-      { profile_image: src },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
   }
 
   public logout() {

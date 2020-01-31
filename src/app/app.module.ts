@@ -13,7 +13,7 @@ import { WalletModule } from 'src/pages/wallet/wallet.module';
 import { ChangeDelegateModule } from 'src/pages/special-actions/change_delegate/change_delegate.module';
 import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
-import { IsLoggedInGuard, IsNotLoggedInGuard, IsResellerGuard } from 'src/services/guards/login.guard';
+import { IsLoggedInGuard, IsNotLoggedInGuard } from 'src/services/guards/login.guard';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { TransactionService } from 'src/services/transactions/transactions.service';
 import { WalletService } from 'src/services/wallet/wallet.service';
@@ -32,7 +32,6 @@ import { QuillModule } from 'ngx-quill';
 import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
 import { HttpErrorInterceptor } from 'src/services/interceptor';
 import { AccountModule } from 'src/pages/account/account.module';
-import { B2bService } from 'src/services/b2b/b2b.service';
 import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
 import { MySentry } from 'src/shared/sentry';
 import { environment } from 'src/environments/environment';
@@ -101,7 +100,6 @@ const imports = [
     TransactionService,
     IsLoggedInGuard,
     IsNotLoggedInGuard,
-    IsResellerGuard,
     PendingChangesGuard,
     WalletService,
     UtilsService,
@@ -110,7 +108,6 @@ const imports = [
     XHR,
     MySnackBarSevice,
     NotificationService,
-    B2bService,
     {
       // Provide locale so angular can show localized dates
       provide: LOCALE_ID,

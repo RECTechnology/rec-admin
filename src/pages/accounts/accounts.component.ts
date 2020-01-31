@@ -38,6 +38,11 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public type = '';
   public onlyExchanges = false;
 
+  public tableOptions: TableListOptions = {
+    optionsType: 'buttons',
+    onClick: (entry) => this.viewAccount(entry),
+  };
+
   public defaultExportKvp = AccountsExportDefaults;
   public headerOpts: TableListHeaderOptions = { input: true, refresh: true, deepLinkQuery: true };
   public headers: TlHeader[] = [

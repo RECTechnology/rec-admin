@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ControlesService } from 'src/services/controles/controles.service';
-import { B2bService } from 'src/services/b2b/b2b.service';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
 import { Router } from '@angular/router';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
@@ -58,7 +57,6 @@ export class B2BSendComponent extends TablePageBase {
 
     constructor(
         public controles: ControlesService,
-        public b2bCrud: B2bService,
         public mailDeliveries: MailingDeliveriesCrud,
         public mailing: MailingCrud,
         public router: Router,
