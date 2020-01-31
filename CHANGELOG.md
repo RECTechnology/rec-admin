@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.11.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.4...v3.11.0) (2020-01-31)
+
+
+### Features
+
+* made table rows clickable ([4b30d48](https://github.com/QbitArtifacts/rec-admin/commit/4b30d481b546cf8dd5c7bf0f247eb56aa30dbb0a))
+
+
+### Bug Fixes
+
+* build error ([3251e9f](https://github.com/QbitArtifacts/rec-admin/commit/3251e9faf414b95a1bcdd8b20aaf4834791a99c8))
+* fixed bug with sidemenu navigation ([4d166ff](https://github.com/QbitArtifacts/rec-admin/commit/4d166ff3fb6febecb7106903b49b5437b79aa6a1))
+* fixed build ([df540ff](https://github.com/QbitArtifacts/rec-admin/commit/df540ffc873d6bbb9f5ceffca2358a4272349268))
+* fixed build, bad dependencies ([961078d](https://github.com/QbitArtifacts/rec-admin/commit/961078d912098b72c80794c0917f26e556edf68b))
+* fixed changed phone error, wait to show other messages ([f624d70](https://github.com/QbitArtifacts/rec-admin/commit/f624d707197df3d3447c5a02a3e2d38f1e99b0e3))
+* fixed undefined properties ([2c51bcc](https://github.com/QbitArtifacts/rec-admin/commit/2c51bccedda849f338e605180908e013307b6fad))
+* fixed wallet markup ([36bed0b](https://github.com/QbitArtifacts/rec-admin/commit/36bed0bc4e43351db86e65e71ebb4092eefc563d))
+* Fixed when saving user, if phone has error it saves all data and ignores error ([e2db7bd](https://github.com/QbitArtifacts/rec-admin/commit/e2db7bd5074eebba5e7646598af5eb7def948fc5))
+
 ### [3.10.4](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.3...v3.10.4) (2020-01-14)
 ### [3.10.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.2...v3.10.3) (2020-01-08)
 
