@@ -71,14 +71,14 @@
 
                 <mat-menu #optsMenu="matMenu">
                     <button mat-menu-item [disabled]="isOptionDisabled(option, entry)"
-                        *ngFor="let option of itemOptions" (click)="option.callback(entry)">
+                        *ngFor="let option of itemOptions; trackBy: trackByFn" (click)="option.callback(entry)">
                         <p class="small-text {{option.class}}"> <i *ngIf="option.icon" class="fa {{option.icon}}"></i>
                             {{getOptionText(option)|translate}}</p>
                     </button>
                 </mat-menu>
             </td>
             <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'buttons'">
-                <ng-template ngFor let-option [ngForOf]="itemOptions">
+                <ng-template ngFor let-option [ngForOf]="itemOptions" [ngForTrackBy]="trackByFn">
                     <icon-btn *ngIf="option.icon && isEnabled(option, entry)"
                         [disabled]="isOptionDisabled(option, entry)" (click)="$event.stopPropagation(); option.callback(entry)"
                         [icon]="option.icon" class="btn-icon-sm {{option.class}}"
