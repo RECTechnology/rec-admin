@@ -1,13 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { EntityTabBase } from '../base.tab';
-import { MatDialog, MatSort } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/services/user.service';
 import {
     TlHeader, TlItemOption, TableListOptions,
 } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
-import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 import { DocumentCrud } from 'src/services/crud/documents/documents';
 import { Document } from 'src/shared/entities/document.ent';
 import { AddDocumentDia } from 'src/dialogs/entities/add-document/add-document.dia';
@@ -38,8 +37,14 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Description,
     ];
     public itemOptions: TlItemOption[] = [
-      TlItemOptions.Delete(this.deleteItem.bind(this)),
+        TlItemOptions.Delete(this.deleteItem.bind(this),
+            {
+                ngIf: (item) => item.lemon_reference,
+            }),
     ];
+    public tableOptions: TableListOptions = {
+        optionsType: 'buttons',
+    };
 
     public STATUSES = Document.ALL_STATUSES;
     public addComponent = AddDocumentDia;
