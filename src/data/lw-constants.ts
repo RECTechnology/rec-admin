@@ -39,6 +39,18 @@ export const LW_ERROR_P2P = {
     4: 'error',
 };
 
+export const LW_DOC_MAP = {
+    0: 'proof of ID',
+    1: 'proof of address',
+    2: 'proof of IBAN',
+    3: 'Passport (European Community)',
+    4: 'Passport (outside the European Community)',
+    5: 'Residence permit',
+    7: 'proof of registry commerce number for enterprises only',
+    11: 'à 20	other documents',
+    21: 'SDD mandate',
+};
+
 export const processLwTx = (res) => {
     // F*** lemonway man!
     const parts = res.DATE.split('/');
