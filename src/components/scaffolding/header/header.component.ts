@@ -27,7 +27,7 @@ export class HeaderComponent {
     const month = date.getMonth();
     const day = date.getDate();
 
-    this.isChristmas = (month === 12 && day > 10) || (month === 1 && day < 7);
+    this.isChristmas = (month === 11 && day > 10) || (month === 0 && day < 7);
   }
 
   public logout(): void {

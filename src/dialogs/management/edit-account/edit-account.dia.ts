@@ -241,6 +241,10 @@ export class EditAccountData {
   }
 
   public update(close = true) {
+    if (this.loading) {
+      return;
+    }
+
     const id = this.account.id;
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
 

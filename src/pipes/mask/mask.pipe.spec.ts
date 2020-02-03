@@ -5,4 +5,9 @@ describe('MaskPipe', () => {
     const pipe = new MaskPipe();
     expect(pipe).toBeTruthy();
   });
+
+  it('should work', () => {
+    const pipe = new MaskPipe();
+    expect(pipe.transform('aaaaaaaa', 4)).toEqual('aaaa ... aaaa');
+  });
 });

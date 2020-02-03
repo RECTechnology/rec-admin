@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterContentInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterContentInit, ChangeDetectionStrategy } from '@angular/core';
 import { Sort, SortDirection } from '@angular/material';
 import { environment } from '../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -79,6 +79,7 @@ export interface TableListOptions {
 @Component({
     selector: 'tl-table',
     templateUrl: './tl-table.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableListTable implements AfterContentInit {
     @Input() public data: any[] = [];

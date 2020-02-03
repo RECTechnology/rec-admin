@@ -38,6 +38,10 @@ export class AddUserDia extends BaseDialog {
   }
 
   public addUser(newUser) {
+    if (this.loading) {
+      return;
+    }
+
     this.loading = true;
 
     const onSuccess = (action) => (resp) => {
