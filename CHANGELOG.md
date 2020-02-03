@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.11.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.0...v3.11.1) (2020-02-03)
+
+
+### Bug Fixes
+
+* some code cleanup ([df7d790](https://github.com/QbitArtifacts/rec-admin/commit/df7d7909ac613674a5a36f905d4cfaeb6d4f81a1))
+
 ## [3.11.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.10.4...v3.11.0) (2020-01-31)
 
 
