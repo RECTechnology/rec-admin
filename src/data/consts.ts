@@ -1,5 +1,7 @@
 /* tslint:disable */
 import { environment } from '../environments/environment';
+
+// This is stupid xD 
 let api_url;
 let client_id;
 let client_secret;
@@ -28,12 +30,13 @@ export const LANGS = [
     abrev: 'cat',
     icon: 'cat'
   }
-]
+];
+
 export const LANG_MAP = {
   es: LANGS[0],
   en: LANGS[1],
   cat: LANGS[2]
-}
+};
 
 export const intervals: any = [
   {
@@ -61,6 +64,7 @@ export const intervals: any = [
     value: 60 * 60 * 24 * 31
   }
 ];
+
 export const ranges: any = [
   {
     text: 'Last Week',

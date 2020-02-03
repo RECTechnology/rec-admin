@@ -55,9 +55,10 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
           this.originAccount = resp.data;
         });
     } else if (this.targetAccountId) {
-      this.accountCrud.find(this.targetAccountId).subscribe((resp) => {
-        this.targetAccount = resp.data;
-      });
+      this.accountCrud.find(this.targetAccountId)
+        .subscribe((resp) => {
+          this.targetAccount = resp.data;
+        });
     }
   }
 

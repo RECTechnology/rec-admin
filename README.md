@@ -1,5 +1,5 @@
 
-[ng-img]: https://img.shields.io/badge/Version-v8.1.1-blue.svg
+[ng-img]: https://img.shields.io/badge/Version-v8.2.14-blue.svg
 [node-img]: https://img.shields.io/badge/Version-v10.14.2-blue.svg
 [npm-img]: https://img.shields.io/badge/Version-v6.4.1-blue.svg
 
