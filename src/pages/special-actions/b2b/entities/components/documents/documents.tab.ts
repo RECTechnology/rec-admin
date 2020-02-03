@@ -37,10 +37,9 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Description,
     ];
     public itemOptions: TlItemOption[] = [
-        TlItemOptions.Delete(
-            this.deleteItem.bind(this),
-            { ngIf: (item) => item.lemon_reference },
-        ),
+        TlItemOptions.Delete(this.deleteItem.bind(this), {
+            ngIf: (item) => item.lemon_reference,
+        }),
     ];
     public tableOptions: TableListOptions = {
         optionsType: 'buttons',
