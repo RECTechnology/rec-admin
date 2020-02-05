@@ -34,13 +34,14 @@ import { HttpErrorInterceptor } from 'src/services/interceptor';
 import { AccountModule } from 'src/pages/account/account.module';
 import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
 import { MySentry } from 'src/shared/sentry';
-import { environment } from 'src/environments/environment';
 import { SentryErrorHandler } from 'src/shared/sentry-error-handler';
 
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localeCat);
 registerLocaleData(localeEn);
@@ -90,7 +91,6 @@ const imports = [
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  imports,
   providers: [
     LoginService,
     UserService,
@@ -127,5 +127,6 @@ const imports = [
     },
     { provide: ErrorHandler, useClass: SentryErrorHandler },
   ],
+  imports: [...imports, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
 })
 export class AppModule { }
