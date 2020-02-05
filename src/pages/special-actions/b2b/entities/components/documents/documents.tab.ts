@@ -36,15 +36,18 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Status,
         TlHeaders.Description,
     ];
-  
+
     public itemOptions: TlItemOption[] = [
         TlItemOptions.Delete(this.deleteItem.bind(this), {
             ngIf: (item) => item.lemon_reference,
         }),
     ];
-  
+
     public tableOptions: TableListOptions = {
         optionsType: 'buttons',
+        onClick: (element) => {
+            window.open(element.content, '_blank');
+        },
     };
 
     public STATUSES = Document.ALL_STATUSES;
