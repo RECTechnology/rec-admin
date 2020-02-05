@@ -1,6 +1,6 @@
 {
-  "name": "rec-admin",
-  "short_name": "rec-admin",
+  "name": "REC Admin",
+  "short_name": "REC",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
