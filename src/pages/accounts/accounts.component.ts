@@ -55,7 +55,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     TlHeaders.AccountAmountREC,
   ];
   public itemOptions: TlItemOption[] = [
-    TlItemOptions.View(this.viewAccount.bind(this)),
+    // TlItemOptions.View(this.viewAccount.bind(this)),
     TlItemOptions.Edit(this.viewEditAccount.bind(this)),
   ];
   public isComp = false;
