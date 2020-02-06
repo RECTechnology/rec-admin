@@ -96,7 +96,6 @@ export class TransactionService extends BaseService {
     }, `${API_URL}/admin/v1/transaction/list`).pipe(
       map(
         (resp) => {
-          console.log('resp');
           const res = {
             data: [],
             total: resp.data.total,

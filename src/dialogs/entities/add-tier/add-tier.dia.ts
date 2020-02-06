@@ -65,7 +65,6 @@ export class AddTierDia extends BaseDialog {
   public search() {
     this.docKindCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc', query: this.query })
       .subscribe((resp) => {
-        console.log('lasljkad', resp);
         this.docKinds = resp.data.elements;
       });
   }

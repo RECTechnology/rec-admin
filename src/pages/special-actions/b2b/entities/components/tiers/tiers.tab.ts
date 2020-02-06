@@ -48,11 +48,6 @@ export class TiersTabComponent extends EntityTabBase<Tier> {
         this.translate.onLangChange.subscribe(() => {
             this.search();
         });
-
-        this.crud.listInOrder({ offset: 0, limit: 100 })
-            .subscribe((resp) => {
-                console.log('tiers', resp);
-            });
     }
 
     public sortData(sort: MatSort) {

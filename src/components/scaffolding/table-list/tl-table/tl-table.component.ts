@@ -203,7 +203,6 @@ export class TableListTable implements AfterContentInit {
     }
 
     public navigateTo(data: { link?: string, params?: any } = {}) {
-        console.log('navigateTo', data);
         this.router.navigate([data.link], {
             queryParams: data.params,
             queryParamsHandling: 'merge',

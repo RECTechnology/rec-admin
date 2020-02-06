@@ -11,7 +11,6 @@ export class BaseBtnComponent {
   @Output() public clickChange: EventEmitter<any> = new EventEmitter();
 
   public clicked() {
-    console.log('click');
     this.clickChange.emit();
   }
 }

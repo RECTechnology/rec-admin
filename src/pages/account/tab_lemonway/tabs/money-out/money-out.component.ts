@@ -69,7 +69,6 @@ export class LwTabMoneyOut extends TablePageBase {
 
     public ngAfterContentInit() {
         this.search();
-        console.log('Meony out', this.lwInfo);
     }
 
     public search() {
@@ -85,8 +84,6 @@ export class LwTabMoneyOut extends TablePageBase {
     }
 
     public getMoneyTxs() {
-        console.log('Meony out', this.lwInfo);
-
         this.loading = true;
         this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
             .subscribe((resp) => {
