@@ -31,7 +31,7 @@ import { AccountsExportDefaults } from 'src/data/export-defaults';
 export class AccountsPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Accounts';
   public canAddUser = false;
-  public sortedData: Account[] = []//this.crudAccounts.cached;
+  public sortedData: Account[] = [];
   public accountID = null;
   public openDetails = false;
   public active = true;
@@ -55,7 +55,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     TlHeaders.AccountAmountREC,
   ];
   public itemOptions: TlItemOption[] = [
-    // TlItemOptions.View(this.viewAccount.bind(this)),
     TlItemOptions.Edit(this.viewEditAccount.bind(this)),
   ];
   public isComp = false;

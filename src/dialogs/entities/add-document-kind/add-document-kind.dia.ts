@@ -46,12 +46,17 @@ export class AddDocumentKindDia extends BaseDialog {
       return;
     }
 
+    const data = { ...this.item };
+    if (!this.isLemon) {
+      delete data.lemon_doctype;
+    }
+
     this.loading = true;
 
     const crud = this.getCrud();
     const call = (!this.isEdit)
-      ? crud.create(this.item)
-      : crud.update(this.item.id, UtilsService.sanitizeEntityForEdit(this.item));
+      ? crud.create(data)
+      : crud.update(data.id, UtilsService.sanitizeEntityForEdit(data));
 
     call.subscribe((resp) => {
       this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Document Kind correctly!', 'ok');
