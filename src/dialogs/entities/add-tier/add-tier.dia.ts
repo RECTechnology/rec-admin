@@ -106,8 +106,12 @@ export class AddTierDia extends BaseDialog {
       this.item.id = resp.data.id;
       this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Tier correctly!', 'ok');
       this.loading = false;
-      this.isEdit = true;
-      this.search();
+      if (this.isEdit) {
+        this.close();
+      } else {
+        this.isEdit = true;
+        this.search();
+      }
     }, (err) => {
       this.alerts.showSnackbar(err.message, 'ok');
       this.loading = false;
