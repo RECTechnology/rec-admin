@@ -9,6 +9,7 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 
+
 @Component({
   selector: 'add-tier',
   templateUrl: './add-tier.html',
