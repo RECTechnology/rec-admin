@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -8,7 +8,6 @@ import { TiersCrud } from 'src/services/crud/tiers/tiers.crud';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
-
 
 @Component({
   selector: 'add-tier',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort'; 
 import { Router } from '@angular/router';
 import { PageBase } from '../../../bases/page-base';
 import { LoginService } from '../../../services/auth/auth.service';

@@ -25,7 +25,7 @@ import { NotificationService } from 'src/services/notifications/notifications.se
 import { SharedModule } from 'src/shared/shared.module';
 import { MdI18n } from 'src/shared/md-i18n';
 import { MaterialModule } from 'src/shared/md-module';
-import { MatPaginatorIntl, RippleGlobalOptions, MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material';
+import { MatPaginatorIntl} from '@angular/material/paginator';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { QuillModule } from 'ngx-quill';
 
@@ -52,14 +52,6 @@ MySentry.setup(environment);
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
-
-const globalRippleConfig: RippleGlobalOptions = {
-  animation: {
-    enterDuration: 300,
-    exitDuration: 0,
-  },
-  disabled: true,
-};
 
 const LOCALE = navigator.languages[1];
 const imports = [
@@ -119,7 +111,7 @@ const imports = [
       useClass: MdI18n,
       useValue: LOCALE,
     },
-    { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
+    // { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,

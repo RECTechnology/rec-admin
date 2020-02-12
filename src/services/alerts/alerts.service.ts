@@ -1,7 +1,7 @@
-import { Observable } from 'rxjs/internal/Observable';
 import { Injectable } from '@angular/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
-import { MatDialog, MatSnackBarConfig } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ConfirmationMessage } from 'src/dialogs/other/confirmation-message/confirmation.dia';
 
 @Injectable({

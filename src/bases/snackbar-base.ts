@@ -1,7 +1,7 @@
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, zip } from 'rxjs';
+import { zip } from 'rxjs/internal/observable/zip';
 
 @Injectable()
 export class MySnackBarSevice {

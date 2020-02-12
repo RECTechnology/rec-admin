@@ -2,7 +2,7 @@ import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AddUserDia } from '../../dialogs/management/add-user/add-user.dia';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { CompanyService } from '../../services/company/company.service';

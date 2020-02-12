@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { EntityTabBase } from '../base.tab';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';

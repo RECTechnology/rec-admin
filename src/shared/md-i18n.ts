@@ -1,8 +1,9 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, zip } from 'rxjs';
-import { Inject } from '@angular/core';
-import { MatPaginatorIntl } from '@angular/material';
+import { zip } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
+@Injectable()
 export class MdI18n extends MatPaginatorIntl {
   public itemsPerPageLabel = 'Elementos por página: ';
   public nextPageLabel = 'Página siguiente';

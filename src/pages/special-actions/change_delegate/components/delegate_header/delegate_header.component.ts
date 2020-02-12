@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { UtilsService } from '../../../../../services/utils/utils.service';
-import { Sort } from '@angular/material';
 
 @Component({
     selector: 'delegate-header',

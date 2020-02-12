@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { EntityTabBase } from '../base.tab';
-import { MatDialog, MatSort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/services/user.service';

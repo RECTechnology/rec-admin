@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { EntityTabBase } from '../base.tab';
-import { MatDialog, MatSort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 import { AddItemDia } from '../../add-item/add-item.dia';
-import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';

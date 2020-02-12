@@ -1,5 +1,5 @@
 import { Component, OnDestroy, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
 import { ControlesService } from '../../services/controles/controles.service';
 import { LoginService } from '../../services/auth/auth.service';
@@ -32,8 +32,8 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public registerTimeseries: any[] = [];
   public transactionsTimeseries: any[] = [];
 
-  @ViewChild('registerChart', { static: false }) public registerChart: DashChart;
-  @ViewChild('txChart', { static: false }) public txChart: DashChart;
+  @ViewChild('registerChart') public registerChart: DashChart;
+  @ViewChild('txChart') public txChart: DashChart;
 
   public txColors = ['#e05206', '#de8657'];
   public regColors = ['#0098db', '#de8657'];

@@ -1,5 +1,5 @@
 import { Component, NgZone } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../../../services/user.service';
 import { environment } from '../../../../../environments/environment';
 import { AlertsService } from 'src/services/alerts/alerts.service';

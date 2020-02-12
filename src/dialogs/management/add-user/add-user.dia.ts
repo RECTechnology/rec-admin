@@ -1,6 +1,6 @@
 import { AdminService } from 'src/services/admin/admin.service';
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';

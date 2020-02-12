@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -7,7 +7,6 @@ import { Document } from 'src/shared/entities/document.ent';
 import { DocumentCrud } from 'src/services/crud/documents/documents';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 import { UtilsService } from 'src/services/utils/utils.service';
-import { FileUpload } from 'src/dialogs/other/file-upload/file-upload.dia';
 import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemonway_documents';
 
 @Component({

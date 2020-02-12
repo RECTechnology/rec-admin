@@ -1,14 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 
 import { LoginService } from '../../services/auth/auth.service';
 import { ControlesService } from '../../services/controles/controles.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { TransactionService } from '../../services/transactions/transactions.service';
-import { AddCommentDia } from '../../dialogs/wallet/add_comment/add_comment.dia';
 import { TxDetails } from '../../dialogs/wallet/tx_details/tx_details.dia';
 import { getDateDMY } from '../../shared/utils.fns';
 import { CompanyService } from '../../services/company/company.service';
@@ -16,7 +15,6 @@ import { PageBase, OnLogout, OnLogin } from '../../bases/page-base';
 import { ExportTxsDia } from '../../dialogs/wallet/export-txs/export-txs.dia';
 import { CashOutDia } from '../../dialogs/wallet/cash-out/cash-out.dia';
 import { TxFilter } from '../../components/other/filter/filter';
-import { CashOutTesoroDia } from '../../dialogs/wallet/cash-out-tesoro/cash-out-tesoro.dia';
 import Transaction from '../../shared/entities/transaction/transaction.ent';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 

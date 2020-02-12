@@ -42,7 +42,7 @@ export class TableListHeader {
     @Output() public queryChange: EventEmitter<string>;
     @Output() public onAdd: EventEmitter<any>;
 
-    @ViewChild('search', { static: false }) public searchElement: ElementRef;
+    @ViewChild('search') public searchElement: ElementRef;
 
     constructor(
         public router: Router,

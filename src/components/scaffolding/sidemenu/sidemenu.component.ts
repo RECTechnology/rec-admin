@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { UserService } from '../../../services/user.service';
 import { environment } from '../../../environments/environment';

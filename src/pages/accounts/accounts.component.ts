@@ -1,7 +1,8 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, Sort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { Sort } from '@angular/material/sort';
 import { WalletService } from 'src/services/wallet/wallet.service';
 import { UserService } from 'src/services/user.service';
 import { UtilsService } from 'src/services/utils/utils.service';
