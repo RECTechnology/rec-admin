@@ -23,7 +23,7 @@ import { XHR } from 'src/services/xhr/xhr';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { NotificationService } from 'src/services/notifications/notifications.service';
 import { SharedModule } from 'src/shared/shared.module';
-import { MdI18n } from 'src/shared/md-i18n';
+import { CustomMatPaginatorIntl } from 'src/shared/md-i18n';
 import { MaterialModule } from 'src/shared/md-module';
 import { MatPaginatorIntl} from '@angular/material/paginator';
 import { CountryPickerModule } from 'ngx-country-picker';
@@ -108,8 +108,8 @@ const imports = [
     {
       // Provide custom MdI18 provider
       provide: MatPaginatorIntl,
-      useClass: MdI18n,
-      useValue: LOCALE,
+      useClass: CustomMatPaginatorIntl,
+      // useValue: LOCALE,
     },
     // { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
     {
