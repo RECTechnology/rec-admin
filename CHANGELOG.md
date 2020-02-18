@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.11.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.2...v3.11.3) (2020-02-18)
+
+### Deps
+* Updated **@angular** to version `v9.0.0`
+
+### Bug Fixes
+* Fixed material paginator Intl not working after update
+
+
 ### [3.11.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.0...v3.11.2) (2020-02-07)
 
 
