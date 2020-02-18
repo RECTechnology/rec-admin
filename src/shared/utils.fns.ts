@@ -11,3 +11,16 @@ export function getDateDMY(date, separator = '/') {
   const y = date.getFullYear();
   return [y, padStart(m, 2, 0), padStart(d, 2, 0)].join(separator);
 }
+
+export function getLocale() {
+  const validLocales = [
+    'ca',
+    'es',
+    'en',
+  ];
+
+  return (
+    validLocales.includes(navigator.languages[0])
+      ? navigator.languages[0]
+      : 'es');
+}

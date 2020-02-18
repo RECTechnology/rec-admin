@@ -40,10 +40,13 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
+import localeCa from '@angular/common/locales/ca';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { getLocale } from 'src/shared/utils.fns';
 
 registerLocaleData(localeCat);
+registerLocaleData(localeCa);
 registerLocaleData(localeEn);
 registerLocaleData(localeEs);
 
@@ -53,7 +56,7 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
 
-const LOCALE = navigator.languages[1];
+const LOCALE = getLocale();
 const imports = [
   BrowserModule,
   FormsModule,
