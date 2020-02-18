@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Directive } from '@angular/core';
 
+@Directive()
 export class BaseBtnComponent {
   @Input() public icon: string;
   @Input() public class: string;
@@ -11,7 +12,6 @@ export class BaseBtnComponent {
   @Output() public clickChange: EventEmitter<any> = new EventEmitter();
 
   public clicked() {
-    console.log('click');
     this.clickChange.emit();
   }
 }

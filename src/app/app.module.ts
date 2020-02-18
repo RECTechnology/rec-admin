@@ -23,9 +23,9 @@ import { XHR } from 'src/services/xhr/xhr';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { NotificationService } from 'src/services/notifications/notifications.service';
 import { SharedModule } from 'src/shared/shared.module';
-import { MdI18n } from 'src/shared/md-i18n';
+import { CustomMatPaginatorIntl } from 'src/shared/md-i18n';
 import { MaterialModule } from 'src/shared/md-module';
-import { MatPaginatorIntl, RippleGlobalOptions, MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material';
+import { MatPaginatorIntl} from '@angular/material/paginator';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { QuillModule } from 'ngx-quill';
 
@@ -34,13 +34,14 @@ import { HttpErrorInterceptor } from 'src/services/interceptor';
 import { AccountModule } from 'src/pages/account/account.module';
 import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
 import { MySentry } from 'src/shared/sentry';
-import { environment } from 'src/environments/environment';
 import { SentryErrorHandler } from 'src/shared/sentry-error-handler';
 
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import localeEn from '@angular/common/locales/en';
 import localeCat from '@angular/common/locales/ca-ES-VALENCIA';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localeCat);
 registerLocaleData(localeEn);
@@ -51,14 +52,6 @@ MySentry.setup(environment);
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
-
-const globalRippleConfig: RippleGlobalOptions = {
-  animation: {
-    enterDuration: 300,
-    exitDuration: 0,
-  },
-  disabled: true,
-};
 
 const LOCALE = navigator.languages[1];
 const imports = [
@@ -90,7 +83,6 @@ const imports = [
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
-  imports,
   providers: [
     LoginService,
     UserService,
@@ -116,10 +108,10 @@ const imports = [
     {
       // Provide custom MdI18 provider
       provide: MatPaginatorIntl,
-      useClass: MdI18n,
-      useValue: LOCALE,
+      useClass: CustomMatPaginatorIntl,
+      // useValue: LOCALE,
     },
-    { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
+    // { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,
@@ -127,5 +119,6 @@ const imports = [
     },
     { provide: ErrorHandler, useClass: SentryErrorHandler },
   ],
+  imports: [...imports, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
 })
 export class AppModule { }

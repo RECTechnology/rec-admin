@@ -4,7 +4,7 @@ import { NeighborhoodsCrud } from 'src/services/crud/neighborhoods/neighborhoods
 import { EntityTabBase } from '../base.tab';
 import { TlItemOption, TableListOptions, TlHeader } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AddNeighbourhoodDia } from './add/add.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Neighborhood } from 'src/shared/entities/translatable/neighborhood.ent';

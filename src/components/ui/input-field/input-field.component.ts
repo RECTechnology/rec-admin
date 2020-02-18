@@ -22,7 +22,7 @@ export class InputFieldComponent {
 
   @Output() public valueChange: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('input', { static: false }) public inputElement: ElementRef;
+  @ViewChild('input') public inputElement: ElementRef;
 
   public isNormalInput = true;
 

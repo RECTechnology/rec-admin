@@ -5,7 +5,7 @@ import { UserService } from '../user.service';
 import { API_URL, clientID, clientSecret } from '../../data/consts';
 import { BaseService } from '../base/base.service';
 import { UserStorage } from '../user-storage/user-storage';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AlertsService } from '../alerts/alerts.service';
 import { Observable } from 'rxjs/internal/Observable';

@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { PageBase } from '../../../../../bases/page-base';
 import { LoginService } from '../../../../../services/auth/auth.service';
 import { ControlesService } from '../../../../../services/controles/controles.service';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { SelectAccountsDia } from '../select_accounts_dialog/select_accounts.dia';
 import { EditAccountsDia } from '../edit_users/edit_accounts.dia';
 import { ActivatedRoute, Router } from '@angular/router';

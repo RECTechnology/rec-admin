@@ -1,5 +1,6 @@
-import { MatDialog, Sort } from '@angular/material';
-import { ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Sort } from '@angular/material/sort';
+import { ViewChild, Directive } from '@angular/core';
 import { TranslatableListComponent } from '../../components/translatable-list/translatable-list.component';
 import { Observable } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -8,6 +9,7 @@ import { TlItemOption } from 'src/components/scaffolding/table-list/tl-table/tl-
 import { TlItemOptions } from 'src/data/tl-item-options';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 
+@Directive()
 export abstract class EntityTabBase<T> {
     public query: string = '';
     public limit = 10;

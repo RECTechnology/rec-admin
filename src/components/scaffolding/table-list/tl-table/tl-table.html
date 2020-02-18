@@ -77,7 +77,7 @@
                     </button>
                 </mat-menu>
             </td>
-            <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'buttons'">
+            <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'buttons'" (click)="$event.stopPropagation()">
                 <ng-template ngFor let-option [ngForOf]="itemOptions" [ngForTrackBy]="trackByFn">
                     <icon-btn *ngIf="option.icon && isEnabled(option, entry)"
                         [disabled]="isOptionDisabled(option, entry)" (click)="$event.stopPropagation(); option.callback(entry)"

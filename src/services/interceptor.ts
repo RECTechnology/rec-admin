@@ -10,7 +10,9 @@ import { environment } from 'src/environments/environment';
 import { MySentry } from 'src/shared/sentry';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
         return next.handle(request)

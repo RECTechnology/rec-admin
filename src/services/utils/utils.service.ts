@@ -50,6 +50,8 @@ export class UtilsService {
     delete ent.documents;
     delete ent.document_kinds;
     delete ent.account;
+    delete ent.previous;
+    delete ent.next;
     delete ent.kind;
 
     return ent;

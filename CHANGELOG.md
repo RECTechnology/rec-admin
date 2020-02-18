@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.11.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.2...v3.11.3) (2020-02-18)
+
+### Deps
+* Updated **@angular** to version `v9.0.0`
+
+### Bug Fixes
+* Fixed material paginator Intl not working after update
+
+
+### [3.11.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.0...v3.11.2) (2020-02-07)
+
+
+### Bug Fixes
+
+* error creating non lemonway document kind fixes [#132](https://github.com/QbitArtifacts/rec-admin/issues/132) ([33dac44](https://github.com/QbitArtifacts/rec-admin/commit/33dac44c43400ea0399a694e873fa37b33d77066))
+* **Entities/Tiers:** edit after creating tier not working ([8826895](https://github.com/QbitArtifacts/rec-admin/commit/8826895f2a886df1a5632c8068dcee7272f34ea9))
+* fixed cant delete normal document fixes [#135](https://github.com/QbitArtifacts/rec-admin/issues/135) ([3e5c082](https://github.com/QbitArtifacts/rec-admin/commit/3e5c082a95895023db90da8b4deb62c3ecfddba7))
+* fixed edit tier button not closing modal, fixes [#137](https://github.com/QbitArtifacts/rec-admin/issues/137) ([46499e6](https://github.com/QbitArtifacts/rec-admin/commit/46499e684cc6132cbecafb7ef4972da7283d5375))
+* fixed manifest images ([ad62697](https://github.com/QbitArtifacts/rec-admin/commit/ad6269712b94590fbbaac1d5f245bd4d47a9bd3f))
+* fixed manifest images ([5ce5371](https://github.com/QbitArtifacts/rec-admin/commit/5ce5371990752f073b9130c282830e2e074f0361))
+* made table list buttons cell non clickable ([4481b66](https://github.com/QbitArtifacts/rec-admin/commit/4481b66f83533329aed1633dce43406ef8656437))
+* removed some manifest image paths ([14b9153](https://github.com/QbitArtifacts/rec-admin/commit/14b9153ab16fe841ca84996a1aeaab2f8b62eeee))
+* show only verified tiers and next one fixes [#130](https://github.com/QbitArtifacts/rec-admin/issues/130) ([ce1599d](https://github.com/QbitArtifacts/rec-admin/commit/ce1599d4046dd7d608097cf9bce05937a20e7ab0))
+* some code cleanup ([df7d790](https://github.com/QbitArtifacts/rec-admin/commit/df7d7909ac613674a5a36f905d4cfaeb6d4f81a1))
+
 ### [3.11.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.0...v3.11.1) (2020-02-03)
 
 

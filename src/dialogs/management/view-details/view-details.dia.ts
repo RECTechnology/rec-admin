@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import BaseDialog from '../../../bases/dialog-base';
 import { environment } from '../../../environments/environment';
 import { SmsService } from '../../../services/sms/sms.service';

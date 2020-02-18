@@ -1,8 +1,10 @@
 import { Component, EventEmitter } from '@angular/core';
-import { MatDialogRef, Sort } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Sort } from '@angular/material/sort';
 import BaseDialog from '../../../../../bases/dialog-base';
 import { CompanyService } from '../../../../../services/company/company.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

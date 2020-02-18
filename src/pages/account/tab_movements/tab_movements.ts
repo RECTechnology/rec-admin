@@ -1,6 +1,7 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, Sort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { Sort } from '@angular/material/sort';
 import * as moment from 'moment';
 
 import { ControlesService } from 'src/services/controles/controles.service';
@@ -122,9 +123,6 @@ export class MovementsTab implements AfterContentInit {
         this.preview = this.getFormatted(this.data);
       });
     }).bind(ref.componentInstance);
-
-    ref.afterClosed().subscribe((resp) => {
-    });
   }
 
   public sortData(sort: Sort): void {

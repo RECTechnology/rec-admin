@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, AfterContentInit, ChangeDetectionStrategy } from '@angular/core';
-import { Sort, SortDirection } from '@angular/material';
+import { Sort, SortDirection } from '@angular/material/sort';
 import { environment } from '../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -203,7 +203,6 @@ export class TableListTable implements AfterContentInit {
     }
 
     public navigateTo(data: { link?: string, params?: any } = {}) {
-        console.log('navigateTo', data);
         this.router.navigate([data.link], {
             queryParams: data.params,
             queryParamsHandling: 'merge',

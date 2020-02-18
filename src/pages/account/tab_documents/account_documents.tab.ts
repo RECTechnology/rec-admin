@@ -48,7 +48,7 @@ export class AccountDocuments {
     this.tiersCrud.listInOrder({ offset: 0, limit: 100 })
       .subscribe((tiers: Tier[]) => {
         const currentTier: any = this.account.level || {};
-        const tIndex = tiers.findIndex((t) => t.id === currentTier.id);
+        const tIndex = tiers.findIndex((t) => t.id === currentTier.id) || 0;
 
         this.tiers = tiers.map((el, index) => {
           if (index <= tIndex) {
@@ -58,6 +58,8 @@ export class AccountDocuments {
           }
           return el;
         });
+
+        this.tiers = this.tiers.slice(0, tIndex + 2);
       });
   }
 

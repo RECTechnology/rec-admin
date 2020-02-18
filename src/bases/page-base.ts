@@ -1,12 +1,12 @@
 import { AlertsService } from 'src/services/alerts/alerts.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { BaseComponent } from './base-component';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AfterContentInit, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoginService } from '../services/auth/auth.service';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { UtilsService } from 'src/services/utils/utils.service';
 
 export interface PageBase {

@@ -31,7 +31,6 @@ export class FileSelector implements OnInit {
         }).subscribe(
             (resp) => {
                 if (resp) {
-                    console.log('Selcted', resp);
                     this.fileChange.emit(resp);
                 } else {
                     this.fileChange.emit(this.file);

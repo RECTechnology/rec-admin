@@ -1,5 +1,6 @@
 <modal-header title="{{title|translate}}" (click)="close(false)" color="blue"></modal-header>
 
+<!-- TODO: Improve this page, it is quite large -->
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
   <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
     style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
@@ -138,7 +139,6 @@
           </p>
         </div>
 
-        <!-- Address -->
         <div class="col-lg-12">
           <div class="group-col-left">
             <b class="small-text-3" style="margin: 15px 0 10px 0">{{'Address'|translate}}</b>
@@ -182,7 +182,6 @@
           </div>
         </div>
 
-        <!-- Coordenates -->
         <div class="col-lg-6">
           <div class="group-col-left">
             <b class="small-text-3" style="margin: 15px 0 10px 0">{{'Coordenates'|translate}}</b>

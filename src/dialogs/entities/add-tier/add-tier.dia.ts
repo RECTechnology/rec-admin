@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -65,7 +65,6 @@ export class AddTierDia extends BaseDialog {
   public search() {
     this.docKindCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc', query: this.query })
       .subscribe((resp) => {
-        console.log('lasljkad', resp);
         this.docKinds = resp.data.elements;
       });
   }
@@ -107,8 +106,12 @@ export class AddTierDia extends BaseDialog {
       this.item.id = resp.data.id;
       this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Tier correctly!', 'ok');
       this.loading = false;
-      this.isEdit = true;
-      this.search();
+      if (this.isEdit) {
+        this.close();
+      } else {
+        this.isEdit = true;
+        this.search();
+      }
     }, (err) => {
       this.alerts.showSnackbar(err.message, 'ok');
       this.loading = false;

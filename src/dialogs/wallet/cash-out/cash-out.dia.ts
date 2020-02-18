@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import { TransactionService } from '../../../services/transactions/transactions.service';
 import BaseDialog from '../../../bases/dialog-base';
 import { WalletService } from '../../../services/wallet/wallet.service';

@@ -1,7 +1,7 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Sort } from '@angular/material';
+import { Sort } from '@angular/material/sort';
 import { UserService } from '../../../services/user.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { CompanyService } from '../../../services/company/company.service';

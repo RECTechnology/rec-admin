@@ -1,7 +1,8 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog, Sort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { Sort } from '@angular/material/sort';
 import { WalletService } from 'src/services/wallet/wallet.service';
 import { UserService } from 'src/services/user.service';
 import { UtilsService } from 'src/services/utils/utils.service';
@@ -31,7 +32,7 @@ import { AccountsExportDefaults } from 'src/data/export-defaults';
 export class AccountsPage extends TablePageBase implements AfterContentInit {
   public pageName = 'Accounts';
   public canAddUser = false;
-  public sortedData: Account[] = []//this.crudAccounts.cached;
+  public sortedData: Account[] = [];
   public accountID = null;
   public openDetails = false;
   public active = true;
@@ -55,7 +56,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     TlHeaders.AccountAmountREC,
   ];
   public itemOptions: TlItemOption[] = [
-    TlItemOptions.View(this.viewAccount.bind(this)),
     TlItemOptions.Edit(this.viewEditAccount.bind(this)),
   ];
   public isComp = false;

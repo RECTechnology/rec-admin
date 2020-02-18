@@ -5,7 +5,7 @@ import { ControlesService } from '../../services/controles/controles.service';
 import { UserService } from '../../services/user.service';
 import { TablePageBase } from '../../bases/page-base';
 import { LoginService } from '../../services/auth/auth.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { BussinessDetailsDia } from '../../dialogs/management/bussiness_detailes/bussiness_details.component';
 import { EditAccountData } from '../../dialogs/management/edit-account/edit-account.dia';
 import { ConfirmationMessage } from '../../dialogs/other/confirmation-message/confirmation.dia';

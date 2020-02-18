@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { EntityTabBase } from '../base.tab';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/services/user.service';
@@ -36,15 +36,18 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Status,
         TlHeaders.Description,
     ];
-  
+
     public itemOptions: TlItemOption[] = [
         TlItemOptions.Delete(this.deleteItem.bind(this), {
-            ngIf: (item) => item.lemon_reference,
+            ngIf: (item) => (item.kind && !item.kind.lemon_doctype),
         }),
     ];
-  
+
     public tableOptions: TableListOptions = {
         optionsType: 'buttons',
+        onClick: (element) => {
+            window.open(element.content, '_blank');
+        },
     };
 
     public STATUSES = Document.ALL_STATUSES;

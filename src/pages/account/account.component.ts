@@ -5,7 +5,7 @@ import { ControlesService } from 'src/services/controles/controles.service';
 import { UserService } from 'src/services/user.service';
 import { PageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
-import { MatDialog } from 'node_modules/@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { CompanyService } from 'src/services/company/company.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';

@@ -60,9 +60,6 @@ export class AccountPickerComponent {
   }
 
   public search() {
-    console.log('acc', this.account);
-    console.log('id', this.id);
-    
     if (this.account && this.account.id) {
       this.getAccount(this.account.id)
         .then((account) => this.selectAccount(account))

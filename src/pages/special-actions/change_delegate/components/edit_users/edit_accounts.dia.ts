@@ -1,6 +1,6 @@
 import { AccountsCrud } from './../../../../../services/crud/accounts/accounts.crud';
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 import BaseDialog from '../../../../../bases/dialog-base';
 import { CompanyService } from '../../../../../services/company/company.service';
 import { UserService } from '../../../../../services/user.service';

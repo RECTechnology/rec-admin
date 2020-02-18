@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { CompanyService } from '../../services/company/company.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { AdminService } from '../../services/admin/admin.service';
