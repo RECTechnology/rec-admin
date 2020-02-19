@@ -11,10 +11,21 @@
   <meta name="theme-color" content="#0098db">
   <link rel="shortcut icon" href="https://rec.barcelona/wp-content/uploads/2018/04/favicon_16_rec_simbol.png"
     type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Mirza|Roboto" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+  <style async>
+    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+  </style>
+  <style async>
+    @import url('https://fonts.googleapis.com/css?family=Material+Icons&display=swap');
+  </style>
   <style>
+    @font-face {
+      font-family: 'Helvetica';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Helvetica'), local('Helvetica'), url(https://fonts.googleapis.com/css?family=Aref+Ruqaa|Mirza|Roboto) format('woff2');
+      font-display: swap;
+    }
+
     .loading_screen {
       position: absolute;
       top: 0;
@@ -206,6 +217,11 @@
       }
     }
   </style>
+  <link rel="stylesheet" async href="assets/resources/css/morris.css">
+  <link rel="stylesheet" async href="assets/resources/css/bootstrap.min.css">
+  <link rel="stylesheet" async href="assets/resources/vendor/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" async href="assets/resources/css/main.css">
+
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#1976d2">
 </head>
@@ -224,18 +240,13 @@
     </div>
   </app-rec-admin>
 
-  <script defer="" src="assets/resources/vendor/raphael.min.js"></script>
-  <script defer="" src="assets/resources/vendor/jquery.min.js"></script>
-  <script defer="" src="assets/resources/vendor/morris.min.js"></script>
-  <script defer="" src="assets/resources/vendor/underscore-min.js"></script>
-  <script defer="" src="assets/resources/vendor/qrcode.min.js"></script>
-  <script defer="" src="https://kit.fontawesome.com/a05603364f.js"></script>
+  <script defer src="assets/resources/vendor/raphael.min.js"></script>
+  <script defer src="assets/resources/vendor/jquery.min.js"></script>
+  <script defer src="assets/resources/vendor/morris.min.js"></script>
+  <script defer src="assets/resources/vendor/underscore-min.js"></script>
+  <script defer src="assets/resources/vendor/qrcode.min.js"></script>
+  <script defer src="https://kit.fontawesome.com/a05603364f.js"></script>
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" defer="" href="assets/resources/css/morris.css">
-  <link rel="stylesheet" defer="" href="assets/resources/css/bootstrap.min.css">
-  <link rel="stylesheet" defer="" href="assets/resources/vendor/flag-icon-css/css/flag-icon.css">
-  <link rel="stylesheet" defer="" href="assets/resources/css/main.css">
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 
