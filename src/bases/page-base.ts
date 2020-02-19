@@ -10,7 +10,6 @@ import { Sort } from '@angular/material/sort';
 import { UtilsService } from 'src/services/utils/utils.service';
 
 export interface PageBase {
-
   route?: ActivatedRoute;
   router?: Router;
 
@@ -50,7 +49,6 @@ export interface PageBase {
 }
 
 export abstract class PageBase extends BaseComponent implements AfterContentInit, OnInit, PageBase {
-
   public abstract titleService: Title;
   public abstract pageName: string;
   public abstract ls: LoginService;

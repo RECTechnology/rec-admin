@@ -165,6 +165,7 @@ export class LoginService extends BaseService {
     const dateNow = now / 1000;
     return lastSessionDate && lastSessionDate < dateNow;
   }
+
   private loginObserver(observer) {
     this.loginObserver_ = observer;
     this.tokens = JSON.parse(localStorage.getItem('user.tokens'));
