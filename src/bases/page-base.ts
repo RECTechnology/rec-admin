@@ -117,6 +117,8 @@ export abstract class TablePageBase extends PageBase {
   public searchObs: Subscription;
 
   public abstract search(query?: string): any;
+
+  // Searches and cancels previous Observable if there is one
   public searchWrapper(query: string = this.query) {
     if (this.searchObs) {
       this.searchObs.unsubscribe();
