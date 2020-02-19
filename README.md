@@ -11,9 +11,8 @@ Panel de administracion para [rec.barcelona](https://rec.barcelona)
 
 ### Status
 ![](https://github.com/QbitArtifacts/rec-admin/workflows/Test/badge.svg)
-![](https://github.com/QbitArtifacts/rec-admin/workflows/Test,%20Build%20and%20Deploy%20[STAGE]/badge.svg)
-![](https://github.com/QbitArtifacts/rec-admin/workflows/Test,%20Build%20and%20Deploy%20[PROD]/badge.svg)
-
+![Test, Build and Deploy [STAGE]](https://github.com/QbitArtifacts/rec-admin/workflows/Test,%20Build%20and%20Deploy%20%5BSTAGE%5D/badge.svg)
+![Test, Build and Deploy [PROD]](https://github.com/QbitArtifacts/rec-admin/workflows/Test,%20Build%20and%20Deploy%20%5BPROD%5D/badge.svg)
 
 ### Project Dependencies versions
 | Angular                  | Node                       | Npm                        |
