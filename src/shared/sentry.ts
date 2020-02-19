@@ -4,6 +4,9 @@ import * as Sentry from '@sentry/browser';
 export namespace MySentry {
     export function setup(env) {
         if (env.sentry && env.sentry.active) {
+            if (!env.production) {
+                console.log(`Sentry setting up`, env.sentry);
+            }
             Sentry.init({
                 dsn: env.sentry.dsn,
                 release: env.version,
