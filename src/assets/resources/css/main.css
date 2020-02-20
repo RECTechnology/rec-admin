@@ -10,6 +10,11 @@ body {
   outline: none !important;
 }
 
+.user-image img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
 html {
   overflow-x: hidden;
   height: 100vh;
@@ -52,11 +57,89 @@ table {
   margin-right: 6px;
 }
 
+#tv_chart_container iframe {
+  width: 100% !important;
+}
+
+.minw-60 {
+  min-width: 60px;
+  display: inline-block;
+}
+
+.minw-70 {
+  min-width: 70px;
+  display: inline-block;
+}
+
+.minw-75 {
+  min-width: 75px;
+  display: inline-block;
+}
+
+.minw-80 {
+  min-width: 80px;
+  display: inline-block;
+}
+
+.minw-100 {
+  min-width: 100px;
+  display: inline-block;
+}
+
+.minw-120 {
+  min-width: 120px;
+  display: inline-block;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.wh-40 {
+  width: 40px;
+  height: 40px;
+}
+
+.wh-50 {
+  width: 50px;
+  height: 50px;
+}
 
 .marg-b-10 {
   margin-bottom: 10px !important;
 }
 
+.hw-40 {
+  height: 40px;
+  width: 40px;
+}
+
+.segment {
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.qr-100 {
+  width: 100px;
+  height: 100px;
+}
+
+.qr-200 {
+  width: 200px;
+  height: 200px;
+}
+
+.modal-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .overlay {
   position: absolute;
@@ -66,6 +149,44 @@ table {
   bottom: 0;
   background: rgba(255, 255, 255, 0.4);
   z-index: 9999999;
+}
+
+.bord-left {
+  border-left: 1px solid #ddd !important;
+}
+
+.upper-case {
+  text-transform: uppercase !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.currency-to-other {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  min-width: 250px;
+  background: #fdfdfd;
+  color: #555;
+  z-index: 0;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3) !important;
+  opacity: 0;
+  /* height: 0px; */
+  transition: 0.3s ease-in-out;
+  transition-delay: 500ms;
+}
+
+.currency-to-other.selected {
+  /* height: 250px; */
+  opacity: 1;
+  z-index: 9999999999999;
+}
+
+.mat-option {
+  height: 38px !important;
+  line-height: 38px !important;
 }
 
 .small-text {
