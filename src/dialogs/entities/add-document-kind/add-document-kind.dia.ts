@@ -62,13 +62,6 @@ export class AddDocumentKindDia extends BaseDialog {
       this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Document Kind correctly!', 'ok');
       this.loading = false;
       this.close();
-    }, (err) => {
-      if (err.errors) {
-        this.validationErrors = UtilsService.normalizeLwError(err.errors);
-      } else {
-        this.alerts.showSnackbar(err.message);
-      }
-      this.loading = false;
-    });
+    }, UtilsService.handleValidationError.bind(this, this));
   }
 }
