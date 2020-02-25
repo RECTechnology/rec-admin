@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.11.5](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.2...v3.11.5) (2020-02-25)
+
+
+### Bug Fixes
+
+* fixed incorrect locale for catalan, and fallback to es if not supported ([86981c3](https://github.com/QbitArtifacts/rec-admin/commit/86981c3b3c4f59b55bd25718e545ede075566462))
+
 ### [3.11.4](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.2...v3.11.4) (2020-02-18)
 
 
