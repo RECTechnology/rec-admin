@@ -13,7 +13,6 @@ import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { Observer } from 'rxjs/internal/types';
 import { retryPipeline } from 'src/shared/rxjs-pipelines';
-import { noop } from 'rxjs';
 
 @Injectable()
 export class AppAuthService extends BaseService {

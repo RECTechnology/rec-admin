@@ -93,7 +93,7 @@ export class LemonWayTab extends TablePageBase {
 
   public newIBAN() {
     return this.alerts.openModal(AddIbanDia, {
-      // id: this.id,
+      id: this.id,
     }).subscribe((resp) => {
       this.search();
     });

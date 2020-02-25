@@ -16,7 +16,6 @@ import { B2BModuleTab } from './tab_b2b/tab_b2b.tab';
 import { LemonWayTab } from './tab_lemonway/lemonway.tab';
 import { LwTabMoneyOut } from './tab_lemonway/tabs/money-out/money-out.component';
 import { LwTabWalletToWallet } from './tab_lemonway/tabs/wallet-to-wallet/wallet-to-wallet.component';
-import { LwTabIbans } from './tab_lemonway/tabs/ibans/ibans.component';
 import { AddIbanDia } from 'src/dialogs/entities/add-iban/add-iban.dia';
 
 const accountRoutes: Routes = [
@@ -39,7 +38,6 @@ const accountRoutes: Routes = [
     LemonWayTab,
     LwTabMoneyOut,
     LwTabWalletToWallet,
-    LwTabIbans,
     AddIbanDia,
   ],
   entryComponents: [

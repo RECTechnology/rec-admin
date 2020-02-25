@@ -102,7 +102,7 @@ export class AccountsCrud extends CrudBaseService<Account> {
 
     public createIBAN(account, data: Partial<Iban>) {
         const url = [...this.getUrlBase(), '/', account, '/', 'ibans'];
-        return this.post(url, data);
+        return this.post(url, { ...data });
     }
 
     public getIbans(account) {
