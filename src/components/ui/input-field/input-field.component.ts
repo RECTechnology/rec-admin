@@ -48,13 +48,15 @@ export class InputFieldComponent {
     }
   }
 
+  public changed($event) {
+    this.valueChange.emit(isNaN($event) ? $event : +$event);
+  }
+
   public setupDebouncedSearch(element) {
     fromEvent(element, 'keyup').pipe(
       map((event: any) => event.target.value || this.value),
       debounceTime(300),
       distinctUntilChanged(),
-    ).subscribe((text: string) => {
-      this.valueChange.emit(text);
-    });
+    ).subscribe(this.changed);
   }
 }

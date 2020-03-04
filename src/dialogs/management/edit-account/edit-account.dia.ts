@@ -247,7 +247,7 @@ export class EditAccountData {
 
     const id = this.account.id;
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
-
+    
     const schedule = this.utils.constructScheduleString(this.schedule);
     if (schedule !== this.account.schedule) {
       changedProps.schedule = schedule;

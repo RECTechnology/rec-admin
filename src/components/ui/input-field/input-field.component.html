@@ -4,21 +4,21 @@
         placeholder="{{placeholder|translate}}" name="{{name}}">
 
     <input *ngIf="isNormalInput && !debounced" [disabled]="disabled" [type]="type" class="user-input small"
-        [ngModel]="value" (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder|translate}}"
+        [ngModel]="value" min="-Infinity" (ngModelChange)="changed($event)" step="0.00001" placeholder="{{placeholder|translate}}"
         name="{{name}}">
 
     <mat-checkbox *ngIf="!isNormalInput && type === 'checkbox'" color="primary" [ngModel]="value"
-        (ngModelChange)="valueChange.emit($event)">
+        (ngModelChange)="changed($event)">
         <span class="small-text-2">{{placeholder|translate}}</span>
     </mat-checkbox>
 
     <mat-select class="mat-button-menu" *ngIf="!isNormalInput && type === 'select'" [ngModel]="value"
-        (ngModelChange)="valueChange.emit($event)" placeholder="{{placeholder|translate}}">
+        (ngModelChange)="changed($event)" placeholder="{{placeholder|translate}}">
         <mat-option [value]="opt.value || opt" *ngFor="let opt of options">{{(opt.name || opt) | translate}}
         </mat-option>
     </mat-select>
 </div>
 
 <div class="group-row-left" *ngIf="!isNormalInput && type === 'toggle'">
-    <mat-slide-toggle color="primary" [ngModel]="value" (ngModelChange)="valueChange.emit($event)"></mat-slide-toggle>
+    <mat-slide-toggle color="primary" [ngModel]="value" (ngModelChange)="changed($event)"></mat-slide-toggle>
 </div>
