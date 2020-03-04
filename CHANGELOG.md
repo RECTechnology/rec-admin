@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.12.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.5...v3.12.0) (2020-03-04)
+
+
+### Features
+
+* added issue templates ([#150](https://github.com/QbitArtifacts/rec-admin/issues/150)) ([367690b](https://github.com/QbitArtifacts/rec-admin/commit/367690b00f796cc274df524e7073820ae43f7ed2))
+
+
+### Bug Fixes
+
+* added account_id to create iban, related to [#145](https://github.com/QbitArtifacts/rec-admin/issues/145) ([#152](https://github.com/QbitArtifacts/rec-admin/issues/152)) ([b378ea5](https://github.com/QbitArtifacts/rec-admin/commit/b378ea5a760e72052771aaea25f6c035960314b6))
+* fixes [#147](https://github.com/QbitArtifacts/rec-admin/issues/147) -- remove button hidden for lw documents ([#154](https://github.com/QbitArtifacts/rec-admin/issues/154)) ([4dd9a1f](https://github.com/QbitArtifacts/rec-admin/commit/4dd9a1f0c767c9d4468977e1dbda3721ddd21e65))
+* fixes [#149](https://github.com/QbitArtifacts/rec-admin/issues/149) -- update lat and lon not working ([#151](https://github.com/QbitArtifacts/rec-admin/issues/151)) ([cc89d95](https://github.com/QbitArtifacts/rec-admin/commit/cc89d950cf383948f49a542015a84e5cd84ddd15))
+
 ### [3.11.5](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.2...v3.11.5) (2020-02-25)
 
 
