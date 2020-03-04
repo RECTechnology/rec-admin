@@ -1,3 +1,4 @@
+import { IbansCrud } from './../../../services/crud/ibans/ibans.crud';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
@@ -23,6 +24,7 @@ export class AddIbanDia extends BaseDialog {
 
   public id = null;
   public itemType = 'Iban';
+  public validationErrors = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddIbanDia>,
@@ -30,16 +32,22 @@ export class AddIbanDia extends BaseDialog {
     public alerts: AlertsService,
     public tiersCrud: TiersCrud,
     public accCrud: AccountsCrud,
+    public ibansCrud: IbansCrud,
   ) {
     super();
   }
 
   public proceed() {
-    this.accCrud.createIBAN(this.id, this.item)
+    this.ibansCrud.create({ ...this.item, account_id: +this.id })
       .subscribe((resp) => {
         console.log(resp);
       }, (err) => {
-        console.log(err);
+        if (err.errors) {
+          this.validationErrors = err.errors;
+        } else {
+          this.alerts.showSnackbar(err.message);
+        }
+        this.loading = false;
       });
   }
 }

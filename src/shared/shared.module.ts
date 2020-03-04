@@ -101,6 +101,7 @@ import { MaskPipe } from 'src/pipes/mask/mask.pipe';
 import { EventsService } from 'src/services/events/events.service';
 import { CollapsableWhen } from 'src/directives/collapsable.directive';
 import { AppPage } from 'src/components/scaffolding/page/page-component';
+import { IbansCrud } from 'src/services/crud/ibans/ibans.crud';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -263,6 +264,7 @@ const DIRECTIVES = [
     LemonDocumentKindsCrud,
     LemonwayDocumentCrud,
     EventsService,
+    IbansCrud,
   ],
 })
 export class SharedModule { }
