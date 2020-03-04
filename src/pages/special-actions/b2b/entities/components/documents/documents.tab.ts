@@ -39,7 +39,10 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
 
     public itemOptions: TlItemOption[] = [
         TlItemOptions.Delete(this.deleteItem.bind(this), {
-            ngIf: (item) => (item.kind && !item.kind.lemon_doctype),
+            ngIf: (item) => (
+                item.kind &&
+                !Object.prototype.hasOwnProperty.call(item.kind, 'lemon_doctype')
+            ),
         }),
     ];
 

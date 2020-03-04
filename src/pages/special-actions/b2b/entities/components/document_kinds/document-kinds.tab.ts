@@ -25,7 +25,7 @@ export class DocumentKindsTabComponent extends EntityTabBase<DocumentKind> {
         TlHeaders.generate('isLemonway', {
             title: 'Lemonway Doc',
             accessor(item: DocumentKind) {
-                return item.lemon_doctype !== undefined;
+                return Object.prototype.hasOwnProperty.call(item, 'lemon_doctype');
             },
             type: 'checkbox',
             sortable: false,
