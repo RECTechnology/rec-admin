@@ -6,13 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/services/user.service';
 import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
-import {
-    TlHeader, TlItemOption, TableListOptions,
-} from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
-import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
+import { TlHeader } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { AddDocumentKindDia } from 'src/dialogs/entities/add-document-kind/add-document-kind.dia';
 import { TlHeaders } from 'src/data/tl-headers';
-import { TlItemOptions } from 'src/data/tl-item-options';
 
 @Component({
     selector: 'tab-document-kinds',
