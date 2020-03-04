@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.12.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.12.0...v3.12.1) (2020-03-04)
+
+
+### Bug Fixes
+
+* fixed create iban, changed endpoint ([ca3351a](https://github.com/QbitArtifacts/rec-admin/commit/ca3351a33e8a774bcaa204df7f4c522a86982f60))
+* removed test step from prod workflow, as it is tested beforehand ([47c39b7](https://github.com/QbitArtifacts/rec-admin/commit/47c39b70412f3dd3ebe5eac8b177ce6b10a08aa5))
+
 ## [3.12.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.11.5...v3.12.0) (2020-03-04)
 
 
