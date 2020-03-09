@@ -6,6 +6,9 @@
                 {{'ADD_ITEM_DESC' | translate: ({ type: itemType })}}
             </p>
         </div>
+        <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+            style="border: 1px solid #ddd!important; width: 100%; margin-bottom: 15px;">
+        </validation-errors>
 
         <div class="col-lg-12">
             <input-field description="{{'INTERNAL_NAME'|translate}}" [required]="true" [(value)]="item.name"
