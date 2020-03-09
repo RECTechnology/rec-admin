@@ -1,14 +1,27 @@
 <div class="group-col-left">
-    <span class="small-text-2 marg-b-5" *ngIf="label">{{label|translate}}</span>
-    <input *ngIf="isNormalInput && debounced" #input [disabled]="disabled" [type]="type" class="user-input small"
-        placeholder="{{placeholder|translate}}" name="{{name}}">
+    <span class="small-text-2 marg-b-5" *ngIf="label">
+        {{label|translate}} <span class="small-text col-gray-light">{{getMinMaxLabel()}} </span>
+        <i *ngIf="isRequired" style="font-size: 10px!important;" class="small-text fa fa-asterisk col-error"></i>
+    </span>
+    <p class="small-text col-gray-light" [ngClass]="{'col-error': hasError}" style="margin-top: 0"
+        *ngIf="description || hasError">
+        {{hasError ? error:  description}}
+    </p>
 
-    <input *ngIf="isNormalInput && !debounced" [disabled]="disabled" [type]="type" class="user-input small"
-        [ngModel]="value" min="-Infinity" (ngModelChange)="changed($event)" step="0.00001" placeholder="{{placeholder|translate}}"
-        name="{{name}}">
+    <input *ngIf="isNormalInput && ngModel" [required]="isRequired" #input [disabled]="disabled" [type]="type"
+        class="user-input small" placeholder="{{placeholder|translate}}" [name]="name" [attr.minlength]="minlength"
+        [attr.maxlength]="maxlength">
+
+    <input *ngIf="isNormalInput && !ngModel && debounced" [required]="isRequired" #input ngModel
+        [disabled]="disabled" [type]="type" class="user-input small" placeholder="{{placeholder|translate}}"
+        [name]="name" [attr.minlength]="minlength" [attr.maxlength]="maxlength">
+
+    <input *ngIf="isNormalInput && !ngModel && !debounced" [required]="isRequired" [disabled]="disabled"
+        [type]="type" class="user-input small" [ngModel]="value" (ngModelChange)="changed($event)"
+        placeholder="{{placeholder|translate}}" [name]="name" [attr.minlength]="minlength" [attr.maxlength]="maxlength">
 
     <mat-checkbox *ngIf="!isNormalInput && type === 'checkbox'" color="primary" [ngModel]="value"
-        (ngModelChange)="changed($event)">
+        (ngModelChange)="changed($event)" >
         <span class="small-text-2">{{placeholder|translate}}</span>
     </mat-checkbox>
 

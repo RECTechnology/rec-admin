@@ -7,6 +7,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TiersCrud } from 'src/services/crud/tiers/tiers.crud';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { Iban } from 'src/shared/entities/iban.ent';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'add-iban',
@@ -25,6 +26,7 @@ export class AddIbanDia extends BaseDialog {
   public id = null;
   public itemType = 'Iban';
   public validationErrors = [];
+  public errorNames = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddIbanDia>,
@@ -37,13 +39,20 @@ export class AddIbanDia extends BaseDialog {
     super();
   }
 
+  public getErrorFor(prop) {
+    const err = this.validationErrors.find((el) => el.property = prop);
+    return err ? err.message : null;
+  }
+
   public proceed() {
     this.ibansCrud.create({ ...this.item, account_id: +this.id })
       .subscribe((resp) => {
-        console.log(resp);
+        this.validationErrors = [];
+        this.errorNames = [];
       }, (err) => {
         if (err.errors) {
           this.validationErrors = err.errors;
+          this.errorNames = err.errors.map((el) => el.property);
         } else {
           this.alerts.showSnackbar(err.message);
         }

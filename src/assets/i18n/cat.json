@@ -1074,11 +1074,16 @@
   "Next Tier": "Nivel Posterior",
   "ONLY_IN_LEMONWAY:long": "Això només es realitza a Lemonway, sense afectar el sistema REC.",
   "ONLY_IN_LEMONWAY:short": "Això només es realitza a Lemonway",
-
   "NO_IBANS": "No hi ha IBANs registrats",
   "CREATE_IBAN": "Crear IBAN",
   "Wallet Status": "Estat Cartera",
   "IBAN Status": "Estat IBAN",
   "Internal ID": "ID Intern",
-  "External ID": "ID Extern"
+  "External ID": "ID Extern",
+  "INTERNAL_NAME": "Nom intern de el document (Ex. 'IBAN de novact')",
+  "IBAN_HOLDER": "Propietari de l'IBAN: nom i cognom (s), o nom d'empresa",
+  "IBAN_BANK_NAME": "Si no es té, posar el domicili del compte",
+  "Holder": "Titular",
+  "Bank Address": "Direcció de l'banc",
+  "IBAN Number": "Número IBAN"
 }

@@ -9,6 +9,7 @@ export class ButtonLoader {
   @Output() public clicked: EventEmitter<any> = new EventEmitter<any>();
   @Input() public loading = false;
   @Input() public disabled = false;
+  @Input() public submit = false;
   @Input() public text = '';
 
   constructor(

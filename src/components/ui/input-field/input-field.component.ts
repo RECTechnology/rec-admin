@@ -14,11 +14,21 @@ export class InputFieldComponent {
   @Input() public name: string;
   @Input() public value: any = '';
   @Input() public disabled: boolean = false;
+  @Input() public ngModel: boolean = false;
   @Input() public type: string = 'text';
   @Input() public debounced: boolean = false;
+  @Input() public hasError: boolean = false;
+  @Input() public error: string = '';
+  @Input() public description: string = null;
+  @Input('required') public isRequired: boolean = false;
 
   // Only used for 'select'
   @Input() public options: string[] = null;
+
+  // Only used for 'text'
+  @Input() public showMinMaxLabels: boolean = true;
+  @Input() public minlength: number = null;
+  @Input() public maxlength: number = null;
 
   @Output() public valueChange: EventEmitter<any> = new EventEmitter();
 
@@ -58,5 +68,17 @@ export class InputFieldComponent {
       debounceTime(300),
       distinctUntilChanged(),
     ).subscribe(this.changed);
+  }
+
+  public getMinMaxLabel() {
+    const hasMin = this.minlength != null;
+    const hasMax = this.maxlength != null;
+    const labels = [
+      `${hasMin ? 'min: ' + this.minlength : ''}`,
+      `${hasMax ? 'max: ' + this.maxlength : ''}`,
+    ];
+    return (hasMin || hasMax)
+      ? `(${labels.join(' ').trim()})`
+      : '';
   }
 }
