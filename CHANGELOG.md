@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.13.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.12.1+2...v3.13.0) (2020-03-09)
+
+
+### Features
+
+* improving errors and inputs in create iban ([#157](https://github.com/QbitArtifacts/rec-admin/issues/157)) ([9e57f21](https://github.com/QbitArtifacts/rec-admin/commit/9e57f21dbcc5bddf01bc96ef7c67989785235821))
+
 ### [3.12.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.12.0...v3.12.1) (2020-03-04)
 
 
