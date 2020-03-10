@@ -47,8 +47,8 @@ export class AddIbanDia extends BaseDialog {
   public proceed() {
     this.ibansCrud.create({ ...this.item, account_id: +this.id })
       .subscribe((resp) => {
-        this.validationErrors = [];
-        this.errorNames = [];
+        this.close();
+        this.alerts.showSnackbar('Created IBAN Successfully');
       }, (err) => {
         if (err.errors) {
           this.validationErrors = err.errors;
