@@ -1,6 +1,9 @@
 ---
 name: Bug report
 about: Create a report to help us improve
+Estimated timing: h, m, s
+#From 1 (easy) to 5 (hard)
+Difficulty: (1 - 5)
 ---
 
 ### Information
