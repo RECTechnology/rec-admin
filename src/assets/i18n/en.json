@@ -507,5 +507,6 @@
   "CREATE_IBAN": "Create IBAN",
   "INTERNAL_NAME": "Internal name of the document (eg 'novacts IBAN')",
   "IBAN_HOLDER": "IBAN owner: name and surname(s), or company name",
-  "IBAN_BANK_NAME": "If you do not have one, enter the address of the account"
+  "IBAN_BANK_NAME": "If you do not have one, enter the address of the account",
+  "VALID_UNTIL": "Valid until"
 }

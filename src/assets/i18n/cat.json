@@ -1085,5 +1085,6 @@
   "IBAN_BANK_NAME": "Si no es té, posar el domicili del compte",
   "Holder": "Titular",
   "Bank Address": "Direcció de l'banc",
-  "IBAN Number": "Número IBAN"
+  "IBAN Number": "Número IBAN",
+  "VALID_UNTIL": "Vàlid fins"
 }

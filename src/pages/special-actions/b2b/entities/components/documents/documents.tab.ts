@@ -36,7 +36,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Status,
         TlHeaders.Description,
         TlHeaders.Created.extend({
-            title: 'Expires',
+            title: 'VALID_UNTIL',
             accessor: 'valid_until',
         }),
     ];

@@ -1083,5 +1083,7 @@
 
   "Holder": "Titular",
   "Bank Address": "Dirección del banco",
-  "IBAN Number": "Número IBAN"
+  "IBAN Number": "Número IBAN",
+  "VALID_UNTIL": "Válido hasta"
+
 }

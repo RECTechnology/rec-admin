@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
@@ -33,7 +33,6 @@ export class AddDocumentDia extends BaseDialog {
   public docKindsFull = [];
   public disableAccountSelector = false;
   public validationErrors = [];
-
   constructor(
     public dialogRef: MatDialogRef<AddDocumentDia>,
     private us: UserService,
