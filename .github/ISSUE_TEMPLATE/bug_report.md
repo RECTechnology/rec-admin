@@ -4,21 +4,30 @@ about: Create a report to help us improve
 ---
 
 ### Information
-**Panel Version**:`[e.g. v0.2.9]`  
-**Platform**: `[e.g. MacOSx | Linux | etc...]`
-**Platform Version**: `[e.g. 12.3.123]`
-**Browser**: `[e.g. Chrome | Firefox | etc...]`
-**Browser Version**: `[e.g. 78.0.1]`
-**Environment**: `[e.g. PRE|PROD]` 
+<!-- PRE | PROD -->
+**Environment**: ` `  
+<!-- Chrome | Firefox | etc... -->
+**Browser**: `Chrome`    
+<!-- MacOSx | Linux | Windows -->
+**Platform**: ` `   
+<!-- eg v0.2.9 -->
+**Panel Version**: ` `  
+<!-- eg 12.3.123 -->
+**Platform Version**: ` `  
+<!-- eg 78.0.1 -->
+**Browser Version**: ` `  
 
-### Timing
-Please dev. fill in this details
-**Estimated time**: `a`
-**Difficulty**: `a`
+### Timing  
+*Please dev. fill in this details*  
+<!-- In h, m, s  -->
+**Estimated time**:  
+<!-- From 1 (easy) to 5 (hard) -->
+**Difficulty**:  
 
 ### Description
+<!-- A clear and concise description of what the bug is. -->
 **Describe the bug**  
-A clear and concise description of what the bug is.
+
 
 **To Reproduce**  
 Steps to reproduce the behavior:
@@ -29,10 +38,10 @@ Steps to reproduce the behavior:
 
 
 **Expected behavior**  
-A clear and concise description of what you expected to happen.
+<!-- A clear and concise description of what you expected to happen. -->
 
 **Screenshots**  
-If applicable, add screenshots to help explain your problem.
+<!-- If applicable, add screenshots to help explain your problem. -->
 
 **Additional context**  
-Add any other context about the problem here.
+<!-- Add any other context about the problem here. -->
