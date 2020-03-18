@@ -1,9 +1,6 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-Estimated timing: h, m, s
-#From 1 (easy) to 5 (hard)
-Difficulty: (1 - 5)
 ---
 
 ### Information
@@ -13,6 +10,11 @@ Difficulty: (1 - 5)
 **Browser**: `[e.g. Chrome | Firefox | etc...]`
 **Browser Version**: `[e.g. 78.0.1]`
 **Environment**: `[e.g. PRE|PROD]` 
+
+### Timing
+Please dev. fill in this details
+**Estimated time**: `a`
+**Difficulty**: `a`
 
 ### Description
 **Describe the bug**  
