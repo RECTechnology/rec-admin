@@ -1,9 +1,6 @@
 ---
 name: Default Issue
 about: Default issue
-Estimated timing: h, m, s
-#From 1 (easy) to 5 (hard)
-Difficulty: (1 - 5)
 ---
 
 ### Timing  
@@ -12,3 +9,7 @@ Difficulty: (1 - 5)
 **Estimated time**:  
 <!-- From 1 (easy) to 5 (hard) -->
 **Difficulty**:  
+
+### Description
+<!-- A clear and concise description of the request. -->
+**Describe the request**  
