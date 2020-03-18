@@ -25,7 +25,7 @@
         <span class="small-text-2">{{placeholder|translate}}</span>
     </mat-checkbox>
 
-    <mat-select class="mat-button-menu" *ngIf="!isNormalInput && type === 'select'" [ngModel]="value"
+    <mat-select class="mat-button-menu" style="margin-top: 5px;" *ngIf="!isNormalInput && type === 'select'" [ngModel]="value"
         (ngModelChange)="changed($event)" placeholder="{{placeholder|translate}}">
         <mat-option [value]="opt.value || opt" *ngFor="let opt of options">{{(opt.name || opt) | translate}}
         </mat-option>

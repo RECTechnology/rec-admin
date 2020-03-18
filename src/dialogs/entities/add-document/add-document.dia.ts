@@ -20,6 +20,7 @@ export class AddDocumentDia extends BaseDialog {
     kind_id: null,
     account_id: null,
     content: '',
+    valid_until: null,
   };
   public itemCopy: Document = {
     name: '',
@@ -66,7 +67,6 @@ export class AddDocumentDia extends BaseDialog {
   public ngOnInit() {
     this.item.account_id = this.item.account ? this.item.account.id : this.item.account_id;
     this.item.kind_id = this.item.kind && this.item.kind.id;
-
     this.itemCopy = Object.assign({}, this.item);
   }
 
@@ -88,6 +88,10 @@ export class AddDocumentDia extends BaseDialog {
 
     const crud = this.getCrud(data.kind_id);
     delete data.kind;
+
+    if (data.valid_until) {
+      data.valid_until = new Date(data.valid_until).toISOString();
+    }
 
     const call = (!this.isEdit)
       ? crud.create(data)

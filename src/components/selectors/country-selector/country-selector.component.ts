@@ -11,7 +11,7 @@ import { CountryPickerService } from 'ngx-country-picker';
 export class CountrySelector implements OnInit {
     public countries: any[];
     public error: string;
-    @Input() public value: any = 'ESP';
+    @Input() public value: any = '';
     @Output() public valueChange = new EventEmitter<string>();
 
     constructor(
@@ -19,7 +19,7 @@ export class CountrySelector implements OnInit {
     ) { }
 
     public ngOnInit() {
-        this.value = this.value || 'ESP';
+        this.value = this.value;
         this.countryPicker.getCountries().subscribe((countries) => {
             this.countries = countries.sort((a) => {
                 if (a.cca3 === 'ESP') { return -1; }

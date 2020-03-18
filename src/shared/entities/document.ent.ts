@@ -11,6 +11,7 @@ export interface Document {
     documents?: Document[];
     kind?: DocumentKind;
     kind_id?: string | number;
+    valid_until?: any;
 }
 
 export class Document implements Document {

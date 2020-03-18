@@ -123,6 +123,7 @@ export class EditAccountData {
     this.account.kyc_manager.locale = LANG_MAP[this.account.kyc_manager.locale];
 
     this.accountCopy = { ...this.account };
+    console.log('account', this.account, this.accountCopy);
     this.activitiesSelected = this.accountCopy.activities.slice();
     this.schedule = this.utils.parseSchedule(this.account.schedule);
     delete this.accountCopy.kyc_validations;
@@ -247,7 +248,7 @@ export class EditAccountData {
 
     const id = this.account.id;
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
-    
+
     const schedule = this.utils.constructScheduleString(this.schedule);
     if (schedule !== this.account.schedule) {
       changedProps.schedule = schedule;
