@@ -26,12 +26,6 @@ export class TiersTabComponent extends EntityTabBase<Tier> {
             },
             type: 'code',
         }),
-        TlHeaders.generate('next', {
-            accessor(el) {
-                return el.next ? (el.next).code : '';
-            },
-            type: 'code',
-        }),
         TlHeaders.Description,
     ];
 

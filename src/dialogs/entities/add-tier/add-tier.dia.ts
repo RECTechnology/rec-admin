@@ -18,7 +18,6 @@ export class AddTierDia extends BaseDialog {
   public item: Tier = {
     code: '',
     description: '',
-    document_kinds: [],
   };
   public itemType = 'Tier';
   public docKinds: DocumentKind[] = [];
