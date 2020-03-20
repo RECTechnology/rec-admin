@@ -7,10 +7,8 @@ export interface Tier {
     document_kinds?: DocumentKind[];
     document_kinds_id?: number[];
 
-    previous_id?: number | string;
-    previous?: Tier;
-    next?: Tier;
-    next_id?: number | string;
+    parent_id?: number | string;
+    parent?: Tier;
     validated?: boolean;
 }
 
@@ -19,11 +17,8 @@ export class Tier implements Tier {
         // tslint:disable-next-line: forin
         for (const prop in txInfo) {
             this[prop] = txInfo[prop];
-            if (prop === 'previous') {
-                this.previous_id = this.previous.id;
-            }
-            if (prop === 'next') {
-                this.next_id = this.next.id;
+            if (prop === 'parent') {
+                this.parent_id = this.parent.id;
             }
         }
     }
