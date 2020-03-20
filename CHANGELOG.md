@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.13.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.13.1...v3.13.2) (2020-03-20)
+
+
+### Bug Fixes
+
+* **tiers:** renamed previous to parent ([#164](https://github.com/QbitArtifacts/rec-admin/issues/164)) ([e854e29](https://github.com/QbitArtifacts/rec-admin/commit/e854e29d95438b10d855ba58a89f60904d6eaaf8))
+* added lemon status ([d3c5188](https://github.com/QbitArtifacts/rec-admin/commit/d3c5188553f28a929c7fa4e7b5e7d8c50561478a))
+* fixed missing translations for documents ([#162](https://github.com/QbitArtifacts/rec-admin/issues/162)) ([b791f3d](https://github.com/QbitArtifacts/rec-admin/commit/b791f3d2da6e42d7b83e6442635f6b828be9a127))
+* fixes issue [#126](https://github.com/QbitArtifacts/rec-admin/issues/126) and issue [#159](https://github.com/QbitArtifacts/rec-admin/issues/159) ([#160](https://github.com/QbitArtifacts/rec-admin/issues/160)) ([2309631](https://github.com/QbitArtifacts/rec-admin/commit/2309631fc5079b146d69a53323f722f775980f8f))
+* removed old types from tier ([69c7515](https://github.com/QbitArtifacts/rec-admin/commit/69c7515db52982a6880cddaa78299e9848844bd1))
+
 ### [3.13.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.13.0...v3.13.1) (2020-03-10)
 
 
