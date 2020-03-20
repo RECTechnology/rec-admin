@@ -51,6 +51,17 @@ export const LW_DOC_MAP = {
     21: 'SDD mandate',
 };
 
+export const LW_DOC_STATUS = {
+    0: 'Document put on hold',
+    1: 'Not verified yet',
+    2: 'Accepted',
+    3: 'Not accepted',
+    4: 'Unreadable',
+    5: 'Expired',
+    6: 'Wrong type',
+    7: 'Wrong name',
+};
+
 export const processLwTx = (res) => {
     // F*** lemonway man!
     const parts = res.DATE.split('/');

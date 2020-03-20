@@ -14,6 +14,7 @@ import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
+import { LW_DOC_STATUS } from 'src/data/lw-constants';
 
 @Component({
     selector: 'tab-documents',
@@ -33,7 +34,11 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         },
         TlHeaders.DocumentKind,
         TlHeaders.Name,
-        TlHeaders.Status,
+        TlHeaders.Status.extend({
+            accessor(item) {
+                return item.lemon_status ? LW_DOC_STATUS[item.lemon_status] : item.status;
+            },
+        }),
         TlHeaders.Description,
         TlHeaders.Created.extend({
             title: 'VALID_UNTIL',
@@ -42,6 +47,12 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     ];
 
     public itemOptions: TlItemOption[] = [
+        TlItemOptions.Edit(this.editItem.bind(this), {
+            // ngIf: (item) => (
+            //     item.kind &&
+            //     !Object.prototype.hasOwnProperty.call(item.kind, 'lemon_doctype')
+            // ),
+        }),
         TlItemOptions.Delete(this.deleteItem.bind(this), {
             ngIf: (item) => (
                 item.kind &&
@@ -99,6 +110,10 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         this.productKindFilter = doc;
         this.search();
     }
+
+    // public editItem(item) {
+    //     super.editItem(item);
+    // }
 
     public addItem() {
         this.addItemOptions = {

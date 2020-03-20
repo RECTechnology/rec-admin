@@ -89,7 +89,7 @@ export abstract class EntityTabBase<T> {
             .subscribe(this.search.bind(this));
     }
 
-    public editItem(item: T) {
+    public editItem(item: any) {
         this.alerts.openModal(this.editComponent, {
             isEdit: true,
             item: Object.assign({}, item),
