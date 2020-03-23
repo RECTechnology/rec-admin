@@ -1,6 +1,7 @@
 import { Document } from './document.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 import { Observable } from 'rxjs';
+import { Tier } from './tier.ent';
 
 export interface DocumentKind {
     id?: string | number;
@@ -8,7 +9,7 @@ export interface DocumentKind {
     description?: string;
     documents?: Document[];
     lemon_doctype?: string;
-    tiers: any[];
+    tiers?: Tier[];
 }
 
 export class DocumentKind implements DocumentKind {

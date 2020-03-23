@@ -18,6 +18,7 @@ export class AddTierDia extends BaseDialog {
   public item: Tier = {
     code: '',
     description: '',
+    document_kinds: [],
   };
   public itemType = 'Tier';
   public docKinds: DocumentKind[] = [];
@@ -98,7 +99,7 @@ export class AddTierDia extends BaseDialog {
     this.loading = true;
 
     const call = (!this.isEdit)
-      ? this.tiersCrud.create(this.item)
+      ? this.tiersCrud.create(UtilsService.sanitizeEntityForEdit(this.item))
       : this.tiersCrud.update(this.item.id, UtilsService.sanitizeEntityForEdit(this.item));
 
     call.subscribe((resp) => {

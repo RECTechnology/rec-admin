@@ -44,17 +44,19 @@ export class UtilsService {
   }
 
   public static sanitizeEntityForEdit(ent: any) {
-    delete ent.id;
-    delete ent.created;
-    delete ent.updated;
-    delete ent.documents;
-    delete ent.document_kinds;
-    delete ent.account;
-    delete ent.previous;
-    delete ent.next;
-    delete ent.kind;
+    const obj = { ...ent };
 
-    return ent;
+    delete obj.id;
+    delete obj.created;
+    delete obj.updated;
+    delete obj.documents;
+    delete obj.document_kinds;
+    delete obj.account;
+    delete obj.previous;
+    delete obj.next;
+    delete obj.kind;
+
+    return obj;
   }
 
   public static capitalize(s: string) {
