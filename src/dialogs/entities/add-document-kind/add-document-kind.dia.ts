@@ -18,6 +18,7 @@ export class AddDocumentKindDia extends BaseDialog {
     name: '',
     description: '',
     lemon_doctype: '0',
+    tiers: []
   };
   public itemType = 'Document Kind';
   public isLemon = false;
@@ -49,6 +50,10 @@ export class AddDocumentKindDia extends BaseDialog {
     const data = { ...this.item };
     if (!this.isLemon) {
       delete data.lemon_doctype;
+    }
+
+    if (data.tiers) {
+      delete data.tiers;
     }
 
     this.loading = true;
