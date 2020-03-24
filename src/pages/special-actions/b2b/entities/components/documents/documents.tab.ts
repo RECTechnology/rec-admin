@@ -43,6 +43,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Created.extend({
             title: 'VALID_UNTIL',
             accessor: 'valid_until',
+            sort: 'valid_until',
         }),
     ];
 
