@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.13.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.13.2...v3.13.3) (2020-03-24)
+
+
+### Bug Fixes
+
+* fixed [#109](https://github.com/QbitArtifacts/rec-admin/issues/109) ([#169](https://github.com/QbitArtifacts/rec-admin/issues/169)) ([cd3ce67](https://github.com/QbitArtifacts/rec-admin/commit/cd3ce67633f1661fa5b5812b480bb1c34463bf1c))
+* fixes [#167](https://github.com/QbitArtifacts/rec-admin/issues/167) ([#170](https://github.com/QbitArtifacts/rec-admin/issues/170)) ([f940817](https://github.com/QbitArtifacts/rec-admin/commit/f94081744fdd3a771ec7b8ff688cb49908daf0b9))
+* sorting documents valid until bad sorting key ([d8e0bc0](https://github.com/QbitArtifacts/rec-admin/commit/d8e0bc0749790669a80c542c285ff390e3f099b3))
+
 ### [3.13.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.13.1...v3.13.2) (2020-03-20)
 
 
