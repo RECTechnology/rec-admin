@@ -49,10 +49,10 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
 
     public itemOptions: TlItemOption[] = [
         TlItemOptions.Edit(this.editItem.bind(this), {
-            // ngIf: (item) => (
-            //     item.kind &&
-            //     item.kind.auto_fetched
-            // ),
+            ngIf: (item) => (
+                item &&
+                item.auto_fetched
+            ),
         }),
         TlItemOptions.Delete(this.deleteItem.bind(this), {
             ngIf: (item) => (
