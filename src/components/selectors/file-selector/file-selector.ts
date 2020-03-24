@@ -11,6 +11,7 @@ import { FileUpload } from 'src/dialogs/other/file-upload/file-upload.dia';
 })
 export class FileSelector implements OnInit {
     @Input() public label: string = 'Label';
+    @Input() public disabled: boolean = false;
     @Input() public changeBtnText: string = 'CHANGE';
     @Input() public file: any;
     @Output() public fileChange = new EventEmitter<any>();
@@ -25,6 +26,8 @@ export class FileSelector implements OnInit {
     }
 
     public openUpdateImage() {
+        if (this.disabled) { return; }
+
         return this.alerts.openModal(FileUpload, {
             hasSelectedImage: !!this.file,
             selectedImage: this.file,

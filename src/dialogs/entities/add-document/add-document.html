@@ -13,7 +13,6 @@
       </p>
     </div>
 
-
     <div class="col-lg-12">
       <input-field [(value)]="item.name" label="Name" [disabled]="loading"></input-field>
     </div>
@@ -21,18 +20,20 @@
     <div class="col-lg-12" *ngIf="!disableAccountSelector">
       <div class="group-col-left space-between" style="width :100%">
         <span class="small-text-2">{{'Account'|translate}}</span>
-        <account-picker [disabled]="loading || disableAccountSelector" [(id)]="item.account_id"></account-picker>
+        <account-picker [disabled]="loading || disableAccountSelector || isEdit" [(id)]=" item.account_id">
+        </account-picker>
       </div>
     </div>
 
     <div class="col-lg-12" *ngIf="docKinds && docKinds.length">
-      <input-field type="select" [(value)]="item.kind_id" label="Document Kind" [disabled]="loading"
+      <input-field type="select" [(value)]="item.kind_id" label="Document Kind" [disabled]="isEdit"
         [options]="docKinds">
       </input-field>
     </div>
 
     <div class="col-lg-12">
-      <file-selector label="Select Document" [(file)]="item.content"></file-selector>
+      <file-selector [disabled]="isEdit && !item.auto_fetched || !isLemon" label="Select Document"
+        [(file)]="item.content"></file-selector>
     </div>
 
     <div class="col-lg-12 group-col-left marg-t-5">

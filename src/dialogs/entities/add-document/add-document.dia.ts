@@ -15,24 +15,29 @@ import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemon
 })
 export class AddDocumentDia extends BaseDialog {
   public isEdit = false;
+  public isLemon = false;
+
   public item: Document = {
     name: '',
     kind_id: null,
     account_id: null,
     content: '',
     valid_until: null,
+    auto_fetched: false,
   };
   public itemCopy: Document = {
     name: '',
     kind_id: null,
     account_id: null,
     content: '',
+    auto_fetched: false,
   };
   public itemType = 'Document';
   public docKinds = [];
   public docKindsFull = [];
   public disableAccountSelector = false;
   public validationErrors = [];
+
   constructor(
     public dialogRef: MatDialogRef<AddDocumentDia>,
     private us: UserService,
@@ -43,6 +48,17 @@ export class AddDocumentDia extends BaseDialog {
   ) {
     super();
     this.getDocumentKinds();
+  }
+
+  public ngOnInit() {
+    this.item.account_id = this.item.account ? this.item.account.id : this.item.account_id;
+    this.item.kind_id = this.item.kind && this.item.kind.id;
+    this.itemCopy = Object.assign({}, this.item);
+    this.isLemon = Object.prototype.hasOwnProperty.call(this.item.kind, 'lemon_doctype');
+
+    console.log(this.item);
+    console.log('isLemon', this.isLemon);
+    console.log('isEdit', this.isEdit);
   }
 
   public getDocumentKinds() {
@@ -61,12 +77,6 @@ export class AddDocumentDia extends BaseDialog {
   public getCrud(id) {
     const kind = this.docKindsFull.find((el) => el.id === id);
     return (kind && kind.lemon_doctype === undefined) ? this.docCrud : this.lemonDocCrud;
-  }
-
-  public ngOnInit() {
-    this.item.account_id = this.item.account ? this.item.account.id : this.item.account_id;
-    this.item.kind_id = this.item.kind && this.item.kind.id;
-    this.itemCopy = Object.assign({}, this.item);
   }
 
   public proceed() {
@@ -90,6 +100,9 @@ export class AddDocumentDia extends BaseDialog {
 
     if (data.valid_until) {
       data.valid_until = new Date(data.valid_until).toISOString();
+    }
+    if (data.auto_fetched) {
+      data.auto_fetched = false;
     }
 
     const call = (!this.isEdit)

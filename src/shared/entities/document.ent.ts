@@ -12,6 +12,7 @@ export interface Document {
     kind?: DocumentKind;
     kind_id?: string | number;
     valid_until?: any;
+    auto_fetched?: boolean;
 }
 
 export class Document implements Document {
@@ -23,6 +24,13 @@ export class Document implements Document {
     public static STATUS_APROVED = 'aproved';
     public static STATUS_ARCHIVED = 'archived';
 
+    public static STATUS_ON_HOLD = 'on_hold';
+    public static STATUS_NOT_VERIFIED = 'unverified';
+    public static STATUS_NOT_READABLE = 'unreadable';
+    public static STATUS_EXPIRED = 'expired';
+    public static STATUS_WRONG_TYPE = 'wrong_type';
+    public static STATUS_WRONG_NAME = 'wrong_name';
+
     public static ALL_STATUSES = [
         Document.STATUS_CREATED,
         Document.STATUS_APROVED,
@@ -30,6 +38,12 @@ export class Document implements Document {
         Document.STATUS_SUBMITTED,
         Document.STATUS_DECLINED,
         Document.STATUS_ARCHIVED,
+        Document.STATUS_ON_HOLD,
+        Document.STATUS_NOT_VERIFIED,
+        Document.STATUS_NOT_READABLE,
+        Document.STATUS_EXPIRED,
+        Document.STATUS_WRONG_TYPE,
+        Document.STATUS_WRONG_NAME,
     ];
 
     constructor(txInfo?: Document) {
