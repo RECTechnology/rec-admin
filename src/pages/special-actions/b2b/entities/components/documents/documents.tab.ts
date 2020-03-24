@@ -50,7 +50,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlItemOptions.Edit(this.editItem.bind(this), {
             // ngIf: (item) => (
             //     item.kind &&
-            //     !Object.prototype.hasOwnProperty.call(item.kind, 'lemon_doctype')
+            //     item.kind.auto_fetched
             // ),
         }),
         TlItemOptions.Delete(this.deleteItem.bind(this), {
@@ -75,6 +75,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     @Input() public productKindFilter = null;
     @Input() public accountFilter = null;
     @Input() public statusFilter = null;
+    @Input() public lwStatusFilter = null;
     @Input() public title = 'AVAILABLE_DOCUMENTS';
 
     @Input() public disableAccountFilter = false;
@@ -103,6 +104,13 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
 
     public filterStatus(status) {
         this.statusFilter = status;
+        this.lwStatusFilter = null;
+        this.search();
+    }
+
+    public filterLwStatus(status) {
+        this.lwStatusFilter = status;
+        this.statusFilter = null;
         this.search();
     }
 
@@ -110,10 +118,6 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         this.productKindFilter = doc;
         this.search();
     }
-
-    // public editItem(item) {
-    //     super.editItem(item);
-    // }
 
     public addItem() {
         this.addItemOptions = {
@@ -135,6 +139,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
             sort: this.sortID,
             kind: this.productKindFilter ? this.productKindFilter.id : null,
             account: this.accountFilter,
+            status: this.statusFilter,
         }).subscribe(
             (resp) => {
                 this.data = resp.data.elements;

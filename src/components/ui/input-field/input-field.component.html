@@ -12,26 +12,28 @@
         class="user-input small" placeholder="{{placeholder|translate}}" [name]="name" [attr.minlength]="minlength"
         [attr.maxlength]="maxlength">
 
-    <input *ngIf="isNormalInput && !ngModel && debounced" [required]="isRequired" #input ngModel
-        [disabled]="disabled" [type]="type" class="user-input small" placeholder="{{placeholder|translate}}"
-        [name]="name" [attr.minlength]="minlength" [attr.maxlength]="maxlength">
+    <input *ngIf="isNormalInput && !ngModel && debounced" [required]="isRequired" #input ngModel [disabled]="disabled"
+        [type]="type" class="user-input small" placeholder="{{placeholder|translate}}" [name]="name"
+        [attr.minlength]="minlength" [attr.maxlength]="maxlength">
 
-    <input *ngIf="isNormalInput && !ngModel && !debounced" [required]="isRequired" [disabled]="disabled"
-        [type]="type" class="user-input small" [ngModel]="value" (ngModelChange)="changed($event)"
+    <input *ngIf="isNormalInput && !ngModel && !debounced" [required]="isRequired" [disabled]="disabled" [type]="type"
+        class="user-input small" [ngModel]="value" (ngModelChange)="changed($event)"
         placeholder="{{placeholder|translate}}" [name]="name" [attr.minlength]="minlength" [attr.maxlength]="maxlength">
 
     <mat-checkbox *ngIf="!isNormalInput && type === 'checkbox'" color="primary" [ngModel]="value"
-        (ngModelChange)="changed($event)" >
+        (ngModelChange)="changed($event)" [disabled]="disabled">
         <span class="small-text-2">{{placeholder|translate}}</span>
     </mat-checkbox>
 
-    <mat-select class="mat-button-menu" style="margin-top: 5px;" *ngIf="!isNormalInput && type === 'select'" [ngModel]="value"
-        (ngModelChange)="changed($event)" placeholder="{{placeholder|translate}}">
+    <mat-select class="mat-button-menu" [disabled]="disabled" style="margin-top: 5px;"
+        *ngIf="!isNormalInput && type === 'select'" [ngModel]="value" (ngModelChange)="changed($event)"
+        placeholder="{{placeholder|translate}}">
         <mat-option [value]="opt.value || opt" *ngFor="let opt of options">{{(opt.name || opt) | translate}}
         </mat-option>
     </mat-select>
 </div>
 
 <div class="group-row-left" *ngIf="!isNormalInput && type === 'toggle'">
-    <mat-slide-toggle color="primary" [ngModel]="value" (ngModelChange)="changed($event)"></mat-slide-toggle>
+    <mat-slide-toggle [disabled]="disabled" color="primary" [ngModel]="value" (ngModelChange)="changed($event)">
+    </mat-slide-toggle>
 </div>
