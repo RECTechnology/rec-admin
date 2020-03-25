@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.14.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.13.3...v3.14.0) (2020-03-25)
+
+
+### Features
+
+* added api version to login ([77fb3ed](https://github.com/QbitArtifacts/rec-admin/commit/77fb3ed625a8a8343aa7df18eac5b779cd7eb9ee))
+* added api version to sidemenu ([18d35f4](https://github.com/QbitArtifacts/rec-admin/commit/18d35f42be5912ea76dac86e36cca05e5dfd0a5f))
+
+
+### Bug Fixes
+
+* **Tier:** Edit tier error, now cleaned object and added edit diff to not send if no changes made - fixes [#177](https://github.com/QbitArtifacts/rec-admin/issues/177) ([16d43fd](https://github.com/QbitArtifacts/rec-admin/commit/16d43fd3efe893df84adb9f33f9712ba320bffe6))
+* edit document not setting data correctly, fixes [#172](https://github.com/QbitArtifacts/rec-admin/issues/172) ([b290151](https://github.com/QbitArtifacts/rec-admin/commit/b2901512382742efb610265184fbce11a3e1009f))
+* tier list not showing parent tier ([685cd80](https://github.com/QbitArtifacts/rec-admin/commit/685cd8061ff4ee593a9d33e12f24dbad354471af))
+
 ### [3.13.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.13.2...v3.13.3) (2020-03-24)
 
 
