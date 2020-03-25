@@ -52,9 +52,10 @@ export class UtilsService {
     delete obj.documents;
     delete obj.document_kinds;
     delete obj.account;
-    delete obj.previous;
-    delete obj.next;
+    delete obj.parent;
+    delete obj.children;
     delete obj.kind;
+    delete obj.parent;
 
     return obj;
   }

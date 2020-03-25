@@ -20,6 +20,11 @@ export class AddTierDia extends BaseDialog {
     description: '',
     document_kinds: [],
   };
+  public itemCopy: Tier = {
+    code: '',
+    description: '',
+    document_kinds: [],
+  };
   public itemType = 'Tier';
   public docKinds: DocumentKind[] = [];
   public tiers: Tier[] = [];
@@ -36,6 +41,8 @@ export class AddTierDia extends BaseDialog {
   }
 
   public ngOnInit() {
+    this.itemCopy = Object.assign({}, this.item);
+
     if (this.isEdit) {
       this.getTier();
       this.search();
@@ -97,10 +104,23 @@ export class AddTierDia extends BaseDialog {
     }
 
     this.loading = true;
+    let data: any = { ...this.item };
+
+    if (this.isEdit) {
+      data = UtilsService.deepDiff({ ...data }, this.itemCopy);
+    }
+
+    data = UtilsService.sanitizeEntityForEdit(data);
+    console.log('diff', data);
+
+    if (!Object.keys(data).length) {
+      this.loading = false;
+      return this.alerts.showSnackbar('Nothing to update...');
+    }
 
     const call = (!this.isEdit)
-      ? this.tiersCrud.create(UtilsService.sanitizeEntityForEdit(this.item))
-      : this.tiersCrud.update(this.item.id, UtilsService.sanitizeEntityForEdit(this.item));
+      ? this.tiersCrud.create(data)
+      : this.tiersCrud.update(this.item.id, data);
 
     call.subscribe((resp) => {
       this.item.id = resp.data.id;
