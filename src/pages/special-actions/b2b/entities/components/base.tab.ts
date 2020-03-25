@@ -84,8 +84,8 @@ export abstract class EntityTabBase<T> {
         return elem;
     }
 
-    public addItem() {
-        this.alerts.openModal(this.addComponent, this.addItemOptions)
+    public addItem(addItemOptions = {}) {
+        this.alerts.openModal(this.addComponent, addItemOptions)
             .subscribe(this.search.bind(this));
     }
 
@@ -94,7 +94,6 @@ export abstract class EntityTabBase<T> {
         this.alerts.openModal(this.editComponent, {
             isEdit: true,
             item: Object.assign({}, item),
-            ...this.addItemOptions,
         }).subscribe(this.search.bind(this));
     }
 
