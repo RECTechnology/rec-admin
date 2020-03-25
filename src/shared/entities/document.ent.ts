@@ -21,7 +21,7 @@ export class Document implements Document {
     public static STATUS_UPLOADED = 'uploaded';
     public static STATUS_SUBMITTED = 'submitted';
     public static STATUS_DECLINED = 'declined';
-    public static STATUS_APROVED = 'aproved';
+    public static STATUS_APROVED = 'approved';
     public static STATUS_ARCHIVED = 'archived';
 
     public static STATUS_ON_HOLD = 'on_hold';
