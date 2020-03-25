@@ -20,11 +20,11 @@ export class TiersTabComponent extends EntityTabBase<Tier> {
     public headers: TlHeader[] = [
         TlHeaders.Id,
         TlHeaders.generate('code'),
-        TlHeaders.generate('previous', {
+        TlHeaders.generate('parent', {
             accessor(el) {
-                return el.previous ? (el.previous).code : '';
+                return el.parent ? (el.parent).code : '...';
             },
-            type: 'code',
+            type: 'link',
         }),
         TlHeaders.Description,
     ];
