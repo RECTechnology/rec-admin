@@ -5,6 +5,7 @@ import { LoginService, AppAuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user.service';
 import { environment } from '../../environments/environment';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { AppService } from 'src/services/app/app.service';
 
 @Component({
   selector: 'login',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
   public date_timestamp = Date.now();
   public needs_two_fa = false;
   public Brand: any = environment.Brand;
+  public apiVersion = '...';
 
   constructor(
     private loginService: LoginService,
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
     private us: UserService,
     public zone: NgZone,
     public alerts: AlertsService,
+    public app: AppService,
   ) { }
 
   public ngOnInit() {
@@ -52,6 +55,9 @@ export class LoginComponent implements OnInit {
           this.gotToken = true;
         }
       });
+
+    this.app.getInfo()
+      .subscribe(resp => this.apiVersion = resp.data.version);
   }
 
   public retry() {
