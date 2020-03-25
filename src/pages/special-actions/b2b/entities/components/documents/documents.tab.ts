@@ -48,12 +48,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     ];
 
     public itemOptions: TlItemOption[] = [
-        TlItemOptions.Edit(this.editItem.bind(this), {
-            ngIf: (item) => (
-                item &&
-                item.auto_fetched
-            ),
-        }),
+        TlItemOptions.Edit(this.editItem.bind(this)),
         TlItemOptions.Delete(this.deleteItem.bind(this), {
             ngIf: (item) => (
                 item.kind &&
