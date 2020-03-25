@@ -14,7 +14,7 @@ export class AppService extends BaseService2 {
   }
 
   public getInfo() {
-    return this.get(`/system/v1/version`);
+    return this.get(`/public/v1/info`);
   }
 
   public getStatus() {

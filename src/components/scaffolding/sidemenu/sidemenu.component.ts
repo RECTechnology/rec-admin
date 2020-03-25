@@ -5,6 +5,7 @@ import { UserService } from '../../../services/user.service';
 import { environment } from '../../../environments/environment';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { SIDEMENU_ITEMS } from './sidemenu-items';
+import { AppService } from 'src/services/app/app.service';
 
 @Component({
   selector: 'sidemenu',
@@ -22,17 +23,28 @@ export class SidemenuComponent {
     nrdb: false,
     rdb: false,
   };
+  public apiVersion = '...';
 
   constructor(
     public controles: ControlesService,
     public us: UserService,
     public dialog: MatDialog,
+    public app: AppService,
     public utils: UtilsService,
   ) { }
 
   public ngOnInit() {
     this.toggled = this.controles.isToggled('sidemenu');
     this.handler = this.controles.addHandler('sidemenu', (toggled) => this.toggled = toggled);
+    this.getApiVersion();
+  }
+
+  public getApiVersion() {
+    this.app.getInfo()
+      .subscribe((resp) => {
+        console.log(resp);
+        this.apiVersion = resp.data.version;
+      });
   }
 
   public ngOnDestroy() {

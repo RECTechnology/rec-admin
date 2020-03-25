@@ -9,7 +9,7 @@
       </div>
     </button>
     <a routerLink="/dashboard" class="col-white text-mid-small" style="width: 120px" *ngIf="toggled">
-      {{brand.header_title}} <span class="small-text monospace">{{environment.version}}</span>
+      {{brand.header_title}}
     </a>
   </div>
   <div class="content bg-white h-100" [ngClass]="{'small': !toggled}" style="position:relative">
@@ -57,9 +57,10 @@
               <span class="fa fa-angle-down" *ngIf="toggled"></span>
             </span>
           </li>
-          <ul *ngIf="item.type == 'dropdown' && toggled" class="dropdown" [ngClass]="{'expanded': controles.isToggled(item.name)}">
-            <li *ngFor="let child of item.children" class="menu-item" (click)="clickedItem()"
-              [routerLink]="child.route" routerLinkActive="active">
+          <ul *ngIf="item.type == 'dropdown' && toggled" class="dropdown"
+            [ngClass]="{'expanded': controles.isToggled(item.name)}">
+            <li *ngFor="let child of item.children" class="menu-item" (click)="clickedItem()" [routerLink]="child.route"
+              routerLinkActive="active">
               <i class="fa fa-lg fa-fw {{child.icon}}"></i>
               <span>
                 {{child.name|translate}}
@@ -79,6 +80,10 @@
           </ng-template>
         </ng-template>
       </ul>
+      <div style="padding-left: 15px">
+        <p class="small-text">Version: <code>{{environment.version}}</code></p>
+        <p class="small-text">API:  <code>{{apiVersion}}</code></p>
+      </div>
     </div>
   </div>
 </div>

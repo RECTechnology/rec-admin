@@ -57,17 +57,6 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   }
 
   public ngAfterViewInit() {
-
-    this.crudAccounts.lwGateway('RegisterIBAN', {
-      "wallet": "ivan2",
-      "holder": "string",
-      "bic": "string",
-      "iban": "NL43ABNA6922895703",
-      "dom1": "string",
-      "dom2": "string",
-      "comment": "string"
-    }).subscribe();
-
     this.setRefresh();
     this.getAggregations();
     this.getNeighbourhoods();
