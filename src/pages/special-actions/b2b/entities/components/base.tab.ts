@@ -90,6 +90,7 @@ export abstract class EntityTabBase<T> {
     }
 
     public editItem(item: any) {
+        console.log('edit item', item);
         this.alerts.openModal(this.editComponent, {
             isEdit: true,
             item: Object.assign({}, item),

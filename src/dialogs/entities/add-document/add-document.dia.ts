@@ -23,14 +23,12 @@ export class AddDocumentDia extends BaseDialog {
     account_id: null,
     content: '',
     valid_until: null,
-    auto_fetched: false,
   };
   public itemCopy: Document = {
     name: '',
     kind_id: null,
     account_id: null,
     content: '',
-    auto_fetched: false,
   };
   public itemType = 'Document';
   public docKinds = [];
@@ -54,11 +52,9 @@ export class AddDocumentDia extends BaseDialog {
     this.item.account_id = this.item.account ? this.item.account.id : this.item.account_id;
     this.item.kind_id = this.item.kind && this.item.kind.id;
     this.itemCopy = Object.assign({}, this.item);
-    this.isLemon = Object.prototype.hasOwnProperty.call(this.item.kind, 'lemon_doctype');
+    this.isLemon = this.item.kind && Object.prototype.hasOwnProperty.call(this.item.kind, 'lemon_doctype');
 
     console.log(this.item);
-    console.log('isLemon', this.isLemon);
-    console.log('isEdit', this.isEdit);
   }
 
   public getDocumentKinds() {

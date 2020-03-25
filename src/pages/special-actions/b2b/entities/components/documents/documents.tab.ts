@@ -115,14 +115,17 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         this.search();
     }
 
+    public editItem(item) {
+        super.editItem(item);
+    }
+
     public addItem() {
-        this.addItemOptions = {
+        super.addItem({
             item: {
                 account_id: this.accountFilter,
             },
             disableAccountSelector: this.disableAccountFilter,
-        };
-        super.addItem();
+        });
     }
 
     public search(query?) {
