@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlertsService } from '../alerts/alerts.service';
 import { UnsavedChangesDialog } from 'src/dialogs/unsaved-changes/unsaved-changes.dia';
+import { runInThisContext } from 'vm';
 
 export interface ComponentCanDeactivate {
     canDeactivate: () => boolean | Observable<boolean>;
@@ -14,7 +15,7 @@ export interface ComponentCanDeactivate {
 
 @Injectable()
 export class PendingChangesGuard implements CanDeactivate<ComponentCanDeactivate> {
-
+    public isOpened = false;
     constructor(
         public alerts: AlertsService,
     ) { }
@@ -25,7 +26,8 @@ export class PendingChangesGuard implements CanDeactivate<ComponentCanDeactivate
             const canIt = component.canDeactivate();
             const title = component.title;
 
-            if (!canIt) {
+            if (!canIt && !this.isOpened) {
+                this.isOpened = true;
                 this.showAlert(title).afterClosed()
                     .subscribe((resp) => {
                         if (resp === 'save' && typeof component.onSaveDraft === 'function') {
@@ -38,8 +40,10 @@ export class PendingChangesGuard implements CanDeactivate<ComponentCanDeactivate
                             component.onContinueEditing();
                             observer.next(false);
                         }
+
+                        this.isOpened = false;
                     });
-            } else {
+            } else if (!this.isOpened) {
                 observer.next(true);
             }
         });

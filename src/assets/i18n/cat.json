@@ -1086,5 +1086,7 @@
   "Holder": "Titular",
   "Bank Address": "Direcció de l'banc",
   "IBAN Number": "Número IBAN",
-  "VALID_UNTIL": "Vàlid fins"
+  "VALID_UNTIL": "Vàlid fins",
+  "IMPORT_CSV_ACCOUNTS_DESC": "El document .csv ha de contenir les capçaleres 'account_id' i 'mailing_id' per ser processats correctament.",
+  "MAILING_ID_IS": "El mailing_id es: "
 }

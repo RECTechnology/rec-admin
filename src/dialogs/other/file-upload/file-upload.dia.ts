@@ -18,6 +18,9 @@ export class FileUpload {
   public noImageName: string = 'profile_default_image';
   public selectedImage;
   public progress = 0;
+
+  public extension;
+  public isImage = true;
   private file: File;
   private uploadSub: any;
   private zone: NgZone;
@@ -47,6 +50,9 @@ export class FileUpload {
       this.hasSelectedImage = true;
 
       const reader = new FileReader();
+
+      this.isImage = /jpg|jpeg|png|svg/.test(this.selectedImageName);
+      this.extension = file.name.split('.').pop();
 
       reader.onload = (e: any) => this.selectedImage = e.target.result;
       reader.readAsDataURL(file);

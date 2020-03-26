@@ -1084,6 +1084,7 @@
   "Holder": "Titular",
   "Bank Address": "Dirección del banco",
   "IBAN Number": "Número IBAN",
-  "VALID_UNTIL": "Válido hasta"
-
+  "VALID_UNTIL": "Válido hasta",
+  "IMPORT_CSV_ACCOUNTS_DESC": "El documento .csv deberá contener las cabeceras 'account_id' y 'mailing_id' para ser procesados correctamente.",
+  "MAILING_ID_IS": "El mailing_id es: "
 }

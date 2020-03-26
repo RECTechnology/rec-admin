@@ -1,65 +1,65 @@
-<div style="height: auto">
-    <p class="small-text col-blue">
-        {{'DELIVERY_DESC'|translate}}
-    </p>
-    <div class="group-row-left center v space-between bordered-bottom padd-x10">
-        <p class="small-text col-gray">{{'SELECTED_ACCOUNTS'|translate}}: <b>{{selectedAccounts.length}}</b></p>
-        <button [disabled]="disabled" (click)="openSelectAccounts()" color="primary" mat-raised-button>
-            + {{'ADD_ACCOUNTS'|translate}}
-        </button>
-    </div>
-    <div style="padding-left: 8px; width: 100%">
-        <div class="group-col-left" style="width: 100%; max-height: 300px; overflow-y: auto">
-            <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
-                style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
-            </validation-errors>
-            <div class="group-row-left center v space-between"
-                style="width: 100%; padding: 8px 0; border-bottom: 1px solid #ddd;"
-                *ngFor="let item of selectedAccounts; let i = index">
-                <div class="group-row-left center v">
-                    <div class="group-row-left center v">
-                        <span class="text-small">
-                            <i *ngIf="item.status === 'sent' || item.status === 'delivered' || item.status === 'opened'"
-                                matTooltip="Status: {{item.status}}" class="fa fa-check col-success marg-r-10"></i>
-
-                            <i *ngIf="item.status === 'errored'" matTooltip="Status: {{item.status}}"
-                                class="fa fa-times col-error marg-r-10"></i>
-
-                            <i *ngIf="item.status === 'scheduled'" matTooltip="Status: {{item.status}}"
-                                class="fa fa-clock col-info marg-r-10"></i>
-
-                            <i *ngIf="item.status === 'created'" matTooltip="Status: {{item.status}}"
-                                class="fa fa-circle col-info marg-r-10"></i>
-
-                            <i *ngIf="item.status === 'canceled'" matTooltip="Status: {{item.status}}"
-                                class="fa fa-ban col-warning marg-r-10"></i>
-
-                            <i *ngIf="item.status === 'failed'"
-                                matTooltip="Status: {{item.status}} | {{item.failure_reason}}"
-                                class="fa fa-ban col-warning marg-r-10"></i>
-
-                            <i *ngIf="item.status === 'unsubscribed'" matTooltip="Status: {{item.status}} - User will not receive mails now"
-                                class="fa fa-times col-warning marg-r-10"></i>
-                        </span>
-
-                        <span class="text-small">
-                            <i *ngIf="item.status === 'opened'" matTooltip="Mail read"
-                                class="fa fa-eye col-success marg-r-10"></i>
-                            <i *ngIf="item.status === 'sent'" matTooltip="Mail not read"
-                                class="fa fa-eye-slash col-gray-light marg-r-10"></i>
-                        </span>
-                    </div>
-                    <div>
-                        <div class="small-text">{{item.name}} (<code>{{item.id}}</code>)</div>
-                        <p style="font-size: 10px">{{item.email}}</p>
-                    </div>
+<div style="height: auto; overflow: hidden;">
+    <mat-tab-group>
+        <mat-tab label="ADD_ACCOUNTS">
+            <div class="padd-x15">
+                <p class="small-text col-blue lh-small">
+                    {{'DELIVERY_DESC'|translate}}
+                </p>
+                <div class="group-row-left center v space-between bordered-bottom" style="padding: 10px 0 10px 0">
+                    <p class="small-text col-gray">{{'SELECTED_ACCOUNTS'|translate}}: <b>{{selectedAccounts.length}}</b>
+                    </p>
+                    <button [disabled]="disabled" (click)="openSelectAccounts()" color="primary" mat-raised-button>
+                        <i class="fa fa-plus marg-r-10"></i> {{'ADD'|translate}}
+                    </button>
                 </div>
-                <button mat-icon-button matTooltip="{{'Delete'|translate}}" color="error" *ngIf="!disabled" (click)="removeAccount(i)"><i
-                        class="fa fa-trash col-error"></i></button>
+                <div style="width: 100%">
+                    <div class="group-col-left" style="width: 100%; max-height: 300px; overflow-y: auto">
+                        <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+                            style="border-bottom: 1px solid #ddd!important; width: 100%"
+                            [validationName]="validationErrorName">
+                        </validation-errors>
+                        <delivery-entry [disabled]="disabled" [item]="item"
+                            *ngFor="let item of selectedAccounts; let i = index" (remove)="removeAccount(i)">
+                        </delivery-entry>
+                    </div>
+                    <p class="small-text marg-t-10" *ngIf="!selectedAccounts.length">
+                        {{'NO_USERS_SELECTED'|translate}}
+                    </p>
+                </div>
             </div>
-        </div>
-        <p class="small-text" *ngIf="!selectedAccounts.length">
-            {{'NO_USERS_SELECTED'|translate}}
-        </p>
-    </div>
+        </mat-tab>
+        <mat-tab label="IMPORT_CSV">
+            <div class="padd-x15">
+                <p class="small-text col-blue lh-small">
+                    {{'IMPORT_CSV_ACCOUNTS_DESC'|translate}}
+                </p>
+
+                <p class="small-text col-gray-light" style="margin-top: 10px">
+                    {{'MAILING_ID_IS'|translate}} <code>{{id}}</code>
+                </p>
+
+                <div class="group-row-left center v space-between bordered-bottom" style="padding: 10px 0 10px 0">
+                    <p class="small-text col-gray">{{'SELECTED_ACCOUNTS'|translate}}: <b>{{selectedAccounts.length}}</b>
+                    </p>
+                    <button [disabled]="disabled" (click)="openUploadCsv()" color="primary" mat-raised-button>
+                        <i class="fa fa-file marg-r-10"></i> {{'IMPORT'|translate}}
+                    </button>
+                </div>
+
+                <div class="group-col-left" style="width: 100%; max-height: 300px; overflow-y: auto">
+                    <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+                        style="border-bottom: 1px solid #ddd!important; width: 100%"
+                        [validationName]="validationErrorName">
+                    </validation-errors>
+                    <delivery-entry [disabled]="disabled" [item]="item"
+                        *ngFor="let item of selectedAccounts; let i = index" (remove)="removeAccount(i)">
+                    </delivery-entry>
+                </div>
+
+                <p class="small-text marg-t-10" *ngIf="!selectedAccounts.length">
+                    {{'NO_USERS_SELECTED'|translate}}
+                </p>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
 </div>

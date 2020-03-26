@@ -508,5 +508,8 @@
   "INTERNAL_NAME": "Internal name of the document (eg 'novacts IBAN')",
   "IBAN_HOLDER": "IBAN owner: name and surname(s), or company name",
   "IBAN_BANK_NAME": "If you do not have one, enter the address of the account",
-  "VALID_UNTIL": "Valid until"
+  "VALID_UNTIL": "Valid until",
+  "IMPORT_CSV_ACCOUNTS_DESC": "The .csv document must contain the headers 'account_id' and 'mailing_id' to be processed correctly.",
+  "MAILING_ID_IS": "mailing_id is: "
+
 }

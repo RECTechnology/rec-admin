@@ -2,9 +2,12 @@
 
 <div class="group-col-left padd-x20">
 
-  <div class="group-row-left" style="width: 100%; align-items: flex-start">
+  <div class="group-row-left" style="width: 100%;max-width: 30vw; align-items: flex-start">
     <div class="" style="height: 150px; width: 150px">
-      <img src="{{selectedImage || brand[noImageName]}}" style="width: 150px; height: auto">
+      <img *ngIf="isImage" src="{{selectedImage || brand[noImageName]}}" style="width: 150px; height: auto">
+      <div *ngIf="!isImage" style="width: 150px;height: 150px; border-radius: 50%" class="bg-blue center h v">
+        <h4 class="col-white">{{extension}}</h4>
+      </div>
     </div>
 
     <div class="group-col-left" style="overflow: visible; height: auto;width: 100%;">

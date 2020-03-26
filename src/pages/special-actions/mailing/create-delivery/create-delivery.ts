@@ -6,10 +6,12 @@ import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliver
 import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
-import BaseDialog from 'src/bases/dialog-base';
-import { SelectAccountsDia } from 'src/pages/special-actions/change_delegate/components/select_accounts_dialog/select_accounts.dia';
+import {
+    SelectAccountsDia
+} from 'src/pages/special-actions/change_delegate/components/select_accounts_dialog/select_accounts.dia';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { FileUpload } from 'src/dialogs/other/file-upload/file-upload.dia';
 
 @Component({
     selector: 'create-delivery',
@@ -22,6 +24,8 @@ export class CreateDelivery {
 
     @Input() public deliveries = [];
     @Input() public selectedAccounts = [];
+
+    public csvFile = null;
 
     @Output() public update: EventEmitter<any> = new EventEmitter();
 
@@ -53,6 +57,26 @@ export class CreateDelivery {
                 this.createDelivery(result.accounts);
             }
         });
+    }
+
+    public openUploadCsv() {
+        return this.alerts.openModal(FileUpload, {
+            hasSelectedImage: !!this.csvFile,
+            selectedImage: this.csvFile,
+        }).subscribe((csv) => {
+            console.log('file', csv);
+            this.csvFile = csv;
+            this.uploadCsv(csv);
+        }, this.alerts.observableErrorSnackbar.bind(this.alerts));
+    }
+
+    public uploadCsv(csv) {
+        this.mailDeliveries.import({ csv })
+            .subscribe((resp) => {
+                console.log('asd', resp);
+                this.loading = false;
+                this.update.emit();
+            }, this.alerts.observableErrorSnackbar.bind(this.alerts));
     }
 
     public createDelivery(accounts) {

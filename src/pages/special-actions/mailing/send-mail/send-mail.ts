@@ -127,9 +127,9 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         this.title = this.mail.subject;
         return (
             (this.justCreated) ||
-            (this.mail.status === 'processed') ||
-            (this.justCreated ? this.justCreated = true : this.saved) &&
-            (this.mail.subject || this.mail.content)
+            ((this.mail.status === 'processed') ||
+                (this.justCreated ? this.justCreated = true : this.saved) &&
+                (this.mail.subject || this.mail.content))
         );
     }
 
@@ -150,6 +150,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
                 this.isEdit = true;
                 this.id = params.id_or_new;
                 this.update();
+                this.justCreated = true;
             } else {
                 this.mailCopy = { ...this.mail };
             }
@@ -164,6 +165,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
         this.getMail();
         this.search();
+        this.justCreated = false;
     }
 
     public getMail() {
@@ -312,14 +314,16 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public changedEditor(event) {
-        this.mail.content = event.html ? event.html : this.mail.content;
+        // this.mail.content = event.html ? event.html : this.mail.content;
 
         // It triggers change on init, and messed up with save logic
         if (!this.firstRun) {
             this.saved = false;
         } else {
+            this.saved = false;
             this.firstRun = false;
         }
+        this.justCreated = false;
     }
 
     public focus($event) {

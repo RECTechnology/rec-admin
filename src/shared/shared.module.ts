@@ -102,6 +102,7 @@ import { EventsService } from 'src/services/events/events.service';
 import { CollapsableWhen } from 'src/directives/collapsable.directive';
 import { AppPage } from 'src/components/scaffolding/page/page-component';
 import { IbansCrud } from 'src/services/crud/ibans/ibans.crud';
+import { DeliveryEntry } from 'src/pages/special-actions/mailing/delivery-entry/delivery-entry.component';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -191,6 +192,7 @@ const DIRECTIVES = [
     FileSelector,
     MaskPipe,
     AppPage,
+    DeliveryEntry,
     ...DIALOGS,
     ...DIRECTIVES,
   ],

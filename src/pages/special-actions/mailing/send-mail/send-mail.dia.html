@@ -6,8 +6,7 @@
         <mat-card style="margin-bottom: 10px">
             <div class="center v space-between">
                 <div class="center v">
-                    <icon-btn icon="fa-angle-left" routerLink="/rec/mailing"
-                        class="icon-btn-small"></icon-btn>
+                    <icon-btn icon="fa-angle-left" routerLink="/rec/mailing" class="icon-btn-small"></icon-btn>
 
                     <p class="col-blue small-text">
                         {{((isEdit && !readonly) ? 'EDIT_MAIL': (readonly ? 'VIEW_MAIL': 'CREATE_MAIL'))|translate}}
@@ -88,7 +87,7 @@
                 </div>
             </mat-card>
             <div class="col-lg-4 col-md-12" style="margin-bottom: 10px;width: 100%; margin-top: 10px;padding-right: 0;">
-                <mat-card style="width: 100%; height: 100%;">
+                <mat-card style="width: 100%; height: 100%;padding:0">
                     <create-delivery [id]="id" [disabled]="readonly || !isEdit" [selectedAccounts]="deliveries"
                         (update)="update()">
                     </create-delivery>
