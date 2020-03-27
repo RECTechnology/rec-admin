@@ -44,6 +44,9 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         subject: '',
         attachments: {},
     };
+    // Separate this to prevent bug when updating quill-editor content
+    public content = '';
+
     public mailCopy = { ...this.mail };
     public deliveries = [];
     public totalDeliveries = 0;
@@ -92,6 +95,8 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
                             .then((resp) => {
                                 this.saved = true;
                                 this.justCreated = true;
+                                this.content = '';
+
                                 if (queryParams.acc_id) {
                                     this.createDelivery.id = this.id;
                                     this.createDelivery.createDelivery([{ id: queryParams.acc_id }]);
@@ -134,12 +139,14 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public onDiscard() {
+        console.log('onDiscard');
         if (!this.mail.concept && !this.mail.content && !this.mail.id) {
             this.alerts.showSnackbar('Discarded changes');
         }
     }
 
     public onSaveDraft() {
+        console.log('onSaveDraft');
         this.isEdit ? this.saveMail() : this.createMail(false);
     }
 
@@ -155,6 +162,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
                 this.mailCopy = { ...this.mail };
             }
         });
+        this.content = this.mail.content;
         super.ngOnInit();
     }
 
@@ -175,6 +183,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
                 this.readonly = [MailingCrud.STATUS_PROCESSED, MailingCrud.STATUS_SCHEDULED].includes(this.mail.status);
 
                 this.mail.attachments = this.mail.attachments.map ? {} : this.mail.attachments;
+                this.content = this.mail.content;
                 this.attachments = Object.keys(this.mail.attachments).map((el) => {
                     return {
                         name: el,
@@ -314,7 +323,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public changedEditor(event) {
-        // this.mail.content = event.html ? event.html : this.mail.content;
+        this.mail.content = event.html ? event.html : this.mail.content;
 
         // It triggers change on init, and messed up with save logic
         if (!this.firstRun) {

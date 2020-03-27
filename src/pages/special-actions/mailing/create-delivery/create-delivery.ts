@@ -63,10 +63,13 @@ export class CreateDelivery {
         return this.alerts.openModal(FileUpload, {
             hasSelectedImage: !!this.csvFile,
             selectedImage: this.csvFile,
+            title: 'UPLOAD_CSV',
         }).subscribe((csv) => {
-            console.log('file', csv);
-            this.csvFile = csv;
-            this.uploadCsv(csv);
+            if (csv) {
+                console.log('file', csv);
+                this.csvFile = csv;
+                this.uploadCsv(csv);
+            }
         }, this.alerts.observableErrorSnackbar.bind(this.alerts));
     }
 
