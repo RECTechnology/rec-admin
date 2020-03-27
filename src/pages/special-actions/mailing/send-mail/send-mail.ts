@@ -131,7 +131,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public canDeactivate(): any {
         this.title = this.mail.subject;
         return (
-            (this.justCreated) ||
+            (this.saved) ||
             ((this.mail.status === 'processed') ||
                 (this.justCreated ? this.justCreated = true : this.saved) &&
                 (this.mail.subject || this.mail.content))
@@ -147,7 +147,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public onSaveDraft() {
         console.log('onSaveDraft');
-        this.isEdit ? this.saveMail() : this.createMail(false);
+        this.isEdit ? this.saveMail({ goBack: true }) : this.createMail(false);
     }
 
     public ngOnInit() {
@@ -285,6 +285,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             subject: data.subject,
         }).then((res) => {
             this.saved = true;
+            this.justCreated = false;
             if (goBack) { this.router.navigate(['/rec/mailing']); }
         });
     }
