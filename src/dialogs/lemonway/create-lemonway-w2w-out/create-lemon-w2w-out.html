@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="col-lg-12">
-      <input-field type="number" [(value)]="amount" label="Amount" [disabled]="loading">
+      <input-field type="number" [(value)]="amount" label="Amount" subLabel="(eur)" [disabled]="loading">
       </input-field>
       <p *ngIf="amount > (originAccount ? originAccount.lw_balance: 0)" class="small-text col-error">
         {{'NOT_ENOUGH_FUNDS'|translate}}</p>
