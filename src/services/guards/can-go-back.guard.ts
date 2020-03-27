@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlertsService } from '../alerts/alerts.service';
 import { UnsavedChangesDialog } from 'src/dialogs/unsaved-changes/unsaved-changes.dia';
+
 export interface ComponentCanDeactivate {
     canDeactivate: () => boolean | Observable<boolean>;
     onSaveDraft: () => any;

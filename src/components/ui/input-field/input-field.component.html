@@ -1,6 +1,6 @@
 <div class="group-col-left">
     <span class="small-text-2 marg-b-5" *ngIf="label">
-        {{label|translate}} <span class="small-text col-gray-light">{{getMinMaxLabel()}} </span>
+        {{label|translate}} {{subLabel}} <span class="small-text col-gray-light">{{getMinMaxLabel()}} </span>
         <i *ngIf="isRequired" style="font-size: 10px!important;" class="small-text fa fa-asterisk col-error"></i>
     </span>
     <p class="small-text col-gray-light" [ngClass]="{'col-error': hasError}" style="margin-top: 0"

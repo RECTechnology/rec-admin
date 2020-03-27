@@ -10,6 +10,7 @@ import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChang
 })
 export class InputFieldComponent {
   @Input() public label: string;
+  @Input() public subLabel: string;
   @Input() public placeholder: string;
   @Input() public name: string;
   @Input() public value: any = '';
