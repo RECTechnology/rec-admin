@@ -287,7 +287,8 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
     public updateMail(data, message = 'Saved Mail Correctly') {
         return this.mailing.update(this.id, data, this.langMap[this.lang.abrev])
-            .toPromise().then((resp) => {
+            .toPromise()
+            .then((resp) => {
                 this.alerts.showSnackbar(message);
                 this.loading = false;
                 this.saved = true;
@@ -297,6 +298,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             }).catch((err) => {
                 this.alerts.showSnackbar(err.message);
                 this.loading = false;
+                throw err;
             });
     }
 
@@ -452,9 +454,12 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             status: MailingCrud.STATUS_SCHEDULED,
         };
 
-        const send = () => this.updateMail(mailData, message).then(() => {
-            this.goBack(true);
-        });
+        const send = () => this.updateMail(mailData, message)
+            .then(() => {
+                console.log('updated');
+                this.goBack(true);
+            })
+            .catch(this.handleValidationError.bind(this));
 
         if (!this.saved) {
             this.saveMail().then(send);
