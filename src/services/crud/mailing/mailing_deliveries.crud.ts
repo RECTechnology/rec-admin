@@ -13,6 +13,7 @@ export class MailingDeliveriesCrud extends CrudBaseService<any> {
     public static STATUS_SENT = 'sent';
     public static STATUS_CANCELLED = 'cancelled';
     public static STATUS_ERRORED = 'errored';
+    public tName = 'MailDelivery';
 
     constructor(
         http: HttpClient,

@@ -1005,7 +1005,7 @@
   "Clients/Providers PDF": "PDF Clients/Proveïdors",
   "Link": "Enllaç",
   "Upload": "Pujar",
-  "DISCARD_MAILING": "Esteu segur que voleu descartar aquest correu, titulat '{{title}}'",
+  "DISCARD_MAILING": "Esteu segur que voleu descartar aquest correu",
   "DISCARD_MAILING_DESC": "Teniu els canvis no desats, feu clic a Eliminar si no voleu desar els canvis o Desa l'esborrany si voleu continuar en una data posterior",
   "DISCARD_CHANGES": "Eliminar els canvis",
   "CONTINUE_EDITING": "Continua editant",

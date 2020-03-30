@@ -1,4 +1,3 @@
-import { take } from 'rxjs/internal/operators/take';
 import { Injectable } from '@angular/core';
 import { BaseService2 } from './base.service-v2';
 import { HttpClient } from '@angular/common/http';
@@ -33,6 +32,9 @@ export class CrudBaseService<T> extends BaseService2 {
     public userRole: string = CrudBaseService.ROLE_ADMIN;
     public version: string = 'v3';
     public cached: any = [];
+    public tName = null;
+
+    public DEBUG: boolean = false;
 
     public mapItems: boolean = false;
 
@@ -52,9 +54,17 @@ export class CrudBaseService<T> extends BaseService2 {
         return item;
     }
 
+    public log(...log: any[]) {
+        if (this.DEBUG) {
+            const thisName = this.constructor.name;
+            console.log(`[${thisName}] -`, ...log);
+        }
+    }
+
     // Crud methods
     public create(data: T, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
+        this.log(`create ${this.tName}`, arguments);
         return this.post(url, data, 'application/json',
             lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
         ).pipe(this.itemMapper());
@@ -62,11 +72,13 @@ export class CrudBaseService<T> extends BaseService2 {
 
     public remove(id: any): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
+        this.log(`remove ${this.tName}`, id);
         return this.delete(url);
     }
 
     public update(id: any, data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
+        this.log(`update ${this.tName}`, id, data);
         return this.put(url, data, 'application/json',
             lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
         );
@@ -74,30 +86,35 @@ export class CrudBaseService<T> extends BaseService2 {
 
     public list(query?: CrudQueryOptions, lang: RecLang = REC_LANGS.ALL): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
+        this.log(`list ${this.tName}`, query);
         return this.get(url, query, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());
     }
 
     public search(data: ListAccountsParams = {}, lang: RecLang = REC_LANGS.ALL): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_SEARCH];
+        this.log(`search ${this.tName}`, data);
         return this.get(url, data, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());
     }
 
     public find(id: any, lang: RecLang = REC_LANGS.EN): Observable<{ data: T, [key: string]: any } | any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
+        this.log(`find ${this.tName}`, id);
         return this.get(url, null, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());
     }
 
     public export(exportOptions: any) {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_EXPORT];
+        this.log(`export ${this.tName}`, exportOptions);
         return this.get(url, exportOptions, { Accept: '*/*' }, { responseType: 'text' })
             .pipe(this.itemMapper());
     }
 
     public import(importOptions: { csv: string }) {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_IMPORT];
+        this.log(`import ${this.tName}`, importOptions);
         return this.post(url, importOptions)
             .pipe(this.itemMapper());
     }

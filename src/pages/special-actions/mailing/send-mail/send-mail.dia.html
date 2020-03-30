@@ -67,9 +67,10 @@
                         (onFocus)="focus($event)" (onEditorChanged)="changedEditor($event)" (onBlur)="blur($event)"
                         (onEditorCreated)="created($event)">
                     </quill-editor>
-                    <button *ngIf="!readonly" style="margin: 10px 0" (click)="showPreview = !showPreview"
-                        mat-raised-button color="primary">
-                        {{(showPreview ? 'Hide Preview': 'Preview')|translate}}</button>
+                    <button *ngIf="!readonly" style="margin: 10px 0" (click)="togglePreview()" mat-raised-button
+                        color="primary">
+                        {{(showPreview ? 'Hide Preview': 'Preview')|translate}}
+                    </button>
                     <div *ngIf="readonly || showPreview" class="mail-preview">
                         <p class="small-text col-warning">
                             * {{'PREVIEW_NOT_ACCURATE'|translate}}
@@ -144,7 +145,7 @@
                 </mat-menu>
 
                 <button color="primary" *ngIf="isEdit" [disabled]="isSaveDisabled() || loading || readonly"
-                    (click)="saveMail({ goBack: true })" mat-raised-button style="margin-right: 10px;margin-left: 15px"
+                    (click)="saveMail({ goBack: false })" mat-raised-button style="margin-right: 10px;margin-left: 15px"
                     matTooltip="{{'SAVE'|translate}}">
                     <i class="fa fa-save" style="margin-right: 8px"></i> {{'SAVE'|translate}}
                 </button>

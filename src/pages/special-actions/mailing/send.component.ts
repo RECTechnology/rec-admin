@@ -1,3 +1,4 @@
+import { EventsService } from 'src/services/events/events.service';
 import { Component } from '@angular/core';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
@@ -63,6 +64,7 @@ export class B2BSendComponent extends TablePageBase {
         public ls: LoginService,
         public titleService: Title,
         public alerts: AlertsService,
+        public events: EventsService,
     ) {
         super();
     }
@@ -73,12 +75,17 @@ export class B2BSendComponent extends TablePageBase {
     }
 
     public removeMail(mail) {
-        this.mailing.remove(mail.id)
-            .subscribe((resp) => {
-                this.alerts.showSnackbar('Removed mail correctly');
-                this.search();
-            }, (error) => {
-                this.alerts.showSnackbar(error.message);
+        return this.alerts.confirmDeletion('Mail')
+            .subscribe((shouldDelete) => {
+                if (shouldDelete) {
+                    this.mailing.remove(mail.id)
+                        .subscribe((resp) => {
+                            this.alerts.showSnackbar('Removed mail correctly');
+                            this.search();
+                        }, (error) => {
+                            this.alerts.showSnackbar(error.message);
+                        });
+                }
             });
     }
 

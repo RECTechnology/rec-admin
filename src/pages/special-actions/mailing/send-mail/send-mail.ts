@@ -10,14 +10,15 @@ import { ControlesService } from 'src/services/controles/controles.service';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
-import { TlHeader } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { FileUpload } from 'src/dialogs/other/file-upload/file-upload.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { ComponentCanDeactivate } from 'src/services/guards/can-go-back.guard';
 import { LANGS, LANG_MAP } from 'src/data/consts';
 import { CreateDelivery } from '../create-delivery/create-delivery';
+import { EventsService } from 'src/services/events/events.service';
 
+// TODO: refactor this puppy 
 @Component({
     selector: 'send-mail',
     templateUrl: './send-mail.dia.html',
@@ -80,8 +81,12 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         public titleService: Title,
         public alerts: AlertsService,
         public utils: UtilsService,
+        public events: EventsService,
     ) {
         super();
+        this.mailing.DEBUG = true;
+        this.mailDeliveries.DEBUG = true;
+
         this.route.queryParams
             .subscribe((queryParams) => {
                 if (queryParams.acc_id || queryParams.attach) {
@@ -112,9 +117,10 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             });
 
         this.lang[this.lang.abrev] = LANG_MAP[this.us.userData.locale];
-        translate.onLangChange.subscribe(() => {
-            this.update();
-        });
+        translate.onLangChange
+            .subscribe(() => {
+                this.update();
+            });
 
         this.refreshInterval = setInterval(this.update.bind(this), 15e3);
     }
@@ -129,24 +135,30 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
      */
     @HostListener('window:beforeunload')
     public canDeactivate(): any {
-        this.title = this.mail.subject;
-        return (
-            (this.saved) ||
-            ((this.mail.status === 'processed') ||
-                (this.justCreated ? this.justCreated = true : this.saved) &&
-                (this.mail.subject || this.mail.content))
-        );
+        return this.saved;
     }
 
     public onDiscard() {
-        console.log('onDiscard');
-        if (!this.mail.concept && !this.mail.content && !this.mail.id) {
-            this.alerts.showSnackbar('Discarded changes');
-        }
+        this.alerts.showSnackbar('Discarded changes');
+        this.goBack(true);
+    }
+
+    public removeMail(mail) {
+        return this.alerts.confirmDeletion('Mail')
+            .subscribe((shouldDelete) => {
+                if (shouldDelete) {
+                    this.mailing.remove(mail.id)
+                        .subscribe((resp) => {
+                            this.alerts.showSnackbar('Removed mail correctly');
+                            this.goBack(true);
+                        }, (error) => {
+                            this.alerts.showSnackbar(error.message);
+                        });
+                }
+            });
     }
 
     public onSaveDraft() {
-        console.log('onSaveDraft');
         this.isEdit ? this.saveMail({ goBack: true }) : this.createMail(false);
     }
 
@@ -173,12 +185,12 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
         this.getMail();
         this.search();
-        this.justCreated = false;
     }
 
     public getMail() {
         this.mailing.find(this.id, this.langMap[this.lang.abrev])
             .subscribe((resp) => {
+                console.log('get Mail');
                 this.mail = resp.data;
                 this.readonly = [MailingCrud.STATUS_PROCESSED, MailingCrud.STATUS_SCHEDULED].includes(this.mail.status);
 
@@ -201,6 +213,10 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
                 this.saved = true;
                 this.mailCopy = { ...this.mail };
+                console.log('this.saved', this.saved);
+            }, (err) => {
+                this.alerts.showSnackbar(err.message);
+                this.goBack(true);
             });
     }
 
@@ -226,6 +242,14 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public showAll() {
         this.sortedData = this.data.slice();
         this.moreThan5 = false;
+    }
+
+    public togglePreview() {
+        this.showPreview = !this.showPreview;
+
+        if (!this.showPreview) {
+            this.content = this.mail.content;
+        }
     }
 
     public getStatusColor(status) {
@@ -283,11 +307,15 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
             content: data.content,
             scheduled_at: moment(data.scheduled_at).toISOString(),
             subject: data.subject,
-        }).then((res) => {
+        }).then((res) => this.goBack(goBack));
+    }
+
+    public goBack(goBack: boolean = false) {
+        if (goBack) {
             this.saved = true;
             this.justCreated = false;
-            if (goBack) { this.router.navigate(['/rec/mailing']); }
-        });
+            this.router.navigate(['/rec/mailing']);
+        }
     }
 
     public createMail(navigateToMailing = true) {
@@ -304,10 +332,10 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
                 this.loading = false;
                 this.isEdit = true;
                 this.id = resp.data.id;
-                this.justCreated = true;
 
                 if (navigateToMailing) {
                     this.router.navigate(['/rec/mailing/' + this.id]);
+                    this.justCreated = true;
                 }
             }).catch((err) => {
                 this.alerts.showSnackbar(err.message);
@@ -316,7 +344,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public isSaveDisabled() {
-        return this.mail.subject === this.mailCopy.subject && this.mail.content === this.mailCopy.content;
+        return this.saved && this.mail.subject === this.mailCopy.subject && this.mail.content === this.mailCopy.content;
     }
 
     // tslint:disable-next-line: no-empty
@@ -326,13 +354,17 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public changedEditor(event) {
         this.mail.content = event.html ? event.html : this.mail.content;
 
+        console.log('changedEditor', this.saved);
         // It triggers change on init, and messed up with save logic
         if (!this.firstRun) {
             this.saved = false;
         } else {
-            this.saved = false;
             this.firstRun = false;
+            if (this.mail.content !== this.content) {
+                this.saved = false;
+            }
         }
+        console.log('changedEditor', this.saved);
         this.justCreated = false;
     }
 
@@ -421,8 +453,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         };
 
         const send = () => this.updateMail(mailData, message).then(() => {
-            this.justCreated = true;
-            this.router.navigate(['/rec/mailing']);
+            this.goBack(true);
         });
 
         if (!this.saved) {

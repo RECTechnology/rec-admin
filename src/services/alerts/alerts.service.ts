@@ -1,3 +1,4 @@
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MatDialog } from '@angular/material/dialog';
@@ -36,15 +37,15 @@ export class AlertsService {
     });
   }
 
-  public confirmDeletion(itemName = 'Item', trailing?: string) {
-    return this.showConfirmation(
+  public confirmDeletion(itemName = 'Item', trailing?: string, showConfirm = true) {
+    return showConfirm ? this.showConfirmation(
       'DELETE_CONFIRM',
       'Delete ' + itemName + '?',
       {
         btnConfirmText: 'Delete',
         trailing,
       },
-    );
+    ) : of(true);
   }
 
   public observableErrorSnackbar(error) {

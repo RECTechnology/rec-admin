@@ -24,5 +24,6 @@ export class EventsService {
         if (this.findEvent(name)) {
             this.events[name].emit(...args);
         }
+        return this.events[name];
     }
 }
