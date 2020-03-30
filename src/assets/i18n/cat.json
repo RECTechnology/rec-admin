@@ -1088,5 +1088,7 @@
   "IBAN Number": "Número IBAN",
   "VALID_UNTIL": "Vàlid fins",
   "IMPORT_CSV_ACCOUNTS_DESC": "El document .csv ha de contenir les capçaleres 'account_id' i 'mailing_id' per ser processats correctament.",
-  "MAILING_ID_IS": "El mailing_id es: "
+  "MAILING_ID_IS": "El mailing_id es: ",
+  "TRANSLATE_MAIL_INFO": "Traduir correu, es pot crear en 3 idiomes i s'enviarà en l'idioma que ha seleccionat el compte",
+  "IMPORT_CSV": "Importar CSV"
 }

@@ -1,6 +1,6 @@
 <div style="height: auto; overflow: hidden;">
     <mat-tab-group>
-        <mat-tab label="ADD_ACCOUNTS">
+        <mat-tab label="{{'ADD_ACCOUNTS'|translate}}">
             <div class="padd-x15">
                 <p class="small-text col-blue lh-small">
                     {{'DELIVERY_DESC'|translate}}
@@ -28,13 +28,13 @@
                 </div>
             </div>
         </mat-tab>
-        <mat-tab label="IMPORT_CSV">
+        <mat-tab label="{{'IMPORT_CSV'|translate}}">
             <div class="padd-x15">
                 <p class="small-text col-blue lh-small">
                     {{'IMPORT_CSV_ACCOUNTS_DESC'|translate}}
                 </p>
 
-                <p class="small-text col-gray-light" style="margin-top: 10px">
+                <p class="small-text col-gray-light" style="margin-top: 15px">
                     {{'MAILING_ID_IS'|translate}} <code>{{id}}</code>
                 </p>
 
@@ -42,7 +42,7 @@
                     <p class="small-text col-gray">{{'SELECTED_ACCOUNTS'|translate}}: <b>{{selectedAccounts.length}}</b>
                     </p>
                     <button [disabled]="disabled" (click)="openUploadCsv()" color="primary" mat-raised-button>
-                        <i class="fa fa-file marg-r-10"></i> {{'IMPORT'|translate}}
+                        <i class="fa fa-file marg-r-10"></i> {{'CSV'|translate}}
                     </button>
                 </div>
 

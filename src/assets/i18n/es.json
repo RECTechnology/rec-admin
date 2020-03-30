@@ -1068,7 +1068,6 @@
   "Next Tier": "Nivel Posterior",
   "ONLY_IN_LEMONWAY:long": "Esto solo se realiza en lemonway, no afecta al sistema REC.",
   "ONLY_IN_LEMONWAY:short": "Esto solo se realiza en lemonway",
-
   "NO_IBANS": "No hay IBANs registrados",
   "CREATE_IBAN": "Crear IBAN",
   "External": "Externa",
@@ -1076,15 +1075,15 @@
   "IBAN Status": "Estado IBAN",
   "Internal ID": "ID Interno",
   "External ID": "ID Externo",
-
   "INTERNAL_NAME": "Nombre interno del documento (Ej. 'IBAN de novact')",
   "IBAN_HOLDER": "Propietario del IBAN: nombre y apellido(s), o nombre de empresa",
   "IBAN_BANK_NAME": "Si no se tiene, poner el domicilio de la cuenta",
-
   "Holder": "Titular",
   "Bank Address": "Dirección del banco",
   "IBAN Number": "Número IBAN",
   "VALID_UNTIL": "Válido hasta",
   "IMPORT_CSV_ACCOUNTS_DESC": "El documento .csv deberá contener las cabeceras 'account_id' y 'mailing_id' para ser procesados correctamente.",
-  "MAILING_ID_IS": "El mailing_id es: "
+  "MAILING_ID_IS": "El mailing_id es: ",
+  "TRANSLATE_MAIL_INFO": "Traducir el correo, se puede crear en 3 idiomas y se enviará en el idioma que la cuenta haya seleccionado",
+  "IMPORT_CSV": "Importar CSV"
 }
