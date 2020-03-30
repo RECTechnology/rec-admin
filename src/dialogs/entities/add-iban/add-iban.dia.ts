@@ -7,7 +7,6 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TiersCrud } from 'src/services/crud/tiers/tiers.crud';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { Iban } from 'src/shared/entities/iban.ent';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'add-iban',

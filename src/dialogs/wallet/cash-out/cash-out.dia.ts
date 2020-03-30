@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TransactionService } from '../../../services/transactions/transactions.service';
 import BaseDialog from '../../../bases/dialog-base';

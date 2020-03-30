@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
@@ -7,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
 import {
-    SelectAccountsDia
+    SelectAccountsDia,
 } from 'src/pages/special-actions/change_delegate/components/select_accounts_dialog/select_accounts.dia';
 import { forkJoin } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';

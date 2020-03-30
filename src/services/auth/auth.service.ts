@@ -185,7 +185,7 @@ export class LoginService extends BaseService {
           clearInterval(this.tokenTimeout);
           setTimeout((() => {
             this.tokenTimeout = null;
-            const s = this.isLoggedIn.subscribe((logged) => { return; }, (err) => { return; });
+            this.isLoggedIn.subscribe((logged) => { return; }, (err) => { return; });
           }).bind(this), 2000);
         }).bind(this), timeoutTime);
       }
@@ -200,7 +200,7 @@ export class LoginService extends BaseService {
         }
       } else {
         if (!this.us.userData.id) {
-          const profSub = this.us.getProfile()
+          this.us.getProfile()
             .subscribe(
               (resp) => {
                 this.us.userData = resp;

@@ -1,4 +1,4 @@
-import { AccountsPage } from 'src/pages/accounts/accounts.component';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WalletService } from '../../../services/wallet/wallet.service';
@@ -9,7 +9,6 @@ import { UtilsService } from '../../../services/utils/utils.service';
 import { EditAccountData } from '../../../dialogs/management/edit-account/edit-account.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
-import { Account } from 'src/shared/entities/account.ent';
 import { EventsService } from 'src/services/events/events.service';
 
 @Component({

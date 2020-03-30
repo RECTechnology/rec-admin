@@ -46,7 +46,7 @@ export class ExportTxsDia extends BaseDialog {
 
   public getTransactions(): void {
     this.loading = true;
-    const filterData = this.filter.getFilterData(0, 100000, this.dateFrom, this.dateTo);
+    this.filter.getFilterData(0, 100000, this.dateFrom, this.dateTo);
 
     this.txService.listTx(
       this.filter.search, this.offset,

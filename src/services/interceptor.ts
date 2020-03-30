@@ -1,5 +1,4 @@
 import {
-    HttpEvent,
     HttpInterceptor,
     HttpHandler,
     HttpRequest,
@@ -10,7 +9,7 @@ import { environment } from 'src/environments/environment';
 import { MySentry } from 'src/shared/sentry';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -33,7 +32,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
                     if (environment.sentry.active) {
                         MySentry.createException(
-                            cleanError.name || cleanError.status_text, cleanError.message, { params: request.body });
+                            cleanError.name || cleanError.status_text, cleanError.message, { params: request.body });
                     }
 
                     return throwError(cleanError);

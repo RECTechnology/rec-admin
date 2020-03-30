@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 function array_move(arr, old_index, new_index) {
   while (old_index < 0) {
     old_index += arr.length;

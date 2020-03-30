@@ -196,7 +196,7 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
       }
     }
     if ('walletComponent' in dialogRef.componentInstance) {
-      dialogRef.componentInstance['walletComponent'] = (this as never);
+      dialogRef.componentInstance.walletComponent = (this as never);
     }
     if ('dialog' in dialogRef.componentInstance) {
       dialogRef.componentInstance.dialog = (this.dialog as never);

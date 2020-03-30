@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
@@ -18,7 +18,7 @@ import { LANGS, LANG_MAP } from 'src/data/consts';
 import { CreateDelivery } from '../create-delivery/create-delivery';
 import { EventsService } from 'src/services/events/events.service';
 
-// TODO: refactor this puppy 
+// TODO: refactor this puppy
 @Component({
     selector: 'send-mail',
     templateUrl: './send-mail.dia.html',
@@ -366,7 +366,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
                 this.saved = false;
             }
         }
-        console.log('changedEditor', this.saved);
         this.justCreated = false;
     }
 

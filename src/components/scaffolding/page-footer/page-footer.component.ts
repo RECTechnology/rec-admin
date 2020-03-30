@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ControlesService } from '../../../services/controles/controles.service';
+import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -10,8 +9,4 @@ export class PageFooterComponent {
   public brand = environment.Brand;
   public env = environment;
   public year = (new Date()).getFullYear();
-  
-  constructor(
-    private contrService: ControlesService,
-  ) { }
 }

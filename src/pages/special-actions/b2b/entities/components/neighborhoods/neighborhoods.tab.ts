@@ -2,7 +2,11 @@ import { TlHeaders } from 'src/data/tl-headers';
 import { Component } from '@angular/core';
 import { NeighborhoodsCrud } from 'src/services/crud/neighborhoods/neighborhoods.crud';
 import { EntityTabBase } from '../base.tab';
-import { TlItemOption, TableListOptions, TlHeader } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
+import {
+    TlItemOption,
+    TableListOptions,
+    TlHeader,
+} from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddNeighbourhoodDia } from './add/add.dia';

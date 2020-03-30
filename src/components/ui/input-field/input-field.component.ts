@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';

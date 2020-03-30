@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CountryPickerService } from 'ngx-country-picker';
 import { NeighborhoodsCrud } from 'src/services/crud/neighborhoods/neighborhoods.crud';
 
 @Component({

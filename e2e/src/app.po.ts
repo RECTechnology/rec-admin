@@ -34,8 +34,4 @@ export class AppPage {
   public getElementById(id: string) {
     return this.getElement(by.id(id));
   }
-
-  public logout() {
-
-  }
 }

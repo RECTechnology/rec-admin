@@ -141,7 +141,6 @@ export const TlHeaderOfferCount: TlHeader = new TlHeader({
     type: 'image',
 });
 
-
 // tslint:disable-next-line: variable-name
 export const TlHeaderStatus: TlHeader = new TlHeader({
     sort: 'status',

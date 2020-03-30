@@ -49,7 +49,7 @@ export class ActivitiesTabComponent extends EntityTabBase<Activity> {
         this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
             .subscribe((proceed) => {
                 if (proceed) {
-                    const ref = this.alerts.openModal(AddItemDia, {
+                    this.alerts.openModal(AddItemDia, {
                         isEdit: true,
                         item: Object.assign({}, activity),
                         itemType: 'ACTIVITY',

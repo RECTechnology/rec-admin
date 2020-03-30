@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { ControlesService } from '../../../services/controles/controles.service';
+import { Component, OnInit, Input } from '@angular/core';
 
 interface ValidationError {
     message: string;

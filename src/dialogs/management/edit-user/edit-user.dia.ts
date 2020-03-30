@@ -3,13 +3,11 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { FileUpload } from '../../other/file-upload/file-upload.dia';
 import { AdminService } from '../../../services/admin/admin.service';
 import { forkJoin } from 'rxjs';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { LANG_MAP } from 'src/data/consts';
-import { delay } from 'rxjs/internal/operators/delay';
 
 @Component({
   providers: [
@@ -134,7 +132,7 @@ export class EditUserData {
       {
         btnConfirmText: 'Change',
         status: 'error',
-      }
+      },
     ).toPromise();
   }
 

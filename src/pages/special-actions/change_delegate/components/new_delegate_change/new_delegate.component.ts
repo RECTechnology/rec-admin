@@ -146,7 +146,7 @@ export class NewDelegateComponent extends PageBase {
     }
 
     public activateChange() {
-        const dialogRef = this.alerts.openModal(ActivateResume, {
+        this.alerts.openModal(ActivateResume, {
             change: this.delegate,
         }).subscribe((resp) => {
             if (resp) { this.router.navigate(['/change_delegate']); }
@@ -293,7 +293,7 @@ export class NewDelegateComponent extends PageBase {
                     ? this.changeDataCrud.create.bind(this.changeDataCrud)
                     : this.changeDataCrud.update.bind(this.changeDataCrud, data.id);
 
-                const resp = await fn(changeData).toPromise();
+                await fn(changeData).toPromise();
                 this.objectsSent += 1;
                 this.percentageSent = this.objectsSent / this.objectsToSend * 100;
             } catch (error) {

@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'kvp-item',
   styleUrls: ['./kvp-item.css'],
   templateUrl: './kvp-item.html',
 })
-export class KeyValueItem implements OnInit {
+export class KeyValueItem {
   @Input() public key: string;
   @Input() public value: string;
   @Input() public active: string;
@@ -53,8 +53,5 @@ export class KeyValueItem implements OnInit {
 
   public remove() {
     this.onRemove.emit();
-  }
-
-  public ngOnInit() {
   }
 }

@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ExportFilters } from '../../../interfaces/export';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -47,6 +46,7 @@ export class ExportDialog implements OnInit {
   }
 
   public changedItems($event) {
+    //
   }
 
   public getFieldMap() {

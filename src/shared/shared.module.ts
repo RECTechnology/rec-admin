@@ -35,13 +35,17 @@ import { TableListSubHeader } from 'src/components/scaffolding/table-list/tl-sub
 import { TableListTable } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { AgmCoreModule } from '@agm/core';
 import { B2BSettingsComponent } from 'src/pages/special-actions/b2b/entities/settings.component';
-import { TranslatableListComponent } from 'src/pages/special-actions/b2b/components/translatable-list/translatable-list.component';
+import {
+  TranslatableListComponent,
+} from 'src/pages/special-actions/b2b/components/translatable-list/translatable-list.component';
 import { BaseService2 } from 'src/services/base/base.service-v2';
 import { CrudBaseService } from 'src/services/base/crud.base';
 import { CrudModule } from 'src/services/crud/crud.module';
 import { ProductsTabComponent } from 'src/pages/special-actions/b2b/entities/components/products/products.tab';
 import { ActivitiesTabComponent } from 'src/pages/special-actions/b2b/entities/components/activities/activities.tab';
-import { NeighborhoodsTabComponent } from 'src/pages/special-actions/b2b/entities/components/neighborhoods/neighborhoods.tab';
+import {
+  NeighborhoodsTabComponent,
+} from 'src/pages/special-actions/b2b/entities/components/neighborhoods/neighborhoods.tab';
 import {
   NeighbourhoodSelector,
 } from 'src/components/selectors/neighbourhood-selector/neighbourhood-selector.component';
@@ -62,7 +66,9 @@ import { IconBtnComponent } from 'src/components/ui/icon-btn/icon-btn.component'
 import { ModalHeaderComponent } from 'src/components/scaffolding/modal-header/modal-header.component';
 import { InputFieldComponent } from 'src/components/ui/input-field/input-field.component';
 import { RaisedBtnComponent } from 'src/components/ui/raised-btn/raised-btn.component';
-import { DocumentKindsTabComponent } from 'src/pages/special-actions/b2b/entities/components/document_kinds/document-kinds.tab';
+import {
+  DocumentKindsTabComponent,
+} from 'src/pages/special-actions/b2b/entities/components/document_kinds/document-kinds.tab';
 import { DocumentTabComponent } from 'src/pages/special-actions/b2b/entities/components/documents/documents.tab';
 import { TiersTabComponent } from 'src/pages/special-actions/b2b/entities/components/tiers/tiers.tab';
 import { BussinessDetailsDia } from 'src/dialogs/management/bussiness_detailes/bussiness_details.component';

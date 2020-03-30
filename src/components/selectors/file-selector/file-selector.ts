@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CountryPickerService } from 'ngx-country-picker';
 import { environment } from 'src/environments/environment';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { FileUpload } from 'src/dialogs/other/file-upload/file-upload.dia';

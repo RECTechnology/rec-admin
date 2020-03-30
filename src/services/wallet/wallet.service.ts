@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { BaseService } from '../base/base.service';
 
 declare let _;
-const sortActive = (a, b) => (a === b) ? 0 : (a.status === 'available' ? -1 : 1);
 
 @Injectable()
 export class WalletService extends BaseService {

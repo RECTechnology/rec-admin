@@ -95,8 +95,6 @@ export class AccountUsersTab implements AfterContentInit {
     });
   }
 
-  public keyPressed(user, event) { }
-
   public sortData(sort: Sort): void {
     const data = this.items.slice();
 
@@ -112,7 +110,6 @@ export class AccountUsersTab implements AfterContentInit {
   }
 
   public search() {
-    // Perform search
     this.getUsers();
   }
 
@@ -135,7 +132,6 @@ export class AccountUsersTab implements AfterContentInit {
   }
 
   public removeUser(user) {
-    const userIndex = this.companyService.companyUsers.indexOf(user);
     this.adminService.removeUserFromAccount(this.account_id, user.id)
       .subscribe(
         (resp) => {

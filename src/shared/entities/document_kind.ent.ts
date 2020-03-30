@@ -1,6 +1,4 @@
 import { Document } from './document.ent';
-import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
-import { Observable } from 'rxjs';
 import { Tier } from './tier.ent';
 
 export interface DocumentKind {

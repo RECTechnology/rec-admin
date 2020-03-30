@@ -1,21 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-
-import {
-  TlHeader, TableListOptions,
-} from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { LoginService } from 'src/services/auth/auth.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
-import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-withdrawal/create-lemon-withdrawal.dia';
-import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemonway-w2w-out/create-lemon-w2w-out.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { UtilsService } from 'src/services/utils/utils.service';
 import {
   WALLET_STATUS_MAP, IBAN_STATUS_MAP,
-  LW_ERROR_P2P, LW_ERROR_MONEY_OUT, processLwTx,
 } from 'src/data/lw-constants';
 import { EventsService } from 'src/services/events/events.service';
 import { AddIbanDia } from 'src/dialogs/entities/add-iban/add-iban.dia';

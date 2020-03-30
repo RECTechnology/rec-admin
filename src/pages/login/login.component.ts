@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
       });
 
     this.app.getInfo()
-      .subscribe(resp => this.apiVersion = resp.data.version);
+      .subscribe((resp) => this.apiVersion = resp.data.version);
   }
 
   public retry() {

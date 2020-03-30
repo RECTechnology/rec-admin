@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, Directive } from '@angular/core';
+import { Input, Output, EventEmitter, Directive } from '@angular/core';
 
 @Directive()
 export class BaseBtnComponent {

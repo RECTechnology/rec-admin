@@ -1,7 +1,8 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint:recommended"
+    "tslint:recommended",
+    "tslint-etc"
   ],
   "jsRules": {
     "quotemark": [
@@ -13,6 +14,7 @@
     ]
   },
   "rules": {
+    "no-unused-declaration": true,
     "quotemark": [
       true,
       "single"

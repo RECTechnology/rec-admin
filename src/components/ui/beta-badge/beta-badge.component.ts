@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'beta-badge',
@@ -10,6 +10,4 @@ import { Component, OnInit } from '@angular/core';
     }
   `],
 })
-export class BetaBadgeComponent {
-  
-}
+export class BetaBadgeComponent { }
