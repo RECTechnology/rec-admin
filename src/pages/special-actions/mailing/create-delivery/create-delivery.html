@@ -34,9 +34,21 @@
                     {{'IMPORT_CSV_ACCOUNTS_DESC'|translate}}
                 </p>
 
-                <p class="small-text col-gray-light" style="margin-top: 15px">
+                <mat-chip-list style="margin-top: 15px">
+                    <div>
+                        <p class="col-gray-light small-text" style="margin-left: 10px!important;">
+                            {{'MAILING_ID_IS'|translate}}</p>
+                        <mat-chip [selectable]="false">
+                            <span class="col-gray">{{id}}</span>
+                            <button mat-icon-button matTooltip="Copy" [copy-clipboard]="id">
+                                <i class="fa fa-clipboard col-gray"></i>
+                            </button>
+                        </mat-chip>
+                    </div>
+                </mat-chip-list>
+                <!-- <p class="small-text col-gray-light" style="margin-top: 15px">
                     {{'MAILING_ID_IS'|translate}} <code>{{id}}</code>
-                </p>
+                </p> -->
 
                 <div class="group-row-left center v space-between bordered-bottom" style="padding: 10px 0 10px 0">
                     <p class="small-text col-gray">{{'SELECTED_ACCOUNTS'|translate}}: <b>{{selectedAccounts.length}}</b>

@@ -31,12 +31,14 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     documents: 3,
     b2b: 4,
     lemonway: 5,
+    tpv: 6,
     0: 'details',
     1: 'users',
     2: 'movements',
     3: 'documents',
     4: 'b2b',
     5: 'lemonway',
+    6: 'tpv',
   };
 
   constructor(

@@ -512,5 +512,15 @@
   "IMPORT_CSV_ACCOUNTS_DESC": "The .csv document must contain the headers 'account_id' and 'mailing_id' to be processed correctly.",
   "MAILING_ID_IS": "mailing_id is: ",
   "TRANSLATE_MAIL_INFO": "Translate mail, can be created in 3 languages and it will be sent in the language the Account has selected",
-  "IMPORT_CSV": "Import CSV"
+  "IMPORT_CSV": "Import CSV",
+  "SURE_DELETE_TPV": "If you delete the POS, this business will no longer be able to continue using the REC services with these credentials. Do you want to delete the POS?",
+  "DELETE_TPV": "Delete POS?",
+  "TPV": "POS",
+  "API_TOKENS": "API tokens",
+  "API_TOKENS_DESC": "Tokens to use TPV through the api.rec.barcelona API",
+  "NOTIF_URL": "Notification URL",
+  "NOTIF_URL_DESC": "This URL is used by our API to notify you when a new payment has been performed.",
+  "NO_TPV": "This account does not have the POS service created",
+  "CREATE_NOW": "Do you want to create it now?",
+  "CREATE_TPV": "Create POS"
 }

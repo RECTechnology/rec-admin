@@ -1090,5 +1090,15 @@
   "IMPORT_CSV_ACCOUNTS_DESC": "El document .csv ha de contenir les capçaleres 'account_id' i 'mailing_id' per ser processats correctament.",
   "MAILING_ID_IS": "El mailing_id es: ",
   "TRANSLATE_MAIL_INFO": "Traduir correu, es pot crear en 3 idiomes i s'enviarà en l'idioma que ha seleccionat el compte",
-  "IMPORT_CSV": "Importar CSV"
+  "IMPORT_CSV": "Importar CSV",
+  "SURE_DELETE_TPV": "Si esborres la TPV aquest comerç ja no podrà seguir utilitzant els serveis del REC amb aquestes credencials. Voleu esborrar la TPV?",
+  "DELETE_TPV": "Voleu esborrar la TPV?",
+  "TPV": "TPV",
+  "API_TOKENS": "Tokens API",
+  "API_TOKENS_DESC": "Etiquetes per utilitzar TPV a través de l'API api.rec.barcelona",
+  "NOTIF_URL": "URL de Notificació",
+  "NOTIF_URL_DESC": "La nostra API l'utilitza aquest URL per avisar-vos quan s'ha efectuat un pagament nou.",
+  "NO_TPV": "Aquesta compte no té el servei de creació de TPV",
+  "CREATE_NOW": "¿Es vol crear ara?",
+  "CREATE_TPV": "Crear TPV"
 }

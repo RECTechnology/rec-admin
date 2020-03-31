@@ -109,6 +109,7 @@ import { CollapsableWhen } from 'src/directives/collapsable.directive';
 import { AppPage } from 'src/components/scaffolding/page/page-component';
 import { IbansCrud } from 'src/services/crud/ibans/ibans.crud';
 import { DeliveryEntry } from 'src/pages/special-actions/mailing/delivery-entry/delivery-entry.component';
+import { CopyClipboardDirective } from 'src/directives/clipboard.directive';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -143,6 +144,7 @@ const DIALOGS = [
 
 const DIRECTIVES = [
   CollapsableWhen,
+  CopyClipboardDirective,
 ];
 
 @NgModule({
