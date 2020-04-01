@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.15.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.14.0...v3.15.0) (2020-04-01)
+
+
+### Features
+
+* **Mailing:** added import accounts from csv and some minor fixes ([68f9812](https://github.com/QbitArtifacts/rec-admin/commit/68f98128f027e88d2f46128717c60c9ccb98cf14))
+* mocked TPV tab page in accounts fixes [#189](https://github.com/QbitArtifacts/rec-admin/issues/189) ([#196](https://github.com/QbitArtifacts/rec-admin/issues/196)) ([98890d2](https://github.com/QbitArtifacts/rec-admin/commit/98890d29251c8a35dd337fe1e962552fc64769ce))
+
+
+### Bug Fixes
+
+* added Amount (eur) to w2w so admins don't think they are sending recs -- and removed sw for now ([a5896b8](https://github.com/QbitArtifacts/rec-admin/commit/a5896b81682b6d76511d60b1c5ce83875f53ad77))
+* added Amount (eur) to withdrawal so admins don't think they are sending recs ([fb180d8](https://github.com/QbitArtifacts/rec-admin/commit/fb180d89938f6ac04bd0a239b0d5b25872a49db8))
+* **Mailing:** fixed [#184](https://github.com/QbitArtifacts/rec-admin/issues/184) [#183](https://github.com/QbitArtifacts/rec-admin/issues/183) [#182](https://github.com/QbitArtifacts/rec-admin/issues/182) [#185](https://github.com/QbitArtifacts/rec-admin/issues/185) ([00d8c7f](https://github.com/QbitArtifacts/rec-admin/commit/00d8c7f9d9983f4c5282bd0f683102b9886e5016))
+* fixed some mailing issues: fixes [#181](https://github.com/QbitArtifacts/rec-admin/issues/181) [#187](https://github.com/QbitArtifacts/rec-admin/issues/187) [#186](https://github.com/QbitArtifacts/rec-admin/issues/186) ([8ec95af](https://github.com/QbitArtifacts/rec-admin/commit/8ec95afd555c29f484f90f0138994031be778b26))
+* return to mailing list after clicking on save draft (changes dialog) ([58f3cb6](https://github.com/QbitArtifacts/rec-admin/commit/58f3cb62d7bbade5b638e1da2e2dbceff32eba40))
+* **Mailing:** show validation errors on send mail ([89c06d1](https://github.com/QbitArtifacts/rec-admin/commit/89c06d10c73a16a643ad28033852f6db7c968ae8))
+
 ## [3.14.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.13.3...v3.14.0) (2020-03-25)
 
 
