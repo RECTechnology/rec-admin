@@ -9,6 +9,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError } from 'rxjs/internal/operators/catchError';
+import { Pos } from 'src/shared/entities/pos.ent';
 
 const deprecatedMessage = (method) => {
     console.warn('AdminService::' + method + ' is deprecated... will be removed in the future...');
@@ -37,6 +38,20 @@ export class AdminService extends BaseService {
                 title: 'Withdrawal vote awaiting',
             });
         }
+    }
+
+    // /admin/v3/pos y payment_orders
+
+    public createPos(account_id) {
+        return this.post({ account_id }, null, `${API_URL}/admin/v3/pos`);
+    }
+
+    public editPos(id, data: Partial<Pos>) {
+        return this.put(data, null, `${API_URL}/admin/v3/pos/${id}`);
+    }
+
+    public deletePos(id: string) {
+        return this.delete(null, `${API_URL}/admin/v3/pos/${id}`);
     }
 
     public checkIfUserNeedsToVote(user = null) {

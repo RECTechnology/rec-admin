@@ -93,7 +93,7 @@ export class UtilsService {
       self.alerts.showSnackbar(error.message, 'ok');
     }
 
-    if (self.loading !== undefined) {
+    if ('loading' in self) {
       self.loading = false;
     }
     return error;

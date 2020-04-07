@@ -1,8 +1,7 @@
 <button type="{{submit ? 'submit': 'button'}}" mat-raised-button color="primary" name="button"
   [disabled]="loading || disabled" style="min-width: 150px">
   <div class="center h v">
-    <mat-progress-spinner [diameter]="25" color="primary" style="width: 20px; height: 20px" mode="indeterminate"
-      *ngIf="loading"></mat-progress-spinner>
+    <mat-progress-spinner [diameter]="20" color="primary" mode="indeterminate" *ngIf="loading"></mat-progress-spinner>
     <p class="text-small no-margin" style="margin: 0px 6px!important">
       {{text | translate}}
     </p>

@@ -522,5 +522,8 @@
   "NOTIF_URL_DESC": "This URL is used by our API to notify you when a new payment has been performed.",
   "NO_TPV": "This account does not have the POS service created",
   "CREATE_NOW": "Do you want to create it now?",
-  "CREATE_TPV": "Create POS"
+  "CREATE_TPV": "Create POS",
+  "UPDATED_POS": "Updated POS correctly",
+  "CREATED_POS": "Created POS correctly",
+  "DELETED_POS": "Deleted POS correctly"
 }

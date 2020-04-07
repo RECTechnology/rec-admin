@@ -1,6 +1,6 @@
 <div style="height: 100%">
   <div class="row" style="margin: 0; padding: 20px;">
-    <div class="col-lg-12" *ngIf="!error">
+    <div class="col-lg-12" *ngIf="account.pos">
       <mat-card style="min-height: 200px;padding:0 0 20px 0; overflow: hidden;">
         <div class="header bordered-bottom" style="padding: 10px 15px">
           <p class="no-margin no-padding small-text col-blue">TPV</p>
@@ -48,26 +48,35 @@
           <div style="margin-top: 10px;">
             <div>
               <div class="center v">
-                <input type="text" class="small-text user-input" [(value)]="url" [disabled]="!editingUrl"
+                <input type="text" class="small-text user-input" [(ngModel)]="notification_url" [disabled]="!editingUrl"
                   placeholder="Notification URL" style="margin: 0; padding: 4px 6px; max-width: 300px;">
-                <button mat-icon-button matTooltip="{{'SAVE'|translate}}" *ngIf="editingUrl" (click)="saveEditUrl()">
-                  <i class="fa fa-save"></i>
+                <button mat-icon-button [disabled]="loading" matTooltip="{{'SAVE'|translate}}" *ngIf="editingUrl"
+                  (click)="saveEditUrl()">
+                  <i class="fa fa-save" *ngIf="!loading"></i>
+                  <div class="center h v">
+                    <mat-progress-spinner [diameter]="16" color="primary" mode="indeterminate" *ngIf="loading">
+                    </mat-progress-spinner>
+                  </div>
                 </button>
-                <button mat-icon-button matTooltip="{{'CANCEL'|translate}}" *ngIf="editingUrl"
+                <button mat-icon-button [disabled]="loading" matTooltip="{{'CANCEL'|translate}}" *ngIf="editingUrl"
                   (click)="toggleEditUrl()">
                   <i class="fa fa-times"></i>
                 </button>
-                <button mat-icon-button matTooltip="{{'EDIT'|translate}}" *ngIf="!editingUrl" (click)="toggleEditUrl()">
+                <button mat-icon-button [disabled]="loading" matTooltip="{{'EDIT'|translate}}" *ngIf="!editingUrl"
+                  (click)="toggleEditUrl()">
                   <i class="fa fa-edit"></i>
                 </button>
               </div>
             </div>
           </div>
+          <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+            style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
+          </validation-errors>
         </div>
       </mat-card>
     </div>
 
-    <div class="col-lg-12" *ngIf="error">
+    <div class="col-lg-12" *ngIf="!account.pos">
       <mat-card class="center h v" style="min-height: 200px">
         <div class="center column h v padd-x20">
           <h3 class="col-gray" style="font-weight: 200;">
@@ -77,9 +86,8 @@
           <p class="col-gray-light" style="margin-bottom: 15px!important;">
             {{'CREATE_NOW'|translate}}
           </p>
-          <button mat-raised-button color="primary">
-            {{'CREATE_TPV'|translate}}
-          </button>
+          <btn-loader (click)="createTpv()" [disabled]="loading" [loading]="loading" text="{{'CREATE_TPV'|translate}}">
+          </btn-loader>
         </div>
       </mat-card>
     </div>

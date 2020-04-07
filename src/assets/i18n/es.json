@@ -1096,5 +1096,8 @@
   "NOTIF_URL_DESC": "Nuestra API utiliza esta URL para notificarle cuando se ha realizado un nuevo pago.",
   "NO_TPV": "Esta cuenta no tiene el servicio de TPV creado",
   "CREATE_NOW": "¿Deseas crearlo ahora?",
-  "CREATE_TPV": "Crear TPV"
+  "CREATE_TPV": "Crear TPV",
+  "UPDATED_POS": "TPV actualizada correctamente",
+  "CREATED_POS": "TPV creada correctamente",
+  "DELETED_POS": "TPV eliminada correctamente"
 }

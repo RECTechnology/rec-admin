@@ -1100,5 +1100,8 @@
   "NOTIF_URL_DESC": "La nostra API l'utilitza aquest URL per avisar-vos quan s'ha efectuat un pagament nou.",
   "NO_TPV": "Aquesta compte no té el servei de creació de TPV",
   "CREATE_NOW": "¿Es vol crear ara?",
-  "CREATE_TPV": "Crear TPV"
+  "CREATE_TPV": "Crear TPV",
+  "UPDATED_POS": "TPV actualitzada correctament",
+  "CREATED_POS": "TPV creada correctament",
+  "DELETED_POS": "TPV eliminada correctament"
 }

@@ -1,3 +1,5 @@
+import { EventsService } from 'src/services/events/events.service';
+import { AdminService } from 'src/services/admin/admin.service';
 import { AlertsService } from './../../../services/alerts/alerts.service';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
@@ -5,6 +7,9 @@ import { Title } from '@angular/platform-browser';
 import { TablePageBase } from 'src/bases/page-base';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { LoginService } from 'src/services/auth/auth.service';
+import { UtilsService } from 'src/services/utils/utils.service';
+import { Pos } from 'src/shared/entities/pos.ent';
+import { CompanyService } from 'src/services/company/company.service';
 
 @Component({
   selector: 'tpv-tab',
@@ -14,11 +19,16 @@ export class TpvTab extends TablePageBase {
   @Input() public id = '';
   @Input() public account: any = {};
 
+  public pos: Pos;
+
   public pageName = 'TPV';
   public loading = true;
-  public error = false;
   public editingUrl = false;
   public url = null;
+  public validationErrors: any = [];
+  public validationErrorName = '';
+
+  public notification_url = '';
 
   constructor(
     public controles: ControlesService,
@@ -26,17 +36,28 @@ export class TpvTab extends TablePageBase {
     public ls: LoginService,
     public titleService: Title,
     public alerts: AlertsService,
+    public admin: AdminService,
+    public events: EventsService,
+    public companyService: CompanyService,
   ) { super(); }
 
   public ngOnInit() {
     this.loading = true;
+
+    if (this.companyService.selectedCompany.pos) {
+      this.notification_url = this.companyService.selectedCompany.pos.notification_url;
+    }
+
     super.ngOnInit();
   }
 
   public delete() {
     this.alerts.showConfirmation('SURE_DELETE_TPV', 'DELETE_TPV')
       .subscribe((resp) => {
-        console.log('Delete: ', resp);
+        if (resp) {
+          console.log('Delete: ', resp);
+          this.deleteTpv();
+        }
       });
   }
 
@@ -45,10 +66,46 @@ export class TpvTab extends TablePageBase {
   }
 
   public saveEditUrl() {
-    this.toggleEditUrl();
-
+    this.updateTpv();
   }
 
+  public deleteTpv() {
+    this.loading = true;
+    this.admin.deletePos(this.account.pos?.id)
+      .subscribe((resp) => {
+        this.loading = false;
+        this.alerts.showSnackbar('DELETED_POS');
+        this.events.fireEvent('account:update');
+        this.ngOnInit();
+      }, (err) => {
+        this.loading = false;
+        console.log(err);
+      });
+  }
+
+  public createTpv() {
+    this.loading = true;
+    this.admin.createPos(this.account.id)
+      .subscribe((resp) => {
+        console.log(resp);
+        this.loading = false;
+        this.alerts.showSnackbar('CREATED_POS');
+        this.events.fireEvent('account:update');
+        this.ngOnInit();
+        this.validationErrors = [];
+      }, UtilsService.handleValidationError.bind(this, this));
+  }
+
+  public updateTpv() {
+    this.loading = true;
+    this.admin.editPos(this.account.pos?.id, { notification_url: this.notification_url })
+      .subscribe((resp) => {
+        this.alerts.showSnackbar('UPDATED_POS');
+        this.loading = false;
+        this.editingUrl = false;
+        this.validationErrors = [];
+      }, UtilsService.handleValidationError.bind(this, this));
+  }
 
   public search() {
     return;

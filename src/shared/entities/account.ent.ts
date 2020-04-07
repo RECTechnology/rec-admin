@@ -3,6 +3,7 @@ import { Wallet } from './wallet.ent';
 import { Activity } from './translatable/activity.ent';
 import { Product } from './translatable/product.ent';
 import { Tier } from './tier.ent';
+import { Pos } from './pos.ent';
 
 export type AccountType = 'PRIVATE' | 'COMPANY';
 export type AccountSubtype = 'RETAILER' | 'WHOLESALE' | 'NORMAL' | 'BMINCOME';
@@ -37,6 +38,8 @@ export interface Account {
 
     email: string;
     fixed_location: true;
+
+    pos?: Pos;
 
     id: number;
     kyc_manager: User;
