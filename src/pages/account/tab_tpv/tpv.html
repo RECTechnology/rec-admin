@@ -16,8 +16,8 @@
           </p>
 
           <div style="margin-top: 10px;">
-            <copiable-badge [label]="'access_key'" [value]="account ? account.access_key: ''"></copiable-badge>
-            <copiable-badge [label]="'access_secret'" [value]="account ? account.access_secret: ''"></copiable-badge>
+            <copiable-badge [label]="'access_key'" [value]="(account.pos) ? account.pos.access_key: ''"></copiable-badge>
+            <copiable-badge [label]="'access_secret'" [value]="(account.pos) ? account.pos.access_secret: ''"></copiable-badge>
           </div>
         </div>
 
