@@ -1,5 +1,7 @@
 <mat-card>
-  <icon-btn icon="fa-refresh" (click)="selectTimeframe(selectedTimeframe)" class="icon-btn-small abs-top-right"></icon-btn>
+  <button class="abs-top-right" color="primary" mat-icon-button (click)="selectTimeframe(selectedTimeframe)">
+    <i class="fa fa-refresh"></i>
+  </button>
 
   <div class="row">
     <div class="{{timeframes && timeframes.length ? 'col-lg-10': 'col-lg-12'}}">

@@ -1,6 +1,6 @@
 <modal-header title="{{'ADD_ITEM'|translate}}" (click)="close(false)"></modal-header>
 
-<div class="padd-x20 modal-body" style="min-height: 300px">
+<div class="padd-20 modal-body" style="min-height: 300px">
   <div class="row">
     <div class="col-lg-12">
       <p style="padding-bottom: 15px">
@@ -30,7 +30,7 @@
             <span class="icon fa fa-trash col-error" (click)="deleteDoc(doc)"></span>
           </li>
         </ul>
-        <p class="small-text col-gray padd-x10" *ngIf="item.document_kinds && !item.document_kinds.length">
+        <p class="small-text col-gray padd-10" *ngIf="item.document_kinds && !item.document_kinds.length">
           {{'NO_ITEMS'|translate}}
         </p>
       </div>

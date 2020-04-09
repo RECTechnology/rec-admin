@@ -1,10 +1,10 @@
 <modal-header title="{{'Vote Withdrawal'|translate}}" (click)="close(false)"></modal-header>
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
-  <div class="padd-x20">
+  <div class="padd-20">
     <div class="row">
       <div class="col-lg-12">
-        <div class="marg-b-10">
+        <div class="marg-bottom-10">
           <p class="small-text marg-b-5">Por favor haga una seleccion, apruebe o rechaze la peticion de withdrawal desde
             la Cuenta Del Tesoro a la cuenta de Novact.</p>
           <p class="small-text col-blue">La peticion caducará en 24h. Pasado ese tiempo se cancelará o si más del 50% de
@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="col-lg-12">
-        <div class="marg-b-10">
+        <div class="marg-bottom-10">
           <p><b>Vista previa:</b></p>
           <div class="box">
             <p class="small-text"><b>{{'Amount'|translate}}: </b> <code>{{withdrawal.amount}}</code></p>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="col-lg-12">
-        <div class="marg-b-10">
+        <div class="marg-bottom-10">
           <p><b>Decida:</b></p>
           <mat-radio-group [(ngModel)]="decision" aria-label="Select an option">
             <mat-radio-button value="approved" color="primary">

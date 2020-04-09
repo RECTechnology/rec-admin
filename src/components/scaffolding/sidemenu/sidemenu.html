@@ -1,7 +1,7 @@
 <div class="sidemenu" [ngClass]="{'collapsed': !toggled, 'company': us.userData.group_data.type === 'COMPANY'}">
   <div class="collapse-menu center v" [ngClass]="{'h': !toggled}">
     <button mat-icon-button (click)="controles.toggle('sidemenu')"
-      [ngClass]="{'marg-l-10': toggled, 'center h': !toggled}">
+      [ngClass]="{'marg-left-10': toggled, 'center h': !toggled}">
       <div class="center v col-white">
         <i class="fa fa-caret-left" style="margin-right: 6px;" *ngIf="toggled"></i>
         <i class="navbar-icon fa fa-bars"></i>

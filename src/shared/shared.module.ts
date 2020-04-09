@@ -110,6 +110,7 @@ import { AppPage } from 'src/components/scaffolding/page/page-component';
 import { IbansCrud } from 'src/services/crud/ibans/ibans.crud';
 import { DeliveryEntry } from 'src/pages/special-actions/mailing/delivery-entry/delivery-entry.component';
 import { CopyClipboardDirective } from 'src/directives/clipboard.directive';
+import { CopiableComponent } from 'src/components/ui/copiable/copiable.component';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -140,6 +141,7 @@ const DIALOGS = [
   AddDocumentKindDia,
   AddDocumentDia,
   AddTierDia,
+  CopiableComponent,
 ];
 
 const DIRECTIVES = [
@@ -201,6 +203,7 @@ const DIRECTIVES = [
     MaskPipe,
     AppPage,
     DeliveryEntry,
+    CopiableComponent,
     ...DIALOGS,
     ...DIRECTIVES,
   ],

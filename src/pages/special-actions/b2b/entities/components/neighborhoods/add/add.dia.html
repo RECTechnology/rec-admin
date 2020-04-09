@@ -9,7 +9,7 @@
 </div>
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
-    <div class="padd-x20" style="width: 100%">
+    <div class="padd-20" style="width: 100%">
         <p style="padding-bottom: 15px">
             {{(!isEdit ? 'ADD_ITEM_DESC': 'EDIT_ITEM_DESC')|translate:({ type: 'NEIGBORHOOD' })}}
         </p>
@@ -40,7 +40,7 @@
                 <btn-loader (click)="add()" [disabled]="disabled || loading" [loading]="loading"
                     text="{{'SAVE'|translate}}">
                 </btn-loader>
-                <p *ngIf="error" class="col-error small-text marg-l-10">{{error}}</p>
+                <p *ngIf="error" class="col-error small-text marg-left-10">{{error}}</p>
             </div>
         </div>
     </div>

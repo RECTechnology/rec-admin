@@ -16,7 +16,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e --port 4201",
     "release": "standard-version",
-    "stats": "ng build --stats-json && webpack-bundle-analyzer dist/stats-es5.json"
+    "stats": "ng build --stats-json && webpack-bundle-analyzer dist/stats-es2015.json"
   },
   "private": true,
   "dependencies": {

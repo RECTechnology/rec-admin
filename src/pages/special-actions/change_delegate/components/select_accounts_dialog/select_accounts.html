@@ -10,7 +10,7 @@
   <!-- Un-Selected -->
   <div class="col-lg-6" style="height: calc(100% - 55px)">
     <div class="group-col-left" style="padding: 10px;border-bottom: 1px solid #ddd">
-      <input type="text" class="input border-radius-2" style="width: 100%"
+      <input type="text" class="input radius-2" style="width: 100%"
         placeholder="{{'Unselected Accounts'|translate}}..." [(ngModel)]="unselectedSearch"
         (keyup.enter)="getAccounts();">
     </div>
@@ -58,7 +58,7 @@
   <!-- Selected -->
   <div class="col-lg-6" style="height: calc(100% - 55px)">
     <div class="group-row-left" style="padding: 10px;border-bottom: 1px solid #ddd">
-      <input type="text" class="input border-radius-2" style="width: 100%"
+      <input type="text" class="input radius-2" style="width: 100%"
         placeholder="{{'Selected Accounts'|translate}}..." [(ngModel)]="searchSelectedQwery"
         (keyup.enter)="searchSelected();"> <code>{{selectedAccounts.length}}</code>
     </div>
@@ -93,13 +93,13 @@
 
 <div class="modal-footer">
   <div class="group-row-left" style="justify-content: flex-end; ">
-    <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" (click)="select()">
+    <button type="button" mat-raised-button color="primary" class="marg-right-10" name="button" (click)="select()">
       <p class="small-text-2">{{'Select'|translate}}</p>
     </button>
-    <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" *ngIf="showEdit" (click)="selectAndEdit()">
+    <button type="button" mat-raised-button color="primary" class="marg-right-10" name="button" *ngIf="showEdit" (click)="selectAndEdit()">
       <p class="small-text-2">{{'Select And Edit'|translate}}</p>
     </button>
-    <button type="button" mat-raised-button color="primary" class="marg-r-10" name="button" (click)="close()">
+    <button type="button" mat-raised-button color="primary" class="marg-right-10" name="button" (click)="close()">
       <p class="small-text-2">{{'Close'|translate}}</p>
     </button>
   </div>

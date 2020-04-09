@@ -1,0 +1,14 @@
+<mat-card style="min-height: 200px; padding: 0 0 20px 0; overflow: hidden;">
+    <tl-header title="Orders" [query]="query" [options]="headerOpts" (onSearch)="searchWrapper($event)"
+        [searching]="loading">
+    </tl-header>
+
+    <tl-subheader>
+
+    </tl-subheader>
+
+    <tl-table [loading]="loading && !sortedData.length" [sort]="true" (onSort)="sortData($event)"
+        [itemOptions]="itemOptions" [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total"
+        (onChangePage)="changedPage($event)" [options]="tableOptions">
+    </tl-table>
+</mat-card>

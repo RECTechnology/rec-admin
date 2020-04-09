@@ -1,0 +1,57 @@
+.status-badge {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.status-badge .label_txt {
+    border: 1px solid #656565;
+    background: #616161;
+    color: #fff;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    margin: 0;
+    height: 20px;
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    font-size: 12px !important;
+    line-height: 12px;
+    font-weight: 400;
+}
+
+.status-badge .value {
+    margin: 0;
+    height: 20px;
+    vertical-align: middle;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    color: white;
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    line-height: 12px;
+    font-size: 12px !important;
+    font-weight: 400;
+}
+
+.status-badge .value.bg-success,
+.status-badge .value.bg-completed {
+    background: #66bb6a;
+    border: 1px solid #4caf50;
+}
+
+.status-badge .value.bg-error,
+.status-badge .value.bg-failed {
+    background: #ef5350;
+    border: 1px solid #e53935;
+}
+
+.status-badge .value.bg-info,
+.badge-small.bg-info,
+.status-badge .value.bg-preparing,
+.status-badge .value.bg-started,
+.value.bg-refunded {
+    background: #2196f3 !important;
+    border: 1px solid #1976d2 !important;
+}

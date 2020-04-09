@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="marg-20 bg-blue radius-3">
-            <div class="padd-x20 group-col-left ">
+            <div class="padd-20 group-col-left ">
               <p class="small-text-2">NOVACT</p>
               <div class="group-row-left center v" style="margin-top: 10px">
                 <h4 class="amount-big col-white">{{novactAmount}}</h4> <span class="marg-l-5 text-small">REC</span>
@@ -33,8 +33,8 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="padd-x20 group-col-left">
-            <p class="small-text-2 marg-b-10" style="position: relative">
+          <div class="padd-20 group-col-left">
+            <p class="small-text-2 marg-bottom-10" style="position: relative">
               {{'TREASURE_ACCOUNT_DESC'|translate}}
             </p>
 
@@ -52,7 +52,7 @@
             <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
               <btn-loader (click)="sendRecs()" [disabled]="btnDisabled" [loading]="loading" text="{{'SEND'|translate}}">
               </btn-loader>
-              <p *ngIf="error" class="small-text col-error marg-l-10">{{error}}</p>
+              <p *ngIf="error" class="small-text col-error marg-left-10">{{error}}</p>
             </div>
           </div>
         </div>

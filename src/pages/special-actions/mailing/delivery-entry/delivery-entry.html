@@ -3,32 +3,32 @@
         <div class="group-row-left center v">
             <span class="text-small">
                 <i *ngIf="item.status === 'sent' || item.status === 'delivered' || item.status === 'opened'"
-                    matTooltip="Status: {{item.status}}" class="fa fa-check col-success marg-r-10"></i>
+                    matTooltip="Status: {{item.status}}" class="fa fa-check col-success marg-right-10"></i>
 
                 <i *ngIf="item.status === 'errored'" matTooltip="Status: {{item.status}}"
-                    class="fa fa-times col-error marg-r-10"></i>
+                    class="fa fa-times col-error marg-right-10"></i>
 
                 <i *ngIf="item.status === 'scheduled'" matTooltip="Status: {{item.status}}"
-                    class="fa fa-clock col-info marg-r-10"></i>
+                    class="fa fa-clock col-info marg-right-10"></i>
 
                 <i *ngIf="item.status === 'created'" matTooltip="Status: {{item.status}}"
-                    class="fa fa-circle col-info marg-r-10"></i>
+                    class="fa fa-circle col-info marg-right-10"></i>
 
                 <i *ngIf="item.status === 'canceled'" matTooltip="Status: {{item.status}}"
-                    class="fa fa-ban col-warning marg-r-10"></i>
+                    class="fa fa-ban col-warning marg-right-10"></i>
 
                 <i *ngIf="item.status === 'failed'" matTooltip="Status: {{item.status}} | {{item.failure_reason}}"
-                    class="fa fa-ban col-warning marg-r-10"></i>
+                    class="fa fa-ban col-warning marg-right-10"></i>
 
                 <i *ngIf="item.status === 'unsubscribed'"
                     matTooltip="Status: {{item.status}} - User will not receive mails now"
-                    class="fa fa-times col-warning marg-r-10"></i>
+                    class="fa fa-times col-warning marg-right-10"></i>
             </span>
 
             <span class="text-small">
-                <i *ngIf="item.status === 'opened'" matTooltip="Mail read" class="fa fa-eye col-success marg-r-10"></i>
+                <i *ngIf="item.status === 'opened'" matTooltip="Mail read" class="fa fa-eye col-success marg-right-10"></i>
                 <i *ngIf="item.status === 'sent'" matTooltip="Mail not read"
-                    class="fa fa-eye-slash col-gray-light marg-r-10"></i>
+                    class="fa fa-eye-slash col-gray-light marg-right-10"></i>
             </span>
         </div>
         <div>

@@ -1,0 +1,134 @@
+.table {
+    width: 100% !important;
+    border-color: #eee !important;
+}
+
+.table-select-items {
+    margin: 0;
+    margin-left: 20px;
+    width: auto;
+    align-items: center;
+}
+
+.table-select-items p {
+    margin-right: 8px;
+}
+
+.table-select-items select {
+    width: 100% !important;
+    z-index: 0;
+}
+
+.table-footer {
+    border: 1px solid #ddd;
+    width: 100%;
+    padding: 6px 10px;
+}
+
+.table-no-items {
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.table-no-items .loader {
+    width: 40px;
+    height: 40px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table tr,
+table th,
+table td {
+    border: none;
+    background: transparent;
+    border-left: none;
+    border-right: none;
+}
+
+table th.ui-state-active {
+    background: transparent !important;
+}
+
+table thead {
+    /* border-bottom: 1px solid #ddd; */
+    /* background: #fbfbfb !important; */
+    box-shadow: 0 1px 0 #ddd;
+}
+
+table th {
+    /* border-bottom: 1px solid #ddd; */
+    /* color: #777 !important;ƒ */
+    font-weight: 200 !important;
+    /*text-transform: uppercase;*/
+    font-size: 12px;
+    text-align: left;
+    padding: 10px 0 !important;
+}
+
+table td {
+    font-size: 12px;
+    padding: 10px !important;
+    margin: 0;
+    border: none;
+}
+
+table td {
+    border-right: none !important;
+    border-left: none !important;
+}
+
+table td:not(:last-child) {
+    border-right: 1px solid #e2e2e2;
+}
+
+table td:not(:first-child) {
+    border-left: 1px solid #e2e2e2;
+}
+
+table.stripped tbody tr:nth-of-type(odd) {
+    background: #f3f3f3;
+}
+
+table .item-hoverable {
+    cursor: pointer;
+}
+
+table .item-hoverable:hover {
+    background: rgb(225, 225, 225);
+}
+
+table {
+    width: 100%;
+}
+
+table thead {
+    background: #37474f;
+}
+
+table th {
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    padding-left: 10px !important;
+}
+
+table td {
+    text-align: left;
+    font-size: 13px;
+    font-weight: 500 !important;
+    /* color: #555 !important;ƒ */
+}
+
+.mat-sort-header-container {
+    align-items: center;
+    justify-content: start !important;
+}

@@ -10,8 +10,8 @@
         <p class="small-text" style="margin-right: 10px!important">{{'SCHEDULED_FOR'|translate}}:</p>
         <b class="small-text" *ngIf="!changeScheduled">{{dataPassed ? 'Immediate': delegate.scheduled_at | date}}</b>
         <div *ngIf="changeScheduled" class="group-row-left center v">
-          <input class="input border-radius-2" type="date" [(ngModel)]="dateScheduled">
-          <input class="input border-radius-2" type="time" [(ngModel)]="timeScheduled">
+          <input class="input radius-2" type="date" [(ngModel)]="dateScheduled">
+          <input class="input radius-2" type="time" [(ngModel)]="timeScheduled">
           <button mat-icon-button (click)="saveScheduled()">
             <span class="fa fa-save"></span>
           </button>

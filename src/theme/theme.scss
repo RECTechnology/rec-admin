@@ -713,6 +713,62 @@ a {
   }
 }
 
+.bg-dark {
+  background-color: #787878 !important;
+  color: #fefefe;
+}
+
+.bg-white {
+  background: #fff;
+}
+
+.bg-error,
+.bg-blue,
+.bg-warning {
+  color: #fff;
+}
+
+.bg-white:not(.no-shadow) {
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.bg-white.active {
+  background: #f1f1f1 !important;
+  color: #666 !important;
+}
+
+.bg-gray-light {
+  background: #f3f3f3;
+}
+
+.bg-gray {
+  background: #dcdcdc;
+  color: #676767;
+}
+
+.bg-failed {
+  background: #ef5350 !important;
+  color: #fff !important;
+}
+
+.bg-orange {
+  background: #e05206;
+}
+
+.bg-green {
+  background: none repeat scroll 0% 0% #67cea6 !important;
+  color: #fff;
+}
+
+.bg-success {
+  background: #7cb342 !important;
+  color: #fff !important;
+}
+
+.no-bg {
+  background: transparent !important;
+}
+
 .bg-img {
   position: absolute;
   top: 0;

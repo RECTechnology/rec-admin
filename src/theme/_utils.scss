@@ -1,0 +1,204 @@
+// Positioning
+.abs-left-top {
+    position: absolute;
+    left: 15px;
+    top: 0;
+}
+
+.abs-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 20px;
+}
+
+.abs-top-right {
+    position: absolute !important;
+    top: 0px;
+    right: 0px;
+    z-index: 99999;
+}
+
+.abs-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 30px;
+}
+
+.abs-center-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+}
+
+.abs-right-center {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    right: 15px;
+}
+
+.abs-bottom-center {
+    position: absolute;
+    bottom: 15px;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+.abs-right-top {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.center-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.center.v {
+    align-items: center;
+}
+
+.center.h {
+    justify-content: center;
+}
+
+.space-between {
+    justify-content: space-between !important;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
+}
+
+// Grouping
+
+.group-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.group-row > i {
+    margin: 0 5px;
+    color: white;
+}
+
+.group-row > span {
+    color: white;
+    margin-right: 6px;
+}
+
+.group-row-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.group-row-left,
+.table-select-items,
+.table-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.group-row-left > span,
+.table-select-items > span,
+.table-footer > span {
+    margin-right: 6px;
+}
+
+.group-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.group-col-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.group-col-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+// Padding & Margins
+@for $i from 1 through 15 {
+    .padd-#{$i*2} {
+        padding: $i * 2px !important;
+    }
+
+    .padd-h-#{$i*2} {
+        padding: 0 $i * 2px !important;
+    }
+
+    .padd-v-#{$i*2} {
+        padding: $i * 2px 0 !important;
+    }
+
+    .padd-left-#{$i*2} {
+        padding-left: $i * 2px !important;
+    }
+    .padd-right-#{$i*2} {
+        padding-right: $i * 2px !important;
+    }
+    .padd-top-#{$i*2} {
+        padding-top: $i * 2px !important;
+    }
+    .padd-bottom-#{$i*2} {
+        padding-bottom: $i * 2px !important;
+    }
+
+    .marg-#{$i*2} {
+        margin: $i * 2px !important;
+    }
+
+    .marg-h-#{$i*2} {
+        margin: 0 $i * 2px !important;
+    }
+
+    .marg-v-#{$i*2} {
+        margin: $i * 2px 0 !important;
+    }
+
+    .marg-left-#{$i*2} {
+        margin-left: $i * 2px !important;
+    }
+    .marg-right-#{$i*2} {
+        margin-right: $i * 2px !important;
+    }
+    .marg-top-#{$i*2} {
+        margin-top: $i * 2px !important;
+    }
+    .marg-bottom-#{$i*2} {
+        margin-bottom: $i * 2px !important;
+    }
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}

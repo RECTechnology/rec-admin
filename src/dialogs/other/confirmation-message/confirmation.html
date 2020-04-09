@@ -2,11 +2,11 @@
   <i *ngIf="headerIcon" class="fa fa-{{headerIcon}}" style="margin-right: 10px"></i>
 </modal-header>
 
-<div class="group-col-left padd-x20" style="max-width: 50vw">
+<div class="group-col-left padd-20" style="max-width: 50vw">
 
   <div class="group-row-left">
     <p [innerHTML]="message|translate:data"></p>
-    <p class="marg-l-10" *ngIf="trailing">{{trailing|translate}}</p>
+    <p class="marg-left-10" *ngIf="trailing">{{trailing|translate}}</p>
   </div>
 
   <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">

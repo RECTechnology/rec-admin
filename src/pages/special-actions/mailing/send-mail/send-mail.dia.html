@@ -1,6 +1,6 @@
 <header-nav></header-nav>
 <app-page>
-    <div class="padd-x20" style="width: 100%">
+    <div class="padd-20" style="width: 100%">
         <mat-card style="margin-bottom: 10px">
             <div class="center v space-between">
                 <div class="center v">
@@ -174,9 +174,9 @@
 
             <div *ngIf="sendScheduled" class="group-row-left"
                 style="padding-top: 10px; margin-top: 10px; border-top: 1px solid #ddd;">
-                <input type="date" style="width: 45%" class="input border-radius-2" [(ngModel)]="date"
+                <input type="date" style="width: 45%" class="input radius-2" [(ngModel)]="date"
                     (keyup.enter)="createScheduled()">
-                <input type="time" style="width: 45%; margin-left: 10px;" class="input border-radius-2"
+                <input type="time" style="width: 45%; margin-left: 10px;" class="input radius-2"
                     [(ngModel)]="time" (keyup.enter)="createScheduled()">
                 <button mat-icon-button (click)="createScheduled()">
                     <i class="fa fa-check"></i>

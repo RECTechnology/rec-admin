@@ -18,6 +18,7 @@ import { LwTabMoneyOut } from './tab_lemonway/tabs/money-out/money-out.component
 import { LwTabWalletToWallet } from './tab_lemonway/tabs/wallet-to-wallet/wallet-to-wallet.component';
 import { AddIbanDia } from 'src/dialogs/entities/add-iban/add-iban.dia';
 import { TpvTab } from './tab_tpv/tpv.tab';
+import { TpvOrdersComponent } from './tab_tpv/orders.component';
 
 const accountRoutes: Routes = [
   {
@@ -41,6 +42,7 @@ const accountRoutes: Routes = [
     LwTabWalletToWallet,
     AddIbanDia,
     TpvTab,
+    TpvOrdersComponent,
   ],
   entryComponents: [
     ViewDetails,
@@ -50,6 +52,7 @@ const accountRoutes: Routes = [
     B2BModuleTab,
     TpvTab,
     AddIbanDia,
+    TpvOrdersComponent,
   ],
   exports: [
     RouterModule,

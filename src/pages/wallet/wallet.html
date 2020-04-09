@@ -6,7 +6,7 @@
     <div class="group-col-left" style="margin: 0">
       <div class="fill-size center v space-between" style="padding: 10px 15px">
         <p class="small-text col-blue" style="margin-right: 15px!important">{{'TRANSACTIONS'|translate}}</p>
-        <input type="text" class="input border-radius-2" style="width: 75%"
+        <input type="text" class="input radius-2" style="width: 75%"
           placeholder="{{'Search by id i.e: 5c1929ea5a5c980c8a3ded33'|translate}}..." [(ngModel)]="filter.search"
           (keyup.enter)="search();" (keyup)="filter.filterModified = true;">
         <button mat-icon-button style="margin-left: 8px" (click)="getTransactions()">

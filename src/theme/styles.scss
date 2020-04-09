@@ -1,13 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./utils";
+@import "./text";
+@import "./apearance";
+@import "./inputs";
+@import "./table";
 
 html,
 body {
   height: 100%;
 }
 body {
+  background: #eee;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  overflow-y: hidden;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
 mat-spinner svg {
   width: 40px !important;
   height: 40px !important;
@@ -22,15 +32,6 @@ mat-spinner svg {
   background: #f4f4f4;
   padding: 0;
 }
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.632);
-}
-
 .activity-list-item {
   cursor: pointer;
   padding: 6px 10px;
@@ -81,24 +82,6 @@ agm-map {
   }
 }
 
-.text-mid-small {
-  font-size: 14px;
-  font-weight: 300;
-}
-
-.text-medium {
-  font-size: 22px;
-}
-
-.text-big {
-  font-size: 28px;
-}
-
-.center-start {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
 .menu-item {
   background: transparent;
   transition: all 0.15s ease-in-out;

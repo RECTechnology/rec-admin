@@ -1,0 +1,11 @@
+<mat-chip-list>
+    <div>
+        <p class="col-gray-light small-text" style="margin-left: 10px!important;">{{label|translate}}</p>
+        <mat-chip [selectable]="false">
+            <span class="col-gray small-text">{{value}}</span>
+            <button mat-icon-button matTooltip="Copy" [copy-clipboard]="value">
+                <i class="fa fa-clipboard col-gray small-text"></i>
+            </button>
+        </mat-chip>
+    </div>
+</mat-chip-list>

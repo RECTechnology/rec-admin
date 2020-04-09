@@ -1,0 +1,225 @@
+// Styles
+.monospace {
+    font-family: monospace;
+}
+
+.blurry-text {
+    color: transparent;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.capitalized::first-letter {
+    text-transform: uppercase;
+}
+
+.upper-case {
+    text-transform: uppercase !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.ellipsis {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.overline {
+    text-decoration: line-through;
+}
+
+// Sizes
+.text-mid-small {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.text-medium {
+    font-size: 22px;
+}
+
+.text-big {
+    font-size: 28px;
+}
+
+.small-text {
+    font-size: 11px;
+    margin: 0;
+}
+
+.smaller-text {
+    font-size: 10px;
+    margin: 0;
+}
+
+.small-text-2 {
+    font-size: 13px;
+    margin: 0;
+}
+
+.small-text-3 {
+    font-size: 15px;
+    margin: 0;
+    color: #454545;
+}
+
+.label {
+    margin: 0;
+    padding: 0;
+    background: transparent !important;
+}
+
+.text-xs {
+    font-size: 11px;
+}
+
+.text-sm {
+    font-size: 12px;
+}
+
+.text-bg {
+    font-size: 12px;
+}
+
+.text-bg .text-semibold {
+    font-size: 16px;
+}
+
+.text-lg {
+    font-size: 23px;
+}
+
+.text-xlg {
+    font-size: 30px;
+}
+
+.text-slg {
+    font-size: 50px;
+}
+
+.text-slim {
+    font-weight: 300 !important;
+}
+
+.text-normal {
+    font-weight: 400 !important;
+}
+
+.text-semibold {
+    font-weight: 600 !important;
+}
+
+.text-bold {
+    font-weight: 700 !important;
+}
+
+// colors
+.text-default,
+.text-default:hover,
+.text-default:active,
+.text-default:focus,
+.text-default a,
+.text-default a:focus {
+    color: #829091;
+}
+
+.text-default a:hover,
+.text-default a:active {
+    color: #5d6869;
+}
+
+.text-success,
+.text-success:hover,
+.text-success:active,
+.text-success:focus,
+.text-success a,
+.text-success a:focus {
+    color: #46ac46;
+}
+
+.text-success a:hover,
+.text-success a:active {
+    color: #307630;
+}
+
+.text-danger,
+.text-danger:hover,
+.text-danger:active,
+.text-danger:focus,
+.text-danger a,
+.text-danger a:focus {
+    color: #e14430;
+}
+
+.text-danger a:hover,
+.text-danger a:active {
+    color: #ac2919;
+}
+
+.text-warning,
+.text-warning:hover,
+.text-warning:active,
+.text-warning:focus,
+.text-warning a,
+.text-warning a:focus {
+    color: #f29f29;
+}
+
+.text-warning a:hover,
+.text-warning a:active {
+    color: #c2770c;
+}
+
+.text-info,
+.text-info:hover,
+.text-info:active,
+.text-info:focus,
+.text-info a,
+.text-info a:focus {
+    color: #39b3d7;
+}
+
+.text-info a:hover,
+.text-info a:active {
+    color: #2185a3;
+}
+
+.text-light-gray,
+.text-light-gray:hover,
+.text-light-gray:active,
+.text-light-gray:focus,
+.text-light-gray a,
+.text-light-gray a:focus {
+    color: #bbbbbb;
+}
+
+.text-light-gray a:hover,
+.text-light-gray a:active {
+    color: #959595;
+}
+
+a {
+    text-decoration: none !important;
+    color: #666;
+    &.disabled {
+        color: #787878 !important;
+        cursor: none !important;
+        pointer-events: none !important;
+    }
+
+    &:hover {
+        color: #454545;
+    }
+}
+
+p {
+    margin: 0 !important;
+    line-height: 25px;
+}

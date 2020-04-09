@@ -9,7 +9,7 @@
                     <p class="small-text col-gray">{{'SELECTED_ACCOUNTS'|translate}}: <b>{{selectedAccounts.length}}</b>
                     </p>
                     <button [disabled]="disabled" (click)="openSelectAccounts()" color="primary" mat-raised-button>
-                        <i class="fa fa-plus marg-r-10"></i> {{'ADD'|translate}}
+                        <i class="fa fa-plus marg-right-10"></i> {{'ADD'|translate}}
                     </button>
                 </div>
                 <div style="width: 100%">
@@ -22,7 +22,7 @@
                             *ngFor="let item of selectedAccounts; let i = index" (remove)="removeAccount(i)">
                         </delivery-entry>
                     </div>
-                    <p class="small-text marg-t-10" *ngIf="!selectedAccounts.length">
+                    <p class="small-text marg-top-10" *ngIf="!selectedAccounts.length">
                         {{'NO_USERS_SELECTED'|translate}}
                     </p>
                 </div>
@@ -54,7 +54,7 @@
                     <p class="small-text col-gray">{{'SELECTED_ACCOUNTS'|translate}}: <b>{{selectedAccounts.length}}</b>
                     </p>
                     <button [disabled]="disabled" (click)="openUploadCsv()" color="primary" mat-raised-button>
-                        <i class="fa fa-file marg-r-10"></i> {{'CSV'|translate}}
+                        <i class="fa fa-file marg-right-10"></i> {{'CSV'|translate}}
                     </button>
                 </div>
 
@@ -68,7 +68,7 @@
                     </delivery-entry>
                 </div>
 
-                <p class="small-text marg-t-10" *ngIf="!selectedAccounts.length">
+                <p class="small-text marg-top-10" *ngIf="!selectedAccounts.length">
                     {{'NO_USERS_SELECTED'|translate}}
                 </p>
             </div>
