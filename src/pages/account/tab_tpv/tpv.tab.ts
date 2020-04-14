@@ -29,6 +29,7 @@ export class TpvTab extends TablePageBase {
   public validationErrorName = '';
 
   public notification_url = '';
+  public isActive = false;
 
   constructor(
     public controles: ControlesService,
@@ -44,8 +45,10 @@ export class TpvTab extends TablePageBase {
   public ngOnInit() {
     this.loading = true;
 
-    if (this.companyService.selectedCompany.pos) {
-      this.notification_url = this.companyService.selectedCompany.pos.notification_url;
+    const pos = this.companyService.selectedCompany.pos;
+    if (pos) {
+      this.notification_url = pos.notification_url;
+      this.isActive = pos.active;
     }
 
     super.ngOnInit();
@@ -67,6 +70,24 @@ export class TpvTab extends TablePageBase {
 
   public saveEditUrl() {
     this.updateTpv();
+  }
+
+  public toggleActive(evt) {
+    this.isActive = evt.checked;
+
+    if (evt.checked === false) {
+      this.alerts.showConfirmation('SURE_DEACTIVATE_TPV', 'DEACTIVATE_TPV')
+        .subscribe((resp) => {
+          if (resp) {
+            this.updateTpv({ active: false });
+          } else {
+            this.isActive = true;
+          }
+        });
+    } else {
+      this.isActive = true;
+      this.updateTpv({ active: true });
+    }
   }
 
   public deleteTpv() {
@@ -96,9 +117,9 @@ export class TpvTab extends TablePageBase {
       }, UtilsService.handleValidationError.bind(this, this));
   }
 
-  public updateTpv() {
+  public updateTpv(additionalData = {}) {
     this.loading = true;
-    this.admin.editPos(this.account.pos?.id, { notification_url: this.notification_url })
+    this.admin.editPos(this.account.pos?.id, { notification_url: this.notification_url, ...additionalData })
       .subscribe((resp) => {
         this.alerts.showSnackbar('UPDATED_POS');
         this.loading = false;

@@ -107,7 +107,7 @@
   "Wallet2Wallet": "Cartera a Cartera",
   "View Details": "Ver Detalles",
   "Add Comment": "Añadir Comentario",
-  "Reference": "Moneda",
+  "Reference": "Referencia",
   "NO_TRANSACTIONS_YET": "No hay transacciones todavía",
   "VERIFY_ORDER": "Verifique su pedido y compruebe si todo está correcto.",
   "MORE_THAN_X": "Si pasan más de 5 minutos, el precio puede cambiar.",
@@ -1089,6 +1089,8 @@
   "IMPORT_CSV": "Importar CSV",
   "SURE_DELETE_TPV": "Si borras la TPV este comercio ya no podrá seguir utilizando los servicios del REC con estas credenciales ¿Deseas borrar la TPV?",
   "DELETE_TPV": "¿Deseas borrar la TPV?",
+  "SURE_DEACTIVATE_TPV": "Si desactiva la TPV este comercio ya no podrá seguir utilizandola",
+  "DEACTIVATE_TPV": "¿Desea desactivar esta TPV?",
   "TPV": "TPV",
   "API_TOKENS": "Tokens API",
   "API_TOKENS_DESC": "Tokens para usar TPV a través de la API api.rec.barcelona",
@@ -1099,5 +1101,6 @@
   "CREATE_TPV": "Crear TPV",
   "UPDATED_POS": "TPV actualizada correctamente",
   "CREATED_POS": "TPV creada correctamente",
-  "DELETED_POS": "TPV eliminada correctamente"
+  "DELETED_POS": "TPV eliminada correctamente",
+  "Inactive": "Inactiva"
 }

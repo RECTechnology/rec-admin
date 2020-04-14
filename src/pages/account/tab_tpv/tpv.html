@@ -5,9 +5,15 @@
         <div class="header bordered-bottom" style="padding: 10px 15px">
           <p class="no-margin no-padding small-text col-blue">TPV</p>
 
-          <button mat-raised-button color="warn" (click)="delete()">
-            <i class="fa fa-trash marg-r-5"></i> {{'DELETE'|translate}}
-          </button>
+          <div>
+            <mat-slide-toggle color="primary" [checked]="isActive" [disabled]="loading" (change)="toggleActive($event)">
+              <span class="small-text col-gray">{{(isActive ? 'Active': 'Inactive')|translate}}</span>
+            </mat-slide-toggle>
+
+            <button mat-raised-button color="warn" class="marg-left-10" (click)="delete()">
+              <i class="fa fa-trash marg-r-5"></i> {{'DELETE'|translate}}
+            </button>
+          </div>
         </div>
         <div style="padding: 10px 15px">
           <p>{{'API_TOKENS'|translate}}</p>
@@ -16,8 +22,11 @@
           </p>
 
           <div style="margin-top: 10px;">
-            <copiable-badge [label]="'access_key'" [value]="(account.pos) ? account.pos.access_key: ''"></copiable-badge>
-            <copiable-badge [label]="'access_secret'" [value]="(account.pos) ? account.pos.access_secret: ''"></copiable-badge>
+            <copiable-badge [label]="'access_key'" [value]="(account && account.pos) ? account.pos.access_key: ''">
+            </copiable-badge>
+            <copiable-badge [label]="'access_secret'"
+              [value]="(account && account.pos) ? account.pos.access_secret: ''">
+            </copiable-badge>
           </div>
         </div>
 
@@ -67,7 +76,7 @@
         <div class="center column h v padd-20">
           <h3 class="col-gray" style="font-weight: 200;">
             <i class="fa fa-exclamation-circle marg-right-10"></i>
-            {{'NO_TPV'|translate}}
+            {{'NO_TPV' |translate}}
           </h3>
           <p class="col-gray-light" style="margin-bottom: 15px!important;">
             {{'CREATE_NOW'|translate}}

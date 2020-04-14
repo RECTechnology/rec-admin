@@ -17,6 +17,7 @@ import {
 } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 import { TlHeaders } from 'src/data/tl-headers';
+import { Order } from 'src/shared/entities/order.ent';
 
 @Component({
     selector: 'tpv-orders',
@@ -34,11 +35,20 @@ export class TpvOrdersComponent extends TablePageBase {
     public headerOpts: TableListHeaderOptions = { input: true, refresh: true, deepLinkQuery: true };
     public headers: TlHeader[] = [
         TlHeaders.Id,
+        TlHeaders.generate('reference', {
+            accessor: 'reference',
+            title: 'Reference',
+        }),
         TlHeaders.generate('amount', {
             type: 'code',
             accessor: (item) => `${item.amount} €`,
         }),
-        TlHeaders.Status,
+        TlHeaders.StatusCustom((el: any) => ({
+            'col-info': el === Order.STATUS_CREATED,
+            'col-warning': el === Order.STATUS_EXPIRED || Order.STATUS_REFUNDED,
+            'col-success': el === Order.STATUS_DONE,
+            'col-purple': el === Order.STATUS_IN_PROGRESS,
+        })),
         TlHeaders.Updated,
     ];
     public itemOptions: TlItemOption[] = [

@@ -64,7 +64,7 @@
   "MANAGE_CURRENCIES": "Manage Currencies",
   "View Details": "View Details",
   "Add Comment": "Add Comment",
-  "Reference": "Currency",
+  "Reference": "Reference",
   "NO_TRANSACTIONS_YET": "No transactions yet",
   "VERIFY_ORDER": "Please verify your order, and check if everything is ok.",
   "MORE_THAN_X": "If more than 5 minutes pass, price might change.",
@@ -525,5 +525,9 @@
   "CREATE_TPV": "Create POS",
   "UPDATED_POS": "Updated POS correctly",
   "CREATED_POS": "Created POS correctly",
-  "DELETED_POS": "Deleted POS correctly"
+  "DELETED_POS": "Deleted POS correctly",
+  "SURE_DEACTIVATE_TPV": "If you deactivate the POS, this store will no longer be able to use it",
+  "DEACTIVATE_TPV": "Do you want to deactivate this POS?",
+  "Active": "Active",
+  "Inactive": "Inactive"
 }
