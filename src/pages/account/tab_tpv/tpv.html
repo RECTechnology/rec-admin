@@ -10,7 +10,7 @@
               <span class="small-text col-gray">{{(isActive ? 'Active': 'Inactive')|translate}}</span>
             </mat-slide-toggle>
 
-            <button mat-raised-button color="warn" class="marg-left-10" (click)="delete()">
+            <button mat-raised-button color="warn" class="marg-left-10" [disabled]="loading"  (click)="delete()">
               <i class="fa fa-trash marg-r-5"></i> {{'DELETE'|translate}}
             </button>
           </div>

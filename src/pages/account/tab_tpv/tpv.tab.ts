@@ -43,8 +43,6 @@ export class TpvTab extends TablePageBase {
   ) { super(); }
 
   public ngOnInit() {
-    this.loading = true;
-
     const pos = this.companyService.selectedCompany.pos;
     if (pos) {
       this.notification_url = pos.notification_url;
