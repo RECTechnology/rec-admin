@@ -41,8 +41,8 @@ export class AdminService extends BaseService2 {
         }
     }
 
-    public listPaymentOrders(filters) {
-        return this.get(`/admin/v3/payment_orders`, filters);
+    public listPaymentOrders(pos_id, filters) {
+        return this.get(`/admin/v3/pos/${pos_id}/payment_orders`, filters);
     }
 
     // /admin/v3/pos y payment_orders
@@ -53,6 +53,10 @@ export class AdminService extends BaseService2 {
 
     public editPos(id, data: Partial<Pos>) {
         return this.put(`/admin/v3/pos/${id}`, data);
+    }
+
+    public getPos(id) {
+        return this.get(`/admin/v3/pos/${id}`);
     }
 
     public deletePos(id: string) {

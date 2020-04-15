@@ -10,7 +10,7 @@
               <span class="small-text col-gray">{{(isActive ? 'Active': 'Inactive')|translate}}</span>
             </mat-slide-toggle>
 
-            <button mat-raised-button color="warn" class="marg-left-10" [disabled]="loading"  (click)="delete()">
+            <button mat-raised-button color="warn" class="marg-left-10" [disabled]="loading" (click)="delete()">
               <i class="fa fa-trash marg-r-5"></i> {{'DELETE'|translate}}
             </button>
           </div>
@@ -67,7 +67,7 @@
       </mat-card>
 
       <div style="margin-top: 20px;">
-        <tpv-orders [id]="id"></tpv-orders>
+        <tpv-orders [id]="id" [posId]="account.pos.id" [pos]="account.pos"></tpv-orders>
       </div>
     </div>
 

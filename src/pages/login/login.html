@@ -13,17 +13,6 @@
           <p class="text-center upper-case" style="font-size: 13px;">{{'ECONOMIC_CITIZEN_RESOURCES'|translate}}</p>
           <i class="small-text text-center">{{'START_NEIGHBOURHOOD'|translate}}</i>
         </div>
-
-        <div class="abs-bottom-center" style="width: 100%; bottom: -10px">
-          <div class="center h v" style="margin: 20px 0; width: 100%;">
-            <b>
-              ADMIN <code>{{environment.version}}</code>
-            </b>
-            <b style="margin-left: 8px;">
-              API <code>{{apiVersion}}</code>
-            </b>
-          </div>
-        </div>
       </div>
     </div>
     <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 right-side bg-white no-shadow">
@@ -45,16 +34,16 @@
         </p>
         <form *ngIf="!needs_two_fa" class="login-form" autocomplete="new-password" (keyup.enter)="doLogin()">
           <div class="input-group">
-            <input [(ngModel)]="credentials.username" [disabled]="disabled" id="username" name="username" type="text" class="form-control"
-              placeholder="{{'USER'|translate}}" autocomplete="new-password">
+            <input [(ngModel)]="credentials.username" [disabled]="disabled" id="username" name="username" type="text"
+              class="form-control" placeholder="{{'USER'|translate}}" autocomplete="new-password">
             <div class="input-group-addon">
               <i class="fa fa-user"></i>
             </div>
           </div>
 
           <div class="input-group">
-            <input [(ngModel)]="credentials.password" id="password" [disabled]="disabled" name="password" type="password" class="form-control"
-              placeholder="{{'PASSWORD'|translate}}" autocomplete="new-password">
+            <input [(ngModel)]="credentials.password" id="password" [disabled]="disabled" name="password"
+              type="password" class="form-control" placeholder="{{'PASSWORD'|translate}}" autocomplete="new-password">
             <div class="input-group-addon">
               <i class="fa fa-lock"></i>
             </div>
@@ -62,8 +51,9 @@
 
 
           <div class="input-group" style="margin-bottom: 2px">
-            <input [(ngModel)]="credentials.two_fa" #twoFAInput [disabled]="disabled" name="two_fa{{date_timestamp}}" type="text" class="form-control"
-              placeholder="{{('2FA_opt'|translate) + ('(Optional)'|translate)}}" autocomplete="new-password">
+            <input [(ngModel)]="credentials.two_fa" #twoFAInput [disabled]="disabled" name="two_fa{{date_timestamp}}"
+              type="text" class="form-control" placeholder="{{('2FA_opt'|translate) + ('(Optional)'|translate)}}"
+              autocomplete="new-password">
             <div class="input-group-addon">
               <i class="fa fa-lock"></i>
             </div>
@@ -74,10 +64,11 @@
           </div>
 
           <div class="input-group buttons" style="margin-top: 15px">
-            <button [disabled]="loading || disabled || !credentials.username || !credentials.password " type="button" (click)="doLogin()"
-              name="button" id="login-btn">
+            <button [disabled]="loading || disabled || !credentials.username || !credentials.password " type="button"
+              (click)="doLogin()" name="button" id="login-btn">
               <div class="center v h">
-                <mat-progress-spinner [diameter]="20" color="primary" mode="indeterminate" style="width: 20px; height: 20px" *ngIf="loading">
+                <mat-progress-spinner [diameter]="20" color="primary" mode="indeterminate"
+                  style="width: 20px; height: 20px" *ngIf="loading">
                 </mat-progress-spinner>
                 <span style="margin-left: 10px">{{'SIGN_IN'|translate}}</span>
               </div>
@@ -85,6 +76,13 @@
           </div>
         </form>
       </div>
+    </div>
+  </div>
+
+  <div style="width: 100%; bottom: -10px;position: absolute; left: 20px; bottom: 20px">
+    <div class="center h v" style="margin: 20px 0; width: 100%;font-size: 11px;">
+      <code>ADMIN {{environment.version}}</code>
+      <code style="margin-left: 8px;">API {{apiVersion}}</code>
     </div>
   </div>
 </div>

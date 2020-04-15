@@ -96,10 +96,7 @@ export class TpvTab extends TablePageBase {
         this.alerts.showSnackbar('DELETED_POS');
         this.events.fireEvent('account:update');
         this.ngOnInit();
-      }, (err) => {
-        this.loading = false;
-        console.log(err);
-      });
+      }, UtilsService.handleValidationError.bind(this, this));
   }
 
   public createTpv() {
@@ -109,8 +106,9 @@ export class TpvTab extends TablePageBase {
         console.log(resp);
         this.loading = false;
         this.alerts.showSnackbar('CREATED_POS');
-        this.events.fireEvent('account:update');
-        this.ngOnInit();
+        // this.events.fireEvent('account:update');
+        // this.ngOnInit();
+        this.account.pos = resp.data;
         this.validationErrors = [];
       }, UtilsService.handleValidationError.bind(this, this));
   }
@@ -123,6 +121,7 @@ export class TpvTab extends TablePageBase {
         this.loading = false;
         this.editingUrl = false;
         this.validationErrors = [];
+        this.events.fireEvent('account:update');
       }, UtilsService.handleValidationError.bind(this, this));
   }
 

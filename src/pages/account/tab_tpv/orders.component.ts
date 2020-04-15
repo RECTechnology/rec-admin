@@ -13,7 +13,7 @@ import { LoginService } from 'src/services/auth/auth.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import {
-    TableListOptions, TlHeader, TlItemOption,
+    TableListOptions, TlHeader,
 } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 import { TlHeaders } from 'src/data/tl-headers';
@@ -25,6 +25,8 @@ import { Order } from 'src/shared/entities/order.ent';
 })
 export class TpvOrdersComponent extends TablePageBase {
     @Input() public id = null;
+    @Input() public pos = null;
+    @Input() public posId = null;
     public pageName = 'TPV_ORDERS';
 
     public tableOptions: TableListOptions = {
@@ -45,14 +47,11 @@ export class TpvOrdersComponent extends TablePageBase {
         }),
         TlHeaders.StatusCustom((el: any) => ({
             'col-info': el === Order.STATUS_CREATED,
-            'col-warning': el === Order.STATUS_EXPIRED || Order.STATUS_REFUNDED,
+            'col-warning': el === Order.STATUS_EXPIRED || Order.STATUS_REFUNDED,
             'col-success': el === Order.STATUS_DONE,
             'col-purple': el === Order.STATUS_IN_PROGRESS,
         })),
         TlHeaders.Updated,
-    ];
-    public itemOptions: TlItemOption[] = [
-        // TlItemOptions.Edit(this.viewEditAccount.bind(this)),
     ];
 
     constructor(
@@ -73,6 +72,10 @@ export class TpvOrdersComponent extends TablePageBase {
         super();
     }
 
+    public ngOnInit() {
+        this.posId = this.pos.id;
+    }
+
     public getCleanParams(query?: string) {
         return {
             limit: this.limit,
@@ -88,7 +91,7 @@ export class TpvOrdersComponent extends TablePageBase {
         this.loading = true;
         this.query = query;
 
-        this.searchObs = this.admin.listPaymentOrders(data)
+        this.searchObs = this.admin.listPaymentOrders(this.posId, data)
             .subscribe(
                 (resp: any) => {
                     this.data = resp.data.elements;

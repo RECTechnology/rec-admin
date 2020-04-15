@@ -7,8 +7,8 @@
 
     </tl-subheader>
 
-    <tl-table [loading]="loading && !sortedData.length" [sort]="true" (onSort)="sortData($event)"
-        [itemOptions]="itemOptions" [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total"
-        (onChangePage)="changedPage($event)" [options]="tableOptions">
+    <tl-table [loading]="loading && !sortedData.length" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
+        [data]="sortedData" [limit]="limit" [total]="total" (onChangePage)="changedPage($event)"
+        [options]="tableOptions">
     </tl-table>
 </mat-card>
