@@ -529,5 +529,7 @@
   "SURE_DEACTIVATE_TPV": "If you deactivate the POS, this store will no longer be able to use it",
   "DEACTIVATE_TPV": "Do you want to deactivate this POS?",
   "Active": "Active",
-  "Inactive": "Inactive"
+  "Inactive": "Inactive",
+  "REFUND_DESC": "You are about to make a refund, please make sure you know what you are doing!",
+  "ACCEPT_REFUND": "Refund"
 }

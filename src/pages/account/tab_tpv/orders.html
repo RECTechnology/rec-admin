@@ -9,6 +9,6 @@
 
     <tl-table [loading]="loading && !sortedData.length" [sort]="true" (onSort)="sortData($event)" [headers]="headers"
         [data]="sortedData" [limit]="limit" [total]="total" (onChangePage)="changedPage($event)"
-        [options]="tableOptions">
+        [options]="tableOptions" [itemOptions]="itemOptions">
     </tl-table>
 </mat-card>

@@ -1105,5 +1105,7 @@
   "CREATED_POS": "TPV creada correctament",
   "DELETED_POS": "TPV eliminada correctament",
   "SURE_DEACTIVATE_TPV": "Si desactiva l'TPV aquest comerç ja no podrà seguir utilitzant-",
-  "DEACTIVATE_TPV": "Voleu desactivar aquesta TPV?"
+  "DEACTIVATE_TPV": "Voleu desactivar aquesta TPV?",
+  "REFUND_DESC": "Està en un punt de fer un reembolso, assegurant-se que el sabre és que està fent.",
+  "ACCEPT_REFUND": "Reembolsar"
 }

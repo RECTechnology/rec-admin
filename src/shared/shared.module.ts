@@ -111,6 +111,7 @@ import { IbansCrud } from 'src/services/crud/ibans/ibans.crud';
 import { DeliveryEntry } from 'src/pages/special-actions/mailing/delivery-entry/delivery-entry.component';
 import { CopyClipboardDirective } from 'src/directives/clipboard.directive';
 import { CopiableComponent } from 'src/components/ui/copiable/copiable.component';
+import { RefundOrderDia } from 'src/dialogs/management/refund-order/refund-order';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -141,6 +142,7 @@ const DIALOGS = [
   AddDocumentKindDia,
   AddDocumentDia,
   AddTierDia,
+  RefundOrderDia,
   CopiableComponent,
 ];
 

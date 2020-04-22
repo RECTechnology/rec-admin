@@ -1,3 +1,4 @@
+import { TlItemOptions } from 'src/data/tl-item-options';
 import { AdminService } from './../../../services/admin/admin.service';
 import { Component, Input } from '@angular/core';
 import { TablePageBase } from 'src/bases/page-base';
@@ -13,11 +14,12 @@ import { LoginService } from 'src/services/auth/auth.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import {
-    TableListOptions, TlHeader,
+    TableListOptions, TlHeader, TlItemOption,
 } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 import { TlHeaders } from 'src/data/tl-headers';
 import { Order } from 'src/shared/entities/order.ent';
+import { RefundOrderDia } from 'src/dialogs/management/refund-order/refund-order';
 
 @Component({
     selector: 'tpv-orders',
@@ -54,6 +56,16 @@ export class TpvOrdersComponent extends TablePageBase {
         TlHeaders.Updated,
     ];
 
+    public itemOptions: TlItemOption[] = [
+        TlItemOptions.Edit(this.openRefundOrder.bind(this), {
+            ngIf: (item) => {
+                return item.status === 'done';
+            },
+            text: 'Refund',
+            icon: 'fa-history',
+        }),
+    ];
+
     constructor(
         public titleService: Title,
         public route: ActivatedRoute,
@@ -84,6 +96,13 @@ export class TpvOrdersComponent extends TablePageBase {
             search: query || this.query,
             sort: this.sortID,
         };
+    }
+
+    public openRefundOrder(order) {
+        this.alerts.openModal(RefundOrderDia, { id: order.id })
+            .subscribe((pin) => {
+                this.search();
+            });
     }
 
     public search(query: string = this.query) {

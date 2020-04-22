@@ -45,7 +45,9 @@ export class AdminService extends BaseService2 {
         return this.get(`/admin/v3/pos/${pos_id}/payment_orders`, filters);
     }
 
-    // /admin/v3/pos y payment_orders
+    public refundOrder(id, pin) {
+        return this.put(`/admin/v3/payment_orders/${id}`, { pin, status: 'refunded' });
+    }
 
     public createPos(account_id) {
         return this.post(`/admin/v3/pos`, { account_id });

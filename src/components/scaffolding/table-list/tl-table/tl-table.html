@@ -62,7 +62,8 @@
                     [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</span>
             </td>
             <td *ngIf="itemOptions && itemOptions.length && options && options.optionsType === 'menu'">
-                <button mat-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
+                <button mat-icon-button [matMenuTriggerFor]="optsMenu" *ngIf="" class="icon-btn-small"
+                    style="min-width: 0">
                     <span class="center h v">
                         <i class="fa fa-ellipsis-v"></i>
                     </span>
@@ -70,23 +71,29 @@
                 <icon-btn [matMenuTriggerFor]="optsMenu" icon="ellipsis-v"></icon-btn>
 
                 <mat-menu #optsMenu="matMenu">
-                    <button mat-menu-item [disabled]="isOptionDisabled(option, entry)"
-                        *ngFor="let option of itemOptions; trackBy: trackByFn" (click)="option.callback(entry)">
-                        <p class="small-text {{option.class}}"> <i *ngIf="option.icon" class="fa {{option.icon}}"></i>
-                            {{getOptionText(option)|translate}}</p>
-                    </button>
+                    <ng-template ngFor let-option [ngForOf]="itemOptions" [ngForTrackBy]="trackByFn">
+                        <button mat-menu-item [disabled]="isOptionDisabled(option, entry)"
+                            *ngIf="isEnabled(option, entry)" (click)="option.callback(entry)">
+                            <p class="small-text {{option.class}}"> <i *ngIf="option.icon"
+                                    class="fa {{option.icon}}"></i>
+                                {{getOptionText(option)|translate}}</p>
+                        </button>
+                    </ng-template>
                 </mat-menu>
             </td>
-            <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'buttons'" (click)="$event.stopPropagation()">
+            <td *ngIf="itemOptions && itemOptions.length && options.optionsType === 'buttons'"
+                (click)="$event.stopPropagation()">
                 <ng-template ngFor let-option [ngForOf]="itemOptions" [ngForTrackBy]="trackByFn">
                     <icon-btn *ngIf="option.icon && isEnabled(option, entry)"
-                        [disabled]="isOptionDisabled(option, entry)" (click)="$event.stopPropagation(); option.callback(entry)"
-                        [icon]="option.icon" class="btn-icon-sm {{option.class}}"
-                        matTooltip="{{getOptionText(option)|translate}}"></icon-btn>
+                        [disabled]="isOptionDisabled(option, entry)"
+                        (click)="$event.stopPropagation(); option.callback(entry)" [icon]="option.icon"
+                        class="btn-icon-sm {{option.class}}" matTooltip="{{getOptionText(option)|translate}}">
+                    </icon-btn>
 
                     <button *ngIf="!option.icon && isEnabled(option, entry)" mat-button color="primary"
-                        [disabled]="isOptionDisabled(option, entry)" (click)="$event.stopPropagation(); option.callback(entry)"
-                        class="mat-button {{option.class}}" style="min-width: 0; margin-right: 8px">
+                        [disabled]="isOptionDisabled(option, entry)"
+                        (click)="$event.stopPropagation(); option.callback(entry)" class="mat-button {{option.class}}"
+                        style="min-width: 0; margin-right: 8px">
                         <p class="small-text {{option.class}}"> <i *ngIf="option.icon" class="fa {{option.icon}}"></i>
                             {{getOptionText(option)|translate}}</p>
                     </button>

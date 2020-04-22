@@ -1,0 +1,25 @@
+<modal-header status="warning" title="{{'REFUND'|translate}}" (click)="close(false)"></modal-header>
+
+<div class="padd-20">
+  <div class="row" style="max-width: 600px; width: 600px">
+    <div class="col-lg-12">
+      <p class="small-text-2 col-gray">
+       <i class="fa fa-warning"></i> {{'REFUND_DESC'|translate}}
+      </p>
+    </div>
+    <hr>
+
+    <div class="col-lg-12 marg-top-10">
+      <input-field [(value)]="pin" label="Pin"></input-field>
+    </div>
+
+    <div class="col-lg-12 marg-top-15" style="height: 45px;">
+      <button mat-button class="marg-right-10" (click)="close()">{{'CANCEL'|translate}}</button>
+      <!-- <button mat-raised-button color="accent" (click)="refund()"
+        [disabled]="!pin || loading">{{'ACCEPT_REFUND'|translate}}</button> -->
+      <btn-loader (click)="refund()" [disabled]="loading" [loading]="loading" color="accent"
+        text="{{'ACCEPT_REFUND'|translate}}">
+      </btn-loader>
+    </div>
+  </div>
+</div>

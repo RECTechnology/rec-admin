@@ -1102,5 +1102,7 @@
   "UPDATED_POS": "TPV actualizada correctamente",
   "CREATED_POS": "TPV creada correctamente",
   "DELETED_POS": "TPV eliminada correctamente",
-  "Inactive": "Inactiva"
+  "Inactive": "Inactiva",
+  "REFUND_DESC": "Está a punto de hacer un reembolso, asegúrese de saber lo que está haciendo.!",
+  "ACCEPT_REFUND": "Reembolsar"
 }
