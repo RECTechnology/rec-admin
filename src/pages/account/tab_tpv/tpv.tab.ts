@@ -106,10 +106,9 @@ export class TpvTab extends TablePageBase {
         console.log(resp);
         this.loading = false;
         this.alerts.showSnackbar('CREATED_POS');
-        // this.events.fireEvent('account:update');
-        // this.ngOnInit();
         this.account.pos = resp.data;
         this.validationErrors = [];
+        this.ngOnInit();
       }, UtilsService.handleValidationError.bind(this, this));
   }
 
@@ -120,6 +119,7 @@ export class TpvTab extends TablePageBase {
         this.alerts.showSnackbar('UPDATED_POS');
         this.loading = false;
         this.editingUrl = false;
+        this.ngOnInit();
         this.validationErrors = [];
         this.events.fireEvent('account:update');
       }, UtilsService.handleValidationError.bind(this, this));

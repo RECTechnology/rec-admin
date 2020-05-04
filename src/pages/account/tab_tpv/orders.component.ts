@@ -45,7 +45,7 @@ export class TpvOrdersComponent extends TablePageBase {
         }),
         TlHeaders.generate('amount', {
             type: 'code',
-            accessor: (item) => `${item.amount} €`,
+            accessor: (item) => `${(item.amount / Math.pow(10, 8)).toFixed(4)} €`,
         }),
         TlHeaders.StatusCustom((el: any) => ({
             'col-info': el === Order.STATUS_CREATED,
@@ -53,7 +53,7 @@ export class TpvOrdersComponent extends TablePageBase {
             'col-success': el === Order.STATUS_DONE,
             'col-purple': el === Order.STATUS_IN_PROGRESS,
         })),
-        TlHeaders.Updated,
+        TlHeaders.Created.extend({ accessor: 'created', sort: 'created', title: 'Created' }),
     ];
 
     public itemOptions: TlItemOption[] = [
