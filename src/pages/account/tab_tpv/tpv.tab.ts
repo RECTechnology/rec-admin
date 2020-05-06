@@ -122,6 +122,7 @@ export class TpvTab extends TablePageBase {
         this.ngOnInit();
         this.validationErrors = [];
         this.events.fireEvent('account:update');
+        // this.ngOnInit();
       }, UtilsService.handleValidationError.bind(this, this));
   }
 
