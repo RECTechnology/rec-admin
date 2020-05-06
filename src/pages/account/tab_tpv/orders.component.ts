@@ -29,6 +29,10 @@ export class TpvOrdersComponent extends TablePageBase {
     @Input() public id = null;
     @Input() public pos = null;
     @Input() public posId = null;
+
+    public sortDir = 'desc';
+    public sortID = 'created';
+
     public pageName = 'TPV_ORDERS';
 
     public tableOptions: TableListOptions = {

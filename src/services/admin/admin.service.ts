@@ -42,7 +42,7 @@ export class AdminService extends BaseService2 {
     }
 
     public listPaymentOrders(pos_id, filters) {
-        return this.get(`/admin/v3/pos/${pos_id}/payment_orders`, filters);
+        return this.get(`/admin/v3/payment_orders`, { ...filters, pos_id });
     }
 
     public refundOrder(id, pin) {
