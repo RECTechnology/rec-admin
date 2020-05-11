@@ -119,12 +119,9 @@ export class TpvTab extends TablePageBase {
         this.alerts.showSnackbar('UPDATED_POS');
         this.loading = false;
         this.editingUrl = false;
-        // this.ngOnInit();
         this.validationErrors = [];
         this.events.fireEvent('account:update');
-        // this.ngOnInit();
-        this.notification_url = this.notification_url;
-        this.isActive = additionalData.active;
+        this.isActive = 'active' in additionalData ? additionalData.active : this.isActive;
       }, UtilsService.handleValidationError.bind(this, this));
   }
 
