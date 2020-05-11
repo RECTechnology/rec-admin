@@ -1,9 +1,7 @@
 import { BaseService2 } from './../base/base.service-v2';
 import { Injectable } from '@angular/core';
-import { BaseService } from '../base/base.service';
 import { UserService } from '../user.service';
 import { LoginService } from '../auth/auth.service';
-import { API_URL } from '../../data/consts';
 import { NotificationService } from '../notifications/notifications.service';
 import { CompanyService } from '../company/company.service';
 import { HttpClient, HttpParams } from '@angular/common/http';

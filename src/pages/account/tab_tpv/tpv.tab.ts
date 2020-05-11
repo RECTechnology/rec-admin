@@ -112,7 +112,7 @@ export class TpvTab extends TablePageBase {
       }, UtilsService.handleValidationError.bind(this, this));
   }
 
-  public updateTpv(additionalData = {}) {
+  public updateTpv(additionalData: any = {}) {
     this.loading = true;
     this.admin.editPos(this.account.pos?.id, { notification_url: this.notification_url, ...additionalData })
       .subscribe((resp) => {
@@ -123,6 +123,7 @@ export class TpvTab extends TablePageBase {
         this.validationErrors = [];
         this.events.fireEvent('account:update');
         // this.ngOnInit();
+        this.isActive = additionalData.active;
       }, UtilsService.handleValidationError.bind(this, this));
   }
 
