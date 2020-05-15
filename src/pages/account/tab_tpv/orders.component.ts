@@ -49,7 +49,7 @@ export class TpvOrdersComponent extends TablePageBase {
         }),
         TlHeaders.generate('amount', {
             type: 'code',
-            accessor: (item) => `${(item.amount / Math.pow(10, 8)).toFixed(4)} €`,
+            accessor: (item) => `${(item.amount / Math.pow(10, 8)).toFixed(2)} Ɍ`,
         }),
         TlHeaders.StatusCustom((el: any) => ({
             'col-info': el === Order.STATUS_CREATED,
