@@ -1104,5 +1104,12 @@
   "DELETED_POS": "TPV eliminada correctamente",
   "Inactive": "Inactiva",
   "REFUND_DESC": "Está a punto de hacer un reembolso, asegúrese de saber lo que está haciendo.!",
-  "ACCEPT_REFUND": "Reembolsar"
+  "ACCEPT_REFUND": "Reembolsar",
+
+  "SEARCH": "Busca...",
+  "SHORTCUTS:HELP": "Ayuda atajos de teclado",
+  "SHORTCUT:DEBUG_SCREEN": "Abrir/cerrar ventana debug",
+  "SHORTCUT:HELP_SCREEN": "Abrir ayuda atajos teclado",
+  "SHORTCUT:TABLE:NEXT_PAGE": "Pagina Siguiente (En cualquier tabla)",
+  "SHORTCUT:TABLE:PREV_PAGE": "Pagina Previa (En cualquier tabla)"
 }

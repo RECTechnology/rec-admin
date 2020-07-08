@@ -1107,5 +1107,12 @@
   "SURE_DEACTIVATE_TPV": "Si desactiva l'TPV aquest comerç ja no podrà seguir utilitzant-",
   "DEACTIVATE_TPV": "Voleu desactivar aquesta TPV?",
   "REFUND_DESC": "Està en un punt de fer un reembolso, assegurant-se que el sabre és que està fent.",
-  "ACCEPT_REFUND": "Reembolsar"
+  "ACCEPT_REFUND": "Reembolsar",
+
+  "SEARCH": "Cerca...",
+  "SHORTCUTS:HELP": "Les dreceres d'ajuda del teclat",
+  "SHORTCUT:DEBUG_SCREEN": "Obre la finestra de depuració",
+  "SHORTCUT:HELP_SCREEN": "Obre les dreceres d'ajuda del teclat",
+  "SHORTCUT:TAULA:NEXT_PAGE": "Pàgina següent (a qualsevol taula)",
+  "SHORTCUT:TAULA:PREV_PAGE": "Pàgina anterior (a qualsevol taula)"
 }

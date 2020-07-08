@@ -16,7 +16,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e --port 4201",
     "release": "standard-version",
-    "stats": "ng build --stats-json && webpack-bundle-analyzer dist/stats-es2015.json"
+    "stats": "ng build --stats-json && webpack-bundle-analyzer dist/stats-es2015.json",
+    "login-cli": "NPM_USER=nombrekeff NPM_PASS=108b981230089f269b89f71220ea30664fd9f62b NPM_EMAIL=manoloedge96@gmail.com npm-cli-login"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +35,8 @@
     "@angular/service-worker": "^9.0.0",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
+    "@qbitartifacts/qbit-hotkeys": "^0.0.12",
+    "@qbitartifacts/qbitkit-ng": "^0.0.3",
     "@sentry/browser": "^5.12.1",
     "crypto-js": "^3.1.9-1",
     "deepmerge": "^4.2.2",
@@ -43,6 +46,7 @@
     "moment": "^2.24.0",
     "ngx-country-picker": "^2.2.0",
     "ngx-quill": "^7.3.1",
+    "npm-cli-login": "^0.1.1",
     "quill": "^1.3.7",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

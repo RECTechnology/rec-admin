@@ -25,11 +25,6 @@ export const LANGS = [
     abrev: 'en',
     icon: 'gb'
   },
-  {
-    name: 'Catalan',
-    abrev: 'cat',
-    icon: 'cat'
-  }
 ];
 
 export const LANG_MAP = {

@@ -19,7 +19,21 @@ jobs:
           PASS: ${{secrets.DOCKER_PASSWORD}}
         run: docker login -u ${USER} -p ${PASS} reg.rallf.com:8443
 
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          always-auth: true
+          node-version: '12.x'
+          registry-url: https://npm.pkg.github.com/
+          scope: '@QbitArtifacts'
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
       - name: Build Docker image
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         run: docker build . -t reg.rallf.com:8443/rec-admin:master
 
       - name: Push Docker image

@@ -1,19 +1,32 @@
-
 import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateModule,
+  TranslateLoader,
+  TranslateService,
+} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HttpClient,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 
 // Components & dialogs
 import { AppComponent } from './app.component';
 import { WalletModule } from 'src/pages/wallet/wallet.module';
 import { ChangeDelegateModule } from 'src/pages/special-actions/change_delegate/change_delegate.module';
-import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
+import {
+  LoginService,
+  AppAuthService,
+} from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
-import { IsLoggedInGuard, IsNotLoggedInGuard } from 'src/services/guards/login.guard';
+import {
+  IsLoggedInGuard,
+  IsNotLoggedInGuard,
+} from 'src/services/guards/login.guard';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { TransactionService } from 'src/services/transactions/transactions.service';
 import { WalletService } from 'src/services/wallet/wallet.service';
@@ -25,7 +38,7 @@ import { NotificationService } from 'src/services/notifications/notifications.se
 import { SharedModule } from 'src/shared/shared.module';
 import { CustomMatPaginatorIntl } from 'src/shared/md-i18n';
 import { MaterialModule } from 'src/shared/md-module';
-import { MatPaginatorIntl} from '@angular/material/paginator';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { QuillModule } from 'ngx-quill';
 
@@ -44,6 +57,8 @@ import localeCa from '@angular/common/locales/ca';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { getLocale } from 'src/shared/utils.fns';
+
+import { HotkeysModule } from '@qbitartifacts/qbit-hotkeys';
 
 registerLocaleData(localeCat);
 registerLocaleData(localeCa);
@@ -67,11 +82,12 @@ const imports = [
   WalletModule,
   ChangeDelegateModule,
   AccountModule,
+  HotkeysModule,
   TranslateModule.forRoot({
     loader: {
       deps: [HttpClient],
       provide: TranslateLoader,
-      useFactory: (createTranslateLoader),
+      useFactory: createTranslateLoader,
     },
   }),
   BrowserAnimationsModule,
@@ -122,6 +138,11 @@ const imports = [
     },
     { provide: ErrorHandler, useClass: SentryErrorHandler },
   ],
-  imports: [...imports, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
+  imports: [
+    ...imports,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+  ],
 })
-export class AppModule { }
+export class AppModule {}
