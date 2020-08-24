@@ -13,7 +13,6 @@ import { Currencies } from 'src/shared/entities/currency/currency';
   selector: 'create-lemon-withdrawal',
   templateUrl: './create-lemon-withdrawal.html',
 })
-
 export class CreateLemonWithdrawalDia extends BaseDialog {
   public id: any;
   public account: Account;
@@ -31,17 +30,16 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
     public dialogRef: MatDialogRef<CreateLemonWithdrawalDia>,
     private us: UserService,
     public alerts: AlertsService,
-    public accountCrud: AccountsCrud,
+    public accountCrud: AccountsCrud
   ) {
     super();
   }
 
   public ngOnInit() {
-    this.accountCrud.lwGetWallet(this.id)
-      .subscribe((resp) => {
-        this.lwInfo = resp.data;
-        this.ibans = this.lwInfo.IBANS;
-      });
+    this.accountCrud.lwGetWallet(this.id).subscribe((resp) => {
+      this.lwInfo = resp.data;
+      this.ibans = this.lwInfo.IBANS;
+    });
     this.accountCrud.find(this.id).subscribe((resp) => {
       this.account = resp.data;
       this.currentAmountREC = this.account.getBalance('REC');
@@ -50,24 +48,35 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   }
 
   public proceed() {
+    if (this.loading) {
+      return;
+    }
+
     this.loading = true;
-    this.accountCrud.createWithdrawal(
-      this.account.id,
-      WalletService.scaleNum(this.amount, Currencies.EUR.scale),
-      this.concept,
-      this.otp,
-      Currencies.EUR.name,
-    ).subscribe((resp) => {
-        this.loading = false;
-        this.alerts.showSnackbar('Success');
-        this.close();
-      }, (err) => {
-        if (err.errors) {
-          this.validationErrors = UtilsService.normalizeLwError(err.errors);
-        } else {
-          this.alerts.showSnackbar(err.message);
+    this.accountCrud
+      .createWithdrawal(
+        this.account.id,
+        WalletService.scaleNum(this.amount, Currencies.EUR.scale),
+        this.concept,
+        this.otp,
+        Currencies.EUR.name
+      )
+      .subscribe(
+        (resp) => {
+          this.loading = false;
+          this.alerts.showSnackbar('Success');
+          this.close();
+        },
+        (err) => {
+          if (err.errors) {
+            this.validationErrors = UtilsService.normalizeLwError(
+              err.errors
+            );
+          } else {
+            this.alerts.showSnackbar(err.message);
+          }
+          this.loading = false;
         }
-        this.loading = false;
-      });
+      );
   }
 }
