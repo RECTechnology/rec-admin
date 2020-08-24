@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { interval } from 'rxjs';
 import { AppService } from 'src/services/app/app.service';
 import { environment } from 'src/environments/environment';
@@ -15,11 +15,6 @@ import { UserService } from 'src/services/user.service';
 import { IdleNotification } from 'src/dialogs/other/idle-notification/idle.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { MySentry } from 'src/shared/sentry';
-import {
-  HotkeysDialogComponent,
-  HotkeysService,
-} from '@qbitartifacts/qbit-hotkeys';
-import { SHORTCUTS } from 'src/data/shortcuts';
 
 @Component({
   providers: [AppService],
@@ -35,7 +30,6 @@ export class AppComponent implements OnInit, OnDestroy {
   public Brand: any = environment.Brand;
   public refreshObs: any = null;
   public idleModal: any = null;
-  public hotkeysModal: MatDialogRef<HotkeysDialogComponent>;
 
   constructor(
     private translate: TranslateService,
@@ -46,8 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private ls: LoginService,
     private aas: AppAuthService,
     private us: UserService,
-    public alerts: AlertsService,
-    public hotkeys: HotkeysService
+    public alerts: AlertsService
   ) {
     this.utils.isSandbox = this.isSandbox = environment.test;
 
@@ -55,10 +48,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isSandbox) {
       document.body.classList.add('sandbox');
     }
-
-    // this.hotkeys
-    //   .addShortcut(SHORTCUTS.hotkeysHelp)
-    //   .subscribe(this.toggleHotkeysHelp.bind(this));
   }
 
   public ngOnInit() {
@@ -194,19 +183,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private closeIdleMessage(): void {
     if (this.idleModal) {
       this.idleModal.close();
-    }
-  }
-
-  /* istanbul ignore next */
-  private toggleHotkeysHelp() {
-    if (!this.hotkeysModal) {
-      this.hotkeysModal = this.dialog.open(HotkeysDialogComponent, {
-        width: '50%',
-        data: this.hotkeys.hotkeys,
-      });
-    } else {
-      this.hotkeysModal.close();
-      this.hotkeysModal = null;
     }
   }
 }

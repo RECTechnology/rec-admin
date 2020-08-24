@@ -58,8 +58,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { getLocale } from 'src/shared/utils.fns';
 
-import { HotkeysModule } from '@qbitartifacts/qbit-hotkeys';
-
 registerLocaleData(localeCat);
 registerLocaleData(localeCa);
 registerLocaleData(localeEn);
@@ -82,7 +80,6 @@ const imports = [
   WalletModule,
   ChangeDelegateModule,
   AccountModule,
-  HotkeysModule,
   TranslateModule.forRoot({
     loader: {
       deps: [HttpClient],

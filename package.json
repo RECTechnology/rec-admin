@@ -36,7 +36,6 @@
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
     "@qbitartifacts/qbit-hotkeys": "^0.0.12",
-    "@qbitartifacts/qbitkit-ng": "^0.0.3",
     "@sentry/browser": "^5.12.1",
     "crypto-js": "^3.1.9-1",
     "deepmerge": "^4.2.2",
