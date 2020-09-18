@@ -69,32 +69,32 @@ export class AdminService extends BaseService2 {
 
     public getWithdrawals() {
         deprecatedMessage('getWithdrawals');
-        return this.get(`/admin/v1/treasure_withdrawals`);
+        return this.get(`/admin/v3/treasure_withdrawals`);
     }
 
     public addWithdrawal(data) {
         deprecatedMessage('addWithdrawal');
-        return this.post(`/admin/v1/treasure_withdrawals`, data);
+        return this.post(`/admin/v3/treasure_withdrawals`, data);
     }
 
     public getWithdrawal(id) {
         deprecatedMessage('getWithdrawal');
-        return this.get(`/admin/v1/treasure_withdrawals/${id}`);
+        return this.get(`/admin/v3/treasure_withdrawals/${id}`);
     }
 
     public createWithdrawal(data) {
         deprecatedMessage('createWithdrawal');
-        return this.post(`/admin/v1/treasure_withdrawals`, data);
+        return this.post(`/admin/v3/treasure_withdrawals`, data);
     }
 
     public getWithdrawalValidations() {
         deprecatedMessage('getWithdrawalValidations');
-        return this.get(`/admin/v1/treasure_withdrawal_validations`);
+        return this.get(`/admin/v3/treasure_withdrawal_validations`);
     }
 
     public validateWithdrawalAttempt(id, data) {
         deprecatedMessage('validateWithdrawalAttempt');
-        return this.put(`/admin/v1/treasure_withdrawal_validations/${id}`, data);
+        return this.put(`/admin/v3/treasure_withdrawal_validations/${id}`, data);
     }
 
     public deactiveUser(id_user) {
