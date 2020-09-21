@@ -19,13 +19,11 @@ export class ValidateWithdrawalComponent implements OnInit {
   constructor(public route: ActivatedRoute, public app: AppService) {}
 
   public ngOnInit() {
-    console.log('ng on init');
     const paramsObservable = this.route.params;
     const queryParamsObservable = this.route.queryParams;
 
     zip(paramsObservable, queryParamsObservable).subscribe(
       ([params, queryParams]) => {
-        console.log(params, queryParams);
         this.id = params.id;
         this.validateWithdrawal(params.id, queryParams.token);
       },
@@ -36,13 +34,11 @@ export class ValidateWithdrawalComponent implements OnInit {
     this.isLoading = true;
     this.app.validateWithdrawal(id, token).subscribe(
       (resp) => {
-        console.log('Validated', resp);
         this.status = resp.data.status;
         this.validated = true;
         this.isLoading = false;
       },
       (err) => {
-        console.log('Validation error', err);
         this.error = err.message;
         this.isLoading = false;
       },
