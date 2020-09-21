@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { zip } from 'rxjs';
-import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { AppService } from 'src/services/app/app.service';
 
 @Component({
@@ -25,7 +24,13 @@ export class ValidateWithdrawalComponent implements OnInit {
     zip(paramsObservable, queryParamsObservable).subscribe(
       ([params, queryParams]) => {
         this.id = params.id;
-        this.validateWithdrawal(params.id, queryParams.token);
+
+        if (!params.id || !queryParams.token) {
+          this.error =
+            'Invalid request, please click the link in the mail.';
+        } else {
+          this.validateWithdrawal(params.id, queryParams.token);
+        }
       },
     );
   }
@@ -40,6 +45,7 @@ export class ValidateWithdrawalComponent implements OnInit {
       },
       (err) => {
         this.error = err.message;
+        this.validated = false;
         this.isLoading = false;
       },
     );

@@ -1,10 +1,10 @@
-<div class="center h v column" style="height: 100vh" *ngIf="!validated">
+<div class="center h v column" style="height: 100vh" *ngIf="!validated && !error">
     <h4>{{'VALIDATE_WITHDRAWAL'|translate}} ({{id}})</h4>
     <mat-progress-spinner [diameter]="20" color="primary" mode="indeterminate"
         *ngIf="isLoading"></mat-progress-spinner>
 </div>
 
-<div class="center h v column" style="height: 100vh" *ngIf="validated">
+<div class="center h v column" style="height: 100vh" *ngIf="validated && !error">
     <h4>{{'VALIDATE_WITHDRAWAL'|translate}} ({{id}})</h4>
     <p class="col-success"><i class="fa fa-check"></i> {{status|translate}}</p>
 
