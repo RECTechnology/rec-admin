@@ -538,5 +538,8 @@
   "SHORTCUT:DEBUG_SCREEN": "Toggle debug screen",
   "SHORTCUT:HELP_SCREEN": "Open shortcuts help",
   "SHORTCUT:TABLE:NEXT_PAGE": "Next Page (On any table)",
-  "SHORTCUT:TABLE:PREV_PAGE": "Previous Page (On any table)"
+  "SHORTCUT:TABLE:PREV_PAGE": "Previous Page (On any table)",
+
+  "VALIDATE_WITHDRAWAL": "Validate Withdrawal",
+  "BACK_TO_LOGIN": "Back to Login"
 }

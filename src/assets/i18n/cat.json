@@ -1114,5 +1114,8 @@
   "SHORTCUT:DEBUG_SCREEN": "Obre la finestra de depuració",
   "SHORTCUT:HELP_SCREEN": "Obre les dreceres d'ajuda del teclat",
   "SHORTCUT:TAULA:NEXT_PAGE": "Pàgina següent (a qualsevol taula)",
-  "SHORTCUT:TAULA:PREV_PAGE": "Pàgina anterior (a qualsevol taula)"
+  "SHORTCUT:TAULA:PREV_PAGE": "Pàgina anterior (a qualsevol taula)",
+  "VALIDATE_WITHDRAWAL": "Validar la retirada",
+  "BACK_TO_LOGIN": "Torna a l'inici de sessió",
+  "approved": "Aprovada"
 }

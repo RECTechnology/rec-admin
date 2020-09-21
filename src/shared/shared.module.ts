@@ -112,6 +112,7 @@ import { DeliveryEntry } from 'src/pages/special-actions/mailing/delivery-entry/
 import { CopyClipboardDirective } from 'src/directives/clipboard.directive';
 import { CopiableComponent } from 'src/components/ui/copiable/copiable.component';
 import { RefundOrderDia } from 'src/dialogs/management/refund-order/refund-order';
+import { ValidateWithdrawalComponent } from 'src/components/validate-withdrawal/validate-withdrawal.component';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -206,6 +207,7 @@ const DIRECTIVES = [
     AppPage,
     DeliveryEntry,
     CopiableComponent,
+    ValidateWithdrawalComponent,
     ...DIALOGS,
     ...DIRECTIVES,
   ],
