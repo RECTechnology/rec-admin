@@ -895,7 +895,7 @@
   "TREASURE_ACCOUNT_DESC": "Evia RECs desde la Cuenta Del Tesoro a la cuenta de NOVACT",
   "WITHDRAWAL_NEEDS_VOTE": "¡Una retirada del tesoro necesita su voto!",
   "WITHDRAWAL_NEEDS_VOTE_DESC": "¡Hay una retirada del tesoro que requiere su voto!",
-  "WITHDRAWAL_CANCEL_DESC": "Solo puede haber una retirada del tesor de la cuenta del tesoro abierto a las confirmaciones al mismo tiempo, y <b>expirará en 24h</b>. Después de ese tiempo se cancelará o si más del 50% de los Los administradores que rechacen la operación también se cancelarán. ¡Puedes crear más! ",
+  "WITHDRAWAL_CANCEL_DESC": "Solo puede haber una petición activa para sacar recs de la cuenta del tesoro. Esta petición expirará en 24h si algún administrador no la confirma, entendiéndose así como que se desestima esta petición. Para que la petición sea ejecutada deberá ser validada por todos los administradores a través del link de confirmación que recibirán por email.",
   "Confirmations": "Confirmaciones",
   "Edit Account": "Edita Cuenta",
   "of": "de",
@@ -1115,5 +1115,10 @@
 
   "VALIDATE_WITHDRAWAL": "Validar Retirada",
   "BACK_TO_LOGIN": "Volver al Login",
-  "approved": "Aprovada"
+  "approved": "Aprobada",
+  "Approved": "Aprobada",
+  "Sent": "Enviado",
+  "Concept is required": "El concepto es requerido",
+  "Withdrawals": "Retiradas",
+  "Description": "Descripción"
 }

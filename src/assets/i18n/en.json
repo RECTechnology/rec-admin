@@ -372,7 +372,7 @@
   "ACTIVATE_CHANGE_IMMEDIATE": "Change will run immediately after activating...",
   "WITHDRAWAL_NEEDS_VOTE": "A withdrawal needs your vote!",
   "WITHDRAWAL_NEEDS_VOTE_DESC": "There is a withdrawal that requires your vote!",
-  "WITHDRAWAL_CANCEL_DESC": "There can only be one withdrawal from the treasure account open to confirmations at the same time, and <b>will expire in 24h</b>. After that time will be canceled or if more than 50% of the admins reject the operation will also be canceled. You can create more!",
+  "WITHDRAWAL_CANCEL_DESC": "There can only be one active request to withdraw recs from the treasury account. This request will expire in 24 hours if an administrator does not confirm it, meaning that this request is rejected. For the request to be executed, it must be validated by all administrators through the confirmation link that they will receive by email.",
   "Confirmations": "Confirmations",
   "EXPORT_EXCHANGERS_AS_CSV": "Export Exchangers as CSV",
   "FOUND_X_EXCHANGERS": "Found {{amount}} exchangers",

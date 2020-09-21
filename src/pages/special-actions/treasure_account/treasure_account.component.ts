@@ -2,7 +2,10 @@ import { Component, AfterContentInit } from '@angular/core';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { AdminService } from '../../../services/admin/admin.service';
-import { TlItemOption, TlHeader } from '../../../components/scaffolding/table-list/tl-table/tl-table.component';
+import {
+  TlItemOption,
+  TlHeader,
+} from '../../../components/scaffolding/table-list/tl-table/tl-table.component';
 import { MatDialog } from '@angular/material/dialog';
 import { VoteWithdrawal } from '../../../dialogs/vote-withdrawal/vote-withdrawal.dia';
 import { UserService } from '../../../services/user.service';
@@ -43,14 +46,17 @@ export class TreasureAccount implements AfterContentInit {
     {
       sort: 'id',
       title: 'ID',
-    }, {
+    },
+    {
       sort: 'amount',
       title: 'Amount',
       type: 'code',
-    }, {
+    },
+    {
       sort: 'description',
       title: 'Description',
-    }, {
+    },
+    {
       sort: 'status',
       statusClass: (el: any) => ({
         'col-error': el === 'sent' || el === 'rejected',
@@ -58,26 +64,35 @@ export class TreasureAccount implements AfterContentInit {
       }),
       title: 'Status',
       type: 'status',
-    }, {
+    },
+    {
       sort: 'approved',
       title: 'Approved',
       type: 'checkbox',
-    }, {
+    },
+    {
       sort: 'sent',
       title: 'Sent',
       type: 'checkbox',
     },
+    {
+      sort: 'created',
+      title: 'Created',
+      type: 'date',
+    },
   ];
   public needsToVote = false;
-  public itemOptions: TlItemOption[] = [{
-    callback: this.vote.bind(this),
-    disabled: (el) => {
-      return false;
+  public itemOptions: TlItemOption[] = [
+    {
+      callback: this.vote.bind(this),
+      disabled: (el) => {
+        return false;
+      },
+      text: (el) => {
+        return 'Vote';
+      },
     },
-    text: (el) => {
-      return 'Vote';
-    },
-  }];
+  ];
   public activeWithdrawal: any;
 
   constructor(
@@ -87,42 +102,47 @@ export class TreasureAccount implements AfterContentInit {
     public as: AdminService,
     public dialog: MatDialog,
     public alerts: AlertsService,
-  ) { }
+  ) {}
 
   public ngAfterContentInit() {
     this.reset();
-    this.needsToVote = this.as.checkIfUserNeedsToVote(this.us.userData);
+    this.needsToVote = this.as.checkIfUserNeedsToVote(
+      this.us.userData,
+    );
   }
 
   public getList() {
-    this.as.getWithdrawals()
-      .subscribe(
-        (resp) => {
-          this.withdrawalList = resp.data.elements;
-          this.sortedData = this.withdrawalList.slice();
-          this.activeWithdrawal = this.sortedData[0];
-        },
-        (err) => { return; },
-      );
+    this.as.getWithdrawals().subscribe(
+      (resp) => {
+        this.withdrawalList = resp.data.elements;
+        this.sortedData = this.withdrawalList.slice();
+        this.activeWithdrawal = this.sortedData[0];
+      },
+      (err) => {
+        return;
+      },
+    );
   }
 
   public sendRecs() {
     this.loading = true;
 
-    this.as.createWithdrawal({
-      amount: this.amount,
-      description: this.concept,
-    }).subscribe(
-      (resp) => {
-        this.alerts.showSnackbar('Created withdrawal correctly');
-        this.reset();
-        this.loading = false;
-      },
-      (err) => {
-        this.alerts.showSnackbar(err.message);
-        this.loading = false;
-      },
-    );
+    this.as
+      .createWithdrawal({
+        amount: this.amount,
+        description: this.concept,
+      })
+      .subscribe(
+        (resp) => {
+          this.alerts.showSnackbar('Created withdrawal correctly');
+          this.reset();
+          this.loading = false;
+        },
+        (err) => {
+          this.alerts.showSnackbar(err.message);
+          this.loading = false;
+        },
+      );
   }
 
   public reset() {
@@ -165,11 +185,17 @@ export class TreasureAccount implements AfterContentInit {
   }
 
   public vote(withdrawal) {
-    const validation = withdrawal.validations.filter((el) => el.validator.id === this.us.userData.id);
-    return this.alerts.openModal(VoteWithdrawal, {
-      withdrawal,
-      validation,
-    }).subscribe((result) => { return; });
+    const validation = withdrawal.validations.filter(
+      (el) => el.validator.id === this.us.userData.id,
+    );
+    return this.alerts
+      .openModal(VoteWithdrawal, {
+        withdrawal,
+        validation,
+      })
+      .subscribe((result) => {
+        return;
+      });
   }
 
   public changedPage($evt) {

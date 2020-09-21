@@ -907,7 +907,7 @@
   "TREASURE_ACCOUNT_DESC": "Evia RECs desde el Compte Del tresor al compte de NOVACT",
   "WITHDRAWAL_NEEDS_VOTE": "A withdrawal needs your vote!",
   "WITHDRAWAL_NEEDS_VOTE_DESC": "There is a withdrawal that requires your vote!",
-  "WITHDRAWAL_CANCEL_DESC": "There can only be one withdrawal from the treasure account open to confirmations at the same time, and <b> will expire in 24h </ b>. After that time will be Canceled or if more than 50% of the admins reject the operation will also be Canceled. You can create more! ",
+  "WITHDRAWAL_CANCEL_DESC": "Només hi pot haver una petició activa per treure recs del compte de l'tresor. Aquesta petició expirarà en 24 hores si algun administrador no la confirma, entenent així com que es desestima aquesta petició. Perquè la petició sigui executada haurà de ser validada per tots els administradors mitjançant el link de confirmació que rebran per correu electrònic.",
   "Confirmations": "Confirmations",
   "Edit Account": "Edita Compte",
   "of": "de",
@@ -1117,5 +1117,9 @@
   "SHORTCUT:TAULA:PREV_PAGE": "Pàgina anterior (a qualsevol taula)",
   "VALIDATE_WITHDRAWAL": "Validar la retirada",
   "BACK_TO_LOGIN": "Torna a l'inici de sessió",
-  "approved": "Aprovada"
+  "approved": "Aprobada",
+  "Approved": "Aprobada",
+  "Sent": "Enviado",
+  "Concept is required": "El concepte es requerit",
+  "Withdrawals": "Retirades"
 }
