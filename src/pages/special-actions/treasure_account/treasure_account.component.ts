@@ -29,19 +29,7 @@ export class TreasureAccount implements AfterContentInit {
   public sortID: string = 'id';
   public sortDir: string = 'desc';
   public withdrawalList = [];
-  public sortedData = [
-    {
-      amount: 123,
-      approved: false,
-      created: '2019-07-02T16:27:20+00:00',
-      description: 'ads',
-      expires_at: '2019-07-02T16:27:20+00:00',
-      id: 1,
-      sent: false,
-      status: 'rejected',
-      updated: '2019-07-01T16:27:20+00:00',
-    },
-  ];
+  public sortedData = [];
   public headers: TlHeader[] = [
     {
       sort: 'id',
@@ -59,21 +47,12 @@ export class TreasureAccount implements AfterContentInit {
     {
       sort: 'status',
       statusClass: (el: any) => ({
-        'col-error': el === 'sent' || el === 'rejected',
-        'col-success': el === 'approved',
+        'col-error': el === 'rejected',
+        'col-success': el === 'sent' || el === 'approved',
+        'col-warning': el === 'pending',
       }),
       title: 'Status',
       type: 'status',
-    },
-    {
-      sort: 'approved',
-      title: 'Approved',
-      type: 'checkbox',
-    },
-    {
-      sort: 'sent',
-      title: 'Sent',
-      type: 'checkbox',
     },
     {
       sort: 'created',
