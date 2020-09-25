@@ -10,7 +10,7 @@ export const environment = {
   url: '$PANEL_API_URL',
   version: pkg.version,
   test: false,
-  novactId: $NOVACT_ID,
+  novactId: '$NOVACT_ID',
   sentry: {
     dsn: "$SENTRY_DSN",
     active: true

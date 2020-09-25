@@ -97,7 +97,7 @@ export class TreasureAccount implements AfterContentInit {
 
   public getNovactBalance() {
     this.crudAccounts
-      .find(environment.novactId)
+      .find(+environment.novactId)
       .subscribe(({ data }) => {
         console.log(data);
         this.novactBalance = data.getBalance('REC');
