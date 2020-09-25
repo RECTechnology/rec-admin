@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.16.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.15.1...v3.16.0) (2020-09-25)
+
+
+### Features
+
+* **treasure_withdrawal:** added page to validate withdrawal from mail ([22eedd1](https://github.com/QbitArtifacts/rec-admin/commit/22eedd1f011737f82237290f12b3068f5715b324))
+* added novact amount to treasure withdrawal page ([89511f2](https://github.com/QbitArtifacts/rec-admin/commit/89511f2a09aaaef03fe5cb84750548a4e9096a17))
+* added novact amount to treasure withdrawal page ([fb1cb0d](https://github.com/QbitArtifacts/rec-admin/commit/fb1cb0de9ea80801fda065bdd120335d1da639bb))
+
+
+### Bug Fixes
+
+* [#223](https://github.com/QbitArtifacts/rec-admin/issues/223), some little changes in treasure withdrawal page ([a67324f](https://github.com/QbitArtifacts/rec-admin/commit/a67324f7c9a32c9af900e1ff7174879d041f3ee7))
+* added incorrect params error ([23c4296](https://github.com/QbitArtifacts/rec-admin/commit/23c429698d09d830d8a1b8d4ca14b6b14610793f))
+* changed treasure withdrawal v1 to v3 ([96e09d9](https://github.com/QbitArtifacts/rec-admin/commit/96e09d93459580935d9a2fdd364a4004f04b662a))
+* changed treasure withdrawal v1 to v3 ([1d38f72](https://github.com/QbitArtifacts/rec-admin/commit/1d38f7205d4a1c7da453b77646ef61ae6847d6dc))
+* removed id from validate withdrawal page ([c59d593](https://github.com/QbitArtifacts/rec-admin/commit/c59d5933fa32e7b936625ddb61b6f0ff3cec3156))
+* removed RECs from concept in treasure withdrawal ([a6e2c2d](https://github.com/QbitArtifacts/rec-admin/commit/a6e2c2d2854647a7bc4d90963400606c0eeddccc))
+* removed redundant columns from treasure withdrawal table ([#228](https://github.com/QbitArtifacts/rec-admin/issues/228)) ([1833bb9](https://github.com/QbitArtifacts/rec-admin/commit/1833bb96f12d97015daf687884ef81b2bfab0a01))
+
 ## [3.15.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.14.0...v3.15.0) (2020-04-01)
 
 
