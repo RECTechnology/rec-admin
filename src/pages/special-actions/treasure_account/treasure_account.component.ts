@@ -10,6 +10,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { VoteWithdrawal } from '../../../dialogs/vote-withdrawal/vote-withdrawal.dia';
 import { UserService } from '../../../services/user.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { Currencies } from 'src/shared/entities/currency/currency';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'treasure_account',
@@ -17,7 +20,6 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
   templateUrl: './treasure_account.html',
 })
 export class TreasureAccount implements AfterContentInit {
-  public novactAmount = 1000;
   public treasureAmount = 100;
   public amount = 0;
   public concept = '';
@@ -73,6 +75,7 @@ export class TreasureAccount implements AfterContentInit {
     },
   ];
   public activeWithdrawal: any;
+  public novactBalance: any;
 
   constructor(
     public controles: ControlesService,
@@ -81,13 +84,24 @@ export class TreasureAccount implements AfterContentInit {
     public as: AdminService,
     public dialog: MatDialog,
     public alerts: AlertsService,
+    public crudAccounts: AccountsCrud,
   ) {}
 
   public ngAfterContentInit() {
     this.reset();
+    this.getNovactBalance();
     this.needsToVote = this.as.checkIfUserNeedsToVote(
       this.us.userData,
     );
+  }
+
+  public getNovactBalance() {
+    this.crudAccounts
+      .find(environment.novactId)
+      .subscribe(({ data }) => {
+        console.log(data);
+        this.novactBalance = data.getBalance('REC');
+      });
   }
 
   public getList() {
@@ -125,7 +139,6 @@ export class TreasureAccount implements AfterContentInit {
   }
 
   public reset() {
-    this.novactAmount = 1000;
     this.treasureAmount = 100;
     this.amount = 0;
     this.error = '';
