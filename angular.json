@@ -27,7 +27,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest",
-              "src/env.js"
+              "src/env.js",
+              "src/env.js.dist"
             ],
             "styles": [
               "./node_modules/quill/dist/quill.core.css",
@@ -36,9 +37,7 @@
               "src/theme/theme.scss",
               "src/theme/styles.scss"
             ],
-            "scripts": [
-              "node_modules/quill/dist/quill.min.js"
-            ]
+            "scripts": ["node_modules/quill/dist/quill.min.js"]
           },
           "configurations": {
             "production": {
@@ -133,9 +132,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
