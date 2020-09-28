@@ -7,5 +7,11 @@ RUN apt install -y nodejs
 COPY . /build
 COPY nginx.vhost /etc/nginx/sites-available/default
 WORKDIR /build
+
+# RUN set -e
+# RUN envsubst < src/environments/environment.ts.dist > src/environments/environment.ts
+RUN npm run build:prod
+RUN mv dist/* /var/www/html
+
 RUN chmod +x docker-entrypoint.sh
 CMD ["./docker-entrypoint.sh"]
