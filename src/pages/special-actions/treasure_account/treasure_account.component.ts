@@ -120,9 +120,14 @@ export class TreasureAccount implements AfterContentInit {
   public sendRecs() {
     this.loading = true;
 
+    const scaledAmount = WalletService.scaleNum(
+      this.amount,
+      Currencies.REC.scale,
+    );
+
     this.as
       .createWithdrawal({
-        amount: this.amount,
+        amount: scaledAmount,
         description: this.concept,
       })
       .subscribe(
