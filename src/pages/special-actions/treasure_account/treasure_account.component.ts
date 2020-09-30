@@ -75,7 +75,8 @@ export class TreasureAccount implements AfterContentInit {
     },
   ];
   public activeWithdrawal: any;
-  public novactBalance: any;
+  public caBalance: any;
+  public caName: any;
 
   constructor(
     public controles: ControlesService,
@@ -89,18 +90,19 @@ export class TreasureAccount implements AfterContentInit {
 
   public ngAfterContentInit() {
     this.reset();
-    this.getNovactBalance();
+    this.getCentralAccountData();
     this.needsToVote = this.as.checkIfUserNeedsToVote(
       this.us.userData,
     );
   }
 
-  public getNovactBalance() {
+  public getCentralAccountData() {
     this.crudAccounts
       .find(+environment.novactId)
       .subscribe(({ data }) => {
         console.log(data);
-        this.novactBalance = data.getBalance('REC');
+        this.caBalance = data.getBalance('REC');
+        this.caName = data.name;
       });
   }
 
