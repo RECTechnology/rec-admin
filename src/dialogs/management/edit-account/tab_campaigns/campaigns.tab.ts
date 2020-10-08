@@ -1,13 +1,4 @@
-import { EventsService } from 'src/services/events/events.service';
-import { AdminService } from 'src/services/admin/admin.service';
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { ControlesService } from 'src/services/controles/controles.service';
-import { LoginService } from 'src/services/auth/auth.service';
-import { Pos } from 'src/shared/entities/pos.ent';
-import { CompanyService } from 'src/services/company/company.service';
-import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Account } from 'src/shared/entities/account.ent';
 import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
 import { Campaign } from 'src/shared/entities/campaign.ent';

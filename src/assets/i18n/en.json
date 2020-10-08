@@ -543,6 +543,7 @@
   "VALIDATE_WITHDRAWAL": "Validate Withdrawal",
   "BACK_TO_LOGIN": "Back to Login",
   "CAMPAIGNS": "Campaigns",
+  "CAMPAIGN": "Campaign",
   "CAMPAINGS_DESC": "Enable/disable campaigns for this account",
   "CAMPAIGN_REPORTS": "Reports",
 
