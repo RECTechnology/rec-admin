@@ -544,5 +544,8 @@
   "BACK_TO_LOGIN": "Back to Login",
   "CAMPAIGNS": "Campaigns",
   "CAMPAINGS_DESC": "Enable/disable campaigns for this account",
-  "CAMPAIGN_REPORTS": "Reports"
+  "CAMPAIGN_REPORTS": "Reports",
+
+  "ENABLED_CAMPAIGN": "Account joined the campaign",
+  "DISABLED_CAMPAIGN": "Account left the campaign"
 }

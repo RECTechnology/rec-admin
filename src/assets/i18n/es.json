@@ -1123,6 +1123,8 @@
   "Description": "Descripción",
   "CAMPAIGNS": "Campañas",
   "CAMPAINGS_DESC": "Activar/desactivar campañas para esta cuenta",
-  "CAMPAIGN_REPORTS": "Informes"
+  "CAMPAIGN_REPORTS": "Informes",
 
+  "ENABLED_CAMPAIGN": "Cuenta adherida a la campaña",
+  "DISABLED_CAMPAIGN": "Cuenta borrada de la campaña"
 }
