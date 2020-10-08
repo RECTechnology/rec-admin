@@ -13,6 +13,7 @@ export class CampaignsCrud extends CrudBaseService<Campaign> {
   }
 
   public mapper(item) {
+    console.log({ item });
     return new Campaign(item);
   }
 }

@@ -1,0 +1,16 @@
+<header-nav></header-nav>
+
+<app-page>
+  <div class="row" style="margin: 0; padding: 20px;">
+    <mat-card class="col-lg-12" style="padding: 0">
+      <tl-header title="CAMPAIGN_REPORTS" [options]="headerOpts">
+        <button mat-raised-button color="primary">{{'NEW'|translate}}</button>
+      </tl-header>
+      <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)"
+        [headers]="headers" [data]="sortedData" [itemOptions]="itemOptions"
+        noItemsMessage="There are no reports yet" [limit]="limit" [total]="0"
+        (onChangePage)="changedPage($event)">
+      </tl-table>
+    </mat-card>
+  </div>
+</app-page>

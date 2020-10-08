@@ -11,6 +11,8 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Account } from 'src/shared/entities/account.ent';
 import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
 import { Campaign } from 'src/shared/entities/campaign.ent';
+import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
+import { MySnackBarSevice } from 'src/bases/snackbar-base';
 
 @Component({
   selector: 'campaigns-tab',
@@ -22,30 +24,23 @@ export class CampaignsTab {
 
   public pageName = 'CAMPAIGNS';
   public loading = true;
-  public campaigns: Campaign[] = [
-    new Campaign({
-      name: 'test',
-      init_date: '1/10/2020',
-      end_date: '10/2/2020',
-    }),
-    new Campaign({
-      name: 'test',
-      init_date: '1/10/2020',
-      end_date: '20/10/2020',
-    }),
-  ];
+  public campaigns: Campaign[] = [];
 
-  constructor(public campaignsService: CampaignsCrud) {}
+  constructor(
+    public campaignsService: CampaignsCrud,
+    public accountsCrud: AccountsCrud,
+    public snackbar: MySnackBarSevice,
+  ) {}
 
   public ngOnInit() {
-    this.account.campaigns = [this.campaigns[1]];
     this.getAllCampaigns();
   }
 
   public getAllCampaigns() {
     this.campaignsService.list().subscribe(
       (resp) => {
-        this.campaigns = resp.data;
+        console.log({ resp });
+        this.campaigns = resp.data.elements;
       },
       (err) => {
         console.log(err);
@@ -57,7 +52,25 @@ export class CampaignsTab {
     return this.account.isCampaignActive(campaign);
   }
 
-  public activateCampaign(campaign: Campaign) {
-    // TODO
+  public toggleCampaign(campaign: Campaign) {
+    const isActive = this.isCampaignActiveForAccount(campaign);
+
+    this.loading = true;
+    if (isActive) {
+      this.accountsCrud.addCampaing(this.account.id, campaign.id).subscribe((resp) => {
+        this.snackbar.open('ENABLED_CAMPAIGN');
+        this.loading = false;
+      }, this.onError.bind(this));
+    } else {
+      this.accountsCrud.deleteCampaing(this.account.id, campaign.id).subscribe((resp) => {
+        this.snackbar.open('DISABLED_CAMPAIGN');
+        this.loading = false;
+      }, this.onError.bind(this));
+    }
+  }
+
+  public onError(err) {
+    console.log(err);
+    this.snackbar.open(err.message);
   }
 }
