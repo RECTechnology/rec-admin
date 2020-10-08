@@ -10,7 +10,9 @@ import { CompanyService } from 'src/services/company/company.service';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { EditAccountData } from 'src/dialogs/management/edit-account/edit-account.dia';
 import {
-  TlHeader, TlItemOption, TableListOptions,
+  TlHeader,
+  TlItemOption,
+  TableListOptions,
 } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 import { ExportDialog } from 'src/dialogs/other/export-dialog/export.dia';
@@ -55,9 +57,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     TlHeaders.AccountType,
     TlHeaders.AccountAmountREC,
   ];
-  public itemOptions: TlItemOption[] = [
-    TlItemOptions.Edit(this.viewEditAccount.bind(this)),
-  ];
+  public itemOptions: TlItemOption[] = [TlItemOptions.Edit(this.viewEditAccount.bind(this))];
   public isComp = false;
   public isPriv = false;
   public exchangersFilters = {
@@ -80,11 +80,10 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     public alerts: AlertsService,
   ) {
     super();
-    this.route.queryParams
-      .subscribe((params) => {
-        this.accountID = params.id;
-        this.openDetails = params.details;
-      });
+    this.route.queryParams.subscribe((params) => {
+      this.accountID = params.id;
+      this.openDetails = params.details;
+    });
   }
 
   public afterContentInit() {
@@ -123,17 +122,18 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.loading = true;
     this.query = query;
 
-    this.searchObs = this.crudAccounts.list(data, 'all')
-      .subscribe(
-        (resp: any) => {
-          this.data = resp.data.elements;
-          this.total = resp.data.total;
-          this.sortedData = this.data.slice();
-          this.showing = this.data.length;
-          this.loading = false;
-        }, (error) => {
-          this.loading = false;
-        });
+    this.searchObs = this.crudAccounts.list(data, 'all').subscribe(
+      (resp: any) => {
+        this.data = resp.data.elements;
+        this.total = resp.data.total;
+        this.sortedData = this.data.slice();
+        this.showing = this.data.length;
+        this.loading = false;
+      },
+      (error) => {
+        this.loading = false;
+      },
+    );
     return this.searchObs;
   }
 
@@ -189,11 +189,13 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public viewEditAccount(account) {
-    this.alerts.openModal(EditAccountData, {
-      account: { ...account },
-    }).subscribe((result) => {
-      this.search();
-    });
+    this.alerts
+      .openModal(EditAccountData, {
+        account,
+      })
+      .subscribe((result) => {
+        this.search();
+      });
   }
 
   public sortData(sort: Sort): void {
