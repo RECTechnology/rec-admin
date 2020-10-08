@@ -25,6 +25,7 @@ export class CampaignSelector implements OnInit {
     this.campaignsService.list({ limit: 100 }).subscribe(
       (resp) => {
         this.campaigns = resp.data.elements;
+        console.log(this.campaigns)
       },
       (err) => {
         this.error = err;

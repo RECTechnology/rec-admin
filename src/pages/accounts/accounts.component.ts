@@ -64,6 +64,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     tier: 2,
     type: 'COMPANY',
   };
+  public campaignFilter = null;
 
   constructor(
     public titleService: Title,
@@ -91,6 +92,12 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY');
   }
 
+  public campaignFilterChanged(campaignFilter) {
+    console.log(campaignFilter);
+    this.campaignFilter = campaignFilter;
+    this.search();
+  }
+
   public getCleanParams(query?: string) {
     let data: ListAccountsParams = {
       active: this.active ? 1 : 0,
@@ -101,6 +108,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       search: query || this.query,
       sort: this.sortID,
       type: this.type,
+      campaign: this.campaignFilter ? this.campaignFilter.id : null,
     };
 
     if (this.onlyExchanges) {
@@ -114,6 +122,10 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       delete data.type;
     }
 
+    // if (!data.campaign) {
+    //   delete data.campaign;
+    // }
+
     return data;
   }
 
@@ -121,6 +133,8 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     const data: any = this.getCleanParams(query);
     this.loading = true;
     this.query = query;
+
+    console.log(data);
 
     this.searchObs = this.crudAccounts.list(data, 'all').subscribe(
       (resp: any) => {

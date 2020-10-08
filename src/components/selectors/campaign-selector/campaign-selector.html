@@ -1,7 +1,7 @@
-<mat-select *ngIf="!error" [(ngModel)]="value"
-    (ngModelChange)="valueChange.emit(value)" [disabled]="disabled"
+<mat-select *ngIf="!error" [value]="value"
+    (selectionChange)="valueChange.emit($event.value)" [disabled]="disabled"
     class="mat-button-menu" style="width: 90px">
-    <mat-option *ngFor="let campaign of campaigns" [value]="campaign.id">
+    <mat-option *ngFor="let campaign of campaigns" [value]="campaign">
         {{campaign.name}}
     </mat-option>
 </mat-select>
