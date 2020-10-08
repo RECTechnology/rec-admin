@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from 'src/pages/login/login.component';
-import {
-  IsNotLoggedInGuard,
-  IsLoggedInGuard,
-} from 'src/services/guards/login.guard';
+import { IsNotLoggedInGuard, IsLoggedInGuard } from 'src/services/guards/login.guard';
 import { UsersPage } from 'src/pages/users/users.component';
 import { AccountsPage } from 'src/pages/accounts/accounts.component';
 import { DashboardComponent } from 'src/pages/dashboard/dashboard.component';
@@ -17,6 +14,7 @@ import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
 import { B2BSendComponent } from 'src/pages/special-actions/mailing/send.component';
 import { SendMail } from 'src/pages/special-actions/mailing/send-mail/send-mail';
 import { ValidateWithdrawalComponent } from 'src/components/validate-withdrawal/validate-withdrawal.component';
+import { CampaignReportsAccount } from 'src/pages/special-actions/campaing_reports/campaing_reports.component';
 
 const ROUTES: Routes = [
   // Public Routes - user shouldn't be authenticated to accesss them
@@ -82,6 +80,11 @@ const ROUTES: Routes = [
   {
     path: 'b2b/settings',
     component: B2BSettingsComponent,
+    canActivate: [IsLoggedInGuard],
+  },
+  {
+    path: 'campaign_reports',
+    component: CampaignReportsAccount,
     canActivate: [IsLoggedInGuard],
   },
 ];

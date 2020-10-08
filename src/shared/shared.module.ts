@@ -108,6 +108,7 @@ import { ValidateWithdrawalComponent } from 'src/components/validate-withdrawal/
 import { CampaignsTab } from 'src/dialogs/management/edit-account/tab_campaigns/campaigns.tab';
 import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
 import { CampaignSelector } from 'src/components/selectors/campaign-selector/campaign-selector.component';
+import { CampaignReportsAccount } from 'src/pages/special-actions/campaing_reports/campaing_reports.component';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -170,6 +171,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     LoginComponent,
     AccountsPage,
     UsersPage,
+    CampaignReportsAccount,
     TableListHeader,
     TableListSubHeader,
     TableListTable,
@@ -237,6 +239,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     CampaignSelector,
     ConvertToLangPipe,
     EscapeHtmlPipe,
+    CampaignReportsAccount,
     Avatar,
     BadgeComponent,
     InfoFieldComponent,

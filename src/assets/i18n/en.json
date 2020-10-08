@@ -543,5 +543,6 @@
   "VALIDATE_WITHDRAWAL": "Validate Withdrawal",
   "BACK_TO_LOGIN": "Back to Login",
   "CAMPAIGNS": "Campaigns",
-  "CAMPAINGS_DESC": "Enable/disable campaigns for this account"
+  "CAMPAINGS_DESC": "Enable/disable campaigns for this account",
+  "CAMPAIGN_REPORTS": "Reports"
 }
