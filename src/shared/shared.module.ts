@@ -35,20 +35,14 @@ import { TableListSubHeader } from 'src/components/scaffolding/table-list/tl-sub
 import { TableListTable } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { AgmCoreModule } from '@agm/core';
 import { B2BSettingsComponent } from 'src/pages/special-actions/b2b/entities/settings.component';
-import {
-  TranslatableListComponent,
-} from 'src/pages/special-actions/b2b/components/translatable-list/translatable-list.component';
+import { TranslatableListComponent } from 'src/pages/special-actions/b2b/components/translatable-list/translatable-list.component';
 import { BaseService2 } from 'src/services/base/base.service-v2';
 import { CrudBaseService } from 'src/services/base/crud.base';
 import { CrudModule } from 'src/services/crud/crud.module';
 import { ProductsTabComponent } from 'src/pages/special-actions/b2b/entities/components/products/products.tab';
 import { ActivitiesTabComponent } from 'src/pages/special-actions/b2b/entities/components/activities/activities.tab';
-import {
-  NeighborhoodsTabComponent,
-} from 'src/pages/special-actions/b2b/entities/components/neighborhoods/neighborhoods.tab';
-import {
-  NeighbourhoodSelector,
-} from 'src/components/selectors/neighbourhood-selector/neighbourhood-selector.component';
+import { NeighborhoodsTabComponent } from 'src/pages/special-actions/b2b/entities/components/neighborhoods/neighborhoods.tab';
+import { NeighbourhoodSelector } from 'src/components/selectors/neighbourhood-selector/neighbourhood-selector.component';
 import { QuillModule } from 'ngx-quill';
 import { MailingDeliveriesCrud } from 'src/services/crud/mailing/mailing_deliveries.crud';
 import { MailingCrud } from 'src/services/crud/mailing/mailing.crud';
@@ -66,9 +60,7 @@ import { IconBtnComponent } from 'src/components/ui/icon-btn/icon-btn.component'
 import { ModalHeaderComponent } from 'src/components/scaffolding/modal-header/modal-header.component';
 import { InputFieldComponent } from 'src/components/ui/input-field/input-field.component';
 import { RaisedBtnComponent } from 'src/components/ui/raised-btn/raised-btn.component';
-import {
-  DocumentKindsTabComponent,
-} from 'src/pages/special-actions/b2b/entities/components/document_kinds/document-kinds.tab';
+import { DocumentKindsTabComponent } from 'src/pages/special-actions/b2b/entities/components/document_kinds/document-kinds.tab';
 import { DocumentTabComponent } from 'src/pages/special-actions/b2b/entities/components/documents/documents.tab';
 import { TiersTabComponent } from 'src/pages/special-actions/b2b/entities/components/tiers/tiers.tab';
 import { BussinessDetailsDia } from 'src/dialogs/management/bussiness_detailes/bussiness_details.component';
@@ -113,6 +105,9 @@ import { CopyClipboardDirective } from 'src/directives/clipboard.directive';
 import { CopiableComponent } from 'src/components/ui/copiable/copiable.component';
 import { RefundOrderDia } from 'src/dialogs/management/refund-order/refund-order';
 import { ValidateWithdrawalComponent } from 'src/components/validate-withdrawal/validate-withdrawal.component';
+import { CampaignsTab } from 'src/dialogs/management/edit-account/tab_campaigns/campaigns.tab';
+import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
+import { CampaignSelector } from 'src/components/selectors/campaign-selector/campaign-selector.component';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -147,10 +142,7 @@ const DIALOGS = [
   CopiableComponent,
 ];
 
-const DIRECTIVES = [
-  CollapsableWhen,
-  CopyClipboardDirective,
-];
+const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
 
 @NgModule({
   declarations: [
@@ -208,6 +200,8 @@ const DIRECTIVES = [
     DeliveryEntry,
     CopiableComponent,
     ValidateWithdrawalComponent,
+    CampaignsTab,
+    CampaignSelector,
     ...DIALOGS,
     ...DIRECTIVES,
   ],
@@ -240,6 +234,7 @@ const DIRECTIVES = [
     ActivitiesTabComponent,
     NeighborhoodsTabComponent,
     NeighbourhoodSelector,
+    CampaignSelector,
     ConvertToLangPipe,
     EscapeHtmlPipe,
     Avatar,
@@ -256,6 +251,7 @@ const DIRECTIVES = [
     FileSelector,
     MaskPipe,
     AppPage,
+    CampaignsTab,
     ...DIALOGS,
     ...DIRECTIVES,
   ],
@@ -282,6 +278,7 @@ const DIRECTIVES = [
     LemonwayDocumentCrud,
     EventsService,
     IbansCrud,
+    CampaignsCrud,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}

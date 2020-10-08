@@ -277,6 +277,10 @@
       </div>
     </mat-tab>
 
+    <mat-tab label="{{'CAMPAIGNS'|translate}}" *ngIf="account" style="height: 400px">
+      <campaigns-tab [account]="account"></campaigns-tab>
+  </mat-tab>
+
     <mat-tab label="{{'B2B'|translate}}" style="height: 400px" [disabled]="type === 'PRIVATE'">
       <div class="row padd-20" style="width: 100%">
         <div class="col-lg-6">
@@ -528,5 +532,6 @@
         </div>
       </div>
     </mat-tab>
+
   </mat-tab-group>
 </div>

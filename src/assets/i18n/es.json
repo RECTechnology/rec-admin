@@ -1120,5 +1120,7 @@
   "Sent": "Enviado",
   "Concept is required": "El concepto es requerido",
   "Withdrawals": "Retiradas",
-  "Description": "Descripción"
+  "Description": "Descripción",
+  "CAMPAIGNS": "Campañas",
+  "CAMPAINGS_DESC": "Activar/desactivar campañas para esta cuenta"
 }

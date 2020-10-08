@@ -1,33 +1,44 @@
 <div style="height: 100%; padding: 20px">
   <mat-card style="padding: 20px">
     <div *ngIf="!loading && companyService.selectedCompany">
-      <div class="group-row-left" style="position:relative;width: 100%; padding: 20px">
-        <avatar [account]="companyService.selectedCompany" [size]="30" [description]="true"></avatar>
+      <div class="group-row-left"
+        style="position:relative;width: 100%; padding: 20px">
+        <avatar [account]="companyService.selectedCompany" [size]="30"
+          [description]="true"></avatar>
         <span class="abs-center-right group-row-left center v">
-          <badge label="Tier" [value]="companyService.selectedCompany.tier"></badge>
+          <badge label="Tier" [value]="companyService.selectedCompany.tier">
+          </badge>
           <badge label="Type" [value]="companyService.selectedCompany.type"
-            [color]="companyService.selectedCompany.type === 'COMPANY' ? 'orange': 'blue'"></badge>
+            [color]="companyService.selectedCompany.type === 'COMPANY' ? 'orange': 'blue'">
+          </badge>
         </span>
       </div>
       <div class="group-col-left" style="border-top: 1px solid #ddd">
         <div class="group-col-left" style="padding-top: 15px">
           <b>{{'Details'|translate}}</b>
           <div class="row" style="padding: 0 15px">
-            <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-              <b class="small-text-2" style="margin-right: 8px">{{'Name'|translate}} </b>
-              <span class="small-text-2">{{companyService.selectedCompany.name}}</span>
+            <div style="margin-bottom: 10px"
+              class="col-lg-6 col-sm-12 group-col-left">
+              <strong class="small-text-2"
+                style="margin-right: 8px">{{'Name'|translate}} </strong>
+              <span
+                class="small-text-2">{{companyService.selectedCompany.name}}</span>
             </div>
-            <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-              <b class="small-text-2" style="margin-right: 8px">{{'Email'|translate}} </b>
-              <span class="small-text-2">{{companyService.selectedCompany.email || ('Not filled'|translate)}}</span>
+            <div style="margin-bottom: 10px"
+              class="col-lg-6 col-sm-12 group-col-left">
+              <strong class="small-text-2"
+                style="margin-right: 8px">{{'Email'|translate}} </strong>
+              <span
+                class="small-text-2">{{companyService.selectedCompany.email || ('Not filled'|translate)}}</span>
             </div>
-            <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-              <b class="small-text-2" style="margin-right: 8px">
+            <div style="margin-bottom: 10px"
+              class="col-lg-6 col-sm-12 group-col-left">
+              <strong class="small-text-2" style="margin-right: 8px">
                 {{'Phone'|translate}}
                 <span class="col-success" matTooltip="Phone is validated">
                   <i class="fa fa-check"></i>
                 </span>
-              </b>
+              </strong>
               <span class="small-text-2"
                 *ngIf="companyService.selectedCompany.prefix || companyService.selectedCompany.phone">{{companyService.selectedCompany.prefix}}
                 {{companyService.selectedCompany.phone}}</span>
@@ -36,21 +47,24 @@
                 {{'Not filled'|translate}}
               </span>
             </div>
-            <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-              <b class="small-text-2" style="margin-right: 8px">
+            <div style="margin-bottom: 10px"
+              class="col-lg-6 col-sm-12 group-col-left">
+              <strong class="small-text-2" style="margin-right: 8px">
                 {{'Address'|translate}}
                 <span class="col-success" matTooltip="Address is validated">
                   <i class="fa fa-check"></i>
                 </span>
-              </b>
-              <span class="small-text-2">{{address || ('Not filled'|translate)}}</span>
+              </strong>
+              <span
+                class="small-text-2">{{address || ('Not filled'|translate)}}</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
+      <div class="group-row-left"
+        style="margin-top: 15px; border-top: 1px solid #ddd">
         <div class="group-col-left" style="padding-top: 15px">
-          <b>{{'Available'|translate}} </b>
+          <strong>{{'Available'|translate}} </strong>
           <div class="group-row-left">
             <code style="margin-left: 10px"
               class="small-text-2">{{companyService.selectedCompany.getBalance('REC') | number}} Ɍ</code>
@@ -59,11 +73,13 @@
           </div>
         </div>
       </div>
-      <div class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
+      <div class="group-row-left"
+        style="margin-top: 15px; border-top: 1px solid #ddd">
         <div class="group-col-left" style="padding-top: 15px">
-          <b>{{'Actions'|translate}} </b>
+          <strong>{{'Actions'|translate}} </strong>
           <div style="margin-left: 10px">
-            <button mat-button color="primary" [disabled]="loading" (click)="openEditAccount()">
+            <button mat-button color="primary" [disabled]="loading"
+              (click)="openEditAccount()">
               {{'Edit'|translate}}
             </button>
             <button mat-button color="primary" [disabled]="true">
@@ -74,8 +90,10 @@
       </div>
     </div>
 
-    <div *ngIf="loading" class="center h v bg-white-opaque" style="width: 100%;">
-      <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+    <div *ngIf="loading" class="center h v bg-white-opaque"
+      style="width: 100%;">
+      <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate"
+        style="width: 40px; height: 40px">
       </mat-progress-spinner>
     </div>
   </mat-card>

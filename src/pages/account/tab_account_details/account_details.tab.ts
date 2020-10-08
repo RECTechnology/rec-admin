@@ -48,7 +48,7 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
 
   public openEditAccount() {
     this.alerts.openModal(EditAccountData, {
-      account: Object.assign({}, this.companyService.selectedCompany),
+      account: this.companyService.selectedCompany,
     }).subscribe((result) => {
       this.setUp();
       this.events.fireEvent('account:update');

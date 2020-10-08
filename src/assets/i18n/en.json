@@ -541,5 +541,7 @@
   "SHORTCUT:TABLE:PREV_PAGE": "Previous Page (On any table)",
 
   "VALIDATE_WITHDRAWAL": "Validate Withdrawal",
-  "BACK_TO_LOGIN": "Back to Login"
+  "BACK_TO_LOGIN": "Back to Login",
+  "CAMPAIGNS": "Campaigns",
+  "CAMPAINGS_DESC": "Enable/disable campaigns for this account"
 }

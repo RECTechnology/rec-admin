@@ -1121,5 +1121,7 @@
   "Approved": "Aprobada",
   "Sent": "Enviado",
   "Concept is required": "El concepte es requerit",
-  "Withdrawals": "Retirades"
+  "Withdrawals": "Retirades",
+  "CAMPAIGNS": "Campanyes",
+  "CAMPAINGS_DESC": "Activa/desactiva les campanyes d'aquest compte"
 }

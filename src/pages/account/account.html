@@ -36,6 +36,9 @@
       label="{{'LEMONWAY_INFO'|translate}}">
       <lemonway-tab *ngIf="currentTab === 5" [id]="account_id"></lemonway-tab>
     </mat-tab>
+    <!-- <mat-tab label="{{'CAMPAIGNS'|translate}}">
+      <campaigns-tab [id]="account_id" [account]="companyService.selectedCompany"></campaigns-tab>
+    </mat-tab> -->
     <mat-tab label="{{'TPV'|translate}}"
       *ngIf="companyService.selectedCompany && companyService.selectedCompany.isCompany()">
       <tpv-tab [id]="account_id" [account]="companyService.selectedCompany"></tpv-tab>
