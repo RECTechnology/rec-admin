@@ -64,7 +64,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     tier: 2,
     type: 'COMPANY',
   };
-  public campaignFilter = '';
+  public campaignFilter: any;
 
   constructor(
     public titleService: Title,
