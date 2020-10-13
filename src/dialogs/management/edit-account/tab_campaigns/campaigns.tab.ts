@@ -28,13 +28,16 @@ export class CampaignsTab {
   }
 
   public getAllCampaigns() {
+    this.loading = true;
     this.campaignsService.list().subscribe(
       (resp) => {
         console.log({ resp });
         this.campaigns = resp.data.elements;
+        this.loading = false;
       },
       (err) => {
         console.log(err);
+        this.loading = false;
       },
     );
   }
@@ -47,7 +50,7 @@ export class CampaignsTab {
     const isActive = this.isCampaignActiveForAccount(campaign);
 
     this.loading = true;
-    if (isActive) {
+    if (!isActive) {
       this.accountsCrud.addCampaing(this.account.id, campaign.id).subscribe((resp) => {
         this.snackbar.open('ENABLED_CAMPAIGN');
         this.loading = false;
@@ -63,5 +66,6 @@ export class CampaignsTab {
   public onError(err) {
     console.log(err);
     this.snackbar.open(err.message);
+    this.loading = false;
   }
 }

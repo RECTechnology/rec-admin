@@ -136,6 +136,6 @@ export class Account implements Account {
 
   public isCampaignActive(campaign: Campaign): boolean {
     const hasCampaigns = this.campaigns && this.campaigns.length;
-    return hasCampaigns && this.campaigns.includes(campaign);
+    return hasCampaigns && !!this.campaigns.find((c) => campaign.id === c.id);
   }
 }
