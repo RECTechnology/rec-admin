@@ -108,7 +108,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       search: query || this.query,
       sort: this.sortID,
       type: this.type,
-      campaign: this.campaignFilter ? this.campaignFilter.id : null,
+      campaigns: this.campaignFilter ? this.campaignFilter.id : null,
     };
 
     if (this.onlyExchanges) {
@@ -122,9 +122,9 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       delete data.type;
     }
 
-    // if (!data.campaign) {
-    //   delete data.campaign;
-    // }
+    if (!data.campaigns) {
+      delete data.campaigns;
+    }
 
     return data;
   }
