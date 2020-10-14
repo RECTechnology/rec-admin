@@ -1,28 +1,37 @@
-<div class="sidemenu" [ngClass]="{'collapsed': !toggled, 'company': us.userData.group_data.type === 'COMPANY'}">
+<div class="sidemenu"
+  [ngClass]="{'collapsed': !toggled, 'company': us.userData.group_data.type === 'COMPANY'}">
   <div class="collapse-menu center v" [ngClass]="{'h': !toggled}">
     <button mat-icon-button (click)="controles.toggle('sidemenu')"
       [ngClass]="{'marg-left-10': toggled, 'center h': !toggled}">
       <div class="center v col-white">
-        <i class="fa fa-caret-left" style="margin-right: 6px;" *ngIf="toggled"></i>
+        <i class="fa fa-caret-left" style="margin-right: 6px;"
+          *ngIf="toggled"></i>
         <i class="navbar-icon fa fa-bars"></i>
-        <i class="fa fa-caret-right" style="margin-left: 6px;" *ngIf="!toggled"></i>
+        <i class="fa fa-caret-right" style="margin-left: 6px;"
+          *ngIf="!toggled"></i>
       </div>
     </button>
-    <a routerLink="/dashboard" class="col-white text-mid-small" style="width: 120px" *ngIf="toggled">
+    <a routerLink="/dashboard" class="col-white text-mid-small"
+      style="width: 120px" *ngIf="toggled">
       {{brand.header_title}}
     </a>
   </div>
-  <div class="content bg-white h-100" [ngClass]="{'small': !toggled}" style="position:relative">
+  <div class="content bg-white h-100" [ngClass]="{'small': !toggled}"
+    style="position:relative">
     <div class="user-info bg-blue" *ngIf="toggled">
       <div class="user-data center-start">
         <div class="user-image center h column">
-          <img src="{{us.userData.group_data.company_image || brand.profile_default_image}}" alt="">
+          <img
+            src="{{us.userData.group_data.company_image || brand.profile_default_image}}"
+            alt="">
         </div>
         <div class="user-company">
-          <p *ngIf="us.userData.group_data.tier < 4" class="text-mid-small center v space-between" sandbox-test>
+          <p *ngIf="us.userData.group_data.tier < 4"
+            class="text-mid-small center v space-between" sandbox-test>
             {{'Account'|translate}}
           </p>
-          <h4 title="{{us.userData.group_data.name}}" class="col-white text-medium"
+          <h4 title="{{us.userData.group_data.name}}"
+            class="col-white text-medium"
             style="white-space: nowrap;margin-bottom: 0; padding-bottom: 0;">
             {{us.userData.group_data.name}}
           </h4>
@@ -33,15 +42,18 @@
       <ul class="ul-no-decoration no-padding">
         <ng-template ngFor let-item [ngForOf]="items">
           <!-- Separator -->
-          <li class="menu-item separate" disabled *ngIf="item.type == 'separator'">
+          <li class="menu-item separate" disabled
+            *ngIf="item.type == 'separator'">
             <span *ngIf="toggled">
               {{item.name|translate}}
             </span>
           </li>
 
           <!-- Item -->
-          <li class="menu-item" (click)="clickedItem()" *ngIf="item.type == 'item' || !item.type"
-            [ngClass]="{'center h': !toggled}" [routerLink]="item.route" routerLinkActive="active">
+          <li class="menu-item" (click)="clickedItem()"
+            *ngIf="item.type == 'item' || !item.type"
+            [ngClass]="{'center h': !toggled}" [routerLink]="item.route"
+            routerLinkActive="active">
             <i class="fa fa-lg fa-fw {{item.icon}}"></i>
             <span *ngIf="toggled">
               {{item.name|translate}}
@@ -49,7 +61,8 @@
           </li>
 
           <!-- Drop down -->
-          <li class="menu-item" *ngIf="item.type == 'dropdown' && toggled" (click)="controles.toggle(item.name)">
+          <li class="menu-item" *ngIf="item.type == 'dropdown' && toggled"
+            (click)="controles.toggle(item.name)">
             <i class="fa fa-lg fa-fw {{item.icon}}"></i>
             <span class="dropdown-text">
               {{item.name|translate}}
@@ -59,7 +72,8 @@
           </li>
           <ul *ngIf="item.type == 'dropdown' && toggled" class="dropdown"
             [ngClass]="{'expanded': controles.isToggled(item.name)}">
-            <li *ngFor="let child of item.children" class="menu-item" (click)="clickedItem()" [routerLink]="child.route"
+            <li *ngFor="let child of item.children" class="menu-item"
+              (click)="clickedItem()" [routerLink]="child.route"
               routerLinkActive="active">
               <i class="fa fa-lg fa-fw {{child.icon}}"></i>
               <span>
@@ -70,8 +84,9 @@
 
           <!-- Drop Down small -->
           <ng-template ngFor let-child [ngForOf]="item.children">
-            <li class="menu-item" *ngIf="!toggled" (click)="clickedItem()" [ngClass]="{'center h': !toggled}"
-              [routerLink]="child.route" routerLinkActive="active">
+            <li class="menu-item" *ngIf="!toggled" (click)="clickedItem()"
+              [ngClass]="{'center h': !toggled}" [routerLink]="child.route"
+              routerLinkActive="active">
               <i class="fa fa-lg fa-fw {{child.icon}}"></i>
               <span *ngIf="toggled">
                 {{child.name|translate}}
@@ -80,12 +95,12 @@
           </ng-template>
         </ng-template>
       </ul>
-      <div style="padding-left: 15px">
+      <div style="padding-left: 15px" *ngIf="!toggled">
         <p class="small-text">Version: <code>{{environment.version}}</code></p>
-        <p class="small-text">API:  <code>{{apiVersion}}</code></p>
+        <p class="small-text">API: <code>{{apiVersion}}</code></p>
       </div>
     </div>
   </div>
 </div>
-<div class="backdrop-mobile" [ngClass]="{'collapsed': !toggled}" *ngIf="utils.isMobileDevice"
-  (click)="controles.toggle('sidemenu')"></div>
+<div class="backdrop-mobile" [ngClass]="{'collapsed': !toggled}"
+  *ngIf="utils.isMobileDevice" (click)="controles.toggle('sidemenu')"></div>
