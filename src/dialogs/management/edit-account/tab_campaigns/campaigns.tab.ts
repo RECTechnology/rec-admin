@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Account } from 'src/shared/entities/account.ent';
 import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
 import { Campaign } from 'src/shared/entities/campaign.ent';
@@ -12,6 +12,8 @@ import { MySnackBarSevice } from 'src/bases/snackbar-base';
 export class CampaignsTab {
   @Input() public id = '';
   @Input() public account: Account;
+
+  @Output() public close: EventEmitter<any> = new EventEmitter();
 
   public pageName = 'CAMPAIGNS';
   public loading = true;
@@ -31,12 +33,10 @@ export class CampaignsTab {
     this.loading = true;
     this.campaignsService.list().subscribe(
       (resp) => {
-        console.log({ resp });
         this.campaigns = resp.data.elements;
         this.loading = false;
       },
       (err) => {
-        console.log(err);
         this.loading = false;
       },
     );
@@ -54,17 +54,23 @@ export class CampaignsTab {
       this.accountsCrud.addCampaing(this.account.id, campaign.id).subscribe((resp) => {
         this.snackbar.open('ENABLED_CAMPAIGN');
         this.loading = false;
+        this.account.campaigns.push(campaign);
       }, this.onError.bind(this));
     } else {
       this.accountsCrud.deleteCampaing(this.account.id, campaign.id).subscribe((resp) => {
         this.snackbar.open('DISABLED_CAMPAIGN');
         this.loading = false;
+        this.removeCampaign(campaign);
       }, this.onError.bind(this));
     }
   }
 
+  public removeCampaign(campaign) {
+    const index = this.account.campaigns.indexOf(campaign);
+    this.account.campaigns.splice(index, 1);
+  }
+
   public onError(err) {
-    console.log(err);
     this.snackbar.open(err.message);
     this.loading = false;
   }

@@ -92,7 +92,7 @@ export class AccountsCrud extends CrudBaseService<Account> {
 
   public deleteCampaing(account_id, campaign_id) {
     const url = [...this.getUrlBase(), '/', account_id, '/', 'campaigns', '/', campaign_id];
-    return this.delete(url).pipe(this.itemMapper());
+    return this.delete(url);
   }
 
   // Lemonway methods

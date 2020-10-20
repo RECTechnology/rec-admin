@@ -8,7 +8,7 @@
 
     <div class="col-lg-6" *ngFor="let campaign of campaigns"
       style="margin-bottom: 10px">
-      <mat-checkbox [disabled]="campaign.isFinished || loading"
+      <mat-checkbox color="primary" [disabled]="campaign.isFinished || loading"
         [checked]="isCampaignActiveForAccount(campaign)"
         (change)="toggleCampaign(campaign)">{{campaign.name}}</mat-checkbox>
     </div>

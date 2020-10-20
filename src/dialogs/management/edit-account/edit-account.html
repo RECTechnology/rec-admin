@@ -278,7 +278,7 @@
     </mat-tab>
 
     <mat-tab label="{{'CAMPAIGNS'|translate}}" *ngIf="account" style="height: 400px">
-      <campaigns-tab [account]="account"></campaigns-tab>
+      <campaigns-tab (close)="close()" [account]="account"></campaigns-tab>
   </mat-tab>
 
     <mat-tab label="{{'B2B'|translate}}" style="height: 400px" [disabled]="type === 'PRIVATE'">
