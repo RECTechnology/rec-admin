@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.17.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.16.3...v3.17.0) (2020-11-23)
+
+
+### Features
+
+* **campaigns:** adding campaign structure, services and filters ([abaee26](https://github.com/QbitArtifacts/rec-admin/commit/abaee26b94710646a0c522b8a7805fdfafdc4922))
+* added campaing relationship calls to AccountsCrud Service ([c638c47](https://github.com/QbitArtifacts/rec-admin/commit/c638c47dfd19c10351e0b7b29e4939fbe7057a94))
+* **campaigns:** implemented enable/disable campaigns in account ([db17fb3](https://github.com/QbitArtifacts/rec-admin/commit/db17fb306813340a2f3eab4b99b47b020f886562))
+* **reports:** added reports page, closes [#233](https://github.com/QbitArtifacts/rec-admin/issues/233) ([d6e1806](https://github.com/QbitArtifacts/rec-admin/commit/d6e18069eedf07ea5f88d2043214c78d386181cd))
+* added filter account by campaign ([daf2ef2](https://github.com/QbitArtifacts/rec-admin/commit/daf2ef23c4fba1f093052661774350556465e933))
+* added filter account by campaign ([58f51c1](https://github.com/QbitArtifacts/rec-admin/commit/58f51c1d06ebff70744d920af278110270c576f3))
+
+
+### Bug Fixes
+
+* **accounts:** changed campaign filter to campaigns ([42d2086](https://github.com/QbitArtifacts/rec-admin/commit/42d2086671a2a29d96f763a6e2fe6672d6a61f1c))
+* **accounts:** fixed edit accounts not working from list ([e8e2caf](https://github.com/QbitArtifacts/rec-admin/commit/e8e2cafdbff0dce373b2c8d947cf0f4f90df22fb))
+* fixed campainFilter type, was breaking build ([867d6fa](https://github.com/QbitArtifacts/rec-admin/commit/867d6fa1bdda41a001ab5e7eb3f941f4842fcecf))
+* **campaigns:** fixed add/remove campaign from account | fixes [#232](https://github.com/QbitArtifacts/rec-admin/issues/232) ([954260c](https://github.com/QbitArtifacts/rec-admin/commit/954260cc9ccc6ab4941f9765dbb8f3fe26bc712f))
+* **campaigns:** fixed campaign selector not showing label by default ([79e7eb7](https://github.com/QbitArtifacts/rec-admin/commit/79e7eb787715baf089394f69c35372729ae7ab27))
+* **campaings:** fixed activate campaign call, incorrect method ([ec9799a](https://github.com/QbitArtifacts/rec-admin/commit/ec9799a260e0fce79852c4cba6523a6b6849267a))
+* **i18n:** added translations for campaigns ([6938065](https://github.com/QbitArtifacts/rec-admin/commit/693806587d6efb2ccaff65e633a19f4be21eb312))
+* **sidemenu:** hide version if toggled ([c743394](https://github.com/QbitArtifacts/rec-admin/commit/c7433941104f4e938f806d3c4865397f4709bb27))
+* **treasure_account:** Fixed sent amount not scaled appropiately | [#230](https://github.com/QbitArtifacts/rec-admin/issues/230) ([14d21d9](https://github.com/QbitArtifacts/rec-admin/commit/14d21d96347c76c45c467356ea762207453ff41e))
+* **treasure_withdrawal:** added central account balance and name ([a52ae08](https://github.com/QbitArtifacts/rec-admin/commit/a52ae086800c78fb183b949d6c7004a735039c01))
+* **treasure_withdrawal:** added central account balance and name ([a4603c1](https://github.com/QbitArtifacts/rec-admin/commit/a4603c194e59e301c590ccd3afaadb33bfcdefa2))
+
 ### [3.16.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.16.2...v3.16.3) (2020-09-28)
 
 ### [3.16.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.16.1...v3.16.2) (2020-09-28)
