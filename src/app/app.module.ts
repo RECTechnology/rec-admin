@@ -57,6 +57,7 @@ import localeCa from '@angular/common/locales/ca';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { getLocale } from 'src/shared/utils.fns';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 registerLocaleData(localeCat);
 registerLocaleData(localeCa);
@@ -121,6 +122,7 @@ const imports = [
       provide: LOCALE_ID,
       useValue: LOCALE,
     },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
     {
       // Provide custom MdI18 provider
       provide: MatPaginatorIntl,
@@ -142,4 +144,4 @@ const imports = [
     }),
   ],
 })
-export class AppModule {}
+export class AppModule { }

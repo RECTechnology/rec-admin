@@ -15,6 +15,7 @@ import { UserService } from 'src/services/user.service';
 import { IdleNotification } from 'src/dialogs/other/idle-notification/idle.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { MySentry } from 'src/shared/sentry';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   providers: [AppService],
@@ -40,13 +41,25 @@ export class AppComponent implements OnInit, OnDestroy {
     private ls: LoginService,
     private aas: AppAuthService,
     private us: UserService,
-    public alerts: AlertsService
+    public alerts: AlertsService,
+    public dateAdapter: DateAdapter<any>,
   ) {
     this.utils.isSandbox = this.isSandbox = environment.test;
 
     /* Sanbox stuff */
     if (this.isSandbox) {
       document.body.classList.add('sandbox');
+    }
+
+    this.dateAdapter.setLocale(this.getLocale());
+  }
+
+  private getLocale() {
+    switch (this.us.lang) {
+      case 'en': return 'en-GB';
+      case 'ca':
+      case 'es': return 'es-ES';
+      default: return 'es-ES';
     }
   }
 

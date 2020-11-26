@@ -8,6 +8,8 @@ import { DocumentCrud } from 'src/services/crud/documents/documents';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemonway_documents';
+import * as moment from 'moment';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'add-document',
@@ -95,7 +97,7 @@ export class AddDocumentDia extends BaseDialog {
     delete data.kind;
 
     if (data.valid_until) {
-      data.valid_until = new Date(data.valid_until).toISOString();
+      data.valid_until = moment(data.valid_until).local().toISOString(true);
     }
     if (data.auto_fetched) {
       data.auto_fetched = false;
