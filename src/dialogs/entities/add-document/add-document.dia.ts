@@ -76,7 +76,7 @@ export class AddDocumentDia extends BaseDialog {
   }
 
   public proceed() {
-    if (this.loading) {
+    if (this.loading || !this.item.name) {
       return;
     }
 
