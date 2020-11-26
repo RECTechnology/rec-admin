@@ -39,7 +39,6 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
                 return item.lemon_status ? LW_DOC_STATUS[item.lemon_status] : item.status;
             },
         }),
-        TlHeaders.Description,
         TlHeaders.Created.extend({
             title: 'VALID_UNTIL',
             accessor: 'valid_until',
