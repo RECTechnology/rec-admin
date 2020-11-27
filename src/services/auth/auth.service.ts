@@ -104,7 +104,6 @@ export class LoginService extends BaseService {
         password,
         pin,
         username: username.trim(),
-        version: '1',
       },
       options,
     );
