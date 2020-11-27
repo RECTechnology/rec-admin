@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.17.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.0...v3.17.1) (2020-11-27)
+
+
+### Bug Fixes
+
+* **documents:** fixed add doc button was clickable even if disabled for some users ([ffd4d05](https://github.com/QbitArtifacts/rec-admin/commit/ffd4d059eaa9403634b53c0cc5b492c967bc7bcc))
+* **documents:** fixed document date not set in correct format | fixes [#236](https://github.com/QbitArtifacts/rec-admin/issues/236) ([a8710eb](https://github.com/QbitArtifacts/rec-admin/commit/a8710eb3ac27259a6dbd875f9e6f295921f77572))
+* **documents:** removed description from table | fixes [#237](https://github.com/QbitArtifacts/rec-admin/issues/237) ([bb2ac0d](https://github.com/QbitArtifacts/rec-admin/commit/bb2ac0dc0e51121b66babd709bed576c18a93d3d))
+
 ## [3.17.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.16.3...v3.17.0) (2020-11-23)
 
 
