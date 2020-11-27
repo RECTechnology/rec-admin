@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.17.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.1...v3.17.2) (2020-11-27)
+
+
+### Bug Fixes
+
+* **auth:** removed version from login call ([a1496ff](https://github.com/QbitArtifacts/rec-admin/commit/a1496fff0bea4281f86dc5a0b816f01083df41a0))
+
 ### [3.17.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.0...v3.17.1) (2020-11-27)
 
 
