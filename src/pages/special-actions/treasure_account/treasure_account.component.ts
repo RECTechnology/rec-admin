@@ -42,7 +42,7 @@ export class TreasureAccount implements AfterContentInit {
       title: 'Amount',
       type: 'code',
       accessor(el) {
-        return el.amount / Currencies.REC.scale;
+        return el.amount / Math.pow(10, 8);
       },
     },
     {
