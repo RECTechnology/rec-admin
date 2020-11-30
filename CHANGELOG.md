@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.17.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.2...v3.17.3) (2020-11-30)
+
+
+### Bug Fixes
+
+* **sidemenu:** fixed sidemenu version not shown when open ([0999da9](https://github.com/QbitArtifacts/rec-admin/commit/0999da950a1c64c1769065f0601c30b6016f6917))
+* **treasure withdrawal:** fixed recs not scaled from satoshis ([9366868](https://github.com/QbitArtifacts/rec-admin/commit/936686829efe63ef82ded81e293c94e96b29de0b))
+* **treasure withdrawal:** fixed recs not scaled from satoshis | fixes [#236](https://github.com/QbitArtifacts/rec-admin/issues/236) ([c7b8f60](https://github.com/QbitArtifacts/rec-admin/commit/c7b8f60b524058a98c8a67881681e22d29bf5d09))
+
 ### [3.17.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.1...v3.17.2) (2020-11-27)
 
 
