@@ -41,6 +41,9 @@ export class TreasureAccount implements AfterContentInit {
       sort: 'amount',
       title: 'Amount',
       type: 'code',
+      accessor(el) {
+        return el.amount / Currencies.REC.scale;
+      },
     },
     {
       sort: 'description',
