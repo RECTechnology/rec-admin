@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.17.4](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.3...v3.17.4) (2020-12-04)
+
+
+### Bug Fixes
+
+* **documents:** fixed edit not working correctly ([14d7292](https://github.com/QbitArtifacts/rec-admin/commit/14d7292700c24b04df09e458b72e1c71fd87f2cb))
+
 ### [3.17.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.2...v3.17.3) (2020-11-30)
 
 
