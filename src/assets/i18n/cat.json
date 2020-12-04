@@ -1127,5 +1127,6 @@
   "CAMPAINGS_DESC": "Activa/desactiva les campanyes d'aquest compte",
   "CAMPAIGN_REPORTS": "Informes",
   "ENABLED_CAMPAIGN": "Cuenta adherida a la campaña",
-  "DISABLED_CAMPAIGN": "Compte esborrat de la campanya"
+  "DISABLED_CAMPAIGN": "Compte esborrat de la campanya",
+  "EDIT_DOCUMENT": "Editar Document"
 }

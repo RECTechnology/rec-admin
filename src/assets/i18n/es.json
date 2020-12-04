@@ -1127,5 +1127,6 @@
   "CAMPAIGN_REPORTS": "Informes",
 
   "ENABLED_CAMPAIGN": "Cuenta adherida a la campaña",
-  "DISABLED_CAMPAIGN": "Cuenta borrada de la campaña"
+  "DISABLED_CAMPAIGN": "Cuenta borrada de la campaña",
+  "EDIT_DOCUMENT": "Editar Documento"
 }

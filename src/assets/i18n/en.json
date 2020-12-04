@@ -548,5 +548,6 @@
   "CAMPAIGN_REPORTS": "Reports",
 
   "ENABLED_CAMPAIGN": "Account joined the campaign",
-  "DISABLED_CAMPAIGN": "Account left the campaign"
+  "DISABLED_CAMPAIGN": "Account left the campaign",
+  "EDIT_DOCUMENT": "Edit Document"
 }

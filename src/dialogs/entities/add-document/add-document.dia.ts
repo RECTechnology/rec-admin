@@ -72,9 +72,10 @@ export class AddDocumentDia extends BaseDialog {
       });
   }
 
-  public getCrud(id) {
-    const kind = this.docKindsFull.find((el) => el.id === id);
-    return (kind && kind.lemon_doctype === undefined) ? this.docCrud : this.lemonDocCrud;
+  public getCrud(kind) {
+    // const kind = this.docKindsFull.find((el) => el.id === id);
+    console.log('this.isLemon', this.isLemon);
+    return this.isLemon ? this.lemonDocCrud : this.docCrud;
   }
 
   public proceed() {
@@ -93,7 +94,7 @@ export class AddDocumentDia extends BaseDialog {
       return this.alerts.showSnackbar('Nothing to update...');
     }
 
-    const crud = this.getCrud(data.kind_id);
+    const crud = this.getCrud(data.kind);
     delete data.kind;
 
     if (data.valid_until) {
