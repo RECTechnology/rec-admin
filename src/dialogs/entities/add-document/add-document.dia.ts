@@ -9,7 +9,6 @@ import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kin
 import { UtilsService } from 'src/services/utils/utils.service';
 import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemonway_documents';
 import * as moment from 'moment';
-import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'add-document',
@@ -72,10 +71,13 @@ export class AddDocumentDia extends BaseDialog {
       });
   }
 
-  public getCrud(kind) {
-    // const kind = this.docKindsFull.find((el) => el.id === id);
-    console.log('this.isLemon', this.isLemon);
-    return this.isLemon ? this.lemonDocCrud : this.docCrud;
+  public getCrud(data) {
+    let kind = this.docKindsFull.find((el) => el.id === data.kind_id);
+    
+    console.log('kind', data, this.docKindsFull);
+    const isLemon = kind.lemon_doctype!==null && kind.lemon_doctype !== undefined;
+    console.log('this.isLemon', isLemon);
+    return isLemon ? this.lemonDocCrud : this.docCrud;
   }
 
   public proceed() {
@@ -94,7 +96,7 @@ export class AddDocumentDia extends BaseDialog {
       return this.alerts.showSnackbar('Nothing to update...');
     }
 
-    const crud = this.getCrud(data.kind);
+    const crud = this.getCrud(data);
     delete data.kind;
 
     if (data.valid_until) {
