@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [3.17.5](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.4...v3.17.5) (2021-01-18)
 
+
+### Bug Fixes
+
+* **documents:** Fixed account document upload error with LW | fixes [#241](https://github.com/QbitArtifacts/rec-admin/issues/241) ([9fb896c](https://github.com/QbitArtifacts/rec-admin/commit/9fb896ced47438a4103b4b3cf368ee1e6cd8ac72))
+
 ### [3.17.4](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.3...v3.17.4) (2020-12-04)
 
 
