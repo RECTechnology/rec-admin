@@ -17,7 +17,7 @@
       *ngIf="opts.customBtn" style="margin-right: 10px">
       <b>{{opts.customBtnText|translate}}</b>
     </button>
-    <button type="button" mat-raised-button color="{{status == 'error' ? 'warn': 'primary'}}" name="button"
+    <button type="button" mat-raised-button *ngIf="confirmBtnShown" color="{{status == 'error' ? 'warn': 'primary'}}" name="button"
       (click)="close(true)">
       <b>{{btnConfirmText|translate}}</b>
     </button>

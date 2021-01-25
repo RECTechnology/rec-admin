@@ -16,6 +16,7 @@ export class ConfirmationMessage {
   public headerIcon: string = null;
   public data: any = {};
   public opts: any = {};
+  public confirmBtnShown = true;
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmationMessage>,

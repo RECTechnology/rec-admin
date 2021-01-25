@@ -48,7 +48,6 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   ];
   public itemOptions: TlItemOption[] = [
     TlItemOptions.Edit(this.openEditUser.bind(this)),
-    TlItemOptions.Delete(this.openDeleteUser.bind(this)),
   ];
   public defaultExportKvp = UsersExportDefaults;
   public tableOptions: TableListOptions = {
@@ -104,18 +103,6 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     });
   }
 
-  // Opens delete user modal
-  public openDeleteUser(user) {
-    const accName = this.us.userData.group_data.name;
-    this.alerts.showConfirmation(
-      'Are you sure you want to remove user from the sistem [ ' + accName + ' ]? No going back.',
-      'Remove user from system?',
-      { btnConfirmText: 'Delete' },
-    ).subscribe((result) => {
-      if (result) { this.removeUser(user); }
-    });
-  }
-
   public openViewDetails(user) {
     this.alerts.openModal(ViewDetails, {
       parent: this,
@@ -158,17 +145,5 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
           this.loading = false;
         },
         (error) => { this.loading = false; });
-  }
-
-  private removeUser(user) {
-    this.companyService.removeUserFromSystem(user.id)
-      .subscribe(
-        (resp) => {
-          this.search();
-          this.alerts.showSnackbar('Deleted user from system', 'ok');
-        },
-        (error) => {
-          this.alerts.showSnackbar('Error deleting user: ' + error.message, 'ok');
-        });
   }
 }

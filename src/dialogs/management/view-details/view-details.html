@@ -1,4 +1,5 @@
-<modal-header title="{{'USER_DETAILS'|translate}}" (click)="close(false)"></modal-header>
+<modal-header title="{{'USER_DETAILS'|translate}}" (click)="close(false)">
+</modal-header>
 
 <!-- TODO: Improve this, it is missing quite a few fields and features -->
 <div class="padd-20 modal-body" style="height: auto">
@@ -15,52 +16,67 @@
       {{'USER_DISABLED_DESC'|translate}}
     </p>
   </div>
-  <div class="group-col-left" style="margin-top: 15px; border-top: 1px solid #ddd">
+  <div class="group-col-left"
+    style="margin-top: 15px; border-top: 1px solid #ddd">
     <div class="group-col-left" style="padding-top: 15px">
       <b>{{'Details'|translate}}: </b>
       <div class="row" style="padding: 0 15px">
-        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-          <b class="small-text-2" style="margin-right: 8px">{{'Name'|translate}} </b>
+        <div style="margin-bottom: 10px"
+          class="col-lg-6 col-sm-12 group-col-left">
+          <b class="small-text-2" style="margin-right: 8px">{{'Name'|translate}}
+          </b>
           <span class="small-text-2">{{user.name}}</span>
         </div>
-        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-          <b class="small-text-2" style="margin-right: 8px">{{'Last Name'|translate}} </b>
-          <span class="small-text-2">{{user.kyc_validations ? user.kyc_validations.last_name: 'Not filled'}}</span>
+        <div style="margin-bottom: 10px"
+          class="col-lg-6 col-sm-12 group-col-left">
+          <b class="small-text-2"
+            style="margin-right: 8px">{{'Last Name'|translate}} </b>
+          <span
+            class="small-text-2">{{user.kyc_validations ? user.kyc_validations.last_name: 'Not filled'}}</span>
         </div>
-        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-          <b class="small-text-2" style="margin-right: 8px">{{'Email'|translate}} </b>
+        <div style="margin-bottom: 10px"
+          class="col-lg-6 col-sm-12 group-col-left">
+          <b class="small-text-2"
+            style="margin-right: 8px">{{'Email'|translate}} </b>
           <span class="small-text-2">{{user.email || 'Not filled'}}</span>
         </div>
-        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
+        <div style="margin-bottom: 10px"
+          class="col-lg-6 col-sm-12 group-col-left">
           <b class="small-text-2" style="margin-right: 8px">
             {{'Phone'|translate}}
             <span class="col-success" title="Phone is validated">
               <i class="fa fa-check"></i>
             </span>
           </b>
-          <span class="small-text-2">+{{user.prefix}} {{user.phone ? user.phone: 'Not filled'}}</span>
+          <span class="small-text-2">+{{user.prefix}}
+            {{user.phone ? user.phone: 'Not filled'}}</span>
         </div>
-        <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-          <b class="small-text-2" style="margin-right: 8px">{{'Created'|translate}} </b>
+        <div style="margin-bottom: 10px"
+          class="col-lg-6 col-sm-12 group-col-left">
+          <b class="small-text-2"
+            style="margin-right: 8px">{{'Created'|translate}} </b>
           <span class="small-text-2">{{user.created | date}}</span>
         </div>
       </div>
     </div>
   </div>
-  <div class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
+  <div class="group-row-left"
+    style="margin-top: 15px; border-top: 1px solid #ddd">
     <div class="group-col-left" style="padding-top: 15px">
       <b>{{'Accounts'|translate}}: </b>
       <div class="group-row-left" style="flex-wrap: wrap; padding: 4px 15px"
         *ngIf="user.accounts && user.accounts.length">
         <mat-chip *ngFor="let comp of user.accounts"
-          style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;" routerLink="/accounts/{{comp.id}}"
-          (click)="close()" matTooltip="View account">
+          style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
+          routerLink="/accounts/{{comp.id}}" (click)="close()"
+          matTooltip="View account">
           <avatar [account]="comp" [size]="30"></avatar>
         </mat-chip>
       </div>
     </div>
   </div>
-  <div class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
+  <div class="group-row-left"
+    style="margin-top: 15px; border-top: 1px solid #ddd">
     <div class="group-col-left" style="padding-top: 15px">
       <b>{{'Actions'|translate}}: </b>
       <div style="margin-left: 10px">
@@ -76,11 +92,15 @@
         <button mat-button color="primary" (click)="validatePhone()">
           {{'Validate Phone'|translate}}
         </button>
-        <button mat-button color="primary" (click)="disableUser()" *ngIf="!user.locked">
+        <button mat-button (click)="disableUser()" *ngIf="!user.locked">
           <span class="col-error">{{'Disable'|translate}}</span>
         </button>
-        <button mat-button color="primary" (click)="enableUser()" *ngIf="user.locked">
-          <span class="col-error">{{'Enable'|translate}}</span>
+        <button mat-button color="primary" (click)="enableUser()"
+          *ngIf="user.locked">
+          <span class="col-blue">{{'Enable'|translate}}</span>
+        </button>
+        <button mat-button (click)="openDeleteUser()">
+          <span class="col-error">{{'Remove'|translate}}</span>
         </button>
       </div>
     </div>

@@ -50,6 +50,7 @@ export class ViewDetails extends BaseDialog implements OnInit {
     ref.componentInstance.title = title;
     ref.componentInstance.message = message;
     ref.componentInstance.btnConfirmText = 'Close';
+    ref.componentInstance.confirmBtnShown = false;
     return ref.afterClosed();
   }
 
@@ -96,6 +97,7 @@ export class ViewDetails extends BaseDialog implements OnInit {
         this.adminService.deactiveUser(this.user.id)
           .subscribe((deactive) => {
             this.alerts.showSnackbar('Disabled user: ' + this.user.id, 'ok');
+            this.user.locked = true;
           }, (error) => {
             this.alerts.showSnackbar('Error disabling user: ' + error, 'ok');
           });
@@ -113,6 +115,7 @@ export class ViewDetails extends BaseDialog implements OnInit {
         this.adminService.activeUser(this.user.id)
           .subscribe((active) => {
             this.alerts.showSnackbar('Enabled user: ' + this.user.id, 'ok');
+            this.user.locked = false;
           }, (error) => {
             this.alerts.showSnackbar('Error enabling user: ' + error, 'ok');
           });
@@ -153,6 +156,29 @@ export class ViewDetails extends BaseDialog implements OnInit {
       }
     });
   }
+
+  public openDeleteUser() {
+    this.alerts.showConfirmation(
+      'Are you sure you want to remove user from the sistem? No going back.',
+      'Remove user from system?',
+      { btnConfirmText: 'Delete' },
+    ).subscribe((result) => {
+      if (result) { this.removeUser(this.user); }
+    });
+  }
+
+  private removeUser(user) {
+    this.compService.removeUserFromSystem(user.id)
+      .subscribe(
+        (resp) => {
+          this.alerts.showSnackbar('Deleted user from system', 'ok');
+          this.close();
+        },
+        (error) => {
+          this.alerts.showSnackbar('Error deleting user: ' + error.message, 'ok');
+        });
+  }
+
 
   public ngOnInit() {
     const tmp = this.user.roles;

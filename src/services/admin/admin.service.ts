@@ -99,12 +99,12 @@ export class AdminService extends BaseService2 {
 
     public deactiveUser(id_user) {
         deprecatedMessage('deactiveUser');
-        return this.post(`/admin/v1/deactiveuser/${id_user}`, {});
+        return this.put(`/admin/v3/user/${id_user}`, { enabled: false });
     }
 
     public activeUser(id_user) {
         deprecatedMessage('activeUser');
-        return this.post(`/admin/v1/activeuser/${id_user}`, {});
+        return this.put(`/admin/v3/user/${id_user}`, { enabled: true });
     }
 
     public addUserToAccount(account_id, user_dni, role): Observable<any> {
