@@ -10,9 +10,8 @@
   <!-- Un-Selected -->
   <div class="col-lg-6" style="height: calc(100% - 55px)">
     <div class="group-col-left" style="padding: 10px;border-bottom: 1px solid #ddd">
-      <input type="text" class="input radius-2" style="width: 100%"
-        placeholder="{{'Unselected Accounts'|translate}}..." [(ngModel)]="unselectedSearch"
-        (keyup.enter)="getAccounts();">
+      <input type="text" class="input radius-2" style="width: 100%" placeholder="{{'Unselected Accounts'|translate}}..."
+        [(ngModel)]="unselectedSearch" (keyup.enter)="getAccounts();">
     </div>
 
     <div class="group-col-left" style="height: 100%; overflow-y: auto">
@@ -50,17 +49,16 @@
         *ngIf="!sortedUnselectedAccounts.length && !loading">
         <b class="small-text-2">{{'ALL_USERS_SELECTED'|translate}}</b>
       </div>
-      <mat-paginator [length]="totalAccountsUnsorted" style="width: 100%" [pageSize]="limitUnsorted"
-        (page)="changedPageUnsorted($event)" [pageSizeOptions]="[5, 10, 25, 100]">
-      </mat-paginator>
     </div>
+    <mat-paginator [length]="totalAccountsUnsorted" style="width: 100%" [pageSize]="limitUnsorted"
+      (page)="changedPageUnsorted($event)" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
   </div>
   <!-- Selected -->
   <div class="col-lg-6" style="height: calc(100% - 55px)">
     <div class="group-row-left" style="padding: 10px;border-bottom: 1px solid #ddd">
-      <input type="text" class="input radius-2" style="width: 100%"
-        placeholder="{{'Selected Accounts'|translate}}..." [(ngModel)]="searchSelectedQwery"
-        (keyup.enter)="searchSelected();"> <code>{{selectedAccounts.length}}</code>
+      <input type="text" class="input radius-2" style="width: 100%" placeholder="{{'Selected Accounts'|translate}}..."
+        [(ngModel)]="searchSelectedQwery" (keyup.enter)="searchSelected();">
     </div>
     <div class="group-col-left" style="height: 100%; overflow-y: auto">
       <table class="left-align" mdSort (mdSortChange)="sortDataSelected($event)">
@@ -96,7 +94,8 @@
     <button type="button" mat-raised-button color="primary" class="marg-right-10" name="button" (click)="select()">
       <p class="small-text-2">{{'Select'|translate}}</p>
     </button>
-    <button type="button" mat-raised-button color="primary" class="marg-right-10" name="button" *ngIf="showEdit" (click)="selectAndEdit()">
+    <button type="button" mat-raised-button color="primary" class="marg-right-10" name="button" *ngIf="showEdit"
+      (click)="selectAndEdit()">
       <p class="small-text-2">{{'Select And Edit'|translate}}</p>
     </button>
     <button type="button" mat-raised-button color="primary" class="marg-right-10" name="button" (click)="close()">

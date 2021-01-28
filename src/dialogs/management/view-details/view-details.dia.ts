@@ -8,6 +8,8 @@ import { ManageSms } from '../manage-sms/manage-sms.dia';
 import { CompanyService } from '../../../services/company/company.service';
 import { AdminService } from '../../../services/admin/admin.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { UserService } from 'src/services/user.service';
+import { UsersCrud } from 'src/services/crud/users/users.crud';
 
 @Component({
   providers: [SmsService],
@@ -18,6 +20,7 @@ export class ViewDetails extends BaseDialog implements OnInit {
   public user: any = {};
   public parent: any;
   public Brand: any = environment.Brand;
+
   constructor(
     public dialogRef: MatDialogRef<ViewDetails>,
     public sms: SmsService,
@@ -25,8 +28,40 @@ export class ViewDetails extends BaseDialog implements OnInit {
     public adminService: AdminService,
     public dialog: MatDialog,
     public alerts: AlertsService,
+    public usersCrud: UsersCrud,
   ) {
     super();
+  }
+
+  public ngOnInit() {
+    this.getUser();
+
+    const tmp = this.user.roles;
+    this.user.roles = [];
+
+    for (const key in tmp) {
+      if (key) {
+        this.user.roles.push(tmp[key]);
+      }
+    }
+  }
+
+  private processRoles(){
+    const tmp = this.user.roles;
+    this.user.roles = [];
+
+    for (const key in tmp) {
+      if (key) {
+        this.user.roles.push(tmp[key]);
+      }
+    }
+  }
+
+  public getUser(){
+    this.usersCrud.find(this.user.id).subscribe(res => {
+      this.user = res.data;
+      this.processRoles();
+    });
   }
 
   public editRoles() {
@@ -179,15 +214,4 @@ export class ViewDetails extends BaseDialog implements OnInit {
         });
   }
 
-
-  public ngOnInit() {
-    const tmp = this.user.roles;
-    this.user.roles = [];
-
-    for (const key in tmp) {
-      if (key) {
-        this.user.roles.push(tmp[key]);
-      }
-    }
-  }
 }

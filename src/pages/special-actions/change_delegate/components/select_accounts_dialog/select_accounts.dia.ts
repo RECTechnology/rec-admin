@@ -66,7 +66,8 @@ export class SelectAccountsDia extends BaseDialog {
     const opts: any = {
       offset: this.offsetUnsorted, limit: this.limitUnsorted,
       search: this.unselectedSearch, sort: this.sortIDUnsorted,
-      order: this.sortDirUnsorted, active: 1,
+      order: this.sortDirUnsorted, 
+      active: 1,
     };
 
     if (this.sortType) {
