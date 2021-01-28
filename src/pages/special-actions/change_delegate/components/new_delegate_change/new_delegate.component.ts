@@ -266,7 +266,9 @@ export class NewDelegateComponent extends PageBase {
                             this.alerts.showSnackbar(respDelegate.message, 'ok');
                             this.getDelegate();
                             this.getDelegateData();
-                        }, this.handleValidationError);
+                        }, error => {
+                            this.validationErrors = error.data;
+                        });
                 }
             });
     }
