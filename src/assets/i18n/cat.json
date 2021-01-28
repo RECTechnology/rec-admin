@@ -1128,5 +1128,7 @@
   "CAMPAIGN_REPORTS": "Informes",
   "ENABLED_CAMPAIGN": "Cuenta adherida a la campaña",
   "DISABLED_CAMPAIGN": "Compte esborrat de la campanya",
-  "EDIT_DOCUMENT": "Editar Document"
+  "EDIT_DOCUMENT": "Editar Document",
+  "NO_ENTRIES": "No hi ha entrades",
+  "CARD INFO": "Informacio Tarjeta"
 }
