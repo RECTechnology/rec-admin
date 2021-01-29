@@ -1130,5 +1130,8 @@
   "DISABLED_CAMPAIGN": "Cuenta borrada de la campaña",
   "EDIT_DOCUMENT": "Editar Documento",
   "NO_ENTRIES": "No hay entradas",
-  "CARD INFO": "Informacion Tarjeta"
+  "CARD INFO": "Informacion Tarjeta",
+  "USER_DETAILS": "Detalles de usuario",
+  "DELEGATE_CHANGE_CREATED": "Cambio delegado creado"
+
 }

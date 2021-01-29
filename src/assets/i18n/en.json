@@ -550,5 +550,6 @@
   "ENABLED_CAMPAIGN": "Account joined the campaign",
   "DISABLED_CAMPAIGN": "Account left the campaign",
   "EDIT_DOCUMENT": "Edit Document",
-  "NO_ENTRIES": "No entries"
+  "NO_ENTRIES": "No entries",
+  "DELEGATE_CHANGE_CREATED": "Delegated change created"
 }

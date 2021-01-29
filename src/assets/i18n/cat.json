@@ -1130,5 +1130,7 @@
   "DISABLED_CAMPAIGN": "Compte esborrat de la campanya",
   "EDIT_DOCUMENT": "Editar Document",
   "NO_ENTRIES": "No hi ha entrades",
-  "CARD INFO": "Informacio Tarjeta"
+  "CARD INFO": "Informacio Tarjeta",
+  "USER_DETAILS": "Detalls d'usuari",
+  "DELEGATE_CHANGE_CREATED": "Cambi delegat creat"
 }

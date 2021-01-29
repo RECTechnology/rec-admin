@@ -81,7 +81,7 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
 
     if (this.isSingle) {
       // Convert from cents to euros
-      this.amount = (this.accounts[0].amount / 100) || 0;
+      this.amount = (this.accounts[0].amount) || 0;
       this.exchanger = this.accounts[0].exchanger.id;
       this.pan = this.accounts[0].pan;
 
@@ -93,7 +93,7 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
     } else {
       this.exchanger = this.accounts[0].exchanger;
       this.accounts = this.accounts.map((el) => {
-        el.amount = el.amount / 100;
+        el.amount = el.amount;
         return el;
       });
     }
@@ -109,10 +109,12 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
       return;
     }
 
+    console.log('edit amount', this.amount);
+
     this.dialogRef.close({
       accounts: this.accounts.map((el) => {
         // Convert euros to cents
-        el.amount = (this.amount || 0 * 100);
+        el.amount = this.amount;
         el.exchanger = { id: this.exchanger };
         el.pan = this.pan;
 

@@ -97,7 +97,7 @@
             <td>{{data.id}}</td>
             <td>{{data.account.id}} <i>({{data.account.name}})</i></td>
             <td>{{data.exchanger.id}}</td>
-            <td><code>{{data.amount/100}} €</code></td>
+            <td><code>{{data.amount}} €</code></td>
             <td>
               <b *ngIf="data.pan">{{data.pan}}</b>
               <b *ngIf="data.expiry_date">{{data.expiry_date}}</b>
@@ -178,7 +178,7 @@
             <td>{{data.id}}</td>
             <td>{{data.account.id}} <i>({{data.account.name}})</i></td>
             <td>{{data.exchanger.id}}</td>
-            <td><code>{{data.amount/100}} €</code></td>
+            <td><code>{{data.amount}} €</code></td>
             <td>
               <b *ngIf="data.pan">{{data.pan}}</b>
               <b *ngIf="data.expiry_date">{{data.expiry_date}}</b>

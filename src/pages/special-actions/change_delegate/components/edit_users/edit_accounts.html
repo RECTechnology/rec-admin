@@ -1,5 +1,5 @@
 <div class="modal-header bg-blue">
-  <span>{{(isSingleEdit ? 'EDIT_ACCOUNT': 'EDIT_ACCOUNTS')|translate}}</span>
+  <span class="section-title">{{(isSingleEdit ? 'EDIT_ACCOUNT': 'EDIT_ACCOUNTS')|translate}}</span>
   <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
     <span class="center h v">
       <i class="fa fa-times col-white"></i>
@@ -20,7 +20,7 @@
       </p>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-lg-12" style="margin-bottom: 10px">
       <div class="group-col-left">
         <span class="small-text-2">{{'Exchanger'|translate}}</span>
 
@@ -28,6 +28,9 @@
           (selectionChange)="selectionChanged()">
           <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="exchangerQuery"
             (ngModelChange)="onInput()" placeholder="Search exchangers">
+          <mat-option value="">
+            {{'NONE'|translate}}
+          </mat-option>
           <mat-option [value]="ex.id" *ngFor="let ex of filtered">
             {{ex.name}} (<code>{{ex.id}}</code>)
           </mat-option>
@@ -37,16 +40,18 @@
         </mat-select>
       </div>
     </div>
-    <div class="col-lg-12">
+
+    <div class="col-lg-12" style="margin-bottom: 10px">
       <div class="group-col-left">
         <span class="small-text-2">{{'Amount'|translate}} (€)</span>
         <input type="number" class="user-input small" style="max-width: 300px" [(ngModel)]="amount"
           (keyup.enter)="confirm()" placeholder="Amount to recharge">
       </div>
     </div>
-    <div class="col-lg-12" *ngIf="isSingle">
-      <div class="group-col-left">
-        <span class="small-text-2">{{'User Card Info'|translate}}</span>
+
+    <div class="col-lg-12" style="margin-bottom: 10px">
+      <div class="group-col-left" style="margin-bottom: 10px">
+        <span class="section-title">{{'User Card Info'|translate}}</span>
       </div>
       <div class="group-col-left">
         <span class="small-text-2">{{'Pan'|translate}}</span>
@@ -55,10 +60,12 @@
       </div>
       <div class="group-col-left">
         <span class="small-text-2">{{'Expiry Date'|translate}}</span>
-        <input type="number" min="1" max="12" class="user-input small" style="max-width: 300px" [(ngModel)]="month"
-          (keyup.enter)="confirm()" placeholder="month">
-        <input type="number" class="user-input small" style="max-width: 300px" [(ngModel)]="year"
-          (keyup.enter)="confirm()" placeholder="Year">
+        <div class="group-row-left">
+          <input type="number" min="1" max="12" class="user-input small" style="max-width: 300px" [(ngModel)]="month"
+            (keyup.enter)="confirm()" placeholder="month">
+          <input type="number" class="user-input small" style="max-width: 300px" [(ngModel)]="year"
+            (keyup.enter)="confirm()" placeholder="Year">
+        </div>
       </div>
       <div class="group-col-left">
         <span class="small-text-2">{{'CVV'|translate}}</span>
@@ -71,7 +78,8 @@
   <div class="col-lg-12" style="margin: 0!important; height: 70px;border-top: 1px solid #ddd">
     <div class="group-row-left padd-20" style="justify-content: flex-end">
       <p class="col-error small-text" *ngIf="error" style="margin-right: 10px!important">{{error}}</p>
-      <button type="button" style="margin-right: 10px;" mat-raised-button color="primary" name="button" (click)="confirm()">
+      <button type="button" style="margin-right: 10px;" mat-raised-button color="primary" name="button"
+        (click)="confirm()">
         <p class="small-text-2">{{'Confirm'|translate}}</p>
       </button>
       <button type="button" mat-raised-button color="primary" name="button" (click)="close()">
