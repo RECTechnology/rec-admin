@@ -59,6 +59,7 @@ export class NewDelegateComponent extends PageBase {
     public notSavedItems = [];
     public dataPassed = false;
     public savedItems = [];
+    public readonly = false;
 
     constructor(
         public titleService: Title,
@@ -102,6 +103,7 @@ export class NewDelegateComponent extends PageBase {
 
                         this.dateScheduled = parts.dateStr;
                         this.timeScheduled = parts.timeStr;
+                        this.readonly = this.delegate.status != 'draft';
                     }
                     this.loading = false;
                 }, (error) => this.loading = false);

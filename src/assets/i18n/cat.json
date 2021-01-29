@@ -883,6 +883,7 @@
   "NEW_CHANGE_DELEGATE": "Nou canvi de delegat",
   "SELECTED_ACCOUNTS_COUNT": "Comptes seleccionat(s)",
   "EDIT_CHANGE_DELEGATE": "Edita el canvi de delegat",
+  "VIEW_CHANGE_DELEGATE": "Veure el canvi de delegat",
   "Exchanger": "Intercambiador",
   "NEW_CHANGE": "Nou canvi",
   "SET_SCHEDULE": "Estableix una data de programació per al canvi delegat",
@@ -1132,5 +1133,10 @@
   "NO_ENTRIES": "No hi ha entrades",
   "CARD INFO": "Informacio Tarjeta",
   "USER_DETAILS": "Detalls d'usuari",
-  "DELEGATE_CHANGE_CREATED": "Cambi delegat creat"
+  "DELEGATE_CHANGE_CREATED": "Cambi delegat creat",
+  "DELEGATE_CHANGE_DELETED": "Cambi delegat eliminat",
+  "Deactivate": "Desactivar",
+  "Delegated change deactivated": "Cambi delegat desactivat",
+  "SCHEDULED_AT": "Programat Per a",
+  "ENTRIES": "Entrades"
 }

@@ -131,7 +131,22 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
       .subscribe(() => this.search());
   }
 
-  public cancelChange() {
+  public cancelChange(change) {
+    this.changeCrud.update(change.id, { status: 'draft' })
+    .subscribe(
+      res => {
+        this.alerts.showSnackbar('Delegated change deactivated', 'ok');
+        this.search();
+      }, 
+      err => {
+        if (err.message.includes('Validation error')) {
+          this.validationErrors = err.errors;
+          this.validationErrorName = 'Validation Error';
+        } else {
+          this.alerts.showSnackbar(err.message);
+        }
+      }
+    );
     return;
   }
 

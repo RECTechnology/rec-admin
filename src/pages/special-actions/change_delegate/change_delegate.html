@@ -73,27 +73,43 @@
               <span class="circle bg-{{change.status}}" *ngIf="utils.isMobileDevice"></span>
             </td>
             <td>
-              <button mat-button *ngIf="change.status == 'scheduled'" (click)="cancelChange()">
-                {{'Cancel'|translate}}
-              </button>
+              <!-- If status === 'draft' -->
+              <ng-container *ngIf="change.status == 'draft'">
+                <button mat-icon-button [matMenuTriggerFor]="actions">
+                  <span class="center h v">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
+                </button>
+                <mat-menu #actions="matMenu">
+                  <button mat-menu-item (click)="navigateToChange(change.id)">
+                    <p class="small-text"><i class="fa fa-edit"></i> {{'View/Edit'|translate}}</p>
+                  </button>
+                  <button mat-menu-item (click)="activateChange(change)">
+                    <p class="small-text"><i class="fa fa-file"></i> {{'Activate'|translate}}</p>
+                  </button>
+                  <hr>
+                  <button mat-menu-item (click)="deleteChange(change)">
+                    <p class="small-text col-error"><i class="fa fa-trash"></i> {{'DELETE'|translate}}</p>
+                  </button>
+                </mat-menu>
+              </ng-container>
 
-              <button mat-icon-button [matMenuTriggerFor]="actions" *ngIf="change.status == 'draft'">
-                <span class="center h v">
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-              </button>
-              <mat-menu #actions="matMenu">
-                <button mat-menu-item (click)="navigateToChange(change.id)">
-                  <p class="small-text"><i class="fa fa-edit"></i> {{'View/Edit'|translate}}</p>
+              <!-- If status === 'scheduled' -->
+              <ng-container *ngIf="change.status == 'scheduled'">
+                <button mat-icon-button [matMenuTriggerFor]="actions">
+                  <span class="center h v">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
                 </button>
-                <button mat-menu-item (click)="activateChange(change)">
-                  <p class="small-text"><i class="fa fa-file"></i> {{'Activate'|translate}}</p>
-                </button>
-                <hr>
-                <button mat-menu-item (click)="deleteChange(change)">
-                  <p class="small-text col-error"><i class="fa fa-trash"></i> {{'DELETE'|translate}}</p>
-                </button>
-              </mat-menu>
+                <mat-menu #actions="matMenu">
+                  <button mat-menu-item (click)="navigateToChange(change.id)">
+                    <p class="small-text"><i class="fa fa-edit"></i> {{'View'|translate}}</p>
+                  </button>
+                  <button mat-menu-item (click)="cancelChange(change)">
+                    <p class="small-text"><i class="fa fa-file"></i> {{'Deactivate'|translate}}</p>
+                  </button>
+                </mat-menu>
+              </ng-container>
             </td>
           </tr>
         </tbody>

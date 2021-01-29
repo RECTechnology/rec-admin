@@ -871,6 +871,7 @@
   "NEW_CHANGE_DELEGATE": "Nuevo cambio de delegado",
   "SELECTED_ACCOUNTS_COUNT": "Cuentas seleccionada(s)",
   "EDIT_CHANGE_DELEGATE": "Editar cambio de delegado",
+  "VIEW_CHANGE_DELEGATE": "Ver cambio de delegado",
   "Exchanger": "Intercambiador",
   "NEW_CHANGE": "Nuevo cambio",
   "SET_SCHEDULE": "Establezca una fecha programada para el cambio delegado",
@@ -1132,6 +1133,11 @@
   "NO_ENTRIES": "No hay entradas",
   "CARD INFO": "Informacion Tarjeta",
   "USER_DETAILS": "Detalles de usuario",
-  "DELEGATE_CHANGE_CREATED": "Cambio delegado creado"
+  "DELEGATE_CHANGE_CREATED": "Cambio delegado creado",
+  "DELEGATE_CHANGE_DELETED": "Cambio delegado eliminado",
+  "Deactivate": "Desactivar",
+  "Delegated change deactivated": "Cambio delegado desactivado",
+  "SCHEDULED_AT": "Programado Para",
+  "ENTRIES": "Entradas"
 
 }

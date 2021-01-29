@@ -5,7 +5,8 @@
   <div class="new-delegate bg-white" style="margin-top: 0; position: relative;">
 
     <!-- Header -->
-    <tl-header [options]="{ input: false }" title="{{isNew ? 'NEW_CHANGE_DELEGATE': 'EDIT_CHANGE_DELEGATE'|translate}}">
+    <tl-header [options]="{ input: false }"
+      title="{{(isNew ? 'NEW_CHANGE_DELEGATE': readonly ? 'VIEW_CHANGE_DELEGATE' : 'EDIT_CHANGE_DELEGATE')|translate}}">
       <div class="group-row-left center v" style="padding: 0 15px; position: relative;">
         <p class="small-text" style="margin-right: 10px!important">{{'SCHEDULED_FOR'|translate}}:</p>
         <b class="small-text" *ngIf="!changeScheduled">{{dataPassed ? 'Immediate': delegate.scheduled_at | date}}</b>
@@ -16,10 +17,10 @@
             <span class="fa fa-save"></span>
           </button>
         </div>
-        <button *ngIf="!changeScheduled" mat-icon-button (click)="editScheduledAt()">
+        <button [disabled]="readonly" *ngIf="!changeScheduled" mat-icon-button (click)="editScheduledAt()">
           <span class="fa fa-edit"></span>
         </button>
-        <button *ngIf="changeScheduled" mat-icon-button (click)="closeScheduledAt()">
+        <button [disabled]="readonly" *ngIf="changeScheduled" mat-icon-button (click)="closeScheduledAt()">
           <span class="fa fa-times"></span>
         </button>
 
@@ -32,24 +33,25 @@
         <p class="small-text">
           <b>{{sortedData.length}}</b> {{'SELECTED_ACCOUNTS_COUNT'|translate}}
         </p>
-        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-button name="button"
-          (click)="openSelectAccounts()">
+        <button [disabled]="readonly" type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
+          mat-button name="button" (click)="openSelectAccounts()">
           <p class="text-small">
             <i class="fa fa-plus"></i>
             {{'ADD_ACCOUNTS'|translate}}
           </p>
         </button>
 
-        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-button name="button"
-          (click)="newImport()">
+        <button [disabled]="readonly" type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
+          mat-button name="button" (click)="newImport()">
           <p class="text-small">
             <i class="fa fa-file"></i>
             {{'Import'|translate}}
           </p>
         </button>
 
-        <button type="button" [disabled]="getSelected().length <= 0" style="margin-right: 10px; padding-right: 10px"
-          color="primary" mat-button name="button" (click)="openEditSelected()">
+        <button [disabled]="readonly" type="button" [disabled]="getSelected().length <= 0"
+          style="margin-right: 10px; padding-right: 10px" color="primary" mat-button name="button"
+          (click)="openEditSelected()">
           <p class="text-small">
             <i class="fa fa-edit"></i>
             {{'EDIT_ACCOUNTS'|translate}}
@@ -63,7 +65,7 @@
     </validation-errors>
 
     <!-- Table -->
-    <div class="fill-size"
+    <div *ngIf="!readonly" class="fill-size"
       style="max-height: 350px; overflow-y: auto; position: relative;border-bottom: 1px solid #ddd!important">
       <table *ngIf="!loading && notSavedItems.length" class="left-align" style="min-height: 100px">
         <thead class="bordered stripped">
@@ -104,7 +106,7 @@
               <b *ngIf="data.cvv2">{{data.cvv2}}</b>
             </td>
             <td>
-              <button mat-icon-button [matMenuTriggerFor]="actions">
+              <button mat-icon-button [matMenuTriggerFor]="actions" [disabled]="readonly">
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
@@ -127,8 +129,8 @@
         *ngIf="!loading && !notSavedItems.length">
         <b class="small-text-2">{{'NO_ACCOUNTS_SELECTED'|translate}}</b>
         <p class="small-text">{{'SELECT_ACCOUNTS'|translate}}!</p>
-        <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-raised-button
-          name="button" (click)="openSelectAccounts()">
+        <button [disabled]="readonly" type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
+          mat-raised-button name="button" (click)="openSelectAccounts()">
           <p class="text-small">
             <i class="fa fa-plus"></i>
             {{'ADD_ACCOUNTS'|translate}}
@@ -185,7 +187,7 @@
               <b *ngIf="data.cvv2">{{data.cvv2}}</b>
             </td>
             <td>
-              <button mat-icon-button [matMenuTriggerFor]="actions">
+              <button mat-icon-button [matMenuTriggerFor]="actions" [disabled]="readonly">
                 <span class="center h v">
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
@@ -225,13 +227,13 @@
     <!-- Footer -->
     <div class="fill-size" style="padding: 10px 15px; border-top: 1px solid #ddd">
       <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
-        [disabled]="saved && !notSavedItems.length" mat-button name="button" (click)="saveEntries()">
+        [disabled]="saved && !notSavedItems.length || readonly" mat-button name="button" (click)="saveEntries()">
         <p class="text-small">
           {{'SAVE'|translate}}
         </p>
       </button>
       <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-raised-button
-        name="button" (click)="activateChange()">
+        name="button" (click)="activateChange()" [disabled]="readonly">
         <p class="text-small">
           {{'Activate'|translate}}
         </p>
