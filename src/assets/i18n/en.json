@@ -554,5 +554,9 @@
   "NO_ENTRIES": "No entries",
   "DELEGATE_CHANGE_CREATED": "Delegated change created",
   "DELEGATE_CHANGE_DELETED": "Delegated change deleted",
-  "SCHEDULED_AT": "Scheduled At"
+  "SCHEDULED_AT": "Scheduled At",
+  "CARD_INFO": "Card Info",
+  "CARD_USER": "Card User",
+  "EXCHANGER_ACCOUNT": "Exchanger Account",
+  "BENEFICIARY_ACCOUNT": "Beneficiary Account"
 }

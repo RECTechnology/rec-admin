@@ -145,6 +145,7 @@
     </div>
 
     <tl-header [options]="{ input: false }" title="Saved items"></tl-header>
+
     <!-- Selected Items -->
     <div class="fill-size" style="max-height: 350px; overflow-y: auto; position: relative;">
       <table mdSort (mdSortChange)="sortData($event)" class="left-align" style="min-height: 100px">
@@ -157,18 +158,24 @@
             <th md-sort-header="id" style="color: #555!important">
               {{'#'|translate}}
             </th>
-            <th md-sort-header="account_id" style="color: #555!important">
-              {{'Account'|translate}}
+            <th style="color: #555!important">
+              {{'CARD_INFO'|translate}}
+            </th>
+            <th style="color: #555!important">
+              {{'CARD_USER'|translate}}
             </th>
             <th md-sort-header="exchanger_id" style="color: #555!important">
-              {{'Exchanger'|translate}}
+              {{'Exchanger Account'|translate}}
+            </th>
+            <th md-sort-header="account_id" style="color: #555!important">
+              {{'Beneficiary Account'|translate}}
             </th>
             <th md-sort-header="amount" style="color: #555!important">
               {{'Amount'|translate}}
             </th>
-            <th style="color: #555!important">
+            <!-- <th style="color: #555!important">
               {{'Card Info'|translate}}
-            </th>
+            </th> -->
             <th></th>
           </tr>
         </thead>
@@ -178,14 +185,15 @@
               <mat-checkbox color="primary" [(ngModel)]="data.selected" (ngModelChange)="changed()"></mat-checkbox>
             </td>
             <td>{{data.id}}</td>
-            <td>{{data.account.id}} <i>({{data.account.name}})</i></td>
-            <td>{{data.exchanger.id}}</td>
-            <td><code>{{data.amount}} €</code></td>
             <td>
               <b *ngIf="data.pan">{{data.pan}}</b>
               <b *ngIf="data.expiry_date">{{data.expiry_date}}</b>
               <b *ngIf="data.cvv2">{{data.cvv2}}</b>
             </td>
+            <td></td>
+            <td>{{data.exchanger.name}} (<a class="col-blue" routerLink="/accounts/{{data.exchanger.id}}">{{data.exchanger.id}}</a>)</td>
+            <td>{{data.account.name}} (<a class="col-blue" routerLink="/accounts/{{data.account.id}}">{{data.account.id}}</a>)</td>
+            <td><code>{{data.amount}} €</code></td>
             <td>
               <button mat-icon-button [matMenuTriggerFor]="actions" [disabled]="readonly">
                 <span class="center h v">

@@ -1138,5 +1138,9 @@
   "Deactivate": "Desactivar",
   "Delegated change deactivated": "Cambi delegat desactivat",
   "SCHEDULED_AT": "Programat Per a",
-  "ENTRIES": "Entrades"
+  "ENTRIES": "Entrades",
+  "CARD_INFO": "Informació de la targeta",
+   "CARD_USER": "Usuari de la targeta",
+   "EXCHANGER_ACCOUNT": "Compte d'intercanviador",
+   "BENEFICIARY_ACCOUNT": "Compte del beneficiari"
 }

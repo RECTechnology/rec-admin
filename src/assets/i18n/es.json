@@ -1138,6 +1138,10 @@
   "Deactivate": "Desactivar",
   "Delegated change deactivated": "Cambio delegado desactivado",
   "SCHEDULED_AT": "Programado Para",
-  "ENTRIES": "Entradas"
+  "ENTRIES": "Entradas",
+  "CARD_INFO": "Información de la tarjeta",
+   "CARD_USER": "Usuario de tarjeta",
+   "EXCHANGER_ACCOUNT": "Cuenta de intercambiador",
+   "BENEFICIARY_ACCOUNT": "Cuenta del beneficiario"
 
 }
