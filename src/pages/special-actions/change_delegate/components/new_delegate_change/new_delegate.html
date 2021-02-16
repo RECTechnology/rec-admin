@@ -193,7 +193,7 @@
                 routerLink="/accounts/{{data.exchanger.id}}">{{data.exchanger.id}}</a>)</td>
             <td>{{data.account.name}} (<a class="col-blue"
                 routerLink="/accounts/{{data.account.id}}">{{data.account.id}}</a>)</td>
-            <td><code>{{data.amount}} €</code></td>
+            <td><code>{{data.amount/100}} €</code></td>
             <td>
               <button mat-icon-button [matMenuTriggerFor]="actions" [disabled]="readonly">
                 <span class="center h v">
