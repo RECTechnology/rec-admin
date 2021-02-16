@@ -104,19 +104,23 @@ export class OrganizationsComponent extends TablePageBase {
 
   public getFilters() {
     switch (Number(this.filterActive)) {
-      case (0): return {
-        ...FILTERS,
-        wholesale: 1,
-      };
-      case (1): return {
-        ...FILTERS,
-        retailer: 1,
-      };
-      case (2): return {
-        ...FILTERS,
-        only_offers: 1,
-      };
-      default: return FILTERS;
+      case 0:
+        return {
+          ...FILTERS,
+          wholesale: 1,
+        };
+      case 1:
+        return {
+          ...FILTERS,
+          retailer: 1,
+        };
+      case 2:
+        return {
+          ...FILTERS,
+          only_offers: 1,
+        };
+      default:
+        return FILTERS;
     }
   }
 
@@ -149,20 +153,8 @@ export class OrganizationsComponent extends TablePageBase {
     this.accountsCrud.search(data).subscribe(
       (resp: any) => {
         this.data = resp.data.elements.map((el) => {
-          el.address = [
-            el.street_type,
-            el.street,
-            el.address_number,
-            '-',
-            el.city,
-            el.zip,
-            el.country,
-          ].join(' ');
-
-          el.coordenates = [
-            el.latitude,
-            el.longitude,
-          ].join(' ');
+          el.address = [el.street_type, el.street, el.address_number, '-', el.city, el.zip, el.country].join(' ');
+          el.coordenates = [el.latitude, el.longitude].join(' ');
           return el;
         });
         this.total = resp.data.total;
@@ -192,18 +184,17 @@ export class OrganizationsComponent extends TablePageBase {
   }
 
   public changeMapVisibility(acc, visible, i) {
-    this.as.setMapVisibility(acc.id, visible.checked)
-      .subscribe(
-        (resp) => {
-          this.alerts.showSnackbar(visible.checked
-            ? 'Organization is shown in map'
-            : 'Organization is hidden from map', 'ok',
-          );
-        },
-        (error) => {
-          this.alerts.showSnackbar(error.message, 'ok');
-        },
-      );
+    this.as.setMapVisibility(acc.id, visible.checked).subscribe(
+      (resp) => {
+        this.alerts.showSnackbar(
+          visible.checked ? 'Organization is shown in map' : 'Organization is hidden from map',
+          'ok',
+        );
+      },
+      (error) => {
+        this.alerts.showSnackbar(error.message, 'ok');
+      },
+    );
   }
 
   public getCleanParams(query?: string) {
@@ -217,7 +208,6 @@ export class OrganizationsComponent extends TablePageBase {
       sort: this.sortID,
       subtype: filters.retailer ? 'RETAILER' : filters.wholesale ? 'WHOLESALE' : '',
       type: 'COMPANY',
-      // tslint:disable-next-line: object-literal-sort-keys
       only_offers: filters.only_offers,
     };
 
@@ -251,12 +241,8 @@ export class OrganizationsComponent extends TablePageBase {
     return this.alerts.openModal(BussinessDetailsDia, { bussiness });
   }
 
-  public editDetails(bussiness) {
-    this.alerts.openModal(EditAccountData, {
-      account: Object.assign({}, bussiness),
-    }).subscribe((result) => {
-      this.search();
-    });
+  public editDetails(account) {
+    this.alerts.openModal(EditAccountData, { account }).subscribe((result) => this.search());
   }
 
   public viewAccount(data) {
