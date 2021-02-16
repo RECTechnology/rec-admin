@@ -4,7 +4,9 @@ import { browser, logging } from 'protractor';
 describe('Rec Admin App', () => {
   let page: AppPage;
 
-  beforeEach(() => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(() => {
     page = new AppPage();
   });
 

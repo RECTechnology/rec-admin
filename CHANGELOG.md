@@ -17,21 +17,6 @@ All notable changes to this project will be documented in this file. See [standa
 * **SpecialActions:** fixes errors not shown on csv import, in delegate chagne | fixed [#248](https://github.com/QbitArtifacts/rec-admin/issues/248) ([9b591f9](https://github.com/QbitArtifacts/rec-admin/commit/9b591f9183e4a9016bfe4858b3b3d108696fd02d))
 * **user:** moved remove from list to details page, fixed disable/enable user ([dc46678](https://github.com/QbitArtifacts/rec-admin/commit/dc4667878cd5ef85b7a556e3171c201b57f51e34))
 
-### [3.17.7](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.6...v3.17.7) (2021-01-29)
-
-
-### Bug Fixes
-
-* fixed user details modal, not showing some data sometimes ([1674dce](https://github.com/QbitArtifacts/rec-admin/commit/1674dcee4fda6ee5a0dd55181a3fef4510095f08))
-* **DelegateChange:** fixed headers and order | fixes [#252](https://github.com/QbitArtifacts/rec-admin/issues/252) ([a62f135](https://github.com/QbitArtifacts/rec-admin/commit/a62f135ffd208133912e86166827d9f8bb485d70))
-* **i18n:** fixed some translations ([438598e](https://github.com/QbitArtifacts/rec-admin/commit/438598eabc70ca8c63494c3b84740c214d297925))
-* **SpecialActions:** Fixed change delegate edit modal | fixes [#247](https://github.com/QbitArtifacts/rec-admin/issues/247) ([cd817d3](https://github.com/QbitArtifacts/rec-admin/commit/cd817d32d51234696167c4221c43bbdd0d0abbd3))
-* **SpecialActions:** Fixed change delegate list actions | fixes [#251](https://github.com/QbitArtifacts/rec-admin/issues/251) ([51d72de](https://github.com/QbitArtifacts/rec-admin/commit/51d72de74e80b1cd2f81c301e1b768902779e9d4))
-* **SpecialActions:** fixed change delegate pagination | fixes [#246](https://github.com/QbitArtifacts/rec-admin/issues/246) ([1eccb3c](https://github.com/QbitArtifacts/rec-admin/commit/1eccb3c956661e20b5955733105c311c0c088090))
-* **SpecialActions:** Fixed import csv not updating the table in delegate change | fixes [#246](https://github.com/QbitArtifacts/rec-admin/issues/246) ([24cb8e8](https://github.com/QbitArtifacts/rec-admin/commit/24cb8e87b894d9efaced44abb8e305e4291107c1))
-* **SpecialActions:** fixes errors not shown on csv import, in delegate chagne | fixed [#248](https://github.com/QbitArtifacts/rec-admin/issues/248) ([9b591f9](https://github.com/QbitArtifacts/rec-admin/commit/9b591f9183e4a9016bfe4858b3b3d108696fd02d))
-* **user:** moved remove from list to details page, fixed disable/enable user ([dc46678](https://github.com/QbitArtifacts/rec-admin/commit/dc4667878cd5ef85b7a556e3171c201b57f51e34))
-
 ### [3.17.6](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.5...v3.17.6) (2021-01-19)
 
 ### [3.17.5](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.4...v3.17.5) (2021-01-18)

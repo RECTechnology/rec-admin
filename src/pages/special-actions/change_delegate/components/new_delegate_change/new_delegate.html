@@ -173,9 +173,6 @@
             <th md-sort-header="amount" style="color: #555!important">
               {{'Amount'|translate}}
             </th>
-            <!-- <th style="color: #555!important">
-              {{'Card Info'|translate}}
-            </th> -->
             <th></th>
           </tr>
         </thead>
@@ -186,13 +183,16 @@
             </td>
             <td>{{data.id}}</td>
             <td>
-              <b *ngIf="data.pan">{{data.pan}}</b>
-              <b *ngIf="data.expiry_date">{{data.expiry_date}}</b>
-              <b *ngIf="data.cvv2">{{data.cvv2}}</b>
+              {{data?.creditcard.alias}} ({{data?.creditcard.id}})
             </td>
-            <td></td>
-            <td>{{data.exchanger.name}} (<a class="col-blue" routerLink="/accounts/{{data.exchanger.id}}">{{data.exchanger.id}}</a>)</td>
-            <td>{{data.account.name}} (<a class="col-blue" routerLink="/accounts/{{data.account.id}}">{{data.account.id}}</a>)</td>
+            <td>
+              <a class="col-blue"
+                routerLink="/users/{{data?.creditcard.user.id}}">{{data?.creditcard.user.username}}</a>
+            </td>
+            <td>{{data.exchanger.name}} (<a class="col-blue"
+                routerLink="/accounts/{{data.exchanger.id}}">{{data.exchanger.id}}</a>)</td>
+            <td>{{data.account.name}} (<a class="col-blue"
+                routerLink="/accounts/{{data.account.id}}">{{data.account.id}}</a>)</td>
             <td><code>{{data.amount}} €</code></td>
             <td>
               <button mat-icon-button [matMenuTriggerFor]="actions" [disabled]="readonly">

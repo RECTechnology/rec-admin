@@ -6,14 +6,18 @@ describe('ValidateWithdrawalComponent', () => {
   let component: ValidateWithdrawalComponent;
   let fixture: ComponentFixture<ValidateWithdrawalComponent>;
 
-  beforeEach(async(() => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ValidateWithdrawalComponent ]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(() => {
     fixture = TestBed.createComponent(ValidateWithdrawalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
