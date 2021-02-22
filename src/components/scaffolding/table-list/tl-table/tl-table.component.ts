@@ -127,6 +127,13 @@ export class TableListTable implements AfterContentInit {
         }
     }
 
+    public getRowClass(entry: any) {
+        if (this.options.getRowClass) {
+            return this.options.getRowClass(entry);
+        }
+    }
+
+
     public ngAfterContentInit() {
         // Gets the query parameters and gets 'tab' param
         this.route.queryParams
