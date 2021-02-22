@@ -12,7 +12,7 @@
             </ng-template>
             <th *ngIf="itemOptions"></th>
         </tr>
-        <tr *ngFor="let entry of data; let i = index; trackBy: trackByFn" (click)="onClickedRow(entry)"
+        <tr *ngFor="let entry of data; let i = index; trackBy: trackByFn" (click)="onClickedRow(entry)" class="{{getRowClass(entry)}}"
             [ngClass]="{'item-hoverable': !!options.onClick}">
             <td *ngFor="let header of headers; trackBy: trackByFn">
                 <mat-checkbox *ngIf="header.type === 'checkbox'" color="primary" [ngModel]="getEntry(entry, header)"

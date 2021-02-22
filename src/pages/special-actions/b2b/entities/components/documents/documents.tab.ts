@@ -61,6 +61,13 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         onClick: (element) => {
             window.open(element.content, '_blank');
         },
+        getRowClass: (element: Document) => {
+            const validUntil = new Date(element.valid_until).getTime();
+            const now = Date.now();
+            if(validUntil < now){
+                return 'bg-yellow';
+            }
+          }
     };
 
     public STATUSES = Document.ALL_STATUSES;

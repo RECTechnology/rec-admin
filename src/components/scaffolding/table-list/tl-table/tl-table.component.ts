@@ -73,6 +73,7 @@ export class TlItemOption implements TlItemOption {
 export interface TableListOptions {
     optionsType?: 'menu' | 'buttons';
     sortEnabled?: boolean;
+    getRowClass?: (entry: any) => string;
     onClick?: (entry: any) => void;
 }
 
