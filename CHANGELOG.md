@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.17.9](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.8...v3.17.9) (2021-02-26)
+
+
+### Bug Fixes
+
+* **delegated_change:** added card and user info to change delegated list ([c7d43ba](https://github.com/QbitArtifacts/rec-admin/commit/c7d43ba474e84f9f117c64253354aa530486d5ad))
+* **delegated_change:** added option to view when status is finished | fixes [#251](https://github.com/QbitArtifacts/rec-admin/issues/251) ([1d28740](https://github.com/QbitArtifacts/rec-admin/commit/1d287407fbd477bc4dab567177599f5501a8fd2e))
+* **delegated_change:** fixed amount not scaled | fixes [#257](https://github.com/QbitArtifacts/rec-admin/issues/257) ([ba7fb27](https://github.com/QbitArtifacts/rec-admin/commit/ba7fb271ec9847cc1bcf4d21d013723f6349d30d))
+* **delegated_change:** fixed csv import error not showing | fixes [#248](https://github.com/QbitArtifacts/rec-admin/issues/248) ([0b69818](https://github.com/QbitArtifacts/rec-admin/commit/0b698187c6a556ff3dc979302d773d74c2c7b9f7))
+* **deps:** removed unused dependency which caused problems ([f246175](https://github.com/QbitArtifacts/rec-admin/commit/f246175aa9df077760ed6ad107916502abe7815c))
+* **documents:** highlight expired documents | fixes [#166](https://github.com/QbitArtifacts/rec-admin/issues/166) ([8671da9](https://github.com/QbitArtifacts/rec-admin/commit/8671da9944e3cef4765e3e98bfebe939dcf1f33c))
+* **documents:** highlight expired documents | fixes [#166](https://github.com/QbitArtifacts/rec-admin/issues/166) ([cf5d0a7](https://github.com/QbitArtifacts/rec-admin/commit/cf5d0a7c4465109d590b4efb652b4581c33f5877))
+* **ui:** edit account from orgs not working | fixes [#253](https://github.com/QbitArtifacts/rec-admin/issues/253) ([069af35](https://github.com/QbitArtifacts/rec-admin/commit/069af35b035e2bdb068e42ff23090ac79ac14f62))
+* **ui:** fixed missing function ([624fb6f](https://github.com/QbitArtifacts/rec-admin/commit/624fb6fa106b7536540c8be76289b5e3af393362))
+
 ### [3.17.8](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.6...v3.17.8) (2021-01-29)
 
 
