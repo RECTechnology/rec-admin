@@ -1,7 +1,12 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
 ---
+
 ### Timing  
 *Please dev. fill in this details*  
 <!-- In h, m, s  -->

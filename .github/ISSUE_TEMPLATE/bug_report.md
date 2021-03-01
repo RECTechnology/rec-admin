@@ -1,15 +1,43 @@
 ---
 name: Bug report
 about: Create a report to help us improve
+title: ''
+labels: 'issue: bug'
+assignees: nombrekeff
+
 ---
 
 ### Information
-<!-- PRE | PROD -->
-**Environment**: ` `  
-<!-- Chrome | Firefox | etc... -->
-**Browser**: `Chrome`    
+<!-- 
+Select One 
+add the corresponding label (if you can) 
+-->
+**Environment**: 
+- [ ] PRE
+- [ ] PROD
+
+<!-- 
+Select One 
+add the corresponding label (if you can) 
+-->
+**Browser**: 
+- [ ] Chrome
+- [ ] Firefox
+- [ ] Opera
+- [ ] IE
+- [ ] Edge
+- [ ] Safari
+- [ ] Other: <!-- Specify -->
+
 <!-- MacOSx | Linux | Windows -->
-**Platform**: ` `   
+**Platform**: 
+- [ ] MacOS
+- [ ] Linux
+- [ ] Windows
+- [ ] Android
+- [ ] iOS
+- [ ] Other: <!-- other -->
+
 <!-- eg v0.2.9 -->
 **Panel Version**: ` `  
 <!-- eg 12.3.123 -->
