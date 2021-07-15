@@ -1,9 +1,7 @@
 <div class="group-col-left" style="margin: 0">
     <div class="fill-size center v space-between" style="padding: 10px 15px">
         <p class="small-text col-blue" style="margin-right: 15px!important">{{'CHANGE_DELEGATE'|translate}}</p>
-        <!-- <input type="text" class="input radius-2" style="width: 70%" placeholder="{{'Search'|translate}}..."
-            [(ngModel)]="searchQuery" (keyup.enter)="search();"> -->
-        <button [disabled]="newChangeShown" type="button" style="margin-left: 8px; padding-right: 10px; "
+        <button type="button" style="margin-left: 8px; padding-right: 10px; "
             color="primary" mat-raised-button name="button" (click)="showNewChange()">
             <p class="text-small">
                 <i class="fa fa-plus"></i>
@@ -12,9 +10,16 @@
         </button>
     </div>
 
-    <div class="fill-size" style="padding: 10px 15px; border-top: 1px solid #ddd" *ngIf="newChangeShown">
+    <!-- <div class="fill-size" style="padding: 10px 15px; border-top: 1px solid #ddd" *ngIf="newChangeShown">
         <p class="small-text">{{'SET_SCHEDULE'|translate}}: <i>({{'CAN_EDIT_LATER'|translate}})</i></p>
-        <div class="group-row-left">
+
+        <div class="group-row-left" style="align-items: center;">
+            <mat-select [(ngModel)]="delegateType" style="width: 150px; margin-right: 8px;">
+                <mat-option *ngFor="let type of TYPES" [value]="type">
+                    {{type}}
+                </mat-option>
+            </mat-select>
+
             <input type="date" class="input radius-2" [(ngModel)]="date" (keyup.enter)="newChange()">
             <input type="time" class="input radius-2" [(ngModel)]="time" (keyup.enter)="newChange()">
             <button mat-icon-button title="{{'CREATE_CHANGE'|translate}}" (click)="newChange()">
@@ -24,5 +29,5 @@
                 <i class="fa fa-times"></i>
             </button>
         </div>
-    </div>
+    </div> -->
 </div>

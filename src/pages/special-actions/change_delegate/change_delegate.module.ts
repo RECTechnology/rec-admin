@@ -11,6 +11,7 @@ import { NewDelegateComponent } from './components/new_delegate_change/new_deleg
 import { SelectAccountsDia } from './components/select_accounts_dialog/select_accounts.dia';
 import { CsvUpload } from './components/csv-upload/csv-upload.dia';
 import { ActivateResume } from './components/activate-resume/activate-resume.dia';
+import { CreateDelegateChange } from './components/create_delegate_change/create_delegate_change.dia';
 
 const profileRoutes: Routes = [
   {
@@ -30,6 +31,7 @@ const profileRoutes: Routes = [
     ChangeDelegateComponent,
     DelegateHeaderComponent,
     NewDelegateComponent,
+    CreateDelegateChange,
     SelectAccountsDia,
     CsvUpload,
     ActivateResume,
@@ -38,6 +40,7 @@ const profileRoutes: Routes = [
     SelectAccountsDia,
     CsvUpload,
     ActivateResume,
+    CreateDelegateChange,
   ],
   exports: [
     RouterModule,

@@ -12,12 +12,11 @@ import { ActivateResume } from './components/activate-resume/activate-resume.dia
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { NewDelegateChange } from './components/create_delegate_change/create_delegate_change.dia';
 
 @Component({
   selector: 'change_delegate',
-  styleUrls: [
-    './change_delegate.css',
-  ],
+  styleUrls: ['./change_delegate.css'],
   templateUrl: './change_delegate.html',
 })
 export class ChangeDelegateComponent extends PageBase implements OnInit {
@@ -56,52 +55,55 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
 
   public search(query?: string) {
     this.loadingList = true;
-    this.changeCrud.list({
-      offset: this.offset,
-      limit: this.limit,
-      query
-    })
-      .subscribe((resp) => {
-        this.delegateChanges = resp.data.elements
-          .map((el) => {
+    this.changeCrud
+      .list({
+        offset: this.offset,
+        limit: this.limit,
+        query,
+      })
+      .subscribe(
+        (resp) => {
+          this.delegateChanges = resp.data.elements.map((el) => {
             el.data = [];
             return el;
           });
 
-        this.total = resp.data.total;
-        this.sortedData = this.delegateChanges.slice();
-        this.loadingList = false;
-      }, (error) => {
-        this.alerts.showSnackbar(error.message, 'ok');
-        this.loadingList = false;
-      });
+          this.total = resp.data.total;
+          this.sortedData = this.delegateChanges.slice();
+          this.loadingList = false;
+        },
+        (error) => {
+          this.alerts.showSnackbar(error.message, 'ok');
+          this.loadingList = false;
+        },
+      );
   }
 
   public navigateToChange(id) {
     this.router.navigate(['/change_delegate/' + id]);
   }
 
-  public newChange(schedule) {
-    this.changeCrud.create({ scheduled_at: schedule })
-      .subscribe((resp) => {
-        this.alerts.showSnackbar('DELEGATE_CHANGE_CREATED', 'ok');
-        this.router.navigate(['/change_delegate/' + resp.data.id]);
-      }, this.alerts.observableErrorSnackbar);
+  public newChange({ schedule, type, name }: NewDelegateChange) {
+    this.changeCrud.create({ scheduled_at: schedule, type, name }).subscribe((resp) => {
+      this.alerts.showSnackbar('DELEGATE_CHANGE_CREATED', 'ok');
+      this.router.navigate(['/change_delegate/' + resp.data.id]);
+    }, this.alerts.observableErrorSnackbar);
   }
 
   public newImport(change) {
-    this.alerts.openModal(CsvUpload)
-      .subscribe((resp) => {
-        if (resp) {
-          this.changeDataCrud.importFromCSV({
+    this.alerts.openModal(CsvUpload).subscribe((resp) => {
+      if (resp) {
+        this.changeDataCrud
+          .importFromCSV({
             delegated_change_id: change.id,
             path: resp,
-          }).subscribe((respDelegate) => {
+          })
+          .subscribe((respDelegate) => {
             this.alerts.showSnackbar(respDelegate.message, 'ok');
             this.search();
           }, this.handleValidationError);
-        }
-      });
+      }
+    });
   }
 
   public openDeleteChange(change) {
@@ -113,39 +115,34 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
   }
 
   public deleteChange(change) {
-    this.openDeleteChange(change)
-      .subscribe((resp) => {
-        if (resp) {
-          this.changeCrud.remove(change.id)
-            .subscribe(() => {
-              this.alerts.showSnackbar('DELEGATE_CHANGE_DELETED', 'ok');
-              this.search();
-            }, this.handleValidationError);
-        }
-      });
-
+    this.openDeleteChange(change).subscribe((resp) => {
+      if (resp) {
+        this.changeCrud.remove(change.id).subscribe(() => {
+          this.alerts.showSnackbar('DELEGATE_CHANGE_DELETED', 'ok');
+          this.search();
+        }, this.handleValidationError);
+      }
+    });
   }
 
   public activateChange(change) {
-    return this.alerts.openModal(ActivateResume, { change })
-      .subscribe(() => this.search());
+    return this.alerts.openModal(ActivateResume, { change }).subscribe(() => this.search());
   }
 
   public cancelChange(change) {
-    this.changeCrud.update(change.id, { status: 'draft' })
-    .subscribe(
-      res => {
+    this.changeCrud.update(change.id, { status: 'draft' }).subscribe(
+      (res) => {
         this.alerts.showSnackbar('Delegated change deactivated', 'ok');
         this.search();
-      }, 
-      err => {
+      },
+      (err) => {
         if (err.message.includes('Validation error')) {
           this.validationErrors = err.errors;
           this.validationErrorName = 'Validation Error';
         } else {
           this.alerts.showSnackbar(err.message);
         }
-      }
+      },
     );
     return;
   }
@@ -164,7 +161,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
 
   public changedPage($event) {
     this.limit = $event.pageSize;
-    this.offset = this.limit * ($event.pageIndex);
+    this.offset = this.limit * $event.pageIndex;
     this.search();
   }
 }

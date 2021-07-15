@@ -1,56 +1,40 @@
+import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { UtilsService } from '../../../../../services/utils/utils.service';
+import { CreateDelegateChange, NewDelegateChange } from '../create_delegate_change/create_delegate_change.dia';
+
 
 @Component({
-    selector: 'delegate-header',
-    styleUrls: [
-        './delegate_header.css',
-    ],
-    templateUrl: './delegate_header.html',
+  selector: 'delegate-header',
+  styleUrls: ['./delegate_header.css'],
+  templateUrl: './delegate_header.html',
 })
 export class DelegateHeaderComponent {
-    public searchQuery: string = '';
+  public searchQuery: string = '';
 
-    @Output('onSearch') public onSearch: EventEmitter<any>;
-    @Output('onNewChange') public onNewChange: EventEmitter<any>;
-    @Output('onImport') public onImport: EventEmitter<any>;
+  @Output('onNewChange') public onNewChange: EventEmitter<NewDelegateChange>;
+  @Output('onImport') public onImport: EventEmitter<any>;
 
-    public newChangeShown = false;
-    public schedule = null;
-    public date = null;
-    public time = null;
+  constructor(public utils: UtilsService, private alerts: AlertsService) {
+    this.onNewChange = new EventEmitter();
+    this.onImport = new EventEmitter();
+  }
 
-    constructor(public utils: UtilsService) {
-        this.onSearch = new EventEmitter();
-        this.onNewChange = new EventEmitter();
-        this.onImport = new EventEmitter();
-    }
+  public showNewChange() {
+    // this.newChangeShown = true;
+    // const now = new Date();
+    // const parts = this.utils.parseDateToParts(now);
+    // this.date = parts.dateStr;
+    // this.time = parts.timeStr;
+    // this.delegateType = 'delegated_change';
 
-    public search() {
-        this.onSearch.emit(this.searchQuery);
-    }
+    this.alerts.openModal(CreateDelegateChange).subscribe((data: NewDelegateChange) => {
+      if (!data) return;
+      this.onNewChange.emit(data);
+    });
+  }
 
-    public showNewChange() {
-        this.newChangeShown = true;
-        const now = new Date();
-        const parts = this.utils.parseDateToParts(now);
-        this.date = parts.dateStr;
-        this.time = parts.timeStr;
-    }
-
-    public hideNewChange() {
-        this.newChangeShown = false;
-    }
-
-    public newChange() {
-        if (this.time && this.date) {
-            this.schedule = new Date(this.date + ' ' + this.time).toISOString();
-        }
-        this.onNewChange.emit(this.schedule);
-        this.hideNewChange();
-    }
-
-    public newImport() {
-        this.onImport.emit();
-    }
+  public newImport() {
+    this.onImport.emit();
+  }
 }

@@ -6,49 +6,55 @@
   <div class="wallet-transactions bg-white" style="margin-top: 0">
 
     <!-- Header -->
-    <!-- Search, new change, import from file -->
-    <delegate-header (onSearch)="search($event)" (onNewChange)="newChange($event)" (onImport)="newImport($event)">
+    <delegate-header (onNewChange)="newChange($event)" (onImport)="newImport($event)">
     </delegate-header>
+    
     <validation-errors style="border-top: 1px solid #ddd" [errors]="validationErrors"
       *ngIf="validationErrors.length > 0"></validation-errors>
 
     <!-- List of changes -->
     <div class="group-col-left" style="width: 100%; position: relative;">
-      <table mdSort (mdSortChange)="sortData($event)" class="left-align" style="min-height: 100px">
+      <table matSort (matSortChange)="sortData($event)" class="left-align">
         <thead class="bordered stripped">
           <tr>
-            <th md-sort-header="id" style="color: #555!important">
+            <th mat-sort-header="id" style="color: #555!important">
               {{'ID'|translate}}
             </th>
-            <th md-sort-header="import" style="color: #555!important">
+            <th mat-sort-header="name" style="color: #555!important">
+              {{'NAME'|translate}}
+            </th>
+            <th mat-sort-header="type" style="color: #555!important">
+              {{'TYPE'|translate}}
+            </th>
+            <th mat-sort-header="import" style="color: #555!important">
               {{'IMPORT_TOTAL'|translate}}
             </th>
-            <th md-sort-header="recs_distributed" style="color: #555!important">
+            <th mat-sort-header="recs_distributed" style="color: #555!important">
               {{'RECS_DISTRIBUTED'|translate}}
             </th>
-            <th md-sort-header="tx_success" style="color: #555!important">
+            <th mat-sort-header="tx_success" style="color: #555!important">
               {{'TX_RATE'|translate}}
             </th>
-            <th md-sort-header="entries" style="color: #555!important">
+            <!-- <th mat-sort-header="entries" style="color: #555!important">
               {{'ENTRIES'|translate}}
-            </th>
-            <th md-sort-header="created" style="color: #555!important">
+            </th> -->
+            <th mat-sort-header="created" style="color: #555!important">
               {{'CREATED'|translate}}
             </th>
-            <th md-sort-header="scheduled_at" style="color: #555!important">
+            <th mat-sort-header="scheduled_at" style="color: #555!important">
               {{'SCHEDULED_AT'|translate}}
             </th>
-            <th md-sort-header="status" style="color: #555!important">
-              {{'STATUS'|translate}}
+            <th mat-sort-header="status" style="color: #555!important">
+              {{'Status'|translate}}
             </th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let change of sortedData; let i = index; trackBy: trackByFn">
-            <td>
-              {{change.id}}
-            </td>
+            <td> {{change.id}} </td>
+            <td> <b>{{change.name}}</b> </td>
+            <td> <i>{{change.type | translate }}</i> </td>
             <td>
               <code>{{change.statistics.scheduled.rec_to_be_issued/1e8}} rec</code>
             </td>
@@ -59,9 +65,9 @@
               <span class="col-success">{{change.statistics.result.success_tx || 0}}</span>/<span
                 class="col-error">{{change.statistics.result.error_tx|| 0}}</span>
             </td>
-            <td>
+            <!-- <td>
               {{change.data ? change.data.length : 0}}
-            </td>
+            </td> -->
             <td>
               <i>{{change.created | date: 'medium'}}</i>
             </td>
@@ -117,7 +123,7 @@
       <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !loadingList">
         <p class="small-text-2">{{'NO_DELEGATE_CHANGES_YET'|translate}}</p>
       </div>
-      <div class="abs-center center h v bg-white-opaque" style="width: 100%;height: 100%" *ngIf="loadingList">
+      <div class="center h v bg-white-opaque" style="width: 100%;height: 100px" *ngIf="loadingList">
         <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
         </mat-progress-spinner>
       </div>

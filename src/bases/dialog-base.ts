@@ -45,6 +45,6 @@ export default abstract class BaseDialog {
   }
 
   public close(confirm?: any): void {
-    this.dialogRef.close();
+    this.dialogRef.close(confirm);
   }
 }

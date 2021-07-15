@@ -1140,8 +1140,13 @@
   "SCHEDULED_AT": "Programado Para",
   "ENTRIES": "Entradas",
   "CARD_INFO": "Información de la tarjeta",
-   "CARD_USER": "Usuario de tarjeta",
-   "EXCHANGER_ACCOUNT": "Cuenta de intercambiador",
-   "BENEFICIARY_ACCOUNT": "Cuenta del beneficiario"
-
+  "CARD_USER": "Usuario de tarjeta",
+  "EXCHANGER_ACCOUNT": "Cuenta de intercambiador",
+  "BENEFICIARY_ACCOUNT": "Cuenta del beneficiario",
+  "CREATE_DELEGATE_CHANGE": "Crear Cambio Delegado",
+  "DATE_START": "Fecha comienzo",
+  "TIME_START": "Hora comienzo",
+  "delegated_change": "Cambio Delegado",
+  "massive_transactions": "Transacciones Masivas",
+  "CREATE": "Crear"
 }

@@ -1,0 +1,47 @@
+<modal-header [title]="'CREATE_DELEGATE_CHANGE'|translate" (click)="close(false)">
+</modal-header>
+
+<div class="padd-20 modal-body">
+  <div class="row">
+    <div class="col-lg-12 marg-bottom-10">
+      <input-field type="select" [(value)]="delegateType" label="Type" [options]="TYPES">
+      </input-field>
+    </div>
+
+    <div class="col-lg-12 marg-bottom-10">
+      <input-field type="text" [(value)]="name" label="Name">
+      </input-field>
+    </div>
+
+    <div class="col-lg-12 marg-bottom-10">
+      <div class="group-col-left">
+        <span class="small-text-2 marg-b-5">
+          {{'DATE_START'|translate}}
+        </span>
+        <input type="date" class="user-input small radius-2" [(ngModel)]="date" (keyup.enter)="newChange()">
+      </div>
+    </div>
+
+    <div class="col-lg-12 marg-bottom-10">
+      <div class="group-col-left">
+        <span class="small-text-2 marg-b-5">
+          {{'TIME_START'|translate}}
+        </span>
+        <input type="time" class="user-input small radius-2" [(ngModel)]="time" (keyup.enter)="newChange()">
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+      <div class="group-row-left padd-20" style="justify-content: flex-end">
+        <p class="col-error small-text" *ngIf="error" style="margin-right: 10px!important">{{error}}</p>
+        <button type="button" style="margin-right: 10px;" mat-raised-button color="primary" name="button"
+          (click)="newChange()">
+          <p class="small-text-2">{{'CREATE'|translate}}</p>
+        </button>
+        <button type="button" mat-raised-button color="primary" name="button" (click)="close()">
+          <p class="small-text-2">{{'CANCEL'|translate}}</p>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
