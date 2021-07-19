@@ -6,7 +6,9 @@
 
     <tl-header [options]="{ input: false }"
       title="{{(isNew ? 'NEW_MASSIVE_TX': readonly ? 'VIEW_MASSIVE_TX' : 'EDIT_MASSIVE_TX')|translate}}">
-      <span class="small-text">{{delegate.name}} (<code>#{{delegate.id}}</code>)</span>
+      <btn-loader (clicked)="sendReport()" [disabled]="generatingReport" [loading]="generatingReport"
+        text="CREATE_REPORT">
+      </btn-loader>
     </tl-header>
 
     <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"

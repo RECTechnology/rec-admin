@@ -7,6 +7,7 @@ import { UtilsService } from '../../../../../services/utils/utils.service';
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { Sort } from '@angular/material/sort';
+import { MySnackBarSevice } from 'src/bases/snackbar-base';
 
 @Component({
   selector: 'new-massive-transactions',
@@ -23,6 +24,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public dataPassed = false;
   public sortedData = [];
   public dataLoading = true;
+  public generatingReport = false;
 
   constructor(
     public titleService: Title,
@@ -32,6 +34,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
     public changeCrud: DelegatedChangesCrud,
     public changeDataCrud: DelegatedChangesDataCrud,
     public utils: UtilsService,
+    public snackbar: MySnackBarSevice,
   ) {
     super();
   }
@@ -93,10 +96,22 @@ export class NewMassiveTransactionsComponent extends PageBase {
     this.getDelegateData();
   }
 
+  public sendReport() {
+    this.generatingReport = true;
+    this.changeCrud.sendMassiveTransactionsReport(this.idOrNew).subscribe(
+      (resp) => {
+        this.snackbar.open('PROCESING_REPORT');
+        this.generatingReport = false;
+      },
+      (err) => {
+        this.generatingReport = false;
+      },
+    );
+  }
+
   public sortData(sort: Sort): void {
     this.sortID = sort.active;
     this.sortDir = sort.direction.toUpperCase();
     this.getDelegateData();
   }
-
 }

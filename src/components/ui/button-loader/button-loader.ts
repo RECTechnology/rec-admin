@@ -11,7 +11,7 @@ export class ButtonLoader {
   @Input() public disabled = false;
   @Input() public submit = false;
   @Input() public text = '';
-  @Input() public color = '';
+  @Input() public color = 'primary';
 
   constructor(
     private controles: ControlesService,

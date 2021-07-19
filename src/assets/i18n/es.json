@@ -1155,5 +1155,8 @@
   "SENDER": "Emisor",
   "EXCHANGER": "Intercambiador",
   "NO_DATA_YET": "No hay datos aun",
-  "Change Delegate": "Cambio Delegado"
+  "Change Delegate": "Cambio Delegado",
+  "PROCESING_REPORT": "Procesando informe... se enviará al email de la cuenta admin",
+  "CREATE_REPORT": "Generar Informe",
+  "AMOUNT": "Cantidad"
 }

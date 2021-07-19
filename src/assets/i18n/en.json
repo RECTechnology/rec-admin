@@ -572,5 +572,8 @@
   "SENDER": "Sender",
   "EXCHANGER": "Exchanger",
   "NO_DATA_YET": "No data yet",
-  "Change Delegate": "Delegated Change"
+  "Change Delegate": "Delegated Change",
+  "PROCESING_REPORT": "Procesing report... it will be sent to admin's account email",
+  "CREATE_REPORT": "Create Report",
+  "AMOUNT": "Amount"
 }

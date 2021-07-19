@@ -13,4 +13,10 @@ export class DelegatedChangesCrud extends CrudBaseService<any> {
         super(http, us);
         this.basePath = '/delegated_changes';
     }
+
+    public sendMassiveTransactionsReport(id: string) {
+        const url = `/admin/v4/reports/massive-transactions/${id}`;
+
+        return this.post(url, {});
+    }
 }
