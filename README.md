@@ -1,23 +1,29 @@
 
-[ng-img]: https://img.shields.io/badge/Version-v8.2.14-blue.svg
-[node-img]: https://img.shields.io/badge/Version-v10.14.2-blue.svg
-[npm-img]: https://img.shields.io/badge/Version-v6.4.1-blue.svg
+[ng-img]: https://img.shields.io/badge/Version-v9.0.0-blue.svg
+[node-img]: https://img.shields.io/badge/Version-v14.17.2-blue.svg
+[npm-img]: https://img.shields.io/badge/Version-v6.13.2-blue.svg
+[test-img]: https://github.com/QbitArtifacts/rec-admin/workflows/Test/badge.svg
+[stage-img]: https://github.com/QbitArtifacts/rec-admin/workflows/Test,%20Build%20and%20Deploy%20%5BSTAGE%5D/badge.svg
+[prod-img]: https://github.com/QbitArtifacts/rec-admin/workflows/Test,%20Build%20and%20Deploy%20%5BPROD%5D/badge.svg
+[link-stage]: https://admin.rec.qbitartifacts.com
+[link-prod]: https://admin.rec.barcelona
 
 # [<img src="https://rec.barcelona/wp-content/uploads/2018/04/Group-3151.png" width="25" />](https://admin.rec.barcelona) [REC Barcelona (Admin Panel)](https://admin.rec.barcelona)
 
-Panel de administracion para [rec.barcelona](https://rec.barcelona)
+Panel de administracion para [rec.barcelona](https://rec.barcelona).
 
 ## Information
 
 ### Status
-![](https://github.com/QbitArtifacts/rec-admin/workflows/Test/badge.svg)
-![Test, Build and Deploy [STAGE]](https://github.com/QbitArtifacts/rec-admin/workflows/Test,%20Build%20and%20Deploy%20%5BSTAGE%5D/badge.svg)
-![Test, Build and Deploy [PROD]](https://github.com/QbitArtifacts/rec-admin/workflows/Test,%20Build%20and%20Deploy%20%5BPROD%5D/badge.svg)
+| Test                       | [Stage][link-stage]         | [Prod][link-prod]          |
+| -------------------------- | --------------------------- | -------------------------- |
+| [![ngVersion][test-img]]() | [![ngVersion][stage-img]]() | [![ngVersion][prod-img]]() |
+
 
 ### Project Dependencies versions
 | Angular                  | Node                       | Npm                        |
-| ------------------------ | -------------------------- | -------------------------- | 
-| [![ngVersion][ng-img]]() | [![ngVersion][node-img]]() | [![ngVersion][node-img]]() | 
+| ------------------------ | -------------------------- | -------------------------- |
+| [![ngVersion][ng-img]]() | [![ngVersion][node-img]]() | [![ngVersion][node-img]]() |
 
 ### Usefull Links
 * [Angular](https://angular.io)
