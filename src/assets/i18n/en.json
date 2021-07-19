@@ -564,5 +564,13 @@
   "TIME_START": "Start time",
   "delegated_change": "Delegate Change",
   "massive_transactions": "Masive Transactions",
-  "CREATE": "Create"
+  "CREATE": "Create",
+
+  
+  "NEW_MASSIVE_TX": "New Massive Transactions",
+  "EDIT_MASSIVE_TX": "Edit Massive Transactions",
+  "SENDER": "Sender",
+  "EXCHANGER": "Exchanger",
+  "NO_DATA_YET": "No data yet",
+  "Change Delegate": "Delegated Change"
 }

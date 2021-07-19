@@ -1140,7 +1140,14 @@
   "SCHEDULED_AT": "Programat Per a",
   "ENTRIES": "Entrades",
   "CARD_INFO": "Informació de la targeta",
-   "CARD_USER": "Usuari de la targeta",
-   "EXCHANGER_ACCOUNT": "Compte d'intercanviador",
-   "BENEFICIARY_ACCOUNT": "Compte del beneficiari"
+  "CARD_USER": "Usuari de la targeta",
+  "EXCHANGER_ACCOUNT": "Compte d'intercanviador",
+  "BENEFICIARY_ACCOUNT": "Compte del beneficiari",
+
+  "NEW_MASSIVE_TX": "Nova Transaccio Masiva",
+  "EDIT_MASSIVE_TX": "Editar Transaccions Masives",
+  "SENDER": "Emisor",
+  "EXCHANGER": "Intercambiador",
+  "NO_DATA_YET": "No hi ha dades encara",
+  "Change Delegate": "Cambi Delegat"
 }

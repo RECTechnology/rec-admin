@@ -15,6 +15,7 @@ import { ActivateResume } from '../activate-resume/activate-resume.dia';
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { Account } from 'src/shared/entities/account.ent';
 
 const mapAccount = (e) => {
   e.selected = true;
@@ -23,7 +24,6 @@ const mapAccount = (e) => {
   return e;
 };
 
-// 29kb
 @Component({
   selector: 'new-delegate',
   templateUrl: './new_delegate.html',
@@ -68,7 +68,7 @@ export class NewDelegateComponent extends PageBase {
     public route: ActivatedRoute,
     public router: Router,
     public company: CompanyService,
-    public adminService: AdminService, // TODO: Remove AdminService when V3 CRUD is available
+    public adminService: AdminService, 
     public utils: UtilsService,
     public changeCrud: DelegatedChangesCrud,
     public changeDataCrud: DelegatedChangesDataCrud,

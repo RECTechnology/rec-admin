@@ -21,13 +21,6 @@ export class DelegateHeaderComponent {
   }
 
   public showNewChange() {
-    // this.newChangeShown = true;
-    // const now = new Date();
-    // const parts = this.utils.parseDateToParts(now);
-    // this.date = parts.dateStr;
-    // this.time = parts.timeStr;
-    // this.delegateType = 'delegated_change';
-
     this.alerts.openModal(CreateDelegateChange).subscribe((data: NewDelegateChange) => {
       if (!data) return;
       this.onNewChange.emit(data);

@@ -12,6 +12,7 @@ import { SelectAccountsDia } from './components/select_accounts_dialog/select_ac
 import { CsvUpload } from './components/csv-upload/csv-upload.dia';
 import { ActivateResume } from './components/activate-resume/activate-resume.dia';
 import { CreateDelegateChange } from './components/create_delegate_change/create_delegate_change.dia';
+import { NewMassiveTransactionsComponent } from './components/new_massive_transactions/new_massive_transactions.component';
 
 const profileRoutes: Routes = [
   {
@@ -22,7 +23,12 @@ const profileRoutes: Routes = [
   {
     canActivate: [IsLoggedInGuard],
     component: NewDelegateComponent,
-    path: 'change_delegate/:id_or_new',
+    path: 'change_delegate/delegate/:id_or_new',
+  },
+  {
+    canActivate: [IsLoggedInGuard],
+    component: NewMassiveTransactionsComponent,
+    path: 'change_delegate/massive/:id_or_new',
   },
 ];
 
@@ -31,6 +37,7 @@ const profileRoutes: Routes = [
     ChangeDelegateComponent,
     DelegateHeaderComponent,
     NewDelegateComponent,
+    NewMassiveTransactionsComponent,
     CreateDelegateChange,
     SelectAccountsDia,
     CsvUpload,

@@ -79,14 +79,19 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
       );
   }
 
-  public navigateToChange(id) {
-    this.router.navigate(['/change_delegate/' + id]);
+  public navigateToChange(change: any) {
+    if (change.type == 'delegated_change') {
+      this.router.navigate(['/change_delegate/delegate/' + change.id]);
+    }
+    if (change.type == 'massive_transactions') {
+      this.router.navigate(['/change_delegate/massive/' + change.id]);
+    }
   }
 
   public newChange({ schedule, type, name }: NewDelegateChange) {
     this.changeCrud.create({ scheduled_at: schedule, type, name }).subscribe((resp) => {
       this.alerts.showSnackbar('DELEGATE_CHANGE_CREATED', 'ok');
-      this.router.navigate(['/change_delegate/' + resp.data.id]);
+      this.navigateToChange(resp.data);
     }, this.alerts.observableErrorSnackbar);
   }
 

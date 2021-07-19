@@ -5,15 +5,6 @@
   z-index: 999 !important;
 }
 
-.left-side {
-  /* width: 300px; */
-  /*display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 25px 0;*/
-}
-
 .login-container {
   overflow-y: auto;
   overflow-x: hidden
@@ -24,6 +15,12 @@
   font-size: 28px;
   color: #fff;
   margin-bottom: 8px
+}
+
+.login-content {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
 
 .login-container p {
@@ -63,12 +60,6 @@
 .new-account-btn:hover {
   border-bottom: 1px solid #c6c6c6 !important;
   border-top: 1px solid #c6c6c6 !important;
-}
-
-.login-container .right-side {
-  /*width: 390px;
-  background: #fff;
-  padding: 0 25px;*/
 }
 
 .right-side .line {
@@ -153,17 +144,6 @@
 }
 
 #login-btn {
-  /* border: none;
-  border-radius: 999999px;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 18px;
-  outline: 0 !important;
-  padding: 8px 0;
-  text-align: center;
-  width: 100%;
-  width: 130px;
-  cursor: pointer; */
   width: 80%;
   height: 30px;
   border-radius: 15px;
@@ -178,7 +158,6 @@
 }
 
 .forgot-pass {
-  /* border-bottom: 1px dashed #bbb; */
   color: #0098db;
   display: inline-block;
   font-size: 11px;

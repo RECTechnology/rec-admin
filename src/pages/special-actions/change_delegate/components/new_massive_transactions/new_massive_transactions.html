@@ -1,0 +1,71 @@
+<header-nav></header-nav>
+
+
+<app-page class="new-delegate">
+  <div class="new-delegate bg-white" style="margin-top: 0; position: relative;">
+
+    <tl-header [options]="{ input: false }"
+      title="{{(isNew ? 'NEW_MASSIVE_TX': readonly ? 'VIEW_MASSIVE_TX' : 'EDIT_MASSIVE_TX')|translate}}">
+      <span class="small-text">{{delegate.name}} (<code>#{{delegate.id}}</code>)</span>
+    </tl-header>
+
+    <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
+      style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
+    </validation-errors>
+
+    <div class="group-col-left" style="width: 100%; position: relative;">
+      <table matSort (matSortChange)="sortData($event)" class="left-align">
+        <thead class="stripped bordered-bottom">
+          <tr>
+            <th mat-sort-header="id">
+              {{'#'|translate}}
+            </th>
+            <th mat-sort-header="sender">
+              {{'SENDER'|translate}}
+            </th>
+            <th mat-sort-header="exchanger">
+              {{'EXCHANGER'|translate}}
+            </th>
+            <th mat-sort-header="beneficiary">
+              {{'BENEFICIARY'|translate}}
+            </th>
+            <th mat-sort-header="amount">
+              {{'AMOUNT'|translate}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of sortedData; let i = index; trackBy: trackByFn">
+            <td>{{data.id}}</td>
+            <td>
+              <span *ngIf="data.sender">
+                {{data.sender.name}} (<a routerLink="">{{data.sender.id}}</a>)
+              </span>
+            </td>
+            <td>
+              <span *ngIf="data.exchanger">
+                {{data.exchanger.name}} (<a routerLink="">{{data.exchanger.id}}</a>)
+              </span>
+            </td>
+            <td>
+              <span *ngIf="data.beneficiary">
+                {{data.beneficiary.name}} (<a routerLink="">{{data.beneficiary.id}}</a>)
+              </span>
+            </td>
+            <td><code>{{data.amount | number}} R</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !dataLoading">
+        <p class="small-text-2">{{'NO_DATA_YET'|translate}}</p>
+      </div>
+      <div class="center h v bg-white-opaque" style="width: 100%;height: 100px" *ngIf="dataLoading">
+        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
+      </div>
+      <mat-paginator [length]="total" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"
+        [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </div>
+  </div>
+</app-page>

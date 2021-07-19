@@ -41,6 +41,9 @@ $main-color-dark-sbox: #a89600; // the dark color of your brand
 $sidemenu-color: $main-color; // the color of your brand
 $sidemenu-color-dark: #222d31; // the dark color of your brand
 
+@import "./bgs";
+
+
 a {
   color: #6666;
 }

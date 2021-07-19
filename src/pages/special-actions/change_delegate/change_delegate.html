@@ -9,13 +9,13 @@
     <delegate-header (onNewChange)="newChange($event)" (onImport)="newImport($event)">
     </delegate-header>
     
-    <validation-errors style="border-top: 1px solid #ddd" [errors]="validationErrors"
+    <validation-errors [errors]="validationErrors"
       *ngIf="validationErrors.length > 0"></validation-errors>
 
     <!-- List of changes -->
-    <div class="group-col-left" style="width: 100%; position: relative;">
+    <div class="group-col-left bordered-top" style="width: 100%; position: relative;">
       <table matSort (matSortChange)="sortData($event)" class="left-align">
-        <thead class="bordered stripped">
+        <thead class="bordered-bottom stripped">
           <tr>
             <th mat-sort-header="id" style="color: #555!important">
               {{'ID'|translate}}
@@ -29,15 +29,6 @@
             <th mat-sort-header="import" style="color: #555!important">
               {{'IMPORT_TOTAL'|translate}}
             </th>
-            <th mat-sort-header="recs_distributed" style="color: #555!important">
-              {{'RECS_DISTRIBUTED'|translate}}
-            </th>
-            <th mat-sort-header="tx_success" style="color: #555!important">
-              {{'TX_RATE'|translate}}
-            </th>
-            <!-- <th mat-sort-header="entries" style="color: #555!important">
-              {{'ENTRIES'|translate}}
-            </th> -->
             <th mat-sort-header="created" style="color: #555!important">
               {{'CREATED'|translate}}
             </th>
@@ -59,16 +50,6 @@
               <code>{{change.statistics.scheduled.rec_to_be_issued/1e8}} rec</code>
             </td>
             <td>
-              {{change.statistics.result.issued_rec}}
-            </td>
-            <td>
-              <span class="col-success">{{change.statistics.result.success_tx || 0}}</span>/<span
-                class="col-error">{{change.statistics.result.error_tx|| 0}}</span>
-            </td>
-            <!-- <td>
-              {{change.data ? change.data.length : 0}}
-            </td> -->
-            <td>
               <i>{{change.created | date: 'medium'}}</i>
             </td>
             <td>
@@ -87,7 +68,7 @@
                   </span>
                 </button>
                 <mat-menu #actions="matMenu">
-                  <button mat-menu-item (click)="navigateToChange(change.id)">
+                  <button mat-menu-item (click)="navigateToChange(change)">
                     <p class="small-text"><i class="fa fa-edit"></i> {{'View/Edit'|translate}}</p>
                   </button>
                   <button mat-menu-item (click)="activateChange(change)">

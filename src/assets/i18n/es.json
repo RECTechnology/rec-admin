@@ -211,7 +211,7 @@
   "NO_CLIENTS_YET": "No hay clientes todavía",
   "ADD_COMMENT_TO": "Añadir comentario a transaccion",
   "Comment": "Comment",
-  "BENEFICIARY": "BENEFICIARIO",
+  "BENEFICIARY": "Beneficiario",
   "BIC/SWIFT": "BIC/SWIFT",
   "IBAN": "IBAN",
   "REFERENCE": "REFERENCIA",
@@ -1148,5 +1148,12 @@
   "TIME_START": "Hora comienzo",
   "delegated_change": "Cambio Delegado",
   "massive_transactions": "Transacciones Masivas",
-  "CREATE": "Crear"
+  "CREATE": "Crear",
+
+  "NEW_MASSIVE_TX": "Nueva Transaccion Masiva",
+  "EDIT_MASSIVE_TX": "Editar Transacciones Masivas",
+  "SENDER": "Emisor",
+  "EXCHANGER": "Intercambiador",
+  "NO_DATA_YET": "No hay datos aun",
+  "Change Delegate": "Cambio Delegado"
 }
