@@ -1158,5 +1158,10 @@
   "Change Delegate": "Cambio Delegado",
   "PROCESING_REPORT": "Procesando informe... se enviará al email de la cuenta admin",
   "CREATE_REPORT": "Generar Informe",
-  "AMOUNT": "Cantidad"
+  "AMOUNT": "Cantidad",
+  "ACTIVATE_CHANGE_DESC": "Está a punto de activar un cambio delegado, revise la siguiente información.",
+  "ACTIVATE_CHANGE": "ACtivar Cambio",
+  "UPLOAD CSV": "Importar CSV",
+  "IMPORT_CSV_DESC": "Please upload a csv for the delegate change",
+  "Activate": "Activar"
 }

@@ -9,20 +9,20 @@
 <div class="row" style="margin: 0;">
   <div class="col-lg-12">
     <div style="padding: 10px">
-      <p class="small-text-2">{{'ACTIVATE_CHANGE_DESC'|translate: change}}</p>
+      <p class="small-text marg-bottom-20">{{'ACTIVATE_CHANGE_DESC' | translate: change}}</p>
 
-      <div class="group-col-left">
+      <div class="group-col-left small-text-2">
         <div style="margin-bottom: 10px" class="group-row-left">
-          <b class="small-text-2" style="margin-right: 8px">{{'Date'|translate}} </b>
-          <span class="small-text-2">{{datePassed ? 'Immediately' : (change.scheduled_at|date)}}</span>
+          <b style="margin-right: 8px">{{'Date'|translate}} </b>
+          <span>{{datePassed ? 'Immediately' : (change.scheduled_at|date)}}</span>
           <i class="small-text col-warning" *ngIf="datePassed">
             {{'ACTIVATE_CHANGE_IMMEDIATE'|translate}}
           </i>
         </div>
 
-        <div style="margin-bottom: 10px" class="group-row-left">
-          <b class="small-text-2" style="margin-right: 8px">{{'IMPORT_TOTAL'|translate}} </b>
-          <span class="small-text-2">{{change.statistics.scheduled.rec_to_be_issued/1e8}}</span>
+        <div style="margin-bottom: 10px" class="group-row-left small-text-2">
+          <b style="margin-right: 8px">{{'IMPORT_TOTAL'|translate}} </b>
+          <span>{{change.statistics.scheduled.rec_to_be_issued/1e8}} R</span>
         </div>
       </div>
     </div>
@@ -33,14 +33,9 @@
 
   <div class="col-lg-12" style="margin: 0!important; height: 70px;border-top: 1px solid #ddd">
     <div class="group-row-left padd-20" style="justify-content: flex-end">
-      <!-- <button type="button" mat-raised-button color="primary" name="button" [disabled]="loading" (click)="proceed()">
-        <p class="small-text-2">{{'Confirm'|translate}}</p>
-      </button> -->
-      <btn-loader style="margin-right: 10px" (click)="proceed()" [disabled]="loading" [loading]="loading" text="{{'Confirm'|translate}}">
+      <btn-loader style="margin-right: 10px" (click)="proceed()" [disabled]="loading" [loading]="loading"
+        text="{{'Confirm'|translate}}">
       </btn-loader>
-      <!-- <button type="button" mat-raised-button color="primary" name="button" [disabled]="loading" (click)="close()">
-        <p class="small-text-2">{{'Close'|translate}}</p>
-      </button> -->
     </div>
   </div>
 </div>

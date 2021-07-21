@@ -68,7 +68,7 @@ export class NewDelegateComponent extends PageBase {
     public route: ActivatedRoute,
     public router: Router,
     public company: CompanyService,
-    public adminService: AdminService, 
+    public adminService: AdminService,
     public utils: UtilsService,
     public changeCrud: DelegatedChangesCrud,
     public changeDataCrud: DelegatedChangesDataCrud,
@@ -294,12 +294,10 @@ export class NewDelegateComponent extends PageBase {
             this.getDelegateData();
           },
           (error) => {
-            console.log('asñpoidjasñdjas', error);
             if (error.data && error.data.length > 0) {
               this.validationErrors = error.data;
-            }
-            else {
-                this.alerts.showSnackbar(error.message);
+            } else {
+              this.alerts.showSnackbar(error.message);
             }
           },
         );

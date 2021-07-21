@@ -6,6 +6,15 @@
 
     <tl-header [options]="{ input: false }"
       title="{{(isNew ? 'NEW_MASSIVE_TX': readonly ? 'VIEW_MASSIVE_TX' : 'EDIT_MASSIVE_TX')|translate}}">
+
+      <button [disabled]="readonly" type="button" style="margin-right: 20px" color="primary"
+        mat-button name="button" (click)="newImport()">
+        <p class="text-small">
+          <i class="fa fa-file"></i>
+          {{'Import'|translate}}
+        </p>
+      </button>
+
       <btn-loader (clicked)="sendReport()" [disabled]="generatingReport" [loading]="generatingReport"
         text="CREATE_REPORT">
       </btn-loader>
@@ -68,6 +77,15 @@
       <mat-paginator [length]="total" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"
         [pageSizeOptions]="[5, 10, 25, 100]">
       </mat-paginator>
+    </div>
+
+    <div class="fill-size" style="padding: 10px 15px; border-top: 1px solid #ddd">
+      <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-raised-button
+        name="button" (click)="activateChange()" [disabled]="readonly">
+        <p class="text-small">
+          {{'Activate'|translate}}
+        </p>
+      </button>
     </div>
   </div>
 </app-page>

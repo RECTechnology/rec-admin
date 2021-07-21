@@ -1,3 +1,4 @@
+import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { PageBase } from '../../../../../bases/page-base';
@@ -8,6 +9,9 @@ import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/de
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { Sort } from '@angular/material/sort';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
+import { CsvUpload } from '../csv-upload/csv-upload.dia';
+import { AdminService } from 'src/services/admin/admin.service';
+import { ActivateResume } from '../activate-resume/activate-resume.dia';
 
 @Component({
   selector: 'new-massive-transactions',
@@ -27,6 +31,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public generatingReport = false;
 
   constructor(
+    public adminService: AdminService,
     public titleService: Title,
     public ls: LoginService,
     public route: ActivatedRoute,
@@ -35,6 +40,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
     public changeDataCrud: DelegatedChangesDataCrud,
     public utils: UtilsService,
     public snackbar: MySnackBarSevice,
+    public alerts: AlertsService,
   ) {
     super();
   }
@@ -107,6 +113,39 @@ export class NewMassiveTransactionsComponent extends PageBase {
         this.generatingReport = false;
       },
     );
+  }
+
+  public newImport() {
+    this.alerts.openModal(CsvUpload, {}).subscribe((resp) => {
+      if (resp) {
+        this.adminService.sendChangeDelegateCsv(resp, this.delegate.id).subscribe(
+          (respDelegate) => {
+            this.alerts.showSnackbar(respDelegate.message, 'ok');
+            this.getDelegate();
+            this.getDelegateData();
+          },
+          (error) => {
+            if (error.data && error.data.length > 0) {
+              this.validationErrors = error.data;
+            } else {
+              this.alerts.showSnackbar(error.message);
+            }
+          },
+        );
+      }
+    });
+  }
+
+  public activateChange() {
+    this.alerts
+      .openModal(ActivateResume, {
+        change: this.delegate,
+      })
+      .subscribe((resp) => {
+        if (resp) {
+          this.router.navigate(['/change_delegate']);
+        }
+      }, this.alerts.observableErrorSnackbar);
   }
 
   public sortData(sort: Sort): void {

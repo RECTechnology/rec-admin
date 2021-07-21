@@ -19,7 +19,6 @@ export class CsvUpload {
   public selectedImage;
   public progress = 0;
   private file: File;
-  private uploadSub: any;
   private zone: NgZone;
 
   constructor(
