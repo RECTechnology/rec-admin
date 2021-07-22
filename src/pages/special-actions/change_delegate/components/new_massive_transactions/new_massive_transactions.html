@@ -50,20 +50,20 @@
             <td>{{data.id}}</td>
             <td>
               <span *ngIf="data.sender">
-                {{data.sender.name}} (<a routerLink="">{{data.sender.id}}</a>)
+                {{data.sender.name}} (<a routerLink="/accounts/{{data.sender.id}}">{{data.sender.id}}</a>)
               </span>
             </td>
             <td>
               <span *ngIf="data.exchanger">
-                {{data.exchanger.name}} (<a routerLink="">{{data.exchanger.id}}</a>)
+                {{data.exchanger.name}} (<a routerLink="/accounts/{{data.exchanger.id}}">{{data.exchanger.id}}</a>)
               </span>
             </td>
             <td>
               <span *ngIf="data.beneficiary">
-                {{data.beneficiary.name}} (<a routerLink="">{{data.beneficiary.id}}</a>)
+                {{data.account.name}} (<a routerLink="/accounts/{{data.account.id}}">{{data.account.id}}</a>)
               </span>
             </td>
-            <td><code>{{data.amount | number}} R</code></td>
+            <td><code>{{(data.amount/100) | number}} R</code></td>
           </tr>
         </tbody>
       </table>

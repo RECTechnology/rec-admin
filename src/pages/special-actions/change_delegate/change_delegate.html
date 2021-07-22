@@ -89,8 +89,8 @@
                   </span>
                 </button>
                 <mat-menu #actions="matMenu">
-                  <button mat-menu-item (click)="navigateToChange(change.id)">
-                    <p class="small-text"><i class="fa fa-edit"></i> {{'View'|translate}}</p>
+                  <button mat-menu-item (click)="navigateToChange(change)">
+                    <p class="small-text"><i class="fa fa-edit"></i> {{'Views'|translate}}</p>
                   </button>
                   <button mat-menu-item (click)="cancelChange(change)" *ngIf="change.status != 'finished'">
                     <p class="small-text"><i class="fa fa-file"></i> {{'Deactivate'|translate}}</p>
