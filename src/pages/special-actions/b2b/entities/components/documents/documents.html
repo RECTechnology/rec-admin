@@ -29,12 +29,17 @@
                     <span style="color: #666; font-size: 12px">{{doc.name}}</span>
                 </button>
             </mat-menu>
-           
             <div style="width: 140px" matTooltip="Filter by account" *ngIf="showAccountFilter">
                 <account-picker [disabled]="disableAccountFilter" style="margin: 0" [(id)]="accountFilter"
                     (idChange)="search();">
                 </account-picker>
             </div>
+            <div style="width: 140px" matTooltip="Filter by user" *ngIf="showUserFilter">
+                <user-picker  style="margin: 0" [(id)]="userFilter"
+                    (idChange)="search();">
+                </user-picker>
+            </div>
+           
 
             <div style="margin-left: 10px;" matTooltip="Filter by status">
                 <button [disabled]="disableStatusFilter" [matMenuTriggerFor]="statusMenu" type="button" mat-button

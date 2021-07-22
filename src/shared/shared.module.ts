@@ -109,6 +109,9 @@ import { CampaignsTab } from 'src/dialogs/management/edit-account/tab_campaigns/
 import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
 import { CampaignSelector } from 'src/components/selectors/campaign-selector/campaign-selector.component';
 import { CampaignReportsAccount } from 'src/pages/special-actions/campaing_reports/campaing_reports.component';
+import { UserPickerComponent } from 'src/components/selectors/user-picker/user-picker/user-picker.component';
+import { UserPickerDiaComponent } from 'src/components/selectors/user-picker/user-picker/user-picker-dia/user-picker-dia.component';
+
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -122,6 +125,7 @@ const DIALOGS = [
   CreateLemonWithdrawalDia,
   CreateLemonWallet2WalletOutDia,
   AccountPickerDia,
+  UserPickerDiaComponent,
   EditAccountsDia,
   AddUserDia,
   EditUserData,
@@ -147,6 +151,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
 
 @NgModule({
   declarations: [
+    
     SidemenuComponent,
     HeaderComponent,
     PageFooterComponent,
@@ -204,6 +209,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     ValidateWithdrawalComponent,
     CampaignsTab,
     CampaignSelector,
+    UserPickerComponent,
     ...DIALOGS,
     ...DIRECTIVES,
   ],

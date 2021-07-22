@@ -83,12 +83,15 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
 
     @Input() public productKindFilter = null;
     @Input() public accountFilter = null;
+    @Input() public userFilter = null;
     @Input() public statusFilter = null;
     @Input() public lwStatusFilter = null;
     @Input() public title = 'AVAILABLE_DOCUMENTS';
 
     @Input() public disableAccountFilter = false;
+    @Input() public disableUsertFilter = false;
     @Input() public showAccountFilter = true;
+    @Input() public showUserFilter = true;
     @Input() public disableStatusFilter = false;
     @Input() public disableDocumentKindFilter = false;
 
@@ -143,6 +146,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
 
     public search(query?) {
         this.loading = true;
+        
         this.crud.search({
             order: this.sortDir,
             limit: this.limit,
@@ -151,6 +155,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
             sort: this.sortID,
             kind: this.productKindFilter ? this.productKindFilter.id : null,
             account: this.accountFilter,
+            user:this.userFilter,
             status: this.statusFilter,
         }).subscribe(
             (resp) => {

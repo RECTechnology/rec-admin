@@ -59,6 +59,7 @@ import { environment } from '../environments/environment';
 import { getLocale } from 'src/shared/utils.fns';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
+
 registerLocaleData(localeCat);
 registerLocaleData(localeCa);
 registerLocaleData(localeEn);
@@ -99,7 +100,7 @@ const imports = [
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent],
+  declarations: [AppComponent,],
   providers: [
     LoginService,
     UserService,
