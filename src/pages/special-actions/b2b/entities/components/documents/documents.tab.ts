@@ -24,6 +24,8 @@ import { LW_DOC_STATUS } from 'src/data/lw-constants';
 export class DocumentTabComponent extends EntityTabBase<Document> {
     public entityName = 'Document';
     public documentKinds: DocumentKind[] = [];
+    public STATUS_TYPES = Document.REC_STATUS_TYPES;
+    public status;
     public headers: TlHeader[] = [
         TlHeaders.Id,
         {
@@ -45,6 +47,11 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
             sort: 'valid_until',
         }),
     ];
+    
+    public setType(type) {
+        this.status.subtype = type;
+
+    }
 
     public itemOptions: TlItemOption[] = [
         TlItemOptions.Edit(this.editItem.bind(this)),
@@ -64,10 +71,10 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         getRowClass: (element: Document) => {
             const validUntil = new Date(element.valid_until).getTime();
             const now = Date.now();
-            if(validUntil < now){
+            if (validUntil < now) {
                 return 'bg-yellow';
             }
-          }
+        }
     };
 
     public STATUSES = Document.ALL_STATUSES;

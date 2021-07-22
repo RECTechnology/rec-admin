@@ -85,22 +85,7 @@
                   </button>
                 </mat-menu>
               </div>
-              <div class="group-col-left" *ngIf="accountCopy.type === 'PRIVATE'">
-                <span class="small-text-2">{{'Sub Type'|translate}}</span>
-                <button mat-button [matMenuTriggerFor]="subTypeMenu" class="mat-button-menu"
-                  style="width: 100%; margin-bottom: 10px">
-                  <span class="center space-between">
-                    <span class="small-text">{{accountCopy.subtype}}</span>
-                    <i class="fa fa-caret-right"></i>
-                  </span>
-                </button>
-                <mat-menu #subTypeMenu="matMenu">
-                  <button mat-menu-item *ngFor="let stype of ACCOUNT_SUB_TYPES_PRIVATE"
-                    (click)="accountCopy.subtype = stype">
-                    <p class="small-text">{{stype}}</p>
-                  </button>
-                </mat-menu>
-              </div>
+              
             </div>
           </div>
         </div>

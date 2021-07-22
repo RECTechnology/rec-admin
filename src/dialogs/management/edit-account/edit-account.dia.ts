@@ -31,7 +31,7 @@ export class EditAccountData {
   public accountCopy: any = {};
   public title: string = 'EDIT_ACCOUNT';
   public ACCOUNT_TYPES = ['PRIVATE', 'COMPANY'];
-  public ACCOUNT_SUB_TYPES_PRIVATE = ['NORMAL', 'BMINCOME','INFANCIA21'];
+  public ACCOUNT_SUB_TYPES_PRIVATE = ['NORMAL', 'BMINCOME'];
   public ACCOUNT_SUB_TYPES_COMPANY = ['WHOLESALE', 'RETAILER'];
   public type = 'PRIVATE';
   public lang: any = 'esp';

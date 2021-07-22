@@ -25,12 +25,25 @@
       </div>
     </div>
 
-    <div class="col-lg-12" *ngIf="docKinds && docKinds.length">
+    <div class="col-lg-12 space-between" *ngIf="docKinds && docKinds.length">
       <input-field type="select" [(value)]="item.kind_id" label="Document Kind" [disabled]="isEdit"
         [options]="docKinds">
       </input-field>
     </div>
 
+    <div class="col-lg-12 " style="padding-top: 10px;" >
+      <input-field  type="select" [(value)]="item.status" label="{{'Status' | translate}}" [disabled]="false"
+        [options]="REC_STATUSES" (click)="setType(item)">
+      </input-field>
+    </div>
+
+    
+
+    <div class="col-lg-12" style="padding-top: 10px;">
+      <input-field [(value)]="item.status_text" label="{{'status_text'| translate}}" [disabled]="loading" (valueChange)="changeStatusText($event)"></input-field>
+    </div>
+
+    
     <div class="col-lg-12">
       <file-selector [disabled]="isEdit && (!item.auto_fetched || !isLemon)" label="Select Document"
         [(file)]="item.content"></file-selector>

@@ -79,6 +79,9 @@ export class CrudBaseService<T> extends BaseService2 {
     public update(id: any, data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         this.log(`update ${this.tName}`, id, data);
+        console.log("Printing urlllllllllllllllllllllllllllll");
+        console.log(url);
+        console.log(data);
         return this.put(url, data, 'application/json',
             lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
         );

@@ -5,6 +5,7 @@ export interface Document {
     name: string;
     id?: string | number;
     status?: string;
+    status_text?: string;
     content?: string;
     account?: Account;
     account_id?: number;
@@ -24,12 +25,25 @@ export class Document implements Document {
     public static STATUS_APROVED = 'approved';
     public static STATUS_ARCHIVED = 'archived';
 
+    public static REC_STATUS_SUBMITTED = 'rec_submitted';
+    public static REC_STATUS_DECLINED = 'rec_approved';
+    public static REC_STATUS_APROVED = 'rec_declined';
+    public static REC_STATUS_EXPIRED = 'rec_expired';
+
     public static STATUS_ON_HOLD = 'on_hold';
     public static STATUS_NOT_VERIFIED = 'unverified';
     public static STATUS_NOT_READABLE = 'unreadable';
     public static STATUS_EXPIRED = 'expired';
     public static STATUS_WRONG_TYPE = 'wrong_type';
     public static STATUS_WRONG_NAME = 'wrong_name';
+
+    public static REC_STATUS_TYPES = [
+        Document.REC_STATUS_SUBMITTED,
+        Document.REC_STATUS_DECLINED,
+        Document.REC_STATUS_APROVED,
+        Document.REC_STATUS_EXPIRED,
+    ];
+    
 
     public static ALL_STATUSES = [
         Document.STATUS_CREATED,
@@ -45,6 +59,8 @@ export class Document implements Document {
         Document.STATUS_WRONG_TYPE,
         Document.STATUS_WRONG_NAME,
     ];
+
+    
 
     constructor(txInfo?: Document) {
         // tslint:disable-next-line: forin

@@ -17,6 +17,8 @@ import * as moment from 'moment';
 export class AddDocumentDia extends BaseDialog {
   public isEdit = false;
   public isLemon = false;
+  public status_text = '';
+  public REC_STATUSES = Document.REC_STATUS_TYPES;
 
   public item: Document = {
     name: '',
@@ -24,6 +26,7 @@ export class AddDocumentDia extends BaseDialog {
     account_id: null,
     content: '',
     valid_until: null,
+
   };
   public itemCopy: Document = {
     name: '',
@@ -55,7 +58,18 @@ export class AddDocumentDia extends BaseDialog {
     this.itemCopy = Object.assign({}, this.item);
     this.isLemon = this.item.kind && Object.prototype.hasOwnProperty.call(this.item.kind, 'lemon_doctype');
 
-    console.log(this.item);
+  }
+
+  public setType(type) {
+    this.item.status = type;
+
+  }
+
+  public changeStatusText(text) {
+
+    this.item.status_text = text;
+
+
   }
 
   public getDocumentKinds() {
@@ -73,9 +87,7 @@ export class AddDocumentDia extends BaseDialog {
 
   public getCrud(data) {
     let kind = this.docKindsFull.find((el) => el.id === data.kind_id);
-    
-    console.log('kind', data, this.docKindsFull);
-    const isLemon = kind.lemon_doctype!==null && kind.lemon_doctype !== undefined;
+    const isLemon = kind != undefined && kind.lemon_doctype !== null && kind.lemon_doctype !== undefined;
     console.log('this.isLemon', isLemon);
     return isLemon ? this.lemonDocCrud : this.docCrud;
   }
@@ -115,6 +127,7 @@ export class AddDocumentDia extends BaseDialog {
       this.loading = false;
       this.close();
     }, (err) => {
+      console.log(err);
       if (err.errors) {
         this.validationErrors = err.errors;
       } else {
