@@ -1,3 +1,6 @@
+import { MarketingTab } from './edit/tabs/tab_marketing/marketing.tab';
+import { LocationTab } from './edit/tabs/tab_location/location.tab';
+import { BasicInfoTab } from './edit/tabs/tab_basic_info/basic_info.tab';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,8 +22,19 @@ import { LwTabWalletToWallet } from './tab_lemonway/tabs/wallet-to-wallet/wallet
 import { AddIbanDia } from 'src/dialogs/entities/add-iban/add-iban.dia';
 import { TpvTab } from './tab_tpv/tpv.tab';
 import { TpvOrdersComponent } from './tab_tpv/orders.component';
+import { EditAccountComponent } from './edit/edit-account.component';
+import { ScheduleTab } from './edit/tabs/tab_schedule/schedule.tab';
+import { CampaignsTab } from './edit/tabs/tab_campaigns/campaigns.tab';
+import { B2BTab } from './edit/tabs/tab_b2b/b2b.tab';
+import { OffersTab } from './edit/tabs/tab_offers/offers.tab';
+import { ScheduleDayRowComponent } from 'src/components/schedule-day-row/schedule-day-row.component';
 
 const accountRoutes: Routes = [
+  {
+    canActivate: [IsLoggedInGuard],
+    component: EditAccountComponent,
+    path: 'accounts/edit/:id',
+  },
   {
     canActivate: [IsLoggedInGuard],
     component: AccountComponent,
@@ -43,6 +57,15 @@ const accountRoutes: Routes = [
     AddIbanDia,
     TpvTab,
     TpvOrdersComponent,
+    EditAccountComponent,
+    ScheduleTab,
+    CampaignsTab,
+    B2BTab,
+    BasicInfoTab,
+    LocationTab,
+    MarketingTab,
+    OffersTab,
+    ScheduleDayRowComponent,
   ],
   entryComponents: [
     ViewDetails,
@@ -54,9 +77,7 @@ const accountRoutes: Routes = [
     AddIbanDia,
     TpvOrdersComponent,
   ],
-  exports: [
-    RouterModule,
-  ],
+  exports: [RouterModule],
   imports: [
     RouterModule.forRoot(accountRoutes),
     SharedModule,
@@ -66,4 +87,4 @@ const accountRoutes: Routes = [
     CountryPickerModule,
   ],
 })
-export class AccountModule { }
+export class AccountModule {}

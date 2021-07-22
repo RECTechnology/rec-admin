@@ -1,0 +1,34 @@
+<div style="height: 100%; padding: 20px">
+  <mat-card style="padding: 20px">
+    <div class="row" style="margin: 0;">
+      <div class="col-lg-12" style="margin-bottom: 15px;">
+        <b class="small-text-3" style="margin: 15px 0 10px 0">{{'SCHEDULE' | translate}}</b>
+        <p class="small-text col-gray-light">{{'SCHEDULE_DESC' | translate}}</p>
+      </div>
+
+      <div class="col-lg-4 marg-bottom-20">
+        <div>
+          <input-field type="select" [value]="schedule.type.type" (valueChange)="scheduleTypeChanged($event)"
+            [disabled]="false" label="TYPE" [options]="SCHEDULE_TYPES">
+          </input-field>
+        </div>
+      </div>
+
+      <div class="col-lg-8"></div>
+
+      <div class="col-lg-6">
+        <schedule-day-row *ngFor="let day of schedule.days; let i = index" [day]="day" [weekday]="i"
+          [opens24Hours]="schedule.opens24Hours" [closed]="schedule.isClosed"
+          [isNotAvailable]="schedule.isNotAvailable"></schedule-day-row>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
+          <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+          </btn-loader>
+          <p *ngIf="error">{{error}}</p>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

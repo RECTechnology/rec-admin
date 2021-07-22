@@ -1,0 +1,88 @@
+<div style="height: 100%; padding: 20px">
+  <mat-card style="padding: 20px">
+    <div class="row" style="margin: 0;">
+      <div class="col-lg-12">
+        <b class="small-text-3" style="margin: 15px 0 10px 0">{{'BASIC_INFO'|translate}}</b>
+        <p class="small-text col-gray-light">
+          {{'BASIC_INFO_DESC'|translate}}
+        </p>
+      </div>
+
+      <!-- name -->
+      <div class="col-lg-6 col-sm-12 marg-top-10">
+        <input-field [(value)]="accountCopy.name" label="Name" [disabled]="loading"></input-field>
+      </div>
+
+      <!-- Phone -->
+      <div class="col-lg-6 col-md-12 col-sm-12 marg-top-10">
+        <div class="row">
+          <div class="col-lg-12">
+            <span class="small-text-2">{{'Phone'|translate}}</span>
+          </div>
+          <div class="col-lg-4 col-sm-4">
+            <input-field [(value)]="accountCopy.prefix" type="tel" [disabled]="loading"
+              placeholder="{{'PHONE_PREFIX'|translate}}"></input-field>
+          </div>
+          <div class="col-lg-8 col-sm-8">
+            <input-field [(value)]="accountCopy.phone" type="tel" [disabled]="loading"
+              placeholder="{{'PHONE_NUMBER'|translate}}"></input-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="col-lg-6 col-sm-12 marg-top-10">
+        <input-field type="email" [(value)]="accountCopy.email" label="Email" [disabled]="loading"></input-field>
+      </div>
+
+      <!-- Nif -->
+      <div class="col-lg-6 col-sm-12 marg-top-10">
+        <input-field type="text" [(value)]="accountCopy.cif" label="NIF" [disabled]="loading"></input-field>
+      </div>
+
+      <!-- Types -->
+      <div class="col-lg-6 col-sm-12 marg-top-10">
+        <div class="row">
+          <div class="col-lg-6">
+            <input-field type="select" [value]="accountCopy.type" (valueChange)="setType($event)" [disabled]="false"
+              label="TYPE" [options]="ACCOUNT_TYPES">
+            </input-field>
+          </div>
+
+          <div class="col-lg-6">
+            <input-field *ngIf="accountCopy.type === 'COMPANY'" type="select" [value]="accountCopy.subtype"
+              (valueChange)="setType($event)" [disabled]="false" label="SUBTYPE" [options]="ACCOUNT_SUB_TYPES_COMPANY">
+            </input-field>
+
+            <input-field *ngIf="accountCopy.type === 'PRIVATE'" type="select" [value]="accountCopy.subtype"
+              (valueChange)="setType($event)" [disabled]="false" label="SUBTYPE" [options]="ACCOUNT_SUB_TYPES_PRIVATE">
+            </input-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image -->
+      <div class="col-lg-3 col-sm-6 marg-top-10">
+        <file-selector label="Organization Image" [(file)]="accountCopy.company_image"></file-selector>
+      </div>
+
+      <!-- Active -->
+      <div class="col-lg-3 col-sm-6 marg-top-10">
+        <input-field type="checkbox" [(value)]="accountCopy.active" label="Account Active"
+          matTooltip="{{'ACCOUNT_ACTIVE_DESC'|translate}}" [disabled]="loading" placeholder="{{'Active'|translate}}">
+        </input-field>
+
+        <input-field type="select" [(value)]="accountCopy.level_id" [disabled]="false" label="Tier" [options]="tiers">
+        </input-field>
+      </div>
+
+      <div class="col-lg-12 marg-top-10">
+        <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
+          <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+          </btn-loader>
+          <p *ngIf="error">{{error}}</p>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

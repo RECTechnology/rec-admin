@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { BaseComponent } from './base-component';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AfterContentInit, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoginService } from '../services/auth/auth.service';
 import { Sort } from '@angular/material/sort';
@@ -48,6 +48,9 @@ export interface PageBase {
   onLogin?(resp: any): void;
 }
 
+@Component({
+  template: '',
+})
 export abstract class PageBase extends BaseComponent implements AfterContentInit, OnInit, PageBase {
   public abstract titleService: Title;
   public abstract pageName: string;
@@ -99,6 +102,10 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   }
 }
 
+
+@Component({
+  template: '',
+})
 export abstract class TablePageBase extends PageBase {
   public sortID: string = 'id';
   public sortDir: string = 'desc';

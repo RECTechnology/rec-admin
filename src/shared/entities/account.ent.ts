@@ -1,3 +1,4 @@
+import { Schedule } from './schedule/Schedule.ent';
 import { User } from './user.ent';
 import { Wallet } from './wallet.ent';
 import { Activity } from './translatable/activity.ent';
@@ -7,7 +8,7 @@ import { Pos } from './pos.ent';
 import { Campaign } from './campaign.ent';
 
 export type AccountType = 'PRIVATE' | 'COMPANY';
-export type AccountSubtype = 'RETAILER' | 'WHOLESALE' | 'NORMAL' | 'BMINCOME';
+export type AccountSubtype = 'RETAILER' | 'WHOLESALE' | 'NORMAL' | 'BMINCOME' | 'INFANCIA21';
 
 export interface Category {
   id: 6;
@@ -67,7 +68,8 @@ export interface Account {
   public_image: string;
   rec_address: string;
   roles: string[];
-  schedule: string;
+  schedule: Schedule | string;
+  scheduleString: string;
   street: string;
   street_type: string;
   subtype: AccountSubtype;
@@ -91,20 +93,36 @@ export class Account implements Account {
 
   public static SUBTYPE_COMPANY_NORMAL: AccountSubtype = 'NORMAL';
   public static SUBTYPE_COMPANY_BMINCOME: AccountSubtype = 'BMINCOME';
+  public static SUBTYPE_COMPANY_INFANCIA21: AccountSubtype = 'INFANCIA21';
+
+  public static ACCOUNT_TYPES = [Account.TYPE_COMPANY, Account.TYPE_PRIVATE];
+  public static ACCOUNT_SUB_TYPES_PRIVATE = [
+    Account.SUBTYPE_COMPANY_NORMAL,
+    Account.SUBTYPE_COMPANY_BMINCOME,
+    Account.SUBTYPE_COMPANY_INFANCIA21,
+  ];
+  public static ACCOUNT_SUB_TYPES_COMPANY = [Account.SUBTYPE_COMPANY_WHOLESALE, Account.SUBTYPE_COMPANY_RETAILER];
 
   constructor(accountInfo?: Account) {
     for (const prop in accountInfo) {
-      if (prop === 'wallets') {
-        this[prop] = accountInfo[prop].map((el) => new Wallet(el));
-      } else if (prop === 'campaigns') {
-        this[prop] = accountInfo[prop].map((el) => new Campaign(el));
-      } else if (prop === 'lw_balance') {
-        this[prop] = accountInfo[prop] / 100;
-      } else if (prop === 'level') {
-        this[prop] = new Tier(accountInfo[prop]);
-        this.level_id = this[prop].id;
-      } else {
-        this[prop] = accountInfo[prop];
+      try {
+        if (prop === 'wallets') {
+          this[prop] = accountInfo[prop].map((el) => new Wallet(el));
+        } else if (prop === 'campaigns') {
+          this[prop] = accountInfo[prop].map((el) => new Campaign(el));
+        } else if (prop === 'lw_balance') {
+          this[prop] = accountInfo[prop] / 100;
+        } else if (prop === 'level') {
+          this[prop] = new Tier(accountInfo[prop]);
+          this.level_id = this[prop].id;
+        } else if (prop === 'schedule') {
+          this[prop] = Schedule.fromJsonString(accountInfo[prop]);
+          this['scheduleString'] = accountInfo[prop] as string;
+        } else {
+          this[prop] = accountInfo[prop];
+        }
+      } catch (e) {
+        console.error(e);
       }
     }
 

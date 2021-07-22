@@ -6,17 +6,16 @@ import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
 
 @Component({
-  selector: 'campaigns-tab',
+  selector: 'tab-campaigns',
   templateUrl: './campaigns.html',
 })
 export class CampaignsTab {
   @Input() public id = '';
   @Input() public account: Account;
-
+  @Input() public loading: boolean = false;
   @Output() public close: EventEmitter<any> = new EventEmitter();
 
   public pageName = 'CAMPAIGNS';
-  public loading = true;
   public campaigns: Campaign[] = [];
 
   constructor(

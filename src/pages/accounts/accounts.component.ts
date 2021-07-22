@@ -8,7 +8,6 @@ import { UserService } from 'src/services/user.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { CompanyService } from 'src/services/company/company.service';
 import { ControlesService } from 'src/services/controles/controles.service';
-import { EditAccountData } from 'src/dialogs/management/edit-account/edit-account.dia';
 import {
   TlHeader,
   TlItemOption,
@@ -134,8 +133,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.loading = true;
     this.query = query;
 
-    console.log(data);
-
     this.searchObs = this.crudAccounts.list(data, 'all').subscribe(
       (resp: any) => {
         this.data = resp.data.elements;
@@ -148,6 +145,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
         this.loading = false;
       },
     );
+
     return this.searchObs;
   }
 
@@ -202,14 +200,8 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.router.navigate([`/accounts/${account.id}`], { queryParams: { tab } });
   }
 
-  public viewEditAccount(account) {
-    this.alerts
-      .openModal(EditAccountData, {
-        account,
-      })
-      .subscribe((result) => {
-        this.search();
-      });
+  public viewEditAccount(account, tab = 'info') {
+    this.router.navigate([`/accounts/edit/${account.id}`], { queryParams: { tab } });
   }
 
   public sortData(sort: Sort): void {

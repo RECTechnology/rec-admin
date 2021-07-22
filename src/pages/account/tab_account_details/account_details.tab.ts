@@ -6,7 +6,6 @@ import { ControlesService } from '../../../services/controles/controles.service'
 import { environment } from '../../../environments/environment';
 import { CompanyService } from '../../../services/company/company.service';
 import { UtilsService } from '../../../services/utils/utils.service';
-import { EditAccountData } from '../../../dialogs/management/edit-account/edit-account.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { EventsService } from 'src/services/events/events.service';
@@ -47,12 +46,7 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
   }
 
   public openEditAccount() {
-    this.alerts.openModal(EditAccountData, {
-      account: this.companyService.selectedCompany,
-    }).subscribe((result) => {
-      this.setUp();
-      this.events.fireEvent('account:update');
-    });
+    this.router.navigate([`/accounts/edit/${this.account_id}`]);
   }
 
   public ngOnDestroy() {

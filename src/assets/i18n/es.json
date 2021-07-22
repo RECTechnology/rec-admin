@@ -1,3 +1,4 @@
+
 {
   "____LOGIN___STRINGS____": "",
   "NEW_ACCOUNT": "NUEVA CUENTA",
@@ -1171,5 +1172,19 @@
   "ACTIVATE_CHANGE": "ACtivar Cambio",
   "UPLOAD CSV": "Importar CSV",
   "IMPORT_CSV_DESC": "Please upload a csv for the delegate change",
-  "Activate": "Activar"
+  "Activate": "Activar",
+  
+  
+  "SUBTYPE": "Subtipo",
+  "PHONE_NUMBER": "Numero de Telefono",
+  "PHONE_PREFIX": "Prefijo",
+  "LOCATION": "Ubicación",
+
+  "not_available": "Horario no disponible",
+  "timetable": "Abierto según horario",
+  "closed": "Cerrado",
+  "full": "Abierto 24h",
+  "OPEN": "Abierto",
+  "CLOSED": "Cerrado"
 }
+

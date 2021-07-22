@@ -7,7 +7,6 @@ import { TablePageBase } from '../../bases/page-base';
 import { LoginService } from '../../services/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BussinessDetailsDia } from '../../dialogs/management/bussiness_detailes/bussiness_details.component';
-import { EditAccountData } from '../../dialogs/management/edit-account/edit-account.dia';
 import { ConfirmationMessage } from '../../dialogs/other/confirmation-message/confirmation.dia';
 import { TableListHeaderOptions } from '../../components/scaffolding/table-list/tl-header/tl-header.component';
 import {
@@ -242,11 +241,11 @@ export class OrganizationsComponent extends TablePageBase {
   }
 
   public editDetails(account) {
-    this.alerts.openModal(EditAccountData, { account }).subscribe((result) => this.search());
+    this.router.navigate(['/accounts/edit/' + account.id]);
   }
 
-  public viewAccount(data) {
-    this.router.navigate(['/accounts/' + data.id]);
+  public viewAccount(account) {
+    this.router.navigate(['/accounts/' + account.id]);
   }
 
   public openMaps(coord) {

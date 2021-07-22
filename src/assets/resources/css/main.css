@@ -538,7 +538,7 @@ recover_password {
 
 .center {
   display: flex;
-  align-items: center;
+  align-items: center!important;
   justify-content: flex-start;
 }
 

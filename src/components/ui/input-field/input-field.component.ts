@@ -43,7 +43,8 @@ export class InputFieldComponent {
 
     this.isNormalInput = [
       'text', 'number',
-      'date', 'email',
+      'date', 'time',
+      'email',
       'color', 'button',
       'file', 'password',
       'image', 'tel',
