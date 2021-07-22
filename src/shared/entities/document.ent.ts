@@ -23,6 +23,9 @@ export class Document implements Document {
     public static STATUS_SUBMITTED = 'submitted';
     public static STATUS_DECLINED = 'declined';
     public static STATUS_APROVED = 'approved';
+    public static STATUS_REC_SUBMITTED = 'rec_submitted';
+    public static STATUS_REC_DECLINED = 'rec_declined';
+    public static STATUS_REC_APROVED = 'rec_approved';
     public static STATUS_ARCHIVED = 'archived';
 
     public static REC_STATUS_SUBMITTED = 'rec_submitted';
@@ -34,6 +37,7 @@ export class Document implements Document {
     public static STATUS_NOT_VERIFIED = 'unverified';
     public static STATUS_NOT_READABLE = 'unreadable';
     public static STATUS_EXPIRED = 'expired';
+    public static STATUS_REC_EXPIRED = 'rec_expired';
     public static STATUS_WRONG_TYPE = 'wrong_type';
     public static STATUS_WRONG_NAME = 'wrong_name';
 
@@ -51,6 +55,10 @@ export class Document implements Document {
         Document.STATUS_UPLOADED,
         Document.STATUS_SUBMITTED,
         Document.STATUS_DECLINED,
+        Document.STATUS_REC_SUBMITTED,
+        Document.STATUS_REC_DECLINED,
+        Document.STATUS_REC_APROVED,
+        Document.STATUS_REC_EXPIRED,
         Document.STATUS_ARCHIVED,
         Document.STATUS_ON_HOLD,
         Document.STATUS_NOT_VERIFIED,
