@@ -1,19 +1,20 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddUserDia } from '../../dialogs/management/add-user/add-user.dia';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../services/user.service';
 import { UtilsService } from '../../services/utils/utils.service';
 import { CompanyService } from '../../services/company/company.service';
-import { ViewDetails } from '../../dialogs/management/view-details/view-details.dia';
 import { EditUserData } from '../../dialogs/management/edit-user/edit-user.dia';
 import { ControlesService } from '../../services/controles/controles.service';
 import { AdminService } from '../../services/admin/admin.service';
 import { ListAccountsParams } from '../../interfaces/search';
 import { ExportDialog } from '../../dialogs/other/export-dialog/export.dia';
 import {
-  TlHeader, TlItemOption, TableListOptions,
+  TlHeader,
+  TlItemOption,
+  TableListOptions,
 } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
@@ -46,9 +47,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     TlHeaders.Phone,
     TlHeaders.CompaniesTotal,
   ];
-  public itemOptions: TlItemOption[] = [
-    TlItemOptions.Edit(this.openEditUser.bind(this)),
-  ];
+  public itemOptions: TlItemOption[] = [TlItemOptions.Edit(this.openEditUser.bind(this))];
   public defaultExportKvp = UsersExportDefaults;
   public tableOptions: TableListOptions = {
     optionsType: 'buttons',
@@ -62,6 +61,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     public us: UserService,
     public companyService: CompanyService,
     public utils: UtilsService,
+    public router: Router,
     public as: AdminService,
     public controles: ControlesService,
     public ls: LoginService,
@@ -86,32 +86,29 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
 
   // Opens add user modal
   public openAddUserDia() {
-    this.alerts.openModal(AddUserDia, {
-      addReseller: false,
-      showCreateNewUser: false,
-    }).subscribe((result) => {
-      this.search();
-    });
+    this.alerts
+      .openModal(AddUserDia, {
+        addReseller: false,
+        showCreateNewUser: false,
+      })
+      .subscribe((result) => {
+        this.search();
+      });
   }
 
   // Opens edit user roles modal
   public openEditUser(user, i) {
-    this.alerts.openModal(EditUserData, {
-      user,
-    }).subscribe((result) => {
-      this.search();
-    });
+    this.alerts
+      .openModal(EditUserData, {
+        user,
+      })
+      .subscribe((result) => {
+        this.search();
+      });
   }
 
   public openViewDetails(user) {
-    this.alerts.openModal(ViewDetails, {
-      parent: this,
-      user,
-    }).subscribe((result) => {
-      if (result) {
-        this.search();
-      }
-    });
+    this.router.navigate([`/users/${user.id}`]);
   }
 
   public export() {
@@ -134,7 +131,8 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     this.query = query;
     const data: ListAccountsParams = this.getCleanParams(query);
 
-    this.usersCrud.list(data)
+    this.usersCrud
+      .list(data)
       .pipe(this.usersCrud.cache())
       .subscribe(
         (resp) => {
@@ -144,6 +142,9 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
           this.total = resp.data.total;
           this.loading = false;
         },
-        (error) => { this.loading = false; });
+        (error) => {
+          this.loading = false;
+        },
+      );
   }
 }

@@ -10,7 +10,6 @@ import { EditUserData } from '../../../dialogs/management/edit-user/edit-user.di
 import { AddUserDia } from '../../../dialogs/management/add-user/add-user.dia';
 import { environment } from '../../../environments/environment';
 import { AdminService } from '../../../services/admin/admin.service';
-import { ViewDetails } from 'src/dialogs/management/view-details/view-details.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 @Component({
@@ -58,12 +57,15 @@ export class AccountUsersTab implements AfterContentInit {
 
   // Opens add user modal
   public openViewDetails(elem?, i?) {
-    this.alerts.openModal(ViewDetails, {
-      parent: this,
-      user: elem,
-    }).subscribe(() => {
-      this.getUsers();
-    });
+    console.log("Printing elem");
+    console.log(elem.id);
+    this.router.navigate(['users/' + elem.id]);
+    // this.alerts.openModal(ViewDetails, {
+    //   parent: this,
+    //   user: elem,
+    // }).subscribe(() => {
+    //   this.getUsers();
+    // });
   }
 
   public openAddUser() {

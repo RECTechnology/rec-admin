@@ -45,6 +45,7 @@ import { QuillModule } from 'ngx-quill';
 import { DashboardModule } from 'src/pages/dashboard/dashboard.module';
 import { HttpErrorInterceptor } from 'src/services/interceptor';
 import { AccountModule } from 'src/pages/account/account.module';
+import { UsersModule } from 'src/pages/user/users.module';
 import { PendingChangesGuard } from 'src/services/guards/can-go-back.guard';
 import { MySentry } from 'src/shared/sentry';
 import { SentryErrorHandler } from 'src/shared/sentry-error-handler';
@@ -82,6 +83,7 @@ const imports = [
   WalletModule,
   ChangeDelegateModule,
   AccountModule,
+  UsersModule,
   TranslateModule.forRoot({
     loader: {
       deps: [HttpClient],

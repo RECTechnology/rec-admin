@@ -102,7 +102,10 @@ export class CrudBaseService<T> extends BaseService2 {
     }
 
     public find(id: any, lang: RecLang = REC_LANGS.EN): Observable<{ data: T, [key: string]: any } | any> {
+        console.log("Printing first");
+        console.log(id);
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
+        console.log("Printing find");
         this.log(`find ${this.tName}`, id);
         return this.get(url, null, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());

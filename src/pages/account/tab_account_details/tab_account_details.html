@@ -1,18 +1,7 @@
 <div style="height: 100%; padding: 20px">
   <mat-card style="padding: 20px">
     <div *ngIf="!loading && companyService.selectedCompany">
-      <div class="group-row-left"
-        style="position:relative;width: 100%; padding: 20px">
-        <avatar [account]="companyService.selectedCompany" [size]="30"
-          [description]="true"></avatar>
-        <span class="abs-center-right group-row-left center v">
-          <badge label="Tier" [value]="companyService.selectedCompany.tier">
-          </badge>
-          <badge label="Type" [value]="companyService.selectedCompany.type"
-            [color]="companyService.selectedCompany.type === 'COMPANY' ? 'orange': 'blue'">
-          </badge>
-        </span>
-      </div>
+     
       <div class="group-col-left" style="border-top: 1px solid #ddd">
         <div class="group-col-left" style="padding-top: 15px">
           <b>{{'Details'|translate}}</b>

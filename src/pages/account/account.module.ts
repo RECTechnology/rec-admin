@@ -9,7 +9,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { AccountComponent } from './account.component';
 import { IsLoggedInGuard } from '../../services/guards/login.guard';
 import { TranslateModule } from '@ngx-translate/core';
-import { ViewDetails } from '../../dialogs/management/view-details/view-details.dia';
 import { MovementsTab } from './tab_movements/tab_movements';
 import { AccountUsersTab } from './tab_account_users/account_users.tab';
 import { AccountDetailsTab } from './tab_account_details/account_details.tab';
@@ -45,7 +44,6 @@ const accountRoutes: Routes = [
 @NgModule({
   declarations: [
     AccountComponent,
-    ViewDetails,
     AccountUsersTab,
     MovementsTab,
     AccountDetailsTab,
@@ -68,7 +66,6 @@ const accountRoutes: Routes = [
     ScheduleDayRowComponent,
   ],
   entryComponents: [
-    ViewDetails,
     AccountUsersTab,
     AccountDocuments,
     LemonWayTab,
