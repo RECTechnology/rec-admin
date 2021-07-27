@@ -17,6 +17,7 @@
 <app-page [padding]="false">
   <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)"
     *ngIf="companyService.selectedCompany">
+
     <mat-tab label="{{'BASIC_INFO'|translate}}">
       <tab-basic-info [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-basic-info>
@@ -27,27 +28,27 @@
       </tab-location>
     </mat-tab>
 
-    <mat-tab label="{{'MARKETING'|translate}}">
-      <tab-marketing [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
-      </tab-marketing>
-    </mat-tab>
-
     <mat-tab label="{{'CAMPAIGNS'|translate}}">
       <tab-campaigns [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-campaigns>
     </mat-tab>
 
-    <mat-tab label="{{'B2B'|translate}}">
+    <mat-tab label="{{'MARKETING'|translate}}" *ngIf="companyService.selectedCompany.isCompany()">
+      <tab-marketing [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
+      </tab-marketing>
+    </mat-tab>
+
+    <mat-tab label="{{'B2B'|translate}}" *ngIf="companyService.selectedCompany.isCompany()">
       <tab-b2b [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-b2b>
     </mat-tab>
 
-    <mat-tab label="{{'SCHEDULE'|translate}}">
+    <mat-tab label="{{'SCHEDULE'|translate}}" *ngIf="companyService.selectedCompany.isCompany()">
       <tab-schedule [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-schedule>
     </mat-tab>
 
-    <mat-tab label="{{'OFFERS'|translate}}">
+    <mat-tab label="{{'OFFERS'|translate}}" *ngIf="companyService.selectedCompany.isCompany()">
       <tab-offers [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-offers>
     </mat-tab>
