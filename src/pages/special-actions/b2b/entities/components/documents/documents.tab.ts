@@ -30,7 +30,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Id,
         
         {
-            accessor: (v) => v.user.username ? v.user.username : {},
+            accessor: (v) => v.user ? v.user.username : {},
             sortable: true,
             title: 'User',
             type: 'code',
@@ -74,9 +74,11 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     public tableOptions: TableListOptions = {
         optionsType: 'buttons',
         onClick: (element) => {
+            
             window.open(element.content, '_blank');
         },
         getRowClass: (element: Document) => {
+            
             const validUntil = new Date(element.valid_until).getTime();
             const now = Date.now();
             if (validUntil < now) {
