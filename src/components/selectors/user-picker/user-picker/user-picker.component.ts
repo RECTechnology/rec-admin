@@ -20,6 +20,7 @@ export class UserPickerComponent   {
   @Input() public disabled = false;
   @Input() public filters = {};
 
+  public userSelectedString = "";
   public areSelectedUser = false;
   public isKeyboard = false;
   public selectedUser: any = {};
@@ -31,7 +32,14 @@ export class UserPickerComponent   {
   ) { }
  
 
+  
+
   public ngOnChanges() {
+   
+    console.log(this.id);
+    if(this.id ==null){
+      this.areSelectedUser = false;
+    }
     this.search();
   }
   
@@ -42,6 +50,7 @@ export class UserPickerComponent   {
       currentid: this.selectedUser && this.selectedUser.id,
       filters: this.filters,
     }).subscribe(this.selectUser.bind(this));
+    
   }
 
   public selectUser(user: Partial<User>) {
@@ -51,11 +60,13 @@ export class UserPickerComponent   {
       this.id = null;
       return;
     }
+    this.userSelectedString = this.selectedUser.name + " ("+this.selectedUser.username+")";
 
     this.selectedUser = user;
     this.userChange.emit(this.selectedUser);
     this.idChange.emit(this.selectedUser.id);
     this.id = user.id;
+    this.areSelectedUser = true;
   }
 
   public getUser(id) {

@@ -29,12 +29,12 @@
                     <span style="color: #666; font-size: 12px">{{doc.name}}</span>
                 </button>
             </mat-menu>
-            <div style="width: 140px" matTooltip="Filter by account" *ngIf="showAccountFilter">
+            <div style="width: 100%" matTooltip="Filter by account" *ngIf="showAccountFilter">
                 <account-picker [disabled]="disableAccountFilter" style="margin: 0" [(id)]="accountFilter"
                     (idChange)="search();">
                 </account-picker>
             </div>
-            <div style="width: 140px" matTooltip="Filter by user" *ngIf="showUserFilter">
+            <div style="width: 100%" matTooltip="Filter by user" *ngIf="showUserFilter">
                 <user-picker  style="margin: 0" [(id)]="userFilter"
                     (idChange)="search();">
                 </user-picker>
@@ -45,7 +45,7 @@
                 <button [disabled]="disableStatusFilter" [matMenuTriggerFor]="statusMenu" type="button" mat-button
                     class="mat-button-menu"
                     style="text-align: left; margin: 4px 0 4px 10px!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
-                    <span style="text-transform: capitalize;">{{(statusFilter || 'Status')|translate}}</span>
+                    <span style="text-transform: capitalize;">{{(statusFilter || 'Status')|translate}}</span>
                     <i class="fa fa-caret-down" style="margin-left: 8px;"></i>
                 </button>
                 <mat-menu #statusMenu="matMenu" y-position="below" overlapTrigger="false">

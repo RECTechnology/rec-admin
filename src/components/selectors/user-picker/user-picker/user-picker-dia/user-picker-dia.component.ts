@@ -25,7 +25,6 @@ export class UserPickerDiaComponent  {
   ) {}
 
   public search(query) {
-    console.log("Im in search ");
     const opts = {
       offset: 0,
       limit: 50,

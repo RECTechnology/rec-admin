@@ -140,6 +140,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     }
 
     public editItem(item) {
+        
         super.editItem(item);
     }
 

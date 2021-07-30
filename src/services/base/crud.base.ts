@@ -65,6 +65,7 @@ export class CrudBaseService<T> extends BaseService2 {
     public create(data: T, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
         this.log(`create ${this.tName}`, arguments);
+        
         return this.post(url, data, 'application/json',
             lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
         ).pipe(this.itemMapper());
@@ -79,9 +80,7 @@ export class CrudBaseService<T> extends BaseService2 {
     public update(id: any, data: any, lang: RecLang = REC_LANGS.EN): Observable<any> {
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
         this.log(`update ${this.tName}`, id, data);
-        console.log("Printing urlllllllllllllllllllllllllllll");
-        console.log(url);
-        console.log(data);
+
         return this.put(url, data, 'application/json',
             lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null,
         );
@@ -135,9 +134,12 @@ export class CrudBaseService<T> extends BaseService2 {
 
     public itemMapper() {
         if (!this.mapItems) {
+            console.log(this.mapItems);
             return map((resp) => resp);
+
         } else {
             return map((resp: any) => {
+                console.log(resp);
                 if (resp && resp.data && resp.data.elements) {
                     resp.data.elements = resp.data.elements.map((el) => this.mapper(el));
                 } else if (resp && resp.data) {

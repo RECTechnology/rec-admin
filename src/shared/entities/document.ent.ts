@@ -1,3 +1,4 @@
+import { User } from 'src/shared/entities/user.ent'
 import { Account } from './account.ent';
 import { DocumentKind } from './document_kind.ent';
 
@@ -5,6 +6,8 @@ export interface Document {
     name: string;
     id?: string | number;
     status?: string;
+    user?: User;
+    user_id?:number
     status_text?: string;
     content?: string;
     account?: Account;

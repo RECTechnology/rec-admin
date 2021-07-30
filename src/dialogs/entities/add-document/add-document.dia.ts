@@ -9,6 +9,7 @@ import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kin
 import { UtilsService } from 'src/services/utils/utils.service';
 import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemonway_documents';
 import * as moment from 'moment';
+import { User } from 'src/shared/entities/user.ent';
 
 @Component({
   selector: 'add-document',
@@ -19,7 +20,9 @@ export class AddDocumentDia extends BaseDialog {
   public isLemon = false;
   public status_text = '';
   public REC_STATUSES = Document.REC_STATUS_TYPES;
-
+  public isUserSelectorEnabled:Boolean = false;
+  public isAccountSelectorEnabled:Boolean = false;
+  public user:User = new User();
   public item: Document = {
     name: '',
     kind_id: null,
@@ -28,12 +31,15 @@ export class AddDocumentDia extends BaseDialog {
     valid_until: null,
 
   };
+  //(idChange)="search();"
   public itemCopy: Document = {
     name: '',
     kind_id: null,
     account_id: null,
     content: '',
-  };
+  }; 
+
+
   public itemType = 'Document';
   public docKinds = [];
   public docKindsFull = [];
@@ -56,12 +62,29 @@ export class AddDocumentDia extends BaseDialog {
     this.item.account_id = this.item.account ? this.item.account.id : this.item.account_id;
     this.item.kind_id = this.item.kind && this.item.kind.id;
     this.itemCopy = Object.assign({}, this.item);
+    //this.user= Object.assign({}, item.user);
     this.isLemon = this.item.kind && Object.prototype.hasOwnProperty.call(this.item.kind, 'lemon_doctype');
 
+
+
+   
+  }
+
+  public setUser(){
+    this.item.account = null;
+    this.item.account_id=null;
+  }
+
+  public setAccount(){
+    this.item.user = null;
+    this.item.user_id=null;
   }
 
   public setType(type) {
-    this.item.status = type;
+    
+    if(type != null){
+      this.item.status = type;
+    }
 
   }
 
@@ -99,8 +122,9 @@ export class AddDocumentDia extends BaseDialog {
 
     this.loading = true;
     let data: any = { ...this.item };
-
+    
     if (this.isEdit) {
+      
       data = UtilsService.deepDiff({ ...data }, this.itemCopy);
     }
 
@@ -117,7 +141,12 @@ export class AddDocumentDia extends BaseDialog {
     if (data.auto_fetched) {
       data.auto_fetched = false;
     }
-
+    if(!data.user_id){
+      delete data.user_id;
+    }
+    if(!data.account_id){
+      delete data.account_id;
+    }
     const call = (!this.isEdit)
       ? crud.create(data)
       : crud.update(this.item.id, UtilsService.sanitizeEntityForEdit(data));

@@ -1145,13 +1145,6 @@
    "CARD_USER": "Usuario de tarjeta",
    "EXCHANGER_ACCOUNT": "Cuenta de intercambiador",
    "BENEFICIARY_ACCOUNT": "Cuenta del beneficiario",
-   "rec_submitted": "Requiere revisar",
-   "rec_approved": "Aprobado",
-   "rec_declined": "Rechazado",
-   "rec_expired": "Caducado",
-  "CARD_USER": "Usuario de tarjeta",
-  "EXCHANGER_ACCOUNT": "Cuenta de intercambiador",
-  "BENEFICIARY_ACCOUNT": "Cuenta del beneficiario",
   "CREATE_DELEGATE_CHANGE": "Crear Cambio Delegado",
   "DATE_START": "Fecha comienzo",
   "TIME_START": "Hora comienzo",
@@ -1185,6 +1178,10 @@
   "closed": "Cerrado",
   "full": "Abierto 24h",
   "OPEN": "Abierto",
-  "CLOSED": "Cerrado"
+  "CLOSED": "Cerrado",
+  "ADD_DOCUMENT":"Añadir documento",
+  "SELECT_ACCOUNT":"seleccionar cuenta",
+  "SELECT_USER":"Seleccionar usuario"
+
 }
 
