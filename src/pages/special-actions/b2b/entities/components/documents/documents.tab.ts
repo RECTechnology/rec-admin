@@ -28,6 +28,13 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     public status;
     public headers: TlHeader[] = [
         TlHeaders.Id,
+        
+        {
+            accessor: (v) => v.user.username ? v.user.username : {},
+            sortable: true,
+            title: 'User',
+            type: 'code',
+        },
         {
             accessor: (v) => v.account ? v.account : {},
             sortable: false,
@@ -35,6 +42,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
             type: 'avatar',
         },
         TlHeaders.DocumentKind,
+        
         TlHeaders.Name,
         TlHeaders.Status.extend({
             accessor(item) {
