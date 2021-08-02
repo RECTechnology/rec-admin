@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.18.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.9...v3.18.0) (2021-08-02)
+
+
+### Features
+
+* added import and activate actions to massive txs list ([2b05dab](https://github.com/QbitArtifacts/rec-admin/commit/2b05dab3c52db23d47d5b38cba434c5b20de04e4))
+* added massive transactions list | fixes #[#269](https://github.com/QbitArtifacts/rec-admin/issues/269) ([f21999e](https://github.com/QbitArtifacts/rec-admin/commit/f21999efa4e0e003a50e6702f5d639cbe91cdb00))
+* added new  status values to status filter ([#278](https://github.com/QbitArtifacts/rec-admin/issues/278)) ([cf6dcb0](https://github.com/QbitArtifacts/rec-admin/commit/cf6dcb05c6cab62894d7f64fe3a6a96cc4116638))
+* added new info column to show UserId in document row ([#277](https://github.com/QbitArtifacts/rec-admin/issues/277)) ([627bac0](https://github.com/QbitArtifacts/rec-admin/commit/627bac019fd355e9083ecfefd5af6558b1a9289a))
+* added new subtype ([eefbdbf](https://github.com/QbitArtifacts/rec-admin/commit/eefbdbfcbe3cafe8b44637790c643d2ab4396311))
+* added status to edit document ([#276](https://github.com/QbitArtifacts/rec-admin/issues/276)) ([9291c5c](https://github.com/QbitArtifacts/rec-admin/commit/9291c5c6e9e05e6a282199383a6757c11f9f4c99))
+* added user filter to documents list ([#282](https://github.com/QbitArtifacts/rec-admin/issues/282)) ([d56c78c](https://github.com/QbitArtifacts/rec-admin/commit/d56c78c98972185f8797608472b8eb4cd7ae695f))
+* converted user details modal into page ([#289](https://github.com/QbitArtifacts/rec-admin/issues/289)) ([0027a12](https://github.com/QbitArtifacts/rec-admin/commit/0027a1227d8bc9ed54cd3838c8f1a40ef87471f7))
+* edit account is now a page + added new schedule editing ([#286](https://github.com/QbitArtifacts/rec-admin/issues/286)) ([5dc2e02](https://github.com/QbitArtifacts/rec-admin/commit/5dc2e0265d7ea1cbdbfdde3266076c9d16835bf2))
+* massive transactions send report implemented ([798f0b2](https://github.com/QbitArtifacts/rec-admin/commit/798f0b23aa765a43be707a12cbc4d7de70a52f06))
+* moved creation of delegate change into modal, and adde type and name | fixes [#267](https://github.com/QbitArtifacts/rec-admin/issues/267) [#268](https://github.com/QbitArtifacts/rec-admin/issues/268) ([1a2c2ea](https://github.com/QbitArtifacts/rec-admin/commit/1a2c2ea45ef68b35bf005db2e3fdbe2ed8c714cc))
+
+
+### Bug Fixes
+
+* edit account, some tabs should be hidden if private account | fixes [#291](https://github.com/QbitArtifacts/rec-admin/issues/291) ([#292](https://github.com/QbitArtifacts/rec-admin/issues/292)) ([be7b8ee](https://github.com/QbitArtifacts/rec-admin/commit/be7b8ee72499cd4813cc4cd6094bab8b93420bb4))
+* fixed massive txs account not showing on list ([d40096c](https://github.com/QbitArtifacts/rec-admin/commit/d40096c8b76762d1404897155dee015506210b4c))
+* massive txs amount incorrect, not showing account, weird button ([#287](https://github.com/QbitArtifacts/rec-admin/issues/287)) ([8b068dc](https://github.com/QbitArtifacts/rec-admin/commit/8b068dcd4bce516e11f6606c6d10227988a9246b))
+* repaired bug in tlHeader of user ([#295](https://github.com/QbitArtifacts/rec-admin/issues/295)) ([14a1ba6](https://github.com/QbitArtifacts/rec-admin/commit/14a1ba663718f3d4470609b407ca13047e2ba0ac))
+
 ### [3.17.9](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.8...v3.17.9) (2021-02-26)
 
 
