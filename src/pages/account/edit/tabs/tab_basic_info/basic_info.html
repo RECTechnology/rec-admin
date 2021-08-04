@@ -50,12 +50,12 @@
           </div>
 
           <div class="col-lg-6">
-            <input-field *ngIf="accountCopy.type === 'COMPANY'" type="select" [value]="accountCopy.subtype"
-              (valueChange)="setType($event)" [disabled]="false" label="SUBTYPE" [options]="ACCOUNT_SUB_TYPES_COMPANY">
+            <input-field *ngIf="accountCopy.type === 'COMPANY'" type="select" [(value)]="accountCopy.subtype"
+              [disabled]="false" label="SUBTYPE" [options]="ACCOUNT_SUB_TYPES_COMPANY">
             </input-field>
 
-            <input-field *ngIf="accountCopy.type === 'PRIVATE'" type="select" [value]="accountCopy.subtype"
-              (valueChange)="setType($event)" [disabled]="false" label="SUBTYPE" [options]="ACCOUNT_SUB_TYPES_PRIVATE">
+            <input-field *ngIf="accountCopy.type === 'PRIVATE'" type="select" [(value)]="accountCopy.subtype"
+              [disabled]="false" label="SUBTYPE" [options]="ACCOUNT_SUB_TYPES_PRIVATE">
             </input-field>
           </div>
         </div>
