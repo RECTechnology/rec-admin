@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.18.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.18.0...v3.18.1) (2021-08-04)
+
+
+### Bug Fixes
+
+* bugs documents ii ([#298](https://github.com/QbitArtifacts/rec-admin/issues/298)) ([45d5c27](https://github.com/QbitArtifacts/rec-admin/commit/45d5c278b23764ea74a9e52771d98646f3013dfc))
+* disabled user ([#300](https://github.com/QbitArtifacts/rec-admin/issues/300)) ([c90a307](https://github.com/QbitArtifacts/rec-admin/commit/c90a30749aaeeb31d2e7ecd788a7ec94c43e86c8))
+* edit account subtype weird behaviour | fixes [#301](https://github.com/QbitArtifacts/rec-admin/issues/301) ([#302](https://github.com/QbitArtifacts/rec-admin/issues/302)) ([3d9b5c2](https://github.com/QbitArtifacts/rec-admin/commit/3d9b5c2f27d80a12b74b630ec44406ed93c112a2))
+
 ## [3.18.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.17.9...v3.18.0) (2021-08-02)
 
 
