@@ -78,7 +78,9 @@ export interface TableListOptions {
 }
 
 @Component({
+   
     selector: 'tl-table',
+   
     templateUrl: './tl-table.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })

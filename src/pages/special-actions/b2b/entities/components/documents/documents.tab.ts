@@ -15,6 +15,7 @@ import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kin
 import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
 import { LW_DOC_STATUS } from 'src/data/lw-constants';
+import { Account } from 'src/shared/entities/account.ent';
 
 @Component({
     selector: 'tab-documents',
@@ -30,7 +31,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         TlHeaders.Id,
         
         {
-            accessor: (v) => v.user ? v.user.username : {},
+            accessor: (v) => v.user ? v.user.username : null,
             sortable: true,
             title: 'User',
             type: 'code',
