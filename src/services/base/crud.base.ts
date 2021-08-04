@@ -101,10 +101,7 @@ export class CrudBaseService<T> extends BaseService2 {
     }
 
     public find(id: any, lang: RecLang = REC_LANGS.EN): Observable<{ data: T, [key: string]: any } | any> {
-        console.log("Printing first");
-        console.log(id);
         const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST, '/', id];
-        console.log("Printing find");
         this.log(`find ${this.tName}`, id);
         return this.get(url, null, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null)
             .pipe(this.itemMapper());
@@ -134,12 +131,10 @@ export class CrudBaseService<T> extends BaseService2 {
 
     public itemMapper() {
         if (!this.mapItems) {
-            console.log(this.mapItems);
             return map((resp) => resp);
 
         } else {
             return map((resp: any) => {
-                console.log(resp);
                 if (resp && resp.data && resp.data.elements) {
                     resp.data.elements = resp.data.elements.map((el) => this.mapper(el));
                 } else if (resp && resp.data) {

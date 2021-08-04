@@ -103,7 +103,6 @@ export class TpvTab extends TablePageBase {
     this.loading = true;
     this.admin.createPos(this.account.id)
       .subscribe((resp) => {
-        console.log(resp);
         this.loading = false;
         this.alerts.showSnackbar('CREATED_POS');
         this.account.pos = resp.data;

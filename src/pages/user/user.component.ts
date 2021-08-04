@@ -74,15 +74,11 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy{
   }
 
   public loadUser() {
-    console.log("Printing userIddddddddddddd");
-    console.log(this.user_id);
+  
     this.loading = true;
     this.crudUsers.find(this.user_id)
       .subscribe((resp: any) => {
-        console.log("All nice");
-        console.log(resp);
         this.companyService.selectedCompany = resp.data;
-        console.log(this.companyService);
         this.loading = false;
       }, (error) => {
         this.loading = false;
@@ -91,7 +87,6 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy{
 
   /* Called when tab change, so url changes also */
   public changeUrl($event) {
-    console.log("Changing url")
     if (this.user_id) {
       this.router.navigate(['/user/' + this.user_id], {
         queryParams: { tab: this.tabMap[$event] },

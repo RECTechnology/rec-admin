@@ -1,6 +1,6 @@
 <div class="padd-20 modal-body" style="height: auto">
     <mat-card>
-        <div class="group-col-left" [ngClass]="{'alert-warning': user.locked}">
+        <div class="group-col-left" [ngClass]="{'alert-warning': !user.enabled}">
             <div class="group-row-left center h v">
               <img src="{{user.profile_image || Brand.profile_default_image}}" alt=""
                 style="margin-right: 10px; width: 40px; height: 40px; border-radius: 50%;">
@@ -9,7 +9,7 @@
                 <i class="col-gray-light">{{user.email || user.dni}}</i>
               </div>
             </div>
-            <p class="small-text" *ngIf="user.locked">
+            <p class="small-text" *ngIf="!user.enabled">
               {{'USER_DISABLED_DESC'|translate}}
             </p>
           </div>
@@ -76,10 +76,10 @@
                 <button mat-button color="primary" (click)="validatePhone()">
                   {{'Validate Phone'|translate}}
                 </button>
-                <button mat-button (click)="disableUser()" *ngIf="!user.locked">
+                <button mat-button (click)="disableUser()" *ngIf="user.enabled">
                   <span class="col-error">{{'Disable'|translate}}</span>
                 </button>
-                <button mat-button color="primary" (click)="enableUser()" *ngIf="user.locked">
+                <button mat-button color="primary" (click)="enableUser()" *ngIf="!user.enabled">
                   <span class="col-blue">{{'Enable'|translate}}</span>
                 </button>
                 <button mat-button (click)="openDeleteUser()">

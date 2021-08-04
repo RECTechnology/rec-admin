@@ -151,7 +151,7 @@ export class TableListTable implements AfterContentInit {
             });
     }
 
-    public getEntry(entry, header: TlHeader, translate = true) {
+    public getEntry(entry, header: TlHeader, translate = true,string:String = '') {
         let val = '';
         if (!header.accessor && header.sort) {
             val = entry[header.sort as any];

@@ -70,10 +70,8 @@ export class UserDetailsTab implements OnInit {
   }
 
   public getUser() {
-    console.log("Geting useerrrrrrrrrrrrr...");
-    console.log(this.user_id)
+ 
     this.usersCrud.find(this.user_id).subscribe((res) => {
-        console.log(res);
       this.user = res.data;
       this.processRoles();
     });
@@ -151,7 +149,7 @@ export class UserDetailsTab implements OnInit {
         this.adminService.deactiveUser(this.user.id).subscribe(
           (deactive) => {
             this.alerts.showSnackbar('Disabled user: ' + this.user.id, 'ok');
-            this.user.locked = true;
+            this.user.enabled = false;
           },
           (error) => {
             this.alerts.showSnackbar('Error disabling user: ' + error, 'ok');
@@ -171,7 +169,7 @@ export class UserDetailsTab implements OnInit {
         this.adminService.activeUser(this.user.id).subscribe(
           (active) => {
             this.alerts.showSnackbar('Enabled user: ' + this.user.id, 'ok');
-            this.user.locked = false;
+            this.user.enabled = true;
           },
           (error) => {
             this.alerts.showSnackbar('Error enabling user: ' + error, 'ok');
