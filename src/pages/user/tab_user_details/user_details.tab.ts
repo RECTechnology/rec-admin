@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ManageSms } from 'src/dialogs/management/manage-sms/manage-sms.dia';
 import { ConfirmationMessage } from 'src/dialogs/other/confirmation-message/confirmation.dia';
 import { environment } from 'src/environments/environment';
@@ -22,10 +22,10 @@ export class UserDetailsTab implements OnInit {
   public user_id = null;
   public parent: any;
   public Brand: any = environment.Brand;
-  public address = '';
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public sms: SmsService,
     public compService: CompanyService,
     public adminService: AdminService,
@@ -34,18 +34,14 @@ export class UserDetailsTab implements OnInit {
     public utils: UtilsService,
     public usersCrud: UsersCrud,
     public companyService: CompanyService,
-
   ) {}
 
   public ngOnInit() {
-    this.route.params
-    .subscribe((params) => {
+    this.route.params.subscribe((params) => {
       this.user_id = params.id;
-      this.setUp();
     });
     this.getUser();
 
-   
     const tmp = this.user.roles;
     this.user.roles = [];
 
@@ -55,9 +51,7 @@ export class UserDetailsTab implements OnInit {
       }
     }
   }
-  public setUp() {
-    this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
-  }
+
   private processRoles() {
     const tmp = this.user.roles;
     this.user.roles = [];
@@ -70,7 +64,6 @@ export class UserDetailsTab implements OnInit {
   }
 
   public getUser() {
- 
     this.usersCrud.find(this.user_id).subscribe((res) => {
       this.user = res.data;
       this.processRoles();

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { SmsService } from '../../services/sms/sms.service';
 import { CompanyService } from '../../services/company/company.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -19,18 +19,18 @@ import { OnDestroy } from '@angular/core';
   selector: 'User',
   templateUrl: './user.html',
 })
-export class UserComponent extends PageBase implements OnInit, OnDestroy{
+export class UserComponent extends PageBase implements OnInit, OnDestroy {
   public pageName = 'User';
   public currentTab = 0;
   public user_id = null;
+  public user: any = {};
   public sub: any = null;
   public pdfHtml = '';
   public tab: string = '';
   public tabMap = {
     details: 0,
-    
+
     0: 'details',
-   
   };
 
   constructor(
@@ -46,7 +46,6 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy{
     public crudUsers: UsersCrud,
     public alerts: AlertsService,
     public events: EventsService,
-    
   ) {
     super();
   }
@@ -55,11 +54,10 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy{
     this.events.registerEvent('user:update').subscribe(this.loadUser.bind(this));
 
     // Gets the query parameters and gets 'tab' param
-    this.sub = this.route.queryParams
-      .subscribe((params) => {
-        this.tab = params.tab || 'details';
-        this.currentTab = this.tabMap[this.tab] || 0;
-      });
+    this.sub = this.route.queryParams.subscribe((params) => {
+      this.tab = params.tab || 'details';
+      this.currentTab = this.tabMap[this.tab] || 0;
+    });
 
     this.route.params.subscribe((params) => {
       this.user_id = params.id;
@@ -74,15 +72,16 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy{
   }
 
   public loadUser() {
-  
     this.loading = true;
-    this.crudUsers.find(this.user_id)
-      .subscribe((resp: any) => {
-        this.companyService.selectedCompany = resp.data;
+    this.crudUsers.find(this.user_id).subscribe(
+      (resp: any) => {
+        this.user = resp.data;
         this.loading = false;
-      }, (error) => {
+      },
+      (error) => {
         this.loading = false;
-      });
+      },
+    );
   }
 
   /* Called when tab change, so url changes also */
