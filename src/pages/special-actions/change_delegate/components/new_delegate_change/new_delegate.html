@@ -28,123 +28,47 @@
       </div>
     </tl-header>
 
-    <tl-subheader>
-      <div class="group-row-left center v" style="padding: 10px 15px!important;">
-        <p class="small-text">
-          <b>{{sortedData.length}}</b> {{'SELECTED_ACCOUNTS_COUNT'|translate}}
-        </p>
-        <button [disabled]="readonly" type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
-          mat-button name="button" (click)="openSelectAccounts()">
-          <p class="text-small">
-            <i class="fa fa-plus"></i>
-            {{'ADD_ACCOUNTS'|translate}}
-          </p>
-        </button>
-
-        <button [disabled]="readonly" type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
-          mat-button name="button" (click)="newImport()">
-          <p class="text-small">
-            <i class="fa fa-file"></i>
-            {{'Import'|translate}}
-          </p>
-        </button>
-
-        <button [disabled]="readonly" type="button" [disabled]="getSelected().length <= 0"
-          style="margin-right: 10px; padding-right: 10px" color="primary" mat-button name="button"
-          (click)="openEditSelected()">
-          <p class="text-small">
-            <i class="fa fa-edit"></i>
-            {{'EDIT_ACCOUNTS'|translate}}
-          </p>
-        </button>
-      </div>
-    </tl-subheader>
-
     <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
       style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
     </validation-errors>
 
-    <!-- Table -->
-    <div *ngIf="!readonly" class="fill-size"
-      style="max-height: 350px; overflow-y: auto; position: relative;border-bottom: 1px solid #ddd!important">
-      <table *ngIf="!loading && notSavedItems.length" class="left-align" style="min-height: 100px">
-        <thead class="bordered stripped">
-          <tr>
-            <th>
-              <mat-checkbox color="primary" [(ngModel)]="allSelected" (ngModelChange)="selectAll()"></mat-checkbox>
-            </th>
-            <th style="color: #555!important">
-              {{'#'|translate}}
-            </th>
-            <th style="color: #555!important">
-              {{'Account'|translate}}
-            </th>
-            <th style="color: #555!important">
-              {{'Exchanger'|translate}}
-            </th>
-            <th style="color: #555!important">
-              {{'Amount'|translate}}
-            </th>
-            <th style="color: #555!important">
-              {{'Card Info'|translate}}
-            </th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of notSavedItems; let i = index; trackBy: trackByFn">
-            <td>
-              <mat-checkbox color="primary" [(ngModel)]="data.selected" (ngModelChange)="changed()"></mat-checkbox>
-            </td>
-            <td>{{data.id}}</td>
-            <td>{{data.account.id}} <i>({{data.account.name}})</i></td>
-            <td>{{data.exchanger.id}}</td>
-            <td><code>{{data.amount}} €</code></td>
-            <td>
-              <b *ngIf="data.pan">{{data.pan}}</b>
-              <b *ngIf="data.expiry_date">{{data.expiry_date}}</b>
-              <b *ngIf="data.cvv2">{{data.cvv2}}</b>
-            </td>
-            <td>
-              <button mat-icon-button [matMenuTriggerFor]="actions" [disabled]="readonly">
-                <span class="center h v">
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-              </button>
-              <mat-menu #actions="matMenu">
-                <button mat-menu-item (click)="openEditAccount(data, i)">
-                  <p class="small-text"><i class="fa fa-edit"></i> {{'Edit'|translate}}</p>
-                </button>
-                <hr>
-                <button mat-menu-item (click)="deleteData(data, i)">
-                  <p class="small-text col-error"><i class="fa fa-trash"></i> {{'DELETE'|translate}}</p>
-                </button>
-              </mat-menu>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="group-col-left center h v" style="width: 100%; padding: 15px 0;"
-        *ngIf="!loading && !notSavedItems.length">
-        <b class="small-text-2">{{'NO_ACCOUNTS_SELECTED'|translate}}</b>
-        <p class="small-text">{{'SELECT_ACCOUNTS'|translate}}!</p>
-        <button [disabled]="readonly" type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
-          mat-raised-button name="button" (click)="openSelectAccounts()">
-          <p class="text-small">
-            <i class="fa fa-plus"></i>
-            {{'ADD_ACCOUNTS'|translate}}
-          </p>
-        </button>
-      </div>
-
-      <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
-        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-        </mat-progress-spinner>
-      </div>
+    <div class="fill-size" style="padding: 10px 15px;">
+      <b>
+        <h6>Para realizar un cambio delegado es necesario importar un csv que contenga exactamente los siguientes datos:
+          creditcard, account, exchanger, amount, pan, expiry_year, expiry_month, cvv2 </h6>
+      </b>
+      <ul class="small-text-2">
+        <li><b>creditcard</b>: id interno de la tarjeta de crédito (Tabla CreditCard)</li>
+        <li><b>account</b>: id interno de la cuenta benficiaria </li>
+        <li><b>exchanger</b>: id interno de la cuenta intermediaria (Se comprobará que sea KYC2 para evitar errores)
+        </li>
+        <li><b>amount</b>: cantidad en céntimos de los euros que se van a intercambiar por recs.</li>
+      </ul>
+      <b>
+        <h6>A continuación se detallan los campos “deprecated”. Se tendrán que añadir al csv pero no se utilizarán.
+        </h6>
+      </b>
+      <b class="small-text-2">Estos campos, se usaban cuando se podía realizar un cambio delegado con tarjetas no
+        registradas en el sistema,
+        con el 3DS esto ya no es posible hacerlo.</b>
+      <ul class="small-text-2">
+        <li><b>pan</b>: número de la tarjeta. Rellenar por defecto con “4485123087562803” (No se usa para nada el
+          numero, pero si debe ser un número de tarjeta valido, no servia "00000....0000")</li>
+        <li><b>expiry_year</b>: Año de expiración de la tarjeta. Rellenar por defecto con “2025” </li>
+        <li><b>expiry_month</b>: Mes de expiración de la tarjeta. Rellenar por defecto con “12”</li>
+        <li><b>cvv2</b>: Código trasero de la tarjeta para verificar pagos. Rellenar por defecto con “000”</li>
+      </ul>
     </div>
-
-    <tl-header [options]="{ input: false }" title="Saved items"></tl-header>
+    
+    <div class="fill-size" style="padding: 10px 15px; border-top: 1px solid #ddd">
+      <button [disabled]="readonly" type="button" style="margin-left: 8px; padding-right: 10px" color="primary"
+        mat-button name="button" (click)="newImport()">
+        <p class="text-small">
+          <i class="fa fa-file marg-right-10"></i>
+          {{'Import'|translate}}
+        </p>
+      </button>
+    </div>
 
     <!-- Selected Items -->
     <div class="fill-size" style="max-height: 350px; overflow-y: auto; position: relative;">
