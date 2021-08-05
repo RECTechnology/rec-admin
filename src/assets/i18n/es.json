@@ -1154,6 +1154,7 @@
 
   "NEW_MASSIVE_TX": "Nueva Transaccion Masiva",
   "EDIT_MASSIVE_TX": "Editar Transacciones Masivas",
+  "VIEW_MASSIVE_TX": "Detalles Transaccion Masiva",
   "SENDER": "Emisor",
   "EXCHANGER": "Intercambiador",
   "NO_DATA_YET": "No hay datos aun",

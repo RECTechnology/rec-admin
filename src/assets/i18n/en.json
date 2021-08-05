@@ -567,6 +567,7 @@
   "CREATE": "Create",
   "NEW_MASSIVE_TX": "New Massive Transactions",
   "EDIT_MASSIVE_TX": "Edit Massive Transactions",
+  "VIEW_MASSIVE_TX": "View Massive Transaction",
   "SENDER": "Sender",
   "EXCHANGER": "Exchanger",
   "NO_DATA_YET": "No data yet",
@@ -577,5 +578,4 @@
   "ADD_DOCUMENT":"add document",
   "SELECT_ACCOUNT":"Select account",
   "SELECT_USER":"Select user"
-
 }
