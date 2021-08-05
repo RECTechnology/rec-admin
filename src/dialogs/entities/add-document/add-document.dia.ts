@@ -19,7 +19,6 @@ export class AddDocumentDia extends BaseDialog {
   public isEdit = false;
   public isLemon = false;
   public status_text = '';
-  public REC_STATUSES = Document.REC_STATUS_TYPES;
   public isUserSelectorEnabled:Boolean = false;
   public isAccountSelectorEnabled:Boolean = false;
   public user:User = new User();

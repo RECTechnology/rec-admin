@@ -1,0 +1,13 @@
+<div class="group-col-left">
+    <span class="small-text-2 marg-bottom-10" *ngIf="label">
+        {{label|translate}}
+        <i *ngIf="isRequired" style="font-size: 10px!important;" class="small-text fa fa-asterisk col-error"></i>
+    </span>
+
+    <mat-select class="mat-button-menu " style="margin-top: 5px;" [ngModel]="value" (ngModelChange)="changed($event)">
+        <mat-option class="state.REC_COLOR" [value]="state.REC_STATUS" *ngFor="let state of REC_STATUSES">
+            <p class="{{state.REC_COLOR}}">{{state.REC_STATUS}}</p>
+
+        </mat-option>
+    </mat-select>
+</div>

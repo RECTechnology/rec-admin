@@ -23,6 +23,7 @@ import { CopiableComponent } from 'src/components/ui/copiable/copiable.component
 import { IconBtnComponent } from 'src/components/ui/icon-btn/icon-btn.component';
 import { InfoFieldComponent } from 'src/components/ui/info-field/info-field.component';
 import { InputFieldComponent } from 'src/components/ui/input-field/input-field.component';
+import { StatusInputFieldComponent } from 'src/components/ui/status-input-field/status-input-field.component';
 import { RaisedBtnComponent } from 'src/components/ui/raised-btn/raised-btn.component';
 import { ValidateWithdrawalComponent } from 'src/components/validate-withdrawal/validate-withdrawal.component';
 import { AddDocumentKindDia } from 'src/dialogs/entities/add-document-kind/add-document-kind.dia';
@@ -109,6 +110,7 @@ import { CompanyService } from '../services/company/company.service';
 import { MaterialModule } from './md-module';
 
 
+
 const DIALOGS = [
   BussinessDetailsDia,
   ExportDialog,
@@ -191,6 +193,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     IconBtnComponent,
     ModalHeaderComponent,
     InputFieldComponent,
+    StatusInputFieldComponent,
     RaisedBtnComponent,
     DocumentKindsTabComponent,
     DocumentTabComponent,
@@ -246,6 +249,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     IconBtnComponent,
     ModalHeaderComponent,
     InputFieldComponent,
+    StatusInputFieldComponent,
     RaisedBtnComponent,
     DocumentKindsTabComponent,
     DocumentTabComponent,
