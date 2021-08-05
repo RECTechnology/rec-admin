@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.18.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.18.1...v3.18.2) (2021-08-05)
+
+
+### Bug Fixes
+
+* added readme to new delegate change page | fixes [#256](https://github.com/QbitArtifacts/rec-admin/issues/256) ([#305](https://github.com/QbitArtifacts/rec-admin/issues/305)) ([b843857](https://github.com/QbitArtifacts/rec-admin/commit/b843857d72c309300f206a009f1cb67f2925af96))
+* fixed edit account error ([#307](https://github.com/QbitArtifacts/rec-admin/issues/307)) ([fe956bb](https://github.com/QbitArtifacts/rec-admin/commit/fe956bbedc1306a3a6e9710fbd75eac30f2cda5f))
+* some fixes in user page ([#304](https://github.com/QbitArtifacts/rec-admin/issues/304)) ([3995ac0](https://github.com/QbitArtifacts/rec-admin/commit/3995ac0ea9ff4c46a35e8185b67d6f99b05692b3))
+
 ### [3.18.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.18.0...v3.18.1) (2021-08-04)
 
 
