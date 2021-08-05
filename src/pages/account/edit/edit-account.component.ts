@@ -105,7 +105,7 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
       this.loading = true;
       this.crudAccounts.update(this.account_id, changedProps).subscribe({
         next: this.onUpdateOk.bind(this),
-        error: UtilsService.handleValidationError.bind(this, this),
+        error: this.onUpdateError.bind(this),
       });
     } else {
       this.alerts.showSnackbar('Nothing to update', 'ok');
@@ -116,6 +116,12 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
     this.alerts.showSnackbar('Updated account correctly!', 'ok');
     this.loading = false;
     this.loadAccount();
+  }
+
+  
+  private onUpdateError(error) {
+    this.alerts.showSnackbar(error.errors ? error.errors[0].message : error.message, 'ok');
+    this.loading = false;
   }
 
   /* Called when tab change, so url changes also */

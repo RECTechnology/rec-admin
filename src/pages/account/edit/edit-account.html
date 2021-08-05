@@ -18,37 +18,45 @@
   <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)"
     *ngIf="companyService.selectedCompany">
 
+
     <mat-tab label="{{'BASIC_INFO'|translate}}">
-      <tab-basic-info [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
+    <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"></validation-errors>
+    <tab-basic-info [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-basic-info>
     </mat-tab>
 
     <mat-tab label="{{'LOCATION'|translate}}">
+      <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"></validation-errors>
       <tab-location [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-location>
     </mat-tab>
 
     <mat-tab label="{{'CAMPAIGNS'|translate}}">
+      <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"></validation-errors>
       <tab-campaigns [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-campaigns>
     </mat-tab>
 
     <mat-tab label="{{'MARKETING'|translate}}" *ngIf="companyService.selectedCompany.isCompany()">
+      <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"></validation-errors>
       <tab-marketing [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-marketing>
     </mat-tab>
 
     <mat-tab label="{{'B2B'|translate}}" *ngIf="companyService.selectedCompany.isCompany()">
+      <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"></validation-errors>
       <tab-b2b [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-b2b>
     </mat-tab>
 
     <mat-tab label="{{'SCHEDULE'|translate}}" *ngIf="companyService.selectedCompany.isCompany()">
+      <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"></validation-errors>
       <tab-schedule [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-schedule>
     </mat-tab>
 
     <mat-tab label="{{'OFFERS'|translate}}" *ngIf="companyService.selectedCompany.isCompany()">
+      <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"></validation-errors>
       <tab-offers [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-offers>
     </mat-tab>
