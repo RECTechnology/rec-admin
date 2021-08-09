@@ -111,6 +111,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
       },
       (err) => {
         this.generatingReport = false;
+        this.alerts.observableErrorSnackbar(err);
       },
     );
   }
@@ -118,13 +119,16 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public newImport() {
     this.alerts.openModal(CsvUpload, {}).subscribe((resp) => {
       if (resp) {
+        this.dataLoading = true;
         this.adminService.sendChangeDelegateCsv(resp, this.delegate.id).subscribe(
           (respDelegate) => {
             this.alerts.showSnackbar(respDelegate.message, 'ok');
             this.getDelegate();
             this.getDelegateData();
+            this.dataLoading = false;
           },
           (error) => {
+            this.dataLoading = false;
             if (error.data && error.data.length > 0) {
               this.validationErrors = error.data;
             } else {
