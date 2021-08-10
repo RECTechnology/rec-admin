@@ -58,12 +58,7 @@ export class AccountUsersTab implements AfterContentInit {
   // Opens add user modal
   public openViewDetails(elem?, i?) {
     this.router.navigate(['users/' + elem.id]);
-    // this.alerts.openModal(ViewDetails, {
-    //   parent: this,
-    //   user: elem,
-    // }).subscribe(() => {
-    //   this.getUsers();
-    // });
+ 
   }
 
   public openAddUser() {

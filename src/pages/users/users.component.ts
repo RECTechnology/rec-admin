@@ -107,8 +107,8 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
       });
   }
 
-  public openViewDetails(user) {
-    this.router.navigate([`/users/${user.id}`]);
+  public openViewDetails(user,tab = "details") {
+    this.router.navigate([`/users/${user.id}`],{ queryParams: { tab } });
   }
 
   public export() {

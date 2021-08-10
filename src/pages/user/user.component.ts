@@ -29,8 +29,9 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy {
   public tab: string = '';
   public tabMap = {
     details: 0,
-
+    documents:1,
     0: 'details',
+    1: 'documents'
   };
 
   constructor(
@@ -87,7 +88,7 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy {
   /* Called when tab change, so url changes also */
   public changeUrl($event) {
     if (this.user_id) {
-      this.router.navigate(['/user/' + this.user_id], {
+      this.router.navigate(['/users/' + this.user_id], {
         queryParams: { tab: this.tabMap[$event] },
         queryParamsHandling: 'merge',
       });
@@ -95,6 +96,6 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy {
   }
 
   public goBack() {
-    this.router.navigate(['/user']);
+    this.router.navigate(['/users']);
   }
 }

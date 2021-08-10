@@ -3,8 +3,7 @@
         mat-button class="mat-button-menu" (click)="openSelectUser()">
         <div class="center v space-between" style="width: 100%">
             <p  style="width: 100%" *ngIf="areSelectedUser || selectedUser.id !=null; else elseBlock">{{userSelectedString}}</p>
-            <ng-template #elseBlock><p >{{'USER'|translate}}</p></ng-template>
-            
+            <ng-template #elseBlock><p >{{'USER'|translate}}</p></ng-template>     
             <i class="fa fa-caret-down" style="margin-left: 10px"></i>
         </div>
     </button>

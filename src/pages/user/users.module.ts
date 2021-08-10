@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { UserDetailsTab } from './tab_user_details/user_details.tab';
+import { UserDocumentsTab } from './tab_user_documents/tab_user_document';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { UserComponent } from './user.component';
 import { IsLoggedInGuard } from 'src/services/guards/login.guard';
@@ -23,6 +24,7 @@ const userRoutes: Routes = [
   declarations: [
     UserComponent,
     UserDetailsTab,
+    UserDocumentsTab,
    
   ],
   entryComponents: [

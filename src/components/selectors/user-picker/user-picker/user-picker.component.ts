@@ -35,8 +35,6 @@ export class UserPickerComponent   {
   
 
   public ngOnChanges() {
-   
-    console.log(this.id);
     if(this.id ==null){
       this.areSelectedUser = false;
     }

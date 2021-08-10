@@ -35,7 +35,7 @@
                 </account-picker>
             </div>
             <div style="width: 100%" matTooltip="Filter by user" *ngIf="showUserFilter">
-                <user-picker  style="margin: 0" [(id)]="userFilter"
+                <user-picker [disabled]="disableUsertFilter" style="margin: 0" [(id)]="userFilter"
                     (idChange)="search();">
                 </user-picker>
             </div>

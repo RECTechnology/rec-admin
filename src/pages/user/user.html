@@ -5,11 +5,15 @@
 
 
 <app-page [padding]="false">
-  <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)" *ngIf="user">
+  <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)" *ngIf="user"> 
     <mat-tab label="{{'DETAILS'|translate}}">
       <user-details-tab></user-details-tab>
     </mat-tab>
+    <mat-tab label="{{'DOCUMENTS'|translate}}">
+      <user-document-tab [id]="user_id" ></user-document-tab>
+    </mat-tab>
   </mat-tab-group>
+ 
   <div class="center h v padd-30" *ngIf="!user" style="width: 100%">
     <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
     </mat-progress-spinner>

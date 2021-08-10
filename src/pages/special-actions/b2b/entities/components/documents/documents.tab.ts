@@ -33,7 +33,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         
         {
             accessor: (v) => v.user ? v.user.username : null,
-            sortable: true,
+            sortable: false,
             title: 'User',
             type: 'code',
         },
@@ -124,7 +124,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         this.translate.onLangChange.subscribe(() => {
             this.search();
         });
-
+        this.search();
         this.dkCrud.list({ sort: 'name', dir: 'asc', limit: 100 })
             .subscribe((resp) => {
                 this.documentKinds = resp.data.elements;
@@ -164,7 +164,6 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
 
     public search(query?) {
         this.loading = true;
-        
         this.crud.search({
             order: this.sortDir,
             limit: this.limit,
