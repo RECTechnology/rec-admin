@@ -75,6 +75,7 @@ export interface TableListOptions {
     sortEnabled?: boolean;
     getRowClass?: (entry: any) => string;
     onClick?: (entry: any) => void;
+    onClickElement?: (entry: any) => void;
 }
 
 @Component({
@@ -128,7 +129,16 @@ export class TableListTable implements AfterContentInit {
             this.options.onClick(entry);
         }
     }
-
+    public onClickedItemUser(entry: any) {
+        if (this.options.onClickElement) {
+            this.options.onClickElement(`/users/${entry.user.id}`);
+        }
+    }
+    public onClickedItemAccount(entry: any) {
+        if (this.options.onClickElement) {
+            this.options.onClickElement(`/accounts/edit/${entry.account.id}`);
+        }
+    }
     public getRowClass(entry: any) {
         if (this.options.getRowClass) {
             return this.options.getRowClass(entry);
@@ -182,6 +192,7 @@ export class TableListTable implements AfterContentInit {
     }
 
     public changedPage($event) {
+
         this.onChangePage.emit($event);
     }
 
@@ -213,6 +224,7 @@ export class TableListTable implements AfterContentInit {
     }
 
     public navigateTo(data: { link?: string, params?: any } = {}) {
+
         this.router.navigate([data.link], {
             queryParams: data.params,
             queryParamsHandling: 'merge',

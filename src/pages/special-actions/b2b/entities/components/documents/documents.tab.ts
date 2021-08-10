@@ -16,6 +16,7 @@ import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
 import { LW_DOC_STATUS } from 'src/data/lw-constants';
 import { Account } from 'src/shared/entities/account.ent';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'tab-documents',
@@ -78,6 +79,10 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
             
             window.open(element.content, '_blank');
         },
+        onClickElement: (element) => {
+            this.router.navigate([element]);
+        },
+
         getRowClass: (element: Document) => {
             
             const validUntil = new Date(element.valid_until).getTime();
@@ -112,6 +117,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         public alerts: AlertsService,
         public translate: TranslateService,
         public us: UserService,
+        public router: Router,
         public dkCrud: DocumentKindsCrud,
     ) {
         super();

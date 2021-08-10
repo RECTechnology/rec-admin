@@ -60,9 +60,8 @@ export class UserPickerComponent   {
       this.id = null;
       return;
     }
-    this.userSelectedString = this.selectedUser.name + " ("+this.selectedUser.username+")";
-
     this.selectedUser = user;
+    this.userSelectedString = this.selectedUser.name + " ("+this.selectedUser.username+")";
     this.userChange.emit(this.selectedUser);
     this.idChange.emit(this.selectedUser.id);
     this.id = user.id;
