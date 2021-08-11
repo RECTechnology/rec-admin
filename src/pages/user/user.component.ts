@@ -30,8 +30,10 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy {
   public tabMap = {
     details: 0,
     documents:1,
+    userAccounts:2,
     0: 'details',
-    1: 'documents'
+    1:'Documents',
+    2:'userAccounts',
   };
 
   constructor(

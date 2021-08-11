@@ -1154,6 +1154,6 @@
   "ADD_DOCUMENT":"Anyadir document",
   "SELECT_ACCOUNT":"Seleccionar compte",
   "SELECT_USER":"Seleccionar usuari",
-  "USER":"Usuari"
-  
+  "USER":"Usuari",
+  "ALL_ACCOUNTS": "Tots els comptes"
 }

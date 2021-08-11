@@ -47,19 +47,7 @@
         </div>
       </div>
     </div>
-    <div class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
-      <div class="group-col-left" style="padding-top: 15px">
-        <b>{{'Accounts'|translate}}: </b>
-        <div class="group-row-left" style="flex-wrap: wrap; padding: 4px 15px"
-          *ngIf="user.accounts && user.accounts.length">
-          <mat-chip *ngFor="let comp of user.accounts"
-            style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
-            routerLink="/accounts/{{comp.id}}" matTooltip="View account">
-            <avatar [account]="comp" [size]="30"></avatar>
-          </mat-chip>
-        </div>
-      </div>
-    </div>
+   
     <div class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
       <div class="group-col-left" style="padding-top: 15px">
         <b>{{'Actions'|translate}}: </b>

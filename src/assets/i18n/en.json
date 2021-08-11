@@ -577,5 +577,8 @@
   "AMOUNT": "Amount",
   "ADD_DOCUMENT":"add document",
   "SELECT_ACCOUNT":"Select account",
-  "SELECT_USER":"Select user"
+  "SELECT_USER":"Select user",
+  "DISABLED_ACCOUNTS": "Disabled accounts",
+  "ENABLED_ACCOUNTS" : "Enabled accounts",
+  "ALL_ACCOUNTS": "All accounts"
 }

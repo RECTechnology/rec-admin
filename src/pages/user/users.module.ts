@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { UserDetailsTab } from './tab_user_details/user_details.tab';
+import { EnabledDisabledAccountsTab } from './tab_user_enabled_disabled_accounts/tab_user_enabled_disabled_accounts';
 import { UserDocumentsTab } from './tab_user_documents/tab_user_document';
 import { CountryPickerModule } from 'ngx-country-picker';
 import { UserComponent } from './user.component';
@@ -24,8 +25,8 @@ const userRoutes: Routes = [
   declarations: [
     UserComponent,
     UserDetailsTab,
+    EnabledDisabledAccountsTab,
     UserDocumentsTab,
-   
   ],
   entryComponents: [
     UserComponent,

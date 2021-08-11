@@ -1182,7 +1182,8 @@
   "CLOSED": "Cerrado",
   "ADD_DOCUMENT":"Añadir documento",
   "SELECT_ACCOUNT":"seleccionar cuenta",
-  "SELECT_USER":"Seleccionar usuario"
+  "SELECT_USER":"Seleccionar usuario",
+  "ALL_ACCOUNTS": "todas las cuentas"
 
 }
 
