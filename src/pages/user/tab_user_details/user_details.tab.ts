@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EditUserData } from 'src/dialogs/management/edit-user/edit-user.dia';
 import { ManageSms } from 'src/dialogs/management/manage-sms/manage-sms.dia';
 import { ConfirmationMessage } from 'src/dialogs/other/confirmation-message/confirmation.dia';
 import { environment } from 'src/environments/environment';
@@ -25,7 +26,6 @@ export class UserDetailsTab implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     public sms: SmsService,
     public compService: CompanyService,
     public adminService: AdminService,
@@ -71,9 +71,16 @@ export class UserDetailsTab implements OnInit {
   }
 
   public editRoles() {
-    this.parent.openEditUser(this.user, 0);
+    this.openEditUser(this.user, 0);
   }
-
+  public openEditUser(user, i) {
+    this.alerts
+      .openModal(EditUserData, {
+        user,
+      })
+      .subscribe((result) => {
+      });
+  }
   public getPhone() {
     return (this.user.prefix ? '+' + this.user.prefix + ' ' : '') + this.user.phone;
   }
