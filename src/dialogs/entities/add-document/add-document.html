@@ -48,16 +48,16 @@
     
     <div class="col-lg-12 space-between" *ngIf="docKinds && docKinds.length">
       <input-field type="select" [(value)]="item.kind_id" label="Document Kind" [disabled]="isEdit"
-        [options]="docKinds">
+        [options]="docKinds" (valueChange)="checkDocumentKind()">
       </input-field>
     </div>
 
-    <div class="col-lg-12 " style="padding-top: 15px;">
+    <div class="col-lg-12 " *ngIf="!isLemon" style="padding-top: 15px;">
       <status-input-field [(value)]="item.status" label="{{'Status' | translate}}" (valueChange)="setType($event)">
       </status-input-field>
     </div>
 
-    <div class="col-lg-12" style="padding-top: 20px;">
+    <div class="col-lg-12" style="padding-top: 20px;" *ngIf="!isLemon">
       <input-field [(value)]="item.status_text" label="{{'status_text'| translate}}" [disabled]="loading"
         (valueChange)="changeStatusText($event)"></input-field>
     </div>

@@ -97,14 +97,30 @@ export class AddDocumentDia extends BaseDialog {
   public getDocumentKinds() {
     this.dkCrud.list({ limit: 100 })
       .subscribe((resp) => {
+        
         this.docKindsFull = resp.data.elements;
         this.docKinds = this.docKindsFull.map((el) => {
           return {
             value: el.id,
             name: el.name,
           };
+          
         });
+      
+        
       });
+  }
+
+  public checkDocumentKind() {
+   this.docKindsFull.find((el) => {
+      if(el.id === this.item.kind_id){
+        if(el.lemon_doctype != null && el.lemon_doctype != undefined){
+          this.isLemon = true;
+        }else{
+          this.isLemon = false;
+        }
+      }
+    });
   }
 
   public getCrud(data) {
