@@ -5,9 +5,8 @@
     </span>
 
     <mat-select class="mat-button-menu " style="margin-top: 5px;" [ngModel]="value" (ngModelChange)="changed($event)">
-        <mat-option class="state.REC_COLOR" [value]="state.REC_STATUS" *ngFor="let state of REC_STATUSES">
-            <p class="{{state.REC_COLOR}}">{{state.REC_STATUS}}</p>
-
+        <mat-option class="state.REC_COLOR" [value]="status" *ngFor="let status of REC_STATUSES">
+            <p>{{status}}</p>
         </mat-option>
     </mat-select>
 </div>

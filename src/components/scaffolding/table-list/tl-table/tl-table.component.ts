@@ -17,14 +17,14 @@ export interface TlHeader {
     title: string;
     type?: TlHeaderType;
     accessor?: string | ((el: any) => any);
-    statusClass?: ((status: any) => any);
-    link?: (any) => any;
     avatar?: TlHeader;
     image?: TlHeader;
     translate?: boolean;
     buttonImg?: string;
     suffix?: string;
     preffix?: string;
+    statusClass?: ((status: any) => any);
+    link?: (any) => any;
     buttonAction?: (any) => any;
     slideAction?: (any) => any;
     tooltip?: (any) => any;

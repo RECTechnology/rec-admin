@@ -8,10 +8,9 @@ import { User } from 'src/shared/entities/user.ent';
 @Component({
   selector: 'user-picker',
   templateUrl: './user-picker.component.html',
-  styleUrls: ['./user-picker.component.scss']
+  styleUrls: ['./user-picker.component.scss'],
 })
-export class UserPickerComponent   {
-
+export class UserPickerComponent {
   @Input() public user = null;
   @Input() public id = null;
   @Input() public showKeyboard = false;
@@ -20,35 +19,28 @@ export class UserPickerComponent   {
   @Input() public disabled = false;
   @Input() public filters = {};
 
-  public userSelectedString = "";
+  public userSelectedString = '';
   public areSelectedUser = false;
   public isKeyboard = false;
   public selectedUser: any = {};
   public Brand = environment.Brand;
 
-  constructor(
-    public userCrud: UsersCrud,
-    public alerts: AlertsService,
-  ) { }
- 
-
-  
+  constructor(public userCrud: UsersCrud, public alerts: AlertsService) {}
 
   public ngOnChanges() {
-    if(this.id ==null){
+    if (this.id == null) {
       this.areSelectedUser = false;
     }
     this.search();
   }
-  
- 
 
   public openSelectUser() {
-    this.alerts.openModal(UserPickerDiaComponent, {
-      currentid: this.selectedUser && this.selectedUser.id,
-      filters: this.filters,
-    }).subscribe(this.selectUser.bind(this));
-    
+    this.alerts
+      .openModal(UserPickerDiaComponent, {
+        currentid: this.selectedUser && this.selectedUser.id,
+        filters: this.filters,
+      })
+      .subscribe(this.selectUser.bind(this));
   }
 
   public selectUser(user: Partial<User>) {
@@ -59,7 +51,7 @@ export class UserPickerComponent   {
       return;
     }
     this.selectedUser = user;
-    this.userSelectedString = this.selectedUser.name + " ("+this.selectedUser.username+")";
+    this.userSelectedString = this.selectedUser.username + ' (' + this.selectedUser.id + ')';
     this.userChange.emit(this.selectedUser);
     this.idChange.emit(this.selectedUser.id);
     this.id = user.id;
@@ -67,7 +59,8 @@ export class UserPickerComponent   {
   }
 
   public getUser(id) {
-    return this.userCrud.find(id)
+    return this.userCrud
+      .find(id)
       .toPromise()
       .then((resp) => resp.data);
   }
@@ -76,11 +69,11 @@ export class UserPickerComponent   {
     if (this.user && this.user.id) {
       this.getUser(this.user.id)
         .then((user) => this.selectUser(user))
-        .catch((err) => this.selectedUser = {});
+        .catch((err) => (this.selectedUser = {}));
     } else if (this.id) {
       this.getUser(this.id)
         .then((account) => this.selectUser(account))
-        .catch((err) => this.selectedUser = {});
+        .catch((err) => (this.selectedUser = {}));
     } else {
       this.selectedUser = {};
     }
@@ -96,9 +89,7 @@ export class UserPickerComponent   {
       this.selectedUser = { id: this.selectedUser.id };
       this.selectUser(this.selectedUser);
     } else {
-      this.getUser(this.selectedUser.id)
-        .then(this.selectUser.bind(this));
+      this.getUser(this.selectedUser.id).then(this.selectUser.bind(this));
     }
   }
-
 }
