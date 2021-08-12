@@ -579,6 +579,6 @@
   "SELECT_ACCOUNT":"Select account",
   "SELECT_USER":"Select user",
   "DISABLED_ACCOUNTS": "Disabled accounts",
-  "ENABLED_ACCOUNTS" : "Enabled accounts",
+  "ACTIVE_ACCOUNTS" : "Active accounts",
   "ALL_ACCOUNTS": "All accounts"
 }

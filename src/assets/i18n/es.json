@@ -1183,7 +1183,9 @@
   "ADD_DOCUMENT":"Añadir documento",
   "SELECT_ACCOUNT":"seleccionar cuenta",
   "SELECT_USER":"Seleccionar usuario",
-  "ALL_ACCOUNTS": "todas las cuentas"
+  "ALL_ACCOUNTS": "todas las cuentas",
+  "ACTIVE_ACCOUNTS" : "Cuentas activas"
+
 
 }
 

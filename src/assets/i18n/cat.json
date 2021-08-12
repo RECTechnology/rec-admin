@@ -1155,5 +1155,6 @@
   "SELECT_ACCOUNT":"Seleccionar compte",
   "SELECT_USER":"Seleccionar usuari",
   "USER":"Usuari",
-  "ALL_ACCOUNTS": "Tots els comptes"
+  "ALL_ACCOUNTS": "Tots els comptes",
+  "ACTIVE_ACCOUNTS" : "Cuentas activas"
 }

@@ -29,11 +29,11 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy {
   public tab: string = '';
   public tabMap = {
     details: 0,
-    documents:1,
-    userAccounts:2,
+    userAccounts:1,
+    documents:2,
     0: 'details',
-    1:'Documents',
-    2:'userAccounts',
+    1:'userAccounts',
+    2:'documents',
   };
 
   constructor(

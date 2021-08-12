@@ -9,7 +9,7 @@
           <mat-checkbox style="margin-left: 15px; margin-right: 20px;"
             color="primary" [(ngModel)]="enabledAccounts"
             >
-            <span class="small-text">{{'ENABLED_ACCOUNTS' | translate}}</span>
+            <span class="small-text">{{'ACTIVE_ACCOUNTS' | translate}}</span>
           </mat-checkbox>
           <mat-checkbox style="margin-left: 15px; margin-right: 20px;"
             color="primary" [(ngModel)]="disabledAccounts"
@@ -22,7 +22,7 @@
     
         <div class="group-row-left" style="margin-top: 15px;  ">
             <div class="group-col-left" style="padding-top: 15px">
-              <b *ngIf="enabledAccounts && !disabledAccounts">{{'ENABLED_ACCOUNTS'|translate}}: </b>
+              <b *ngIf="enabledAccounts && !disabledAccounts">{{'ACTIVE_ACCOUNTS'|translate}}: </b>
               <b *ngIf="!enabledAccounts && disabledAccounts">{{'DISABLED_ACCOUNTS'|translate}}: </b>
               <b *ngIf="enabledAccounts && disabledAccounts">{{'ALL_ACCOUNTS'|translate}}: </b>
               <div class="group-row-left" style="flex-wrap: wrap; padding: 4px 15px"
@@ -31,14 +31,14 @@
                     <div *ngIf="enabledAccounts && !disabledAccounts">
                       <mat-chip 
                         style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
-                        routerLink="/accounts/{{comp.id}}" matTooltip="View account" *ngIf="comp.enabled">
+                        routerLink="/accounts/{{comp.id}}" matTooltip="View account" *ngIf="comp.active">
                         <avatar  [account]="comp" [size]="30"></avatar>
                        </mat-chip>
                     </div>
                     <div *ngIf="disabledAccounts && !enabledAccounts">
                       <mat-chip 
                         style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
-                        routerLink="/accounts/{{comp.id}}" matTooltip="View account" *ngIf="!comp.enabled">
+                        routerLink="/accounts/{{comp.id}}" matTooltip="View account" *ngIf="!comp.active">
                         <avatar  [account]="comp" [size]="30"></avatar>
                        </mat-chip>
                     </div>

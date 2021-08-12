@@ -43,7 +43,7 @@ export class EnabledDisabledAccountsTab   implements OnInit {
       this.user_id = params.id;
     });
     this.getUser();
-
+    console.log(this.user.accounts)
 
  
   }
@@ -51,7 +51,7 @@ export class EnabledDisabledAccountsTab   implements OnInit {
 
   public getUser() {
     this.usersCrud.find(this.user_id).subscribe((res) => {
-
+      
       this.user = res.data;
     });
  
