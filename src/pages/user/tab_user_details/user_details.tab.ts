@@ -217,19 +217,7 @@ export class UserDetailsTab implements OnInit {
     });
   }
 
-  public openDeleteUser() {
-    this.alerts
-      .showConfirmation(
-        'Are you sure you want to remove user from the sistem? No going back.',
-        'Remove user from system?',
-        { btnConfirmText: 'Delete' },
-      )
-      .subscribe((result) => {
-        if (result) {
-          this.removeUser(this.user);
-        }
-      });
-  }
+
 
   private removeUser(user) {
     this.compService.removeUserFromSystem(user.id).subscribe(
