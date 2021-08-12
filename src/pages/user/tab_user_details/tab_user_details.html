@@ -1,6 +1,6 @@
 <div style="height: 100%; padding: 20px">
   <mat-card>
-    <div class="group-col-left" [ngClass]="{'alert-warning': !user.enabled}">
+    <div class="group-col-left" [ngClass]="{'alert-warning': !user.enabled && user.enabled!=null}">
       <div class="group-row-left center h v">
         <img src="{{user.profile_image || Brand.profile_default_image}}" alt=""
           style="margin-right: 10px; width: 40px; height: 40px; border-radius: 50%;">
@@ -9,7 +9,7 @@
           <i class="col-gray-light">{{user.email || user.dni}}</i>
         </div>
       </div>
-      <p class="small-text" *ngIf="!user.enabled">
+      <p class="small-text" *ngIf="!user.enabled && user.enabled != null">
         {{'USER_DISABLED_DESC'|translate}}
       </p>
     </div>
