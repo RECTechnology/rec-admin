@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.19.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.18.1...v3.19.0) (2021-08-13)
+
+
+### Features
+
+* added accounts tabs, filtered ([#311](https://github.com/QbitArtifacts/rec-admin/issues/311)) ([72d0640](https://github.com/QbitArtifacts/rec-admin/commit/72d0640d1c068608f8dabf7779df7069e5743abc)), closes [#304](https://github.com/QbitArtifacts/rec-admin/issues/304) [#256](https://github.com/QbitArtifacts/rec-admin/issues/256) [#305](https://github.com/QbitArtifacts/rec-admin/issues/305) [#307](https://github.com/QbitArtifacts/rec-admin/issues/307)
+* controled api delay to get if user is enabled ([#326](https://github.com/QbitArtifacts/rec-admin/issues/326)) ([d90aa39](https://github.com/QbitArtifacts/rec-admin/commit/d90aa39c9cde7cbe29402f9697c524ea0da59eb3))
+* deleted button to remove user ([#325](https://github.com/QbitArtifacts/rec-admin/issues/325)) ([82aa3c0](https://github.com/QbitArtifacts/rec-admin/commit/82aa3c09030f1c897ee3329140f1f9c496bc1a8b))
+
+
+### Bug Fixes
+
+* bugs in user page  ([#324](https://github.com/QbitArtifacts/rec-admin/issues/324)) ([463a317](https://github.com/QbitArtifacts/rec-admin/commit/463a3178daeba3b4fd8fe8d578ccccb9c2612835))
+* fixed document status colors, and some other trivial fixes | fixes [#297](https://github.com/QbitArtifacts/rec-admin/issues/297) ([#321](https://github.com/QbitArtifacts/rec-admin/issues/321)) ([6cecfcc](https://github.com/QbitArtifacts/rec-admin/commit/6cecfccfb11964873cdd5f5784a45d5ffc3f671d))
+* **documents:** hide status & status text in lemon documents ([#322](https://github.com/QbitArtifacts/rec-admin/issues/322)) ([de160e3](https://github.com/QbitArtifacts/rec-admin/commit/de160e32b9876972fcc4fdeddfef3dde8742c270)), closes [#304](https://github.com/QbitArtifacts/rec-admin/issues/304) [#256](https://github.com/QbitArtifacts/rec-admin/issues/256) [#305](https://github.com/QbitArtifacts/rec-admin/issues/305) [#307](https://github.com/QbitArtifacts/rec-admin/issues/307) [#316](https://github.com/QbitArtifacts/rec-admin/issues/316) [#309](https://github.com/QbitArtifacts/rec-admin/issues/309) [#312](https://github.com/QbitArtifacts/rec-admin/issues/312) [#313](https://github.com/QbitArtifacts/rec-admin/issues/313) [#304](https://github.com/QbitArtifacts/rec-admin/issues/304) [#256](https://github.com/QbitArtifacts/rec-admin/issues/256) [#305](https://github.com/QbitArtifacts/rec-admin/issues/305) [#307](https://github.com/QbitArtifacts/rec-admin/issues/307) [#310](https://github.com/QbitArtifacts/rec-admin/issues/310) [#304](https://github.com/QbitArtifacts/rec-admin/issues/304) [#256](https://github.com/QbitArtifacts/rec-admin/issues/256) [#305](https://github.com/QbitArtifacts/rec-admin/issues/305) [#307](https://github.com/QbitArtifacts/rec-admin/issues/307)
+* massive txs bugs | fixes [#309](https://github.com/QbitArtifacts/rec-admin/issues/309) ([#312](https://github.com/QbitArtifacts/rec-admin/issues/312)) ([23a1538](https://github.com/QbitArtifacts/rec-admin/commit/23a1538fdcd77a3d184ec4d62a3fc4873caba466))
+
 ### [3.18.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.18.1...v3.18.2) (2021-08-05)
 
 
