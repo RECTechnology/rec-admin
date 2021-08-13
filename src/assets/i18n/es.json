@@ -1024,7 +1024,7 @@
   "Birth Date": "Fecha nacimiento",
   "Street": "Calle",
   "Gender": "Sexo",
-  "Language": "Lenguage",
+  "Language": "Lenguaje",
   "Profile Image": "Imagen de perfil",
   "Document Front": "Documento Delante",
   "Document Rear": "Documento Reverso",
@@ -1184,8 +1184,25 @@
   "SELECT_ACCOUNT":"seleccionar cuenta",
   "SELECT_USER":"Seleccionar usuario",
   "ALL_ACCOUNTS": "todas las cuentas",
+  "EDIT_USER":"Editar usuario",
+  "PUBLIC":"Publico",
+  "VIEW_SMS":"Ver SMS",
+  "CODE_FOR_USER":"Codigo para usuario ",
+  "CODE":"Codigo",
+  "TRIED":"Intentado",
+  "TIMES":".veces",
+  "DISABLE_USER":"DESABILITAR USUARIO",
+  "SURE_DISABLE_USER":"Está seguro de que desea inhabilitar el usuario {{user}}",
+  "ENABLE_USER":"HABILITAR USUARIO",
+  "SURE_ENABLE_USER":"Está seguro de que desea habilitar el usuario {{user}}",
+  "ENABLE":"Habilitar",
+  "RESEND_SMS_CODE":"Reenviar código sms",
+  "SURE_RESEND_SMS":"Estas seguro de que deseas reenviar el código sms a {{phone}}",
+  "RESEND":"Reenviar",
+  "VALIDATE_PHONE":"Validar telefono",
+  "SURE_VALIDATE_PHONE":"Estas seguro de que quieres validar el telefono {{phone}}",
+  "VALIDATE":"Validar",
   "ACTIVE_ACCOUNTS" : "Cuentas activas"
-
-
 }
 
+ 

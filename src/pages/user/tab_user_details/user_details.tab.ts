@@ -78,14 +78,13 @@ export class UserDetailsTab implements OnInit {
       .openModal(EditUserData, {
         user,
       })
-      .subscribe((result) => {
-      });
+      .subscribe((result) => {});
   }
   public getPhone() {
     return (this.user.prefix ? '+' + this.user.prefix + ' ' : '') + this.user.phone;
   }
 
-  public confirm(title, message, customBtnText = null, customBtn = true) {
+  public confirm(title, message, data: any, customBtnText = null, customBtn = true) {
     const ref = this.dialog.open(ConfirmationMessage);
     ref.componentInstance.opts = {
       customBtn,
@@ -97,6 +96,7 @@ export class UserDetailsTab implements OnInit {
 
     ref.componentInstance.title = title;
     ref.componentInstance.message = message;
+    ref.componentInstance.data = data;
     ref.componentInstance.btnConfirmText = 'Close';
     ref.componentInstance.confirmBtnShown = false;
     return ref.afterClosed();
@@ -121,11 +121,7 @@ export class UserDetailsTab implements OnInit {
   }
 
   public resendSMSCode() {
-    this.confirm(
-      'Resend SMS Code',
-      'Are you sure you want to resend sms to: <code>' + this.getPhone() + '</code>',
-      'Resend',
-    ).subscribe((resp) => {
+    this.confirm('RESEND_SMS_CODE', 'SURE_RESEND_SMS', { phone: this.getPhone() }, 'RESEND').subscribe((resp) => {
       if (resp) {
         this.sms.resend(this.user.id).subscribe(
           (resend) => {
@@ -140,11 +136,7 @@ export class UserDetailsTab implements OnInit {
   }
 
   public disableUser() {
-    this.confirm(
-      'Disable User',
-      'Are you sure you want to disable user: <code>' + this.user.id + '</code>',
-      'Disable',
-    ).subscribe((resp) => {
+    this.confirm('DISABLE_USER', 'SURE_DISABLE_USER', { user: this.user.id }, 'Disable').subscribe((resp) => {
       if (resp) {
         this.adminService.deactiveUser(this.user.id).subscribe(
           (deactive) => {
@@ -160,11 +152,7 @@ export class UserDetailsTab implements OnInit {
   }
 
   public enableUser() {
-    this.confirm(
-      'Disable User',
-      'Are you sure you want to disable user: <b>' + this.user.id + '</b>',
-      'Enable',
-    ).subscribe((resp) => {
+    this.confirm('ENABLE_USER', 'SURE_ENABLE_USER', { user: this.user.id }, 'ENABLE').subscribe((resp) => {
       if (resp) {
         this.adminService.activeUser(this.user.id).subscribe(
           (active) => {
@@ -183,7 +171,8 @@ export class UserDetailsTab implements OnInit {
     this.confirm(
       'Reset SMS Code',
       'Are you sure you want to reset the code for phone: <code>' + this.getPhone() + '</code>',
-      'Resend',
+      {},
+      'RESEND',
     ).subscribe((resp) => {
       if (resp) {
         this.sms.reset(this.user.id).subscribe(
@@ -199,11 +188,7 @@ export class UserDetailsTab implements OnInit {
   }
 
   public validatePhone() {
-    this.confirm(
-      'Validate Phone',
-      'Are you sure you want to validate phone: <code>' + this.getPhone() + '</code>',
-      'Validate',
-    ).subscribe((resp) => {
+    this.confirm('VALIDATE_PHONE', 'SURE_VALIDATE_PHONE', { phone: this.getPhone() }, 'VALIDATE').subscribe((resp) => {
       if (resp) {
         this.sms.validate(this.user.id).subscribe(
           (valid) => {

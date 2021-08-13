@@ -3,13 +3,12 @@
 <div class="group-col-left padd-20">
 
   <div>
-    <p>
-      Code for user <b>{{user.name}}</b>
+    <p>{{'CODE_FOR_USER'|translate}}<b>{{user.name}}</b>
     </p>
     <hr>
-    <p>Phone <code>+{{user.prefix || '--'}} {{user.phone}}</code></p>
-    <p>Code: <code>{{code.code}}</code></p>
-    <p class="small-text col-gray-light">Tried <code>{{code.tries}}</code> times.</p>
+    <p>{{'PHONE'|translate}} <code>+{{user.prefix || '--'}} {{user.phone}}</code></p>
+    <p>{{'CODE'|translate}}<code>{{code.code}}</code></p>
+    <p class="small-text col-gray-light">{{'TRIED' |translate}} <code>{{code.tries}}</code> {{'TIMES' | translate}}</p>
   </div>
 
   <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">

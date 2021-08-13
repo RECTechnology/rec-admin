@@ -1,4 +1,4 @@
-<modal-header title="{{'Edit User'|translate}}" (click)="close(false)"></modal-header>
+<modal-header title="{{'EDIT_USER'|translate}}" (click)="close(false)"></modal-header>
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
   <mat-tab-group class="profile-tabs">
@@ -13,7 +13,7 @@
         </div>
 
         <div class="col-lg-6">
-          <input-field [(value)]="userCopy.kyc_validations.last_name" label="Lastname" [disabled]="loading">
+          <input-field [(value)]="userCopy.kyc_validations.last_name" label="{{'Last Name' | translate}}" [disabled]="loading">
           </input-field>
         </div>
 
@@ -32,7 +32,7 @@
             <div class="group-row-left space-between" style="width :100%">
               <span class="small-text-2">{{'Phone'|translate}}</span>
               <mat-checkbox color="primary" [(ngModel)]="userCopy.public_phone">
-                <span class="small-text-2">{{'Public'|translate}}</span>
+                <span class="small-text-2">{{'PUBLIC'|translate}}</span>
               </mat-checkbox>
             </div>
             <div class="row">

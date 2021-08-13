@@ -1,11 +1,11 @@
-<modal-header [status]="status" title="{{title|translate:data}}" (click)="close(false)">
+<modal-header [status]="status" title="{{title|translate: ({data:data})}}" (click)="close(false)">
   <i *ngIf="headerIcon" class="fa fa-{{headerIcon}}" style="margin-right: 10px"></i>
 </modal-header>
 
 <div class="group-col-left padd-20" style="max-width: 50vw">
 
   <div class="group-row-left">
-    <p [innerHTML]="message|translate:data"></p>
+    <p [innerHTML]="message | translate : data"></p>
     <p class="marg-left-10" *ngIf="trailing">{{trailing|translate}}</p>
   </div>
 
