@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.19.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.19.0...v3.19.1) (2021-08-13)
+
+
+### Features
+
+* added some translations to details page ([#323](https://github.com/QbitArtifacts/rec-admin/issues/323)) ([ce93f6b](https://github.com/QbitArtifacts/rec-admin/commit/ce93f6bcc7546996888044a40efa0391f4b54ad0))
+
 ## [3.19.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.18.1...v3.19.0) (2021-08-13)
 
 
