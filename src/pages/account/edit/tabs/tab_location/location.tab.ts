@@ -39,6 +39,7 @@ export class LocationTab {
     delete changedProps.activity_main;
     delete changedProps.kyc_manager;
     delete changedProps.schedule;
+    delete changedProps.level;
     this.accountChanged.emit(changedProps);
   }
 }
