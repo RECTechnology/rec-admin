@@ -25,8 +25,8 @@ export class UserDocumentsTab implements OnInit {
     this.route.params.subscribe((params) => {
       this.user_id = params.id;
     });
+    
     this.getUser();
-
   }
 
   public getUser() {
