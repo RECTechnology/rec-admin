@@ -87,11 +87,11 @@
             <td>
               <span *ngIf="tx.isIn">
                 {{'RECEIVED_CONCEPT_1' | translate}} <b>{{tx.pay_in_info.name_sender}}</b> {{'CONCEPT_2' | translate}}
-                <b>"{{tx.data_in.concept || '...'}}"</b>
+                <b>"{{tx.pay_in_info.concept || '...'}}"</b>
               </span>
               <span *ngIf="!tx.isIn">
                 {{'PAYMENT_CONCEPT_1' | translate}} <b>{{tx.pay_out_info.name_sender}}</b> {{'CONCEPT_2' | translate}}
-                <b>"{{tx.data_in.concept || '...'}}"</b>
+                <b>"{{tx.pay_out_info.concept || '...'}}"</b>
               </span>
             </td>
 

@@ -103,7 +103,6 @@ export class TreasureAccount implements AfterContentInit {
     this.crudAccounts
       .find(+environment.novactId)
       .subscribe(({ data }) => {
-        console.log(data);
         this.caBalance = data.getBalance('REC');
         this.caName = data.name;
       });

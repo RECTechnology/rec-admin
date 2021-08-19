@@ -24,6 +24,8 @@ export class TxDetails extends BaseDialog implements OnInit {
 
   public ngOnInit() {
     this.showRefund = this.transaction.actions && this.transaction.actions.enabled.includes('refund');
+    console.log("Printing transaction");
+    console.log(this.transaction.pay_out_info.concept)
   }
 
   public doRefund() {

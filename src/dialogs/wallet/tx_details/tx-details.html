@@ -87,7 +87,7 @@
       </div>
       <div class="small-text-2 marg-bottom-10">
         <b class="minw-100">{{'Concept'|translate}}: </b>
-        <span>{{transaction.concept || 'No concept'}}</span>
+        <span >{{transaction.pay_out_info.concept || 'No concept'}}</span>
       </div>
       <div *ngIf="transaction.pay_out_info.address" class="small-text-2 marg-bottom-10">
         <b class="minw-100">{{'Address'|translate}}: </b>
