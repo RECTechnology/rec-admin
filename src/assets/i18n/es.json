@@ -849,7 +849,7 @@
   "AUTONOMO_MODELO_036": "Modelo 036 o 037",
   "OFFER_NOT_ACTIVE": "La oferta no esta activa",
   "OFFERS_DESC": "Consulta, administra y añade ofertas a la organización",
-  "CHANGE_PHONE_DESC": "Cambiar el número de teléfono significa que restablecerá la validación para ese usuario y será necesario validarlo nuevamente",
+  "CHANGE_PHONE_DESC": "Cambiar el número de teléfono significa que restablecerá la validación para ese usuario y será necesario validarlo nuevamente (se enviara automaticamente un SMS para volver a validar el telefono)",
   "USER_DISABLED": "El usuario está deshabilitado",
   "USER_DISABLED_DESC": "Este usuario está deshabilitado, puedes habilitarlo nuevamente debajo",
   "Details": "Detalles",
@@ -1202,7 +1202,9 @@
   "VALIDATE_PHONE":"Validar telefono",
   "SURE_VALIDATE_PHONE":"Estas seguro de que quieres validar el telefono {{phone}}",
   "VALIDATE":"Validar",
-  "ACTIVE_ACCOUNTS" : "Cuentas activas"
+  "ACTIVE_ACCOUNTS" : "Cuentas activas",
+  "PHONE_CHANGED":"Nº de teléfono cambiado, sms enviado para validarlo"
+
 }
 
  

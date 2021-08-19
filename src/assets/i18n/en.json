@@ -330,7 +330,7 @@
   "AUTONOMO_MODELO_036": "Model 036 or 037",
   "OFFER_NOT_ACTIVE": "Offer is not active",
   "OFFERS_DESC": "View manage and add offers to organization",
-  "CHANGE_PHONE_DESC": "Changing the phone number means it will reset the validation for that user and it will need to be validated again",
+  "CHANGE_PHONE_DESC": "Changing the phone number means it will reset the validation for that user and it will need to be validated again(an SMS will be sent automatically to revalidate the phone)",
   "USER_DISABLED": "User is disabled",
   "USER_DISABLED_DESC": "This user is disabled, you can enable it again below",
   "NATIONALITY": "Nationality",
@@ -580,7 +580,6 @@
   "SELECT_USER":"Select user",
   "DISABLED_ACCOUNTS": "Disabled accounts",
   "ENABLED_ACCOUNTS" : "Enabled accounts",
-  "ALL_ACCOUNTS": "All accounts",
   "EDIT_USER":"Edit user",
   "PUBLIC":"Public",
   "Language": "Language",
@@ -601,5 +600,9 @@
   "SURE_VALIDATE_PHONE":"Are you sure you want validate phone {{phone}}",
   "VALIDATE":"Validate",
   "ACTIVE_ACCOUNTS" : "Active accounts",
-  "ALL_ACCOUNTS": "All accounts"
+  "ALL_ACCOUNTS": "All accounts",
+  "PHONE_CHANGED":"Phone number changed, sms sent to validate it."
+
+
+
 }

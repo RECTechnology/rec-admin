@@ -43,7 +43,6 @@ export class EnabledDisabledAccountsTab   implements OnInit {
       this.user_id = params.id;
     });
     this.getUser();
-    console.log(this.user.accounts)
 
  
   }

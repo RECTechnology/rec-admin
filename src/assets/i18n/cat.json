@@ -860,7 +860,7 @@
   "AUTONOMO_MODELO_036": "Model 036 o 037",
   "OFFER_NOT_ACTIVE": "L'oferta no esta activa",
   "OFFERS_DESC": "Consulta, administra i afegix ofertes a l'organització",
-  "CHANGE_PHONE_DESC": "El canvi del número de telèfon significa que restablirà la validació per a aquest usuari i s'haurà de tornar a validar",
+  "CHANGE_PHONE_DESC": "El canvi del número de telèfon significa que restablirà la validació per a aquest usuari i s'haurà de tornar a validar(s'enviés automàticament un SMS per a tornar a validar el telèfon)",
   "USER_DISABLED": "L'usuari està deshabilitat",
   "USER_DISABLED_DESC": "Aquest usuari està deshabilitat, pots habilitar novament sota",
   "Details": "Detalls",
@@ -1171,5 +1171,7 @@
   "RESEND_SMS_CODE":"Reexpedir codi sms",
   "SURE_RESEND_SMS":"Estas segur que desitges reexpedir el codi sms{{data}}",
   "RESEND":"Reexpedir",
-  "ACTIVE_ACCOUNTS" : "Cuentas activas"
+  "ACTIVE_ACCOUNTS" : "Cuentas activas",
+  "ALERT_RESEND_SMS":"Se enviara automaticamente un SMS automatico para volver a validar el telefono",
+  "PHONE_CHANGED":"Núm. de telèfon canviat, sms enviat per a validar-ho"
 }

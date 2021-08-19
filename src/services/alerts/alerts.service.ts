@@ -67,6 +67,7 @@ export class AlertsService {
      */
     // TODO: Need to change modals to accept new way of passing parameters
     for (const key in props) {
+
       if (key) {
         dialogRef.componentInstance[key] = props[key];
       }

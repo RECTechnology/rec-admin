@@ -96,12 +96,14 @@ export class EditUserData {
           await this.adminService.updateUserPhone(id, changedProps.prefix, changedProps.phone)
             .toPromise()
             .then(() => {
-              return this.alerts.showSnackbar('Phone number changed correctly (needs to be validated)', 'ok');
+              return this.alerts.showSnackbar('PHONE_CHANGED', 'ok');
             });
           await new Promise((resolve) => setTimeout(resolve, 3000));
         } catch (error) {
           return this.alerts.showSnackbar(error.message, 'ok');
         }
+      }else{
+        return;
       }
       delete changedProps.prefix;
       delete changedProps.phone;
@@ -110,10 +112,11 @@ export class EditUserData {
     if (kycId && Object.keys(changedPropsKyc).length) {
       promises.push(this.adminService.updateUserKyc(kycId, changedPropsKyc));
     }
-
+    
     if (promises.length) {
       forkJoin(promises)
         .subscribe((resp) => {
+
           this.alerts.showSnackbar('Saved correctly', 'ok');
           this.close();
         }, (error) => {
@@ -121,6 +124,7 @@ export class EditUserData {
           this.close();
         });
     } else {
+
       this.alerts.showSnackbar('Nothing to update', 'ok');
     }
   }
