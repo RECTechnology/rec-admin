@@ -60,7 +60,7 @@
           <td>{{user.email}}</td>
           <td *ngIf="!utils.isMobileDevice">{{user.roles[0]}}</td>
           <td>
-            <button mat-icon-button [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
+            <button mat-icon-button (click)="$event.stopPropagation()" [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
               <span class="center h v">
                 <i class="fa fa-ellipsis-v"></i>
               </span>
