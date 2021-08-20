@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.19.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.19.1...v3.19.2) (2021-08-20)
+
+
+### Features
+
+* added concept in movements user ([#332](https://github.com/QbitArtifacts/rec-admin/issues/332)) ([8ade02e](https://github.com/QbitArtifacts/rec-admin/commit/8ade02e92708d6b6cf3df8eb968b1a340befa8bc))
+
+
+### Bug Fixes
+
+* account users menu not clicable | fixes [#336](https://github.com/QbitArtifacts/rec-admin/issues/336) ([8548537](https://github.com/QbitArtifacts/rec-admin/commit/8548537a882d419d07243d1ff4f96603a5404f39))
+* fixed sending level on edit location [#619](https://github.com/QbitArtifacts/rec-admin/issues/619) ([6d7ba13](https://github.com/QbitArtifacts/rec-admin/commit/6d7ba13c829664fa8332515bbbd70173bf85cf0b))
+* user tab documents ([#328](https://github.com/QbitArtifacts/rec-admin/issues/328)) ([0977301](https://github.com/QbitArtifacts/rec-admin/commit/0977301454528c94504f57dae191091760bcfb31))
+
 ### [3.19.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.19.0...v3.19.1) (2021-08-13)
 
 
