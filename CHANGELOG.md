@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.19.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.19.2...v3.19.3) (2021-09-03)
+
+
+### Bug Fixes
+
+* fixed invalid properties sent on edit account ([51eea26](https://github.com/QbitArtifacts/rec-admin/commit/51eea26efc2630e0df50af3e01d2fd5427d43644))
+
 ### [3.19.2](https://github.com/QbitArtifacts/rec-admin/compare/v3.19.1...v3.19.2) (2021-08-20)
 
 
