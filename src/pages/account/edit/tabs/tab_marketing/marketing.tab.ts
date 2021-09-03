@@ -28,6 +28,10 @@ export class MarketingTab {
 
   public update() {
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
+    delete changedProps.activity_main;
+    delete changedProps.kyc_manager;
+    delete changedProps.schedule;
+    delete changedProps.level;
     this.accountChanged.emit(changedProps);
   }
 }
