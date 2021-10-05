@@ -26,7 +26,7 @@
       </div>
       <div class="small-text-2 marg-bottom-10">
         <b class="minw-100">{{'Amount'|translate}}: </b>
-        <span class="monospace col-blue">{{scaleNum(transaction.amount, transaction.scale)}} {{transaction.currency}}</span>
+        <span class="monospace col-blue">{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
       </div>
       <div class="small-text-2 marg-bottom-10" *ngIf="transaction.ip">
         <b class="minw-100">IP: </b>
@@ -41,7 +41,7 @@
     <div class="group-col-left padd-20" *ngIf="transaction.pay_in_info">
       <div class="small-text-2 marg-bottom-10">
         <b class="minw-100">{{'Amount'|translate}}: </b>
-        <span class="monospace">{{transaction.unitsScaled}} {{transaction.currency}}</span>
+        <span class="monospace">{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
       </div>
       <div class="small-text-2 marg-bottom-10">
         <b class="minw-100">{{'Price'|translate}}: </b>
@@ -49,7 +49,7 @@
       </div>
       <div class="small-text-2 marg-bottom-10">
         <b class="minw-100">{{'Total'|translate}}: </b>
-        <span class="monospace">{{transaction.unitsScaled}} {{transaction.currency}} = {{(transaction.actual_price * transaction.unitsScaled)|number:'1.0-8'}}
+        <span class="monospace">{{transaction.unitsScaled }} {{transaction.currency}} = {{(transaction.actual_price * transaction.unitsScaled)|number:'1.0-8'}}
           {{transaction.scales.from}}
         </span>
       </div>
@@ -73,7 +73,7 @@
     <div class="group-col-left padd-20" *ngIf="transaction.pay_out_info">
       <div class="small-text-2 marg-bottom-10">
         <b class="minw-100">{{'Amount'|translate}}: </b>
-        <span class="monospace">{{transaction.unitsScaled}} {{transaction.currency}}</span>
+        <span class="monospace">{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
       </div>
       <div class="small-text-2 marg-bottom-10" *ngIf="transaction.actual_price && transaction.data_in">
         <b class="minw-100">Price: </b>
