@@ -37,8 +37,9 @@ export const AccountsExportDefaults: KvpItem[] = [
     { key: 'neighbourhood_id', value: '$.neighbourhood.id', active: true },
     { key: 'neighbourhood_name', value: '$.neighbourhood.name', active: true },
     { key: 'activities', value: '$.activities[*].name_es', active: true },
-    { key: 'activity_main_name', value: '$.activity_main.name_es', active: true },
+ { key: 'activity_main_name', value: '$.activity_main.name_es', active: true },
     { key: 'activity_main_id', value: '$.activity_main.id', active: true },
+   
 ];
 
 // tslint:disable-next-line: variable-name

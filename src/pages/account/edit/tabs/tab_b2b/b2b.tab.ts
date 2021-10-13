@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Account } from 'src/shared/entities/account.ent';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -10,6 +10,7 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { map } from 'rxjs/internal/operators/map';
+import { Activity } from 'src/shared/entities/translatable/activity.ent';
 
 @Component({
   selector: 'tab-b2b',
@@ -32,6 +33,7 @@ export class B2BTab {
   public actMainQuery = '';
   public activities = [];
   public activitiesSelected = [];
+  public activityTest: Activity;
   public lang: any = 'esp';
   public langMap = {
     cat: 'ca',
@@ -57,7 +59,23 @@ export class B2BTab {
 
     this.activitiesCrud
       .list({ limit: 300, sort: 'name', order: 'asc' }, this.lang)
-      .subscribe((resp) => (this.activities = resp.data.elements));
+      .subscribe((resp) => this.getActivities(resp.data.elements));
+  }
+
+  public getActivities(resp = []) {
+    this.activities = resp;
+    this.getSubActivities(this.activities);
+    
+  }
+  public getSubActivities(activities = []){
+    if (this.accountCopy.activity_main.parent != null) {
+      for (let activity of activities) {
+
+        if (activity.id == this.accountCopy.activity_main.parent) {
+          this.accountCopy.subActivity = activity;
+        }
+      }
+    }
   }
 
   public ngOnInit() {
@@ -76,7 +94,31 @@ export class B2BTab {
 
     this.setupDebounce(this.searchConsumed.nativeElement);
     this.setupDebounce(this.searchProduced.nativeElement);
+
+
   }
+
+  public ngOnChanges(changes: SimpleChanges) {
+
+    if ('account' in changes) {
+      this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
+
+      if (this.account.activity_main) {
+        this.account.activity_main_id = this.account.activity_main.id;
+      } else {
+        this.account.activity_main_id = 'none';
+        this.account.activity_main = { id: 'none' };
+      }
+
+      this.accountCopy = { ...this.account };
+      this.activitiesSelected = this.accountCopy.activities.slice();
+      delete this.accountCopy.kyc_validations;
+      this.getSubActivities(this.activities);
+
+
+    }
+  }
+
 
   public setupDebounce(element) {
     fromEvent(element, 'keyup')
@@ -102,8 +144,24 @@ export class B2BTab {
   }
 
   public addMainActivity(act_id) {
+
     this.accountCopy.activity_main_id = act_id;
     this.accountCopy.activity_main.id = act_id;
+
+    this.update();
+  }
+  public addSubMainActivity(act_id) {
+
+    this.accountCopy.activity_main_id = act_id;
+    this.accountCopy.activity_main.id = act_id;
+
+    for (let activity of this.activities) {
+
+      if (activity == this.accountCopy.activity_main.parent) {
+        this.accountCopy.subActivity = activity;
+      }
+    }
+
     this.update();
   }
 
@@ -190,8 +248,11 @@ export class B2BTab {
   }
 
   public update() {
+
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
     delete changedProps.activity_main;
+    delete changedProps.kyc_manager;
+    delete changedProps.level;
     this.accountChanged.emit(changedProps);
   }
 }

@@ -26,7 +26,8 @@ export interface Account {
   association: string;
   activities: Activity[];
   campaigns: Campaign[];
-
+  activityMain: any;
+  subActivity: any;
   consuming_products: Product[];
   cash_in_tokens: any[];
   category: Category;
@@ -45,7 +46,6 @@ export interface Account {
   pos?: Pos;
 
   id: number;
-  kyc_manager: User;
   latitude: number;
   lemon_id: string;
   level_id: number | string;
@@ -115,7 +115,7 @@ export class Account implements Account {
         } else if (prop === 'level') {
           this[prop] = new Tier(accountInfo[prop]);
           this.level_id = this[prop].id;
-        } else if (prop === 'schedule') {
+        }else if (prop === 'schedule') {
           this[prop] = Schedule.fromJsonString(accountInfo[prop]);
           this['scheduleString'] = accountInfo[prop] as string;
         } else {

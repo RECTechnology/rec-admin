@@ -80,7 +80,23 @@
         <p class="small-text-2">{{'MAIN_ACTIVITY'|translate}}</p>
         <button [matMenuTriggerFor]="mainAct" [disabled]="loading" type="button" mat-button class="mat-button-menu"
           style="margin-top: 5px; width: 100%">
-          <span>{{accountCopy.activity_main ? (accountCopy.activity_main | tolang) : 'MAIN_ACTIVITY'|translate}}</span>
+          <span *ngIf="accountCopy.subActivity == null;else other">{{accountCopy.activity_main ?
+            (accountCopy.activity_main | tolang) : 'MAIN_ACTIVITY'|translate}}</span>
+          <ng-template #other>
+            <span>{{accountCopy.subActivity ? (accountCopy.subActivity | tolang) :
+              'SECONDARY_ACTIVITIES'|translate}}</span>
+
+          </ng-template>
+          <i class="fa fa-caret-down" style="margin-left: 8px"></i>
+        </button>
+
+        <button [matMenuTriggerFor]="subMainAct" [disabled]="loading" type="button" mat-button class="mat-button-menu"
+          style="margin-top: 5px; width: 100%">
+          <span *ngIf="accountCopy.subActivity != null;else other">{{accountCopy.activity_main ?
+            (accountCopy.activity_main | tolang) : 'MAIN_ACTIVITY'|translate}}</span>
+          <ng-template #other>
+            <span>{{'SECONDARY_ACTIVITIES'|translate}}</span>
+          </ng-template>
           <i class="fa fa-caret-down" style="margin-left: 8px"></i>
         </button>
 
@@ -90,6 +106,17 @@
           <ng-template ngFor let-act [ngForOf]="activities" [ngForTrackBy]="trackByFn">
             <button *ngIf="accountCopy.activity_main_id !== act.id && matchesActivity(act, actQuery)" mat-menu-item
               (click)="addMainActivity(act.id); actQuery = ''" style="padding: 5px auto">
+              <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
+            </button>
+          </ng-template>
+        </mat-menu>
+        <mat-menu #subMainAct="matMenu" y-position="below" overlapTrigger="false">
+          <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
+             (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
+          <ng-template ngFor let-act [ngForOf]="activities" [ngForTrackBy]="trackByFn">
+            <button
+              *ngIf="accountCopy.activity_main_id !== act.id && matchesActivity(act, actQuery) && act.parent ==accountCopy.activity_main_id "
+              mat-menu-item (click)="addSubMainActivity(act.id); actQuery = ''" style="padding: 5px auto">
               <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
             </button>
           </ng-template>
