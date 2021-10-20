@@ -1,0 +1,5 @@
+<base-picker [items]="items" [item]="item" (onSearch)="search($event)" [isLoading]="isLoading">
+  <ng-template let-item>
+    {{item | tolang}}
+  </ng-template>
+</base-picker>

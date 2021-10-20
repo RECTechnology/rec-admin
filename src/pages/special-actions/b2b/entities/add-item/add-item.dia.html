@@ -10,7 +10,8 @@
 
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
     <div class="padd-20" style="width: 100%">
-        <p style="padding-bottom: 15px">{{(!isEdit ? 'ADD_ITEM_DESC': 'EDIT_ITEM_DESC')|translate:({ type: itemType })}}
+        <p style="padding-bottom: 15px">
+            {{(!isEdit ? 'ADD_ITEM_DESC': 'EDIT_ITEM_DESC')|translate:({ type: itemType })}}
         </p>
 
         <div class="row" style="width: 100%">
@@ -30,12 +31,11 @@
                     <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.name"
                         placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
-                <div class="group-col-left" style="width: 100%" *ngIf="!isProduct">
-                    <span class="small-text-2">{{'UPC_CODE'|translate}}</span>
-                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.upc_code"
-                        placeholder="{{'UPC_CODE'|translate}}" [disabled]="loading" (blur)="check()">
-                </div>
+                <div  style="width: 100%" >
+                    <activity-picker label="SUB_ACTIVITY" [(item)]="item.activity"></activity-picker>
+                 </div>
             </div>
+            
             <div class="col-lg-8" *ngIf="isProduct && isEdit">
                 <div class="row">
                     <div class="col-lg-6">
@@ -111,6 +111,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-8" *ngIf="isProduct && !isEdit">
                 <div class="alert alert-primary">
                     <p class="small-text-2 text-primary">

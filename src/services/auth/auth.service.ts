@@ -99,6 +99,7 @@ export class LoginService extends BaseService {
       `${API_URL}/oauth/v3/token`,
       {
         client_id: clientID,
+        platform : "rec-admin",
         client_secret: clientSecret,
         grant_type: 'password',
         password,

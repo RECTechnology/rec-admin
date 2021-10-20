@@ -1203,7 +1203,8 @@
   "SURE_VALIDATE_PHONE":"Estas seguro de que quieres validar el telefono {{phone}}",
   "VALIDATE":"Validar",
   "ACTIVE_ACCOUNTS" : "Cuentas activas",
-  "PHONE_CHANGED":"Nº de teléfono cambiado, sms enviado para validarlo"
+  "PHONE_CHANGED":"Nº de teléfono cambiado, sms enviado para validarlo",
+  "LOADING": "Cargando"
 
 }
 

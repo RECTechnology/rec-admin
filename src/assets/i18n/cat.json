@@ -1173,5 +1173,6 @@
   "RESEND":"Reexpedir",
   "ACTIVE_ACCOUNTS" : "Cuentas activas",
   "ALERT_RESEND_SMS":"Se enviara automaticamente un SMS automatico para volver a validar el telefono",
-  "PHONE_CHANGED":"Núm. de telèfon canviat, sms enviat per a validar-ho"
+  "PHONE_CHANGED":"Núm. de telèfon canviat, sms enviat per a validar-ho",
+  "LOADING": "Carregant"
 }

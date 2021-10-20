@@ -59,6 +59,8 @@ import { AddItemDia } from 'src/pages/special-actions/b2b/entities/add-item/add-
 import { ActivitiesTabComponent } from 'src/pages/special-actions/b2b/entities/components/activities/activities.tab';
 import { DocumentTabComponent } from 'src/pages/special-actions/b2b/entities/components/documents/documents.tab';
 import { DocumentKindsTabComponent } from 'src/pages/special-actions/b2b/entities/components/document_kinds/document-kinds.tab';
+import { ActivityPicker } from 'src/components/selectors/activity-picker/activity-picker';
+import { BasePicker } from 'src/components/selectors/base-picker/base-picker';
 import { AddNeighbourhoodDia } from 'src/pages/special-actions/b2b/entities/components/neighborhoods/add/add.dia';
 import { NeighborhoodsTabComponent } from 'src/pages/special-actions/b2b/entities/components/neighborhoods/neighborhoods.tab';
 import { ProductsTabComponent } from 'src/pages/special-actions/b2b/entities/components/products/products.tab';
@@ -196,6 +198,8 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     StatusInputFieldComponent,
     RaisedBtnComponent,
     DocumentKindsTabComponent,
+    ActivityPicker,
+    BasePicker,
     DocumentTabComponent,
     TiersTabComponent,
     FileSelector,
@@ -252,6 +256,8 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     StatusInputFieldComponent,
     RaisedBtnComponent,
     DocumentKindsTabComponent,
+    ActivityPicker,
+    BasePicker,
     DocumentTabComponent,
     TiersTabComponent,
     FileSelector,

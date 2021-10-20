@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { Activity } from 'src/shared/entities/translatable/activity.ent';
 
 @Component({
     selector: 'add-item',
@@ -30,7 +31,8 @@ export class AddItemDia {
         name_ca: '',
         name_es: '',
         name: '',
-        upc_code: '',
+        activity: Activity,
+
     };
 
     public langMap = {
@@ -48,8 +50,17 @@ export class AddItemDia {
         public alerts: AlertsService,
     ) {
         this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' }, this.langMap[this.us.lang])
-            .subscribe((resp) => this.activities = resp.data.elements);
+            .subscribe((resp) =>this.setActivities(resp));
     }
+
+    public setActivities(resp:any){
+       
+        this.activities = resp.data.elements;
+        this.ngOnChanges();
+    }
+
+    public ngOnChanges() {
+      }
 
     public addedSubscriber(sub, message = 'Added activity') {
         sub.subscribe(
@@ -62,6 +73,12 @@ export class AddItemDia {
                 this.loading = false;
             });
     }
+
+    public trackByFn(i, item) {
+        return item.id;
+      }
+
+    
 
     public deletedSubscriber(sub, message = 'Deleted activity') {
         sub.subscribe(
@@ -110,12 +127,15 @@ export class AddItemDia {
 
     public ngOnInit() {
         this.check();
+       
+
     }
 
     public add() {
         this.item.name_ca = this.item.name_ca.trim();
         this.item.name_es = this.item.name_es.trim();
         this.item.name = this.item.name.trim();
+        this.item.activity = 
         this.dialogRef.close({ ...this.item });
     }
 
@@ -126,7 +146,7 @@ export class AddItemDia {
     public nameMatches(name: string) {
         return String(name).toLowerCase().includes(this.actQuery.toLowerCase());
     }
-
+    // TODO: revisar esto   
     public check() {
         // if (!this.item.esp || !this.item.eng || !this.item.cat) {
         //     const field: string = [

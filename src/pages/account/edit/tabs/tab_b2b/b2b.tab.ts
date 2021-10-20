@@ -50,7 +50,7 @@ export class B2BTab {
     public productsCrud: ProductsCrud,
     public activitiesCrud: ActivitiesCrud,
     public us: UserService,
-  ) {
+  ) { 
     this.lang = this.langMap[us.lang];
 
     this.productsCrud
