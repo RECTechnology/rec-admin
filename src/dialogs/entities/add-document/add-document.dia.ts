@@ -125,9 +125,15 @@ export class AddDocumentDia extends BaseDialog {
 
     this.loading = true;
     let data: any = { ...this.item };
+    if (data.valid_until) {
 
+     data.valid_until = moment(data.valid_until).local().toISOString(true);
+
+    }
     if (this.isEdit) {
+  
       data = UtilsService.deepDiff({ ...data }, this.itemCopy);
+     
     }
 
     if (!Object.keys(data).length) {
@@ -137,9 +143,7 @@ export class AddDocumentDia extends BaseDialog {
     const crud = this.getCrud(data);
     delete data.kind;
 
-    if (data.valid_until) {
-      data.valid_until = moment(data.valid_until).local().toISOString(true);
-    }
+    
     if (data.auto_fetched) {
       data.auto_fetched = false;
     }
