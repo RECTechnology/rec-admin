@@ -31,11 +31,14 @@
                     <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.name"
                         placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
-                <div  style="width: 100%" >
-                    <activity-picker label="SUB_ACTIVITY" [(item)]="item.activity"></activity-picker>
-                 </div>
+                <div *ngIf="!isProduct" style="width: 100%">
+                    <activity-picker label="PARENT_ACTIVITY" [item]="secondary_activity" (itemChanged)="selectActivity($event)">
+                    </activity-picker>
+                </div>
+                
+
             </div>
-            
+
             <div class="col-lg-8" *ngIf="isProduct && isEdit">
                 <div class="row">
                     <div class="col-lg-6">
@@ -56,22 +59,8 @@
                         </div>
 
                         <!--  -->
-                        <button [matMenuTriggerFor]="actMenu" [disabled]="loading" type="button" mat-button
-                            class="mat-button-menu" style="margin-top: 5px; width: 100%">
-                            <span>{{'ACTIVITY'|translate}}</span>
-                            <i class="fa fa-caret-down" style="margin-left: 8px"></i>
-                        </button>
-                        <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
-                            <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-                                 (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
-                            <ng-template ngFor let-act [ngForOf]="activities">
-                                <button
-                                    *ngIf="item.default_consuming_by && !item.default_consuming_by.includes(act) && nameMatches(act.name)"
-                                    mat-menu-item (click)="addConsumed(act); actQuery = ''" style="padding: 5px auto">
-                                    <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
-                                </button>
-                            </ng-template>
-                        </mat-menu>
+                        <activity-picker label="ACTIVITY" [showSelection]="false" [item]="item.default_producing_by"
+                                (itemChanged)="addConsumed($event)" [parent]="null"></activity-picker>
                     </div>
                     <div class="col-lg-6">
                         <p class="small-text-2">{{'ACTIVITIES_PRODUCED'|translate}}</p>
@@ -92,22 +81,9 @@
                         </div>
 
                         <!--  -->
-                        <button [matMenuTriggerFor]="actMenu2" [disabled]="loading" type="button" mat-button
-                            class="mat-button-menu" style="margin-top: 5px; width: 100%">
-                            <span>{{'ACTIVITY'|translate}}</span>
-                            <i class="fa fa-caret-down" style="margin-left: 8px"></i>
-                        </button>
-                        <mat-menu #actMenu2="matMenu" y-position="below" overlapTrigger="false">
-                            <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="actQuery"
-                                (click)="$event.stopPropagation()" placeholder="{{'Search Activities'|translate}}">
-                            <ng-template ngFor let-act [ngForOf]="activities">
-                                <button
-                                    *ngIf="item.default_producing_by && !item.default_producing_by.includes(act) && nameMatches(act.name)"
-                                    mat-menu-item (click)="addProduced(act);actQuery = ''" style="padding: 5px auto">
-                                    <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
-                                </button>
-                            </ng-template>
-                        </mat-menu>
+                        <activity-picker [showSelection]="false"label="ACTIVITY"  
+                        (itemChanged)="addProduced($event)" [parent]="null"></activity-picker>
+                        
                     </div>
                 </div>
             </div>

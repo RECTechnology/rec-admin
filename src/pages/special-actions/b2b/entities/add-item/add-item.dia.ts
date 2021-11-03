@@ -18,6 +18,8 @@ export class AddItemDia {
     public error: string;
     public loading: boolean = false;
     public disabled: boolean = false;
+    public secondary_activity = null;
+    public auxiliarItem:any;
 
     public actQuery = '';
 
@@ -70,6 +72,9 @@ export class AddItemDia {
             },
             (error) => {
                 this.alerts.showSnackbar(error.message, 'ok');
+                if(error.message=="Duplicated resource (duplicated entry)"){
+                    this.item.default_consuming_by.pop();
+                }
                 this.loading = false;
             });
     }
@@ -126,16 +131,34 @@ export class AddItemDia {
     }
 
     public ngOnInit() {
+
+        if(this.item.parent != null){
+            this.secondary_activity = this.item.parent;
+
+        }
         this.check();
        
 
     }
-
+    public selectParentActivity(item) {
+        this.item = item;
+    
+        // Aqui seteamos secondary_activity a null, para que tengan que volver a seleccionar una subactivity
+        // Esto se hace porque cuando se selecciona un parent diferente, las subactivities son otras, por lo que tenemos que resetear el campo
+        this.secondary_activity = null;
+      }
+      public selectActivity(item) {
+        this.secondary_activity = item;
+ 
+      }
     public add() {
+        if( this.secondary_activity !=null){
+             
+            this.item.parent_id = this.secondary_activity.id;
+        }
         this.item.name_ca = this.item.name_ca.trim();
         this.item.name_es = this.item.name_es.trim();
-        this.item.name = this.item.name.trim();
-        this.item.activity = 
+        this.item.name = this.item.name.trim();     
         this.dialogRef.close({ ...this.item });
     }
 

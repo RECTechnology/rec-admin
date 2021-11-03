@@ -46,6 +46,7 @@ export class ActivitiesTabComponent extends EntityTabBase<Activity> {
     }
 
     public editActivities(activity) {
+
         this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
             .subscribe((proceed) => {
                 if (proceed) {
@@ -60,6 +61,7 @@ export class ActivitiesTabComponent extends EntityTabBase<Activity> {
                                 name_ca: updated.name_ca,
                                 name_es: updated.name_es,
                                 name: updated.name,
+                                parent_id: updated.parent_id,
                                 upc_code: updated.upc_code,
                             }, 'en').subscribe(
                                 (resp) => {
@@ -89,6 +91,7 @@ export class ActivitiesTabComponent extends EntityTabBase<Activity> {
                     name: created.name,
                     name_es: created.name_es,
                     name_ca: created.name_ca,
+                    parent_id: created.parent_id,
                     description: '',
                     upc_code: created.upc_code,
                 }, 'en')

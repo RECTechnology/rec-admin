@@ -602,7 +602,9 @@
   "ACTIVE_ACCOUNTS" : "Active accounts",
   "ALL_ACCOUNTS": "All accounts",
   "PHONE_CHANGED":"Phone number changed, sms sent to validate it.",
-  "LOADING": "Cargando"
+  "LOADING": "Cargando",
+  "PARENT_ACTIVITY": "Parent Activity",
+  "SUB_ACTIVITY": "Secondary Activity"
 
 
 

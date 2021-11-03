@@ -1,40 +1,48 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   template: '',
+  selector: 'test',
 })
 export abstract class BaseSelectorComponent {
   @Input() public items: any[] = [];
-  @Input() public item: any = null;
   @Input() public disabled: boolean = false;
-  @Output() public itemChange: EventEmitter<any> = new EventEmitter();
+  @Input() public hasParent = true;
+  @Input() public label = 'SELECTOR';
+  @Input() showSelection  = true;
+
+  @Input() public item: any = null;
+  @Output() public itemChanged: EventEmitter<any> = new EventEmitter();
 
   public itemQuery: string;
   public isLoading = false;
 
   /* istanbul ignore next */
   selectItem(item) {
-    this.item = item;
-    this.itemChange.emit(item);
+    this.itemChanged.emit(item);
   }
 
   public abstract getSearchObservable(query: string): Observable<any>;
 
-  /* istanbul ignore next */
+  /** Esto es para selecciona el elemento que se el pasa,
+    * porque a veces `this.item` es una copia del objecto que recibimos de la api
+    * (javascript si el objeto es igual pero se copia, ya no lo trata como igual, por eso tenemos que comprobarlo por id)
+    */
   public setInitialValue() {
     const selectedItemId = (this.item && this.item.id) || this.item;
 
     if (selectedItemId !== null) {
       const item = this.items.find((el) => el.id === selectedItemId);
       if (item) {
-        return this.setSelectedItem(item);
+        this.item = item;
       }
     }
   }
 
   public setSelectedItem(item) {
     this.item = item;
+    this.selectItem(item);
   }
 
   /* istanbul ignore next */
@@ -42,15 +50,20 @@ export abstract class BaseSelectorComponent {
     this.isLoading = true;
     this.getSearchObservable(query).subscribe({
       next: (resp: any) => {
-        console.log('in search', resp);
         this.isLoading = false;
-
         if (Array.isArray(resp)) {
           this.items = resp;
         } else if (Array.isArray(resp.data)) {
           this.items = resp.data;
         } else {
           this.items = [];
+        }
+
+        // Esto esta aqui porque si en la primera llamada no existe `this.item` no se mostraria en el selector
+        // Por tanto si `this.item` no existe en la lista que recibimos, simplemente lo añadimos para que aparezca
+        // Asi podemos listar 10 inicialmente sin problemas
+        if (this.item && !this.items.some((it) => it.id == this.item.id)) {
+          this.items.unshift(this.item);
         }
 
         this.setInitialValue();

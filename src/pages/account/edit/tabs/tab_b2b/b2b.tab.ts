@@ -1,9 +1,8 @@
-import { Component, ElementRef, EventEmitter, Input, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Account } from 'src/shared/entities/account.ent';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { UtilsService } from 'src/services/utils/utils.service';
-import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { UserService } from 'src/services/user.service';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
@@ -34,6 +33,11 @@ export class B2BTab {
   public activities = [];
   public activitiesSelected = [];
   public activityTest: Activity;
+
+  public main_activity = null;
+  public main_activity_id = null;
+  public secondary_activity = null;
+
   public lang: any = 'esp';
   public langMap = {
     cat: 'ca',
@@ -48,77 +52,43 @@ export class B2BTab {
     public alerts: AlertsService,
     public crudAccounts: AccountsCrud,
     public productsCrud: ProductsCrud,
-    public activitiesCrud: ActivitiesCrud,
     public us: UserService,
-  ) { 
+  ) {
     this.lang = this.langMap[us.lang];
 
     this.productsCrud
       .search({ limit: 300, sort: 'name', order: 'asc' }, this.lang)
       .subscribe((resp) => (this.productList = resp.data.elements));
-
-    this.activitiesCrud
-      .list({ limit: 300, sort: 'name', order: 'asc' }, this.lang)
-      .subscribe((resp) => this.getActivities(resp.data.elements));
-  }
-
-  public getActivities(resp = []) {
-    this.activities = resp;
-    this.getSubActivities(this.activities);
-    
-  }
-  public getSubActivities(activities = []){
-    if (this.accountCopy.activity_main.parent != null) {
-      for (let activity of activities) {
-
-        if (activity.id == this.accountCopy.activity_main.parent) {
-          this.accountCopy.subActivity = activity;
-        }
-      }
-    }
   }
 
   public ngOnInit() {
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
 
-    if (this.account.activity_main) {
-      this.account.activity_main_id = this.account.activity_main.id;
-    } else {
-      this.account.activity_main_id = 'none';
-      this.account.activity_main = { id: 'none' };
-    }
+    this.main_activity = this.account.activity_main ? this.account.activity_main.parent : null;
+    this.main_activity_id = this.main_activity ? this.main_activity.id : null;
+    this.secondary_activity = this.account.activity_main;
 
     this.accountCopy = { ...this.account };
-    this.activitiesSelected = this.accountCopy.activities.slice();
     delete this.accountCopy.kyc_validations;
 
     this.setupDebounce(this.searchConsumed.nativeElement);
     this.setupDebounce(this.searchProduced.nativeElement);
-
-
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-
-    if ('account' in changes) {
-      this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
-
-      if (this.account.activity_main) {
-        this.account.activity_main_id = this.account.activity_main.id;
-      } else {
-        this.account.activity_main_id = 'none';
-        this.account.activity_main = { id: 'none' };
-      }
-
-      this.accountCopy = { ...this.account };
-      this.activitiesSelected = this.accountCopy.activities.slice();
-      delete this.accountCopy.kyc_validations;
-      this.getSubActivities(this.activities);
-
-
-    }
+  public selectActivity(item) {
+    this.secondary_activity = item;
+    this.accountCopy.activity_main_id = item.id;
+    this.update();
   }
 
+  public selectParentActivity(item) {
+    this.main_activity = item;
+    this.main_activity_id = this.main_activity ? this.main_activity.id : null;
+
+    // Aqui seteamos secondary_activity a null, para que tengan que volver a seleccionar una subactivity
+    // Esto se hace porque cuando se selecciona un parent diferente, las subactivities son otras, por lo que tenemos que resetear el campo
+    this.secondary_activity = null;
+  }
 
   public setupDebounce(element) {
     fromEvent(element, 'keyup')
@@ -141,28 +111,6 @@ export class B2BTab {
         this.productList = resp.data.elements;
         this.isSearching = false;
       });
-  }
-
-  public addMainActivity(act_id) {
-
-    this.accountCopy.activity_main_id = act_id;
-    this.accountCopy.activity_main.id = act_id;
-
-    this.update();
-  }
-  public addSubMainActivity(act_id) {
-
-    this.accountCopy.activity_main_id = act_id;
-    this.accountCopy.activity_main.id = act_id;
-
-    for (let activity of this.activities) {
-
-      if (activity == this.accountCopy.activity_main.parent) {
-        this.accountCopy.subActivity = activity;
-      }
-    }
-
-    this.update();
   }
 
   public addActivity(act) {
@@ -248,7 +196,6 @@ export class B2BTab {
   }
 
   public update() {
-
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
     delete changedProps.activity_main;
     delete changedProps.kyc_manager;

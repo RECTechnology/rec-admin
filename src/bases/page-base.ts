@@ -96,7 +96,6 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   }
 
   public handleValidationError(error) {
-    console.log(error);
     this.validationErrors = error.data;
     return UtilsService.handleValidationError(this, error);
   }

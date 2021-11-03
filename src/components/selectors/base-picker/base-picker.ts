@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ContentChild, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ContentChild, ElementRef, ViewChild, SimpleChanges } from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
@@ -15,6 +15,7 @@ export class BasePicker {
   @Input() disabled = false;
   @Input() label = 'Selector';
   @Input() isLoading = false;
+  @Input() showSelection  = true;
 
   @Output() itemChanged = new EventEmitter<any>();
   @Output() onSearch = new EventEmitter<any>();
@@ -27,7 +28,6 @@ export class BasePicker {
   public query = '';
 
   ngAfterContentInit() {
-    console.log('content', this.content);
     setTimeout(() => {
       this.setupDebouncedSearch(this.searchElement.nativeElement);
       this.search();
@@ -35,7 +35,7 @@ export class BasePicker {
   }
 
   public selectItem(item) {
-    this.itemChanged.emit(item);
+    this.itemChanged.emit(item)
   }
 
   /* istanbul ignore next */

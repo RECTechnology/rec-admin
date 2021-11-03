@@ -86,8 +86,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     this.crudAccounts.find(this.account_id)
       .subscribe((resp: any) => {
         this.companyService.selectedCompany = resp.data;
-        console.log("Im in revidedData");
-        console.log(this.companyService.selectedCompany);
+
         this.loading = false;
       }, (error) => {
         this.loading = false;
