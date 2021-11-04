@@ -1176,6 +1176,7 @@
   "PHONE_CHANGED":"Núm. de telèfon canviat, sms enviat per a validar-ho",
   "LOADING": "Carregant",
   "PARENT_ACTIVITY": "Activitat Principal",
-  "SUB_ACTIVITY": "Activitat Secondaria"
+  "SUB_ACTIVITY": "Activitat Secondaria",
+  "PARENT":"Pare"
 
 }

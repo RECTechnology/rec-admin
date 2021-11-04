@@ -604,7 +604,8 @@
   "PHONE_CHANGED":"Phone number changed, sms sent to validate it.",
   "LOADING": "Cargando",
   "PARENT_ACTIVITY": "Parent Activity",
-  "SUB_ACTIVITY": "Secondary Activity"
+  "SUB_ACTIVITY": "Secondary Activity",
+  "PARENT":"Parent"
 
 
 
