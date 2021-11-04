@@ -136,7 +136,7 @@ export class AdminService extends BaseService2 {
 
     public removeUserFromAccount(group_id: string, user_id: string): Observable<any> {
         deprecatedMessage('removeUserFromAccount');
-        return this.delete(`/admin/v2/groups/${group_id}/${user_id}`);
+        return this.delete(`/admin/v1/groups/${group_id}/${user_id}`);
     }
 
     public updateUserKyc(id, data) {
