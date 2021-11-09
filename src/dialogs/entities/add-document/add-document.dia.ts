@@ -52,7 +52,6 @@ export class AddDocumentDia extends BaseDialog {
     public dkCrud: DocumentKindsCrud,
   ) {
     super();
-    this.getDocumentKinds();
   }
 
   public ngOnInit() {
@@ -87,36 +86,16 @@ export class AddDocumentDia extends BaseDialog {
     this.item.status_text = text;
   }
 
-  public getDocumentKinds() {
-    this.dkCrud.list({ limit: 100 }).subscribe((resp) => {
-      this.docKindsFull = resp.data.elements;
-      this.docKinds = this.docKindsFull.map((el) => {
-        return {
-          value: el.id,
-          name: el.name,
-        };
-      });
-    });
-  }
+ 
 
-  public checkDocumentKind() {
-   this.docKindsFull.find((el) => {
-      if(el.id === this.item.kind_id){
-        if(el.lemon_doctype != null && el.lemon_doctype != undefined){
-          this.isLemon = true;
-        }else{
-          this.isLemon = false;
-        }
-      }
-    });
-  }
+ 
 
   public getCrud(data) {
     let kind = this.docKindsFull.find((el) => el.id === data.kind_id);
     const isLemon = kind != undefined && kind.lemon_doctype !== null && kind.lemon_doctype !== undefined;
     return isLemon ? this.lemonDocCrud : this.docCrud;
   }
-
+  
   public proceed() {
     if (this.loading || !this.item.name) {
       return;

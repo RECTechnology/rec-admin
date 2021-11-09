@@ -60,6 +60,7 @@ import { ActivitiesTabComponent } from 'src/pages/special-actions/b2b/entities/c
 import { DocumentTabComponent } from 'src/pages/special-actions/b2b/entities/components/documents/documents.tab';
 import { DocumentKindsTabComponent } from 'src/pages/special-actions/b2b/entities/components/document_kinds/document-kinds.tab';
 import { ActivityPicker } from 'src/components/selectors/activity-picker/activity-picker';
+import { DocumentKindPicker } from 'src/components/selectors/document-kind-picker/document-kind-picker';
 import { BasePicker } from 'src/components/selectors/base-picker/base-picker';
 import { AddNeighbourhoodDia } from 'src/pages/special-actions/b2b/entities/components/neighborhoods/add/add.dia';
 import { NeighborhoodsTabComponent } from 'src/pages/special-actions/b2b/entities/components/neighborhoods/neighborhoods.tab';
@@ -199,6 +200,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     RaisedBtnComponent,
     DocumentKindsTabComponent,
     ActivityPicker,
+    DocumentKindPicker,
     BasePicker,
     DocumentTabComponent,
     TiersTabComponent,
@@ -257,6 +259,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     RaisedBtnComponent,
     DocumentKindsTabComponent,
     ActivityPicker,
+    DocumentKindPicker,
     BasePicker,
     DocumentTabComponent,
     TiersTabComponent,
