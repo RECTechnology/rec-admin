@@ -85,7 +85,7 @@ export class TpvOrdersComponent extends TablePageBase {
         public admin: AdminService,
         public alerts: AlertsService,
     ) {
-        super();
+        super(router);
     }
 
     public ngOnInit() {

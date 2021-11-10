@@ -1,8 +1,7 @@
-import { Component, AfterContentInit } from '@angular/core';
+import { Component, AfterContentInit, SimpleChanges } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { Sort } from '@angular/material/sort';
 import { WalletService } from 'src/services/wallet/wallet.service';
 import { UserService } from 'src/services/user.service';
 import { UtilsService } from 'src/services/utils/utils.service';
@@ -24,6 +23,8 @@ import { Account } from 'src/shared/entities/account.ent';
 import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
 import { AccountsExportDefaults } from 'src/data/export-defaults';
+import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'accounts',
@@ -36,9 +37,9 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public sortedData: Account[] = [];
   public accountID = null;
   public openDetails = false;
-  public active = true;
+  public active = false;
   public type = '';
-  public onlyExchanges = false;
+  public onlyExchanges:boolean;
 
   public tableOptions: TableListOptions = {
     optionsType: 'buttons',
@@ -48,7 +49,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public defaultExportKvp = AccountsExportDefaults;
   public headerOpts: TableListHeaderOptions = { input: true, refresh: true, deepLinkQuery: true };
   public headers: TlHeader[] = [
-    TlHeaders.Active,
     TlHeaders.Id,
     TlHeaders.AvatarCompany,
     TlHeaders.Email,
@@ -78,12 +78,51 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     public ls: LoginService,
     public crudAccounts: AccountsCrud,
     public alerts: AlertsService,
+    protected campaignsService: CampaignsCrud,
   ) {
-    super();
+    super(router);
+  }
+
+  ngOnInit(){
+    super.ngOnInit();
+
     this.route.queryParams.subscribe((params) => {
+
       this.accountID = params.id;
       this.openDetails = params.details;
+      this.limit = params.limit ?? 10;
+      this.offset = params.offset;
+      if(params.type != null){
+        this.type = params.type;
+      }
+
+      this.active = params.active =='true';
+      this.onlyExchanges = params.onlyExchanges =='true';
+      this.campaignsService.list({ limit: 100 }).subscribe((resp) => {
+        for (let element of resp.data.elements) {
+          if (element.id == params.campaignFilter) {
+            this.campaignFilter = element;
+          }
+        }
+      });
     });
+  }
+  public onlyExchangesChange() {
+    super.addToQueryParams({
+      onlyExchanges: this.onlyExchanges,
+    });
+    this.search();
+  }
+
+  public addActive(event:MatCheckboxChange){
+    this.active = event.checked;
+    super.addToQueryParams({
+      active: this.active,
+    });
+    this.search();
+  }
+
+ ngOnChange(){
   }
 
   public afterContentInit() {
@@ -92,14 +131,17 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public campaignFilterChanged(campaignFilter) {
-    console.log(campaignFilter);
     this.campaignFilter = campaignFilter;
+    super.addToQueryParams({
+      campaignFilter: this.campaignFilter.id,
+    });
     this.search();
   }
 
   public getCleanParams(query?: string) {
     let data: ListAccountsParams = {
-      active: this.active ? 1 : 0,
+      
+      active: this.active? 1:0,
       field_map: {},
       limit: this.limit,
       offset: this.offset,
@@ -129,6 +171,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public search(query: string = this.query) {
+
     const data: any = this.getCleanParams(query);
     this.loading = true;
     this.query = query;
@@ -145,7 +188,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
         this.loading = false;
       },
     );
-
     return this.searchObs;
   }
 
@@ -168,32 +210,13 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     });
   }
 
-  public selectType(type) {
-    if (this.type === 'PRIVATE' && type === 'PRIVATE') {
-      this.isPriv = false;
-      this.type = '';
-    } else if (type === 'PRIVATE') {
-      this.isPriv = true;
-      this.isComp = false;
-      this.type = 'PRIVATE';
-    }
-
-    if (this.type === 'COMPANY' && type === 'COMPANY') {
-      this.isComp = false;
-      this.type = '';
-    } else if (type === 'COMPANY') {
-      this.isPriv = false;
-      this.isComp = true;
-      this.type = 'COMPANY';
-    }
-
-    this.search();
-  }
-
   public changedType() {
     this.limit = 10;
     this.offset = 0;
-    this.search();
+    super.addToQueryParams({
+      type: this.type,
+    });
+
   }
 
   public viewAccount(account, tab = 'details') {
@@ -202,17 +225,5 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
 
   public viewEditAccount(account, tab = 'info') {
     this.router.navigate([`/accounts/edit/${account.id}`], { queryParams: { tab } });
-  }
-
-  public sortData(sort: Sort): void {
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = this.data.slice();
-      this.sortID = 'id';
-      this.sortDir = 'desc';
-    } else {
-      this.sortID = sort.active;
-      this.sortDir = sort.direction;
-    }
-    this.search(this.query);
   }
 }

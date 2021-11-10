@@ -79,7 +79,7 @@ export class LwTabWalletToWallet extends TablePageBase {
     public alerts: AlertsService,
     public accCrud: AccountsCrud,
     public route: ActivatedRoute,
-  ) { super(); }
+  ) { super(router); }
 
   public ngOnInit() {
     this.loading = true;

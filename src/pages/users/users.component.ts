@@ -68,7 +68,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     public usersCrud: UsersCrud,
     public alerts: AlertsService,
   ) {
-    super();
+    super(router);
   }
 
   public getCleanParams(query?: string) {

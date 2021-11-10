@@ -98,6 +98,7 @@ export class TableListTable implements AfterContentInit {
 
     @Input() public total: number = 0;
     @Input() public limit: number = 0;
+    @Input() public pageIndex: number = 0;
 
     @Output() public onSort: EventEmitter<Sort>;
     @Output() public onChangePage: EventEmitter<Sort>;
@@ -224,7 +225,6 @@ export class TableListTable implements AfterContentInit {
     }
 
     public navigateTo(data: { link?: string, params?: any } = {}) {
-
         this.router.navigate([data.link], {
             queryParams: data.params,
             queryParamsHandling: 'merge',

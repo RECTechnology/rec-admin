@@ -2,7 +2,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { BaseComponent } from './base-component';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoginService } from '../services/auth/auth.service';
@@ -101,7 +101,6 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   }
 }
 
-
 @Component({
   template: '',
 })
@@ -123,6 +122,10 @@ export abstract class TablePageBase extends PageBase {
   public searchObs: Subscription;
 
   public abstract search(query?: string): any;
+
+  constructor(public router: Router) {
+    super();
+  }
 
   // Searches and cancels previous Observable if there is one
   public searchWrapper(query: string = this.query) {
@@ -147,7 +150,14 @@ export abstract class TablePageBase extends PageBase {
 
   public changedPage($event) {
     this.limit = $event.pageSize;
-    this.offset = this.limit * ($event.pageIndex);
+    this.offset = $event.pageIndex * this.limit;
+
+    console.log('changed page', this.offset, this.limit);
+
+    this.addToQueryParams({
+      limit: this.limit,
+      offset: this.offset,
+    });
     this.search();
   }
 
@@ -160,7 +170,19 @@ export abstract class TablePageBase extends PageBase {
       this.sortID = sort.active;
       this.sortDir = sort.direction;
     }
+    this.addToQueryParams({
+      sortId: this.sortID,
+      sortDir: this.sortDir,
+    });
     this.search();
+  }
+
+  public addToQueryParams(data: Params) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: data,
+      queryParamsHandling: 'merge',
+    });
   }
 }
 

@@ -47,7 +47,7 @@ export class LemonWayTab extends TablePageBase {
     public accCrud: AccountsCrud,
     public route: ActivatedRoute,
     public events: EventsService,
-  ) { super(); }
+  ) { super(router); }
 
   public ngOnInit() {
     this.loading = true;

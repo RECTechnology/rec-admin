@@ -83,7 +83,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         public utils: UtilsService,
         public events: EventsService,
     ) {
-        super();
+        super(router);
         this.mailing.DEBUG = true;
         this.mailDeliveries.DEBUG = true;
 
@@ -190,7 +190,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public getMail() {
         this.mailing.find(this.id, this.langMap[this.lang.abrev])
             .subscribe((resp) => {
-                console.log('get Mail');
                 this.mail = resp.data;
                 this.readonly = [MailingCrud.STATUS_PROCESSED, MailingCrud.STATUS_SCHEDULED].includes(this.mail.status);
 
@@ -455,7 +454,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
         const send = () => this.updateMail(mailData, message)
             .then(() => {
-                console.log('updated');
                 this.goBack(true);
             })
             .catch(this.handleValidationError.bind(this));

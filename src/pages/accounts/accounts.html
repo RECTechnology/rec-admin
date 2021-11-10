@@ -9,10 +9,11 @@
         <icon-btn (click)="export()" matTooltip="{{'EXPORT_AS_CSV'|translate}}"
           icon="fa-download"></icon-btn>
       </tl-header>
+      
       <tl-subheader>
         <div style="padding: 8px 15px;">
-          <mat-checkbox style="margin-right: 8px" color="primary"
-            [(ngModel)]="active" (ngModelChange)="search();">
+          <mat-checkbox #checkBox style="margin-right: 8px" color="primary"
+          [checked]="active"  (change)="addActive($event)" >
             <span class="small-text">{{'Active'|translate}}</span>
           </mat-checkbox>
           <mat-radio-group aria-label="Select an option" [(ngModel)]="type"
@@ -33,7 +34,7 @@
 
           <mat-checkbox style="margin-left: 15px; margin-right: 20px;"
             color="primary" [(ngModel)]="onlyExchanges"
-            (ngModelChange)="search()">
+            (ngModelChange)="onlyExchangesChange()">
             <span class="small-text">{{'EXCHANGERS' | translate}}</span>
           </mat-checkbox>
 
@@ -44,7 +45,7 @@
 
       <tl-table [loading]="loading && !sortedData.length" [sort]="true"
         (onSort)="sortData($event)" [itemOptions]="itemOptions"
-        [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total"
+        [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total" [pageIndex]="offset"
         (onChangePage)="changedPage($event)" [options]="tableOptions">
       </tl-table>
     </mat-card>

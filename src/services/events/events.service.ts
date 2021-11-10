@@ -24,7 +24,6 @@ export class EventsService {
 
     public fireEvent(name, args: any[] = [], done?: () => any) {
         if (this.findEvent(name)) {
-            console.log(this.events[name]);
             if (done) {
                 this.events[name].observers.unshift(new Subscriber(noop, noop, done));
                 // this.events[name].subscribe(done);

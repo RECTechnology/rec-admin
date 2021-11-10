@@ -92,7 +92,7 @@ export class OrganizationsComponent extends TablePageBase {
     public accountsCrud: AccountsCrud,
     public alerts: AlertsService,
   ) {
-    super();
+    super(router);
     this.lang = this.langMap[us.lang];
     // this.search();
   }

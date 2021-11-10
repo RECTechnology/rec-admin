@@ -66,7 +66,7 @@ export class B2BSendComponent extends TablePageBase {
         public alerts: AlertsService,
         public events: EventsService,
     ) {
-        super();
+        super(router);
     }
 
     public filterStatus(status) {

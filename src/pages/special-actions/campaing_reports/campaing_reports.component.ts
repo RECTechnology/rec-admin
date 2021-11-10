@@ -14,6 +14,7 @@ import { TablePageBase } from 'src/bases/page-base';
 import { Title } from '@angular/platform-browser';
 import { LoginService } from 'src/services/auth/auth.service';
 import { TlItemOptions } from 'src/data/tl-item-options';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'campaing_reports',
@@ -42,8 +43,10 @@ export class CampaignReportsAccount extends TablePageBase implements AfterConten
     public dialog: MatDialog,
     public alerts: AlertsService,
     public crudAccounts: AccountsCrud,
+    public router: Router,
+
   ) {
-    super();
+    super(router);
   }
 
   ngAfterContentInit(): void {}

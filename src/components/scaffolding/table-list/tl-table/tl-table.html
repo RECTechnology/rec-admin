@@ -109,7 +109,7 @@
     <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="!loading && data.length <= 0">
         <p class="small-text-2" style="text-align: center;">{{noItemsMessage|translate}}</p>
     </div>
-    <mat-paginator *ngIf="showPaginator && data.length" [length]="total" [(pageSize)]="limit"
-        (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]">
+    <mat-paginator *ngIf="showPaginator && data.length" [length]="total" [pageSize]="limit" [pageIndex]="pageIndex/limit"
+        (page)="changedPage($event)" [pageSizeOptions]="[10, 25, 100]">
     </mat-paginator>
 </div>

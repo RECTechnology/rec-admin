@@ -65,7 +65,7 @@ export class LwTabMoneyOut extends TablePageBase {
         public alerts: AlertsService,
         public accCrud: AccountsCrud,
         public route: ActivatedRoute,
-    ) { super(); }
+    ) { super(router); }
 
     public ngAfterContentInit() {
         this.search();

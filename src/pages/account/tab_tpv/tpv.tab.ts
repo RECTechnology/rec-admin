@@ -40,7 +40,7 @@ export class TpvTab extends TablePageBase {
     public admin: AdminService,
     public events: EventsService,
     public companyService: CompanyService,
-  ) { super(); }
+  ) { super(router); }
 
   public ngOnInit() {
     const pos = this.companyService.selectedCompany.pos;
