@@ -37,9 +37,9 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public sortedData: Account[] = [];
   public accountID = null;
   public openDetails = false;
-  public active = false;
+  public active = true;
   public type = '';
-  public onlyExchanges:boolean;
+  public onlyExchanges=false;
 
   public tableOptions: TableListOptions = {
     optionsType: 'buttons',
@@ -95,9 +95,12 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       if(params.type != null){
         this.type = params.type;
       }
-
-      this.active = params.active =='true';
-      this.onlyExchanges = params.onlyExchanges =='true';
+      if(params.active != null){
+        this.active = params.active =='true';
+      }
+      if(params.onlyExchanges != null){
+        this.onlyExchanges = params.onlyExchanges =='true';
+      }
       this.campaignsService.list({ limit: 100 }).subscribe((resp) => {
         for (let element of resp.data.elements) {
           if (element.id == params.campaignFilter) {
