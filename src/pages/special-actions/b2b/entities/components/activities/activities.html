@@ -10,7 +10,7 @@
             </tl-header>
             <translatable-list [(limit)]="limit" (onSort)="sortData($event)" (changedPage)="changedPage($event)"
                 [loading]="loading" (edit)="editActivities($event)" (delete)="deleteActivity($event)"
-                [data]="sortedData">
+                [data]="sortedData" [showParent]="true">
             </translatable-list>
         </div>
     </div>

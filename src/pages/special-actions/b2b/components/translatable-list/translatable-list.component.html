@@ -22,6 +22,15 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header="name_ca"> {{'CAT'|translate}} </th>
         <td mat-cell *matCellDef="let element"> {{element.name_ca}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="parent" *ngIf="showParent">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header="parent"> {{'PARENT'|translate}} </th>
+        <td  mat-cell *matCellDef="let element"> 
+            <div *ngIf="element.parent">
+                {{element.parent.name}} 
+            </div>
+        </td>
+    </ng-container>
      
     <ng-container matColumnDef="par">
         <th mat-header-cell *matHeaderCellDef mat-sort-header mat-sort-header="parent"> {{'PARENT'|translate}} </th>
