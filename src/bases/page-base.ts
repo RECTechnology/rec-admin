@@ -105,7 +105,7 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   template: '',
 })
 export abstract class TablePageBase extends PageBase {
-  public sortID: string = 'id';
+  public sortID: string = 'id'; 
   public sortDir: string = 'desc';
   public query: string = '';
   public offset: number = 0;

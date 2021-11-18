@@ -29,11 +29,11 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy {
   public tab: string = '';
   public tabMap = {
     details: 0,
-    userAccounts:1,
-    documents:2,
+    userAccounts: 1,
+    documents: 2,
     0: 'details',
-    1:'userAccounts',
-    2:'documents',
+    1: 'userAccounts',
+    2: 'documents',
   };
 
   constructor(
@@ -54,8 +54,10 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
+    console.log("Im in ngOnInit Users");
+    super.ngOnInit();
     this.events.registerEvent('user:update').subscribe(this.loadUser.bind(this));
-
+    
     // Gets the query parameters and gets 'tab' param
     this.sub = this.route.queryParams.subscribe((params) => {
       this.tab = params.tab || 'details';

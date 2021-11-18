@@ -40,16 +40,18 @@ export class B2BSettingsComponent extends PageBase {
             .subscribe((params) => {
                 this.tab = params.tab || 'activities';
                 this.currentTab = this.tabMap[this.tab] || 0;
+                
             });
     }
 
     /* Called when tab change, so url changes also */
     public changeUrl($event) {
+        console.log("Im in changeURL");
         this.pageName = this.tabMap[$event];
         this.setTitle(this.Brand.title + ' | ' + (this.pageName[0].toUpperCase() + (this.pageName.substr(1))));
 
         this.router.navigate(['/b2b/settings'], {
-            queryParams: { tab: this.tabMap[$event] },
+            queryParams: { tab: this.tabMap[$event], },
             // queryParamsHandling: '',
         });
     }

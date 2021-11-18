@@ -71,6 +71,16 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     super(router);
   }
 
+  ngOnInit(){
+    this.route.queryParams.subscribe((params) => {
+
+      this.limit = params.limit ?? 10;
+      this.offset = params.offset;
+      this.sortDir = params.sortDir;
+      this.sortID = params.sortID;
+    });
+  }
+
   public getCleanParams(query?: string) {
     const data: ListAccountsParams = {
       field_map: {},

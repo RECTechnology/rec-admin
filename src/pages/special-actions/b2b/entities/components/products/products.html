@@ -1,7 +1,8 @@
 <div style="height: 100%">
     <div class="row" style="margin: 0; padding: 20px;">
         <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
-            <tl-header title="AVAILABLE_PRODUCTS" [query]="query" (onSearch)="search($event)">
+            <tl-header title="AVAILABLE_PRODUCTS" [query]="query"
+                [options]="{ deepLinkQuery: true, input: true, refresh: true }" (onSearch)="search($event)">
                 <button type="button" color="primary" mat-raised-button name="button" (click)="addProduct()">
                     <p class="text-small">
                         <i class="fa fa-plus"></i> {{'PRODUCT'|translate}}
@@ -10,7 +11,8 @@
             </tl-header>
             <tl-subheader>
                 <div style="padding-left: 15px">
-                    <mat-checkbox color="primary" [(ngModel)]="sortElementsToRevise" (ngModelChange)="search()">
+                    <mat-checkbox color="primary" [checked]="sortElementsToRevise"
+                        (change)="showElementsAddQuery($event)">
                         <p class="small-text">{{'UNREVISED_FIRST'|translate}}</p>
                     </mat-checkbox>
                 </div>
@@ -20,8 +22,8 @@
                     <button [matMenuTriggerFor]="activityConsumedFilterMenu" type="button" mat-button
                         class="mat-button-menu"
                         style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
-                        <span
-                            style="padding-right: 8px;">{{activityConsumedFilter ? (activityConsumedFilter | tolang) : ('ACTIVITY_CONSUMED' | translate)}}</span>
+                        <span style="padding-right: 8px;">{{activityConsumedFilter ? (activityConsumedFilter | tolang) :
+                            ('ACTIVITY_CONSUMED' | translate)}}</span>
                         <i class="fa fa-caret-down"></i>
                     </button>
                 </div>
@@ -43,8 +45,8 @@
                     <button [matMenuTriggerFor]="activityProducedFilterMenu" type="button" mat-button
                         class="mat-button-menu"
                         style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
-                        <span
-                            style="padding-right: 8px;">{{activityProducedFilter ? (activityProducedFilter | tolang) : ('ACTIVITY_PRODUCED' | translate)}}</span>
+                        <span style="padding-right: 8px;">{{activityProducedFilter ? (activityProducedFilter | tolang) :
+                            ('ACTIVITY_PRODUCED' | translate)}}</span>
                         <i class="fa fa-caret-down"></i>
                     </button>
                 </div>

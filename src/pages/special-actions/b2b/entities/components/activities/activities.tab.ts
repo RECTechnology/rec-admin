@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddItemDia } from '../../add-item/add-item.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'tab-activities',
@@ -16,14 +17,30 @@ export class ActivitiesTabComponent extends EntityTabBase<Activity> {
     public entityName = 'Activity';
 
     constructor(
+        public route: ActivatedRoute,
         public crud: ActivitiesCrud,
         public dialog: MatDialog,
         public alerts: AlertsService,
+        public router: Router,
     ) {
-        super();
+        super(router);
+    }
+
+    ngOnInit(){
+        this.route.queryParams.subscribe((params) => {
+
+         
+            this.limit = params.limit ?? 10;
+            this.offset = params.offset;
+            this.sortDir = params.sortDir;
+            this.sortID = params.sortID;
+            this.query = params.query;
+
+          });
     }
 
     public search(query?) {
+        
         this.loading = true;
         this.crud.search({
             order: this.sortDir,

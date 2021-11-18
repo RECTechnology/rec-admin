@@ -10,6 +10,8 @@ import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { Product } from 'src/shared/entities/translatable/product.ent';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';
 import { UserService } from 'src/services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
     selector: 'tab-products',
@@ -28,6 +30,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
         en: 'en',
         es: 'es',
     };
+    public dataGetted = false;
 
     constructor(
         public crud: ProductsCrud,
@@ -36,8 +39,10 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
         public translate: TranslateService,
         public actCrud: ActivitiesCrud,
         public us: UserService,
+        public router: Router,
+        public route: ActivatedRoute,
     ) {
-        super();
+        super(router);
         this.translate.onLangChange.subscribe(() => {
             this.search();
             this.getActivities();
@@ -45,8 +50,48 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
 
         this.getActivities();
     }
+    public getDataQuery() {
+        this.route.queryParams.subscribe((params) => {
+
+
+            this.limit = params.limit ?? 10;
+            this.offset = params.offset;
+            this.sortDir = params.sortDir;
+            this.sortID = params.sortID;
+            this.query = params.query;
+            if (params.sortElementsToRevise != null) {
+                this.sortElementsToRevise = params.sortElementsToRevise == 'true';
+            }
+            for (let activity of this.activities) {
+                if (activity.id == params.activityProducedFilterId) {
+                    this.activityProducedFilter = activity;
+
+                }
+                if (activity.id == params.activityConsumedFilterId) {
+                    this.activityConsumedFilter = activity;
+
+                }
+
+            }
+            this.dataGetted = true;
+
+        });
+        this.search();
+    }
+
+    public showElementsAddQuery(event: MatCheckboxChange) {
+        this.sortElementsToRevise = event.checked;
+
+        this.addToQueryParams({
+
+            sortElementsToRevise: this.sortElementsToRevise,
+
+        });
+        this.search();
+    }
 
     public getActivities() {
+        this.loading = true;
         this.actCrud.list({
             offset: 0,
             limit: 300,
@@ -54,6 +99,8 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
             order: 'asc',
         }, this.langMap[this.us.lang]).subscribe((resp) => {
             this.activities = resp.data.elements;
+
+            this.getDataQuery();
         });
     }
 
@@ -67,6 +114,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
     }
 
     public search(query?) {
+
         this.loading = true;
 
         if (this.sortElementsToRevise) {
@@ -90,7 +138,9 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
                 this.sortedData = this.data.slice();
                 this.total = resp.data.total;
                 this.list.updateData(this.data);
-                this.loading = false;
+                if (this.dataGetted) {
+                    this.loading = false;
+                }
             },
             (error) => {
                 this.loading = false;
@@ -196,11 +246,21 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
 
     public selectActivityConsumedToFilter(activity) {
         this.activityConsumedFilter = activity;
+        this.addToQueryParams({
+
+            activityConsumedFilterId: activity.id,
+
+        });
         this.search();
     }
 
     public selectActivityProducedToFilter(activity) {
         this.activityProducedFilter = activity;
+        this.addToQueryParams({
+
+            activityProducedFilterId: activity.id,
+
+        });
         this.search();
     }
 }

@@ -97,6 +97,18 @@ export class OrganizationsComponent extends TablePageBase {
     // this.search();
   }
 
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+
+      this.filterActive = params.filterActive
+      this.limit = params.limit ?? 10;
+      this.offset = params.offset;
+      this.sortDir = params.sortDir;
+      this.sortID = params.sortID;
+    });
+    this.search();
+  }
+
   public ngAfterContentInit() {
     this.setTitle(this.Brand.title + ' | ' + this.pageName);
   }
@@ -256,6 +268,9 @@ export class OrganizationsComponent extends TablePageBase {
   public changedFilter() {
     this.limit = 10;
     this.offset = 0;
+    super.addToQueryParams({
+      filterActive: this.filterActive,
+    });
     this.search(this.query);
   }
 }

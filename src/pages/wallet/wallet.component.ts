@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Sort } from '@angular/material/sort';
 
 import { LoginService } from '../../services/auth/auth.service';
@@ -11,7 +11,7 @@ import { TransactionService } from '../../services/transactions/transactions.ser
 import { TxDetails } from '../../dialogs/wallet/tx_details/tx_details.dia';
 import { getDateDMY } from '../../shared/utils.fns';
 import { CompanyService } from '../../services/company/company.service';
-import { PageBase, OnLogout, OnLogin } from '../../bases/page-base';
+import { PageBase, OnLogout, OnLogin, TablePageBase } from '../../bases/page-base';
 import { ExportTxsDia } from '../../dialogs/wallet/export-txs/export-txs.dia';
 import { CashOutDia } from '../../dialogs/wallet/cash-out/cash-out.dia';
 import { TxFilter } from '../../components/other/filter/filter';
@@ -22,10 +22,10 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
   selector: 'wallet',
   styleUrls: [
     '../../pages/wallet/wallet.css',
-  ],
+  ], 
   templateUrl: '../../pages/wallet/wallet.html',
 })
-export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLogout, OnLogin {
+export class WalletComponent extends TablePageBase implements OnInit, OnDestroy, OnLogout, OnLogin {
   public pageName = 'Wallet';
   public sortID: string = 'id';
   public sortDir: string = 'desc';
@@ -49,13 +49,16 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     public txService: TransactionService,
     public dialog: MatDialog,
     public utils: UtilsService,
+    public router: Router,
     public ls: LoginService,
     public companyService: CompanyService,
     public alerts: AlertsService,
   ) {
-    super();
+    super(router);
     this.filter = new TxFilter(this.router);
     this.filter.reloader = this.getTransactions.bind(this); // Call for when filter changes
+
+
 
     // Gets the query parameters
     this.querySub = this.route.queryParams
@@ -70,7 +73,24 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
         this.getTransactions();
       });
   }
+  ngOnInit() {
 
+
+    this.route.queryParams.subscribe((params) => {
+
+
+      if (params.dateFrom != null) {
+        this.dateFrom = getDateDMY(new Date(params.dateFrom), '-');;
+
+      }
+      if (params.dateTo != null) {
+        this.dateTo = getDateDMY(new Date(params.dateTo), '-');;
+
+      }
+
+    });
+    this.search();
+  }
   // Custom hooks
   public onLogout() {
     this.ngOnDestroy();
@@ -80,6 +100,19 @@ export class WalletComponent extends PageBase implements OnInit, OnDestroy, OnLo
     this.getTransactions();
   }
 
+  public addDateFromToQuery(event) {
+
+    super.addToQueryParams({
+      dateFrom: event + "",
+    });
+  }
+  public addDateToToQuery(event) {
+
+    this.dateTo = event;
+    super.addToQueryParams({
+      dateTo: this.dateTo,
+    });
+  }
   // Component Events
   public onInit() {
     this.default_currency = 'REC';

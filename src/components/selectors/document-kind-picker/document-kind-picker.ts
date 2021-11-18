@@ -16,13 +16,14 @@ export class DocumentKindPicker extends BaseSelectorComponent {
     super();
   }
 
-  
+
+
 
   public getSearchObservable(query: string): Observable<any> {
     return this.dkCrud
       .list({
-        sort: 'name', 
-        dir: 'asc', 
+        sort: 'name',
+        dir: 'asc',
         limit: 100
       })
       .pipe(

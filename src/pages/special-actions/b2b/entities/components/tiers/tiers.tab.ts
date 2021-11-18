@@ -10,6 +10,7 @@ import { TiersCrud } from 'src/services/crud/tiers/tiers.crud';
 import { Tier } from 'src/shared/entities/tier.ent';
 import { AddTierDia } from 'src/dialogs/entities/add-tier/add-tier.dia';
 import { TlHeaders } from 'src/data/tl-headers';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'tab-tiers',
@@ -38,18 +39,32 @@ export class TiersTabComponent extends EntityTabBase<Tier> {
         public alerts: AlertsService,
         public translate: TranslateService,
         public us: UserService,
+        public router: Router,
+        public route: ActivatedRoute,
     ) {
-        super();
+        super(router);
         this.translate.onLangChange.subscribe(() => {
             this.search();
         });
     }
+    ngOnInit(){
+        this.route.queryParams.subscribe((params) => {
 
+         
+            this.limit = params.limit ?? 10;
+            this.offset = params.offset;
+            this.sortDir = params.sortDir;
+            this.sortID = params.sortID;
+            this.query = params.query;
+          });
+          
+    }
     public sortData(sort: MatSort) {
         super.sortData(sort);
     }
 
     public search(query?) {
+        
         this.loading = true;
         this.crud.search({
             order: this.sortDir,

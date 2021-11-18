@@ -10,7 +10,7 @@ export abstract class BaseSelectorComponent {
   @Input() public disabled: boolean = false;
   @Input() public hasParent = true;
   @Input() public label = 'SELECTOR';
-  @Input() showSelection  = true;
+  @Input() showSelection = true;
 
   @Input() public item: any = null;
   @Output() public itemChanged: EventEmitter<any> = new EventEmitter();
@@ -21,6 +21,7 @@ export abstract class BaseSelectorComponent {
   /* istanbul ignore next */
   selectItem(item) {
     this.itemChanged.emit(item);
+
   }
 
   public abstract getSearchObservable(query: string): Observable<any>;

@@ -13,6 +13,7 @@ import { AddNeighbourhoodDia } from './add/add.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Neighborhood } from 'src/shared/entities/translatable/neighborhood.ent';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'tab-neighborhoods',
@@ -55,9 +56,23 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
         public crud: NeighborhoodsCrud,
         public dialog: MatDialog,
         public alerts: AlertsService,
-    ) { super(); }
+        public router: Router,
+        public route: ActivatedRoute,
+    ) { super(router); }
+    ngOnInit(){
+        this.route.queryParams.subscribe((params) => {
 
+         
+            this.limit = params.limit ?? 10;
+            this.offset = params.offset;
+            this.sortDir = params.sortDir;
+            this.sortID = params.sortID;
+            this.query = params.query;
+          });
+          
+    }
     public search(query?) {
+        
         this.loading = true;
         this.crud.search({
             dir: this.sortDir,

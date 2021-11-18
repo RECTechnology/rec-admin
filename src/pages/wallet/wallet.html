@@ -33,9 +33,9 @@
             {{'NEW_TX'|translate}}
           </p>
         </button>
-      </div>
+      </div> 
       <tx-filters style="border-top: 1px solid #e6e6e6;" [filter]="this.filter" [dateFrom]="dateFrom"
-        (dateFromChanged)="dateFrom = $event" [dateTo]="dateTo" (dateToChanged)="dateTo = $event"></tx-filters>
+        (dateFromChanged)="addDateFromToQuery($event)" [dateTo]="dateTo" (dateToChanged)="addDateToToQuery($event)"></tx-filters>
     </div>
     <div class="group-col-left" style="width: 100%;">
       <table mdSort (mdSortChange)="sortData($event)" class="left-align">

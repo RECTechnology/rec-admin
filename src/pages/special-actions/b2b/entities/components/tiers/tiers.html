@@ -1,7 +1,7 @@
 <div style="height: 100%">
     <div class="row" style="margin: 0; padding: 20px;">
         <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
-            <tl-header title="AVAILABLE_TIERS" [query]="query" (onSearch)="search($event)">
+            <tl-header title="AVAILABLE_TIERS" [query]="query" [options]="{ deepLinkQuery: true, input: true, refresh: true }" (onSearch)="search($event)">
                 <button type="button" color="primary" mat-raised-button name="button" (click)="addItem()">
                     <p class="text-small">
                         <i class="fa fa-plus"></i> {{'TIERS'|translate}}

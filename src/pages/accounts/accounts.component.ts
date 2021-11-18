@@ -39,7 +39,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public openDetails = false;
   public active = true;
   public type = '';
-  public onlyExchanges=false;
+  public onlyExchanges = false;
 
   public tableOptions: TableListOptions = {
     optionsType: 'buttons',
@@ -83,7 +83,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     super(router);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     super.ngOnInit();
 
     this.route.queryParams.subscribe((params) => {
@@ -92,14 +92,16 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       this.openDetails = params.details;
       this.limit = params.limit ?? 10;
       this.offset = params.offset;
-      if(params.type != null){
+      this.sortDir = params.sortDir;
+      this.sortID = params.sortID;
+      if (params.type != null) {
         this.type = params.type;
       }
-      if(params.active != null){
-        this.active = params.active =='true';
+      if (params.active != null) {
+        this.active = params.active == 'true';
       }
-      if(params.onlyExchanges != null){
-        this.onlyExchanges = params.onlyExchanges =='true';
+      if (params.onlyExchanges != null) {
+        this.onlyExchanges = params.onlyExchanges == 'true';
       }
       this.campaignsService.list({ limit: 100 }).subscribe((resp) => {
         for (let element of resp.data.elements) {
@@ -117,7 +119,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.search();
   }
 
-  public addActive(event:MatCheckboxChange){
+  public addActive(event: MatCheckboxChange) {
     this.active = event.checked;
     super.addToQueryParams({
       active: this.active,
@@ -125,7 +127,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.search();
   }
 
- ngOnChange(){
+  ngOnChange() {
   }
 
   public afterContentInit() {
@@ -143,8 +145,8 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
 
   public getCleanParams(query?: string) {
     let data: ListAccountsParams = {
-      
-      active: this.active? 1:0,
+
+      active: this.active ? 1 : 0,
       field_map: {},
       limit: this.limit,
       offset: this.offset,

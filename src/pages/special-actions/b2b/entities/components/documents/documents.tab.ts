@@ -16,7 +16,7 @@ import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'tab-documents',
@@ -86,7 +86,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     getRowClass: (element: Document) => {
       const validUntil = new Date(element.valid_until).getTime();
       const now = Date.now();
-      
+
       if (validUntil < now) {
         return 'bg-yellow-light';
       }
@@ -119,18 +119,53 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     public us: UserService,
     public router: Router,
     public dkCrud: DocumentKindsCrud,
+    public route: ActivatedRoute,
   ) {
-    super();
+    super(router);
     this.translate.onLangChange.subscribe(() => {
       this.search();
     });
     this.search();
+
+  }
+
+  ngOnInit() {
     this.dkCrud.list({ sort: 'name', dir: 'asc', limit: 100 }).subscribe((resp) => {
       this.documentKinds = resp.data.elements;
+      this.getQueryData();
     });
   }
 
+  public getQueryData() {
+    this.route.queryParams.subscribe((params) => {
+
+
+      this.limit = params.limit ?? 10;
+      this.offset = params.offset;
+      this.sortDir = params.sortDir;
+      this.sortID = params.sortID;
+      this.query = params.query;
+      this.accountFilter = params.accountId ?? null,
+      this.userFilter = params.userId ?? null,
+      this.statusFilter = params.status ?? null;
+
+      for (let document of this.documentKinds) {
+        if (document.id == params.documentKindId && this.productKindFilter == null) {
+          console.log("Im in if");
+          this.productKindFilter = document;
+          console.log("Printing docFindItem First", document);
+        }
+      }
+
+    });
+    this.search();
+  }
+
   public filterStatus(status) {
+    this.addToQueryParams({
+
+      status: status,
+    });
     this.statusFilter = status;
     this.lwStatusFilter = null;
     this.search();
@@ -139,13 +174,36 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
   public filterLwStatus(status) {
     this.lwStatusFilter = status;
     this.statusFilter = null;
+
+    this.search();
+  }
+  public addUserIdQuery(event) {
+    this.addToQueryParams({
+      userId: event,
+    });
+    this.search();
+
+  }
+
+  public addAccountIdQuery(event) {
+    this.addToQueryParams({
+      accountId: event,
+    });
     this.search();
   }
 
   public selectDocKind(doc) {
+    console.log("Im ins electDockInd");
+    console.log(doc);
     this.productKindFilter = doc;
+    this.addToQueryParams({
+      documentKindId: doc.id,
+    });
+
     this.search();
   }
+
+
 
   public editItem(item) {
     super.editItem(item);
@@ -161,6 +219,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
   }
 
   public search(query?) {
+
     this.loading = true;
     this.crud
       .search({
@@ -173,6 +232,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         account: this.accountFilter,
         user: this.userFilter,
         status: this.statusFilter,
+
       })
       .subscribe(
         (resp) => {
@@ -180,10 +240,12 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
           this.sortedData = this.data.slice();
           this.total = resp.data.total;
           this.loading = false;
+
         },
         (error) => {
           this.loading = false;
         },
       );
+
   }
 }

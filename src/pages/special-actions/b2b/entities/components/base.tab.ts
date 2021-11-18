@@ -8,6 +8,7 @@ import { CrudBaseService } from 'src/services/base/crud.base';
 import { TlItemOption } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TlItemOptions } from 'src/data/tl-item-options';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Directive()
 export abstract class EntityTabBase<T> {
@@ -18,6 +19,7 @@ export abstract class EntityTabBase<T> {
     public sortDir = 'asc';
     public sortID = 'id';
     public loading = false;
+    public route?: ActivatedRoute;
 
     public data: T[] = [];
     public sortedData: T[] = [];
@@ -42,9 +44,11 @@ export abstract class EntityTabBase<T> {
     public abstract entityName: string;
     public abstract search(): any;
 
-    public ngAfterViewInit() {
-        // this.search();
+    constructor(public router: Router) {
+
     }
+
+  
 
     public confirm(title, message, btnConfirmText = 'Delete', status = 'error', skip = false, icon = 'warning') {
         if (skip) {
@@ -68,12 +72,21 @@ export abstract class EntityTabBase<T> {
             this.sortID = sort.active;
             this.sortDir = sort.direction;
         }
+        this.addToQueryParams({
+            sortId: this.sortID,
+            sortDir: this.sortDir,
+        });
         this.search();
     }
 
     public changedPage($event) {
         this.limit = $event.pageSize;
         this.offset = this.limit * ($event.pageIndex);
+        this.addToQueryParams({
+            limit: this.limit,
+            offset: this.offset,
+        });
+
         this.search();
     }
 
@@ -121,5 +134,12 @@ export abstract class EntityTabBase<T> {
                     });
             });
 
+    }
+    public addToQueryParams(data: Params) {
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: data,
+            queryParamsHandling: 'merge',
+        });
     }
 }
