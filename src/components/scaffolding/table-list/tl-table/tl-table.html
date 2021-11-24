@@ -110,6 +110,6 @@
         <p class="small-text-2" style="text-align: center;">{{noItemsMessage|translate}}</p>
     </div>
     <mat-paginator *ngIf="showPaginator && data.length" [length]="total" [pageSize]="limit" [pageIndex]="pageIndex/limit"
-        (page)="changedPage($event)" [pageSizeOptions]="[10, 25, 100]">
+        (page)="changedPage($event)" [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons>
     </mat-paginator>
 </div>

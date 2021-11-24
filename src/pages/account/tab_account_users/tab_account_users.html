@@ -88,7 +88,7 @@
         <p class="small-text-2">{{'There are no users yet'|translate}}</p>
       </div>
       <mat-paginator [length]="companyService.totalAccounts" [pageSize]="limit" (page)="changedPage($event)"
-        [pageSizeOptions]="[5, 10, 25, 100]">
+        [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
       </mat-paginator>
     </div>
   </div>

@@ -51,7 +51,7 @@
       </div>
     </div>
     <mat-paginator [length]="totalAccountsUnsorted" style="width: 100%" [pageSize]="limitUnsorted"
-      (page)="changedPageUnsorted($event)" [pageSizeOptions]="[5, 10, 25, 100]">
+      (page)="changedPageUnsorted($event)" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
     </mat-paginator>
   </div>
   <!-- Selected -->

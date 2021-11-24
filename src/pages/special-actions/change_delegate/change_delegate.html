@@ -109,7 +109,7 @@
         </mat-progress-spinner>
       </div>
       <mat-paginator [length]="total" style="width: 100%" [pageSize]="limit" (page)="changedPage($event)"
-        [pageSizeOptions]="[5, 10, 25, 100]">
+        [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
       </mat-paginator>
     </div>
   </div>

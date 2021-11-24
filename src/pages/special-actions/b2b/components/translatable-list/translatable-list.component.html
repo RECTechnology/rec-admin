@@ -99,7 +99,7 @@
 
 <mat-paginator [(pageSize)]="limit" [length]="total" (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 20, 100]"
     showFirstLastButtons>
-</mat-paginator>
+</mat-paginator >
 
 <div *ngIf="loading" class="abs-center center h v bg-white-opaque" style="width: 100%;">
     <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">

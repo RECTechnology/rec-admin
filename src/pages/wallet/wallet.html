@@ -134,8 +134,8 @@
         <p class="small-text-2">{{'NO_TRANSACTIONS_YET'|translate}}</p>
       </div>
       <mat-paginator [length]="totalWalletTransactions" style="width: 100%" [pageSize]="limit"
-        (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]">
-      </mat-paginator>
+        (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+      </mat-paginator >
     </div>
   </div>
 </app-page>
