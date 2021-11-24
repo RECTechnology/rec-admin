@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
@@ -22,7 +23,7 @@ export class EditUserData {
   public loading = false;
   public error = '';
   public lang: any = 'esp';
-
+ 
   public langMap = {
     cat: 'ca',
     en: 'en',
@@ -31,7 +32,7 @@ export class EditUserData {
     esp: 'es',
   };
 
-  public genders = [{ name: 'MALE', value: 'M' }, { name: 'FEMALE', value: 'F' }];
+  public genders = [{ name: 'MALE', value: 'M' }, { name: 'FEMALE', value: 'F' }, { name: 'NON_BINARI', value: 'NB' },];
 
   constructor(
     public dialogRef: MatDialogRef<EditUserData>,
