@@ -1177,7 +1177,6 @@
   "LOADING": "Carregant",
   "PARENT_ACTIVITY": "Activitat Principal",
   "SUB_ACTIVITY": "Activitat Secondaria",
-  "PARENT":"Pare",
-  "NON_BINARI":"No binari"
+  "PARENT":"Pare"
 
 }

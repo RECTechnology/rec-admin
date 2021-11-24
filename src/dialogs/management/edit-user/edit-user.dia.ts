@@ -22,7 +22,7 @@ export class EditUserData {
   public loading = false;
   public error = '';
   public lang: any = 'esp';
- 
+
   public langMap = {
     cat: 'ca',
     en: 'en',
@@ -31,7 +31,7 @@ export class EditUserData {
     esp: 'es',
   };
 
-  public genders = [{ name: 'MALE', value: 'M' }, { name: 'FEMALE', value: 'F' }, { name: 'NON_BINARI', value: 'NB' },];
+  public genders = [{ name: 'MALE', value: 'M' }, { name: 'FEMALE', value: 'F' }];
 
   constructor(
     public dialogRef: MatDialogRef<EditUserData>,
