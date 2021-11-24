@@ -1207,7 +1207,8 @@
   "LOADING": "Cargando",
   "PARENT_ACTIVITY": "Actividat Principal",
   "SUB_ACTIVITY": "Actividat Secundaria",
-  "PARENT":"Padre"
+  "PARENT":"Padre",
+  "NON_BINARI":"No binario"
 }
 
  
