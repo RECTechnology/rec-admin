@@ -132,6 +132,7 @@ export class EditUserData {
   public confirmChangePhone() {
     return this.alerts.showConfirmation(
       `CHANGE_PHONE_DESC`,
+      {},
       'Change phone for user ' + this.user.name,
       {
         btnConfirmText: 'Change',

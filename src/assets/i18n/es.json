@@ -1207,7 +1207,10 @@
   "LOADING": "Cargando",
   "PARENT_ACTIVITY": "Actividat Principal",
   "SUB_ACTIVITY": "Actividat Secundaria",
-  "PARENT":"Padre"
+  "PARENT":"Padre",
+  "SURE_EXPEL_USER":"Estas seguro de que deseas expulsar el usuario de la cuenta  [{{accountId}}]?",
+  "EXPEL_USER_TITTLE":"Expulsar usuario ({{accountName}}) de la cuenta"
+
 }
 
  

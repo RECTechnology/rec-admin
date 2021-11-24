@@ -605,7 +605,9 @@
   "LOADING": "Cargando",
   "PARENT_ACTIVITY": "Parent Activity",
   "SUB_ACTIVITY": "Secondary Activity",
-  "PARENT":"Parent"
+  "PARENT":"Parent",
+  "SURE_EXPEL_USER":"Are you sure you want to expel user from account [{{accountId}}]?",
+  "EXPEL_USER_TITTLE":"Expel user ({{accountName}}) from account"
 
 
 

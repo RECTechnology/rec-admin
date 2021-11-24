@@ -1,4 +1,4 @@
-<modal-header [status]="status" title="{{title|translate: ({data:data})}}" (click)="close(false)">
+<modal-header [status]="status" title="{{title|translate: data}}" (click)="close(false)">
   <i *ngIf="headerIcon" class="fa fa-{{headerIcon}}" style="margin-right: 10px"></i>
 </modal-header>
 

@@ -17,9 +17,11 @@ export class AlertsService {
   public showSnackbar(message, buttonText = 'ok', opts: MatSnackBarConfig = {}) {
     return this.snackbar.open(message, buttonText, opts);
   }
-
+  //title, message, data: any, customBtnText = null, customBtn = true
   public showConfirmation(
     message,
+    data: any,
+    
     title,
     opts: any = {},
   ) {
@@ -32,6 +34,7 @@ export class AlertsService {
         trailing: null,
       },
       message,
+      data:data,
       title,
       ...opts,
     });
@@ -40,7 +43,9 @@ export class AlertsService {
   public confirmDeletion(itemName = 'Item', trailing?: string, showConfirm = true) {
     return showConfirm ? this.showConfirmation(
       'DELETE_CONFIRM',
+      {},
       'Delete ' + itemName + '?',
+      
       {
         btnConfirmText: 'Delete',
         trailing,

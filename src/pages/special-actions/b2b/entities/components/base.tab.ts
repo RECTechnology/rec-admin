@@ -57,7 +57,7 @@ export abstract class EntityTabBase<T> {
                 obs.complete();
             });
         }
-        return this.alerts.showConfirmation(message, title, { btnConfirmText, status, icon });
+        return this.alerts.showConfirmation(message,{}, title, { btnConfirmText, status, icon });
     }
 
     public sortData(sort: Sort): void {

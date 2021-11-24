@@ -73,14 +73,17 @@ export class AccountUsersTab implements AfterContentInit {
     this.alerts.openModal(EditUserData, { user })
       .subscribe(() => {
         this.getUsers();
-      });
+      }); 
   }
 
   // Opens delete user modal
   public openDeleteUser(user) {
+    
     this.alerts.showConfirmation(
-      'Are you sure you want to expel user from account [ ' + this.account_id + ' ]?',
-      'Expel user (' + user.username + ') from account',
+      'SURE_EXPEL_USER',
+      {accountId:this.account_id,accountName: user.username},
+  
+      'EXPEL_USER_TITTLE',
       { btnConfirmText: 'EXPEL' },
     ).subscribe((result) => {
       if (result) {

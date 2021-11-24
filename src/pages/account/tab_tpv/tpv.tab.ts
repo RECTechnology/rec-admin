@@ -53,7 +53,7 @@ export class TpvTab extends TablePageBase {
   }
 
   public delete() {
-    this.alerts.showConfirmation('SURE_DELETE_TPV', 'DELETE_TPV')
+    this.alerts.showConfirmation('SURE_DELETE_TPV',{}, 'DELETE_TPV')
       .subscribe((resp) => {
         if (resp) {
           console.log('Delete: ', resp);
@@ -74,7 +74,7 @@ export class TpvTab extends TablePageBase {
     this.isActive = evt.checked;
 
     if (evt.checked === false) {
-      this.alerts.showConfirmation('SURE_DEACTIVATE_TPV', 'DEACTIVATE_TPV')
+      this.alerts.showConfirmation('SURE_DEACTIVATE_TPV',{}, 'DEACTIVATE_TPV')
         .subscribe((resp) => {
           if (resp) {
             this.updateTpv({ active: false });

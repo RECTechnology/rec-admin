@@ -15,12 +15,15 @@ export class ConfirmationMessage {
   public btnCancelText: string = 'Cancel';
   public headerIcon: string = null;
   public data: any = {};
+ 
   public opts: any = {};
   public confirmBtnShown = true;
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmationMessage>,
   ) { }
+
+  
 
   public close(confirmed = false): void {
     this.dialogRef.close(confirmed);
