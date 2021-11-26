@@ -36,23 +36,23 @@
 
     <div *ngIf="!opens24Hours && !closed && !isNotAvailable" class="col-lg-5">
         <div class="group-row-left center">
-            <input type="time" class="user-input small" [disabled]="!day.opens" [(value)]="day.firstOpen"
+            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.firstOpen" 
                 placeholder="First Open" />
 
             <div class="padd-h-10 marg-bottom-10">
                 <mat-icon>arrow_right</mat-icon>
             </div>
-            <input type="time" class="user-input small" [disabled]="!day.opens" [(value)]="day.firstClose" placeholder="First Close"/>
+            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.firstClose" placeholder="First Close"/>
         </div>
     </div>
 
     <div *ngIf="!opens24Hours && !closed && !isNotAvailable" class="col-lg-5">
         <div class="group-row-left  center">
-            <input type="time" class="user-input small" [disabled]="!day.opens" [(value)]="day.secondOpen" placeholder="Second Open"/>
+            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.secondOpen" placeholder="Second Open"/>
             <div class="padd-h-10 marg-bottom-10">
                 <mat-icon>arrow_right</mat-icon>
             </div>
-            <input type="time" class="user-input small" [disabled]="!day.opens" [(value)]="day.secondClose" placeholder="Second Close"/>
+            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.secondClose" placeholder="Second Close"/>
         </div>
     </div>
 </div>
