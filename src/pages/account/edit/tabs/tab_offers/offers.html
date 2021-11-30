@@ -7,35 +7,42 @@
           {{'OFFERS_DESC'|translate}}
         </p>
       </div>
-      <div class="col-lg-12" style="margin-top: 15px">
+      <div class="col-lg-12" style="margin-top: 15px;">
         <div class="row">
-          <div class="col-lg-6" *ngFor="let offer of account.offers">
-            <mat-card>
-              <img mat-card-image src="{{'https://material.angular.io/assets/img/examples/shiba2.jpg'}}"
-                alt="Photo of a the offer">
-              <mat-card-content>
-                <div class="group-row-left space-between" *ngIf="offer.active">
-                  <div>
-                    {{'Start' | translate}}: <code>{{offer.start | date}}</code>
-                  </div>
-                  <div>
-                    {{'End' | translate}}: <code>{{offer.end | date}}</code>
-                  </div>
-                </div>
-                <div class="group-row-left space-between" *ngIf="!offer.active">
-                  <p class="col-warn">
-                    {{'OFFER_NOT_ACTIVE'|translate}}
-                  </p>
-                </div>
-                <div>
-                  {{'Discount'|translate}} <code>{{offer.discount}}</code>
+          <div  *ngFor="let offer of account.offers" style="height: 271px;width: 316px;">
+            <div style="height: 271px;width: 316px;">
+              <mat-card >
+              
+                <div style="height: 150px;background-color: gray;">
+                  <img mat-card-image *ngIf="offer.image" src="{{offer.image}}"
+                  alt="Photo of a the offer">
                 </div>
 
-                <p class="small-text col-gray-light">
-                  {{offer.description}}
-                </p>
-              </mat-card-content>
-            </mat-card>
+                <mat-card-content>
+                  <div class="group-row-left space-between" *ngIf="offer.active">
+                    <div>
+                      {{'Start' | translate}}: <code>{{offer.start | date}}</code>
+                    </div>
+                    <div>
+                      {{'End' | translate}}: <code>{{offer.end | date}}</code>
+                    </div>
+                  </div>
+                  <div class="group-row-left space-between" *ngIf="!offer.active">
+                    <p class="col-warn">
+                      {{'OFFER_NOT_ACTIVE'|translate}}
+                    </p>
+                  </div>
+                  <div>
+                    {{'Discount'|translate}} <code>{{offer.discount}}</code>
+                  </div>
+
+                  <p class="small-text col-gray-light">
+                    {{offer.description}}
+                  </p>
+                </mat-card-content>
+              </mat-card>
+            </div>
+           
           </div>
 
           <div class="col-lg-12" style="margin-top: 20px">

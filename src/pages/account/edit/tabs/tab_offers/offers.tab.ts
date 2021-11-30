@@ -12,7 +12,6 @@ export class OffersTab {
   @Input() public account: Account;
   @Output() public close: EventEmitter<any> = new EventEmitter();
   @Input() public loading: boolean = false;
-
   public pageName = 'Offers';
 
   constructor(
@@ -21,6 +20,7 @@ export class OffersTab {
   ) {}
 
   public ngOnInit() {
+    console.log("Im in offers",this.account);
     
   }
 }
