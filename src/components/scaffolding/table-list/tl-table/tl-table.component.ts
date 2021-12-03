@@ -135,11 +135,6 @@ export class TableListTable implements AfterContentInit {
             this.options.onClickElement(`/users/${entry.user.id}`);
         }
     }
-    public slideAction(event){
-        console.log("Im in slideAction new methos",event);
-        event.stopPropagation();
-       // header.slideAction(entry, event)
-    }
     public onClickedItemAccount(entry: any) {
         if (this.options.onClickElement) {
             this.options.onClickElement(`/accounts/edit/${entry.account.id}`);
