@@ -178,6 +178,7 @@ export const TlHeaderOnClickMap = (action): TlHeader => new TlHeader({
     sortable: false,
     title: 'Coordenates',
     type: 'button',
+    
 });
 
 // tslint:disable-next-line: variable-name

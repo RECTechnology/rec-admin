@@ -72,7 +72,12 @@ export class OrganizationsComponent extends TablePageBase {
   public tableOptions: TableListOptions = {
     optionsType: 'buttons',
     onClick: (entry) => this.viewDetails(entry),
+    onClickElement:(entry)=>this.stopPropagation(entry),
   };
+
+  public stopPropagation(entry){
+    console.log("Im in stopPropagation",entry);
+  }
 
   public itemOptions: TlItemOption[] = [
     TlItemOptions.View(this.viewAccount.bind(this), { text: 'View Account' }),
@@ -249,6 +254,7 @@ export class OrganizationsComponent extends TablePageBase {
   }
 
   public viewDetails(bussiness) {
+    console.log("Im in viewDetails");
     return this.alerts.openModal(BussinessDetailsDia, { bussiness });
   }
 
