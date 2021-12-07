@@ -41,10 +41,11 @@
                     <span *ngIf="header.icon" class="fa fa-{{header.icon}}"></span>
                 </button>
 
-                <mat-slide-toggle *ngIf="header.type === 'slidetoggle'" color="primary" [(ngModel)]="entry[header.sort]"
-                    (change)="header.slideAction(entry, $event)" [matTooltip]="header.tooltip && header.tooltip(entry)">
+                <div (click)="$event.stopPropagation()">
+                    <mat-slide-toggle  *ngIf="header.type === 'slidetoggle'" color="primary" [(ngModel)]="entry[header.sort]"
+                    (change)=" header.slideAction(entry, $event)" [matTooltip]="header.tooltip && header.tooltip(entry)">
                 </mat-slide-toggle>
-
+                </div>
                 <div *ngIf="header.type === 'avatar' && getEntry(entry, header).id != null"  (click)="onClickedItemAccount(entry)">
                     <avatar [account]="getEntry(entry, header)"
                         [imageAccessor]="getEntry(entry, header).company_image ? 'company_image': 'profile_image'"
