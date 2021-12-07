@@ -1178,6 +1178,8 @@
   "PARENT_ACTIVITY": "Activitat Principal",
   "SUB_ACTIVITY": "Activitat Secondaria",
   "PARENT":"Pare",
-  "NON_BINARI":"No binari"
+  "NON_BINARI":"No binari",
+  "PRICE":"Preci",
+  "OFFER":"Oferta"
 
 }

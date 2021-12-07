@@ -608,6 +608,8 @@
   "PARENT":"Parent",
   "NON_BINARI":"Non binari",
   "SURE_EXPEL_USER":"Are you sure you want to expel user from account [{{accountId}}]?",
-  "EXPEL_USER_TITTLE":"Expel user ({{accountName}}) from account"
+  "EXPEL_USER_TITTLE":"Expel user ({{accountName}}) from account",
+  "PRICE":"Price",
+  "OFFER":"Offert"
 
 }

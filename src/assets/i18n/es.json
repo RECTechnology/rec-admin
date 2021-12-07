@@ -1210,7 +1210,9 @@
   "PARENT":"Padre",
   "NON_BINARI":"No binario",
   "SURE_EXPEL_USER":"Estas seguro de que deseas expulsar el usuario de la cuenta  [{{accountId}}]?",
-  "EXPEL_USER_TITTLE":"Expulsar usuario ({{accountName}}) de la cuenta"
+  "EXPEL_USER_TITTLE":"Expulsar usuario ({{accountName}}) de la cuenta",
+  "PRICE":"Precio",
+  "OFFER":"Oferta"
 }
 
  
