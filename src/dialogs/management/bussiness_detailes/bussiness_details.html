@@ -30,18 +30,18 @@
           <th style="color: #555!important">{{'Evening'|translate}}</th>
         </tr>
 
-        <tr *ngFor="let day of schedule">
+        <tr *ngFor="let day of schedule;let index=index">
           <td>
-            {{day.name|translate}}
+            {{getDayByNumber(index)|translate}}
           </td>
           <td>
-            <mat-checkbox disabled color="primary" [checked]="day.open"></mat-checkbox>
+            <mat-checkbox disabled color="primary" [checked]="day.opens"></mat-checkbox>
           </td>
           <td>
-            <b>{{day.morning.open}}</b>-<b>{{day.morning.close}}</b>
+            <b>{{day.firstOpen}}</b>-<b>{{day.firstClose}}</b>
           </td>
           <td>
-            <b>{{day.evening.open}}</b>-<b>{{day.evening.close}}</b>
+            <b>{{day.secondOpen}}</b>-<b>{{day.secondClose}}</b>
           </td>
         </tr>
       </table>
