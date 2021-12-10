@@ -181,7 +181,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.loading = true;
     this.query = query;
 
-    this.searchObs = this.crudAccounts.list(data, 'all').subscribe(
+    this.searchObs = this.crudAccounts.list(data,'all').subscribe(
       (resp: any) => {
         this.data = resp.data.elements;
         this.total = resp.data.total;

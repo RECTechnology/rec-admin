@@ -46,7 +46,6 @@ export class B2BSettingsComponent extends PageBase {
 
     /* Called when tab change, so url changes also */
     public changeUrl($event) {
-        console.log("Im in changeURL");
         this.pageName = this.tabMap[$event];
         this.setTitle(this.Brand.title + ' | ' + (this.pageName[0].toUpperCase() + (this.pageName.substr(1))));
 

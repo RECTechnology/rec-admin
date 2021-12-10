@@ -606,10 +606,13 @@
   "PARENT_ACTIVITY": "Parent Activity",
   "SUB_ACTIVITY": "Secondary Activity",
   "PARENT":"Parent",
+  "PARENT_ACTIVITIES":"Parent activities",
+  "DAUGHTER_ACTIVITIES":"daughter activities"
   "NON_BINARI":"Non binari",
   "SURE_EXPEL_USER":"Are you sure you want to expel user from account [{{accountId}}]?",
   "EXPEL_USER_TITTLE":"Expel user ({{accountName}}) from account",
   "PRICE":"Price",
   "OFFER":"Offert"
+
 
 }

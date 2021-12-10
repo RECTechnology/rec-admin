@@ -24,15 +24,17 @@ export class ActivityPicker extends BaseSelectorComponent {
   }
 
   public getSearchObservable(query: string): Observable<any> {
+    console.log("Im in geetSearchObservable",this.parent);
     return this.activitiesService
-      .list({
+      .search({
         search: query,
-        limit: 10,
-        parent: this.parent,
+        limit:300,
+        parent_id: this.parent,
       })
       .pipe(
         map((resp) => {
-          return resp.data.elements;
+          console.log("Printing resp.data",resp);
+          return resp.data;
         }),
       );
   }

@@ -32,7 +32,7 @@
                         placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
                 <div *ngIf="!isProduct" style="width: 100%">
-                    <activity-picker label="PARENT_ACTIVITY" [item]="secondary_activity" (itemChanged)="selectActivity($event)">
+                    <activity-picker label="PARENT_ACTIVITY" [item]="secondary_activity" [parent]="null" (itemChanged)="selectActivity($event)">
                     </activity-picker>
                 </div>
                 

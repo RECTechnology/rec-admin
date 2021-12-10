@@ -66,12 +66,12 @@ export class AccountsCrud extends CrudBaseService<Account> {
 
   public removeConsumedProductFromAccount(account_id, product_id) {
     const url = [...this.getUrlBase(), '/', account_id, '/', 'consuming_products', '/', product_id];
-    return this.delete(url).pipe(this.itemMapper());
+    return this.delete(url);
   }
 
   public removeProducedProductFromAccount(account_id, product_id) {
     const url = [...this.getUrlBase(), '/', account_id, '/', 'producing_products', '/', product_id];
-    return this.delete(url).pipe(this.itemMapper());
+    return this.delete(url);
   }
 
   public addActivity(account_id, activity_id) {
@@ -81,7 +81,7 @@ export class AccountsCrud extends CrudBaseService<Account> {
 
   public deleteActivity(account_id, activity_id) {
     const url = [...this.getUrlBase(), '/', account_id, '/', 'activities', '/', activity_id];
-    return this.delete(url).pipe(this.itemMapper());
+    return this.delete(url);
   }
 
   // Campaigns

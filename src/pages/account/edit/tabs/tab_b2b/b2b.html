@@ -76,19 +76,43 @@
 
       </div>
 
-      <div class="col-lg-6">
-        <div class="group-col-left" style="margin-top: 15px">
+      <div class="col" style="margin-left: auto;margin-top: 50px;">
+        <p class="small-text-2">{{'PARENT_ACTIVITY'|translate}}</p>
+        <div class="group-col-left" style="margin-top: 10px;" >
           <div style="margin-right: 15px">
-            <activity-picker label="PARENT_ACTIVITY" [item]="main_activity" (itemChanged)="selectParentActivity($event)"
+            <activity-picker label="PARENT_ACTIVITIES" [item]="main_activity" (itemChanged)="selectParentActivity($event)"
               [parent]="null">
             </activity-picker>
           </div>
-
-          <div>
-            <activity-picker label="SUB_ACTIVITY" [item]="secondary_activity" [parent]="main_activity_id"
-              (itemChanged)="selectActivity($event)">
+          <div style="margin-right: 15px">
+            <activity-picker label="DAUGHTER_ACTIVITIES" [item]="secondary_activity" (itemChanged)="selectActivity($event)"
+              [parent]="main_activity_id">
             </activity-picker>
           </div>
+         
+        </div>
+      </div>
+
+      <div class="col-lg-6" style="margin-left: auto;margin-top: 50px;">
+        <p class="small-text-2">{{'ACTIVITIES'|translate}}</p>
+        <div class="activity-box-list"  style="margin-top: 10px;">
+          <ul *ngIf="activitiesSelected && activitiesSelected.length"
+            style="list-style: none; margin: 0; padding: 0">
+            <li class="activity-list-item small-text" *ngFor="let act of activitiesSelected; let i = index">
+              {{act| tolang}}
+
+              <span class="icon fa fa-trash" (click)="deleteActivity(i)"></span>
+            </li>
+          </ul>
+          <p class="small-text col-gray padd-10"
+            *ngIf="activitiesSelected && !activitiesSelected.length">
+            {{'NO_ITEMS'|translate}}
+          </p>
+        </div>
+        <div style="margin-top: 15px">
+          <activity-picker label="ACTIVITY" [item]="activitySelector" [parent]="null"
+          (itemChanged)="addActivity($event)">
+          </activity-picker>
         </div>
       </div>
     </div>

@@ -50,7 +50,7 @@ export class ActivitiesTabComponent extends EntityTabBase<Activity> {
             sort: this.sortID,
         }).subscribe(
             (resp) => {
-                this.data = resp.data.elements.map(this.mapTranslatedElement);
+                this.data = resp.data.map(this.mapTranslatedElement);
                 this.sortedData = this.data.slice();
                 this.total = resp.data.total;
                 this.list.updateData(this.data, resp.data.total);

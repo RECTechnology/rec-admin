@@ -54,7 +54,6 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    console.log("Im in ngOnInit Users");
     super.ngOnInit();
     this.events.registerEvent('user:update').subscribe(this.loadUser.bind(this));
     

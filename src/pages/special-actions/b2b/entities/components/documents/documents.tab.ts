@@ -151,9 +151,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
 
       for (let document of this.documentKinds) {
         if (document.id == params.documentKindId && this.productKindFilter == null) {
-          console.log("Im in if");
           this.productKindFilter = document;
-          console.log("Printing docFindItem First", document);
         }
       }
 
@@ -193,8 +191,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
   }
 
   public selectDocKind(doc) {
-    console.log("Im ins electDockInd");
-    console.log(doc);
+
     this.productKindFilter = doc;
     this.addToQueryParams({
       documentKindId: doc.id,

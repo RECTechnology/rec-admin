@@ -14,7 +14,7 @@ export interface Category {
   id: 6;
   cat: 'Vestit i calçat';
   eng: 'Clothes and footwear';
-  esp: 'Ropa y calzado';
+  esp: 'Ropa y calzado'; 
 }
 
 export interface Account {
@@ -65,6 +65,7 @@ export interface Account {
   phone: string;
   prefix: string;
   producing_products: Product[];
+  secondaryActivities: any[];
   public_image: string;
   rec_address: string;
   roles: string[];

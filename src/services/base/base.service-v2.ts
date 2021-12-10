@@ -151,7 +151,6 @@ export class BaseService2 {
       body: data,
       headers,
     };
-
     return this.http.delete(
       this.getUrl(url),
       options,

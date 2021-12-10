@@ -36,6 +36,7 @@ export class B2BTab {
 
   public main_activity = null;
   public main_activity_id = null;
+  public activitySelector = null;
   public secondary_activity = null;
 
   public lang: any = 'esp';
@@ -64,32 +65,45 @@ export class B2BTab {
   public ngOnInit() {
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
 
-    this.main_activity = this.account.activity_main ? this.account.activity_main.parent : null;
+    this.main_activity = this.account.activity_main ? this.account.activity_main : null;
+    
     this.main_activity_id = this.main_activity ? this.main_activity.id : null;
-    this.secondary_activity = this.account.activity_main;
+    console.log("Im in ngOnInit",this.account);
 
+    console.log("Im in ngOnInit",this.main_activity);
+    if(this.main_activity.parent != undefined && this.main_activity.parent != null){
+      this.secondary_activity = this.account.activity_main;
+      this.main_activity=this.account.activity_main.parent;
+
+    }
+    
+    this.activitiesSelected = this.account.activities;
     this.accountCopy = { ...this.account };
     delete this.accountCopy.kyc_validations;
-
+    
     this.setupDebounce(this.searchConsumed.nativeElement);
     this.setupDebounce(this.searchProduced.nativeElement);
   }
 
+ 
+
+  public selectParentActivity(item) {
+    this.main_activity = item;
+    this.main_activity_id = this.main_activity ? this.main_activity.id : null;
+    
+   
+    
+    this.accountCopy.activity_main_id = item.id;
+    // Aqui seteamos secondary_activity a null, para que tengan que volver a seleccionar una subactivity
+    // Esto se hace porque cuando se selecciona un parent diferente, las subactivities son otras, por lo que tenemos que resetear el campo
+    this.secondary_activity = null;
+    this.update();
+  }
   public selectActivity(item) {
     this.secondary_activity = item;
     this.accountCopy.activity_main_id = item.id;
     this.update();
   }
-
-  public selectParentActivity(item) {
-    this.main_activity = item;
-    this.main_activity_id = this.main_activity ? this.main_activity.id : null;
-
-    // Aqui seteamos secondary_activity a null, para que tengan que volver a seleccionar una subactivity
-    // Esto se hace porque cuando se selecciona un parent diferente, las subactivities son otras, por lo que tenemos que resetear el campo
-    this.secondary_activity = null;
-  }
-
   public setupDebounce(element) {
     fromEvent(element, 'keyup')
       .pipe(

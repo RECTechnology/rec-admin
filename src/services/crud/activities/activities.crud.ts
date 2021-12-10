@@ -15,6 +15,8 @@ export class ActivitiesCrud extends CrudBaseService<Activity> {
         this.basePath = '/activities';
         this.setFlag('translateHeaders');
         this.mapItems = true;
+        this.version = 'v4';
+        this.userRole = CrudBaseService.ROLE_ADMIN;
     }
 
     public mapper(item) {
