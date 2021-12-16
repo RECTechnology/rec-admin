@@ -395,10 +395,8 @@
   "NO_BUSINESS_SELLING": "There aren't any bussiness selling that",
   "SUGEST_SOME": "Do you want to sugest one?",
   "NEIGBORHOODS": "Neighborhoods",
-  "ACTIVITIES": "Activities",
   "PRODUCTS": "Products",
   "NEIGBORHOOD": "Neighborhood",
-  "ACTIVITY": "Activity",
   "PRODUCT": "Product",
   "AVAILABLE_NEIGHBORHOODS": "Neighborhoods",
   "AVAILABLE_ACTIVITIES": "Activities",
@@ -612,7 +610,8 @@
   "SURE_EXPEL_USER":"Are you sure you want to expel user from account [{{accountId}}]?",
   "EXPEL_USER_TITTLE":"Expel user ({{accountName}}) from account",
   "PRICE":"Price",
-  "OFFER":"Offert"
-
+  "OFFER":"Offert",
+  "ACTIVITIES": "Activities",
+  "ACTIVITY": "Activity"
 
 }
