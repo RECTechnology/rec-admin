@@ -32,7 +32,7 @@
                         placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()">
                 </div>
                 <div *ngIf="!isProduct" style="width: 100%">
-                    <activity-picker label="PARENT_ACTIVITIES" [item]="secondary_activity" [parent]="'null'" (itemChanged)="selectActivity($event)">
+                    <activity-picker label="PARENT_ACTIVITY" [item]="secondary_activity" [parent]="'null'" (itemChanged)="selectActivity($event)">
                     </activity-picker>
                 </div>
                 
@@ -60,7 +60,7 @@
 
                         <!--  -->
                         <activity-picker label="ACTIVITY" [showSelection]="false" [item]="item.default_producing_by"
-                                (itemChanged)="addConsumed($event)" [parent]="null"></activity-picker>
+                                (itemChanged)="addConsumed($event)" ></activity-picker>
                     </div>
                     <div class="col-lg-6">
                         <p class="small-text-2">{{'ACTIVITIES_PRODUCED'|translate}}</p>
@@ -82,7 +82,7 @@
 
                         <!--  -->
                         <activity-picker [showSelection]="false"label="ACTIVITY"  
-                        (itemChanged)="addProduced($event)" [parent]="null"></activity-picker>
+                        (itemChanged)="addProduced($event)" ></activity-picker>
                         
                     </div>
                 </div>
