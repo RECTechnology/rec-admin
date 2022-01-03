@@ -64,7 +64,7 @@ export class B2BTab {
 
   public ngOnInit() {
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
-
+    
     this.main_activity = this.account.activity_main ? this.account.activity_main : null;
     
     this.main_activity_id = this.main_activity ? this.main_activity.id : null;

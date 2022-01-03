@@ -56,6 +56,7 @@ export class BasicInfoTab implements OnInit {
     delete changedProps.kyc_manager;
     delete changedProps.schedule;
     delete changedProps.level;
+    delete changedProps.pos;
     this.accountChanged.emit(changedProps);
   }
 }
