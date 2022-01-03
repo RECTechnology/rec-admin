@@ -44,6 +44,7 @@ export class ScheduleTab {
   public update() {
     const oldString = this.account.scheduleString;
     const newString = JSON.stringify(this.schedule.toJson());
+    console.log("Im in update",newString);
 
     if (oldString != newString) {
       this.accountChanged.emit({

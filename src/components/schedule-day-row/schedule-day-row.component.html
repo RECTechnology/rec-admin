@@ -5,7 +5,7 @@
                 style="margin-bottom: 10px">
                 <b class="small-text-2">{{getWeekdayName(weekday) | translate}}</b>
             </mat-checkbox>
-            <mat-checkbox *ngIf="opens24Hours" [disabled]="true" color="primary" [checked]="true"
+            <mat-checkbox *ngIf="opens24Hours" [disabled]="false" color="primary" [(ngModel)]="day.opens" [checked]="true"
                 style="margin-bottom: 10px">
                 <b class="small-text-2">{{getWeekdayName(weekday) | translate}}</b>
             </mat-checkbox>
