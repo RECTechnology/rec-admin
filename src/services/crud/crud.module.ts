@@ -7,10 +7,12 @@ import { UsersCrud } from './users/users.crud';
 import { DocumentKindsCrud } from './document_kinds/document_kinds';
 import { DocumentCrud } from './documents/documents';
 import { TiersCrud } from './tiers/tiers.crud';
+import { OffersCrud } from './offers/offers.crud';
 
 @NgModule({
     providers: [
         AccountsCrud,
+        OffersCrud,
         ProductsCrud,
         ActivitiesCrud,
         NeighborhoodsCrud,

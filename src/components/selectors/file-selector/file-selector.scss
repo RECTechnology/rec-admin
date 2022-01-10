@@ -2,13 +2,41 @@
   display: block;
   width: 100%;
 }
-.file-selector {
+.avatar-selector{
   height: 100px;
   width: 100px;
   background: #ddd;
   overflow: hidden;
   border-radius: 50%;
   position: relative;
+
+  .overlay {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(black, 0.3);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  &:hover .overlay {
+    display: flex;
+  }
+}
+
+.file-selector {
+  height: 150px;
+  width: 300px;
+  background: #ddd;
+  overflow: hidden;
+  border-radius: 6px;
+  position: relative;
+  justify-content: center;
 
   .overlay {
     cursor: pointer;

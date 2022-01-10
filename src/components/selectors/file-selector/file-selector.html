@@ -2,12 +2,26 @@
     <span class="small-text-2 marg-bottom-10">{{label|translate}}</span>
     <div class="row">
         <div class="col-lg-12">
-            <div class="file-selector">
+            <div *ngIf="isAvatar else notAvatar" class="file-selector">
                 <img style="height: 100px; width: 100px;" src="{{file}}" alt="" class="user-image">
                 <div class="overlay" (click)="openUpdateImage()">
                     <icon-btn icon="fa-camera"></icon-btn>
                 </div>
             </div>
+
+            <ng-template #notAvatar >
+                <div  class="file-selector"   >
+                    <img *ngIf="file != null else noImage" style="height: 100%; width: 100%;" src="{{file}}" alt="" >
+                    <ng-template #noImage>
+                        <div class="container">
+                            <div class="img"><mat-icon fontIcon="fa-camera"></mat-icon></div>
+                          </div>
+                    </ng-template>
+                    <div class="overlay" (click)="openUpdateImage()">
+                        <icon-btn icon="fa-camera"></icon-btn>
+                    </div>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

@@ -1213,7 +1213,15 @@
   "SURE_EXPEL_USER":"Estas seguro de que deseas expulsar el usuario de la cuenta  [{{accountId}}]?",
   "EXPEL_USER_TITTLE":"Expulsar usuario ({{accountName}}) de la cuenta",
   "PRICE":"Precio",
-  "OFFER":"Oferta"
+  "OFFER":"Oferta",
+  "INITIAL_PRICE":"Precio inicial",
+  "OFFER_PRICE":"Offerta inicial",
+  "DESCRIPTION":"Descripcion",
+  "TYPE_OFFER" :"Typo de offerta",
+  "WHEN_FINISH":"Cuando acaba?",
+  "ACTIVE_OFFER":"Offerta activa",
+  "DISCOUNT_PERCENT":"Porcentaje de descuento(%)"
+
 }
 
  

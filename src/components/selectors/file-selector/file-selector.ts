@@ -15,13 +15,16 @@ export class FileSelector implements OnInit {
     @Input() public file: any;
     @Output() public fileChange = new EventEmitter<any>();
     @Output() public error = new EventEmitter<any>();
+    @Input() public isAvatar = true;
 
     constructor(
         public alerts: AlertsService,
     ) { }
 
     public ngOnInit() {
-        this.file = this.file || environment.Brand.account_default_image;
+        if(this.isAvatar){
+            this.file = this.file || environment.Brand.account_default_image;
+        }
     }
 
     public openUpdateImage() {

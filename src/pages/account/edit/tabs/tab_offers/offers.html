@@ -10,7 +10,7 @@
 
       <div class="col">
         <div class="row">
-          <div class="col" *ngFor="let offer of account.offers">
+          <div class="col" *ngFor="let offer of account.offers;let indexOffer=index">
             <div>
               <mat-card style="margin-right: 15px;height: auto;width: 316px;margin-bottom: 15px;">
                 <div>
@@ -27,7 +27,7 @@
                   </div>
                 </ng-template>
                 <mat-card-content>
-                  <div style="margin-left:5px;margin-top: 3px ;">
+                  <div style="margin-left:5px;margin-top: 3px ;"> 
                     <p
                       style="overflow: hidden;width:264px;display: -webkit-box;-webkit-line-clamp: 2;  -webkit-box-orient: vertical;height: 36;font-size: 20;font-weight:bold">
                       {{offer.description}}
@@ -75,10 +75,10 @@
                     </div>
                     <div class="row" style=" margin-left: auto; margin-right: 10px;">
                       <div style="margin-top: 5px;">
-                        <button mat-icon-button matTooltip="{{'Edit'|translate}}" placement="bottom">
+                        <button mat-icon-button (click)="editOffer(offer)" matTooltip="{{'Edit'|translate}}" placement="bottom">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button matTooltip="{{'Delete'|translate}}" placement="bottom" color="warn">
+                        <button mat-icon-button  matTooltip="{{'Delete'|translate}}" placement="bottom" color="warn">
                           <mat-icon>delete</mat-icon>
                         </button>
                       </div>
@@ -98,7 +98,7 @@
           </div>
 
           <div class="col-lg-12" style="margin-top: 40px">
-            <button mat-raised-button>
+            <button mat-raised-button (click)="addOffer()">
               {{'ADD_OFFER'|translate}}
             </button>
           </div>

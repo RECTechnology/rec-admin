@@ -1,0 +1,10 @@
+<div class="col">
+    <div style="margin-bottom: 15px;">
+        <mat-label>{{label | translate}}</mat-label>
+    </div>
+    <div >
+        <input matInput type="{{dateType}}" [disabled]="isDisable" [(ngModel)]="last_date" (change)="valueChange()">
+    </div>
+    
+</div>
+

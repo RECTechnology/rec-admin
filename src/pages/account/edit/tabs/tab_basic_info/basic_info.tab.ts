@@ -52,6 +52,8 @@ export class BasicInfoTab implements OnInit {
 
   public update() {
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
+    console.log("Im in update accountCopy",this.accountCopy);
+    console.log("Im in update accountCopy",this.account);
     delete changedProps.activity_main;
     delete changedProps.kyc_manager;
     delete changedProps.schedule;

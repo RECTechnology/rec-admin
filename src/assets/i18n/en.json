@@ -611,7 +611,13 @@
   "EXPEL_USER_TITTLE":"Expel user ({{accountName}}) from account",
   "PRICE":"Price",
   "OFFER":"Offert",
+  "INITIAL_PRICE":"Initial price",
+  "OFFER_PRICE":"Offer price",
+  "DESCRIPTION":"Description",
+  "TYPE_OFFER" :"Offer type",
+  "WHEN_FINISH":"When finish it?",
+  "ACTIVE_OFFER":"Active offer",
+  "DISCOUNT_PERCENT":"Discount percent(%)",
   "ACTIVITIES": "Activities",
   "ACTIVITY": "Activity"
-
 }

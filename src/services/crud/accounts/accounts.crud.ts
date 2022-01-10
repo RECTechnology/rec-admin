@@ -64,6 +64,13 @@ export class AccountsCrud extends CrudBaseService<Account> {
     return this.post(url, { id: product_id }).pipe(this.itemMapper());
   }
 
+ 
+
+  public relacionOfferWhitAccount(account_id,data){
+    const url = [...this.getUrlBase(),'/',account_id,'/', 'offers'];
+    return this.post(url,data).pipe(this.itemMapper());
+  }
+
   public removeConsumedProductFromAccount(account_id, product_id) {
     const url = [...this.getUrlBase(), '/', account_id, '/', 'consuming_products', '/', product_id];
     return this.delete(url);
@@ -83,6 +90,13 @@ export class AccountsCrud extends CrudBaseService<Account> {
     const url = [...this.getUrlBase(), '/', account_id, '/', 'activities', '/', activity_id];
     return this.delete(url);
   }
+  public deleteOffer(account_id, offer_id) {
+    const url = [...this.getUrlBase(), '/', account_id, '/', 'offers', '/', offer_id];
+    return this.delete(url).pipe(this.itemMapper());
+  }
+
+ 
+ 
 
   // Campaigns
   public addCampaing(account_id, campaign_id) {
