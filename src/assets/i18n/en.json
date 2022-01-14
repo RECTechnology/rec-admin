@@ -619,5 +619,6 @@
   "ACTIVE_OFFER":"Active offer",
   "DISCOUNT_PERCENT":"Discount percent(%)",
   "ACTIVITIES": "Activities",
-  "ACTIVITY": "Activity"
+  "ACTIVITY": "Activity",
+  "FREE":"FREE"
 }

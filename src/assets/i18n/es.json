@@ -1220,7 +1220,8 @@
   "TYPE_OFFER" :"Typo de offerta",
   "WHEN_FINISH":"Cuando acaba?",
   "ACTIVE_OFFER":"Offerta activa",
-  "DISCOUNT_PERCENT":"Porcentaje de descuento(%)"
+  "DISCOUNT_PERCENT":"Porcentaje de descuento(%)",
+  "FREE":"GRATIS"
 
 }
 
