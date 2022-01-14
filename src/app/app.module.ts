@@ -59,7 +59,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { getLocale } from 'src/shared/utils.fns';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-
+import {
+  MatInputModule
+} from '@angular/material/input';
 
 registerLocaleData(localeCat);
 registerLocaleData(localeCa);
@@ -84,6 +86,7 @@ const imports = [
   ChangeDelegateModule,
   AccountModule,
   UsersModule,
+  MatInputModule,
   TranslateModule.forRoot({
     loader: {
       deps: [HttpClient],

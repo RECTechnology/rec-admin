@@ -37,4 +37,9 @@ export class OffersCrud extends CrudBaseService<Account> {
     return this.put(url,data);
   }
 
+  public deleteOffer( offer_id) {
+    const url = [...this.getUrlBase(),'/', offer_id];
+    return this.delete(url);
+  }
+
 }

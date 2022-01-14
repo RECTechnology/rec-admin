@@ -77,7 +77,8 @@
                         <button mat-icon-button (click)="editOffer(offer)" matTooltip="{{'Edit'|translate}}" placement="bottom">
                           <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button  matTooltip="{{'Delete'|translate}}" placement="bottom" color="warn">
+                        <button mat-icon-button (click)="deleteOffer(offer.id)" matTooltip="{{'Delete'|translate}}" placement="bottom" color="warn">
+
                           <mat-icon>delete</mat-icon>
                         </button>
                       </div>

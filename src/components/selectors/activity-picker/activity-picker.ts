@@ -24,7 +24,6 @@ export class ActivityPicker extends BaseSelectorComponent {
   }
 
   public getSearchObservable(query: string): Observable<any> {
-    console.log("Im in geetSearchObservable",this.parent);
     return this.activitiesService
       .search({
         search: query,
@@ -33,7 +32,6 @@ export class ActivityPicker extends BaseSelectorComponent {
       })
       .pipe(
         map((resp) => {
-          console.log("Printing resp.data",resp);
           return resp.data;
         }),
       );

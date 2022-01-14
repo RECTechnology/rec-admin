@@ -23,7 +23,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {
+    MatInputModule
+  } from '@angular/material/input';
 const MODULES = [
     MatButtonModule,
     MatCheckboxModule,
@@ -48,8 +51,11 @@ const MODULES = [
     MatButtonToggleModule,
     MatExpansionModule,
     MatIconModule,
+    MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
 ];
 
 @NgModule({

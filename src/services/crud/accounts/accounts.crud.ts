@@ -90,10 +90,7 @@ export class AccountsCrud extends CrudBaseService<Account> {
     const url = [...this.getUrlBase(), '/', account_id, '/', 'activities', '/', activity_id];
     return this.delete(url);
   }
-  public deleteOffer(account_id, offer_id) {
-    const url = [...this.getUrlBase(), '/', account_id, '/', 'offers', '/', offer_id];
-    return this.delete(url).pipe(this.itemMapper());
-  }
+
 
  
  

@@ -611,7 +611,7 @@
   "EXPEL_USER_TITTLE":"Expel user ({{accountName}}) from account",
   "PRICE":"Price",
   "OFFER":"Offert",
-  "INITIAL_PRICE":"Initial price",
+  "INITIAL_PRICE":"Usual price",
   "OFFER_PRICE":"Offer price",
   "DESCRIPTION":"Description",
   "TYPE_OFFER" :"Offer type",
@@ -620,5 +620,10 @@
   "DISCOUNT_PERCENT":"Discount percent(%)",
   "ACTIVITIES": "Activities",
   "ACTIVITY": "Activity",
+  "ADD_OFFER":"Add offer",
+  "EDIT_OFFER":"Edit offer",
+  "SURE_DELETE_OFFER":"Are u sure you want to delete this offer?",
+  "DELETE_OFFER":"Delete offer",
+  "IMAGE":"Image",
   "FREE":"FREE"
 }

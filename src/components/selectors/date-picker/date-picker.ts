@@ -1,13 +1,18 @@
 
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { DatePipe } from '@angular/common'
 
 /** @title Basic datepicker */
 @Component({
     selector: 'date-picker',
     templateUrl: 'date-picker.html',
+    styleUrls: [
+        'date-picker.scss',
+    ]
 })
-export class DatePicker { 
+export class DatePicker {
+
     @Input() public item: string;
     @Input() public dateType: string;
     @Input() public label: string = "Choose a date";
@@ -15,21 +20,26 @@ export class DatePicker {
     @Input() public locale: string = 'es';
     @Input() public isDisable: boolean = false;
     @Output() public itemChanged: EventEmitter<any> = new EventEmitter();
-    
+
     public date: any;
     public datepipe: DatePipe = new DatePipe(this.locale);
-    public last_date:any;
-    
-    ngOnInit(){
-        this.date=new Date(this.item);
-        this.last_date =this.datepipe.transform(this.date, this.dateFormat);
+
+    ngOnInit() {
+        if (this.item) {
+            this.date = new Date(this.item);
+        }
+
     }
 
-    ngOnChange(){
+    ngOnChange() {
     }
 
-    public valueChange(){
-        this.itemChanged.emit(this.last_date)
+    public setDate(data){
+        console.log("Im in setDate",data);
+        this.date = new Date(data.value);
+        this.itemChanged.emit(this.date)
     }
+
+ 
 
 }

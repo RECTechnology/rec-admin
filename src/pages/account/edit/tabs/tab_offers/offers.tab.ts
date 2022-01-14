@@ -34,11 +34,17 @@ export class OffersTab {
   public deleteOffer(offerId) {
 
     this.loading = true;
-
-    this.accountsCrud.deleteOffer(this.account.id, offerId).subscribe((resp) => {
-
-      this.loading = false;
+    this.alerts.showConfirmation('SURE_DELETE_OFFER',{}, 'DELETE_OFFER').subscribe((resp) => {
+      if (resp) {
+        console.log('Delete: ', resp);
+        this.offersCrud.deleteOffer( offerId).subscribe((resp) => {
+          this.loading = false;
+          this.getAllData();
+        });
+      }
     });
+    
+
 
   }
 
@@ -46,8 +52,10 @@ export class OffersTab {
   public addOffer(){
     this.alerts.openModal(EditOfferDia, {
       item: Object.assign({}, ),
+      isEdit: false,
     }).subscribe((updated) => {
-      if (updated) {
+      if (updated != null ) {
+
         var date = new Date(updated.end);
         var formattedDate = date.toISOString();
         this.loading = true;
@@ -57,11 +65,14 @@ export class OffersTab {
           image: updated.image,
           type: updated.type,
           initial_price: updated.initial_price,
+          discount:updated.discount,
+
           end : formattedDate,
           offer_price: updated.offer_price,
         }).subscribe(
           (resp) => {
-            this.relationOffer(resp.data.id)
+            this.relationOffer(resp.data.id);
+
             this.loading = false;
           },
           (error) => {
@@ -76,6 +87,22 @@ export class OffersTab {
     });
   }
 
+  public getAllData(){
+    this.accountsCrud.find(this.account.id).subscribe(
+      (resp: any) => {
+
+        this.account = resp.data;
+        this.loading = false;
+        
+      },
+      (error) => {
+        this.loading = false;
+        this.alerts.showSnackbar('Account not found...');
+        
+      },);
+  }
+
+
   public relationOffer(id){
     this.accountsCrud.relacionOfferWhitAccount( this.account.id,{
       id: id
@@ -83,12 +110,16 @@ export class OffersTab {
       (resp) => {
         this.alerts.showSnackbar('Created offer');
         this.loading = false;
+        this.getAllData();
+
+
       },
       (error) => {
         this.alerts.showSnackbar(error.message);
         this.loading = false;
       },
     );
+
   }
 
   ngOnChanges(){
@@ -102,26 +133,33 @@ export class OffersTab {
 
     }).subscribe((updated) => {
     
-      var date = new Date(updated.end);
-      var formattedDate = date.toISOString();
-       
+      
+
         
      
       if (updated) {
         this.loading = true;
+        var date = new Date(updated.end);
+        var formattedDate = date.toISOString();
+
+
         this.offersCrud.editOffer(offer.id, {
           active : updated.active,
           description : updated.description,
           image: updated.image,
           type: updated.type,
           initial_price: updated.initial_price,
-          end : formattedDate,
+          end : formattedDate??null,
+
           offer_price: updated.offer_price,
   
         }).subscribe(
           (resp) => {
             this.alerts.showSnackbar('Updated Offer: ' + offer.id, 'ok');
             this.loading = false;
+            this.getAllData();
+
+
           },
           (error) => {
             this.alerts.showSnackbar(error.message);
@@ -130,6 +168,8 @@ export class OffersTab {
         );
       }
     });
+    
+
   }
 
 }

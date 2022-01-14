@@ -43,7 +43,7 @@ export class EditUserData {
     public dialog: MatDialog,
     public usersCrud: UsersCrud,
     public alerts: AlertsService,
-  ) { }
+  ) { } 
 
   public ngOnInit() {
     this.getUser();

@@ -1214,15 +1214,17 @@
   "EXPEL_USER_TITTLE":"Expulsar usuario ({{accountName}}) de la cuenta",
   "PRICE":"Precio",
   "OFFER":"Oferta",
-  "INITIAL_PRICE":"Precio inicial",
-  "OFFER_PRICE":"Offerta inicial",
+  "INITIAL_PRICE":"Precio habitual",
+  "OFFER_PRICE":"Precio offerta",
   "DESCRIPTION":"Descripcion",
-  "TYPE_OFFER" :"Typo de offerta",
+  "TYPE_OFFER" :"Tipo de offerta",
   "WHEN_FINISH":"Cuando acaba?",
   "ACTIVE_OFFER":"Offerta activa",
   "DISCOUNT_PERCENT":"Porcentaje de descuento(%)",
+  "ADD_OFFER":"Añadir oferta",
+  "EDIT_OFFER":"Editar offerta",
+  "SURE_DELETE_OFFER":"Estas seguro de que deseas eliminar esta offerta?",
+  "DELETE_OFFER":"Eliminar offerta",
+  "Image":"Imagen",
   "FREE":"GRATIS"
-
 }
-
- 
