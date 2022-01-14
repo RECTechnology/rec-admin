@@ -1,16 +1,16 @@
 <div class="row" style="height: 50px">
-    <div class="col-lg-2">
+    <div class="col-lg-4">
         <div class="group-row-left center" style="height: 100%;">
-            <mat-checkbox *ngIf="!opens24Hours && !closed && !isNotAvailable" color="primary" [(ngModel)]="day.opens"
+            <mat-checkbox class="col-lg-8" *ngIf="!opens24Hours && !closed && !isNotAvailable" color="primary" [(ngModel)]="day.opens"
                 style="margin-bottom: 10px">
                 <b class="small-text-2">{{getWeekdayName(weekday) | translate}}</b>
             </mat-checkbox>
             <mat-checkbox *ngIf="opens24Hours" [disabled]="false" color="primary" [(ngModel)]="day.opens" [checked]="true"
-                style="margin-bottom: 10px">
+                >
                 <b class="small-text-2">{{getWeekdayName(weekday) | translate}}</b>
             </mat-checkbox>
-            <mat-checkbox *ngIf="closed || isNotAvailable" [disabled]="true" [checked]="false" color="primary"
-                style="margin-bottom: 10px">
+            <mat-checkbox class="col-lg-8" *ngIf="closed || isNotAvailable" [disabled]="true" [checked]="false" color="primary"
+               >
                 <b class="small-text-2">{{getWeekdayName(weekday) | translate}}</b>
             </mat-checkbox>
         </div>
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <div *ngIf="!opens24Hours && !closed && !isNotAvailable" class="col-lg-5">
+    <div *ngIf="!opens24Hours && !closed && !isNotAvailable" class="col-lg-4">
         <div class="group-row-left center">
             <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.firstOpen" 
                 placeholder="First Open" />
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div *ngIf="!opens24Hours && !closed && !isNotAvailable" class="col-lg-5">
+    <div *ngIf="!opens24Hours && !closed && !isNotAvailable" class="col-lg-4">
         <div class="group-row-left  center">
             <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.secondOpen" placeholder="Second Open"/>
             <div class="padd-h-10 marg-bottom-10">
