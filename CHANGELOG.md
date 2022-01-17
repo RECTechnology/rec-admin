@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.21.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.19.3...v3.21.0) (2022-01-17)
+
+
+### Features
+
+* added format in the amounts of transactions ([#339](https://github.com/QbitArtifacts/rec-admin/issues/339)) ([b93a5ca](https://github.com/QbitArtifacts/rec-admin/commit/b93a5cafea91fe2f882699997694753e82494341))
+* added new button in paginator to skip to the last page ([#367](https://github.com/QbitArtifacts/rec-admin/issues/367)) ([80fc23d](https://github.com/QbitArtifacts/rec-admin/commit/80fc23dc330de2420ecfc0f1d8820894ca66ce86))
+* added new gender option to user ([#368](https://github.com/QbitArtifacts/rec-admin/issues/368)) ([f1581cc](https://github.com/QbitArtifacts/rec-admin/commit/f1581cc87206e596416918323b01ddb0db86e491))
+* added new gender to user ([889b74e](https://github.com/QbitArtifacts/rec-admin/commit/889b74e09ff6e76e52040f92f89fb3ae761355fa))
+* added padding in offers tab ([#388](https://github.com/QbitArtifacts/rec-admin/issues/388)) ([66b873a](https://github.com/QbitArtifacts/rec-admin/commit/66b873a397c446e087cd0628b12b8b6d2048187c))
+* added platform to login method in auth.service ([#342](https://github.com/QbitArtifacts/rec-admin/issues/342)) ([03d838f](https://github.com/QbitArtifacts/rec-admin/commit/03d838f88ffd77949c714318f042e24195848853))
+* asigned sub activity when creating and editing activities ([#343](https://github.com/QbitArtifacts/rec-admin/issues/343)) ([bf33889](https://github.com/QbitArtifacts/rec-admin/commit/bf33889735d25171e6cff2fbfc2fabbbb4ee88f4))
+* delete edit offers ([#399](https://github.com/QbitArtifacts/rec-admin/issues/399)) ([b8f94d7](https://github.com/QbitArtifacts/rec-admin/commit/b8f94d7bfdc2d923588dd93157b88e4be6fe7ab8))
+* modified endPoint to delete user from account ([#354](https://github.com/QbitArtifacts/rec-admin/issues/354)) ([8cf54fd](https://github.com/QbitArtifacts/rec-admin/commit/8cf54fd21f3565fcaf706c43d5a14ed05828edde))
+* modified organizations schedule details ([#387](https://github.com/QbitArtifacts/rec-admin/issues/387)) ([958c5e5](https://github.com/QbitArtifacts/rec-admin/commit/958c5e531de8e19c69bc10257a837178b3b30e74))
+* modified parent filter in some activitie-pickers ([6efcabc](https://github.com/QbitArtifacts/rec-admin/commit/6efcabc203b7f92314199b1b57d0bf014b79c5fb))
+* modified schedule ([#401](https://github.com/QbitArtifacts/rec-admin/issues/401)) ([2b70607](https://github.com/QbitArtifacts/rec-admin/commit/2b7060772474cd6a1f494024cef484f9c86a3a1c))
+* modified time input in schedule ([#384](https://github.com/QbitArtifacts/rec-admin/issues/384)) ([bf3e3f6](https://github.com/QbitArtifacts/rec-admin/commit/bf3e3f62c2877aec01eb3867fb0e83383008317c))
+* repaired bug in organizations tab ([#386](https://github.com/QbitArtifacts/rec-admin/issues/386)) ([9073ba9](https://github.com/QbitArtifacts/rec-admin/commit/9073ba9351fdc9bb4d2d56b3884116f77f19a145))
+* repaired bug in selector to selct act with parent id null and change titel secondary acitvities ([eec5075](https://github.com/QbitArtifacts/rec-admin/commit/eec50759315c1f13499f00749f6c9bdaf324fdcc))
+* repaired bug modifying date in documents ([#351](https://github.com/QbitArtifacts/rec-admin/issues/351)) ([8dfb633](https://github.com/QbitArtifacts/rec-admin/commit/8dfb633c6f4226a6622d505707f670de8d5682d2))
+* repaired bug to select day in schetule 24h ([#393](https://github.com/QbitArtifacts/rec-admin/issues/393)) ([888f908](https://github.com/QbitArtifacts/rec-admin/commit/888f9081a621d0f094ff9307da37a2656f477dd3))
+* repaired bug when modify map visualization ([ff9e24a](https://github.com/QbitArtifacts/rec-admin/commit/ff9e24a78f7a29ae404943bbe6a51ce8cdf2424f))
+* set active init to true ([#358](https://github.com/QbitArtifacts/rec-admin/issues/358)) ([e19a2da](https://github.com/QbitArtifacts/rec-admin/commit/e19a2da3d1acef1706fcebb0398f6f58cf6d2559))
+
+
+### Bug Fixes
+
+* re-added parent column to activities list ([#362](https://github.com/QbitArtifacts/rec-admin/issues/362)) ([eabdfff](https://github.com/QbitArtifacts/rec-admin/commit/eabdfff16226e703e0d78afb53cd7745e76b885d))
+
 ### [3.19.3](https://github.com/QbitArtifacts/rec-admin/compare/v3.19.2...v3.19.3) (2021-09-03)
 
 
