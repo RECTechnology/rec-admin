@@ -1182,7 +1182,7 @@
   "ADD_DOCUMENT":"Añadir documento",
   "SELECT_ACCOUNT":"seleccionar cuenta",
   "SELECT_USER":"Seleccionar usuario",
-  "ALL_ACCOUNTS": "todas las cuentas",
+  "ALL_ACCOUNTS": "Todas las cuentas",
   "EDIT_USER":"Editar usuario",
   "PUBLIC":"Publico",
   "VIEW_SMS":"Ver SMS",
@@ -1226,5 +1226,8 @@
   "SURE_DELETE_OFFER":"Estas seguro de que deseas eliminar esta offerta?",
   "DELETE_OFFER":"Eliminar offerta",
   "Image":"Imagen",
-  "FREE":"GRATIS"
+  "FREE":"GRATIS",
+  "VIEW_ACCOUNT": "Ver cuenta",
+  "Not filled": "Sin definir",
+  "BALANCE": "Balance"
 }

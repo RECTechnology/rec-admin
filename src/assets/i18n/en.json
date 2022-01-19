@@ -625,5 +625,8 @@
   "SURE_DELETE_OFFER":"Are u sure you want to delete this offer?",
   "DELETE_OFFER":"Delete offer",
   "IMAGE":"Image",
-  "FREE":"FREE"
+  "FREE":"FREE",
+  "VIEW_ACCOUNT": "View account",
+  "Not filled": "Not filled",
+  "BALANCE": "Balance"
 }

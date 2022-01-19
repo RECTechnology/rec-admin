@@ -1180,6 +1180,9 @@
   "PARENT":"Pare",
   "NON_BINARI":"No binari",
   "PRICE":"Preci",
-  "OFFER":"Oferta"
+  "OFFER":"Oferta",
+  "VIEW_ACCOUNT": "Vore el compte",
+  "Not filled": "No definit",
+  "BALANCE": "Balanç"
 
 }

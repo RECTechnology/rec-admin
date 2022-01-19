@@ -13,35 +13,42 @@
         {{'USER_DISABLED_DESC'|translate}}
       </p>
     </div>
+    
     <div class="group-col-left" style="margin-top: 15px; border-top: 1px solid #ddd">
       <div class="group-col-left" style="padding-top: 15px">
-        <b>{{'Details'|translate}}: </b>
+        <b class="marg-bottom-20">{{'Details'|translate}}</b>
+
         <div class="row" style="padding: 0 15px">
-          <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-            <b class="small-text-2" style="margin-right: 8px">{{'Name'|translate}}
+          <div style="margin-bottom: 15px" class="col-lg-6 col-sm-12 group-col-left">
+            <b class="small-text" style="margin-right: 8px; margin-bottom:6px">
+              {{'Name'|translate}}
             </b>
-            <span class="small-text-2">{{user.name}}</span>
+            <span class="small-text-2">{{(user.name || 'Not filled')|translate}}</span>
           </div>
-          <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-            <b class="small-text-2" style="margin-right: 8px">{{'Last Name'|translate}} </b>
-            <span class="small-text-2">{{user.kyc_validations ? user.kyc_validations.last_name: 'Not filled'}}</span>
+
+          <div style="margin-bottom: 15px" class="col-lg-6 col-sm-12 group-col-left">
+            <b class="small-text" style="margin-right: 8px; margin-bottom:6px">{{'Last Name'|translate}} </b>
+            <span class="small-text-2">{{(user.kyc_validations && user.kyc_validations.last_name || 'Not filled')|translate}}</span>
           </div>
-          <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-            <b class="small-text-2" style="margin-right: 8px">{{'Email'|translate}} </b>
-            <span class="small-text-2">{{user.email || 'Not filled'}}</span>
+
+          <div style="margin-bottom: 15px" class="col-lg-6 col-sm-12 group-col-left">
+            <b class="small-text" style="margin-right: 8px; margin-bottom:6px">{{'Email'|translate}} </b>
+            <span class="small-text-2">{{(user.email || 'Not filled')|translate}}</span>
           </div>
-          <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-            <b class="small-text-2" style="margin-right: 8px">
+
+          <div style="margin-bottom: 15px" class="col-lg-6 col-sm-12 group-col-left">
+            <b class="small-text" style="margin-right: 8px; margin-bottom:6px">
               {{'Phone'|translate}}
               <span class="col-success" title="Phone is validated">
                 <i class="fa fa-check"></i>
               </span>
             </b>
             <span class="small-text-2">+{{user.prefix}}
-              {{user.phone ? user.phone: 'Not filled'}}</span>
+              {{(user.phone ? user.phone: 'Not filled')|translate}}</span>
           </div>
-          <div style="margin-bottom: 10px" class="col-lg-6 col-sm-12 group-col-left">
-            <b class="small-text-2" style="margin-right: 8px">{{'Created'|translate}} </b>
+
+          <div style="margin-bottom: 15px" class="col-lg-6 col-sm-12 group-col-left">
+            <b class="small-text" style="margin-right: 8px; margin-bottom:6px">{{'Created'|translate}} </b>
             <span class="small-text-2">{{user.created | date}}</span>
           </div>
         </div>
@@ -50,8 +57,7 @@
    
     <div class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
       <div class="group-col-left" style="padding-top: 15px">
-        <b>{{'Actions'|translate}}: </b>
-        <div style="margin-left: 10px">
+        <div>
           <button mat-button color="primary" (click)="editRoles()">
             {{'Edit'|translate}}
           </button>
@@ -70,7 +76,6 @@
           <button mat-button color="primary" (click)="enableUser()" *ngIf="!user.enabled">
             <span class="col-blue">{{'ENABLE'|translate}}</span>
           </button>
-          
         </div>
       </div>
     </div>

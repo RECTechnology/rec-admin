@@ -4,12 +4,14 @@
   <div class="group-row-left center v" *ngIf="companyService.selectedCompany && companyService.selectedCompany.id">
     <avatar [account]="companyService.selectedCompany" [size]="30"></avatar>
 
-    <code class="small-text" style="margin-right: 10px;">
-      {{companyService.selectedCompany.getBalance('REC') | number}} Ɍ
-    </code>
-    <code class="small-text">
-      {{companyService.selectedCompany.lw_balance | number}} €
-    </code>
+    <div class="group-row-left">
+      <code style="margin-left: 10px" class="small-text-2">
+        {{(companyService.selectedCompany.getBalance('REC')|| 0) | number}} Ɍ
+      </code>
+      <code style="margin-left: 10px" class="small-text-2">
+        {{(companyService.selectedCompany.lw_balance || 0) | number}} €
+      </code>
+    </div>
   </div>
 </header-nav>
 

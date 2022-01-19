@@ -2,18 +2,22 @@
   <div class="row" style="margin: 0; padding: 20px;">
     <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
       <div class="header" style="padding: 10px 15px">
-        <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">{{'ACCOUNT_USERS'|translate}}</p>
+        <p class="no-margin no-padding small-text col-blue" style="margin: 0 !important">
+          {{'ACCOUNT_USERS'|translate}}
+        </p>
 
-        <input type="text" class="input radius-2" style="width: 60%; margin: 0 15px" placeholder="{{'Search'|translate}}..."
-          [(ngModel)]="searchQuery" (keyup.enter)="search();">
+        <input type="text" class="input radius-2" style="width: 60%; margin: 0 15px"
+          placeholder="{{'Search'|translate}}..." [(ngModel)]="searchQuery" (keyup.enter)="search();">
 
         <div>
-          <button type="button" style="margin-right: 6px;" color="primary" mat-raised-button (click)="search()" name="button">
+          <button type="button" style="margin-right: 6px;" color="primary" mat-raised-button (click)="search()"
+            name="button">
             <p class="text-small">
               <i class="fa fa-search"></i>
               {{'Search'|translate}}
             </p>
           </button>
+
           <button type="button" color="primary" mat-raised-button (click)="openAddUser()" name="button">
             <p class="text-small">
               <i class="fa fa-plus"></i>
@@ -22,7 +26,9 @@
           </button>
         </div>
       </div>
-      <div class="group-row-left center v" style="padding: 8px 15px; border-bottom: 1px solid #ddd; position: relative;">
+
+      <div class="group-row-left center v"
+        style="padding: 8px 15px; border-bottom: 1px solid #ddd; position: relative;">
         <mat-checkbox color="primary" class="small-text" style="margin-right: 10px">
           {{'Active'|translate}}
         </mat-checkbox>
@@ -40,27 +46,32 @@
           {{'Total'|translate}}: {{showingAccounts}} of {{companyService.totalAccounts}}
         </div>
       </div>
+
       <table class="left-align" mdSort (mdSortChange)="sortData($event)">
         <tr>
           <th md-sort-header="id" style="color: #555!important">ID</th>
-          <th md-sort-header="name" *ngIf="!utils.isMobileDevice" style="color: #555!important">{{'Name'|translate}}</th>
+          <th md-sort-header="name" *ngIf="!utils.isMobileDevice" style="color: #555!important">{{'Name'|translate}}
+          </th>
           <th md-sort-header="username" style="color: #555!important">{{'Username'|translate}}</th>
           <th md-sort-header="email" style="color: #555!important">{{'Email'|translate}}</th>
-          <th md-sort-header="roles" style="color: #555!important" *ngIf="!utils.isMobileDevice">{{'Role'|translate}}</th>
+          <th md-sort-header="roles" style="color: #555!important" *ngIf="!utils.isMobileDevice">{{'Role'|translate}}
+          </th>
           <th></th>
         </tr>
 
         <tr *ngFor="let user of sortedData; let i = index" (click)="openViewDetails(user, i)" class="hoverable">
           <td>{{user.id}}</td>
           <td *ngIf="!utils.isMobileDevice">
-            <img src="{{user.profile_image || brand.profile_default_image}}" alt="" style="width: 30px; height: 30px; border-radius: 50%">
-            {{user.name}}
+            <img src="{{user.profile_image || brand.profile_default_image}}" alt=""
+              style="width: 24px; height: 24px; border-radius: 50%">
+            {{(user.name || 'Not filled')|translate}}
           </td>
           <td>{{user.username}}</td>
           <td>{{user.email}}</td>
           <td *ngIf="!utils.isMobileDevice">{{user.roles[0]}}</td>
           <td>
-            <button mat-icon-button (click)="$event.stopPropagation()" [matMenuTriggerFor]="optsMenu" class="icon-btn-small" style="min-width: 0">
+            <button mat-icon-button (click)="$event.stopPropagation()" [matMenuTriggerFor]="optsMenu"
+              class="icon-btn-small" style="min-width: 0">
               <span class="center h v">
                 <i class="fa fa-ellipsis-v"></i>
               </span>

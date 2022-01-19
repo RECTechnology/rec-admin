@@ -1,60 +1,36 @@
-
-
 <div style="height: 100%; padding: 20px">
   <mat-card>
-    
-      <tl-subheader>
-        <div style="padding: 8px 15px;">
-          
-          <mat-checkbox style="margin-left: 15px; margin-right: 20px;"
-            color="primary" [(ngModel)]="enabledAccounts"
-            >
-            <span class="small-text">{{'ACTIVE_ACCOUNTS' | translate}}</span>
-          </mat-checkbox>
-          <mat-checkbox style="margin-left: 15px; margin-right: 20px;"
-            color="primary" [(ngModel)]="disabledAccounts"
-            >
-            <span class="small-text">{{'DISABLED_ACCOUNTS' | translate}}</span>
-          </mat-checkbox>
-          
+    <tl-subheader>
+      <div style="margin-bottom: 15px">
+        <mat-checkbox style="margin-right: 20px;" color="primary" [(ngModel)]="enabledAccounts">
+          <span class="small-text">{{'ACTIVE_ACCOUNTS' | translate}}</span>
+        </mat-checkbox>
+        <mat-checkbox style="margin-right: 20px;" color="primary" [(ngModel)]="disabledAccounts">
+          <span class="small-text">{{'DISABLED_ACCOUNTS' | translate}}</span>
+        </mat-checkbox>
+      </div>
+    </tl-subheader>
+
+    <div class="group-row-left" style="margin-top: 15px;  ">
+      <div class="group-col-left">
+        <b *ngIf="enabledAccounts && !disabledAccounts">{{'ACTIVE_ACCOUNTS'|translate}}: </b>
+        <b *ngIf="!enabledAccounts && disabledAccounts">{{'DISABLED_ACCOUNTS'|translate}}: </b>
+        <b *ngIf="enabledAccounts && disabledAccounts">{{'ALL_ACCOUNTS'|translate}}: </b>
+
+        <div class="group-row-left" style="flex-wrap: wrap; margin-top: 20px"
+          *ngIf="user.accounts && user.accounts.length ">
+
+          <mat-chip-list aria-label="Fish selection">
+            <ng-container *ngFor="let comp of user.accounts">
+              <mat-chip style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
+                routerLink="/accounts/{{comp.id}}" matTooltip="{{'VIEW_ACCOUNT'|translate}}"
+                *ngIf="enabledAccounts && comp.active || !enabledAccounts && !comp.active">
+                <avatar [account]="comp" [size]="20"></avatar>
+              </mat-chip>
+            </ng-container>
+          </mat-chip-list>
         </div>
-      </tl-subheader>
-    
-        <div class="group-row-left" style="margin-top: 15px;  ">
-            <div class="group-col-left" style="padding-top: 15px">
-              <b *ngIf="enabledAccounts && !disabledAccounts">{{'ACTIVE_ACCOUNTS'|translate}}: </b>
-              <b *ngIf="!enabledAccounts && disabledAccounts">{{'DISABLED_ACCOUNTS'|translate}}: </b>
-              <b *ngIf="enabledAccounts && disabledAccounts">{{'ALL_ACCOUNTS'|translate}}: </b>
-              <div class="group-row-left" style="flex-wrap: wrap; padding: 4px 15px"
-                *ngIf="user.accounts && user.accounts.length " >
-                <div *ngFor="let comp of user.accounts">
-                    <div *ngIf="enabledAccounts && !disabledAccounts">
-                      <mat-chip 
-                        style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
-                        routerLink="/accounts/{{comp.id}}" matTooltip="View account" *ngIf="comp.active">
-                        <avatar  [account]="comp" [size]="30"></avatar>
-                       </mat-chip>
-                    </div>
-                    <div *ngIf="disabledAccounts && !enabledAccounts">
-                      <mat-chip 
-                        style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
-                        routerLink="/accounts/{{comp.id}}" matTooltip="View account" *ngIf="!comp.active">
-                        <avatar  [account]="comp" [size]="30"></avatar>
-                       </mat-chip>
-                    </div>
-                    <div *ngIf="disabledAccounts && enabledAccounts">
-                      <mat-chip 
-                        style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
-                        routerLink="/accounts/{{comp.id}}" matTooltip="View account">
-                        <avatar  [account]="comp" [size]="30"></avatar>
-                       </mat-chip>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
-  
+      </div>
+    </div>
   </mat-card>
-  
-    
-</div> 
+</div>

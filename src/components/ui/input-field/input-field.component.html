@@ -1,8 +1,9 @@
-<div class="group-col-left">
-    <span class="small-text-2 marg-bottom-10" *ngIf="label">
+<div class="group-col-left marg-bottom-10">
+    <span class="small-text-2 marg-bottom-5" *ngIf="label">
         {{label|translate}} {{subLabel}} <span class="small-text col-gray-light">{{getMinMaxLabel()}} </span>
         <i *ngIf="isRequired" style="font-size: 10px!important;" class="small-text fa fa-asterisk col-error"></i>
     </span>
+
     <p class="small-text col-gray-light" [ngClass]="{'col-error': hasError}" style="margin-top: 0"
         *ngIf="description || hasError">
         {{hasError ? error:  description}}
@@ -25,7 +26,7 @@
         <span class="small-text-2">{{placeholder|translate}}</span>
     </mat-checkbox>
 
-    <mat-select class="mat-button-menu status-launched" [disabled]="disabled" style="margin-top: 5px;"
+    <mat-select class="mat-button-menu status-launched" [disabled]="disabled" style="margin-top: 10px;"
         *ngIf="!isNormalInput && type === 'select'" [ngModel]="value" (ngModelChange)="changed($event)"
         placeholder="{{placeholder|translate}}">
         <mat-option class="status-launched" [value]="opt.value || opt" *ngFor="let opt of options">{{(opt.name || opt) | translate}}

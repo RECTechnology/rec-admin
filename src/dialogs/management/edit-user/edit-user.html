@@ -3,11 +3,13 @@
 <div class="group-col-left modal-body" style="width: auto; padding: 0!important">
   <mat-tab-group class="profile-tabs">
     <mat-tab label="{{'BASIC_INFO'|translate}}">
+
       <div class="row padd-20">
-        <div class="col-lg-12">
+        <div class="col-lg-12 marg-bottom-20">
           <b class="small-text-3" style="margin: 15px 0 10px 0">{{'BASIC_INFO'|translate}}</b>
           <p class="small-text col-gray-light">{{'BASIC_INFO_DESC'|translate}}</p>
         </div>
+
         <div class="col-lg-6">
           <input-field [(value)]="userCopy.name" label="Name" [disabled]="loading"></input-field>
         </div>
@@ -35,6 +37,7 @@
                 <span class="small-text-2">{{'PUBLIC'|translate}}</span>
               </mat-checkbox>
             </div>
+
             <div class="row">
               <div class="col-lg-4">
                 <input type="tel" class="user-input small" style="max-width: 300px" [(ngModel)]="userCopy.prefix"
@@ -65,7 +68,7 @@
 
         <div class="col-lg-3">
           <div class="group-col-left">
-            <span class="small-text-2">{{'Language'|translate}}</span>
+            <span class="small-text-2 marg-bottom-10">{{'Language'|translate}}</span>
             <lang-selector mode="event" (changed)="setLanguage($event)" [lang]="userCopy.locale">
             </lang-selector>
           </div>
@@ -77,7 +80,7 @@
             <div class="row">
               <div class="col-lg-3">
                 <div class="group-col-left">
-                  <span class="small-text-2">{{'Country'|translate}}</span>
+                  <span class="small-text-2 marg-bottom-10">{{'Country'|translate}}</span>
                   <country-selector [(value)]="userCopy.kyc_validations.country"></country-selector>
                 </div>
               </div>
@@ -93,7 +96,7 @@
               </div>
               <div class="col-lg-3">
                 <div class="group-col-left">
-                  <span class="small-text-2">{{'Street Type'|translate}}</span>
+                  <span class="small-text-2  marg-bottom-10">{{'Street Type'|translate}}</span>
                   <street-type-selector [(value)]="userCopy.kyc_validations.street_type"></street-type-selector>
                 </div>
               </div>
@@ -104,7 +107,7 @@
               </div>
               <div class="col-lg-6">
                 <div class="group-col-left">
-                  <span class="small-text-2">{{'NATIONALITY'|translate}}</span>
+                  <span class="small-text-2  marg-bottom-10">{{'NATIONALITY'|translate}}</span>
                   <country-selector [(value)]="userCopy.kyc_validations.nationality"></country-selector>
                 </div>
               </div>
@@ -120,6 +123,7 @@
         </div>
       </div>
     </mat-tab>
+
     <mat-tab label="{{'PROFILE_APEARANCE'|translate}}">
       <div class="row padd-20">
         <div class="col-lg-12" style="height: auto">
