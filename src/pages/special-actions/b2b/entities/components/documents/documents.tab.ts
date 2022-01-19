@@ -134,22 +134,28 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
       this.documentKinds = resp.data.elements;
       this.getQueryData();
     });
+
   }
 
   public getQueryData() {
+    
     this.route.queryParams.subscribe((params) => {
-
-
       this.limit = params.limit ?? 10;
       this.offset = params.offset;
       this.sortDir = params.sortDir;
       this.sortID = params.sortID;
       this.query = params.query;
-      this.accountFilter = params.accountId ?? null,
-      this.userFilter = params.userId ?? null,
+      if(this.accountFilter == null){
+        this.accountFilter = params.accountId ?? null;
+      }
+     
+      if (this.userFilter == null) {
+        this.userFilter = params.userId ?? null;
+      }
       this.statusFilter = params.status ?? null;
-
+      
       for (let document of this.documentKinds) {
+        
         if (document.id == params.documentKindId && this.productKindFilter == null) {
           this.productKindFilter = document;
         }
@@ -216,7 +222,6 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
   }
 
   public search(query?) {
-
     this.loading = true;
     this.crud
       .search({

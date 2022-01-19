@@ -42,6 +42,7 @@ export class AccountDocuments {
       .subscribe((params) => {
         this.id = params.id;
       });
+
   }
 
   public getTiers() {
