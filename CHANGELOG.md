@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.20.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.20.0...v3.20.1) (2022-01-21)
+
+
+### Bug Fixes
+
+* design fixes and improvements ([#405](https://github.com/QbitArtifacts/rec-admin/issues/405)) ([4ea4f25](https://github.com/QbitArtifacts/rec-admin/commit/4ea4f259f2ed8fdb6b964879f438bde6a3bf3b83)), closes [#383](https://github.com/QbitArtifacts/rec-admin/issues/383)
+* do datePickers style dinamic ([#407](https://github.com/QbitArtifacts/rec-admin/issues/407)) ([b4db90f](https://github.com/QbitArtifacts/rec-admin/commit/b4db90fab381ecb2e500e6406e03385df5015641))
+* only show user and account documents  ([#404](https://github.com/QbitArtifacts/rec-admin/issues/404)) ([8f80742](https://github.com/QbitArtifacts/rec-admin/commit/8f80742856a43a0b2e1494d34c08b29d70a14a08))
+
 ## [3.20.0](https://github.com/QbitArtifacts/rec-admin/compare/v3.19.3...v3.20.0) (2022-01-17)
 
 
