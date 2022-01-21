@@ -116,7 +116,7 @@ export class CrudBaseService<T> extends BaseService2 {
   public export(exportOptions: any) {
     const url = [...this.getUrlBase(), CrudBaseService.PATH_EXPORT];
     this.log(`export ${this.tName}`, exportOptions);
-    return this.get(url, exportOptions, { Accept: '*/*' }, { responseType: 'text' }).pipe(this.itemMapper());
+    return this.get(url, exportOptions, { Accept: '*/*' }, { responseType: 'text' });
   }
 
   public import(importOptions: { csv: string }) {
