@@ -8,9 +8,11 @@
     </div>
 
     <ng-template #notAvatar>
-        <div class="file-selector">
-            <img *ngIf="file != null" style="height: 100%; width: 100%;" src="{{file}}" alt="">
-            
+        <div class="file-selector"
+            style="width: 350px;  height: 150px;  overflow: hidden; display: flex; align-items: center;  justify-content: center; ">
+
+            <img *ngIf="file != null" style="width: '350px'; border-radius: 6px;" src="{{file}}" alt="">
+
             <ng-template #noImage>
                 <div class="container centered flex-row-left" style="height: 100%; width: 100%">
                     <mat-icon>camera_alt</mat-icon>
