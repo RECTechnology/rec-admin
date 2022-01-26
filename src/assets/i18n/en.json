@@ -628,5 +628,6 @@
   "FREE":"FREE",
   "VIEW_ACCOUNT": "View account",
   "Not filled": "Not filled",
-  "BALANCE": "Balance"
+  "BALANCE": "Balance",
+  "OFFER_DELETED":"Offer deleted"
 }

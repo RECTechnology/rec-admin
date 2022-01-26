@@ -1183,6 +1183,8 @@
   "OFFER":"Oferta",
   "VIEW_ACCOUNT": "Vore el compte",
   "Not filled": "No definit",
-  "BALANCE": "Balanç"
+  "BALANCE": "Balanç",
+  "OFFER_DELETED":"Oferta esborrada"
+
 
 }

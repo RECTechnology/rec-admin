@@ -1229,5 +1229,6 @@
   "FREE":"GRATIS",
   "VIEW_ACCOUNT": "Ver cuenta",
   "Not filled": "Sin definir",
-  "BALANCE": "Balance"
+  "BALANCE": "Balance",
+  "OFFER_DELETED":"Oferta borrada"
 }
