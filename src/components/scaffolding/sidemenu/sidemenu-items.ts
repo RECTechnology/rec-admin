@@ -47,7 +47,7 @@ export const SIDEMENU_ITEMS = [
     icon: false,
   },
   {
-    name: 'CHANGE_DELEGATE',
+    name: 'TRANSACTION_BLOCK',
     icon: 'fa-calendar-alt',
     route: '/change_delegate',
   },

@@ -19,8 +19,8 @@ export class CreateDelegateChange extends BaseDialog {
   public date = null;
   public time = null;
   public name: string = null;
-  public delegateType: DelegateChangeType = 'delegated_change';
-  public TYPES: DelegateChangeType[] = ['delegated_change', 'massive_transactions'];
+  public delegateType: DelegateChangeType = 'massive_transactions';
+  public TYPES: DelegateChangeType[] = ['massive_transactions','delegated_change' ];
 
   @Output('onNewChange') public onNewChange: EventEmitter<NewDelegateChange>;
 
