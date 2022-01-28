@@ -159,7 +159,7 @@ export class NewDelegateComponent extends PageBase {
       })
       .subscribe((resp) => {
         if (resp) {
-          this.router.navigate(['/change_delegate']);
+          this.router.navigate(['/txs_blocks']);
         }
       }, this.alerts.observableErrorSnackbar);
   }

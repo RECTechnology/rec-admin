@@ -38,7 +38,7 @@ export class ActivateResume extends BaseDialog {
     this.loading = true;
     this.changeCrud.update(this.change.id, { status: 'scheduled' })
       .subscribe((resp) => {
-        this.alerts.showSnackbar('Launched delegated change', 'ok');
+        this.alerts.showSnackbar('LAUNCH_TXT_BLOCK', 'ok');
         this.loading = false;
         this.dialogRef.close(true);
       }, (error) => {

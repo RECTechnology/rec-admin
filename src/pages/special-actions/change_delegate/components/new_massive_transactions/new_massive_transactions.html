@@ -5,7 +5,7 @@
   <div class="new-delegate bg-white" style="margin-top: 0; position: relative;">
 
     <tl-header [options]="{ input: false }"
-      title="{{(isNew ? 'NEW_MASSIVE_TX': readonly ? 'VIEW_MASSIVE_TX' : 'EDIT_MASSIVE_TX')|translate}}">
+      title="{{(isNew ? 'NEW_MASSIVE_TX': readonly ? 'VIEW_MASSIVE_TX' : 'massive_transactions')|translate}}">
 
       <button [disabled]="readonly" type="button" style="margin-right: 20px" color="primary"
         mat-button name="button" (click)="newImport()">

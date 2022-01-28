@@ -49,7 +49,7 @@ export const SIDEMENU_ITEMS = [
   {
     name: 'TRANSACTION_BLOCK',
     icon: 'fa-calendar-alt',
-    route: '/change_delegate',
+    route: '/txs_blocks',
   },
   {
     name: 'CREATE_RECS',

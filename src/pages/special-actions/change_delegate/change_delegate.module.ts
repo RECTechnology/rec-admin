@@ -18,17 +18,17 @@ const profileRoutes: Routes = [
   {
     canActivate: [IsLoggedInGuard],
     component: ChangeDelegateComponent,
-    path: 'change_delegate',
+    path: 'txs_blocks',
   },
   {
     canActivate: [IsLoggedInGuard],
     component: NewDelegateComponent,
-    path: 'change_delegate/delegate/:id_or_new',
+    path: 'txs_blocks/delegate/:id_or_new',
   },
   {
     canActivate: [IsLoggedInGuard],
     component: NewMassiveTransactionsComponent,
-    path: 'change_delegate/massive/:id_or_new',
+    path: 'txs_blocks/massive/:id_or_new',
   },
 ];
 

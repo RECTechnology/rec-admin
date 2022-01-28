@@ -81,10 +81,10 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
 
   public navigateToChange(change: any) {
     if (change.type == 'delegated_change') {
-      this.router.navigate(['/change_delegate/delegate/' + change.id]);
+      this.router.navigate(['/txs_blocks/delegate/' + change.id]);
     }
     if (change.type == 'massive_transactions') {
-      this.router.navigate(['/change_delegate/massive/' + change.id]);
+      this.router.navigate(['/txs_blocks/massive/' + change.id]);
     }
   }
 
@@ -113,10 +113,10 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
 
   public openDeleteChange(change) {
     return this.alerts.showConfirmation(
-      'Are you sure you want to remove delegated change:' + change.id + '?',
-      {},
+      'SURE_DELETE_TXT_BLOCK',
+      {changeId:change.id},
      
-      'Remove Delegated Changed',
+      'DELETE_TXT_BLOCK',
       { btnConfirmText: 'Delete' },
     );
   }
