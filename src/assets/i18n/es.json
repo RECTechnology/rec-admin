@@ -873,7 +873,9 @@
   "EDIT_CHANGE_DELEGATE": "Editar cambio de delegado",
   "VIEW_CHANGE_DELEGATE": "Ver cambio de delegado",
   "Exchanger": "Intercambiador",
+
   "NEW_CHANGE": "Crear bloque",
+
   "SET_SCHEDULE": "Establezca una fecha programada para el bloque de transacciones",
   "CAN_EDIT_LATER": "se puede editar más tarde",
   "CREATE_CHANGE": "Crear cambio",
@@ -1144,10 +1146,12 @@
    "CARD_USER": "Usuario de tarjeta",
    "EXCHANGER_ACCOUNT": "Cuenta de intercambiador",
    "BENEFICIARY_ACCOUNT": "Cuenta del beneficiario",
+
   "CREATE_DELEGATE_CHANGE": "Crear Bloque de TXs",
   "DATE_START": "Fecha comienzo",
   "TIME_START": "Hora comienzo",
   "TRANSACTION_BLOCK":"Bloques de TXs",
+
   "delegated_change": "Cambio Delegado",
   "massive_transactions": "Transacciones Masivas",
   "CREATE": "Crear",
@@ -1163,7 +1167,9 @@
   "CREATE_REPORT": "Generar Informe",
   "AMOUNT": "Cantidad",
   "ACTIVATE_CHANGE_DESC": "Está a punto de activar un bloque de transacciones, revise la siguiente información.",
+
   "ACTIVATE_CHANGE": "Activar bloque de TXs",
+
   "UPLOAD CSV": "Importar CSV",
   "IMPORT_CSV_DESC": "Please upload a csv for the delegate change",
   "Activate": "Activar",

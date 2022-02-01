@@ -127,17 +127,24 @@ export class TransactionService extends BaseService {
     return this.get(null, { address }, `/transaction/v1/vendor`);
   }
 
-  public getTxForAccount(id, offset = 0, limit = 10, start_date, finish_date, sort = 'id', order = 'desc') {
+  public getTxForAccount(id, offset = 0, limit = 10, start_date, finish_date, sort = 'id', order = 'desc',exchanges='all',methods_out='all',methods_in='all',) {
 
     return this.get(null, {
-      finish_date, limit,
-      offset, order, sort, start_date,
+      limit,
+      offset,
+      order,
+      sort,
+      query: {finish_date, start_date,exchanges,
+        methods_out,
+        methods_in},
+      
     }, `${API_URL}/company/${id}/v1/wallet/transactions`).pipe(
       map((resp) => {
         resp.data.elements = resp.data.elements.map(formatTX.bind(this));
         return resp;
       }));
   }
+
 
   public getTxById(id) {
 

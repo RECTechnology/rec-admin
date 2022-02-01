@@ -69,7 +69,7 @@ export class MovementsTab implements AfterContentInit {
     this.txService.getTxForAccount(
       this.account_id, this.offset,
       this.limit, this.dateFrom,
-      this.dateTo, this.sortID, this.sortDir,
+      this.dateTo, this.sortID, this.sortDir,'all','all','all'
     ).subscribe(
       (resp) => {
         this.loading = false;
