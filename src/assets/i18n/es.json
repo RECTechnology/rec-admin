@@ -1239,6 +1239,9 @@
   "BALANCE": "Balance",
   "OFFER_DELETED":"Oferta borrada",
   "ADD_BUSSINES_ACT":"Añade una actividad al comercio",
-  "ADD_ACTIVITY":"Añadir actividad"
+  "ADD_ACTIVITY":"Añadir actividad",
+  "SURE_DELETE_TXT_BLOCK":"Estas seguro que quieres eliminar el bloque de transacciones: {{changeId}}]   ?",
+  "DELETE_TXT_BLOCK":"Eliminar bloque de transacciones",
+  "LAUNCH_TXT_BLOCK":"Launched  bloque de txs"
 
 }
