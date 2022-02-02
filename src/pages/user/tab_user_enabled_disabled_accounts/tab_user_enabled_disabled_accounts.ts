@@ -22,6 +22,7 @@ export class EnabledDisabledAccountsTab implements OnInit {
   public Brand: any = environment.Brand;
   public enabledAccounts = true;
   public disabledAccounts = true;
+  public isLoading = true;
 
   constructor(public route: ActivatedRoute, public usersCrud: UsersCrud, public companyService: CompanyService) {}
 
@@ -34,6 +35,7 @@ export class EnabledDisabledAccountsTab implements OnInit {
 
   public getUser() {
     this.usersCrud.find(this.user_id).subscribe((res) => {
+      this.isLoading = false;
       this.user = res.data;
     });
   }

@@ -18,18 +18,24 @@
         <b *ngIf="enabledAccounts && disabledAccounts">{{'ALL_ACCOUNTS'|translate}}: </b>
 
         <div class="group-row-left" style="flex-wrap: wrap; margin-top: 20px"
-          *ngIf="user.accounts && user.accounts.length ">
+          *ngIf="user.accounts && user.accounts.length;else loading">
 
           <mat-chip-list aria-label="Fish selection">
             <ng-container *ngFor="let comp of user.accounts">
               <mat-chip style="margin-bottom: 8px; overflow: hidden;width: 140px; cursor: pointer;"
                 routerLink="/accounts/{{comp.id}}" matTooltip="{{'VIEW_ACCOUNT'|translate}}"
-                *ngIf="enabledAccounts && comp.active || !enabledAccounts && !comp.active">
+                *ngIf="(enabledAccounts && comp.active) || (disabledAccounts && !comp.active)">
                 <avatar [account]="comp" [size]="20"></avatar>
               </mat-chip>
             </ng-container>
           </mat-chip-list>
         </div>
+        <ng-template #loading>
+          <div class="center h v marg-top-20">
+            <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+            </mat-progress-spinner>
+          </div>
+        </ng-template>
       </div>
     </div>
   </mat-card>
