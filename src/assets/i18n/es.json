@@ -1209,6 +1209,7 @@
   "SURE_VALIDATE_PHONE":"Estas seguro de que quieres validar el telefono {{phone}}",
   "VALIDATE":"Validar",
   "ACTIVE_ACCOUNTS" : "Cuentas activas",
+  "DISABLED_ACCOUNTS" : "Cuentas desactivadas",
   "PHONE_CHANGED":"Nº de teléfono cambiado, sms enviado para validarlo",
   "LOADING": "Cargando",
   "PARENT_ACTIVITY": "Actividad padre",
@@ -1222,16 +1223,16 @@
   "PRICE":"Precio",
   "OFFER":"Oferta",
   "INITIAL_PRICE":"Precio habitual",
-  "OFFER_PRICE":"Precio offerta",
+  "OFFER_PRICE":"Precio oferta",
   "DESCRIPTION":"Descripcion",
-  "TYPE_OFFER" :"Tipo de offerta",
+  "TYPE_OFFER" :"Tipo de oferta",
   "WHEN_FINISH":"Cuando acaba?",
-  "ACTIVE_OFFER":"Offerta activa",
+  "ACTIVE_OFFER":"Oferta activa",
   "DISCOUNT_PERCENT":"Porcentaje de descuento(%)",
   "ADD_OFFER":"Añadir oferta",
-  "EDIT_OFFER":"Editar offerta",
-  "SURE_DELETE_OFFER":"Estas seguro de que deseas eliminar esta offerta?",
-  "DELETE_OFFER":"Eliminar offerta",
+  "EDIT_OFFER":"Editar oferta",
+  "SURE_DELETE_OFFER":"Estas seguro de que deseas eliminar esta oferta?",
+  "DELETE_OFFER":"Eliminar oferta",
   "Image":"Imagen",
   "FREE":"GRATIS",
   "VIEW_ACCOUNT": "Ver cuenta",
@@ -1242,6 +1243,5 @@
   "ADD_ACTIVITY":"Añadir actividad",
   "SURE_DELETE_TXT_BLOCK":"Estas seguro que quieres eliminar el bloque de transacciones: {{changeId}}]   ?",
   "DELETE_TXT_BLOCK":"Eliminar bloque de transacciones",
-  "LAUNCH_TXT_BLOCK":"Launched  bloque de txs"
-
+  "LAUNCH_TXT_BLOCK":"Lanzado bloque de transacciones"
 }

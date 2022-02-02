@@ -626,7 +626,7 @@
   "ACTIVITY": "Activity",
   "ADD_OFFER":"Add offer",
   "EDIT_OFFER":"Edit offer",
-  "SURE_DELETE_OFFER":"Are u sure you want to delete this offer?",
+  "SURE_DELETE_OFFER":"Are you sure you want to delete this offer?",
   "DELETE_OFFER":"Delete offer",
   "IMAGE":"Image",
   "FREE":"FREE",
@@ -636,9 +636,9 @@
   "OFFER_DELETED":"Offer deleted",
   "ADD_BUSSINES_ACT":"Add activity to business",
   "ADD_ACTIVITY":"Add activity",
-  "SURE_DELETE_TXT_BLOCK":"Are you sure you want to remove txt block: {{changeId}}]   ?",
-  "DELETE_TXT_BLOCK":"Remove txt block",
-  "LAUNCH_TXT_BLOCK":"Launched   txs block "
+  "SURE_DELETE_TXT_BLOCK":"Are you sure you want to remove txs block: {{changeId}}]   ?",
+  "DELETE_TXT_BLOCK":"Remove txs block",
+  "LAUNCH_TXT_BLOCK":"Launched txs block "
 
 
 }
