@@ -1238,8 +1238,7 @@
   "Not filled": "Sin definir",
   "BALANCE": "Balance",
   "OFFER_DELETED":"Oferta borrada",
-  "SURE_DELETE_TXT_BLOCK":"Estas seguro que quieres eliminar el bloque de transacciones: {{changeId}}]   ?",
-  "DELETE_TXT_BLOCK":"Eliminar bloque de transacciones",
-  "LAUNCH_TXT_BLOCK":"Launched  bloque de txs"
+  "ADD_BUSSINES_ACT":"Añade una actividad al comercio",
+  "ADD_ACTIVITY":"Añadir actividad"
 
 }

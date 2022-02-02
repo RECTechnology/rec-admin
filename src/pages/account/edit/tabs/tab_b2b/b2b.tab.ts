@@ -10,6 +10,7 @@ import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChang
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { map } from 'rxjs/internal/operators/map';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';
+import { AddActivityDia } from './AddActivity/addActivity';
 
 @Component({
   selector: 'tab-b2b',
@@ -134,6 +135,28 @@ export class B2BTab {
       this.alerts.showSnackbar('Added activity', 'ok');
       this.loading = false;
     }, this.alerts.observableErrorSnackbar.bind(this.alerts));
+  }
+
+  public addActivityModal(){
+    this.alerts.openModal(AddActivityDia, {
+      item: Object.assign({}, ),
+      userId: false,
+    }).subscribe((updated) => {
+      if (updated.main_activity != null || updated.secondary_activity != null) {
+        this.main_activity = updated.main_activity;
+        this.main_activity_id =updated.main_activity ? updated.main_activity.id : null;
+        this.secondary_activity = updated.secondary_activity;
+        
+        this.accountCopy.activity_main_id = updated.main_activity_id;
+        this.crudAccounts.addActivity(this.account.id, this.secondary_activity?this.secondary_activity.id:this.main_activity_id).subscribe(() => {
+          this.alerts.showSnackbar('Added activity', 'ok');
+          this.activitiesSelected.push(this.secondary_activity?this.secondary_activity:this.main_activity);
+          this.loading = false;
+        }, this.alerts.observableErrorSnackbar.bind(this.alerts));
+              
+
+      }
+    });
   }
 
   public addConsumed(product) {

@@ -634,8 +634,9 @@
   "Not filled": "Not filled",
   "BALANCE": "Balance",
   "OFFER_DELETED":"Offer deleted",
-  "SURE_DELETE_TXT_BLOCK":"Are you sure you want to remove txt block: {{changeId}}]   ?",
-  "DELETE_TXT_BLOCK":"Remove txt block",
-  "LAUNCH_TXT_BLOCK":"Launched   txs block "
+  "ADD_BUSSINES_ACT":"Add activity to business",
+  "ADD_ACTIVITY":"Add activity"
+
+
 
 }

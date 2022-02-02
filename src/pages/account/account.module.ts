@@ -26,6 +26,7 @@ import { ScheduleTab } from './edit/tabs/tab_schedule/schedule.tab';
 import { CampaignsTab } from './edit/tabs/tab_campaigns/campaigns.tab';
 import { B2BTab } from './edit/tabs/tab_b2b/b2b.tab';
 import { EditOfferDia } from './edit/tabs/tab_offers/editOffers/editOffers';
+import { AddActivityDia } from './edit/tabs/tab_b2b/AddActivity/addActivity';
 import { OffersTab } from './edit/tabs/tab_offers/offers.tab';
 import { ScheduleDayRowComponent } from 'src/components/schedule-day-row/schedule-day-row.component';
 
@@ -64,6 +65,7 @@ const accountRoutes: Routes = [
     LocationTab,
     MarketingTab,
     EditOfferDia,
+    AddActivityDia,
     OffersTab,
     ScheduleDayRowComponent,
   ],

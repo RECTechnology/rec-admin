@@ -63,64 +63,36 @@ export class EditOfferDia {
         if (this.checkData()) {
             this.dialogRef.close({ ...this.item });
         } else {
+            this.alerts.showSnackbar('Need required data', 'ok');
         }
     }
 
 
 
     public checkData() {
-        return this.checkPercentageData() && this.checkClasicData() && this.checkDescDate() && this.checkEndDate();
+        return this.checkPercentageData() && this.checkClasicData() && this.checkFreeData() && this.checkDescDate() && this.checkEndDate();
     }
 
     public checkPercentageData() {
-        if(this.item.type=='percentage'){
-            if(this.item.discount != null ){
-                return true;
-            } else{
-                this.alerts.showSnackbar('Need required data(Disscount)', 'ok');
-                return false;
-            }
-        }else{
-            return true;
-        }
+        return this.item.discount != null && this.checkEndDate();
     }
 
     public checkClasicData() {
-        if(this.item.type=='classic'){
-            if(this.item.initial_price != null && this.item.offer_price != null ){
-                return true;
-            } else{
-                this.alerts.showSnackbar('Need required data(initial or offer price)', 'ok');
-                return false;
-            }
-        }else{
-            return true;
-        }
-    
+        return this.item.initial_price != null && this.item.offer_price != null;
     }
 
-  
+    public checkFreeData() {
+        return this.item.type == 'free';
+    }
 
     public checkEndDate() {
-        if(this.item.end != null){
-            return true
-        }else{
-            this.alerts.showSnackbar('Need required data(end date)', 'ok');
-            return false
-
-        }
+        return this.item.end != null;
     }
 
     public checkDescDate() {
-       
-        if(this.item.description != null && this.item.description != undefined){
-            return true
-        }else{
-            this.alerts.showSnackbar('Need required data(description)', 'ok');
-            return false
+        console.log(this.item.description != null && !this.item.description)
+        return this.item.description != null && !this.item.description;
 
-        }
-        
     }
 
     public ngOnInit() { }
