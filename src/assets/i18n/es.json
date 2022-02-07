@@ -1244,7 +1244,7 @@
   "ADDED_PRODUCT":"Producto añadido",
   "REMOVED_ACTIVITY":"Actividad eliminada",
   "REMOVED_PRODUCT":"Producto eliminado",
-  "ADDED_ACTIVITY":"Actividad añadida"
+  "ADDED_ACTIVITY":"Actividad añadida",
   "SURE_DELETE_TXT_BLOCK":"Estas seguro que quieres eliminar el bloque de transacciones: {{changeId}}]   ?",
   "DELETE_TXT_BLOCK":"Eliminar bloque de transacciones",
   "LOG_VIEWER": "Visor de logs",
