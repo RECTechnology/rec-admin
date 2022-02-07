@@ -70,7 +70,7 @@ export class EditOfferDia {
 
 
     public checkData() {
-        return this.checkPercentageData() && this.checkClasicData() && this.checkFreeData() && this.checkDescDate() && this.checkEndDate();
+        return (this.checkPercentageData() || this.checkClasicData() || this.checkFreeData()) && this.checkDescDate() && this.checkEndDate();
     }
 
     public checkPercentageData() {
@@ -90,9 +90,7 @@ export class EditOfferDia {
     }
 
     public checkDescDate() {
-        console.log(this.item.description != null && !this.item.description)
-        return this.item.description != null && !this.item.description;
-
+        return this.item.description != null;
     }
 
     public ngOnInit() { }
