@@ -636,9 +636,15 @@
   "OFFER_DELETED":"Offer deleted",
   "ADD_BUSSINES_ACT":"Add activity to business",
   "ADD_ACTIVITY":"Add activity",
+
+  "ADDED_PRODUCT":"Added product",
+  "REMOVED_ACTIVITY":"Removed activity",
+  "REMOVED_PRODUCT":"Removed product",
+  "ADDED_ACTIVITY":"Added activity"
   "SURE_DELETE_TXT_BLOCK":"Are you sure you want to remove txs block: {{changeId}}]   ?",
   "DELETE_TXT_BLOCK":"Remove txs block",
   "LAUNCH_TXT_BLOCK":"Launched txs block "
+
 
 
 }

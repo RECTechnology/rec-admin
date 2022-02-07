@@ -69,9 +69,7 @@ export class B2BTab {
     this.main_activity = this.account.activity_main ? this.account.activity_main : null;
     
     this.main_activity_id = this.main_activity ? this.main_activity.id : null;
-    console.log("Im in ngOnInit",this.account);
 
-    console.log("Im in ngOnInit",this.main_activity);
     if(this.main_activity.parent != undefined && this.main_activity.parent != null){
       this.secondary_activity = this.account.activity_main;
       this.main_activity=this.account.activity_main.parent;
@@ -132,7 +130,7 @@ export class B2BTab {
     this.loading = true;
     this.activitiesSelected.push(act);
     this.crudAccounts.addActivity(this.account.id, act.id).subscribe(() => {
-      this.alerts.showSnackbar('Added activity', 'ok');
+      this.alerts.showSnackbar('ADDED_ACTIVITY', 'ok');
       this.loading = false;
     }, this.alerts.observableErrorSnackbar.bind(this.alerts));
   }
@@ -146,10 +144,11 @@ export class B2BTab {
         this.main_activity = updated.main_activity;
         this.main_activity_id =updated.main_activity ? updated.main_activity.id : null;
         this.secondary_activity = updated.secondary_activity;
-        
+         
         this.accountCopy.activity_main_id = updated.main_activity_id;
         this.crudAccounts.addActivity(this.account.id, this.secondary_activity?this.secondary_activity.id:this.main_activity_id).subscribe(() => {
-          this.alerts.showSnackbar('Added activity', 'ok');
+          this.alerts.showSnackbar('ADDED_ACTIVITY', 'ok');
+
           this.activitiesSelected.push(this.secondary_activity?this.secondary_activity:this.main_activity);
           this.loading = false;
         }, this.alerts.observableErrorSnackbar.bind(this.alerts));
@@ -163,7 +162,7 @@ export class B2BTab {
     this.loading = true;
     this.account.consuming_products.push(product);
     this.crudAccounts.addConsumedProductToAccount(this.account.id, product.id).subscribe(() => {
-      this.alerts.showSnackbar('Added product', 'ok');
+      this.alerts.showSnackbar('ADDED_PRODUCT', 'ok');
       this.loading = false;
     }, this.alerts.observableErrorSnackbar.bind(this.alerts));
   }
@@ -172,7 +171,7 @@ export class B2BTab {
     this.loading = true;
     this.account.producing_products.push(product);
     this.crudAccounts.addProducedProductToAccount(this.account.id, product.id).subscribe((resp) => {
-      this.alerts.showSnackbar('Added product', 'ok');
+      this.alerts.showSnackbar('ADDED_PRODUCT', 'ok');
       this.loading = false;
     }, this.alerts.observableErrorSnackbar.bind(this.alerts));
   }
@@ -182,7 +181,7 @@ export class B2BTab {
     const act = this.activitiesSelected[i];
     this.activitiesSelected.splice(i, 1);
     this.crudAccounts.deleteActivity(this.account.id, act.id).subscribe((resp) => {
-      this.alerts.showSnackbar('Removed activity', 'ok');
+      this.alerts.showSnackbar('REMOVED_ACTIVITY', 'ok');
       this.loading = false;
     }, this.alerts.observableErrorSnackbar.bind(this.alerts));
   }
@@ -197,7 +196,7 @@ export class B2BTab {
     const act = this.account.producing_products[i];
     this.account.producing_products.splice(i, 1);
     this.crudAccounts.removeProducedProductFromAccount(this.account.id, act.id).subscribe((resp) => {
-      this.alerts.showSnackbar('Removed product', 'ok');
+      this.alerts.showSnackbar('REMOVED_PRODUCT', 'ok');
       this.loading = false;
     }, this.alerts.observableErrorSnackbar.bind(this.alerts));
   }
@@ -208,7 +207,7 @@ export class B2BTab {
     const act = this.account.consuming_products[i];
     this.account.consuming_products.splice(i, 1);
     this.crudAccounts.removeConsumedProductFromAccount(this.account.id, act.id).subscribe((resp) => {
-      this.alerts.showSnackbar('Removed product', 'ok');
+      this.alerts.showSnackbar('REMOVED_PRODUCT', 'ok');
       this.loading = false;
     }, this.alerts.observableErrorSnackbar.bind(this.alerts));
   }
