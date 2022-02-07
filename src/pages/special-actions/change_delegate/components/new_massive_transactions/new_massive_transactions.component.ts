@@ -16,6 +16,7 @@ import { ActivateResume } from '../activate-resume/activate-resume.dia';
 @Component({
   selector: 'new-massive-transactions',
   templateUrl: './new_massive_transactions.html',
+  styleUrls: ['./new_massive_transactions.scss']
 })
 export class NewMassiveTransactionsComponent extends PageBase {
   public pageName = 'New Massive Transactions';
@@ -25,10 +26,16 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public readonly = false;
   public dateScheduled = '';
   public timeScheduled = '';
+  public transactions_name = '';
   public dataPassed = false;
   public sortedData = [];
   public dataLoading = true;
   public generatingReport = false;
+  public status = '';
+  public totalImport=0;
+  public success_tx: any;
+  public issued_rec: any;
+  public failed_tx: any;
 
   constructor(
     public adminService: AdminService,
@@ -49,17 +56,31 @@ export class NewMassiveTransactionsComponent extends PageBase {
     this.route.params.subscribe((params) => {
       this.idOrNew = params.id_or_new;
       this.isNew = this.idOrNew === 'new';
-
+      this.status = params.status;
+      console.log("Im in onInit",params)
       if (!this.isNew) {
-        this.getDelegate();
-        this.getDelegateData();
+        this.syncData();
       }
     });
   }
 
+  public syncData(){
+    this.getDelegate();
+    this.getDelegateData();
+  }
+
   public getDelegate() {
     this.changeCrud.find(this.idOrNew).subscribe((resp) => {
+      console.log("Im in getDelegate",resp)
+      this.totalImport=0;
       this.delegate = resp.data;
+      for( let item of this.delegate.data){
+        this.totalImport = this.totalImport+item.amount;
+      }
+      this.success_tx=this.delegate.success_tx??0;
+      this.issued_rec=this.delegate.issued_rec??0;
+      this.failed_tx=this.delegate.failed_tx??0;
+
       if (this.delegate.scheduled_at) {
         const date = new Date(this.delegate.scheduled_at);
         const parts = this.utils.parseDateToParts(date);
@@ -85,6 +106,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
       })
       .subscribe(
         (resp) => {
+
           this.sortedData = resp.data.elements.map((el) => {
             el.selected = false;
             return el;
@@ -123,8 +145,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
         this.adminService.sendChangeDelegateCsv(resp, this.delegate.id).subscribe(
           (respDelegate) => {
             this.alerts.showSnackbar(respDelegate.message, 'ok');
-            this.getDelegate();
-            this.getDelegateData();
+            this.syncData();
             this.dataLoading = false;
           },
           (error) => {

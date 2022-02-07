@@ -12,7 +12,7 @@ import { ActivateResume } from './components/activate-resume/activate-resume.dia
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 import { AlertsService } from 'src/services/alerts/alerts.service';
-import { NewDelegateChange } from './components/create_delegate_change/create_delegate_change.dia';
+import { NewDelegateChange } from './components/create_txs_block_change/create_txs_block_change.dia';
 
 @Component({
   selector: 'change_delegate',
@@ -81,10 +81,16 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
 
   public navigateToChange(change: any) {
     if (change.type == 'delegated_change') {
-      this.router.navigate(['/txs_blocks/delegate/' + change.id]);
+      this.router.navigate(['/txs_blocks/delegate/' + change.id], {
+        queryParams: { status: change.status },
+        queryParamsHandling: 'merge',
+      });
     }
     if (change.type == 'massive_transactions') {
-      this.router.navigate(['/txs_blocks/massive/' + change.id]);
+      this.router.navigate(['/txs_blocks/massive/' + change.id],{
+        queryParams: { status: change.status },
+        queryParamsHandling: 'merge',
+      });
     }
   }
 

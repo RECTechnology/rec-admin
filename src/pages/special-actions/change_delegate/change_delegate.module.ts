@@ -6,12 +6,12 @@ import { SharedModule } from '../../../shared/shared.module';
 import { IsLoggedInGuard } from '../../../services/guards/login.guard';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChangeDelegateComponent } from './change_delegate.component';
-import { DelegateHeaderComponent } from './components/delegate_header/delegate_header.component';
-import { NewDelegateComponent } from './components/new_delegate_change/new_delegate.component';
+import { TxsBlockHeaderComponent } from './components/txs_block_header/txs_block_header.component';
+import { NewTXsBlockComponent } from './components/new_txs_block_change/new_txs_block.component';
 import { SelectAccountsDia } from './components/select_accounts_dialog/select_accounts.dia';
 import { CsvUpload } from './components/csv-upload/csv-upload.dia';
 import { ActivateResume } from './components/activate-resume/activate-resume.dia';
-import { CreateDelegateChange } from './components/create_delegate_change/create_delegate_change.dia';
+import { CreateTXsBlockChange } from './components/create_txs_block_change/create_txs_block_change.dia';
 import { NewMassiveTransactionsComponent } from './components/new_massive_transactions/new_massive_transactions.component';
 
 const profileRoutes: Routes = [
@@ -22,7 +22,7 @@ const profileRoutes: Routes = [
   },
   {
     canActivate: [IsLoggedInGuard],
-    component: NewDelegateComponent,
+    component: NewTXsBlockComponent,
     path: 'txs_blocks/delegate/:id_or_new',
   },
   {
@@ -35,10 +35,10 @@ const profileRoutes: Routes = [
 @NgModule({
   declarations: [
     ChangeDelegateComponent,
-    DelegateHeaderComponent,
-    NewDelegateComponent,
+    TxsBlockHeaderComponent,
+    NewTXsBlockComponent,
     NewMassiveTransactionsComponent,
-    CreateDelegateChange,
+    CreateTXsBlockChange,
     SelectAccountsDia,
     CsvUpload,
     ActivateResume,
@@ -47,7 +47,7 @@ const profileRoutes: Routes = [
     SelectAccountsDia,
     CsvUpload,
     ActivateResume,
-    CreateDelegateChange,
+    CreateTXsBlockChange,
   ],
   exports: [
     RouterModule,

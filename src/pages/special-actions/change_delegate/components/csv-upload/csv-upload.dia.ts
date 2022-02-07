@@ -13,7 +13,7 @@ export class CsvUpload {
   public brand = environment.Brand;
   public error = '';
   public title: string = '';
-  public selectedImageName: string = 'none';
+  public selectedImageName: string = 'ANY_SELECTED_FILE';
   public hasSelectedImage: boolean = false;
   public noImageName: string = 'profile_default_image';
   public selectedImage;
@@ -39,6 +39,7 @@ export class CsvUpload {
   }
 
   public changedImage($event) {
+    console.log("Im in changeImage")
     if ($event.target.files.length) {
       const file = $event.target.files[0];
       this.file = file;

@@ -11,10 +11,10 @@ export interface NewDelegateChange {
 
 @Component({
   selector: 'edit-accounts',
-  styleUrls: ['./create_delegate_change.css'],
-  templateUrl: './create_delegate_change.html',
+  styleUrls: ['./create_txs_block_change.css'],
+  templateUrl: './create_txs_block_change.html',
 })
-export class CreateDelegateChange extends BaseDialog {
+export class CreateTXsBlockChange extends BaseDialog {
   public schedule = null;
   public date = null;
   public time = null;
@@ -24,7 +24,7 @@ export class CreateDelegateChange extends BaseDialog {
 
   @Output('onNewChange') public onNewChange: EventEmitter<NewDelegateChange>;
 
-  constructor(public dialogRef: MatDialogRef<CreateDelegateChange>) {
+  constructor(public dialogRef: MatDialogRef<CreateTXsBlockChange>) {
     super();
   }
 
