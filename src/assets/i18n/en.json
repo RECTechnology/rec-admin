@@ -640,7 +640,7 @@
   "ADDED_PRODUCT":"Added product",
   "REMOVED_ACTIVITY":"Removed activity",
   "REMOVED_PRODUCT":"Removed product",
-  "ADDED_ACTIVITY":"Added activity"
+  "ADDED_ACTIVITY":"Added activity",
   "SURE_DELETE_TXT_BLOCK":"Are you sure you want to remove txs block: {{changeId}}]   ?",
   "DELETE_TXT_BLOCK":"Remove txs block",
   "LAUNCH_TXT_BLOCK":"Launched txs block "
