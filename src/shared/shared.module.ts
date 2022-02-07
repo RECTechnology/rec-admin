@@ -112,8 +112,9 @@ import { KeyValuePair } from '../components/ui/kvp/kvp-list/kvp-list';
 import { ChangePhone } from '../pages/dashboard/dialogs/change-phone/change-phone.dia';
 import { CompanyService } from '../services/company/company.service';
 import { MaterialModule } from './md-module';
-
-
+import { LogViewComponent } from 'src/components/log-view/log-view.component';
+import { LogTestComponent } from 'src/pages/log-test/log-test.component';
+import { LogStatusSelector } from 'src/components/selectors/log-status-selector/log-status-selector.component';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -182,6 +183,9 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     TableListTable,
     B2BSendComponent,
     B2BSettingsComponent,
+    LogStatusSelector,
+    LogViewComponent,
+    LogTestComponent,
     TranslatableListComponent,
     ProductsTabComponent,
     ActivitiesTabComponent,
@@ -241,6 +245,9 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     TableListTable,
     B2BSendComponent,
     B2BSettingsComponent,
+    LogStatusSelector,
+    LogViewComponent,
+    LogTestComponent,
     TranslatableListComponent,
     ProductsTabComponent,
     ActivitiesTabComponent,

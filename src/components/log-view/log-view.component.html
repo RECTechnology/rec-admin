@@ -1,0 +1,49 @@
+<div class="log-view-header padd-10 group-row-left space-between">
+    <p class="no-margin no-padding small-text col-blue" style="width: auto; margin: 0 !important">
+        {{'LOG_VIEWER'|translate}}
+    </p>
+
+    <button mat-button color="primary" (click)="syncEvent.emit()">
+        <mat-icon>sync</mat-icon>
+        {{'SYNC'|translate}}
+    </button>
+</div>
+
+<div class="log-view-filters padd-10">
+    <div class="row marg-bottom-10">
+        <p class="col-md-1 small-text">{{'STATUS' | translate}}</p>
+        <div class="col-md-11">
+            <log-status-selector [value]="type" (valueChange)="typeChanged.emit($event)"></log-status-selector>
+        </div>
+    </div>
+    <div class="row marg-bottom-10">
+        <p class="col-md-1 small-text">{{'SEARCH_LABEL' | translate}}</p>
+        <div class="col-md-11">
+            <input type="text" class="input border-radius-2" [(ngModel)]="search" placeholder="{{'SEARCH'|translate}}">
+        </div>
+    </div>
+    <div class="row marg-bottom-10">
+        <p class="col-md-1 small-text">{{'LINES' | translate}}</p>
+        <div class="col-md-11">
+            <input type="number" class="input border-radius-2" [ngModel]="lines"
+                (ngModelChange)="linesChanged.emit($event)" placeholder="{{'LINES'|translate}}" step="1">
+        </div>
+    </div>
+</div>
+
+<div class="log-view-content-wrapper bordered-top">
+    <div *ngIf="logs && logs.length > 0; else no_logs" class="log-view-content">
+        <ng-container *ngFor="let log of logs">
+            <div [copy-clipboard]="log.type + ' ' + log.log" class="log-view-log"
+                *ngIf="!search || log.log && log.log.toLowerCase().includes(search.toLowerCase())">
+                <p>{{log.date | date}} {{log.type}}: {{log.log}}</p>
+            </div>
+        </ng-container>
+    </div>
+
+    <ng-template #no_logs class="log-view-empty">
+        <div class="center h" style="width: 100%; padding: 15px 0">
+            <p class="small-text-2" style="text-align: center;">{{'NO_ITEMS'|translate}}</p>
+        </div>
+    </ng-template>
+</div>

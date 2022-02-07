@@ -15,6 +15,7 @@ import { B2BSendComponent } from 'src/pages/special-actions/mailing/send.compone
 import { SendMail } from 'src/pages/special-actions/mailing/send-mail/send-mail';
 import { ValidateWithdrawalComponent } from 'src/components/validate-withdrawal/validate-withdrawal.component';
 import { CampaignReportsAccount } from 'src/pages/special-actions/campaing_reports/campaing_reports.component';
+import { LogTestComponent } from 'src/pages/log-test/log-test.component';
 
 const ROUTES: Routes = [
   // Public Routes - user shouldn't be authenticated to accesss them
@@ -30,6 +31,11 @@ const ROUTES: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 
   // Private Routes - user should be authenticated to accesss them
+  {
+    path: 'log-test',
+    component: LogTestComponent,
+    canActivate: [IsLoggedInGuard],
+  },
   {
     path: 'users',
     component: UsersPage,
