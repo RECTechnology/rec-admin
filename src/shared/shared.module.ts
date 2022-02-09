@@ -113,8 +113,9 @@ import { ChangePhone } from '../pages/dashboard/dialogs/change-phone/change-phon
 import { CompanyService } from '../services/company/company.service';
 import { MaterialModule } from './md-module';
 import { LogViewComponent } from 'src/components/log-view/log-view.component';
-import { LogTestComponent } from 'src/pages/log-test/log-test.component';
+import {  LogPage } from 'src/pages/special-actions/change_delegate/components/log_page/log_page';
 import { LogStatusSelector } from 'src/components/selectors/log-status-selector/log-status-selector.component';
+import { SendTransactionsDia} from 'src/pages/special-actions/change_delegate/components/new_massive_transactions/send_transaction_modal/send_transactions_modal';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -185,7 +186,8 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     B2BSettingsComponent,
     LogStatusSelector,
     LogViewComponent,
-    LogTestComponent,
+    LogPage,
+    SendTransactionsDia,
     TranslatableListComponent,
     ProductsTabComponent,
     ActivitiesTabComponent,
@@ -247,7 +249,8 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     B2BSettingsComponent,
     LogStatusSelector,
     LogViewComponent,
-    LogTestComponent,
+    LogPage,
+    SendTransactionsDia,
     TranslatableListComponent,
     ProductsTabComponent,
     ActivitiesTabComponent,

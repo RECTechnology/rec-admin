@@ -9,8 +9,8 @@
       <div class="group-col-left">
         <!-- izquierda -->
         <p class="small-text col-blue" style="margin-right: 15px!important;font-size: 16px">
-          {{'massive_transactions'|translate}}
-          <code> {{delegate.status}}</code>
+          {{type|translate}}
+          <code> {{status}}</code>
         </p>
         <div class="center v">
           <input type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="false"
@@ -25,7 +25,7 @@
 
       <div class="group-col-right ">
         <!-- derecha -->
-        <button type="button" style="margin-left: 8px; padding-right: 30px;width: 100%; margin-bottom: 14px; "
+        <button *ngIf="isDeletedOrCreated() " type="button" style="margin-left: 8px; padding-right: 30px;width: 100%; margin-bottom: 14px; "
           color="primary" mat-raised-button name="button" (click)="newImport()">
           <mat-icon>upload_file</mat-icon>
           {{'UPLOAD_FILE'|translate}}
@@ -37,7 +37,7 @@
             {{'Sync'|translate}}
           </button>
 
-          <button mat-button color="primary" [disabled]="false">
+          <button mat-button color="primary" (click)="goToLog()" [disabled]="false">
             <mat-icon>description</mat-icon>
             {{'Logs'|translate}}
           </button>
@@ -138,7 +138,18 @@
         [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
       </mat-paginator>
     </div>
-
-
+    <div *ngIf="delegate.status == 'draft'" style="margin-top: 10px;margin-bottom: 40px; margin-left: 5px;" class="group-col-left">
+     
+      <div class="group-row-left center h v">
+        <mat-checkbox style="margin-right: 15px;margin-left: 13px;"  color="primary" [(ngModel)]="scheduleDelivery">
+          <p >{{'SCHEDULE_DELIVERY' | translate}}</p>
+        </mat-checkbox>
+        <date-picker [label]="'YYYY-MM-DD HH:MM'" [item]="scheduleDeliveryDateCopy" (itemChanged)="changeDate($event)"></date-picker>
+      </div> 
+      <button  mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="openSendTxsModal()">
+        <mat-icon>send</mat-icon>
+        {{'SEND_TRANSACTIONS'|translate}}
+      </button>
+    </div>
   </div>
 </app-page>

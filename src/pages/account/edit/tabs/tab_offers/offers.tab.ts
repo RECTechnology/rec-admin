@@ -93,6 +93,8 @@ export class OffersTab {
     });
   }
 
+ 
+
   public getAllData(){
     this.accountsCrud.find(this.account.id).subscribe(
       (resp: any) => {

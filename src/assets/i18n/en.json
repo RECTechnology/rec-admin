@@ -653,5 +653,15 @@
   "SEND_TOTAL_IMPORT": "Send total import",
   "TX_PENDENT": "TXs pendents",
   "TX_FAILED": "TXs failed",
-  "TX_SENDED": "TXs sended"
+  "TX_SENDED": "TXs sended",
+  "SEND_TYPE":"Send type",
+  "TOTAL_TRANSACTIONS":"Total txs",
+  "WHEN":"When",
+  "CONCEPT":"Concept",
+  "NOW":"Now",
+  "SCHEDULE_DELIVERY":"Schedule delivery",
+  "SEND_TRANSACTIONS":"Send transactions",
+  "SEND_CONFIRMATION":"Send confirmation"
+
+
 }
