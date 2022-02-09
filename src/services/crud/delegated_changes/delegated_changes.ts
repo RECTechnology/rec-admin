@@ -19,4 +19,10 @@ export class DelegatedChangesCrud extends CrudBaseService<any> {
 
         return this.post(url, {});
     }
+
+    public startTransactions(id,data: any) {
+        const url = `admin/v3/delegated_changes/${id}`;
+
+        return this.put(url, data);
+    }
 }

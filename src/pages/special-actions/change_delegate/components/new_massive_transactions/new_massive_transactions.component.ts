@@ -161,9 +161,13 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public openSendTxsModal(){
 
     if(this.scheduleDelivery){
-      this.scheduleDeliveryDateCopy = this.scheduleDeliveryDate
+      this.scheduleDeliveryDateCopy = this.scheduleDeliveryDate;
     }else{
-      this.scheduleDeliveryDateCopy=null;
+      this.changeDate(null);
+      console.log("Im in else",this.scheduleDeliveryDate);
+      this.scheduleDeliveryDateCopy = null;
+      var datepipe: DatePipe = new DatePipe('es');
+      this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss');
     }
     this.alerts.openModal(SendTransactionsDia, {
       totalTransactions: this.total,
@@ -173,7 +177,10 @@ export class NewMassiveTransactionsComponent extends PageBase {
       concept:this.transactions_name
     }).subscribe((send) => {
       if (send) {
-
+        this.changeCrud.startTransactions(this.delegate.id,{
+          type: this.delegate.type,
+          scheduled_at:this.scheduleDeliveryDate
+        })
       }
     });
   }
