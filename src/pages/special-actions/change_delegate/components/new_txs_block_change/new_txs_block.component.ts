@@ -26,9 +26,9 @@ const mapAccount = (e) => {
 
 @Component({
   selector: 'new-delegate',
-  templateUrl: './new_delegate.html',
+  templateUrl: './new_txs_block.html',
 })
-export class NewDelegateComponent extends PageBase {
+export class NewTXsBlockComponent extends PageBase {
   public pageName = 'New Delegate Change';
   public selectedAccounts = [];
   public sortedData = [];

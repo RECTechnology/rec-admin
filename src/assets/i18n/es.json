@@ -1170,8 +1170,7 @@
 
   "ACTIVATE_CHANGE": "Activar bloque de TXs",
 
-  "UPLOAD CSV": "Importar CSV",
-  "IMPORT_CSV_DESC": "Please upload a csv for the delegate change",
+  "UPLOAD CSV": "Subir archivo CSV",
   "Activate": "Activar",
   
   
@@ -1241,7 +1240,24 @@
   "OFFER_DELETED":"Oferta borrada",
   "ADD_BUSSINES_ACT":"Añade una actividad al comercio",
   "ADD_ACTIVITY":"Añadir actividad",
+  "ADDED_PRODUCT":"Producto añadido",
+  "REMOVED_ACTIVITY":"Actividad eliminada",
+  "REMOVED_PRODUCT":"Producto eliminado",
+  "ADDED_ACTIVITY":"Actividad añadida",
   "SURE_DELETE_TXT_BLOCK":"Estas seguro que quieres eliminar el bloque de transacciones: {{changeId}}]   ?",
   "DELETE_TXT_BLOCK":"Eliminar bloque de transacciones",
-  "LAUNCH_TXT_BLOCK":"Lanzado bloque de transacciones"
+  "LAUNCH_TXT_BLOCK":"Lanzado bloque de transacciones",
+  "IMPORT_CSV_DESC":"El archivo debe contener todas las transacciones a realizar en un formato especifico de datos",
+  "UPLOAD_FILE":"Subir archivo",
+  "ANY_SELECTED_FILE":"Ningun archivo seleccionado",
+  "TOTAL_IMPORT":"Importe total",
+  "WARNINGS":"Advertencias",
+  "SEND_TOTAL_IMPORT":"Importe total emviado",
+  "TX_PENDENT":"TXs pendientes",
+  "TX_FAILED":"TXs fallidas",
+  "TX_SENDED":"TXs enviadas",
+  "LOG_VIEWER": "Visor de logs",
+  "SEARCH_LABEL": "Buscar",
+  "LINES": "Lineas"
+
 }

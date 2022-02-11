@@ -1,0 +1,43 @@
+:host {
+    height: calc(100vh - 200px);
+}
+
+.input {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.log-view-content-wrapper {
+    height: 100%;
+    background: #fff;
+    overflow-y: auto;
+    padding-top: 10px;
+
+    .log-view-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .log-view-empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.log-view-log {
+    cursor: pointer;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    button {
+        opacity: 0;
+    }
+}
+.log-view-log:hover {
+    background: #efefef;
+    button {
+        opacity: 1;
+    }
+}

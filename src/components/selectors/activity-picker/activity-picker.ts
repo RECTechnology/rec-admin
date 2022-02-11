@@ -19,7 +19,7 @@ export class ActivityPicker extends BaseSelectorComponent {
   ngOnChanges(changes: SimpleChanges) {
     if ('parent' in changes) {
       this.parent = changes['parent'].currentValue;
-      this.search();
+     
     }
   }
 

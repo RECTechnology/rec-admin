@@ -156,7 +156,7 @@ export class AdminService extends BaseService2 {
 
     public sendChangeDelegateCsv(csv_url: string, id) {
         deprecatedMessage('sendChangeDelegateCsv');
-        return this.post(`/admin/v1/delegated_change_data/csv`, {
+        return this.post(`/admin/v1/txs_block/csv`, {
             delegated_change_id: id,
             path: csv_url,
         });

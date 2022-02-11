@@ -49,6 +49,7 @@ export abstract class BaseSelectorComponent {
   /* istanbul ignore next */
   public search(query?: string) {
     this.isLoading = true;
+    
     this.getSearchObservable(query).subscribe({
       next: (resp: any) => {
         this.isLoading = false;

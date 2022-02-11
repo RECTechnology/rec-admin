@@ -10,7 +10,6 @@ import { OffersCrud } from 'src/services/crud/offers/offers.crud';
   selector: 'tab-offers',
   templateUrl: './offers.html',
   styleUrls: ['./offers.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OffersTab {
   @Input() public id = '';
@@ -29,6 +28,10 @@ export class OffersTab {
   ) { }
 
   ngOnInit(){
+  }
+
+  ngOnChange(){
+    
   }
 
   public deleteOffer(offerId) {

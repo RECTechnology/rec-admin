@@ -4,25 +4,85 @@
 <app-page class="new-delegate">
   <div class="new-delegate bg-white" style="margin-top: 0; position: relative;">
 
-    <tl-header [options]="{ input: false }"
-      title="{{(isNew ? 'NEW_MASSIVE_TX': readonly ? 'VIEW_MASSIVE_TX' : 'massive_transactions')|translate}}">
+    <div class="fill-size center v space-between" style="padding: 10px 15px">
 
-      <button [disabled]="readonly" type="button" style="margin-right: 20px" color="primary"
-        mat-button name="button" (click)="newImport()">
-        <p class="text-small">
-          <i class="fa fa-file"></i>
-          {{'Import'|translate}}
+      <div class="group-col-left">
+        <!-- izquierda -->
+        <p class="small-text col-blue" style="margin-right: 15px!important;font-size: 16px">
+          {{'massive_transactions'|translate}}
+          <code> {{delegate.status}}</code>
         </p>
-      </button>
+        <div class="center v">
+          <input type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="false"
+            placeholder="transactions name" style="margin: 0; padding: 4px 6px; max-width: 500px;width: 130px;">
 
-      <btn-loader (clicked)="sendReport()" [disabled]="generatingReport" [loading]="generatingReport"
-        text="CREATE_REPORT">
-      </btn-loader>
-    </tl-header>
+          <button mat-icon-button [disabled]="false" matTooltip="{{'EDIT'|translate}}">
+            <i class="fa fa-edit"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="group-col-right ">
+        <!-- derecha -->
+        <button type="button" style="margin-left: 8px; padding-right: 30px;width: 100%; margin-bottom: 14px; "
+          color="primary" mat-raised-button name="button" (click)="newImport()">
+          <mat-icon>upload_file</mat-icon>
+          {{'UPLOAD_FILE'|translate}}
+        </button>
+
+        <div class="group-row-right">
+          <button mat-button color="primary" [disabled]="false" (click)="syncData()">
+            <mat-icon>sync</mat-icon>
+            {{'Sync'|translate}}
+          </button>
+
+          <button mat-button color="primary" [disabled]="false">
+            <mat-icon>description</mat-icon>
+            {{'Logs'|translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+
+
 
     <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
       style="border-bottom: 1px solid #ddd!important; width: 100%" [validationName]="validationErrorName">
     </validation-errors>
+
+    <div class="group-col-left bordered-top" style="width: 100%; position: relative;">
+      <div class="group-row-left center h v" style="margin-top: 10px;margin-bottom: 10px; margin-left: 15px; ">
+        <a class="label"> {{'TRANSACTIONS'|translate}}</a>
+        <code>{{delegate && delegate.data && delegate.data.length}}</code>
+
+        <a class="label"> {{'TOTAL_IMPORT'|translate}}</a>
+        <code>{{totalImport}}</code>
+
+        <a class="label"> {{'WARNINGS'|translate}}</a>
+        <code> 0</code>
+
+      </div>
+
+    </div>
+
+    <div class="group-col-left bordered-top bordered-bottom" style="width: 100%; position: relative;">
+      <div class="group-row-left center h v"
+        style="margin-top: 10px;margin-bottom: 10px; margin-left: 5px;margin-left: 15px ">
+        <a class="label">
+          {{'SEND_TOTAL_IMPORT'|translate}}</a>
+        <code>0</code>
+
+        <a class="label"> {{'TX_SENDED'|translate}}</a>
+        <code>{{success_tx}}</code>
+
+        <a class="label"> {{'TX_PENDENT'|translate}}</a>
+        <code>{{issued_rec}}</code>
+
+        <a class="label"> {{'TX_FAILED'|translate}}</a>
+        <code> {{failed_tx}}</code>
+      </div>
+    </div>
 
     <div class="group-col-left" style="width: 100%; position: relative;">
       <table matSort (matSortChange)="sortData($event)" class="left-align">
@@ -79,13 +139,6 @@
       </mat-paginator>
     </div>
 
-    <div class="fill-size" style="padding: 10px 15px; border-top: 1px solid #ddd">
-      <button type="button" style="margin-left: 8px; padding-right: 10px" color="primary" mat-raised-button
-        name="button" (click)="activateChange()" [disabled]="readonly">
-        <p class="text-small">
-          {{'Activate'|translate}}
-        </p>
-      </button>
-    </div>
+
   </div>
 </app-page>

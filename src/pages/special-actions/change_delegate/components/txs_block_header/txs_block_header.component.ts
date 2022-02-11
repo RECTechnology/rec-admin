@@ -1,15 +1,15 @@
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { UtilsService } from '../../../../../services/utils/utils.service';
-import { CreateDelegateChange, NewDelegateChange } from '../create_delegate_change/create_delegate_change.dia';
+import { CreateTXsBlockChange, NewDelegateChange } from '../create_txs_block_change/create_txs_block_change.dia';
 
 
 @Component({
-  selector: 'delegate-header',
-  styleUrls: ['./delegate_header.css'],
-  templateUrl: './delegate_header.html',
+  selector: 'txs-block-header',
+  styleUrls: ['./txs_block_header.css'],
+  templateUrl: './txs_block_header.html',
 })
-export class DelegateHeaderComponent {
+export class TxsBlockHeaderComponent {
   public searchQuery: string = '';
 
   @Output('onNewChange') public onNewChange: EventEmitter<NewDelegateChange>;
@@ -21,7 +21,7 @@ export class DelegateHeaderComponent {
   }
 
   public showNewChange() {
-    this.alerts.openModal(CreateDelegateChange).subscribe((data: NewDelegateChange) => {
+    this.alerts.openModal(CreateTXsBlockChange).subscribe((data: NewDelegateChange) => {
       if (!data) return;
       this.onNewChange.emit(data);
     });

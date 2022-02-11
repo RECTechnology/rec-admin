@@ -105,7 +105,7 @@ const imports = [
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent,],
+  declarations: [AppComponent],
   providers: [
     LoginService,
     UserService,

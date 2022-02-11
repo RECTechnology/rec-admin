@@ -1,7 +1,11 @@
 import { Directive, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { MySnackBarSevice } from 'src/bases/snackbar-base';
 
 @Directive({ selector: '[copy-clipboard]' })
 export class CopyClipboardDirective {
+    constructor(
+        private snackbar: MySnackBarSevice,
+    ){}
 
     @Input('copy-clipboard')
     public payload: string;
@@ -23,6 +27,7 @@ export class CopyClipboardDirective {
             e.preventDefault();
 
             this.copied.emit(this.payload);
+            this.snackbar.open('Copied text');
         };
 
         document.addEventListener('copy', listener, false);

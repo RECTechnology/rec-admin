@@ -6,8 +6,8 @@
   <div class="wallet-transactions bg-white" style="margin-top: 0">
 
     <!-- Header -->
-    <delegate-header (onNewChange)="newChange($event)" (onImport)="newImport($event)">
-    </delegate-header>
+    <txs-block-header (onNewChange)="newChange($event)" (onImport)="newImport($event)">
+    </txs-block-header>
     
     <validation-errors [errors]="validationErrors"
       *ngIf="validationErrors.length > 0"></validation-errors>
