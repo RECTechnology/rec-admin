@@ -54,7 +54,6 @@ export class UtilsService {
     delete obj.account;
     delete obj.parent;
     delete obj.children;
-    delete obj.kind;
     delete obj.parent;
 
     return obj;
