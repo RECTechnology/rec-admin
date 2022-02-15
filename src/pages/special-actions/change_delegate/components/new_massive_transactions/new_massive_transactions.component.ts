@@ -93,7 +93,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
 
   public getDelegate() {
     this.changeCrud.find(this.idOrNew).subscribe((resp) => {
-      console.log("Im in getDelegate",resp)
+      console.log("Im in resp",resp)
       this.totalImport=0;
       this.delegate = resp.data;
       for( let item of this.delegate.data){
@@ -115,8 +115,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
         this.timeScheduled = parts.timeStr;
         this.readonly = this.delegate.status != 'draft';
       }
-      console.log("Im in getDelegateEnd",this.delegate.status)
-      console.log("Is true?",this.delegate.status == 'draft')
+  
 
     });
 
@@ -154,7 +153,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
 
   public goToLog(){
     this.router.navigate(['/log_page' ], {
-      
+      queryParams:{id:this.idOrNew}
     });
   }
 
