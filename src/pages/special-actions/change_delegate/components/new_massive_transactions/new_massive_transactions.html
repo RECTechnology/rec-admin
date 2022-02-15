@@ -13,10 +13,10 @@
           <code> {{status}}</code>
         </p>
         <div class="center v">
-          <input type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="false"
+          <input type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="isEditName"
             placeholder="transactions name" style="margin: 0; padding: 4px 6px; max-width: 500px;width: 130px;">
 
-          <button mat-icon-button [disabled]="false" matTooltip="{{'EDIT'|translate}}">
+          <button mat-icon-button (click)="changeIsEditName()" [disabled]="false" matTooltip="{{'EDIT'|translate}}">
             <i class="fa fa-edit"></i>
           </button>
         </div>

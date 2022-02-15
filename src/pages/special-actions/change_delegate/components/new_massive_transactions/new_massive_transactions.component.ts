@@ -41,6 +41,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public failed_tx: any;
   public scheduleDelivery = false;
   public scheduleDeliveryDate:String;
+  public isEditName = true;
   public type:any;
   scheduleDeliveryDateCopy: String;
 
@@ -145,6 +146,15 @@ export class NewMassiveTransactionsComponent extends PageBase {
       );
   }
 
+  public changeIsEditName(){
+    if(this.isEditName){
+      this.isEditName = false;
+    }else{
+      this.isEditName = true;
+
+    }
+  }
+
   public changedPage($event) {
     this.limit = $event.pageSize;
     this.offset = this.limit * $event.pageIndex;
@@ -152,7 +162,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
   }
 
   public goToLog(){
-    this.router.navigate(['/log_page' ], {
+    this.router.navigate(['/txs_blocks/massive/'+this.idOrNew+'/logs' ], {
       queryParams:{id:this.idOrNew}
     });
   }
