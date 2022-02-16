@@ -15,7 +15,7 @@ export class DatePicker {
 
     @Input() public item: string;
     @Input() public dateType: string;
-    @Input() public label: string = "Choose a date";
+    @Input() public label: string = "dd/mm/yyyy";
     @Input() public dateFormat: string;
     @Input() public locale: string = 'es';
     @Input() public isDisable: boolean = false;

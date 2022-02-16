@@ -12,6 +12,9 @@ import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { CsvUpload } from '../csv-upload/csv-upload.dia';
 import { AdminService } from 'src/services/admin/admin.service';
 import { ActivateResume } from '../activate-resume/activate-resume.dia';
+import { DatePipe } from '@angular/common';
+import { SendTransactionsDia } from './send_transaction_modal/send_transactions_modal';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'new-massive-transactions',
@@ -36,6 +39,11 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public success_tx: any;
   public issued_rec: any;
   public failed_tx: any;
+  public scheduleDelivery = false;
+  public scheduleDeliveryDate:String;
+  public isEditName = true;
+  public type:any;
+  scheduleDeliveryDateCopy: String;
 
   constructor(
     public adminService: AdminService,
@@ -48,6 +56,9 @@ export class NewMassiveTransactionsComponent extends PageBase {
     public utils: UtilsService,
     public snackbar: MySnackBarSevice,
     public alerts: AlertsService,
+    public translate: TranslateService,
+
+
   ) {
     super();
   }
@@ -57,11 +68,11 @@ export class NewMassiveTransactionsComponent extends PageBase {
       this.idOrNew = params.id_or_new;
       this.isNew = this.idOrNew === 'new';
       this.status = params.status;
-      console.log("Im in onInit",params)
       if (!this.isNew) {
         this.syncData();
       }
     });
+
   }
 
   public syncData(){
@@ -69,9 +80,21 @@ export class NewMassiveTransactionsComponent extends PageBase {
     this.getDelegateData();
   }
 
+  public changeDate(event) {
+    var dateSupport: Date = new Date(event);
+    var datepipe: DatePipe = new DatePipe('es');
+    this.scheduleDeliveryDate = datepipe.transform(dateSupport, 'yyyy-MM-ddThh:mm:ss');
+
+}
+
+  public isDeletedOrCreated(){
+     return this.delegate.status == 'created' || this.delegate.status == 'invalid'
+  }
+
+
   public getDelegate() {
     this.changeCrud.find(this.idOrNew).subscribe((resp) => {
-      console.log("Im in getDelegate",resp)
+      console.log("Im in resp",resp)
       this.totalImport=0;
       this.delegate = resp.data;
       for( let item of this.delegate.data){
@@ -80,7 +103,9 @@ export class NewMassiveTransactionsComponent extends PageBase {
       this.success_tx=this.delegate.success_tx??0;
       this.issued_rec=this.delegate.issued_rec??0;
       this.failed_tx=this.delegate.failed_tx??0;
-
+      this.status = this.delegate.status??'noStatus';
+      this.transactions_name = this.delegate.name;
+      this.type = this.delegate.type;
       if (this.delegate.scheduled_at) {
         const date = new Date(this.delegate.scheduled_at);
         const parts = this.utils.parseDateToParts(date);
@@ -91,7 +116,10 @@ export class NewMassiveTransactionsComponent extends PageBase {
         this.timeScheduled = parts.timeStr;
         this.readonly = this.delegate.status != 'draft';
       }
+  
+
     });
+
   }
 
   public getDelegateData() {
@@ -118,10 +146,52 @@ export class NewMassiveTransactionsComponent extends PageBase {
       );
   }
 
+  public changeIsEditName(){
+    if(this.isEditName){
+      this.isEditName = false;
+    }else{
+      this.isEditName = true;
+
+    }
+  }
+
   public changedPage($event) {
     this.limit = $event.pageSize;
     this.offset = this.limit * $event.pageIndex;
     this.getDelegateData();
+  }
+
+  public goToLog(){
+    this.router.navigate(['/txs_blocks/massive/'+this.idOrNew+'/logs' ], {
+      queryParams:{id:this.idOrNew}
+    });
+  }
+
+  public openSendTxsModal(){
+
+    if(this.scheduleDelivery){
+      this.scheduleDeliveryDateCopy = this.scheduleDeliveryDate;
+    }else{
+      this.changeDate(null);
+      console.log("Im in else",this.scheduleDeliveryDate);
+      this.scheduleDeliveryDateCopy = null;
+      var datepipe: DatePipe = new DatePipe('es');
+      this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss');
+    }
+    this.alerts.openModal(SendTransactionsDia, {
+      totalTransactions: this.total,
+      sendType: this.type,
+      totalImport:this.totalImport,
+      dateSend:this.scheduleDeliveryDateCopy,
+      concept:this.transactions_name
+    }).subscribe((send) => {
+      if (send) {
+        this.changeCrud.startTransactions(this.delegate.id,{
+          type: this.delegate.type,
+          scheduled_at:this.scheduleDeliveryDate
+        })
+      }
+    });
   }
 
   public sendReport() {

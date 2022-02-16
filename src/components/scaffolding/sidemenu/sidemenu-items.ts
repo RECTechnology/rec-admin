@@ -46,11 +46,7 @@ export const SIDEMENU_ITEMS = [
     type: 'separator',
     icon: false,
   },
-  // {
-  //   name: 'LOGS',
-  //   icon: 'fa-file',
-  //   route: '/log-test',
-  // },
+
   {
     name: 'TRANSACTION_BLOCK',
     icon: 'fa-calendar-alt',
