@@ -18,32 +18,7 @@ import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delega
 export class LogPage {
   public pageName = 'LogPage';
   public id;
-  public demoLogs = [
-    {
-      id: 'aa',
-      log: 'locate_configFile: Specified configuration file: /u/user10/rsvpd1.conf',
-      date: '03/22 08:51:01',
-      type: 'DEBUG',
-    },
-    {
-      id: 'aa',
-      log: 'settcpimage: Get TCP images rc - EDC8112I Operation not supported on socket.',
-      date: '03/22 08:51:01',
-      type: 'ERROR',
-    },
-    {
-      id: 'aa',
-      log: 'settcpimage: Associate with TCP/IP image name = TCPCS',
-      date: '03/22 08:51:01',
-      type: 'DEBUG',
-    },
-    {
-      id: 'aa',
-      log: 'reg_process: registering process with the system',
-      date: '03/22 08:51:01',
-      type: 'DEBUG',
-    },
-  ];
+  public demoLogs = [];
 
   constructor(
     public titleService: Title,
@@ -64,8 +39,9 @@ export class LogPage {
     this.route.queryParams
             .subscribe((params) => {
                 this.id=params.id;
+                    this.syncLogs();
+
             });
-    this.syncLogs();
   }
 
   linesChanged($evt) {
