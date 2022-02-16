@@ -32,7 +32,7 @@ const ROUTES: Routes = [
 
   // Private Routes - user should be authenticated to accesss them
   {
-    path: '/txs_blocks/massive/:id/logs',
+    path: 'txs_blocks/massive/:id/logs',
     component: LogPage,
     canActivate: [IsLoggedInGuard],
   },
