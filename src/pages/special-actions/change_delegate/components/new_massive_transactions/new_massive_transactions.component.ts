@@ -155,6 +155,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public changeIsEditName(){
     this.isEditName = !this.isEditName
   
+
   }
 
   public changedPage($event) {
@@ -179,6 +180,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
       this.scheduleDeliveryDateCopy = null;
       var datepipe: DatePipe = new DatePipe('es');
       this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss-SS');
+
     }
     this.alerts.openModal(SendTransactionsDia, {
       totalTransactions: this.total,
@@ -188,11 +190,11 @@ export class NewMassiveTransactionsComponent extends PageBase {
       concept:this.transactions_name
     }).subscribe((send) => {
       if (send) {
-        console.log();
+
         this.changeCrud.startTransactions(this.delegate.id,{
-          Status: 'scheduled',
-        }).subscribe((resp)=>{
-          console.log("Im in resp",resp)
+          status: this.delegate.type,
+          scheduled_at:this.scheduleDeliveryDate
+
         })
       }
     });

@@ -35,4 +35,5 @@ export class DelegatedChangesCrud extends CrudBaseService<any> {
 
         return this.put(url, {name:concept});
     }
+
 }

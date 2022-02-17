@@ -86,16 +86,19 @@ export class AddDocumentDia extends BaseDialog {
     this.item.status_text = text;
   }
 
- 
-
- 
+  kindChanged($event) {
+    console.log('event', $event);
+    this.item.kind = $event;
+  }
 
   public getCrud(data) {
-    let kind = this.docKindsFull.find((el) => el.id === data.kind_id);
+    console.log('data', data);
+    let kind = data.kind;
     const isLemon = kind != undefined && kind.lemon_doctype !== null && kind.lemon_doctype !== undefined;
+
     return isLemon ? this.lemonDocCrud : this.docCrud;
   }
-  
+
   public proceed() {
     if (this.loading || !this.item.name) {
       return;
@@ -103,15 +106,12 @@ export class AddDocumentDia extends BaseDialog {
 
     this.loading = true;
     let data: any = { ...this.item };
+
     if (data.valid_until) {
-
-     data.valid_until = moment(data.valid_until).local().toISOString(true);
-
+      data.valid_until = moment(data.valid_until).local().toISOString(true);
     }
     if (this.isEdit) {
-  
       data = UtilsService.deepDiff({ ...data }, this.itemCopy);
-     
     }
 
     if (!Object.keys(data).length) {
@@ -119,9 +119,12 @@ export class AddDocumentDia extends BaseDialog {
     }
 
     const crud = this.getCrud(data);
-    delete data.kind;
 
-    
+    if (data.kind) {
+      data.kind_id = data.kind.id;
+      delete data.kind;
+    }
+
     if (data.auto_fetched) {
       data.auto_fetched = false;
     }
