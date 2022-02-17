@@ -62,7 +62,9 @@ export class CrudBaseService<T> extends BaseService2 {
 
   // Crud methods
   public create(data: T, lang: RecLang = REC_LANGS.EN): Observable<any> {
+    
     const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
+    console.log("Im in create",url)
     this.log(`create ${this.tName}`, arguments);
 
     return this.post(
