@@ -41,7 +41,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public failed_tx: any;
   public scheduleDelivery = false;
   public scheduleDeliveryDate:String;
-  public isEditName = true;
+  public isEditName = false;
   public type:any;
   scheduleDeliveryDateCopy: String;
 
@@ -146,13 +146,15 @@ export class NewMassiveTransactionsComponent extends PageBase {
       );
   }
 
-  public changeIsEditName(){
-    if(this.isEditName){
-      this.isEditName = false;
-    }else{
-      this.isEditName = true;
+  public saveEditConcept(){
+    this.changeCrud.editConcept(this.idOrNew,this.transactions_name).subscribe((resp)=>{
 
-    }
+    })
+  }
+
+  public changeIsEditName(){
+    this.isEditName = !this.isEditName
+  
   }
 
   public changedPage($event) {
@@ -176,7 +178,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
       console.log("Im in else",this.scheduleDeliveryDate);
       this.scheduleDeliveryDateCopy = null;
       var datepipe: DatePipe = new DatePipe('es');
-      this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss');
+      this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss-SS');
     }
     this.alerts.openModal(SendTransactionsDia, {
       totalTransactions: this.total,
@@ -188,8 +190,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
       if (send) {
         console.log();
         this.changeCrud.startTransactions(this.delegate.id,{
-          type: this.delegate.type,
-          scheduled_at:this.scheduleDeliveryDate
+          Status: 'scheduled',
         }).subscribe((resp)=>{
           console.log("Im in resp",resp)
         })

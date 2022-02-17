@@ -29,22 +29,22 @@
         {{totalTransactions}}
       </p>
       <div style="width: 200px;">
-        <p class=" col-blue" style="margin-bottom: 15px!important;">
+        <p class=" col-blue" style="margin-bottom: 20px!important;">
           {{sendType|translate}}
         </p>
       </div>
       
-      <p class=" col-blue" style="margin-bottom: 15px!important;">
+      <p class=" col-blue" style="margin-bottom: 13px!important;">
         {{totalImport}}
       </p>
-      <p class=" col-blue" style="margin-bottom: 15px!important;">
+      <p class=" col-blue" style="margin-bottom: 13px!important;">
         {{warnings}}
       </p>
-      <p *ngIf="dateSend else noData" class=" col-blue" style="margin-bottom: 15px!important">
+      <p *ngIf="dateSend else noData" class=" col-blue" style="margin-bottom: 13px!important">
         {{dateSend}}
       </p>
       <ng-template #noData>
-        <p class=" col-blue" style="margin-bottom: 15px!important">
+        <p class=" col-blue" style="margin-bottom: 13px!important">
           {{'NOW'|translate}}
         </p>
       </ng-template>

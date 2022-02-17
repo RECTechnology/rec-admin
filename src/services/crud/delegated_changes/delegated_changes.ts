@@ -21,8 +21,18 @@ export class DelegatedChangesCrud extends CrudBaseService<any> {
     }
 
     public startTransactions(id,data: any) {
-        const url = `admin/v3/delegated_changes/${id}`;
+        const url = `/admin/v3/delegated_changes/${id}`;
 
-        return this.put(url, data).subscribe;
+        return this.put(url, data);
+    }
+    public changeStatus(id,status){
+        const url = `/admin/v3/delegated_changes/${id}`;
+
+        return this.put(url, {status:status});
+    }
+    public editConcept(id,concept){
+        const url = `/admin/v3/delegated_changes/${id}`;
+
+        return this.put(url, {name:concept});
     }
 }
