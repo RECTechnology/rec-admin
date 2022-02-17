@@ -186,9 +186,12 @@ export class NewMassiveTransactionsComponent extends PageBase {
       concept:this.transactions_name
     }).subscribe((send) => {
       if (send) {
+        console.log();
         this.changeCrud.startTransactions(this.delegate.id,{
           type: this.delegate.type,
           scheduled_at:this.scheduleDeliveryDate
+        }).subscribe((resp)=>{
+          console.log("Im in resp",resp)
         })
       }
     });

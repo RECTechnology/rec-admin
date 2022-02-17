@@ -242,7 +242,7 @@ export class BaseService2 {
         }
       }
     }
-
+    console.log("Im pre return in put method")
     return this.http.put(
       this.getUrl(url),
       params || data,
