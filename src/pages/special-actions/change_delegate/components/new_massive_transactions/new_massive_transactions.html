@@ -13,10 +13,24 @@
           <code> {{status}}</code>
         </p>
         <div class="center v">
-          <input type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="isEditName"
+          <input type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="!isEditName"
             placeholder="transactions name" style="margin: 0; padding: 4px 6px; max-width: 500px;width: 130px;">
 
-          <button mat-icon-button (click)="changeIsEditName()" [disabled]="false" matTooltip="{{'EDIT'|translate}}">
+            <button mat-icon-button [disabled]="loading" matTooltip="{{'SAVE'|translate}}" *ngIf="isEditName"
+            (click)="saveEditConcept()">
+            <i class="fa fa-save" *ngIf="!loading"></i>
+            <div class="center h v">
+              <mat-progress-spinner [diameter]="16" color="primary" mode="indeterminate" *ngIf="loading">
+              </mat-progress-spinner>
+            </div>
+          </button>
+          <button mat-icon-button [disabled]="loading" matTooltip="{{'CANCEL'|translate}}" *ngIf="isEditName"
+            (click)="changeIsEditName()">
+            <i class="fa fa-times"></i>
+          </button>
+          <button mat-icon-button [disabled]="loading" matTooltip="{{'EDIT'|translate}}" *ngIf="!isEditName"
+            (click)="changeIsEditName()">
+
             <i class="fa fa-edit"></i>
           </button>
         </div>
@@ -138,7 +152,8 @@
         [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
       </mat-paginator>
     </div>
-    <div *ngIf="delegate.status == 'draft'" style="margin-top: 10px;margin-bottom: 40px; margin-left: 5px;" class="group-col-left">
+    <div *ngIf="delegate.status == 'draft'" style="margin-top: 10px;margin-bottom: 40px; margin-left: 5px;" class="group-col-left bordered-top">
+
      
       <div class="group-row-left center h v">
         <mat-checkbox style="margin-right: 15px;margin-left: 13px;"  color="primary" [(ngModel)]="scheduleDelivery">
