@@ -1252,7 +1252,7 @@
   "ANY_SELECTED_FILE":"Ningun archivo seleccionado",
   "TOTAL_IMPORT":"Importe total",
   "WARNINGS":"Advertencias",
-  "SEND_TOTAL_IMPORT":"Importe total emviado",
+  "SEND_TOTAL_IMPORT":"Importe total enviado",
   "TX_PENDENT":"TXs pendientes",
   "TX_FAILED":"TXs fallidas",
   "TX_SENDED":"TXs enviadas",
@@ -1266,6 +1266,8 @@
   "NOW":"Ahora",
   "SCHEDULE_DELIVERY":"Programar envio",
   "SEND_TRANSACTIONS":"Enviar transacciones",
-  "SEND_CONFIRMATION":"Confirmacion de envio"
-
+  "SEND_CONFIRMATION":"Confirmacion de envio",
+  "SEND_CANCEL":"Cancelar envio",
+  "RETRY_SEND":"Reintentar envio",
+  "MARK_AS_INCOMPLETE":"Marcar como completo"
 }

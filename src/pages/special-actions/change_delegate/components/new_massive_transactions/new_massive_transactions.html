@@ -152,19 +152,36 @@
         [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
       </mat-paginator>
     </div>
-    <div *ngIf="delegate.status == 'draft'" style="margin-top: 10px;margin-bottom: 40px; margin-left: 5px;" class="group-col-left bordered-top">
-
+    <div *ngIf="delegate.status != 'created' && delegate.status != 'pending_validation' && delegate.status != 'invalid'" style="margin-top: 10px;margin-bottom: 40px; margin-left: 5px;" class="group-col-left">
      
-      <div class="group-row-left center h v">
+      <div *ngIf="delegate.status == 'draft' || delegate.status == 'scheduled' || delegate.status == 'in_progress' || delegate.status == 'failed'"
+        class="group-row-left center h v">
         <mat-checkbox style="margin-right: 15px;margin-left: 13px;"  color="primary" [(ngModel)]="scheduleDelivery">
           <p >{{'SCHEDULE_DELIVERY' | translate}}</p>
         </mat-checkbox>
         <date-picker [label]="'YYYY-MM-DD HH:MM'" [item]="scheduleDeliveryDateCopy" (itemChanged)="changeDate($event)"></date-picker>
       </div> 
-      <button  mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="openSendTxsModal()">
+      
+      <button *ngIf="delegate.status == 'draft' " mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="openSendTxsModal()">
         <mat-icon>send</mat-icon>
         {{'SEND_TRANSACTIONS'|translate}}
       </button>
+
+      <button *ngIf="delegate.status == 'scheduled' " mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="sendCancel()">
+        <mat-icon>send</mat-icon>
+        {{'SEND_CANCEL'|translate}}
+      </button>
+   
+      <button *ngIf="delegate.status == 'failed' " mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="sendRetry()">
+        <mat-icon>reload</mat-icon>
+        {{'RETRY_SEND'|translate}}
+      </button>
+
+      <button *ngIf="delegate.status == 'failed' " mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="sendReport()">
+        <mat-icon>denied</mat-icon>
+        {{'MARK_AS_INCOMPLETE'|translate}}
+      </button>
+      
     </div>
   </div>
 </app-page>

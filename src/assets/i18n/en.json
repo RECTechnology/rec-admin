@@ -661,7 +661,10 @@
   "NOW":"Now",
   "SCHEDULE_DELIVERY":"Schedule delivery",
   "SEND_TRANSACTIONS":"Send transactions",
-  "SEND_CONFIRMATION":"Send confirmation"
+  "SEND_CONFIRMATION":"Send confirmation",
+  "SEND_CANCEL":"Cancel sending",
+  "RETRY_SEND":"Retry sending",
+  "MARK_AS_INCOMPLETE":"Mark as incomplete"
 
 
 }

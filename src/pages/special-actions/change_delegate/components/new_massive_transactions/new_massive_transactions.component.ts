@@ -149,7 +149,8 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public saveEditConcept(){
     this.changeCrud.editConcept(this.idOrNew,this.transactions_name).subscribe((resp)=>{
 
-    })
+    });
+    this.changeIsEditName();
   }
 
   public changeIsEditName(){
@@ -198,6 +199,14 @@ export class NewMassiveTransactionsComponent extends PageBase {
         })
       }
     });
+  }
+
+  public sendCancel(){
+    this.changeCrud.changeStatus(this.idOrNew,'draft')
+  }
+
+  public sendRetry(){
+    this.changeCrud.changeStatus(this.idOrNew,'scheduled')
   }
 
   public sendReport() {
