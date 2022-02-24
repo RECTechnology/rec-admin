@@ -1269,5 +1269,7 @@
   "SEND_CONFIRMATION":"Confirmacion de envio",
   "SEND_CANCEL":"Cancelar envio",
   "RETRY_SEND":"Reintentar envio",
-  "MARK_AS_INCOMPLETE":"Marcar como completo"
+  "MARK_AS_INCOMPLETE":"Marcar como completo",
+  "DOWNGRADE_ACCES":"Revocar acceso",
+  "APROVE_PENDIENTS":"Pendientes de aprovacion"
 }

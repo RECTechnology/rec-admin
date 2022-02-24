@@ -54,4 +54,5 @@ export class B2BSettingsComponent extends PageBase {
             // queryParamsHandling: '',
         });
     }
+    
 }

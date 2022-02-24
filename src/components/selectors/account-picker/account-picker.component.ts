@@ -6,7 +6,7 @@ import { AccountPickerDia } from './account-picker-dialog/account-picker.dia';
 import { Account } from 'src/shared/entities/account.ent';
 
 @Component({
-  selector: 'account-picker',
+  selector: 'account-picker', 
   templateUrl: './account-picker.component.html',
   styleUrls: ['./account-picker.component.scss'],
 })

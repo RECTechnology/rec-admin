@@ -1,0 +1,27 @@
+<modal-header title="{{'SEND_CONFIRMATION'|translate}}" (click)="close()"></modal-header>
+
+
+<div class="group-col-left  " style="width: 395px; padding: 0!important">
+  
+    
+    
+    <div style="width: 100%;margin-left:15px;">
+        <account-picker [title]="'Account'" (idChange)="setAccount($event);">
+        </account-picker>   
+    </div>
+   
+  <div class="col-lg-6">
+    <input-field [(value)]="username" label="{{'Last Name' | translate}}" [disabled]="loading">
+    </input-field>
+  </div>
+  <mat-checkbox style="margin-left: 15px;" color="primary" [(ngModel)]="wantSMS">
+    <b class="small-text-2">{{'NOTIFY_SMS'| translate}}</b>
+  </mat-checkbox>
+  <button   type="button" style="margin-left: 150px!important;margin-top: 30px;margin-bottom: 15px!important; padding-right: 30px;width: 198px; margin-bottom: 14px; "
+      color="primary" mat-raised-button name="button" (click)="send()">
+      <mat-icon>send</mat-icon>
+      +{{'ADD'|translate}}
+  </button>
+ 
+
+</div>

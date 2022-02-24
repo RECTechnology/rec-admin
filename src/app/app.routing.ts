@@ -16,6 +16,7 @@ import { SendMail } from 'src/pages/special-actions/mailing/send-mail/send-mail'
 import { ValidateWithdrawalComponent } from 'src/components/validate-withdrawal/validate-withdrawal.component';
 import { CampaignReportsAccount } from 'src/pages/special-actions/campaing_reports/campaing_reports.component';
 import { LogPage } from 'src/pages/special-actions/change_delegate/components/log_page/log_page';
+import { B2BComponent } from 'src/pages/special-actions/b2b_page/b2b.component';
 
 const ROUTES: Routes = [
   // Public Routes - user shouldn't be authenticated to accesss them
@@ -87,6 +88,11 @@ const ROUTES: Routes = [
   {
     path: 'b2b/settings',
     component: B2BSettingsComponent,
+    canActivate: [IsLoggedInGuard],
+  },
+  {
+    path: 'b2b_component',
+    component: B2BComponent,
     canActivate: [IsLoggedInGuard],
   },
   {

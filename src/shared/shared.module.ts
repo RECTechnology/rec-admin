@@ -68,6 +68,7 @@ import { NeighborhoodsTabComponent } from 'src/pages/special-actions/b2b/entitie
 import { ProductsTabComponent } from 'src/pages/special-actions/b2b/entities/components/products/products.tab';
 import { TiersTabComponent } from 'src/pages/special-actions/b2b/entities/components/tiers/tiers.tab';
 import { B2BSettingsComponent } from 'src/pages/special-actions/b2b/entities/settings.component';
+import { B2BComponent } from 'src/pages/special-actions/b2b_page/b2b.component';
 import { CampaignReportsAccount } from 'src/pages/special-actions/campaing_reports/campaing_reports.component';
 import { EditAccountsDia } from 'src/pages/special-actions/change_delegate/components/edit_users/edit_accounts.dia';
 import { CreateDelivery } from 'src/pages/special-actions/mailing/create-delivery/create-delivery';
@@ -116,6 +117,7 @@ import { LogViewComponent } from 'src/components/log-view/log-view.component';
 import {  LogPage } from 'src/pages/special-actions/change_delegate/components/log_page/log_page';
 import { LogStatusSelector } from 'src/components/selectors/log-status-selector/log-status-selector.component';
 import { SendTransactionsDia} from 'src/pages/special-actions/change_delegate/components/new_massive_transactions/send_transaction_modal/send_transactions_modal';
+import { AddB2BModal} from 'src/pages/special-actions/b2b_page/b2b-modal/b2b-modal';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -184,10 +186,12 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     TableListTable,
     B2BSendComponent,
     B2BSettingsComponent,
+    B2BComponent,
     LogStatusSelector,
     LogViewComponent,
     LogPage,
     SendTransactionsDia,
+    AddB2BModal,
     TranslatableListComponent,
     ProductsTabComponent,
     ActivitiesTabComponent,
@@ -247,10 +251,12 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     TableListTable,
     B2BSendComponent,
     B2BSettingsComponent,
+    B2BComponent,
     LogStatusSelector,
     LogViewComponent,
     LogPage,
     SendTransactionsDia,
+    AddB2BModal,
     TranslatableListComponent,
     ProductsTabComponent,
     ActivitiesTabComponent,

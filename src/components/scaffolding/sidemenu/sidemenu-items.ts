@@ -53,6 +53,13 @@ export const SIDEMENU_ITEMS = [
     route: '/txs_blocks',
   },
   {
+    name: 'B2B',
+    icon: 'fa-exchange',
+    route: '/b2b_component',
+  },
+  
+  
+  {
     name: 'CREATE_RECS',
     icon: 'fa-cash-register',
     route: '/treasure_account',
