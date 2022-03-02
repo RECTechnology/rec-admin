@@ -103,14 +103,13 @@ export class NewMassiveTransactionsComponent extends PageBase {
       for( let item of this.delegate.data){
         this.totalImport = this.totalImport+item.amount;
       }
-      console.log("Im pre asigning data",this.delegate)
       this.totalImportSended=this.delegate.statistics.result.issued_rec??0;
       this.successTx=this.delegate.statistics.result.success_tx??0;
       this.failedTx=this.delegate.statistics.result.failed_tx??0;
       this.pendientTx= this.delegate.data.length-this.delegate.statistics.result.success_tx??0;
       this.failedTx=this.delegate.statistics.result.failed_tx??0;
-      this.scheduleAt=this.delegate.scheduled_at??'YYYY-MM-DD HH:MM'
-      ;
+      this.warnings = this.delegate.statistics.scheduled.warnings??0;
+      this.scheduleAt=this.delegate.scheduled_at??'YYYY-MM-DD HH:MM';
       this.status = this.delegate.status??'noStatus';
       this.transactions_name = this.delegate.name;
       this.type = this.delegate.type;

@@ -665,10 +665,8 @@
   "SEND_CANCEL":"Cancel sending",
   "RETRY_SEND":"Retry sending",
   "MARK_AS_INCOMPLETE":"Mark as incomplete",
-
   "EDITED_CONCEPT":"Edited concept",
-  "NO_CONCEPT":"No concept"
-
+  "NO_CONCEPT":"No concept",
   "DOWNGRADE_ACCES":"Downgrade acces",
   "APROVE_PENDIENTS":"Aprove pendients"
 
