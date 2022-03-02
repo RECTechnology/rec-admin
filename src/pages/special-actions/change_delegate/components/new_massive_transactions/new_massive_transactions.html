@@ -14,33 +14,37 @@
         </p>
         <div class="center v">
           <input type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="!isEditName"
-            placeholder="transactions name" style="margin: 0; padding: 4px 6px; max-width: 500px;width: 130px;">
+            placeholder="transactions name" style="margin: 0; padding: 4px 6px; max-width: 100%;width: 100%!important;">
 
+          <div  *ngIf="delegate.status == 'draft' || delegate.status == 'pending_validation' || delegate.status == 'created' || delegate.status == 'invalid'">
             <button mat-icon-button [disabled]="loading" matTooltip="{{'SAVE'|translate}}" *ngIf="isEditName"
-            (click)="saveEditConcept()">
-            <i class="fa fa-save" *ngIf="!loading"></i>
-            <div class="center h v">
-              <mat-progress-spinner [diameter]="16" color="primary" mode="indeterminate" *ngIf="loading">
-              </mat-progress-spinner>
-            </div>
-          </button>
-          <button mat-icon-button [disabled]="loading" matTooltip="{{'CANCEL'|translate}}" *ngIf="isEditName"
-            (click)="changeIsEditName()">
-            <i class="fa fa-times"></i>
-          </button>
-          <button mat-icon-button [disabled]="loading" matTooltip="{{'EDIT'|translate}}" *ngIf="!isEditName"
-            (click)="changeIsEditName()">
+              (click)="saveEditConcept()">
+              <i class="fa fa-save" *ngIf="!loading"></i>
+              <div class="center h v">
+                <mat-progress-spinner [diameter]="16" color="primary" mode="indeterminate" *ngIf="loading">
+                </mat-progress-spinner>
+              </div>
+            </button>
+            <button mat-icon-button [disabled]="loading" matTooltip="{{'CANCEL'|translate}}" *ngIf="isEditName"
+              (click)="changeIsEditName()">
+              <i class="fa fa-times"></i>
+            </button>
+            <button mat-icon-button [disabled]="loading" matTooltip="{{'EDIT'|translate}}" *ngIf="!isEditName"
+              (click)="changeIsEditName()">
 
-            <i class="fa fa-edit"></i>
-          </button>
+              <i class="fa fa-edit"></i>
+            </button>
+          </div>
+
         </div>
 
       </div>
 
       <div class="group-col-right ">
         <!-- derecha -->
-        <button *ngIf="isDeletedOrCreated() " type="button" style="margin-left: 8px; padding-right: 30px;width: 100%; margin-bottom: 14px; "
-          color="primary" mat-raised-button name="button" (click)="newImport()">
+        <button *ngIf="isDeletedOrCreated() " type="button"
+          style="margin-left: 8px; padding-right: 30px;width: 100%; margin-bottom: 14px; " color="primary"
+          mat-raised-button name="button" (click)="newImport()">
           <mat-icon>upload_file</mat-icon>
           {{'UPLOAD_FILE'|translate}}
         </button>
@@ -48,12 +52,12 @@
         <div class="group-row-right">
           <button mat-button color="primary" [disabled]="false" (click)="syncData()">
             <mat-icon>sync</mat-icon>
-            {{'Sync'|translate}}
+            <span>{{'Sync'|translate}}</span>
           </button>
 
           <button mat-button color="primary" (click)="goToLog()" [disabled]="false">
             <mat-icon>description</mat-icon>
-            {{'Logs'|translate}}
+            <span>{{'Logs'|translate}}</span>
           </button>
         </div>
       </div>
@@ -71,10 +75,10 @@
         <code>{{delegate && delegate.data && delegate.data.length}}</code>
 
         <a class="label"> {{'TOTAL_IMPORT'|translate}}</a>
-        <code>{{totalImport}}</code>
+        <code>{{totalImport|number:'':'es-ES'  }}</code>
 
         <a class="label"> {{'WARNINGS'|translate}}</a>
-        <code> 0</code>
+        <code>{{warnings}}</code>
 
       </div>
 
@@ -85,16 +89,16 @@
         style="margin-top: 10px;margin-bottom: 10px; margin-left: 5px;margin-left: 15px ">
         <a class="label">
           {{'SEND_TOTAL_IMPORT'|translate}}</a>
-        <code>0</code>
+        <code>{{(totalImportSended/1000000) | number:'2.2':'es-ES'}}</code>
 
         <a class="label"> {{'TX_SENDED'|translate}}</a>
-        <code>{{success_tx}}</code>
+        <code>{{successTx}}</code>
 
         <a class="label"> {{'TX_PENDENT'|translate}}</a>
-        <code>{{issued_rec}}</code>
+        <code>{{pendientTx}}</code>
 
         <a class="label"> {{'TX_FAILED'|translate}}</a>
-        <code> {{failed_tx}}</code>
+        <code> {{failedTx}}</code>
       </div>
     </div>
 
@@ -117,6 +121,12 @@
             <th mat-sort-header="amount">
               {{'AMOUNT'|translate}}
             </th>
+            <th mat-sort-header="status">
+              {{'STATUS'|translate}}
+            </th>
+            <th mat-sort-header="txId">
+              {{'Tx id'|translate}}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -137,7 +147,14 @@
                 {{data.account.name}} (<a routerLink="/accounts/{{data.account.id}}">{{data.account.id}}</a>)
               </span>
             </td>
-            <td><code>{{(data.amount/100) | number}} R</code></td>
+            <td><code>{{data.amount | number:'':'es-ES' }} R</code></td>
+            <td>
+              <span *ngIf="data.status">
+                {{data.status}} (<a routerLink="/accounts/{{data.account.id}}">{{data.account.id}}</a>)
+              </span>
+            </td>
+            <td><code>{{data.id}} </code></td>
+
           </tr>
         </tbody>
       </table>
@@ -152,36 +169,43 @@
         [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
       </mat-paginator>
     </div>
-    <div *ngIf="delegate.status != 'created' && delegate.status != 'pending_validation' && delegate.status != 'invalid'" style="margin-top: 10px;margin-bottom: 40px; margin-left: 5px;" class="group-col-left">
-     
-      <div *ngIf="delegate.status == 'draft' || delegate.status == 'scheduled' || delegate.status == 'in_progress' || delegate.status == 'failed'"
+    <div *ngIf="delegate.status != 'created' && delegate.status != 'pending_validation' && delegate.status != 'invalid'"
+      style="margin-top: 10px;margin-bottom: 40px; margin-left: 5px;" class="group-col-left">
+
+      <div
+        *ngIf="delegate.status == 'draft' || delegate.status == 'scheduled' || delegate.status == 'in_progress' || delegate.status == 'failed'"
         class="group-row-left center h v">
-        <mat-checkbox style="margin-right: 15px;margin-left: 13px;"  color="primary" [(ngModel)]="scheduleDelivery">
-          <p >{{'SCHEDULE_DELIVERY' | translate}}</p>
+        <mat-checkbox style="margin-right: 15px;margin-left: 13px;" color="primary" [(ngModel)]="scheduleDelivery">
+          <p>{{'SCHEDULE_DELIVERY' | translate}}</p>
         </mat-checkbox>
-        <date-picker [label]="'YYYY-MM-DD HH:MM'" [item]="scheduleDeliveryDateCopy" (itemChanged)="changeDate($event)"></date-picker>
-      </div> 
-      
-      <button *ngIf="delegate.status == 'draft' " mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="openSendTxsModal()">
+        <date-picker [isDisable]="delegate.status != 'draft'" [label]="scheduleAt" [item]="scheduleDeliveryDateCopy" (itemChanged)="changeDate($event)">
+        </date-picker>
+      </div>
+
+      <button *ngIf="delegate.status == 'draft' " mat-button color="primary" [disabled]="false"
+        style="margin-bottom: 60px!important;" (click)="openSendTxsModal()">
         <mat-icon>send</mat-icon>
         {{'SEND_TRANSACTIONS'|translate}}
       </button>
 
-      <button *ngIf="delegate.status == 'scheduled' " mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="sendCancel()">
+      <button *ngIf="delegate.status == 'scheduled' " mat-button color="#e05205" [disabled]="false"
+        style="margin-bottom: 60px!important;" (click)="sendCancel()">
         <mat-icon>send</mat-icon>
         {{'SEND_CANCEL'|translate}}
       </button>
-   
-      <button *ngIf="delegate.status == 'failed' " mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="sendRetry()">
+
+      <button *ngIf="delegate.status == 'failed' " mat-button color="#e05205" [disabled]="false"
+        style="margin-bottom: 60px!important;" (click)="sendRetry()">
         <mat-icon>reload</mat-icon>
         {{'RETRY_SEND'|translate}}
       </button>
 
-      <button *ngIf="delegate.status == 'failed' " mat-button color="primary" [disabled]="false" style="margin-bottom: 60px!important;" (click)="sendReport()">
+      <button *ngIf="delegate.status == 'failed' " mat-button color="red" [disabled]="false"
+        style="margin-bottom: 60px!important;" (click)="sendReport()">
         <mat-icon>denied</mat-icon>
         {{'MARK_AS_INCOMPLETE'|translate}}
       </button>
-      
+
     </div>
   </div>
 </app-page>

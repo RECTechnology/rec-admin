@@ -868,7 +868,7 @@
   "SELECT_ACCOUNTS": "Agregar más haciendo clic en el botón de abajo",
   "ADD_ACCOUNTS": "Agregar cuentas",
   "EDIT_ACCOUNTS": "Editar cuentas",
-  "NEW_CHANGE_DELEGATE": "Nuevo bloque de TXs",
+  "NEW_CHANGE_DELEGATE": "Nuevo bloque de Txs",
   "SELECTED_ACCOUNTS_COUNT": "Cuentas seleccionada(s)",
   "EDIT_CHANGE_DELEGATE": "Editar cambio de delegado",
   "VIEW_CHANGE_DELEGATE": "Ver cambio de delegado",
@@ -1147,10 +1147,10 @@
    "EXCHANGER_ACCOUNT": "Cuenta de intercambiador",
    "BENEFICIARY_ACCOUNT": "Cuenta del beneficiario",
 
-  "CREATE_DELEGATE_CHANGE": "Crear Bloque de TXs",
+  "CREATE_DELEGATE_CHANGE": "Crear Bloque de Txs",
   "DATE_START": "Fecha comienzo",
   "TIME_START": "Hora comienzo",
-  "TRANSACTION_BLOCK":"Bloques de TXs",
+  "TRANSACTION_BLOCK":"Bloques de Txs",
 
   "delegated_change": "Cambio Delegado",
   "massive_transactions": "Transacciones Masivas",
@@ -1168,7 +1168,7 @@
   "AMOUNT": "Cantidad",
   "ACTIVATE_CHANGE_DESC": "Está a punto de activar un bloque de transacciones, revise la siguiente información.",
 
-  "ACTIVATE_CHANGE": "Activar bloque de TXs",
+  "ACTIVATE_CHANGE": "Activar bloque de Txs",
 
   "UPLOAD CSV": "Subir archivo CSV",
   "Activate": "Activar",
@@ -1253,9 +1253,9 @@
   "TOTAL_IMPORT":"Importe total",
   "WARNINGS":"Advertencias",
   "SEND_TOTAL_IMPORT":"Importe total enviado",
-  "TX_PENDENT":"TXs pendientes",
-  "TX_FAILED":"TXs fallidas",
-  "TX_SENDED":"TXs enviadas",
+  "TX_PENDENT":"Txs pendientes",
+  "TX_FAILED":"Txs fallidas",
+  "TX_SENDED":"Txs enviadas",
   "LOG_VIEWER": "Visor de logs",
   "SEARCH_LABEL": "Buscar",
   "LINES": "Lineas",
@@ -1270,6 +1270,9 @@
   "SEND_CANCEL":"Cancelar envio",
   "RETRY_SEND":"Reintentar envio",
   "MARK_AS_INCOMPLETE":"Marcar como completo",
+  "EDITED_CONCEPT":"Concepto editado",
+  "NO_CONCEPT":"Sin concepto"
   "DOWNGRADE_ACCES":"Revocar acceso",
   "APROVE_PENDIENTS":"Pendientes de aprovacion"
+
 }

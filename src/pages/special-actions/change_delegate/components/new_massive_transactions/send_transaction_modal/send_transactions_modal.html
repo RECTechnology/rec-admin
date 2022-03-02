@@ -50,12 +50,18 @@
           {{'NOW'|translate}}
         </p>
       </ng-template>
-      <div style="width: 200px;">
+      <div *ngIf="concept != null else noConcept" style="width: 200px;">
         <p class=" col-blue" style="margin-bottom: 15px!important;">
           {{concept}}
         </p>
       </div>
-      
+      <ng-template #noConcept>
+        <div  style="width: 200px;">
+          <p class=" col-blue" style="margin-bottom: 15px!important;">
+            {{"NO_CONCEPT" |translate}}
+          </p>
+        </div>
+      </ng-template>
      
     </div>
   </div>

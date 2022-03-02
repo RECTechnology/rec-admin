@@ -36,9 +36,12 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public generatingReport = false;
   public status = '';
   public totalImport=0;
-  public success_tx: any;
-  public issued_rec: any;
-  public failed_tx: any;
+  public successTx: any;
+  public totalImportSended: any;
+  public pendientTx: any;
+  public scheduleAt;
+  public failedTx: any;
+  public warnings:any;
   public scheduleDelivery = false;
   public scheduleDeliveryDate:String;
   public isEditName = false;
@@ -100,9 +103,14 @@ export class NewMassiveTransactionsComponent extends PageBase {
       for( let item of this.delegate.data){
         this.totalImport = this.totalImport+item.amount;
       }
-      this.success_tx=this.delegate.success_tx??0;
-      this.issued_rec=this.delegate.issued_rec??0;
-      this.failed_tx=this.delegate.failed_tx??0;
+      console.log("Im pre asigning data",this.delegate)
+      this.totalImportSended=this.delegate.statistics.result.issued_rec??0;
+      this.successTx=this.delegate.statistics.result.success_tx??0;
+      this.failedTx=this.delegate.statistics.result.failed_tx??0;
+      this.pendientTx= this.delegate.data.length-this.delegate.statistics.result.success_tx??0;
+      this.failedTx=this.delegate.statistics.result.failed_tx??0;
+      this.scheduleAt=this.delegate.scheduled_at??'YYYY-MM-DD HH:MM'
+      ;
       this.status = this.delegate.status??'noStatus';
       this.transactions_name = this.delegate.name;
       this.type = this.delegate.type;
@@ -134,7 +142,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
       })
       .subscribe(
         (resp) => {
-
+          console.log("Im in listMasiveTransactions",resp.data.elements);
           this.sortedData = resp.data.elements.map((el) => {
             el.selected = false;
             return el;
@@ -148,7 +156,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
 
   public saveEditConcept(){
     this.changeCrud.editConcept(this.idOrNew,this.transactions_name).subscribe((resp)=>{
-
+      this.alerts.showSnackbar("EDITED_CONCEPT");
     });
     this.changeIsEditName();
   }
@@ -191,12 +199,12 @@ export class NewMassiveTransactionsComponent extends PageBase {
       concept:this.transactions_name
     }).subscribe((send) => {
       if (send) {
-
+        console.log("Im in preStartTransactions",this.scheduleDeliveryDate);
         this.changeCrud.startTransactions(this.delegate.id,{
-          status: this.delegate.type,
+          status: 'scheduled',
           scheduled_at:this.scheduleDeliveryDate
 
-        })
+        }).subscribe()
       }
     });
   }

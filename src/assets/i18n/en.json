@@ -344,7 +344,7 @@
   "SELECT_ACCOUNTS": "Add more by clicking the button below",
   "ADD_ACCOUNTS": "Add Accounts",
   "EDIT_ACCOUNTS": "Edit Accounts",
-  "NEW_CHANGE_DELEGATE": "New TXs block",
+  "NEW_CHANGE_DELEGATE": "New Txs block",
   "SELECTED_ACCOUNTS_COUNT": "Selected Account(s)",
   "EDIT_CHANGE_DELEGATE": "Edit Delegate Change",
   "VIEW_CHANGE_DELEGATE": "View Delegate Change",
@@ -373,7 +373,7 @@
   "ACTIVATE_CHANGE_DESC": "You are about to activate a  transaction block, please revise the following information.",
   "ACTIVATE_CHANGE_WHEN": "Transaction block will be performed at",
   "ACTIVATE_CHANGE_IMMEDIATE": "Change will run immediately after activating...",
-  "ACTIVATE_CHANGE": "Activate TXs block",
+  "ACTIVATE_CHANGE": "Activate Txs block",
   "WITHDRAWAL_NEEDS_VOTE": "A withdrawal needs your vote!",
   "WITHDRAWAL_NEEDS_VOTE_DESC": "There is a withdrawal that requires your vote!",
   "WITHDRAWAL_CANCEL_DESC": "There can only be one active request to withdraw recs from the treasury account. This request will expire in 24 hours if an administrator does not confirm it, meaning that this request is rejected. For the request to be executed, it must be validated by all administrators through the confirmation link that they will receive by email.",
@@ -651,9 +651,9 @@
   "TOTAL_IMPORT": "Total import",
   "WARNINGS": "Warnings",
   "SEND_TOTAL_IMPORT": "Send total import",
-  "TX_PENDENT": "TXs pendents",
-  "TX_FAILED": "TXs failed",
-  "TX_SENDED": "TXs sended",
+  "TX_PENDENT": "Txs pendents",
+  "TX_FAILED": "Txs failed",
+  "TX_SENDED": "Txs sended",
   "SEND_TYPE":"Send type",
   "TOTAL_TRANSACTIONS":"Total txs",
   "WHEN":"When",
@@ -665,8 +665,13 @@
   "SEND_CANCEL":"Cancel sending",
   "RETRY_SEND":"Retry sending",
   "MARK_AS_INCOMPLETE":"Mark as incomplete",
+
+  "EDITED_CONCEPT":"Edited concept",
+  "NO_CONCEPT":"No concept"
+
   "DOWNGRADE_ACCES":"Downgrade acces",
   "APROVE_PENDIENTS":"Aprove pendients"
+
 
 
 }
