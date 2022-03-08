@@ -102,7 +102,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
   @Input() public userFilter = null;
   @Input() public statusFilter = null;
   @Input() public lwStatusFilter = null;
-  @Input() public title = 'AVAILABLE_DOCUMENTS';
+  @Input() public title = 'AVAILABLE_DOCUMENTS'; 
 
   @Input() public disableAccountFilter = false;
   @Input() public disableUsertFilter = false;

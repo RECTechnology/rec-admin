@@ -19,7 +19,6 @@ export class AddB2BModal {
     public disabled: boolean = false;
     public error: string;
     public account: Account ;
-    public wantSMS=false;
     public username='';
   
 

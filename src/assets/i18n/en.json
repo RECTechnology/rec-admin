@@ -668,7 +668,11 @@
   "EDITED_CONCEPT":"Edited concept",
   "NO_CONCEPT":"No concept",
   "DOWNGRADE_ACCES":"Downgrade acces",
-  "APROVE_PENDIENTS":"Aprove pendients"
+  "APROVE_PENDIENTS":"Aprove pendients",
+  "GRANT_PERMISSION":"Grant permission",
+  "REVOKE_PERMISSION":"Revoke permission",
+  "A_USERNAME":"@username"
+
 
 
 

@@ -37,7 +37,56 @@ export class B2BComponent extends TablePageBase {
    
     public headerOpts: TableListHeaderOptions = { input: true, refresh: true, deepLinkQuery: true };
    
+    public tableOptions: TableListOptions = {
+      optionsType: 'buttons',
+      onClick: (element) => {
+        window.open(element.content, '_blank');
+      },
+      onClickElement: (element) => {
+        this.router.navigate([element]);
+      },
+      getRowClass: (element: any) => {
+        
+        if (element.rezero_b2b_access== 'pending') {
+          return 'bg-yellow-light';
+        }
+
+      },
+    };
+    public itemOptions: TlItemOption[] = [
+      TlItemOptions.Revoke(this.revokePermission.bind(this), {
+        ngIf: (item) =>item.rezero_b2b_access== 'granted',
+      }),
+      TlItemOptions.Grant(this.grantPermission.bind(this), {
+        ngIf: (item) =>item.rezero_b2b_access== 'pending',
+      }),
+    ];
+    public headers: TlHeader[] = [
+      TlHeaders.Id,
+      TlHeaders.NameB2B,
+      TlHeaders.UserNameB2B,
+      
+     
+
+      {
+        accessor: (v) => (v.kyc_manager.dni ??  {}),
+        sortable: false,
+        title: 'USER',
+        type: 'code',
+
+      },
+      {
+        accessor: (v) => (v.kyc_manager.phone ??  {}),
+        sortable: false,
+        title: 'PHONE',
+      },
+      TlHeaders.CIFB2B,
+
+      
+    ];
+
    
+
   
     constructor(
       public titleService: Title,
@@ -72,6 +121,13 @@ export class B2BComponent extends TablePageBase {
         
        
       });
+    }
+
+    public revokePermission(){
+
+    }
+    public grantPermission(){
+
     }
    
   
@@ -115,11 +171,15 @@ export class B2BComponent extends TablePageBase {
       const data: any = this.getCleanParams(query);
       this.loading = true;
       this.query = query;
-  
+      this.pendingCuantity=0;
       this.searchObs = this.crudAccounts.list(data,'all').subscribe(
         (resp: any) => {
-          console.log("Im in searchObs in b2b",resp);
-          this.data = resp.data.elements;
+          for(let item of resp.data.elements){
+            if(item.rezero_b2b_access== 'pending'||item.rezero_b2b_access== 'granted'){
+              this.data.push(item)
+            }
+          }
+          console.log("Printing data",this.data);
           this.total = resp.data.total;
           this.sortedData = this.data.slice();
           for(let item of this.data.slice()){
@@ -147,6 +207,7 @@ export class B2BComponent extends TablePageBase {
       super.addToQueryParams({
         type: this.type,
       });
+      this.search()
   
     }
   

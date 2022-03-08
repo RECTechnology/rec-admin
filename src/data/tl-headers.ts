@@ -25,6 +25,27 @@ export const TlHeaderName: TlHeader = new TlHeader({
     accessor: 'name',
 });
 
+export const TlHeaderNameB2B: TlHeader = new TlHeader({
+    sort: 'name',
+    title: 'Account',
+    accessor: 'name',
+});
+
+//modificar esto cuando el userName de b2b este implementado
+export const TlHeaderUserNameB2B: TlHeader = new TlHeader({
+    sort: 'userName',
+    title: 'USERNAME',
+    accessor: 'userName',
+});
+export const TlHeaderCIFB2B: TlHeader = new TlHeader({
+    sort: 'cif',
+    title: 'CIF',
+    accessor: 'cif',
+});
+
+//modificar esto cuando el userName de b2b este implementado
+
+
 // tslint:disable-next-line: variable-name
 export const TlHeaderEmail: TlHeader = new TlHeader({
     sort: 'email',
@@ -193,6 +214,9 @@ export const TlHeaderGenerate = (name, data?: Partial<TlHeader>) => {
 export const TlHeaders = {
     Active: TlHeaderActive,
     Name: TlHeaderName,
+    NameB2B:TlHeaderNameB2B,
+    UserNameB2B:TlHeaderUserNameB2B,
+    CIFB2B:TlHeaderCIFB2B,
     Id: TlHeaderId,
     Description: TlHeaderDescription,
     Status: TlHeaderStatus,

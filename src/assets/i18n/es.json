@@ -1273,6 +1273,9 @@
   "EDITED_CONCEPT":"Concepto editado",
   "NO_CONCEPT":"Sin concepto",
   "DOWNGRADE_ACCES":"Revocar acceso",
-  "APROVE_PENDIENTS":"Pendientes de aprovacion"
+  "APROVE_PENDIENTS":"Pendientes de aprovacion",
+  "GRANT_PERMISSION":"Conceder permiso",
+  "REVOKE_PERMISSION":"Revocar permiso",
+  "A_USERNAME":"@nombredeusuario"
 
 }
