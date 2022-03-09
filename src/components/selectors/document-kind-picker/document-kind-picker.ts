@@ -19,6 +19,7 @@ export class DocumentKindPicker extends BaseSelectorComponent {
 
 
 
+
   public getSearchObservable(query: string): Observable<any> {
     return this.dkCrud
       .list({

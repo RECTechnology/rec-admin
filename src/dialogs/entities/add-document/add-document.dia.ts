@@ -86,13 +86,12 @@ export class AddDocumentDia extends BaseDialog {
     this.item.status_text = text;
   }
 
-  kindChanged($event) {
+  public kindChanged($event) {
     console.log('event', $event);
     this.item.kind = $event;
   }
 
   public getCrud(data) {
-    console.log('data', data);
     let kind = data.kind;
     const isLemon = kind != undefined && kind.lemon_doctype !== null && kind.lemon_doctype !== undefined;
 
@@ -124,7 +123,6 @@ export class AddDocumentDia extends BaseDialog {
       data.kind_id = data.kind.id;
       delete data.kind;
     }
-
     if (data.auto_fetched) {
       data.auto_fetched = false;
     }

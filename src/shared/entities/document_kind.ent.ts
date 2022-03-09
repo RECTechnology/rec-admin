@@ -7,6 +7,7 @@ export interface DocumentKind {
     description?: string;
     documents?: Document[];
     lemon_doctype?: string;
+    is_user_document?:string;
     tiers?: Tier[];
 }
 

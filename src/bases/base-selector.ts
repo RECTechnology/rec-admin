@@ -21,7 +21,6 @@ export abstract class BaseSelectorComponent {
   /* istanbul ignore next */
   selectItem(item) {
     this.itemChanged.emit(item);
-
   }
 
   public abstract getSearchObservable(query: string): Observable<any>;

@@ -18,6 +18,7 @@ export class AddDocumentKindDia extends BaseDialog {
     name: '',
     description: '',
     lemon_doctype: '0',
+    is_user_document:'false',
     tiers: [],
   };
   public itemType = 'Document Kind';

@@ -45,8 +45,9 @@
       </ng-template>
     </div>
 
-    <div class="col-lg-12 space-between" >
-      <document-kind-picker [(item)]="item.kind" label="DOCUMENT_KIND" ></document-kind-picker>
+    <div class="col-lg-12 space-between">
+      <document-kind-picker [(item)]="item.kind" (itemChanged)="kindChanged($event)" label="DOCUMENT_KIND">
+      </document-kind-picker>
     </div>
 
     <div class="col-lg-12 " *ngIf="!isLemon" style="padding-top: 15px;">
