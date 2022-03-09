@@ -16,7 +16,7 @@
           <input type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="!isEditName"
             placeholder="transactions name" style="margin: 0; padding: 4px 6px; max-width: 100%;width: 100%!important;">
 
-          <div  *ngIf="delegate.status == 'draft' || delegate.status == 'pending_validation' || delegate.status == 'created' || delegate.status == 'invalid'">
+          <div  *ngIf="delegate.status == 'draft' || delegate.status == 'pending_validation' || delegate.status == 'created' ">
             <button mat-icon-button [disabled]="loading" matTooltip="{{'SAVE'|translate}}" *ngIf="isEditName"
               (click)="saveEditConcept()">
               <i class="fa fa-save" *ngIf="!loading"></i>

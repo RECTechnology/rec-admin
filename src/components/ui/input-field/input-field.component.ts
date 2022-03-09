@@ -61,7 +61,11 @@ export class InputFieldComponent {
   }
 
   public changed($event) {
-    this.valueChange.emit(isNaN($event) ? $event : +$event);
+    if($event!= ''){
+      this.valueChange.emit(isNaN($event) ? $event : +$event);
+    }
+    
+
   }
 
   public setupDebouncedSearch(element) {
