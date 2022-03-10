@@ -32,9 +32,9 @@ export const TlHeaderNameB2B: TlHeader = new TlHeader({
 
 //modificar esto cuando el userName de b2b este implementado
 export const TlHeaderUserNameB2B: TlHeader = new TlHeader({
-    sort: 'userName',
+    sort: 'rezero_b2b_username',
     title: 'USERNAME',
-    accessor: 'userName',
+    accessor: 'rezero_b2b_username',
 });
 export const TlHeaderCIFB2B: TlHeader = new TlHeader({
     sort: 'cif',

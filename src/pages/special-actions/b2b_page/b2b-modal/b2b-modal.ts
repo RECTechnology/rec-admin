@@ -32,7 +32,8 @@ export class AddB2BModal {
 
     public send() {
         this.dialogRef.close({
-            accountId:this.account
+            accountId:this.account,
+            username:this.username
         });
     }
     public setAccount(event) {

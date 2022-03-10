@@ -91,7 +91,7 @@ const ROUTES: Routes = [
     canActivate: [IsLoggedInGuard],
   },
   {
-    path: 'b2b_component',
+    path: 'b2b',
     component: B2BComponent,
     canActivate: [IsLoggedInGuard],
   },

@@ -55,7 +55,7 @@ export const SIDEMENU_ITEMS = [
   {
     name: 'B2B',
     icon: 'fa-exchange',
-    route: '/b2b_component',
+    route: '/b2b',
   },
   
   
