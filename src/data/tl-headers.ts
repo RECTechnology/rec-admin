@@ -1,4 +1,3 @@
-
 import { TlHeader } from '../components/scaffolding/table-list/tl-table/tl-table.component';
 import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';

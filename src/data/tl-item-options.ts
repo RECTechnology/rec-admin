@@ -27,15 +27,11 @@ export const TlOptionDelete = (action: (any) => any, additional?: TlItemOption):
 export const TlOptionRevokePermission = (action: (any) => any, additional?: TlItemOption): TlItemOption => new TlItemOption({
     callback: action,
     text: 'REVOKE_PERMISSION',
-    icon: 'fa-exclamation-circle',
-    class: 'col-error',
     ...(additional || {}),
 });
 export const TlOptionGrantPermission = (action: (any) => any, additional?: TlItemOption): TlItemOption => new TlItemOption({
     callback: action,
     text: 'GRANT_PERMISSION',
-    icon: 'fa-check',
-    class: 'col-success',
 
     ...(additional || {}),
 });

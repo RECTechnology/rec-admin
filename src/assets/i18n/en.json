@@ -671,8 +671,11 @@
   "APROVE_PENDIENTS":"Aprove pendients",
   "GRANT_PERMISSION":"Grant permission",
   "REVOKE_PERMISSION":"Revoke permission",
-  "A_USERNAME":"@username"
-
+  "A_USERNAME":"@username",
+  "GRANTED_ACCES":"Granted acces",
+  "ADDED_TO_B2B":"Added account to B2B",
+  "GRANTED_PERMISSION":"Granted permission",
+  "REVOKED_PERMISSION":"Revoked permission"
 
 
 

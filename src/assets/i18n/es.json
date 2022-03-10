@@ -1276,6 +1276,9 @@
   "APROVE_PENDIENTS":"Pendientes de aprovacion",
   "GRANT_PERMISSION":"Conceder permiso",
   "REVOKE_PERMISSION":"Revocar permiso",
-  "A_USERNAME":"@nombredeusuario"
-
+  "A_USERNAME":"@nombredeusuario",
+  "GRANTED_ACCES":"Acceso concedido",
+  "ADDED_TO_B2B":"Cuenta añadida a B2B",
+  "GRANTED_PERMISSION":"Permiso concedido",
+  "REVOKED_PERMISSION":"Permiso revocado"
 }

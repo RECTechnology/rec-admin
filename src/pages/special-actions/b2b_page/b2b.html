@@ -1,5 +1,4 @@
-
-  <header-nav></header-nav>
+<header-nav></header-nav>
 
 
 <app-page>
@@ -7,63 +6,34 @@
     <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
       <tl-header title="Accounts" [query]="query" [options]="headerOpts" (onSearch)="searchWrapper($event)"
         [searching]="loading">
-        <button type="button" style="margin-left: 8px; padding-right: 10px; "
-        color="primary" mat-raised-button name="button" (click)="openAddUserB2B()">
-        <p class="text-small">
+        <button type="button" style="margin-left: 8px; padding-right: 10px; " color="primary" mat-raised-button
+          name="button" (click)="openAddUserB2B()">
+          <p class="text-small">
             <i class="fa fa-plus"></i>
             {{'ADD'|translate}}
-        </p>
+          </p>
         </button>
       </tl-header>
-      
-      <tl-subheader> 
-        <div style="padding: 8px 15px;">
-          
-           
-              <mat-radio-group aria-label="Select an option" [(ngModel)]="type" (change)="search()">
-                <mat-radio-button style="margin-right: 10px" value="" color="primary">
-                  <span class="small-text">{{'All'|translate}}</span>
-                </mat-radio-button>
-                <mat-radio-button style="margin-right: 10px;margin-top: 5px;" value="pending" color="primary">
-                  <span class="small-text">{{'APROVE_PENDIENTS'|translate}}</span>
-                  
-                  <label class="small-text" style="margin-left: 10px; background-color:#fcede6 ;width: 20px;padding-left: 7px;">{{pendingCuantity}}</label>
-                </mat-radio-button>
-                
-          </mat-radio-group>
 
-          
+      <tl-subheader>
+        <div style="padding: 8px 15px;">
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="type" (change)="search()">
+            <mat-radio-button style="margin-right: 10px;margin-top: 5px;" value="pending" color="primary">
+              <span class="small-text">{{'APROVE_PENDIENTS'|translate}}</span>
+            </mat-radio-button>
+            <mat-radio-button style="margin-right: 10px" value="granted" color="primary">
+              <span class="small-text">{{'GRANTED_ACCES'|translate}}</span>
+            </mat-radio-button>
+          </mat-radio-group>
         </div>
       </tl-subheader>
 
-      <div class="wallet-transactions bg-white" style="margin-top: 0" >
+      <div >
         <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
           [itemOptions]="itemOptions" noItemsMessage="There are no items yet" [options]="tableOptions" [limit]="limit"
           [total]="total" (onChangePage)="changedPage($event)" showLoader="true">
-         </tl-table>
-       
-        
-        <validation-errors [errors]="validationErrors"
-          *ngIf="validationErrors.length > 0"></validation-errors>
-    
-        <div class="group-col-left bordered-top" style="width: 100%; position: relative;">
-          
-          <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length ">
-            <p class="small-text-2">{{'NO_B2B_DATA'|translate}}</p>
-            <div class="center h v bg-white-opaque" style="width: 100%;height: 100px" >
-              <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
-              </mat-progress-spinner>
-            </div>
-          </div>
-          
-        
-        </div>
+        </tl-table>
       </div>
     </mat-card>
   </div>
 </app-page>
-
-
-<!--
-  
-  !-->
