@@ -153,7 +153,7 @@ export class B2BComponent extends TablePageBase {
       })
       .subscribe((result) => {
         if(result){
-          this.crudAccounts.update(result.accountId,{rezero_b2b_access:'pending',rezero_b2b_username:result.username}).subscribe(
+          this.crudAccounts.update(result.accountId,{rezero_b2b_access:'granted',rezero_b2b_username:result.username}).subscribe(
             (resp: any) => {
               this.alerts.showSnackbar(
                 "ADDED_TO_B2B",
