@@ -19,14 +19,12 @@ export class UserDocumentsTab implements OnInit {
     private route: ActivatedRoute,
     public alerts: AlertsService,
     public usersCrud: UsersCrud,
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.route.params.subscribe((params) => {
       this.user_id = params.id;
     });
-    console.log("Im in onInit userDocumentsTab",this.user_id);
-
     this.getUser();
   }
 
@@ -35,5 +33,5 @@ export class UserDocumentsTab implements OnInit {
       this.user = res.data;
     });
   }
- 
+
 }

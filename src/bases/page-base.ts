@@ -152,7 +152,6 @@ export abstract class TablePageBase extends PageBase {
     this.limit = $event.pageSize;
     this.offset = $event.pageIndex * this.limit;
 
-    console.log('changed page', this.offset, this.limit);
 
     this.addToQueryParams({
       limit: this.limit,

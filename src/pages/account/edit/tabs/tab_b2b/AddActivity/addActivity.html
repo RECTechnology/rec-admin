@@ -24,7 +24,7 @@
 
         <div class="col-lg-12 col-sm-12 col-md-12">
             <div style="margin-top: 30px;margin-left: 30px;margin-bottom: 15px;">
-                <btn-loader (click)="close()" [disabled]="disabled || loading" [loading]="loading"
+                <btn-loader (click)="addAct()" [disabled]="disabled || loading" [loading]="loading"
                     text="{{'SAVE'|translate}}">
                 </btn-loader>
                 <p *ngIf="error" class="col-error small-text">{{error}}</p>

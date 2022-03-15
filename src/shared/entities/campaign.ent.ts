@@ -25,9 +25,6 @@ export class Campaign implements Campaign {
   get isFinished() {
     const currentDate = Date.now();
     const endDate = new Date(this.end_date).getTime();
-
-    // console.log({ currentDate, endDate, diff: currentDate - endDate });
-
     const isFinished = endDate <= currentDate;
     return isFinished;
   }

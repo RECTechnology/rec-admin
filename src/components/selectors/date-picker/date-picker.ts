@@ -38,7 +38,7 @@ export class DatePicker {
     }
 
     public setDate(data){
-        console.log("Im in setDate",data);
+
         if(this.validation){
             this.validation = false;
         }

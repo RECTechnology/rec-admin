@@ -84,7 +84,6 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
     this.loading = true;
     this.crudAccounts.find(this.account_id).subscribe(
       (resp: any) => {
-        console.log('account', resp.data);
         this.companyService.selectedCompany = resp.data;
         this.loading = false;
       },

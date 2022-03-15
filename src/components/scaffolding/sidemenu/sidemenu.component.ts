@@ -42,7 +42,6 @@ export class SidemenuComponent {
   public getApiVersion() {
     this.app.getInfo()
       .subscribe((resp) => {
-        console.log(resp);
         this.apiVersion = resp.data.version;
       });
   }

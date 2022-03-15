@@ -222,12 +222,10 @@ export class BaseService2 {
     url: string | string[], data: any, content_type: string = 'application/json',
     overwriteHeaders: any = {},
   ): Observable<any> {
-    console.log("im in putCall",data);
     const headers = this.getHeaders({ 'content-type': content_type, ...overwriteHeaders });
     const options = { headers };
 
     UtilsService.cleanObject(data);
-    console.log("After cleanObject",data);
     let params = null;
     if (content_type === 'application/x-www-form-urlencoded') {
       params = new HttpParams();
@@ -242,7 +240,6 @@ export class BaseService2 {
         }
       }
     }
-    console.log("Im pre return in put method")
     return this.http.put(
       this.getUrl(url),
       params || data,

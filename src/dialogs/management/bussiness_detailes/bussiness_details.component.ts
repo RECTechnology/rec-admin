@@ -38,8 +38,7 @@ export class BussinessDetailsDia extends BaseDialog implements OnInit {
     
     this.address = this.utils.constructAddressString(this.bussiness);
     this.schedule = this.bussiness.schedule.days;
-    console.log("Im in ngOnInit",this.schedule);
-    console.log("Im in ngOnInit",this.bussiness);
+
   }
   public getDayByNumber(number){
     switch (number) {

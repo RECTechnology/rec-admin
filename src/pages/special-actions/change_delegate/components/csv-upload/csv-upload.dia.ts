@@ -37,9 +37,7 @@ export class CsvUpload {
   public ngOnInit() {
     this.zone = new NgZone({ enableLongStackTrace: false });
   }
-
   public changedImage($event) {
-    console.log("Im in changeImage")
     if ($event.target.files.length) {
       const file = $event.target.files[0];
       this.file = file;

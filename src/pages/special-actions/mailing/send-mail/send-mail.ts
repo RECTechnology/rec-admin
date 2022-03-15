@@ -355,7 +355,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     public changedEditor(event) {
         this.mail.content = event.html ? event.html : this.mail.content;
 
-        console.log('changedEditor', this.saved);
         // It triggers change on init, and messed up with save logic
         if (!this.firstRun) {
             this.saved = false;

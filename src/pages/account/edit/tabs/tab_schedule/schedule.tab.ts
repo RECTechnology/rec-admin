@@ -27,7 +27,7 @@ export class ScheduleTab {
   constructor(
     public accountsCrud: AccountsCrud,
     public snackbar: MySnackBarSevice,
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.schedule = this.account.schedule as Schedule;
@@ -40,11 +40,9 @@ export class ScheduleTab {
   public getWeekdayName(weekday) {
     return Schedule.getWeekdayName(weekday + 1);
   }
-
   public update() {
     const oldString = this.account.scheduleString;
     const newString = JSON.stringify(this.schedule.toJson());
-    console.log("Im in update",newString);
 
     if (oldString != newString) {
       this.accountChanged.emit({

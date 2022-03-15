@@ -62,11 +62,8 @@ export class CrudBaseService<T> extends BaseService2 {
 
   // Crud methods
   public create(data: T, lang: RecLang = REC_LANGS.EN): Observable<any> {
-    
     const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
-    console.log("Im in create",url)
     this.log(`create ${this.tName}`, arguments);
-
     return this.post(
       url,
       data,
@@ -88,7 +85,7 @@ export class CrudBaseService<T> extends BaseService2 {
     return this.put(url, data, 'application/json', lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null);
   }
 
-  public list(query?: CrudQueryOptions,  lang: RecLang = REC_LANGS.ALL): Observable<any> {
+  public list(query?: CrudQueryOptions, lang: RecLang = REC_LANGS.ALL): Observable<any> {
     const url = [...this.getUrlBase(), CrudBaseService.PATH_LIST];
     this.log(`list ${this.tName}`, query);
 
@@ -126,7 +123,7 @@ export class CrudBaseService<T> extends BaseService2 {
   }
 
   public listGetTotal(query?: CrudQueryOptions, lang: RecLang = REC_LANGS.ALL) {
-    return this.list(query,  lang).pipe(map((el) => el.data.total));
+    return this.list(query, lang).pipe(map((el) => el.data.total));
   }
 
   public getUrlBase() {

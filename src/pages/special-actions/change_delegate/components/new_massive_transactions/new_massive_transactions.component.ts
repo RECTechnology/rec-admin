@@ -35,17 +35,17 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public dataLoading = true;
   public generatingReport = false;
   public status = '';
-  public totalImport=0;
+  public totalImport = 0;
   public successTx: any;
   public totalImportSended: any;
   public pendientTx: any;
   public scheduleAt;
   public failedTx: any;
-  public warnings:any;
+  public warnings: any;
   public scheduleDelivery = false;
-  public scheduleDeliveryDate:String;
+  public scheduleDeliveryDate: String;
   public isEditName = false;
-  public type:any;
+  public type: any;
   scheduleDeliveryDateCopy: String;
 
   constructor(
@@ -78,7 +78,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
 
   }
 
-  public syncData(){
+  public syncData() {
     this.getDelegate();
     this.getDelegateData();
   }
@@ -88,29 +88,28 @@ export class NewMassiveTransactionsComponent extends PageBase {
     var datepipe: DatePipe = new DatePipe('es');
     this.scheduleDeliveryDate = datepipe.transform(dateSupport, 'yyyy-MM-ddThh:mm:ss');
 
-}
+  }
 
-  public isDeletedOrCreated(){
-     return this.delegate.status == 'created' || this.delegate.status == 'invalid'
+  public isDeletedOrCreated() {
+    return this.delegate.status == 'created' || this.delegate.status == 'invalid'
   }
 
 
   public getDelegate() {
     this.changeCrud.find(this.idOrNew).subscribe((resp) => {
-      console.log("Im in resp",resp)
-      this.totalImport=0;
+      this.totalImport = 0;
       this.delegate = resp.data;
-      for( let item of this.delegate.data){
-        this.totalImport = this.totalImport+item.amount;
+      for (let item of this.delegate.data) {
+        this.totalImport = this.totalImport + item.amount;
       }
-      this.totalImportSended=this.delegate.statistics.result.issued_rec??0;
-      this.successTx=this.delegate.statistics.result.success_tx??0;
-      this.failedTx=this.delegate.statistics.result.failed_tx??0;
-      this.pendientTx= this.delegate.data.length-this.delegate.statistics.result.success_tx??0;
-      this.failedTx=this.delegate.statistics.result.failed_tx??0;
-      this.warnings = this.delegate.statistics.scheduled.warnings??0;
-      this.scheduleAt=this.delegate.scheduled_at??'YYYY-MM-DD HH:MM';
-      this.status = this.delegate.status??'noStatus';
+      this.totalImportSended = this.delegate.statistics.result.issued_rec ?? 0;
+      this.successTx = this.delegate.statistics.result.success_tx ?? 0;
+      this.failedTx = this.delegate.statistics.result.failed_tx ?? 0;
+      this.pendientTx = this.delegate.data.length - this.delegate.statistics.result.success_tx ?? 0;
+      this.failedTx = this.delegate.statistics.result.failed_tx ?? 0;
+      this.warnings = this.delegate.statistics.scheduled.warnings ?? 0;
+      this.scheduleAt = this.delegate.scheduled_at ?? 'YYYY-MM-DD HH:MM';
+      this.status = this.delegate.status ?? 'noStatus';
       this.transactions_name = this.delegate.name;
       this.type = this.delegate.type;
       if (this.delegate.scheduled_at) {
@@ -123,7 +122,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
         this.timeScheduled = parts.timeStr;
         this.readonly = this.delegate.status != 'draft';
       }
-  
+
 
     });
 
@@ -141,7 +140,6 @@ export class NewMassiveTransactionsComponent extends PageBase {
       })
       .subscribe(
         (resp) => {
-          console.log("Im in listMasiveTransactions",resp.data.elements);
           this.sortedData = resp.data.elements.map((el) => {
             el.selected = false;
             return el;
@@ -153,16 +151,16 @@ export class NewMassiveTransactionsComponent extends PageBase {
       );
   }
 
-  public saveEditConcept(){
-    this.changeCrud.editConcept(this.idOrNew,this.transactions_name).subscribe((resp)=>{
+  public saveEditConcept() {
+    this.changeCrud.editConcept(this.idOrNew, this.transactions_name).subscribe((resp) => {
       this.alerts.showSnackbar("EDITED_CONCEPT");
     });
     this.changeIsEditName();
   }
 
-  public changeIsEditName(){
+  public changeIsEditName() {
     this.isEditName = !this.isEditName
-  
+
 
   }
 
@@ -172,19 +170,18 @@ export class NewMassiveTransactionsComponent extends PageBase {
     this.getDelegateData();
   }
 
-  public goToLog(){
-    this.router.navigate(['/txs_blocks/massive/'+this.idOrNew+'/logs' ], {
-      queryParams:{id:this.idOrNew}
+  public goToLog() {
+    this.router.navigate(['/txs_blocks/massive/' + this.idOrNew + '/logs'], {
+      queryParams: { id: this.idOrNew }
     });
   }
 
-  public openSendTxsModal(){
+  public openSendTxsModal() {
 
-    if(this.scheduleDelivery){
+    if (this.scheduleDelivery) {
       this.scheduleDeliveryDateCopy = this.scheduleDeliveryDate;
-    }else{
+    } else {
       this.changeDate(null);
-      console.log("Im in else",this.scheduleDeliveryDate);
       this.scheduleDeliveryDateCopy = null;
       var datepipe: DatePipe = new DatePipe('es');
       this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss-SS');
@@ -193,27 +190,26 @@ export class NewMassiveTransactionsComponent extends PageBase {
     this.alerts.openModal(SendTransactionsDia, {
       totalTransactions: this.total,
       sendType: this.type,
-      totalImport:this.totalImport,
-      dateSend:this.scheduleDeliveryDateCopy,
-      concept:this.transactions_name
+      totalImport: this.totalImport,
+      dateSend: this.scheduleDeliveryDateCopy,
+      concept: this.transactions_name
     }).subscribe((send) => {
       if (send) {
-        console.log("Im in preStartTransactions",this.scheduleDeliveryDate);
-        this.changeCrud.startTransactions(this.delegate.id,{
+        this.changeCrud.startTransactions(this.delegate.id, {
           status: 'scheduled',
-          scheduled_at:this.scheduleDeliveryDate
+          scheduled_at: this.scheduleDeliveryDate
 
         }).subscribe()
       }
     });
   }
 
-  public sendCancel(){
-    this.changeCrud.changeStatus(this.idOrNew,'draft')
+  public sendCancel() {
+    this.changeCrud.changeStatus(this.idOrNew, 'draft')
   }
 
-  public sendRetry(){
-    this.changeCrud.changeStatus(this.idOrNew,'scheduled')
+  public sendRetry() {
+    this.changeCrud.changeStatus(this.idOrNew, 'scheduled')
   }
 
   public sendReport() {

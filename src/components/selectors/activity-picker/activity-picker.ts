@@ -15,11 +15,14 @@ export class ActivityPicker extends BaseSelectorComponent {
   constructor(private activitiesService: ActivitiesCrud) {
     super();
   }
+  ngOnInit(){
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if ('parent' in changes) {
       this.parent = changes['parent'].currentValue;
-     
+      this.search();
+
     }
   }
 

@@ -14,7 +14,7 @@ import { empty } from 'rxjs';
     templateUrl: './addActivity.html',
 })
 export class AddActivityDia {
-    public main_activity_id: any;
+    public main_activity_id: any=null;
     public item: any;
     public main_activity: any;
     public secondary_activity: any;
@@ -32,18 +32,24 @@ export class AddActivityDia {
         public alerts: AlertsService,
     ) { }
 
+    
+    ngOnInit() {
+     }
+
+     ngOnChanges(){
+    }
+
     public selectedType(event) {
         this.item.type = event;
     }
 
-    public ngOnChanges() { }
 
 
     public selectParentActivity(item) {
         this.main_activity = item;
         this.main_activity_id = this.main_activity ? this.main_activity.id : null;
         
-       
+
         
        
         // Aqui seteamos secondary_activity a null, para que tengan que volver a seleccionar una subactivity
@@ -58,6 +64,9 @@ export class AddActivityDia {
    
 
     public close() {
+        this.dialogRef.close();
+    }
+    public addAct(){
         this.dialogRef.close({ 
             main_activity: this.main_activity,
             main_activity_id: this.main_activity_id,
@@ -68,7 +77,6 @@ export class AddActivityDia {
 
 
 
-    public ngOnInit() { }
 
 
 }
