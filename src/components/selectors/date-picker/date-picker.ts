@@ -19,6 +19,9 @@ export class DatePicker {
     @Input() public dateFormat: string;
     @Input() public locale: string = 'es';
     @Input() public isDisable: boolean = false;
+    @Input() public validation: boolean = false;
+    @Input() public requiered: boolean = false;
+
     @Output() public itemChanged: EventEmitter<any> = new EventEmitter();
 
     public date: any;
@@ -36,6 +39,9 @@ export class DatePicker {
 
     public setDate(data){
         console.log("Im in setDate",data);
+        if(this.validation){
+            this.validation = false;
+        }
         this.date = new Date(data.value);
         this.itemChanged.emit(this.date)
     }

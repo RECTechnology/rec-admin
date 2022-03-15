@@ -1280,5 +1280,11 @@
   "GRANTED_ACCES":"Acceso concedido",
   "ADDED_TO_B2B":"Cuenta añadida a B2B",
   "GRANTED_PERMISSION":"Permiso concedido",
-  "REVOKED_PERMISSION":"Permiso revocado"
+  "REVOKED_PERMISSION":"Permiso revocado",
+  "REQUIERED_DESCRIPTION":"Descripcion necessaria",
+  "REQUIERED_OFFER_PRICE":"Precio de offerta necessario",
+  "REQUIERED_INITIAL_PRICE":"Precio inicial necessario",
+  "REQUIERED_DISCOUNT":"Descuento necessario",
+  "REQUIERED_END":"Fecha de fin requerida"
+
 }

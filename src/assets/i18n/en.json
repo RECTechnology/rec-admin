@@ -675,7 +675,12 @@
   "GRANTED_ACCES":"Granted acces",
   "ADDED_TO_B2B":"Added account to B2B",
   "GRANTED_PERMISSION":"Granted permission",
-  "REVOKED_PERMISSION":"Revoked permission"
+  "REVOKED_PERMISSION":"Revoked permission",
+  "REQUIERED_DESCRIPTION":"Requiered description",
+  "REQUIERED_OFFER_PRICE":"Requiered offer price",
+  "REQUIERED_INITIAL_PRICE":"Requiered initial price",
+  "REQUIERED_DISCOUNT":"Requiered discount",
+  "REQUIERED_END":"Requiered end date"
 
 
 

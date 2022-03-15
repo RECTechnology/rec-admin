@@ -8,6 +8,8 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';
 import { DatePipe } from '@angular/common';
 import { empty } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmptyValidators } from 'src/components/validators/EmptyValidators';
 
 @Component({
     selector: 'eddit-ofer',
@@ -19,21 +21,39 @@ export class EditOfferDia {
     public disabled: boolean = false;
     public error: string;
     public isEdit = true;
-
+    public initialPriceNull=false;
+    public offerPriceNull=false;
+    public endNull = false;
+    public descriptionNull=false;
+    public discountNull=false;
+    public fg: FormGroup;
     public types = ['percentage', 'classic', 'free'];
     public offer_image;
     constructor(
         public dialogRef: MatDialogRef<EditOfferDia>,
         public us: UserService,
         public translate: TranslateService,
+        private fb: FormBuilder,
         public activitiesCrud: ActivitiesCrud,
         public productsCrud: ProductsCrud,
         public alerts: AlertsService,
-    ) { }
+    ) { this.fg = fb.group({
+        description: ['', [Validators.required, ]],
+        offer_price: ['', [Validators.required, ]],
+        discount_percent: ['', [Validators.required, ]],
+        initial_price: ['', [Validators.required, ]],
+        end: ['', [Validators.required, ]],
+      }) }
 
     public selectedType(event) {
         this.item.type = event;
     }
+    get g(){
+        return this.fg.controls;
+      }
+    public  onSubmit(){
+        console.log(this.fg.value);
+      }
 
     public ngOnChanges() { }
 
@@ -60,6 +80,7 @@ export class EditOfferDia {
     }
 
     public add() {
+        console.log("Im in add",this.discountNull);
         if (this.checkData()) {
             this.dialogRef.close({ ...this.item });
         } else {
@@ -74,10 +95,13 @@ export class EditOfferDia {
     }
 
     public checkPercentageData() {
-        return this.item.discount != null && this.checkEndDate();
+        this.discountNull = this.item.discount == null;
+        return this.item.discount != null;
     }
 
     public checkClasicData() {
+        this.initialPriceNull = this.item.initial_price == null;
+        this.offerPriceNull =  this.item.offer_price == null;
         return this.item.initial_price != null && this.item.offer_price != null;
     }
 
@@ -86,10 +110,12 @@ export class EditOfferDia {
     }
 
     public checkEndDate() {
+        this.endNull =  this.item.end == null;
         return this.item.end != null;
     }
 
     public checkDescDate() {
+        this.descriptionNull = this.item.description == null;
         return this.item.description != null;
     }
 

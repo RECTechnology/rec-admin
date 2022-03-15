@@ -4,7 +4,7 @@ import { BasicInfoTab } from './edit/tabs/tab_basic_info/basic_info.tab';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { AccountComponent } from './account.component';
 import { IsLoggedInGuard } from '../../services/guards/login.guard';
@@ -84,6 +84,7 @@ const accountRoutes: Routes = [
     SharedModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot(),
     CountryPickerModule,
   ],

@@ -11,6 +11,7 @@ import { TableListSubHeader } from 'src/components/scaffolding/table-list/tl-sub
 import { TableListTable } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { AccountPickerDia } from 'src/components/selectors/account-picker/account-picker-dialog/account-picker.dia';
 import { AccountPickerComponent } from 'src/components/selectors/account-picker/account-picker.component';
+import { EmptyValidators} from 'src/components/validators/EmptyValidators';
 import { CampaignSelector } from 'src/components/selectors/campaign-selector/campaign-selector.component';
 import { FileSelector } from 'src/components/selectors/file-selector/file-selector';
 import { NeighbourhoodSelector } from 'src/components/selectors/neighbourhood-selector/neighbourhood-selector.component';
@@ -222,6 +223,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     DeliveryEntry,
     CopiableComponent,
     ValidateWithdrawalComponent,
+    
     CampaignSelector,
     UserPickerComponent,
     ...DIALOGS,
