@@ -16,6 +16,7 @@ export class BasePicker {
   @Input() label = 'Selector';
   @Input() isLoading = false;
   @Input() showSelection  = true;
+  @Input() hasSearch = true;
 
   @Output() itemChanged = new EventEmitter<any>();
   @Output() onSearch = new EventEmitter<any>();
@@ -30,9 +31,13 @@ export class BasePicker {
   ngAfterContentInit() {
     setTimeout(() => {
       this.setupDebouncedSearch(this.searchElement.nativeElement);
-      if(this.items.length==0){
-        this.search();
+      if(this.item){
+        if(this.items.length==0){
+          this.search();
+        }
+
       }
+      
     });
   }
 

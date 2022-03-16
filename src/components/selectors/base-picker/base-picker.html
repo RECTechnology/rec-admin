@@ -9,7 +9,7 @@
 
   <div *ngIf="showSelection">
     <mat-select [ngModel]="item" [disabled]="disabled" (ngModelChange)="selectItem($event)">
-      <div class="padd-10 bordered-bottom sticky-top-center bg-white">
+      <div *ngIf="hasSearch" class="padd-10 bordered-bottom sticky-top-center bg-white">
         <input #search color="primary" style="margin: 0 15px" class="search-input" [(ngModel)]="query"
           placeholder="{{'SEARCH'|translate}}">
       </div>
@@ -24,7 +24,7 @@
   </div>
   <div *ngIf="!showSelection">
     <mat-select [ngModel]="item" [disabled]="disabled" >
-      <div class="padd-10 bordered-bottom sticky-top-center bg-white">
+      <div *ngIf="hasSearch" class="padd-10 bordered-bottom sticky-top-center bg-white">
         <input #search color="primary" style="margin: 0 15px" class="search-input" [(ngModel)]="query"
           placeholder="{{'SEARCH'|translate}}">
       </div>

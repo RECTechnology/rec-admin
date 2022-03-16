@@ -119,6 +119,7 @@ import {  LogPage } from 'src/pages/special-actions/change_delegate/components/l
 import { LogStatusSelector } from 'src/components/selectors/log-status-selector/log-status-selector.component';
 import { SendTransactionsDia} from 'src/pages/special-actions/change_delegate/components/new_massive_transactions/send_transaction_modal/send_transactions_modal';
 import { AddB2BModal} from 'src/pages/special-actions/b2b_page/b2b-modal/b2b-modal';
+import { ActiveGroupSelector } from '../components/selectors/active-group-selector/active-group-selector';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -226,6 +227,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     
     CampaignSelector,
     UserPickerComponent,
+    ActiveGroupSelector,
     ...DIALOGS,
     ...DIRECTIVES,
   ],
@@ -289,6 +291,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     AppPage,
     CampaignSelector,
     UserPickerComponent,
+    ActiveGroupSelector,
     ...DIALOGS,
     ...DIRECTIVES,
   ],
