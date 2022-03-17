@@ -30,14 +30,14 @@ export class BasePicker {
 
   ngAfterContentInit() {
     setTimeout(() => {
-      this.setupDebouncedSearch(this.searchElement.nativeElement);
-      if(this.item){
+      if(this.searchElement){
+        this.setupDebouncedSearch(this.searchElement.nativeElement);
+        if(this.item){
         if(this.items.length==0){
           this.search();
         }
-
       }
-      
+      }
     });
   }
 
