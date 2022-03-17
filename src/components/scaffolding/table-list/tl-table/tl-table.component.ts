@@ -132,7 +132,8 @@ export class TableListTable implements AfterContentInit {
     }
     public onClickedItemUser(entry: any) {
         if (this.options.onClickElement) {
-            this.options.onClickElement(`/users/${entry.user.id}`);
+            const user = entry.user ?? entry.kyc_manager;
+            this.options.onClickElement(`/users/${user.id}`);
         }
     }
     public onClickedItemAccount(entry: any) {

@@ -36,9 +36,12 @@ export class B2BComponent extends TablePageBase {
 
   public tableOptions: TableListOptions = {
     optionsType: 'menu',
-    
-   
-
+    onClick: (element) => {
+      this.router.navigate([`/accounts/edit/${element.id}`])
+    },
+    onClickElement: (element) => {
+      this.router.navigate([element]);
+    }
   };
   public itemOptions: TlItemOption[] = [
     TlItemOptions.Revoke(this.revokePermission.bind(this), {
