@@ -36,6 +36,8 @@ export class B2BTab {
   public activityTest: Activity;
 
   public main_activity = null;
+  public main_alone_activity = null;
+  public main_alone_activity_id = null;
   public main_activity_id = 'null';
   public activitySelector = null;
   public secondary_activity = null;
@@ -66,13 +68,13 @@ export class B2BTab {
   public ngOnInit() {
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
     
-    this.main_activity = this.account.activity_main ? this.account.activity_main : null;
+    this.main_alone_activity = this.account.activity_main ??  null;
     
-    this.main_activity_id = this.main_activity ? this.main_activity.id : null;
-    if(this.main_activity){
-      if(this.main_activity.parent != undefined && this.main_activity.parent != null){
+    this.main_alone_activity_id = this.main_activity ? this.main_activity.id : null;
+    if(this.main_alone_activity){
+      if(this.main_alone_activity.parent != undefined && this.main_alone_activity.parent != null){
         this.secondary_activity = this.account.activity_main;
-        this.main_activity=this.account.activity_main.parent;
+        this.main_alone_activity=this.account.activity_main.parent;
   
       }
     }
@@ -87,11 +89,9 @@ export class B2BTab {
     this.setupDebounce(this.searchProduced.nativeElement);
   }
 
- 
-
   public selectParentActivity(item) {
-    this.main_activity = item;
-    this.main_activity_id = this.main_activity ? this.main_activity.id : null;
+    this.main_alone_activity = item;
+    this.main_alone_activity_id = this.main_alone_activity ? this.main_alone_activity.id : null;
    
     
     this.accountCopy.activity_main_id = item.id;
@@ -238,9 +238,12 @@ export class B2BTab {
 
   public update() {
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
+    console.log("Im in update",changedProps);
     delete changedProps.activity_main;
     delete changedProps.kyc_manager;
     delete changedProps.level;
+    delete changedProps.category;
+    delete changedProps.neighbourhood;
     this.accountChanged.emit(changedProps);
   }
 }

@@ -15,6 +15,7 @@ export class BasePicker {
   @Input() disabled = false;
   @Input() label = 'Selector';
   @Input() isLoading = false;
+  @Input() needsNone = false;
   @Input() showSelection  = true;
   @Input() hasSearch = true;
 
@@ -33,10 +34,10 @@ export class BasePicker {
       if(this.searchElement){
         this.setupDebouncedSearch(this.searchElement.nativeElement);
         if(this.item){
-        if(this.items.length==0){
-          this.search();
+          if(this.items.length==0){
+            this.search();
+          }
         }
-      }
       }
     });
   }

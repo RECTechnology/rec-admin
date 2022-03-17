@@ -80,7 +80,6 @@ export class EditOfferDia {
     }
 
     public add() {
-        console.log("Im in add",this.discountNull);
         if (this.checkData()) {
             this.dialogRef.close({ ...this.item });
         } else {

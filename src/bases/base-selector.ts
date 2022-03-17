@@ -9,6 +9,8 @@ export abstract class BaseSelectorComponent {
   @Input() public items: any[] = [];
   @Input() public disabled: boolean = false;
   @Input() public hasParent = true;
+  @Input() public sendedItems = false;
+  @Input() public needsNone = false;
   @Input() public label = 'SELECTOR';
   @Input() showSelection = true;
 

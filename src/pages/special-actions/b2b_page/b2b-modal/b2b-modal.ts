@@ -37,11 +37,8 @@ export class AddB2BModal {
         });
     }
     public setAccount(event) {
-        console.log("Im in setAccount",event);
         if (event) {
             this.account = event;
-            console.log("Im in setAccount",event);
-            console.log("Im in setAccount",this.account);
 
         }
     }

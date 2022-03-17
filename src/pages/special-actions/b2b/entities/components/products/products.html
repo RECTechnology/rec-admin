@@ -18,50 +18,23 @@
                 </div>
 
                 <!-- Activity consumed -->
+               
                 <div style="padding: 10px">
-                    <button [matMenuTriggerFor]="activityConsumedFilterMenu" type="button" mat-button
-                        class="mat-button-menu"
-                        style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
-                        <span style="padding-right: 8px;">{{activityConsumedFilter ? (activityConsumedFilter | tolang) :
-                            ('ACTIVITY_CONSUMED' | translate)}}</span>
-                        <i class="fa fa-caret-down"></i>
-                    </button>
+
+                    <activity-picker [needsNone]="true" label="ACTIVITY_CONSUMED" [item]="activityConsumedFilter"
+                        (itemChanged)="selectActivityConsumedToFilter($event)" [parent]="'null'">
+                    </activity-picker>
                 </div>
 
-                <mat-menu #activityConsumedFilterMenu="matMenu" y-position="below" overlapTrigger="false">
-                    <button (click)="selectActivityConsumedToFilter(null)" mat-menu-item style="padding: 5px auto">
-                        <span style="color: #666; font-size: 12px">{{'None'|translate}}</span>
-                    </button>
-
-                    <button (click)="selectActivityConsumedToFilter(act)" mat-menu-item *ngFor="let act of activities"
-                        style="padding: 5px auto"
-                        [ngClass]="{'bg-gray-light': activityConsumedFilter && act.id == activityConsumedFilter.id}">
-                        <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
-                    </button>
-                </mat-menu>
 
                 <!-- Activity produced -->
                 <div style="padding: 10px">
-                    <button [matMenuTriggerFor]="activityProducedFilterMenu" type="button" mat-button
-                        class="mat-button-menu"
-                        style="text-align: left; margin: 0!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
-                        <span style="padding-right: 8px;">{{activityProducedFilter ? (activityProducedFilter | tolang) :
-                            ('ACTIVITY_PRODUCED' | translate)}}</span>
-                        <i class="fa fa-caret-down"></i>
-                    </button>
+
+                    <activity-picker [needsNone]="true" label="ACTIVITY_PRODUCED" [item]="activityProducedFilter"
+                        (itemChanged)="selectActivityProducedToFilter($event)" [parent]="'null'">
+                    </activity-picker>
                 </div>
-
-                <mat-menu #activityProducedFilterMenu="matMenu" y-position="below" overlapTrigger="false">
-                    <button (click)="selectActivityProducedToFilter(null)" mat-menu-item style="padding: 5px auto">
-                        <span style="color: #666; font-size: 12px">{{'None'|translate}}</span>
-                    </button>
-
-                    <button (click)="selectActivityProducedToFilter(act)" mat-menu-item *ngFor="let act of activities"
-                        style="padding: 5px auto"
-                        [ngClass]="{'bg-gray-light': activityProducedFilter && act.id == activityProducedFilter.id}">
-                        <span style="color: #666; font-size: 12px">{{act | tolang}}</span>
-                    </button>
-                </mat-menu>
+                
             </tl-subheader>
             <translatable-list [hasStatus]="true" [(limit)]="limit" [total]="total" (onSort)="sortData($event)"
                 (aprove)="aproveProduct($event)" (changedPage)="changedPage($event)" [loading]="loading"

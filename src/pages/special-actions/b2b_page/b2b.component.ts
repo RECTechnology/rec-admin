@@ -100,7 +100,6 @@ export class B2BComponent extends TablePageBase {
   }
 
   public revokePermission(user) {
-      console.log("IM in revokePermision",user);
       this.crudAccounts.update(user.id,{rezero_b2b_access:'not_granted'}).subscribe(
         (resp: any) => {
           this.alerts.showSnackbar(

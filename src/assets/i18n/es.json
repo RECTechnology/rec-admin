@@ -1285,6 +1285,7 @@
   "REQUIERED_OFFER_PRICE":"Precio de offerta necessario",
   "REQUIERED_INITIAL_PRICE":"Precio inicial necessario",
   "REQUIERED_DISCOUNT":"Descuento necessario",
-  "REQUIERED_END":"Fecha de fin requerida"
+  "REQUIERED_END":"Fecha de fin requerida",
+  "UPDATED_ACCOUNT":"Cuenta actualizada correctamente!"
 
 }

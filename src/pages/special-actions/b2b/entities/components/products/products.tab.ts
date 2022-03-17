@@ -45,7 +45,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
     super(router);
     this.translate.onLangChange.subscribe(() => {
       this.search();
-      this.getActivities();
+      //this.getActivities();
     });
 
     this.getActivities();
@@ -88,7 +88,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   public getActivities() {
     this.loading = true;
     this.actCrud
-      .list(
+      .search(
         {
           offset: 0,
           limit: 300,
@@ -260,7 +260,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   public selectActivityConsumedToFilter(activity) {
     this.activityConsumedFilter = activity;
     this.addToQueryParams({
-      activityConsumedFilterId: activity.id,
+      activityConsumedFilterId: activity? activity.id:null,
     });
     this.search();
   }
@@ -268,7 +268,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   public selectActivityProducedToFilter(activity) {
     this.activityProducedFilter = activity;
     this.addToQueryParams({
-      activityProducedFilterId: activity.id,
+      activityProducedFilterId: activity? activity.id:null,
     });
     this.search();
   }

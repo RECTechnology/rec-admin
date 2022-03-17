@@ -38,10 +38,8 @@ export class OffersTab {
 
     this.loading = true;
     this.alerts.showConfirmation('SURE_DELETE_OFFER',{}, 'DELETE_OFFER').subscribe((resp) => {
-      console.log("Show confirmation")
       if (resp) {
 
-        console.log('Delete: ', resp);
         this.offersCrud.deleteOffer( offerId).subscribe((resp) => {
           this.loading = false;
           this.alerts.showSnackbar('OFFER_DELETED', 'ok');

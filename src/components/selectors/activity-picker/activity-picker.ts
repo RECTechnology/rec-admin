@@ -19,6 +19,10 @@ export class ActivityPicker extends BaseSelectorComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if ('item' in changes) {
+      this.search();
+
+    }
     if ('parent' in changes) {
       this.parent = changes['parent'].currentValue;
       this.search();
@@ -35,7 +39,11 @@ export class ActivityPicker extends BaseSelectorComponent {
       })
       .pipe(
         map((resp) => {
-          return resp.data;
+          if(this.sendedItems){
+            return this.items
+          }else{
+            return resp.data;
+          }
         }),
       );
   }

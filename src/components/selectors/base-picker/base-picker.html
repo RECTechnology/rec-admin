@@ -13,7 +13,11 @@
         <input #search color="primary" style="margin: 0 15px" class="search-input" [(ngModel)]="query"
           placeholder="{{'SEARCH'|translate}}">
       </div>
-  
+      <mat-option *ngIf="needsNone" [value]="null">
+        <span >
+          {{'None' | translate}}
+        </span>
+      </mat-option>
       <mat-option *ngFor="let item of items" [value]="item">
         <ng-template *ngIf="item" [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{$implicit: item}"></ng-template>
         <span *ngIf="content != null && content != undefined && item!=null">

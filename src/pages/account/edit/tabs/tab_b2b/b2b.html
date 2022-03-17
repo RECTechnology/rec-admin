@@ -106,7 +106,7 @@
         <p class="small-text-2">{{'MAIN_ACTIVITY'|translate}}</p>
         <div class="group-col-left" style="margin-top: 10px;" >
           <div style="margin-right: 15px">
-            <activity-picker label="" [items]="activitiesSelected" [item]="main_activity" (itemChanged)="selectParentActivity($event)"></activity-picker>
+            <activity-picker label="" [sendedItems]="true" [items]="activitiesSelected" [item]="main_alone_activity" (itemChanged)="selectParentActivity($event)"></activity-picker>
             
           </div>
           

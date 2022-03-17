@@ -112,7 +112,7 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
   }
 
   private onUpdateOk(_) {
-    this.alerts.showSnackbar('Updated account correctly!', 'ok');
+    this.alerts.showSnackbar('UPDATED_ACCOUNT', 'ok');
     this.loading = false;
     this.loadAccount();
   }
