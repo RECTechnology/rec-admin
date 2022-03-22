@@ -1,13 +1,8 @@
 <mat-form-field  [floatLabel]="'never'" style="width: 100%">
-    <input [disabled]="isDisable" matInput [value]="date" (dateChange)="setDate($event)" [placeholder]="label" [matDatepicker]="picker">
+    <input matInput [formControl]="formControl" [disabled]="isDisable" matInput [value]="date" (dateChange)="setDate($event)" [placeholder]="label" [matDatepicker]="picker">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="formControl.invalid"> {{'REQUIERED_END' | translate}}
+    </mat-error>
 </mat-form-field>
-<div *ngIf="validation" class="alert alert-danger">
-    <div *ngIf="requiered">
-        <span>
-            {{'REQUIERED_DATE' | translate}}
-        </span>
-    </div>
 
-</div>

@@ -1,7 +1,7 @@
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-
 import { DatePipe } from '@angular/common'
+import { FormControl, Validators } from '@angular/forms';
 
 /** @title Basic datepicker */
 @Component({
@@ -19,11 +19,8 @@ export class DatePicker {
     @Input() public dateFormat: string;
     @Input() public locale: string = 'es';
     @Input() public isDisable: boolean = false;
-    @Input() public validation: boolean = false;
-    @Input() public requiered: boolean = false;
-
+    @Input() public formControl = new FormControl('', [Validators.required]);
     @Output() public itemChanged: EventEmitter<any> = new EventEmitter();
-
     public date: any;
     public datepipe: DatePipe = new DatePipe(this.locale);
 
@@ -31,21 +28,13 @@ export class DatePicker {
         if (this.item) {
             this.date = new Date(this.item);
         }
-
     }
-
     ngOnChange() {
     }
 
-    public setDate(data){
+    public setDate(data){        
 
-        if(this.validation){
-            this.validation = false;
-        }
         this.date = new Date(data.value);
         this.itemChanged.emit(this.date)
     }
-
- 
-
 }

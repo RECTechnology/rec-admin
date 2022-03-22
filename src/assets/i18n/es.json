@@ -1282,10 +1282,13 @@
   "GRANTED_PERMISSION":"Permiso concedido",
   "REVOKED_PERMISSION":"Permiso revocado",
   "REQUIERED_DESCRIPTION":"Descripcion necessaria",
-  "REQUIERED_OFFER_PRICE":"Precio de offerta necessario",
+  "REQUIERED_OFFER_PRICE":"Precio de oferta necessario",
   "REQUIERED_INITIAL_PRICE":"Precio inicial necessario",
   "REQUIERED_DISCOUNT":"Descuento necessario",
   "REQUIERED_END":"Fecha de fin requerida",
+  "REQUIERED_TYPE":"Tipo de offerta requerrido",
+  "NEED_DATA":"Se necessitan datos obligatorios",
+  "CREATED_OFFER":"Oferta creada",
   "UPDATED_ACCOUNT":"Cuenta actualizada correctamente!"
 
 }

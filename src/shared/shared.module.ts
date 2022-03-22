@@ -1,6 +1,6 @@
 import { AgmCoreModule } from '@agm/core';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { QuillModule } from 'ngx-quill';
@@ -298,6 +298,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
     AppRoutingModule, // Module to manage App Routing
     TranslateModule.forChild(),

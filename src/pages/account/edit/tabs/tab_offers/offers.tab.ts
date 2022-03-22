@@ -114,7 +114,7 @@ export class OffersTab {
       id: id
     }).subscribe(
       (resp) => {
-        this.alerts.showSnackbar('Created offer');
+        this.alerts.showSnackbar('CREATED_OFFER');
         this.loading = false;
         this.getAllData();
 

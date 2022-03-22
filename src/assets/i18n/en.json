@@ -681,6 +681,9 @@
   "REQUIERED_INITIAL_PRICE":"Requiered initial price",
   "REQUIERED_DISCOUNT":"Requiered discount",
   "REQUIERED_END":"Requiered end date",
+  "REQUIERED_TYPE":"Requiered type offer",
+  "NEED_DATA":"Need required data",
+  "CREATED_OFFER":"Created offer",
   "UPDATED_ACCOUNT":"Updated account correctly!"
 
 
