@@ -1,8 +1,7 @@
-import { Component, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
-
 import { AlertsService } from 'src/services/alerts/alerts.service';
 
 

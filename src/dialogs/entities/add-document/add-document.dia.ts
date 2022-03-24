@@ -87,7 +87,6 @@ export class AddDocumentDia extends BaseDialog {
   }
 
   public kindChanged($event) {
-    console.log('event', $event);
     this.item.kind = $event;
   }
 
@@ -114,7 +113,7 @@ export class AddDocumentDia extends BaseDialog {
     }
 
     if (!Object.keys(data).length) {
-      return this.alerts.showSnackbar('Nothing to update...');
+      return this.alerts.showSnackbar('NO_UPDATE...');
     }
 
     const crud = this.getCrud(data);
@@ -141,7 +140,6 @@ export class AddDocumentDia extends BaseDialog {
         this.close();
       },
       (err) => {
-        console.log(err);
         if (err.errors) {
           this.validationErrors = err.errors;
         } else {

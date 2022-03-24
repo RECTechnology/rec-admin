@@ -11,7 +11,6 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { EventsService } from 'src/services/events/events.service';
-import { Account } from 'src/shared/entities/account.ent';
 
 @Component({
   selector: 'edit-account',
@@ -89,7 +88,7 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
       },
       (error) => {
         this.loading = false;
-        this.alerts.showSnackbar('Account not found...');
+        this.alerts.showSnackbar('ACCOUNT_NOT_FOUND');
         this.router.navigate(['/accounts']);
       },
     );
@@ -107,7 +106,7 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
         error: this.onUpdateError.bind(this),
       });
     } else {
-      this.alerts.showSnackbar('Nothing to update', 'ok');
+      this.alerts.showSnackbar('NO_UPDATE', 'ok');
     }
   }
 

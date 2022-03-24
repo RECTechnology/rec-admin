@@ -209,10 +209,10 @@ export class LoginService extends BaseService {
                 observer.next(true);
               },
               (error) => {
-                if (error.error_description === 'User account is locked.') {
+                if (error.error_description === 'USER_ACCOUNT_LOKED') {
                   this.isLoggedIn_ = false;
                   observer.error('error');
-                  this.alerts.showSnackbar('User account is locked.', 'ok');
+                  this.alerts.showSnackbar('USER_ACCOUNT_LOKED', 'ok');
                 } else if (this.tokens.refresh_token) {
                   this.refresh(observer);
                 } else {

@@ -118,7 +118,7 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
                             ];
 
                             return forkJoin(proms).subscribe((resp) => {
-                                this.alerts.showSnackbar('Created Product', 'ok');
+                                this.alerts.showSnackbar('CREATED_PRODUCT', 'ok');
                                 this.loading = false;
                                 this.search();
                             });

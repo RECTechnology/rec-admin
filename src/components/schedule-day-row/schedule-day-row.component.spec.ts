@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ScheduleDayRowComponent } from './schedule-day-row.component';
 
 describe('ScheduleDayRowComponent', () => {

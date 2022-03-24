@@ -139,7 +139,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
     }
 
     public onDiscard() {
-        this.alerts.showSnackbar('Discarded changes');
+        this.alerts.showSnackbar('DISCARED_CHANGES');
         this.goBack(true);
     }
 
@@ -149,7 +149,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
                 if (shouldDelete) {
                     this.mailing.remove(mail.id)
                         .subscribe((resp) => {
-                            this.alerts.showSnackbar('Removed mail correctly');
+                            this.alerts.showSnackbar('REMOVED_MAIL_CORRECTLY');
                             this.goBack(true);
                         }, (error) => {
                             this.alerts.showSnackbar(error.message);
@@ -212,7 +212,6 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
 
                 this.saved = true;
                 this.mailCopy = { ...this.mail };
-                console.log('this.saved', this.saved);
             }, (err) => {
                 this.alerts.showSnackbar(err.message);
                 this.goBack(true);
@@ -329,7 +328,7 @@ export class SendMail extends TablePageBase implements ComponentCanDeactivate {
         }, this.langMap[this.lang.abrev])
             .toPromise()
             .then((resp) => {
-                this.alerts.showSnackbar('Created Mail Correctly');
+                this.alerts.showSnackbar('CREATED_MAIL_CORRECTLY');
                 this.loading = false;
                 this.isEdit = true;
                 this.id = resp.data.id;

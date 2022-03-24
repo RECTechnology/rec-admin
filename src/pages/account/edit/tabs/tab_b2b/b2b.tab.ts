@@ -238,7 +238,6 @@ export class B2BTab {
 
   public update() {
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
-    console.log("Im in update",changedProps);
     delete changedProps.activity_main;
     delete changedProps.kyc_manager;
     delete changedProps.level;

@@ -60,7 +60,7 @@ export class CashOutDia extends BaseDialog {
       this.tx.concept, this.tx.sms_code,
       WalletService.scaleNum(this.tx.amount, Currencies.REC.scale),
     ).subscribe((resp) => {
-      this.alerts.showSnackbar('Sent correclty');
+      this.alerts.showSnackbar('SENT_CORRECTLY');
       this.close(true);
     }, (err) => {
       this.alerts.showSnackbar(err.message);

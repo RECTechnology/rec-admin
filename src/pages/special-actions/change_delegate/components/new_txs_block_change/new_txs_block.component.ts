@@ -140,7 +140,7 @@ export class NewTXsBlockComponent extends PageBase {
 
     this.changeCrud.update(this.delegate.id, { scheduled_at: scheduled_at.toISOString() }).subscribe(
       (resp) => {
-        this.alerts.showSnackbar('Updated schedule time', 'ok');
+        this.alerts.showSnackbar('UPDATE_SCHEDULE', 'ok');
         this.getDelegate();
       },
       this.alerts.observableErrorSnackbar,

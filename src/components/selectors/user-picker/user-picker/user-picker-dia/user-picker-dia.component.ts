@@ -9,7 +9,7 @@ import { UsersCrud } from 'src/services/crud/users/users.crud';
   templateUrl: './user-picker-dia.component.html',
   styleUrls: ['./user-picker-dia.component.scss']
 })
-export class UserPickerDiaComponent  {
+export class UserPickerDiaComponent {
 
   public currentUserId = null;
   public users: User[] = [];
@@ -22,7 +22,7 @@ export class UserPickerDiaComponent  {
   constructor(
     public dialogRef: MatDialogRef<UserPickerDiaComponent>,
     public userCrud: UsersCrud,
-  ) {}
+  ) { }
 
   public search(query) {
     const opts = {

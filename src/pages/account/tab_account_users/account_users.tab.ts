@@ -133,7 +133,7 @@ export class AccountUsersTab implements AfterContentInit {
     this.adminService.removeUserFromAccount(this.account_id, user.id)
       .subscribe(
         (resp) => {
-          this.alerts.showSnackbar('Expeled user currectly!', 'ok');
+          this.alerts.showSnackbar('EXPELED_USER_CURRECTLY', 'ok');
           this.getUsers();
         },
         (error) => {

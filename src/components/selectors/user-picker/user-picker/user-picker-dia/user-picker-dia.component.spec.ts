@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UserPickerDiaComponent } from './user-picker-dia.component';
 
 describe('UserPickerDiaComponent', () => {
@@ -8,9 +7,9 @@ describe('UserPickerDiaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserPickerDiaComponent ]
+      declarations: [UserPickerDiaComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -192,7 +192,7 @@ export class UserDetailsTab implements OnInit {
       if (resp) {
         this.sms.validate(this.user.id).subscribe(
           (valid) => {
-            this.alerts.showSnackbar('Validated user with number: ' + this.getPhone(), 'ok');
+            this.alerts.showSnackbar('VALIDATED_USER_WHIT_NUMBER' + this.getPhone(), 'ok');
           },
           (error) => {
             this.alerts.showSnackbar('Error validating: ' + error, 'ok');
@@ -207,10 +207,10 @@ export class UserDetailsTab implements OnInit {
   private removeUser(user) {
     this.compService.removeUserFromSystem(user.id).subscribe(
       (resp) => {
-        this.alerts.showSnackbar('Deleted user from system', 'ok');
+        this.alerts.showSnackbar('DELETED_USER_SYSTEM', 'ok');
       },
       (error) => {
-        this.alerts.showSnackbar('Error deleting user: ' + error.message, 'ok');
+        this.alerts.showSnackbar('ERROR_DELETING_USER' + error.message, 'ok');
       },
     );
   }

@@ -56,7 +56,6 @@ export class TpvTab extends TablePageBase {
     this.alerts.showConfirmation('SURE_DELETE_TPV',{}, 'DELETE_TPV')
       .subscribe((resp) => {
         if (resp) {
-          console.log('Delete: ', resp);
           this.deleteTpv();
         }
       });

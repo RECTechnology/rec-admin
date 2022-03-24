@@ -65,7 +65,6 @@ export class TlItemOption implements TlItemOption {
         for (const prop in opts) {
             this[prop] = opts[prop];
         }
-
         return this;
     }
 }
@@ -79,9 +78,7 @@ export interface TableListOptions {
 }
 
 @Component({
-   
     selector: 'tl-table',
-   
     templateUrl: './tl-table.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -95,7 +92,6 @@ export class TableListTable implements AfterContentInit {
     @Input() public itemOptions: TlItemOption[];
     @Input() public noItemsMessage: string = 'NO_ITEMS';
     @Input() public options: TableListOptions = {};
-
     @Input() public total: number = 0;
     @Input() public limit: number = 0;
     @Input() public pageIndex: number = 0;
@@ -104,7 +100,6 @@ export class TableListTable implements AfterContentInit {
     @Output() public onChangePage: EventEmitter<Sort>;
 
     public Brand: any = environment.Brand;
-
     public sortDir: string;
     public sortId: string;
 
@@ -163,7 +158,7 @@ export class TableListTable implements AfterContentInit {
             });
     }
 
-    public getEntry(entry, header: TlHeader, translate = true,string:String = '') {
+    public getEntry(entry, header: TlHeader, translate = true, string: String = '') {
         let val = '';
         if (!header.accessor && header.sort) {
             val = entry[header.sort as any];

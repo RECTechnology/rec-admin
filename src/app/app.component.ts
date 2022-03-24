@@ -123,7 +123,7 @@ export class AppComponent implements OnInit, OnDestroy {
           if (!this.us.isSuperAdmin()) {
             this.us.logout();
             this.alerts.showSnackbar(
-              "You don't have necesary permissions...",
+              "DONT_NECESSARI_PERMISSION",
               'OK'
             );
             return;

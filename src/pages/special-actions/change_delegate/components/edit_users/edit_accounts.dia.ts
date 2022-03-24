@@ -109,7 +109,6 @@ export class EditAccountsDia extends BaseDialog implements OnInit {
       return;
     }
 
-    console.log('edit amount', this.amount);
 
     this.dialogRef.close({
       accounts: this.accounts.map((el) => {

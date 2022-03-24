@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
                 this.us.logout();
                 this.disabled = false;
                 this.loading = false;
-                this.alerts.showSnackbar('You don\'t have necesary permissions...', 'OK');
+                this.alerts.showSnackbar('NOT_NECESSARI_PERMISSIONS', 'OK');
                 return;
               }
 

@@ -13,7 +13,7 @@ export class LogStatusSelector implements OnInit {
         'WARNING',
         'ERROR'
     ];
-    
+
     public error: string;
 
     @Input() public value: any = 'DEBUG';

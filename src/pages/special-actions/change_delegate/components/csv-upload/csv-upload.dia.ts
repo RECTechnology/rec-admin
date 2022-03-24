@@ -55,7 +55,7 @@ export class CsvUpload {
           this.close(resp.data.src);
         },
         (error) => {
-          this.alerts.showSnackbar('Error uploading: ' + error.message, 'ok');
+          this.alerts.showSnackbar('ERROR_UPLOADING' + error.message, 'ok');
           this.error = error.message;
         },
       );

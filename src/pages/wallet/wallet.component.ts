@@ -158,7 +158,7 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
           transaction: resp,
         });
       }, (error) => {
-        this.alerts.showSnackbar('Error finding transaction: ' + error, 'ok');
+        this.alerts.showSnackbar('ERROR_FINDING_TRANSACTION' + error, 'ok');
       });
 
   }

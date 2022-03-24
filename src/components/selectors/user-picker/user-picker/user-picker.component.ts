@@ -25,7 +25,7 @@ export class UserPickerComponent {
   public selectedUser: any = {};
   public Brand = environment.Brand;
 
-  constructor(public userCrud: UsersCrud, public alerts: AlertsService) {}
+  constructor(public userCrud: UsersCrud, public alerts: AlertsService) { }
 
   public ngOnChanges() {
     if (this.id == null) {

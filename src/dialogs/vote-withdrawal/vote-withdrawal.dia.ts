@@ -38,7 +38,7 @@ export class VoteWithdrawal {
   public vote() {
     this.as.validateWithdrawalAttempt(this.validation.id, { accepted: this.decision })
       .subscribe((resp) => {
-        this.alerts.showSnackbar('Voted correctly');
+        this.alerts.showSnackbar('VOTED_CORRECTLY');
         this.dialogRef.close({ vote: this.decision });
       }, (err) => {
         this.alerts.showSnackbar(err.message);

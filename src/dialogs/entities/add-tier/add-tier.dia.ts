@@ -81,7 +81,7 @@ export class AddTierDia extends BaseDialog {
       .subscribe((resp) => {
         this.getTier();
         this.search();
-        this.alerts.showSnackbar('Removed document');
+        this.alerts.showSnackbar('REMOVED_DOCUMENT');
       }, (err) => {
         this.alerts.showSnackbar(err.message);
       });
@@ -92,7 +92,7 @@ export class AddTierDia extends BaseDialog {
       .subscribe((resp) => {
         this.getTier();
         this.search();
-        this.alerts.showSnackbar('Added document');
+        this.alerts.showSnackbar('CREATED_DOCUMENT');
       }, (err) => {
         this.alerts.showSnackbar(err.message);
       });
@@ -111,11 +111,10 @@ export class AddTierDia extends BaseDialog {
     }
 
     data = UtilsService.sanitizeEntityForEdit(data);
-    console.log('diff', data);
 
     if (!Object.keys(data).length) {
       this.loading = false;
-      return this.alerts.showSnackbar('Nothing to update...');
+      return this.alerts.showSnackbar('NO_UPDATE');
     }
 
     const call = (!this.isEdit)
@@ -124,7 +123,7 @@ export class AddTierDia extends BaseDialog {
 
     call.subscribe((resp) => {
       this.item.id = resp.data.id;
-      this.alerts.showSnackbar((this.isEdit ? 'Edited' : 'Created') + ' Tier correctly!', 'ok');
+      this.alerts.showSnackbar((this.isEdit ? 'EDITED' : 'CREATED') + ' Tier correctly!', 'ok');
       this.loading = false;
       if (this.isEdit) {
         this.close();

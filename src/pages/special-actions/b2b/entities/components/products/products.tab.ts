@@ -176,7 +176,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
                 )
                 .subscribe(
                   (resp) => {
-                    this.alerts.showSnackbar('Updated product: ' + product.id, 'ok');
+                    this.alerts.showSnackbar('UPDATED_PRODUCT' + product.id, 'ok');
                     this.loading = false;
                     this.search();
                   },
@@ -214,7 +214,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
             )
             .subscribe(
               (prod) => {
-                this.alerts.showSnackbar('Created Product', 'ok');
+                this.alerts.showSnackbar('CREATED_PRODUCT', 'ok');
                 this.loading = false;
                 this.search();
               },
@@ -228,12 +228,12 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   }
 
   public deleteProduct(product) {
-    this.confirm('Delete Product ' + product.id, 'Are you sure you want to delete that? No going back.').subscribe(
+    this.confirm('DELETE_PRODUCT' + product.id, 'SURE_DELETE_THAT.').subscribe(
       (del) => {
         if (del) {
           this.crud.remove(product.id).subscribe(
             (resp) => {
-              this.alerts.showSnackbar('Deleted Product', 'ok');
+              this.alerts.showSnackbar('DELETED_PRODUCTS', 'ok');
               this.search();
             },
             (error) => this.alerts.showSnackbar(error.message),
@@ -248,7 +248,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
       if (aprove) {
         this.crud.update(product.id, { status: 'reviewed' }).subscribe(
           (resp) => {
-            this.alerts.showSnackbar('Product approved', 'ok');
+            this.alerts.showSnackbar('APROVED_PRODUCT', 'ok');
             this.search();
           },
           (error) => this.alerts.showSnackbar(error.message),

@@ -70,7 +70,7 @@ export class AccountDocuments {
       .subscribe((resp) => {
         this.account = resp.data;
         this.loading = false;
-        this.alerts.showSnackbar('Validate tier successfully!');
+        this.alerts.showSnackbar('VALIDATE_TIER_SUCCESSFULLY');
         this.getTiers();
       }, (err) => {
         this.loading = false;

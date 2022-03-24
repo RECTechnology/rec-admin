@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UserPickerComponent } from './user-picker.component';
 
 describe('UserPickerComponent', () => {
@@ -8,9 +7,9 @@ describe('UserPickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserPickerComponent ]
+      declarations: [UserPickerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

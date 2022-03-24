@@ -57,14 +57,12 @@ export abstract class BaseSelectorComponent {
   /* istanbul ignore next */
   public search(query?: string) {
     this.isLoading = true;
-    console.log( query )
     
     this.getSearchObservable(query).subscribe({
       next: (resp: any) => {
         this.isLoading = false;
         if (Array.isArray(resp)) {
           this.items = resp;
-          console.log(this.items)
         } else if (Array.isArray(resp.data)) {
           this.items = resp.data;
         } else {

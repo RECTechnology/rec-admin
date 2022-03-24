@@ -24,8 +24,7 @@ export class AddCommentDia extends BaseDialog {
     this.txService.addCommentToTransaction(this.comment, this.transaction.id)
       .subscribe(
         (resp) => {
-          const message = `Added comment correctly!`;
-          this.alerts.showSnackbar(message, 'ok', { duration: 3500 });
+          this.alerts.showSnackbar('ADDED_COMMENT', 'ok', { duration: 3500 });
           this.loading = false;
           this.close();
         },

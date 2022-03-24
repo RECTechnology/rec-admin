@@ -128,7 +128,7 @@ export class ActivitiesTabComponent extends EntityTabBase<Activity> {
     }
 
     public deleteActivity(activity) {
-        this.confirm('Delete Activity ' + activity.id, 'Are you sure you want to delete that? No going back.')
+        this.confirm('DELETE_ACTIVITY' + activity.id, 'SURE_DELETE_THAT')
             .subscribe(
                 (del) => {
                     if (del) {

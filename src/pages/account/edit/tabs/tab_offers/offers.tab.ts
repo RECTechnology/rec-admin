@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {  Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Account } from 'src/shared/entities/account.ent';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
@@ -103,7 +103,7 @@ export class OffersTab {
       },
       (error) => {
         this.loading = false;
-        this.alerts.showSnackbar('Account not found...');
+        this.alerts.showSnackbar('ACCOUNT_NOT_FOUND');
         
       },);
   }
@@ -161,7 +161,7 @@ export class OffersTab {
   
         }).subscribe(
           (resp) => {
-            this.alerts.showSnackbar('Updated Offer: ' + offer.id, 'ok');
+            this.alerts.showSnackbar('UPDATED_OFFER' + offer.id, 'ok');
             this.loading = false;
             this.getAllData();
 

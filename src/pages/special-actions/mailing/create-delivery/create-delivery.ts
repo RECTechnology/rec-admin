@@ -65,7 +65,6 @@ export class CreateDelivery {
             title: 'UPLOAD_CSV',
         }).subscribe((csv) => {
             if (csv) {
-                console.log('file', csv);
                 this.csvFile = csv;
                 this.uploadCsv(csv);
             }
@@ -75,7 +74,6 @@ export class CreateDelivery {
     public uploadCsv(csv) {
         this.mailDeliveries.import({ csv })
             .subscribe((resp) => {
-                console.log('asd', resp);
                 this.loading = false;
                 this.update.emit();
             }, this.alerts.observableErrorSnackbar.bind(this.alerts));
@@ -118,7 +116,7 @@ export class CreateDelivery {
         this.selectedAccounts.splice(i, 1);
         this.mailDeliveries.remove(acc.delivery_id).subscribe(
             (result) => {
-                this.alerts.showSnackbar('Removed delivery correctly!', 'ok');
+                this.alerts.showSnackbar('REMOVED_DELIVERY_CORRECTLY', 'ok');
                 this.loading = false;
                 this.update.emit();
             },

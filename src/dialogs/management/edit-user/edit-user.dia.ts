@@ -118,7 +118,7 @@ export class EditUserData {
       forkJoin(promises)
         .subscribe((resp) => {
 
-          this.alerts.showSnackbar('Saved correctly', 'ok');
+          this.alerts.showSnackbar('SAVED_CORRECTLY', 'ok');
           this.close();
         }, (error) => {
           this.alerts.showSnackbar(error.message, 'ok');
@@ -126,7 +126,7 @@ export class EditUserData {
         });
     } else {
 
-      this.alerts.showSnackbar('Nothing to update', 'ok');
+      this.alerts.showSnackbar('NO_UPDATE', 'ok');
     }
   }
 

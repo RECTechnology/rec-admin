@@ -33,7 +33,6 @@ export class TableListHeader {
     @Input() public query: string = '';
     @Input() public searchPlaceholder: string = 'Search';
     @Input() public inputClass = 'input border-radius-2';
-
     @Input() public newItemText = '';
     @Input() public newItemIcon = 'fa-plus';
     @Input() public searching = false;
