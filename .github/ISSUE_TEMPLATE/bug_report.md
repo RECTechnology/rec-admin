@@ -14,43 +14,8 @@ add the corresponding label (if you can)
 -->
 **Environment**: 
 - [ ] PRE
+- [ ] SANDBOX
 - [ ] PROD
-
-<!-- 
-Select One 
-add the corresponding label (if you can) 
--->
-**Browser**: 
-- [ ] Chrome
-- [ ] Firefox
-- [ ] Opera
-- [ ] IE
-- [ ] Edge
-- [ ] Safari
-- [ ] Other: <!-- Specify -->
-
-<!-- MacOSx | Linux | Windows -->
-**Platform**: 
-- [ ] MacOS
-- [ ] Linux
-- [ ] Windows
-- [ ] Android
-- [ ] iOS
-- [ ] Other: <!-- other -->
-
-<!-- eg v0.2.9 -->
-**Panel Version**: ` `  
-<!-- eg 12.3.123 -->
-**Platform Version**: ` `  
-<!-- eg 78.0.1 -->
-**Browser Version**: ` `  
-
-### Timing  
-*Please dev. fill in this details*  
-<!-- In h, m, s  -->
-**Estimated time**:  
-<!-- From 1 (easy) to 5 (hard) -->
-**Difficulty**:  
 
 ### Description
 <!-- A clear and concise description of what the bug is. -->
