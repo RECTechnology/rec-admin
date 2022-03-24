@@ -6,7 +6,7 @@
     
     
     <div style="width: 500px;margin-left:15px;">
-        <account-picker [title]="'Account'" (idChange)="setAccount($event);">
+        <account-picker label="ACCOUNTS" [filters]="filter" [item]="account" (itemChanged)="setAccount($event);">
         </account-picker>   
     </div>
    

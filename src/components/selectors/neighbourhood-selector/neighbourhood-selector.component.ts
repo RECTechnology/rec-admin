@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NeighborhoodsCrud } from 'src/services/crud/neighborhoods/neighborhoods.crud';
+import { BaseSelectorComponent } from 'src/bases/base-selector';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/internal/operators/map';
 
 @Component({
     selector: 'neighbourhood-selector',
@@ -8,7 +11,7 @@ import { NeighborhoodsCrud } from 'src/services/crud/neighborhoods/neighborhoods
     ],
     templateUrl: './neighbourhood-selector.html',
 })
-export class NeighbourhoodSelector implements OnInit {
+export class NeighbourhoodSelector extends BaseSelectorComponent {
     public barrios: any[];
     public error: string;
 
@@ -18,17 +21,23 @@ export class NeighbourhoodSelector implements OnInit {
 
     constructor(
         protected nCrud: NeighborhoodsCrud,
-    ) { }
+    ) {super() }
 
-    public ngOnInit() {
-        this.search();
-    }
+    public getSearchObservable(query: string): Observable<any> {
+        return this.nCrud
+        .list({
+          sort: 'name',
+          dir: 'asc',
+          limit: 20,
+        })
+        .pipe(
+          map((resp) => {
+            return resp.data.elements;
+          }),
+        );
+      }
+        
+      }
 
-    public search() {
-        this.nCrud.list({ limit: 100 }).subscribe((resp) => {
-            this.barrios = resp.data.elements;
-        }, (err) => {
-            this.error = err;
-        });
-    }
-}
+        
+

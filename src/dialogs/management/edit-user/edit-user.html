@@ -97,7 +97,7 @@
               <div class="col-lg-3">
                 <div class="group-col-left">
                   <span class="small-text-2  marg-bottom-10">{{'Street Type'|translate}}</span>
-                  <street-type-selector [(value)]="userCopy.kyc_validations.street_type"></street-type-selector>
+                  <street-type-selector (itemChanged)="userCopy.kyc_validations.street_type = $event" [item]="userCopy.kyc_validations.street_type"></street-type-selector>
                 </div>
               </div>
               <div class="col-lg-6">

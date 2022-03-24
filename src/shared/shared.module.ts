@@ -9,13 +9,11 @@ import { AppPage } from 'src/components/scaffolding/page/page-component';
 import { TableListHeader } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 import { TableListSubHeader } from 'src/components/scaffolding/table-list/tl-subheader/tl-subheader.component';
 import { TableListTable } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
-import { AccountPickerDia } from 'src/components/selectors/account-picker/account-picker-dialog/account-picker.dia';
 import { AccountPickerComponent } from 'src/components/selectors/account-picker/account-picker.component';
 import { EmptyValidators} from 'src/components/validators/EmptyValidators';
 import { CampaignSelector } from 'src/components/selectors/campaign-selector/campaign-selector.component';
 import { FileSelector } from 'src/components/selectors/file-selector/file-selector';
 import { NeighbourhoodSelector } from 'src/components/selectors/neighbourhood-selector/neighbourhood-selector.component';
-import { UserPickerDiaComponent } from 'src/components/selectors/user-picker/user-picker/user-picker-dia/user-picker-dia.component';
 import { UserPickerComponent } from 'src/components/selectors/user-picker/user-picker/user-picker.component';
 import { Avatar } from 'src/components/ui/avatar/avatar.component';
 import { BadgeComponent } from 'src/components/ui/badge/badge.component';
@@ -62,6 +60,7 @@ import { DocumentTabComponent } from 'src/pages/special-actions/b2b/entities/com
 import { DocumentKindsTabComponent } from 'src/pages/special-actions/b2b/entities/components/document_kinds/document-kinds.tab';
 import { ActivityPicker } from 'src/components/selectors/activity-picker/activity-picker';
 import { DocumentKindPicker } from 'src/components/selectors/document-kind-picker/document-kind-picker';
+import { DocumentStatusSelector } from 'src/components/selectors/document-status-selector/document-status-selector';
 import { BasePicker } from 'src/components/selectors/base-picker/base-picker';
 import { DatePicker } from 'src/components/selectors/date-picker/date-picker';
 import { AddNeighbourhoodDia } from 'src/pages/special-actions/b2b/entities/components/neighborhoods/add/add.dia';
@@ -120,6 +119,7 @@ import { LogStatusSelector } from 'src/components/selectors/log-status-selector/
 import { SendTransactionsDia} from 'src/pages/special-actions/change_delegate/components/new_massive_transactions/send_transaction_modal/send_transactions_modal';
 import { AddB2BModal} from 'src/pages/special-actions/b2b_page/b2b-modal/b2b-modal';
 import { ActiveGroupSelector } from '../components/selectors/active-group-selector/active-group-selector';
+import { RecStatusSelector } from '../components/selectors/rec-status-selector/rec-status-selector';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -132,7 +132,6 @@ const DIALOGS = [
   UnsavedChangesDialog,
   CreateLemonWithdrawalDia,
   CreateLemonWallet2WalletOutDia,
-  AccountPickerDia,
   EditAccountsDia,
   AddUserDia,
   EditUserData,
@@ -150,8 +149,7 @@ const DIALOGS = [
   AddDocumentDia,
   AddTierDia,
   RefundOrderDia,
-  CopiableComponent,
-  UserPickerDiaComponent,
+  CopiableComponent
 ];
 
 const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
@@ -199,6 +197,8 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     ActivitiesTabComponent,
     NeighborhoodsTabComponent,
     NeighbourhoodSelector,
+    DocumentStatusSelector,
+    RecStatusSelector,
     ConvertToLangPipe,
     EscapeHtmlPipe,
     AccountPickerComponent,
@@ -224,7 +224,6 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     DeliveryEntry,
     CopiableComponent,
     ValidateWithdrawalComponent,
-    
     CampaignSelector,
     UserPickerComponent,
     ActiveGroupSelector,
@@ -282,6 +281,8 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     DocumentKindsTabComponent,
     ActivityPicker,
     DocumentKindPicker,
+    DocumentStatusSelector,
+    RecStatusSelector,
     BasePicker,
     DatePicker,
     DocumentTabComponent,

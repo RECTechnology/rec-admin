@@ -138,7 +138,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public campaignFilterChanged(campaignFilter) {
     this.campaignFilter = campaignFilter;
     super.addToQueryParams({
-      campaignFilter: this.campaignFilter.id,
+      campaignFilter: this.campaignFilter ? this.campaignFilter.id : null,
     });
     this.search();
   }

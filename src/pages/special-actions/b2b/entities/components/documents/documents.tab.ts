@@ -182,25 +182,26 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     this.search();
   }
   public addUserIdQuery(event) {
+    this.userFilter = event;
     this.addToQueryParams({
-      userId: event,
+      userId: event ? event.id : null,
     });
     this.search();
 
   }
 
   public addAccountIdQuery(event) {
+    this.accountFilter = event;
     this.addToQueryParams({
-      accountId: event,
+      accountId: event ? event.id : null,
     });
     this.search();
   }
 
   public selectDocKind(doc) {
-
     this.productKindFilter = doc;
     this.addToQueryParams({
-      documentKindId: doc.id,
+      documentKindId: doc ? doc.id : null,
     });
 
     this.search();
@@ -231,11 +232,11 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         search: query || this.query || '',
         sort: this.sortID,
         kind: this.productKindFilter ? this.productKindFilter.id : null,
-        account: this.accountFilter,
-        user: this.userFilter,
+        account: this.accountFilter ? this.accountFilter.id : null,
+        user: this.userFilter ? this.userFilter.id : null,
         status: this.statusFilter,
 
-      })
+      },'all')
       .subscribe(
         (resp) => {
           this.data = resp.data.elements;

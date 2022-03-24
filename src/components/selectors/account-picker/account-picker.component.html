@@ -1,16 +1,6 @@
-<div class="group-row-left center h v space-between" style="width: 100%">
-    <button style="margin-right: 10px;" *ngIf="!isKeyboard" class="account-picker" [disabled]="disabled" type="button"
-        mat-button class="mat-button-menu" (click)="openSelectAccount()">
-        <div class="center v space-between">
-            <avatar [account]="selectedAccount"></avatar>
-            <i class="fa fa-caret-down" style="margin-left: 10px"></i>
-        </div>
-    </button>
-
-    <input-field [debounced]="true" style="width: 100%; margin-right: 10px;" *ngIf="isKeyboard" type="text"
-        name="account-id-text" [value]="selectedAccount.id" (valueChange)="onWrite($event)"></input-field>
-
-    <button *ngIf="showKeyboard" mat-icon-button style="width: auto" (click)="changeMode()">
-        <i class="fa fa-keyboard"></i>
-    </button>
-</div>
+<base-picker [needsNone]="needsNone" [showSelection]="showSelection" [items]="items" [item]="item" [label]="label" (onSearch)="search($event)"
+  (itemChanged)="selectItem($event)" [isLoading]="isLoading">
+  <ng-template let-item>
+    {{item | tolang}}
+  </ng-template>
+</base-picker>

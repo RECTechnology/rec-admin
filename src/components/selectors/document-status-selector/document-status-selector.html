@@ -1,0 +1,6 @@
+<base-picker [needsNone]="needsNone" [showSelection]="showSelection" [items]="this.documentStatuses" [item]="item" [label]="label" (onSearch)="search($event)"
+  (itemChanged)="selectItem($event)" [hasSearch]="false" [isLoading]="isLoading">
+  <ng-template let-item>
+    {{item}}
+  </ng-template>
+</base-picker>

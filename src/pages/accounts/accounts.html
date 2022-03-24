@@ -30,7 +30,7 @@
             <span class="small-text">{{'EXCHANGERS' | translate}}</span>
           </mat-checkbox>
 
-          <campaign-selector [value]="campaignFilter" (valueChange)="campaignFilterChanged($event)"></campaign-selector>
+          <campaign-selector [needsNone]="true" label="CAMPAIGN" [item]="campaignFilter" (itemChanged)="campaignFilterChanged($event)"></campaign-selector>
         </div>
       </tl-subheader>
 

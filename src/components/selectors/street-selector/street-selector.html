@@ -1,9 +1,6 @@
-<mat-select *ngIf="!error" [(ngModel)]="value" [disabled]="disabled" (ngModelChange)="valueChange.emit(value)"
-    class="mat-button-menu" style="width: 100%; min-width: 90px">
-    <mat-option *ngFor="let type of streetTypes" [value]="type">
-        <span class="text-transform: capitalize">{{type|translate}}</span>
-    </mat-option>
-</mat-select>
-<p *ngIf="error" class="small-text col-error">
-    {{error}}
-</p>
+<base-picker [showSelection]="showSelection" [items]="this.streetTypes" [item]="item" [label]="label" (onSearch)="search($event)"
+  (itemChanged)="selectItem($event)" [hasSearch]="false" [isLoading]="isLoading">
+  <ng-template let-item>
+    {{item}}
+  </ng-template>
+</base-picker>

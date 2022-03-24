@@ -71,6 +71,7 @@ export class AddDocumentDia extends BaseDialog {
 
   public setAccount($event) {
     if ($event) {
+      console.log($event)
       this.item.user = null;
       this.item.user_id = null;
     }

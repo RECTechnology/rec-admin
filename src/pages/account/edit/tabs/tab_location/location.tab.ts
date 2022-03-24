@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { AdminService } from 'src/services/admin/admin.service';
+import { Neighborhood } from '../../../../../shared/entities/translatable/neighborhood.ent';
 
 @Component({
   selector: 'tab-location',
@@ -16,6 +17,7 @@ export class LocationTab {
   public accountCopy: any = {};
   public error: string;
   public pageName = 'LOCATION';
+  
 
   constructor(private utils: UtilsService, public alerts: AlertsService, public as: AdminService) {}
 
@@ -35,8 +37,11 @@ export class LocationTab {
   }
 
   public update() {
-    const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
+    const changedProps: any = this.utils.deepDiff( this.accountCopy, this.account);
     delete changedProps.activity_main;
+    if(changedProps.neighbourhood){
+      delete changedProps.neighbourhood;
+    }
     delete changedProps.kyc_manager;
     delete changedProps.schedule;
     delete changedProps.level;

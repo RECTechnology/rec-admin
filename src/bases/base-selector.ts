@@ -26,6 +26,9 @@ export abstract class BaseSelectorComponent {
   }
 
   ngOnChanges( simpleChanges: SimpleChanges){
+    if(!simpleChanges["item"]){
+      return;
+    }
     if(simpleChanges["item"].currentValue != simpleChanges["item"].previousValue){
       this.item = simpleChanges["item"].currentValue;
       this.setInitialValue();
@@ -39,6 +42,7 @@ export abstract class BaseSelectorComponent {
     * (javascript si el objeto es igual pero se copia, ya no lo trata como igual, por eso tenemos que comprobarlo por id)
     */
   public setInitialValue() {
+    console.log("setInitialValue", this.item)
     const selectedItemId = (this.item && this.item.id) || this.item;
 
     if (selectedItemId !== null) {
@@ -72,6 +76,7 @@ export abstract class BaseSelectorComponent {
         // Esto esta aqui porque si en la primera llamada no existe `this.item` no se mostraria en el selector
         // Por tanto si `this.item` no existe en la lista que recibimos, simplemente lo añadimos para que aparezca
         // Asi podemos listar 10 inicialmente sin problemas
+        //Se debe pasar un objeto a this.item
         if (this.item && !this.items.some((it) => it.id == this.item.id)) {
           this.items.unshift(this.item);
         }

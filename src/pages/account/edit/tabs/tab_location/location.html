@@ -16,8 +16,8 @@
 
           <div class="col-lg-6">
             <div class="group-col-left">
-              <span class="small-text-2 marg-bottom-10">{{'Street Type'|translate}}</span>
-              <street-type-selector [disabled]="loading" [(value)]="accountCopy.street_type"></street-type-selector>
+              <street-type-selector label="STREET_TYPE" [disabled]="loading" [needsNone]="true" (itemChanged)="accountCopy.street_type = $event"
+              [item]="accountCopy.street_type"></street-type-selector>
             </div>
           </div>
           <div class="col-lg-6">
@@ -37,8 +37,8 @@
 
           <div class="col-lg-6">
             <div class="group-col-left">
-              <span class="small-text-2 marg-bottom-10">{{'BARRIO'|translate}}</span>
-              <neighbourhood-selector [disabled]="loading" [(value)]="accountCopy.neighbourhood_id">
+              <neighbourhood-selector label="NEIGHBOURHOOD" [disabled]="loading" [needsNone]="true"
+              (itemChanged)="accountCopy.neighbourhood_id = $event.id" [item]="accountCopy.neighbourhood">
               </neighbourhood-selector>
             </div>
           </div>

@@ -1,13 +1,6 @@
-<mat-select [value]="value" (selectionChange)="valueChange.emit($event.value)"
-    [disabled]="disabled" style="width: 100px">
-    <mat-option value="" selected>
-        {{'CAMPAIGN' |translate}}
-    </mat-option>
-    <mat-option *ngFor="let campaign of campaigns" [value]="campaign">
-        {{campaign.name}}
-    </mat-option>
-</mat-select>
-
-<span *ngIf="error" class="small-text col-error">
-    {{error}}
-</span>
+<base-picker [needsNone]="needsNone" [showSelection]="showSelection" [items]="items" [item]="item" [label]="label" (onSearch)="search($event)"
+  (itemChanged)="selectItem($event)" [isLoading]="isLoading">
+  <ng-template let-item>
+    {{item | tolang}}
+  </ng-template>
+</base-picker>

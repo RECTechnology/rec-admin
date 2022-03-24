@@ -13,6 +13,7 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { CashOutDia } from 'src/dialogs/wallet/cash-out/cash-out.dia';
 import { getDateDMY } from 'src/shared/utils.fns';
 import { ExportTxsDia } from 'src/dialogs/wallet/export-txs/export-txs.dia';
+import { CompanyService } from '../../../services/company/company.service';
 
 @Component({
   selector: 'movements-tab',
@@ -43,6 +44,7 @@ export class MovementsTab implements AfterContentInit {
     public router: Router,
     public controles: ControlesService,
     public utils: UtilsService,
+    public companyService: CompanyService
   ) {
     this.route.params.subscribe((params) => {
       this.account_id = params.id;
@@ -85,8 +87,8 @@ export class MovementsTab implements AfterContentInit {
 
   public sendRecs() {
     const dialogRef = this.dialog.open(CashOutDia);
-    dialogRef.componentInstance.tx.receiver = '';
-    dialogRef.componentInstance.tx.sender = this.account_id;
+    dialogRef.componentInstance.tx.receiver = null;
+    dialogRef.componentInstance.tx.sender = this.companyService.selectedCompany;
     dialogRef.afterClosed().subscribe((resp) => {
       if (resp) {
         this.search();

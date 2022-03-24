@@ -1,4 +1,4 @@
-import { Component, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -18,6 +18,8 @@ export class AddB2BModal {
     public error: string;
     public account: Account;
     public username = '';
+    public filter = {"rezero_b2b_access": "not_granted"};
+    
 
     constructor(
         public dialogRef: MatDialogRef<SendTransactionsDia>,
@@ -32,13 +34,14 @@ export class AddB2BModal {
 
     public send() {
         this.dialogRef.close({
-            accountId:this.account,
+            accountId:this.account.id,
             username:this.username
         });
     }
     public setAccount(event) {
         if (event) {
             this.account = event;
+            console.log(event)
 
         }
     }

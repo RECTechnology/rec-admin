@@ -16,7 +16,8 @@ export class DocumentKindPicker extends BaseSelectorComponent {
 
   public getSearchObservable(query: string): Observable<any> {
     return this.dkCrud
-      .list({
+      .search({
+        search: query,
         sort: 'name',
         dir: 'asc',
         limit: 100

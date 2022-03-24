@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { BaseSelectorComponent } from 'src/bases/base-selector';
 
 @Component({
     selector: 'street-type-selector',
@@ -7,7 +9,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     ],
     templateUrl: './street-selector.html',
 })
-export class StreetTypeSelector implements OnInit {
+export class StreetTypeSelector extends BaseSelectorComponent {
     public streetTypes: any[] = [
         'alameda',
         'avenida',
@@ -28,12 +30,15 @@ export class StreetTypeSelector implements OnInit {
         'urbanizacion',
         'via',
     ];
-    public error: string;
-    @Input() public value: any = 'calle';
-    @Input() public disabled: boolean = false;
-    @Output() public valueChange = new EventEmitter<string>();
-
-    public ngOnInit() {
-        this.value = this.value || 'calle';
+    public initialStreet: string = 'calle';
+    
+    constructor(){
+        super()
     }
+
+    public getSearchObservable(query: string): Observable<any> {
+        return of([]);
+        
+      }
+   
 }

@@ -5,7 +5,8 @@ import BaseDialog from '../../../bases/dialog-base';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Currencies } from 'src/shared/entities/currency/currency';
-
+import { Account } from 'src/shared/entities/account.ent';
+type CashOutTxData = {amount: number, concept: string, receiver: Account, sender: Account, sms_code:string};
 @Component({
   selector: 'cash-out',
   templateUrl: './cash-out.html',
@@ -13,11 +14,11 @@ import { Currencies } from 'src/shared/entities/currency/currency';
 
 export class CashOutDia extends BaseDialog {
   public from_address: string = '';
-  public tx = {
+  public tx: CashOutTxData = {
     amount: 0,
     concept: 'cash-out',
-    receiver: '',
-    sender: '',
+    receiver: null,
+    sender: null,
     sms_code: '',
   };
   public available: number = 0;
@@ -36,6 +37,8 @@ export class CashOutDia extends BaseDialog {
   ) {
     super();
   }
+
+  
 
   public switchSides() {
     const temp = this.tx.sender;
@@ -56,7 +59,7 @@ export class CashOutDia extends BaseDialog {
 
     this.loading = true;
     this.txService.sendTx(
-      this.tx.sender, this.tx.receiver,
+      this.tx.sender.id, this.tx.receiver.id,
       this.tx.concept, this.tx.sms_code,
       WalletService.scaleNum(this.tx.amount, Currencies.REC.scale),
     ).subscribe((resp) => {

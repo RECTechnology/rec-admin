@@ -20,9 +20,8 @@
     <div class="col-lg-12">
       <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
         <div style="width: 45%">
-          <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
-          <account-picker #sender [filters]="accountFilters" [showKeyboard]="true"
-            [disabled]="loading" [id]="tx.sender" (idChange)="tx.sender = $event"></account-picker>
+          <account-picker #sender label="ORIGIN_ACCOUNT"
+            [disabled]="loading" [item]="tx.sender" (itemChanged)="tx.sender = $event"></account-picker>
         </div>
         <div>
           <button mat-icon-button matTooltip="Change sides" (click)="switchSides()">
@@ -30,9 +29,8 @@
           </button>
         </div>
         <div style="width: 45%">
-          <p class="small-text-2" style="position: relative;">{{'TARGET_ACCOUNT'|translate}}:</p>
-          <account-picker #receiver [filters]="accountFilters" [showKeyboard]="true"
-            [id]="tx.receiver" [disabled]="loading" (idChange)="tx.receiver = $event">
+          <account-picker #receiver label="TARGET_ACCOUNT"
+            [item]="tx.receiver" [disabled]="loading" (itemChanged)="tx.receiver = $event">
           </account-picker>
         </div>
       </div>

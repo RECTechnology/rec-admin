@@ -10,38 +10,22 @@
     <tl-subheader>
         <div class="center v">
             <div style="padding: 10px">
-                <document-kind-picker [item]="productKindFilter" label="DOCUMENT_KIND"
+                <document-kind-picker [needsNone]="true" [item]="productKindFilter" label="DOCUMENT_KIND"
                     (itemChanged)="selectDocKind($event)"></document-kind-picker>
             </div>
-            <div style="width: 100%" matTooltip="Filter by account" *ngIf="showAccountFilter">
-                <account-picker [disabled]="disableAccountFilter" style="margin: 0" [(id)]="accountFilter"
-                    (idChange)="addAccountIdQuery($event)">
+            <div style="padding: 10px;" matTooltip="Filter by account" *ngIf="showAccountFilter">
+                <account-picker [needsNone]="true" [item]="accountFilter" label="ACCOUNTS"
+                    (itemChanged)="addAccountIdQuery($event)" style="margin: 0">
                 </account-picker>
             </div>
-            <div style="width: 100%" matTooltip="Filter by user" *ngIf="showUserFilter">
-                <user-picker [disabled]="disableUsertFilter" (idChange)="addUserIdQuery($event)" style="margin: 0"
-                    [(id)]="userFilter">
+            <div style="padding: 10px" matTooltip="Filter by user" *ngIf="showUserFilter">
+                <user-picker [needsNone]="true" (itemChanged)="addUserIdQuery($event)" style="margin: 0"
+                    [item]="userFilter" label="USERS">
                 </user-picker>
             </div>
 
-
             <div style="margin-left: 10px;" matTooltip="Filter by status">
-                <button [disabled]="disableStatusFilter" [matMenuTriggerFor]="statusMenu" type="button" mat-button
-                    class="mat-button-menu"
-                    style="text-align: left; margin: 4px 0 4px 10px!important; width: auto; min-width: 1px;line-height: 28px!important; margin-right: 10px!important">
-                    <span style="text-transform: capitalize;">{{(statusFilter || 'Status')|translate}}</span>
-                    <i class="fa fa-caret-down" style="margin-left: 8px;"></i>
-                </button>
-                <mat-menu #statusMenu="matMenu" y-position="below" overlapTrigger="false">
-                    <button (click)="filterStatus(null)" mat-menu-item>
-                        <span style="color: #666; font-size: 12px">{{'None'|translate}}</span>
-                    </button>
-
-                    <button (click)="filterStatus(status)" mat-menu-item *ngFor="let status of STATUSES">
-                        <span
-                            style="color: #666; font-size: 12px; text-transform: capitalize;">{{status|translate}}</span>
-                    </button>
-                </mat-menu>
+                <document-status-selector label="Status" [needsNone]="true" (itemChanged)="filterStatus($event)"></document-status-selector>
             </div>
         </div>
     </tl-subheader>
