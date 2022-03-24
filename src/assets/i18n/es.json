@@ -1289,6 +1289,18 @@
   "REQUIERED_TYPE":"Tipo de offerta requerrido",
   "NEED_DATA":"Se necessitan datos obligatorios",
   "CREATED_OFFER":"Oferta creada",
-  "UPDATED_ACCOUNT":"Cuenta actualizada correctamente!"
+  "UPDATED_ACCOUNT":"Cuenta actualizada correctamente!",
+  "Path is required":"Se requiere ruta",
+  "Delegated_change_id is required":"Se requiere delegado_cambio_id",
+  "No delegated_change found":"No se encontró ningún cambio_delegado",
+  "This transaction block already has csv":"Este bloque de transacción ya tiene csv",
+  "This transaction block already has transaction block data":"Este bloque de transacciones ya tiene datos de bloques de transacciones",
+  "The file is not a CSV":"El archivo no es un CSV",
+  "The file not contain any data":"El archivo no contiene ningún dato.",
+  "Missing required headers":"Faltan encabezados obligatorios",
+  "No valid data found":"No se encontraron datos válidos",
+  "CSV added successfully": "CSV añadido con éxito"
+
+
 
 }

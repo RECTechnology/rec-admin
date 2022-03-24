@@ -1185,5 +1185,15 @@
   "VIEW_ACCOUNT": "Vore el compte",
   "Not filled": "No definit",
   "BALANCE": "Balanç",
-  "OFFER_DELETED": "Oferta esborrada"
+  "OFFER_DELETED": "Oferta esborrada",
+  "Path is required":"Es requereix ruta",
+  "Delegated_change_id is required":"Es requereix delegat_canvi_id",
+  "No delegated_change found":"No es va trobar cap canvi_delegat",
+  "This transaction block already has csv":"Aquest bloc de transacció ja té csv",
+  "This transaction block already has transaction block data":"Aquest bloc de transaccions ja té dades de blocs de transaccions",
+  "The file is not a CSV":"L'arxiu no és un CSV",
+  "The file not contain any data":"L'arxiu no conté cap dada.",
+  "Missing required headers":"Falten encapçalats obligatoris",
+  "No valid data found":"No es van trobar dades vàlides",
+  "CSV added successfully": "CSV afegit amb èxit"
 }

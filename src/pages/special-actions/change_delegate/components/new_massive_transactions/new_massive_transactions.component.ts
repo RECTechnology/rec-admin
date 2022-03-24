@@ -226,7 +226,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
     );
   }
 
-  public newImport() {
+  public newImport() { 
     this.alerts.openModal(CsvUpload, {}).subscribe((resp) => {
       if (resp) {
         this.dataLoading = true;
