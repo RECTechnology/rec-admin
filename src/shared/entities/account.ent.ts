@@ -68,6 +68,7 @@ export interface Account {
   secondaryActivities: any[];
   public_image: string;
   rec_address: string;
+  rezero_b2b_username: string;
   roles: string[];
   schedule: Schedule | string;
   scheduleString: string;

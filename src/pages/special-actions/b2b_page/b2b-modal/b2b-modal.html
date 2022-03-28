@@ -11,7 +11,7 @@
     </div>
    
   <div class="col-lg-6">
-    <input-field style="width: 500px;" [(value)]="username" label="{{'USERNAME' | translate}}" placeholder="{{'A_USERNAME' | translate}}" [disabled]="loading">
+    <input-field *ngIf="this.account && !this.account.rezero_b2b_username" style="width: 500px;" [(value)]="username" label="{{'USERNAME' | translate}}" placeholder="{{'A_USERNAME' | translate}}" [disabled]="loading">
     </input-field>
   </div>
   <button type="button" style="margin-left: 300px!important;margin-top: 30px;margin-bottom: 15px!important; padding-right: 30px;width: 198px; margin-bottom: 14px; padding-right: 10px;  "

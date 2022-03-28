@@ -17,7 +17,7 @@ export class AddB2BModal {
     public disabled: boolean = false;
     public error: string;
     public account: Account;
-    public username = '';
+    public username = null;
     public filter = {"rezero_b2b_access": "not_granted"};
     
 
@@ -35,14 +35,12 @@ export class AddB2BModal {
     public send() {
         this.dialogRef.close({
             accountId:this.account.id,
-            username:this.username
+            username:this.username ?? this.account.rezero_b2b_username
         });
     }
     public setAccount(event) {
         if (event) {
             this.account = event;
-            console.log(event)
-
         }
     }
     public close(): void {
