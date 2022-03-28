@@ -12,16 +12,18 @@
             </ng-template>
             <th *ngIf="itemOptions"></th>
         </tr>
-        <tr *ngFor="let entry of data; let i = index; trackBy: trackByFn" (click)="onClickedRow(entry)" class="{{getRowClass(entry)}}"
-            [ngClass]="{'item-hoverable': !!options.onClick}">
+        <tr *ngFor="let entry of data; let i = index; trackBy: trackByFn" (click)="onClickedRow(entry)"
+            class="{{getRowClass(entry)}}" [ngClass]="{'item-hoverable': !!options.onClick}">
             <td *ngFor="let header of headers; trackBy: trackByFn">
                 <mat-checkbox *ngIf="header.type === 'checkbox'" color="primary" [ngModel]="getEntry(entry, header)"
                     disabled></mat-checkbox>
 
                 <span *ngIf="header.type === 'status'"
-                    [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry, header)}}</span>
+                    [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry,
+                    header)}}</span>
 
-                <code *ngIf="header.type === 'code' && getEntry(entry, header)!= null " (click)="onClickedItemUser(entry)" [matTooltip]="header.tooltip && header.tooltip(entry)"
+                <code *ngIf="header.type === 'code' && getEntry(entry, header)!= null "
+                    (click)="onClickedItemUser(entry)" [matTooltip]="header.tooltip && header.tooltip(entry)"
                     [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry, header)}}</code>
 
                 <a *ngIf="header.type === 'link'" href="javascript:;"
@@ -32,7 +34,8 @@
                     [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{header.prefix}} {{(getEntry(entry, header) || 0) | number}} {{header.suffix}}</code>
 
                 <i *ngIf="header.type === 'date'"
-                    [matTooltip]="header.tooltip ? header.tooltip(entry): getEntry(entry, header)">{{getEntry(entry, header) | date}}</i>
+                    [matTooltip]="header.tooltip ? header.tooltip(entry): getEntry(entry, header)">{{getEntry(entry,
+                    header) | date}}</i>
 
                 <button *ngIf="header.type === 'button'" mat-icon-button (click)="header.buttonAction(entry)"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">
@@ -42,11 +45,13 @@
                 </button>
 
                 <div (click)="$event.stopPropagation()">
-                    <mat-slide-toggle  *ngIf="header.type === 'slidetoggle'" color="primary" [(ngModel)]="entry[header.sort]"
-                    (change)=" header.slideAction(entry, $event)" [matTooltip]="header.tooltip && header.tooltip(entry)">
-                </mat-slide-toggle>
+                    <mat-slide-toggle *ngIf="header.type === 'slidetoggle'" color="primary"
+                        [(ngModel)]="entry[header.sort]" (change)=" header.slideAction(entry, $event)"
+                        [matTooltip]="header.tooltip && header.tooltip(entry)">
+                    </mat-slide-toggle>
                 </div>
-                <div *ngIf="header.type === 'avatar' && getEntry(entry, header).id != null"  (click)="onClickedItemAccount(entry)">
+                <div *ngIf="header.type === 'avatar' && getEntry(entry, header).id != null"
+                    (click)="onClickedItemAccount(entry)">
                     <avatar [account]="getEntry(entry, header)"
                         [imageAccessor]="getEntry(entry, header).company_image ? 'company_image': 'profile_image'"
                         [matTooltip]="header.tooltip && header.tooltip(entry)">
@@ -59,12 +64,13 @@
                     <span>{{getEntry(entry, header)}}</span>
                 </div>
 
-                <span *ngIf="!header.type"
-                    [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry, header)}}</span>
+                <span *ngIf="!header.type" [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry,
+                    header)}}</span>
             </td>
-            <td *ngIf="itemOptions && itemOptions.length && options && options.optionsType === 'menu'">
+            <td *ngIf="itemOptions && itemOptions.length && options && options.optionsType === 'menu'"
+                (click)="$event.stopPropagation()">
                 <button mat-icon-button [matMenuTriggerFor]="optsMenu" *ngIf="" class="icon-btn-small"
-                    style="min-width: 0">
+                    style="min-width: 0" (click)="$event.stopPropagation()">
                     <span class="center h v">
                         <i class="fa fa-ellipsis-v"></i>
                     </span>
@@ -100,7 +106,7 @@
                     </button>
                 </ng-template>
             </td>
-            
+
         </tr>
     </table>
     <div *ngIf="showLoader && loading" class="abs-center center h v bg-white-opaque" style="width: 100%;">
@@ -111,7 +117,8 @@
     <div class="center h" style="width: 100%; padding: 15px 0" *ngIf="!loading && data.length <= 0">
         <p class="small-text-2" style="text-align: center;">{{noItemsMessage|translate}}</p>
     </div>
-    <mat-paginator *ngIf="showPaginator && data.length" [length]="total" [pageSize]="limit" [pageIndex]="pageIndex/limit"
-        (page)="changedPage($event)" [pageSizeOptions]="[10, 25, 100]" showFirstLastButtons>
+    <mat-paginator *ngIf="showPaginator && data.length" [length]="total" [pageSize]="limit"
+        [pageIndex]="pageIndex/limit" (page)="changedPage($event)" [pageSizeOptions]="[10, 25, 100]"
+        showFirstLastButtons>
     </mat-paginator>
 </div>
