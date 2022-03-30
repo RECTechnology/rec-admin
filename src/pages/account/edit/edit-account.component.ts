@@ -58,6 +58,7 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
   }
 
   public ngOnInit() {
+    this.companyService.selectedCompany = null;
     // Register account update, fire getAccount
     this.events.registerEvent('account:update').subscribe(this.loadAccount.bind(this));
 
