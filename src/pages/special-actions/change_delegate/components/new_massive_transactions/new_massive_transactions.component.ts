@@ -90,8 +90,8 @@ export class NewMassiveTransactionsComponent extends PageBase {
 
   }
 
-  public isDeletedOrCreated() {
-    return this.delegate.status == 'created' || this.delegate.status == 'invalid'
+  public canUploadFile() {
+    return this.delegate.status == 'created' 
   }
 
 
