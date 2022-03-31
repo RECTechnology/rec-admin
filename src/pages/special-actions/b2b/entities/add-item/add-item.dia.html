@@ -16,21 +16,30 @@
 
         <div class="row" style="width: 100%">
             <div class="col-lg-4" [class.col-lg-12]="!isProduct">
-                <div class="group-col-left" style="width: 100%">
-                    <span class="small-text-2">{{'Catalan'|translate}}</span>
-                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.name_ca"
-                        placeholder="{{'Catalan'|translate}}" [disabled]="loading" (blur)="check()">
-                </div>
-                <div class="group-col-left" style="width: 100%">
-                    <span class="small-text-2">{{'Spanish'|translate}}</span>
-                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.name_es"
-                        placeholder="{{'Spanish'|translate}}" [disabled]="loading" (blur)="check()">
-                </div>
-                <div class="group-col-left" style="width: 100%">
-                    <span class="small-text-2">{{'English'|translate}}</span>
-                    <input type="text" class="user-input small" style="max-width: 100%" [(ngModel)]="item.name"
-                        placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()">
-                </div>
+                <form [formGroup]="formGroup">
+                    <mat-form-field style="width: 100%; padding: 10px;">
+                        <mat-label>{{"Catalan" | translate}}</mat-label>
+                        <input matInput type="text" [(ngModel)]="item.name_ca" formControlName="name_ca" style="max-width: 100%;"
+                        placeholder="{{'Catalan'|translate}}" [disabled]="loading" (blur)="check()" required>
+                        <mat-error *ngIf="formGroup.get('name_ca').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+                    </mat-form-field>
+        
+                    <mat-form-field class="group-col-left" style="width: 100%; padding: 10px;">
+                        <mat-label>{{"Spanish" | translate}}</mat-label>
+                        <input matInput type="text" [(ngModel)]="item.name_es" formControlName="name_es" style="max-width: 100%"
+                        placeholder="{{'Español'|translate}}" [disabled]="loading" (blur)="check()" required>
+                        <mat-error *ngIf="formGroup.get('name_es').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+                    </mat-form-field>
+                
+                
+                    <mat-form-field class="group-col-left" style="width: 100%; padding: 10px;">
+                        <mat-label>{{"English" | translate}}</mat-label>
+                        <input matInput type="text" [(ngModel)]="item.name" formControlName="name" style="max-width: 100%"
+                        placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()" required>
+                        <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+                    </mat-form-field>
+                </form>
+                      
                 <div *ngIf="!isProduct" style="width: 100%">
                     <activity-picker label="PARENT_ACTIVITY" [item]="secondary_activity" [parent]="'null'" (itemChanged)="selectActivity($event)">
                     </activity-picker>
@@ -100,7 +109,7 @@
 
         <div class="col-lg-12">
             <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
-                <btn-loader (click)="add()" [disabled]="disabled || loading" [loading]="loading"
+                <btn-loader (click)="add()" [disabled]="disabled || loading || formGroup.invalid" [loading]="loading"
                     text="{{'SAVE'|translate}}">
                 </btn-loader>
                 <p *ngIf="error" class="col-error small-text marg-left-10">{{error}}</p>

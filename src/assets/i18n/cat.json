@@ -29,6 +29,7 @@
   "No filter": "Sense filtre",
   "Name & Surnames": "Nom i cognoms",
   "Filters": "Filtres",
+  "FIELD_REQUIRED":"Aquest camp és requerit",
   "Please username, password and captcha are required": "Si us plau nom d'usuari, contrasenya i captcha són obligatoris",
   "CHANGE Responsible ACCOUNT KYC": "CANVIAR EL RESPONSABLE KYC",
   "Are you sure you want be the KYC responsible of this account?": "Estàs segur que vols ser el KYC responsable d'aquest compte?",

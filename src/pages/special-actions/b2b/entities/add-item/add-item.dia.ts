@@ -6,6 +6,7 @@ import { ActivitiesCrud } from 'src/services/crud/activities/activities.crud';
 import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'add-item',
@@ -26,13 +27,19 @@ export class AddItemDia {
     public isProduct = false;
     public isEdit = false;
     public activities = [];
+    public formGroup = new FormGroup({
+        name_ca: new FormControl("", Validators.required),
+        name_es: new FormControl("", Validators.required),
+        name: new FormControl("", Validators.required),
+    })
+
 
     public item: any = {
         default_consuming_by: [],
         default_producing_by: [],
-        name_ca: '',
-        name_es: '',
-        name: '',
+        name_ca: "",
+        name_es:"",
+        name: "",
         activity: Activity,
 
     };
@@ -151,16 +158,22 @@ export class AddItemDia {
         this.secondary_activity = item;
  
       }
+
     public add() {
+        if( this.formGroup.invalid || this.loading || this.disabled ){
+            return;
+        }
         if( this.secondary_activity !=null){
              
             this.item.parent_id = this.secondary_activity.id;
         }
+
         this.item.name_ca = this.item.name_ca.trim();
         this.item.name_es = this.item.name_es.trim();
         this.item.name = this.item.name.trim();     
         this.dialogRef.close({ ...this.item });
     }
+
 
     public close(): void {
         this.dialogRef.close(false);
