@@ -10,7 +10,7 @@
             </tl-header>
 
             <tl-table [loading]="loading" [options]="tableOptions" [sort]="true" [headers]="headers" [data]="sortedData"
-                [itemOptions]="itemOptions" noItemsMessage="There are no neighborhoods yet" [limit]="limit"
+                [itemOptions]="itemOptions" noItemsMessage="NO-NEIGHBOURHOOD" [limit]="limit"
                 [total]="total" (onChangePage)="changedPage($event)" (onSort)="sortData($event)">
             </tl-table>
         </div>
