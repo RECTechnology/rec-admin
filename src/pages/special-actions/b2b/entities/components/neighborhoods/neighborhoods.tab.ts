@@ -25,11 +25,6 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
     public headerOpts: TableListHeaderOptions = { input: true };
     public headers: TlHeader[] = [
         TlHeaders.Id,
-        {
-            sort: 'townhall_code',
-            title: 'Townhall ID',
-            type: 'code',
-        },
         TlHeaders.Name,
         TlHeaders.Description,
     ];

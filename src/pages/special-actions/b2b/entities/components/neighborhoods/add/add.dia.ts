@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/services/user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'add-neighborhoods',
@@ -18,38 +19,30 @@ export class AddNeighbourhoodDia {
     public item: any = {
         description: '',
         name: '',
-        townhall_code: '',
     };
+
+    public formGroup = new FormGroup({
+        name: new FormControl("", Validators.required)
+    })
 
     constructor(
         public dialogRef: MatDialogRef<AddNeighbourhoodDia>,
         public us: UserService,
         public translate: TranslateService,
-    ) {
-        this.check();
-    }
+    ) {}
 
     public ngOnInit() {
         return;
     }
 
     public add() {
+        if( this.formGroup.invalid || this.loading || this.disabled ){
+            return;
+        }
         this.dialogRef.close({ ...this.item });
     }
 
     public close(): void {
         this.dialogRef.close(false);
-    }
-
-    public check() {
-        if (!this.item.name) {
-            this.error = this.translate.instant('INPUT_REQUIRED', {
-                field: 'name',
-            });
-            this.disabled = true;
-        } else {
-            this.error = '';
-            this.disabled = false;
-        }
     }
 }
