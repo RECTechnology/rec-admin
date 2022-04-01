@@ -87,14 +87,45 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
             },
         );
     }
+    
 
-    public editNeighborhood(neighborhood) {
-        this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning')
-            .subscribe((proceed) => {
-                if (proceed) {
-                    this.editItem(neighborhood);
-                }
-            });
+    public editNeighborhood(neighborhood, skip= false) {
+        this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning', skip).subscribe((proceed) => {
+            if (proceed) {
+              this.alerts
+                .openModal(AddNeighbourhoodDia, {
+                  isEdit: true,
+                  isProduct: true,
+                  item: Object.assign({}, neighborhood),
+                  itemType: 'PRODUCT',
+                })
+                .subscribe((updated) => {
+                  if (updated) {
+                    this.loading = true;
+                    this.crud
+                      .update(
+                        neighborhood.id,
+                        {
+                          name: updated.name,
+                          description: updated.description,
+                        },
+                        'en',
+                      )
+                      .subscribe(
+                        (resp) => {
+                          this.alerts.showSnackbar('UPDATED_PRODUCT' + neighborhood.id, 'ok');
+                          this.loading = false;
+                          this.search();
+                        },
+                        (error) => {
+                          this.alerts.showSnackbar(error.message);
+                          this.loading = false;
+                        },
+                      );
+                  }
+                });
+            }
+          });
     }
 
     public addNeighborhood() {
