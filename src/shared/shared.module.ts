@@ -120,6 +120,7 @@ import { SendTransactionsDia} from 'src/pages/special-actions/change_delegate/co
 import { AddB2BModal} from 'src/pages/special-actions/b2b_page/b2b-modal/b2b-modal';
 import { ActiveGroupSelector } from '../components/selectors/active-group-selector/active-group-selector';
 import { RecStatusSelector } from '../components/selectors/rec-status-selector/rec-status-selector';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 const DIALOGS = [
   BussinessDetailsDia,
