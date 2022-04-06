@@ -2,6 +2,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
 import { BaseSelectorComponent } from 'src/bases/base-selector';
 import { Observable, of } from 'rxjs';
+import { AlertsService } from '../../../services/alerts/alerts.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Observable, of } from 'rxjs';
     @Input()user_id;
 
 
-    constructor( private usersCrud: UsersCrud){
+    constructor( private usersCrud: UsersCrud, private alerts: AlertsService){
       super()
     }
 
@@ -24,6 +25,8 @@ import { Observable, of } from 'rxjs';
     }
     selectItem(item) {
       this.updateAccount( item.id );
+      this.alerts.showSnackbar("Active account changed to: " + item.name, "OK")
+      
     }
 
     
