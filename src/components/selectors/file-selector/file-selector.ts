@@ -1,14 +1,24 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { FileUpload } from 'src/dialogs/other/file-upload/file-upload.dia';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
 
 @Component({
     selector: 'file-selector',
     styleUrls: ['./file-selector.scss'],
     templateUrl: './file-selector.html',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => FileSelector),
+            multi: true
+        }
+    ]
 })
-export class FileSelector implements OnInit {
+export class FileSelector implements OnInit, ControlValueAccessor {
+  
     @Input() public label: string = 'Label';
     @Input() public disabled: boolean = false;
     @Input() public changeBtnText: string = 'CHANGE';
@@ -16,6 +26,18 @@ export class FileSelector implements OnInit {
     @Output() public fileChange = new EventEmitter<any>();
     @Output() public error = new EventEmitter<any>();
     @Input() public isAvatar = true;
+    onTouch!: () => void;
+    onChange!:(fileChange: EventEmitter<any>) => void;
+    isTouched: boolean = false;
+   
+    writeValue(obj: any): void {
+    }
+    registerOnChange(fn: () => void): void {
+        this.onChange = fn
+    }
+    registerOnTouched(fn: () => void): void {
+        this.onTouch = fn;
+    }
 
     constructor(
         public alerts: AlertsService,
@@ -29,6 +51,11 @@ export class FileSelector implements OnInit {
 
     public openUpdateImage() {
         if (this.disabled) { return; }
+        if(!this.isTouched){
+            this.isTouched = true;
+            this.onTouch();
+            this.onChange(this.fileChange)
+        }
 
         return this.alerts.openModal(FileUpload, {
             hasSelectedImage: !!this.file,

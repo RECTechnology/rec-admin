@@ -4,6 +4,7 @@ import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { AdminService } from 'src/services/admin/admin.service';
 import { Neighborhood } from '../../../../../shared/entities/translatable/neighborhood.ent';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'tab-location',
@@ -17,12 +18,25 @@ export class LocationTab {
   public accountCopy: any = {};
   public error: string;
   public pageName = 'LOCATION';
+
+  public formGroup = new FormGroup({
+    address_number: new FormControl("", Validators.pattern(/^[0-9]*$/)),
+    zip: new FormControl("", Validators.pattern(/^[0-9]*$/)),
+    street_type: new FormControl(""),
+    street: new FormControl(""),
+    neighbourhood: new FormControl(""),
+    onMap: new FormControl(),
+    latitude: new FormControl(),
+    longitude: new FormControl()
+  })
   
 
   constructor(private utils: UtilsService, public alerts: AlertsService, public as: AdminService) {}
 
   public ngOnInit() {
     this.accountCopy = { ...this.account };
+    this.formGroup.get('street_type').setValue(this.accountCopy.street_type),
+    this.formGroup.get('neighbourhood').setValue(this.accountCopy.street_type)
   }
 
   public changeMapVisibility(id, visible, i) {
@@ -37,14 +51,27 @@ export class LocationTab {
   }
 
   public update() {
-    const changedProps: any = this.utils.deepDiff( this.accountCopy, this.account);
+    if(this.formGroup.invalid || !this.formGroup.dirty){
+      return;
+    }
+    const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
     delete changedProps.activity_main;
+   
     if(changedProps.neighbourhood){
       delete changedProps.neighbourhood;
     }
+    if(this.account.street_type !== "" && changedProps.street_type === null){
+      changedProps.street_type = "";
+    }
+    delete changedProps.name;
+    delete changedProps.prefix;
+    delete changedProps.phone;
+    delete changedProps.email;
+    delete changedProps.cif;
     delete changedProps.kyc_manager;
     delete changedProps.schedule;
     delete changedProps.level;
+    console.log(changedProps)
     this.accountChanged.emit(changedProps);
   }
 }

@@ -1,6 +1,6 @@
 <div style="height: 100%; padding: 20px">
   <mat-card style="padding: 20px">
-    <div class="row" style="margin: 0;">
+    <div [formGroup]="formGroup" class="row" style="margin: 0;">
       <div class="col-lg-12">
         <b class="small-text-3" style="margin: 15px 0 10px 0">{{'BASIC_INFO'|translate}}</b>
         <p class="small-text col-gray-light">
@@ -10,75 +10,89 @@
 
       <!-- name -->
       <div class="col-lg-6 col-sm-12 marg-top-10">
-        <input-field [(value)]="accountCopy.name" label="Name" [disabled]="loading"></input-field>
+        <mat-form-field>
+          <mat-label>{{'Name' | translate}}</mat-label>
+          <input matInput formControlName="name" [(ngModel)]="accountCopy.name"/>
+        </mat-form-field>
       </div>
 
       <!-- Phone -->
       <div class="col-lg-6 col-md-12 col-sm-12 marg-top-10">
         <div class="row">
-          <div class="col-lg-12">
-            <span class="small-text-2">{{'Phone'|translate}}</span>
-          </div>
-          <div class="col-lg-4 col-sm-4">
-            <input-field [(value)]="accountCopy.prefix" type="tel" [disabled]="loading"
-              placeholder="{{'PHONE_PREFIX'|translate}}"></input-field>
-          </div>
-          <div class="col-lg-8 col-sm-8">
-            <input-field [(value)]="accountCopy.phone" type="tel" [disabled]="loading"
-              placeholder="{{'PHONE_NUMBER'|translate}}"></input-field>
-          </div>
+            <mat-form-field class="col-lg-2 col-sm-2">
+              <mat-label>{{'PHONE_PREFIX' | translate}}</mat-label>
+              <input type="text" matInput formControlName="prefix" [(ngModel)]="accountCopy.prefix"/>
+            </mat-form-field>
+            <mat-form-field class="col-lg-10 col-sm-10">
+              <mat-label>{{'PHONE_NUMBER' | translate}}</mat-label>
+              <input type="text" matInput formControlName="phone" [(ngModel)]="accountCopy.phone"/>
+              <mat-error *ngIf="formGroup.get('phone').invalid">Teléfono inválido</mat-error>
+            </mat-form-field>
         </div>
       </div>
 
       <!-- Email -->
-      <div class="col-lg-6 col-sm-12 marg-top-10">
-        <input-field type="email" [(value)]="accountCopy.email" label="Email" [disabled]="loading"></input-field>
-      </div>
+        <mat-form-field class="col-lg-6 col-sm-12 marg-top-10">
+          <mat-label>{{'EMAIL' | translate}}</mat-label>
+          <input type="email" matInput formControlName="email" [(ngModel)]="accountCopy.email"/>
+          <mat-error *ngIf="formGroup.get('email').invalid">Email inválido</mat-error>
+        </mat-form-field>
 
       <!-- Nif -->
-      <div class="col-lg-6 col-sm-12 marg-top-10">
-        <input-field type="text" [(value)]="accountCopy.cif" label="NIF" [disabled]="loading"></input-field>
-      </div>
+        <mat-form-field class="col-lg-6 col-sm-12 marg-top-10">
+          <mat-label>{{'NIF' | translate}}</mat-label>
+          <input type="text" matInput formControlName="cif" [(ngModel)]="accountCopy.cif"/>
+          <mat-error *ngIf="formGroup.get('cif').invalid">NIF inválido</mat-error>
+        </mat-form-field>
 
       <!-- Types -->
       <div class="col-lg-6 col-sm-12 marg-top-10">
         <div class="row">
-          <div class="col-lg-6">
-            <input-field type="select" [value]="accountCopy.type" (valueChange)="setType($event)" [disabled]="false"
-              label="TYPE" [options]="ACCOUNT_TYPES">
-            </input-field>
-          </div>
+            <mat-form-field class="col-lg-6" >
+              <mat-label>{{'TYPE' | translate}}</mat-label>
+              <mat-select (selectionChange)="setType($event.value)" [(ngModel)]="accountCopy.type" formControlName="account_type">
+                <mat-option *ngFor="let account of ACCOUNT_TYPES" [value]="account">{{account}}</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-          <div class="col-lg-6">
-            <input-field *ngIf="accountCopy.type === 'COMPANY'" type="select" [(value)]="accountCopy.subtype"
-              [disabled]="false" label="SUBTYPE" [options]="ACCOUNT_SUB_TYPES_COMPANY">
-            </input-field>
+            <mat-form-field *ngIf="accountCopy.type && accountCopy.type === 'COMPANY'" class="col-lg-6" >
+              <mat-label>{{'SUBTYPE' | translate}}</mat-label>
+              <mat-select (selectionChange)="accountCopy.subtype = $event.value" [(ngModel)]="accountCopy.subtype" formControlName="account_subtype_company">
+                <mat-option *ngFor="let account of ACCOUNT_SUB_TYPES_COMPANY" value="{{account}}">{{account}}</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-            <input-field *ngIf="accountCopy.type === 'PRIVATE'" type="select" [(value)]="accountCopy.subtype"
-              [disabled]="false" label="SUBTYPE" [options]="ACCOUNT_SUB_TYPES_PRIVATE">
-            </input-field>
-          </div>
+            <mat-form-field *ngIf="accountCopy.type && accountCopy.type === 'PRIVATE'" class="col-lg-6" >
+              <mat-label>{{'SUBTYPE' | translate}}</mat-label>
+              <mat-select (selectionChange)="accountCopy.subtype = $event.value" [(ngModel)]="accountCopy.subtype" formControlName="account_subtype_private">
+                <mat-option *ngFor="let account of ACCOUNT_SUB_TYPES_PRIVATE" value="{{account}}">{{account}}</mat-option>
+              </mat-select>
+            </mat-form-field>
         </div>
       </div>
+      
+      <!-- Active -->
+      
+        <mat-checkbox class="col-lg-3 col-sm-6 marg-top-10" style="padding-top: 10px;" color="primary" formControlName="active_account" [(ngModel)]="accountCopy.active" (change)="accountCopy.active = $event.checked"
+          matTooltip="{{'ACCOUNT_ACTIVE_DESC'|translate}}" [disabled]="loading">{{'Account Active' | translate}}
+        </mat-checkbox>
+
+        <mat-form-field class="col-lg-3" style="padding-top: 10px;" >
+          <mat-label>{{'TIER' | translate}}</mat-label>
+          <mat-select [(ngModel)]="accountCopy.level_id" (selectionChange)="accountCopy.level_id = $event.value" formControlName="tier">
+            <mat-option *ngFor="let tier of tiers" [value]="tier.value">{{tier.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
       <!-- Image -->
-      <div class="col-lg-3 col-sm-6 marg-top-10">
-        <file-selector label="Organization Image" [(file)]="accountCopy.company_image"></file-selector>
+      <div class="col-lg-12 col-sm-6 marg-top-10">
+        <file-selector formControlName="image" label="Organization Image" [(file)]="accountCopy.company_image"></file-selector>
       </div>
 
-      <!-- Active -->
-      <div class="col-lg-3 col-sm-6 marg-top-10">
-        <input-field type="checkbox" [(value)]="accountCopy.active" label="Account Active"
-          matTooltip="{{'ACCOUNT_ACTIVE_DESC'|translate}}" [disabled]="loading" placeholder="{{'Active'|translate}}">
-        </input-field>
-
-        <input-field type="select" [(value)]="accountCopy.level_id" [disabled]="false" label="Tier" [options]="tiers">
-        </input-field>
-      </div>
 
       <div class="col-lg-12 marg-top-10">
         <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
-          <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+          <btn-loader (click)="update()" [disabled]="loading || !formGroup.dirty || formGroup.invalid" [loading]="loading" text="{{'Update'|translate}}">
           </btn-loader>
           <p *ngIf="error">{{error}}</p>
         </div>

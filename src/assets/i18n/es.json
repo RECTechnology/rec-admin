@@ -707,6 +707,8 @@
   "Password must contain a symbol": "La contraseña debe contener un símbolo",
   "Contain a uppercase": "Contener mayúsculas",
   "Contain a lowercase": "Contener una minúscula",
+  "NUMBER_BELOW_0":"Solo número positivos",
+  "None":"Ninguno",
   "Contain a number": "Contener un número",
   "RECHARGE_IS_INSTANT": "La recarga es instantanea",
   "Contain a symbol": "Contener un símbolo",

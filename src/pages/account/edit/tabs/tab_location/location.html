@@ -1,6 +1,6 @@
 <div style="height: 100%; padding: 20px">
   <mat-card style="padding: 20px">
-    <div class="row" style="margin: 0;">
+    <div [formGroup]="formGroup" class="row" style="margin: 0;">
       <div class="col-lg-12">
         <b class="small-text-3" style="margin: 15px 0 8px 0!important">{{'LOCALIZATION'|translate}}</b>
         <p class="small-text col-gray-light">
@@ -16,29 +16,31 @@
 
           <div class="col-lg-6">
             <div class="group-col-left">
-              <street-type-selector label="STREET_TYPE" [disabled]="loading" [needsNone]="true" (itemChanged)="accountCopy.street_type = $event"
-              [item]="accountCopy.street_type"></street-type-selector>
+              <street-type-selector formControlName="street_type" label="STREET_TYPE" [disabled]="loading" [needsNone]="true" (itemChanged)="accountCopy.street_type = $event"
+              [item]="accountCopy.street_type" required></street-type-selector>
             </div>
           </div>
-          <div class="col-lg-6">
-            <input-field type="text" [(value)]="accountCopy.street" label="Street" [disabled]="loading">
-            </input-field>
-          </div>
+            <mat-form-field class="col-lg-6" style="width: 100%;">
+              <mat-label>{{'Street' | translate}}</mat-label>
+              <input matInput type="text" placeholder="{{'Street' | translate}}" [(ngModel)]="accountCopy.street" formControlName="street">
+            </mat-form-field>
+      
+            <mat-form-field class="col-lg-6" style="width: 70%; padding: 0 15px;">
+              <mat-label>{{'NUMBER' | translate}}</mat-label>
+              <input matInput type="text" placeholder="{{'NUMBER'| translate}}" [(ngModel)]="accountCopy.address_number" formControlName="address_number">
+              <mat-error *ngIf="formGroup.get('address_number').invalid">{{'NUMBER_BELOW_0' | translate}}</mat-error>
+            </mat-form-field>
 
-          <div class="col-lg-6">
-            <input-field type="number" [(value)]="accountCopy.address_number" label="NUMBER" [disabled]="loading">
-            </input-field>
-          </div>
-
-          <div class="col-lg-6">
-            <input-field type="number" [(value)]="accountCopy.zip" label="ZIP" [disabled]="loading">
-            </input-field>
-          </div>
+            <mat-form-field class="col-lg-6" style="width: 100%;">
+              <mat-label>{{'ZIP' | translate}}</mat-label>
+              <input matInput type="text" placeholder="{{'ZIP' | translate}}" [(ngModel)]="accountCopy.zip" formControlName="zip">
+              <mat-error *ngIf="formGroup.get('zip').invalid">{{'NUMBER_BELOW_0' | translate}}</mat-error>
+            </mat-form-field>
 
           <div class="col-lg-6">
             <div class="group-col-left">
-              <neighbourhood-selector label="NEIGHBOURHOOD" [disabled]="loading" [needsNone]="true"
-              (itemChanged)="accountCopy.neighbourhood_id = $event.id" [item]="accountCopy.neighbourhood">
+              <neighbourhood-selector formControlName="neighbourhood" label="NEIGHBOURHOOD" [disabled]="loading" [needsNone]="true"
+              (itemChanged)="accountCopy.neighbourhood_id = $event ? $event.id : null" [item]="accountCopy.neighbourhood">
               </neighbourhood-selector>
             </div>
           </div>
@@ -50,14 +52,14 @@
         <div class="group-col-left">
           <b class="small-text-3" style="margin: 15px 0 10px 0">{{'Coordenates'|translate}}</b>
           <div class="row">
-            <div class="col-lg-6">
-              <input-field type="number" [(value)]="accountCopy.latitude" label="Latitude" [disabled]="loading">
-              </input-field>
-            </div>
-            <div class="col-lg-6">
-              <input-field type="number" [(value)]="accountCopy.longitude" label="Longitude" [disabled]="loading">
-              </input-field>
-            </div>
+              <mat-form-field class="col-lg-6" style="width: 100%;">
+                <mat-label>{{'Latitude' | translate}}</mat-label>
+                <input matInput type="number" placeholder="{{'Latitude' | translate}}" [(ngModel)]="accountCopy.latitude" formControlName="latitude">
+              </mat-form-field>
+              <mat-form-field class="col-lg-6" style="width: 100%;">
+                <mat-label>{{'Longitude' | translate}}</mat-label>
+                <input matInput type="number" placeholder="{{'Longitude' | translate}}" [(ngModel)]="accountCopy.longitude" formControlName="longitude">
+              </mat-form-field>
           </div>
         </div>
       </div>
@@ -69,7 +71,7 @@
             </div>
             <div class="col-lg-12">
               <div class="group-col-left">
-                <mat-slide-toggle color="primary" [disabled]="loading" [(ngModel)]="accountCopy.on_map"
+                <mat-slide-toggle formControlName="onMap" color="primary" [disabled]="loading" [(ngModel)]="accountCopy.on_map"
                   (change)="changeMapVisibility(accountCopy.id, $event, 0)">
                 </mat-slide-toggle>
               </div>
@@ -79,7 +81,7 @@
 
       <div class="col-lg-12">
         <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
-          <btn-loader (click)="update()" [disabled]="loading" [loading]="loading" text="{{'Update'|translate}}">
+          <btn-loader (click)="update()" [disabled]="loading || formGroup.invalid || !formGroup.dirty" [loading]="loading" text="{{'Update'|translate}}">
           </btn-loader>
           <p *ngIf="error">{{error}}</p>
         </div>

@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, forwardRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BaseSelectorComponent } from 'src/bases/base-selector';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
     selector: 'street-type-selector',
@@ -8,8 +9,16 @@ import { BaseSelectorComponent } from 'src/bases/base-selector';
         `:host{ display: block;width: 100%; }`,
     ],
     templateUrl: './street-selector.html',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => StreetTypeSelector),
+            multi: true
+        }
+    ]
+    
 })
-export class StreetTypeSelector extends BaseSelectorComponent {
+export class StreetTypeSelector extends BaseSelectorComponent implements ControlValueAccessor{
     public streetTypes: any[] = [
         'alameda',
         'avenida',
@@ -31,6 +40,17 @@ export class StreetTypeSelector extends BaseSelectorComponent {
         'via',
     ];
     public initialStreet: string = 'calle';
+    onChange!:(itemChanged: EventEmitter<any>) => void;
+    writeValue(street: string): void {
+        if(street){
+            this.selectItem(street);
+        }
+    }
+    registerOnChange(fn: () => void): void {
+        this.onChange= fn;
+    }
+    registerOnTouched(fn: () => void): void {
+    }
     
     constructor(){
         super()
@@ -40,5 +60,6 @@ export class StreetTypeSelector extends BaseSelectorComponent {
         return of([]);
         
       }
+
    
 }
