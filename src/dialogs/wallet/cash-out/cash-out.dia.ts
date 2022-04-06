@@ -54,7 +54,7 @@ export class CashOutDia extends BaseDialog {
     if (!this.tx.receiver) {
       return this.validationErrors.push({ property: 'Origin Account', message: 'Origin account is required' });
     } else if (!this.tx.sender) {
-      return this.validationErrors.push({ property: 'Target Account', message: 'Target account is required' });
+      return this.validationErrors.push({ property: 'Target Account' , message: 'Target account is required' });
     }
 
     this.loading = true;

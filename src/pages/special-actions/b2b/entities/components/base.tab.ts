@@ -115,7 +115,7 @@ export abstract class EntityTabBase<T> {
         }
 
         this.loading = true;
-        this.alerts.confirmDeletion(this.entityName, `(${item.name || item.code})`)
+        this.alerts.confirmDeletion(this.entityName, `(${item.name || item.code || ""})`)
             .subscribe((confirm) => {
                 if (!confirm) {
                     this.loading = false;

@@ -71,7 +71,7 @@ export class AddItemDia {
     public ngOnChanges() {
       }
 
-    public addedSubscriber(sub, message = 'Added activity') {
+    public addedSubscriber(sub, message = 'ADDED_ACTIVITY') {
         sub.subscribe(
             (resp) => {
                 this.alerts.showSnackbar(message, 'ok');

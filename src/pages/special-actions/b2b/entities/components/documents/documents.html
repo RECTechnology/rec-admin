@@ -8,23 +8,23 @@
         </button>
     </tl-header>
     <tl-subheader>
-        <div class="center v">
-            <div style="padding: 10px">
+        <div class="center v" >
+            <div style="padding: 10px" matTooltip="{{'Filter by document_kind' | translate}}">
                 <document-kind-picker [needsNone]="true" [item]="productKindFilter" label="DOCUMENT_KIND"
                     (itemChanged)="selectDocKind($event)"></document-kind-picker>
             </div>
-            <div style="padding: 10px;" matTooltip="Filter by account" *ngIf="showAccountFilter">
+            <div style="padding: 10px;" matTooltip="{{'Filter by account' | translate}}" *ngIf="showAccountFilter">
                 <account-picker [needsNone]="true" [item]="accountFilter" label="ACCOUNTS"
                     (itemChanged)="addAccountIdQuery($event)" style="margin: 0">
                 </account-picker>
             </div>
-            <div style="padding: 10px" matTooltip="Filter by user" *ngIf="showUserFilter">
+            <div style="padding: 10px" matTooltip="{{'Filter by user' | translate}}" *ngIf="showUserFilter">
                 <user-picker [needsNone]="true" (itemChanged)="addUserIdQuery($event)" style="margin: 0"
                     [item]="userFilter" label="USERS">
                 </user-picker>
             </div>
 
-            <div style="margin-left: 10px;" matTooltip="Filter by status">
+            <div style="margin-left: 10px;" matTooltip="{{'Filter by status' | translate}}">
                 <document-status-selector label="Status" [needsNone]="true" (itemChanged)="filterStatus($event)"></document-status-selector>
             </div>
         </div>
