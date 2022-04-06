@@ -22,7 +22,8 @@ export class AddNeighbourhoodDia {
     };
 
     public formGroup = new FormGroup({
-        name: new FormControl("", Validators.required)
+        name: new FormControl("", [Validators.required, this.noWhitespaceValidator]),
+        description: new FormControl("")
     })
 
     constructor(
@@ -31,12 +32,18 @@ export class AddNeighbourhoodDia {
         public translate: TranslateService,
     ) {}
 
+    public noWhitespaceValidator(control: FormControl) {
+        const isWhitespace = (control.value || '').trim().length === 0;
+        const isValid = !isWhitespace;
+        return isValid ? null : { 'whitespace': true };
+    }
+
     public ngOnInit() {
         return;
     }
 
     public add() {
-        if( this.formGroup.invalid || this.loading || this.disabled ){
+        if( this.formGroup.invalid || this.loading || this.disabled || !this.formGroup.dirty ){
             return;
         }
         this.dialogRef.close({ ...this.item });

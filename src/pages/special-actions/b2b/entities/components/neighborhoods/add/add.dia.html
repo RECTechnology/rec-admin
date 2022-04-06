@@ -16,29 +16,29 @@
 
         <div class="row" style="width: 100%">
             <div class="col-lg-12">
-                <div>
-                    
-                </div>
                 <div [formGroup]="formGroup" class="group-col-left" style="width: 100%; padding-bottom: 5px;">
                     <mat-form-field>
                         <mat-label>{{'Name' | translate}}</mat-label>
-                        <input matInput placeholder="{{'Name' | translate}}" [(ngModel)]="item.name" formControlName="name" required>
+                        <input matInput placeholder="{{'Name' | translate}}" [(ngModel)]="item.name"
+                            formControlName="name" required>
                         <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
-                      </mat-form-field>
-                </div>
-                <div class="group-col-left" style="width: 100%; padding-bottom: 5px;">
-                    <mat-form-field>
-                        <mat-label>{{'Description' | translate}}</mat-label>
-                        <input matInput placeholder="{{'Description' | translate}}" [(ngModel)]="item.description">
-                      </mat-form-field>
+                    </mat-form-field>
+
+                    <div class="group-col-left" style="width: 100%; padding-bottom: 5px;">
+                        <mat-form-field>
+                            <mat-label>{{'Description' | translate}}</mat-label>
+                            <input matInput formControlName="description" placeholder="{{'Description' | translate}}"
+                                [(ngModel)]="item.description">
+                        </mat-form-field>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="col-lg-12">
             <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
-                <btn-loader (click)="add()" [disabled]="disabled || loading || formGroup.invalid" [loading]="loading"
-                    text="{{'SAVE'|translate}}">
+                <btn-loader (click)="add()" [disabled]="disabled || loading || formGroup.invalid || !formGroup.dirty"
+                    [loading]="loading" text="{{'SAVE'|translate}}">
                 </btn-loader>
                 <p *ngIf="error" class="col-error small-text marg-left-10">{{error}}</p>
             </div>
