@@ -25,8 +25,7 @@ import { AlertsService } from '../../../services/alerts/alerts.service';
     }
     selectItem(item) {
       this.updateAccount( item.id );
-      this.alerts.showSnackbar("Active account changed to: " + item.name, "OK")
-      
+      this.alerts.showSnackbar("Active account changed", "OK")
     }
 
     
