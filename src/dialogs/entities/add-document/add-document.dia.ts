@@ -10,6 +10,7 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { LemonwayDocumentCrud } from 'src/services/crud/lemonway_documents/lemonway_documents';
 import * as moment from 'moment';
 import { User } from 'src/shared/entities/user.ent';
+import { AccountsCrud } from '../../../services/crud/accounts/accounts.crud';
 
 @Component({
   selector: 'add-document',
@@ -21,6 +22,7 @@ export class AddDocumentDia extends BaseDialog {
   public status_text = '';
   public isUserSelectorEnabled: Boolean = false;
   public isAccountSelectorEnabled: Boolean = false;
+  public lwKind: Boolean = false;
   public user: User = new User();
   public item: Document = {
     name: '',
@@ -50,16 +52,24 @@ export class AddDocumentDia extends BaseDialog {
     public docCrud: DocumentCrud,
     public lemonDocCrud: LemonwayDocumentCrud,
     public dkCrud: DocumentKindsCrud,
+    public accountCrud: AccountsCrud
   ) {
     super();
   }
 
   public ngOnInit() {
     this.item.account_id = this.item.account ? this.item.account.id : this.item.account_id;
+    if(this.item.account_id){
+      this.accountCrud.find(this.item.account_id)
+      .subscribe( account => {
+        this.item.account = account.data;
+      })
+    }
     this.item.kind_id = this.item.kind && this.item.kind.id;
     this.itemCopy = Object.assign({}, this.item);
     //this.user= Object.assign({}, item.user);
     this.isLemon = this.item.kind && Object.prototype.hasOwnProperty.call(this.item.kind, 'lemon_doctype');
+    console.log(this.item)
   }
 
   public setUser($event) {
@@ -89,6 +99,12 @@ export class AddDocumentDia extends BaseDialog {
 
   public kindChanged($event) {
     this.item.kind = $event;
+    if(this.item.kind){
+      this.item.kind.lemon_doctype ? this.lwKind = true : this.lwKind = false;
+    }else {
+      this.lwKind = false
+    }
+    console.log(this.lwKind)
   }
 
   public getCrud(data) {

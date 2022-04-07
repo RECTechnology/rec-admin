@@ -13,9 +13,14 @@
       <input-field [(value)]="item.name" label="Name" [disabled]="loading"></input-field>
     </div>
 
+    <div class="col-lg-12 space-between" matTooltip="{{'Filter by document_kind' | translate}}">
+      <document-kind-picker [needsNone]="true" [(item)]="item.kind" (itemChanged)="kindChanged($event)" label="DOCUMENT_KIND">
+      </document-kind-picker>
+    </div>
+
     <div class="col-lg-12" *ngIf="!disableAccountSelector" matTooltip="{{'Filter by account' | translate}}">
       <div class="group-col-left space-between" *ngIf="isEdit; else elseBlock" style="width :100%">
-        <div *ngIf="item.account_id != null">
+        <div *ngIf="item.account_id != null;">
           <account-picker label="ACCOUNTS" [needsNone]="true" [disabled]="loading || disableAccountSelector || isEdit " [(item)]=" item.account"
             (itemChanged)="setAccount($event);">
           </account-picker>
@@ -28,7 +33,7 @@
         </account-picker>
       </ng-template>
     </div>
-    <div class="col-lg-12" style= "padding-bottom: 10px;" matTooltip="{{'Filter by user' | translate}}">
+    <div *ngIf="!lwKind" class="col-lg-12" style= "padding-bottom: 10px;" matTooltip="{{'Filter by user' | translate}}">
       <div class="group-col-left space-between" *ngIf="isEdit; else elseBlock" style="width :100%">
         <div *ngIf="item.user_id != null">
           <user-picker label="USERS" [needsNone]="true" [(item)]="item.user" [disabled]="isEdit" (itemChanged)="setUser($event);">
@@ -41,17 +46,12 @@
       </ng-template>
     </div>
 
-    <div class="col-lg-12 space-between" matTooltip="{{'Filter by document_kind' | translate}}">
-      <document-kind-picker [needsNone]="true" [(item)]="item.kind" (itemChanged)="kindChanged($event)" label="DOCUMENT_KIND">
-      </document-kind-picker>
-    </div>
-
     <div class="col-lg-12 " *ngIf="!isLemon" style="padding-top: 15px;" matTooltip="{{'Filter by status' | translate}}">
       <rec-status-selector label="Status" (itemChanged)="setType($event)"></rec-status-selector>
     </div>
 
-    <div class="col-lg-12" style="padding-top: 20px;" *ngIf="!isLemon">
-      <input-field [(value)]="item.status_text" label="{{'status_text'| translate}}" [disabled]="loading"
+    <div *ngIf="!lwKind" class="col-lg-12" style="padding-top: 20px;">
+      <input-field *ngIf="!isLemon" [(value)]="item.status_text" label="{{'status_text'| translate}}" [disabled]="loading"
         (valueChange)="changeStatusText($event)"></input-field>
     </div>
 
