@@ -92,7 +92,7 @@ export class EditOfferDia {
 
     public checkPercentageData() {
         this.discount_percent.markAsTouched();
-        return this.item.discount != null;
+        return this.item.discount_percent != null;
     }
 
     public checkClasicData() {
