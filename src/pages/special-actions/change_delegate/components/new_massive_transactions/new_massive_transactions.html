@@ -73,7 +73,7 @@
         <code>{{delegate && delegate.data && delegate.data.length}}</code>
 
         <a class="label"> {{'TOTAL_IMPORT'|translate}}</a>
-        <code>{{totalImport|number:'':'es-ES'  }}</code>
+        <code>{{totalImport/100|number:'1.2':'es-ES'  }}</code>
 
         <a class="label"> {{'WARNINGS'|translate}}</a>
         <code>{{warnings}}</code>
@@ -87,7 +87,7 @@
         style="margin-top: 10px;margin-bottom: 10px; margin-left: 5px;margin-left: 15px ">
         <a class="label">
           {{'SEND_TOTAL_IMPORT'|translate}}</a>
-        <code>{{(totalImportSended/1000000) | number:'2.2':'es-ES'}}</code>
+        <code>{{(totalImportSended/1e8) | number:'1.2':'es-ES'}}</code>
 
         <a class="label"> {{'TX_SENDED'|translate}}</a>
         <code>{{successTx}}</code>
@@ -145,7 +145,7 @@
                 {{data.account.name}} (<a routerLink="/accounts/{{data.account.id}}">{{data.account.id}}</a>)
               </span>
             </td>
-            <td><code>{{data.amount | number:'':'es-ES' }} R</code></td>
+            <td><code>{{data.amount/100 | number:'1.2':'es-ES' }} R</code></td>
             <td>
               <span *ngIf="data.status">
                 {{data.status}} (<a routerLink="/accounts/{{data.account.id}}">{{data.account.id}}</a>)

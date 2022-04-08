@@ -169,11 +169,12 @@ export class NewMassiveTransactionsComponent extends PageBase {
     this.offset = this.limit * $event.pageIndex;
     this.getDelegateData();
   }
+  
 
   public goToLog() {
-    this.router.navigate(['/txs_blocks/massive/' + this.idOrNew + '/logs'], {
-      queryParams: { id: this.idOrNew }
-    });
+    this.router.navigate([]).then(result => {
+      window.open('/txs_blocks/massive/' + this.idOrNew + '/logs?id=' + this.idOrNew, '_blank');
+    })
   }
 
   public openSendTxsModal() {

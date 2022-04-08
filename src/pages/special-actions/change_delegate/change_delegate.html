@@ -47,7 +47,7 @@
             <td> <b>{{change.name}}</b> </td>
             <td> <i>{{change.type | translate }}</i> </td>
             <td>
-              <code>{{change.statistics.scheduled.rec_to_be_issued/1e8}} rec</code>
+              <code>{{change.statistics.scheduled.rec_to_be_issued/1e8 | number:'1.2':'es-ES'}} rec</code>
             </td>
             <td>
               <i>{{change.created | date: 'medium'}}</i>
