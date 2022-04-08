@@ -63,6 +63,9 @@ export class LocationTab {
     if(this.account.street_type !== "" && changedProps.street_type === null){
       changedProps.street_type = "";
     }
+    if(changedProps.neighbourhood_id === null){
+      changedProps.neighbourhood_id = "";
+    }
     delete changedProps.name;
     delete changedProps.prefix;
     delete changedProps.phone;
