@@ -39,7 +39,7 @@
 
           <div class="col-lg-6">
             <div class="group-col-left">
-              <neighbourhood-selector formControlName="neighbourhood" label="NEIGHBOURHOOD" [disabled]="loading" [needsNone]="true"
+              <neighbourhood-selector formControlName="neighbourhood" label="NEIGHBOURHOOD" [disabled]="loading"
               (itemChanged)="accountCopy.neighbourhood_id = $event ? $event.id : null" [item]="accountCopy.neighbourhood">
               </neighbourhood-selector>
             </div>
