@@ -2,23 +2,29 @@
 </modal-header>
 
 <div class="padd-20 modal-body">
-  <div class="row">
-    <div class="col-lg-12 marg-bottom-10">
-      <input-field type="select" [(value)]="delegateType" label="Type" [options]="TYPES">
-      </input-field>
-    </div>
+  <div [formGroup]="formGroup" class="row">
 
-    <div class="col-lg-12 marg-bottom-10">
-      <input-field type="text" [(value)]="name" label="Concept">
-      </input-field>
-    </div>
+      <mat-form-field class="col-lg-12 marg-bottom-10">
+        <mat-label>{{'Type' | translate}}</mat-label>
+        <mat-select [(ngModel)]="delegateType" formControlName="delegateType">
+          <mat-option *ngFor="let type of TYPES" [value]="type">
+            {{type | translate}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field  class="col-lg-12 marg-bottom-10">
+        <mat-label>{{'Concept' | translate}}</mat-label>
+        <input formControlName="concept" matInput [(ngModel)]="name"/>
+        <mat-error *ngIf="this.formGroup.get('concept').invalid">{{'CONCEPT_LENGTH' | translate: ({limit: this.limit})}}</mat-error>
+      </mat-form-field>
 
    
 
     <div class="col-lg-12">
       <div class="group-row-left padd-20" style="justify-content: flex-end">
         <p class="col-error small-text" *ngIf="error" style="margin-right: 10px!important">{{error}}</p>
-        <button type="button" style="margin-right: 10px;" mat-raised-button color="primary" name="button"
+        <button [disabled]="this.formGroup.invalid" type="button" style="margin-right: 10px;" mat-raised-button color="primary" name="button"
           (click)="newChange()">
           <p class="small-text-2">{{'CREATE'|translate}}</p>
         </button>

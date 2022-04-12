@@ -1,75 +1,73 @@
 <modal-header title="{{'SEND_CONFIRMATION'|translate}}" (click)="close()"></modal-header>
 
 
-<div class="group-col-left center v " style="width: 529px; padding: 0!important">
-  <div class=" group-row-left center h v " style="margin-top: 20px;" >
-    <div class="group-col-left " style="margin-right: 40px;">
-
-      <a class="label" style="font-size: 12;margin-bottom: 15px;">
+<div class="group-col-left center v  container" style="width: 529px; padding: 25px; overflow: hidden!important;">
+    <div class="row" style="width:100%; margin-bottom: 5px;">
+      <a class="label col-4" style="font-size: 12;">
         {{'TOTAL_TRANSACTIONS'|translate}}:</a>
-  
-      <a class="label" style="font-size: 12;margin-bottom: 15px;">
-        {{'SEND_TYPE'|translate}}:</a>
-  
-      <a class="label" style="font-size: 12;margin-bottom: 15px;">
-        {{'TOTAL_IMPORT'|translate}}:</a>
-  
-      <a class="label" style="font-size: 12;margin-bottom: 15px;">
-        {{'WARNINGS'|translate}}:</a>
-  
-      <a class="label" style="font-size: 12;margin-bottom: 15px;">
-        {{'WHEN'|translate}}:</a>
-  
-      <a class="label" style="font-size: 12;margin-bottom: 15px;">
-        {{'CONCEPT'|translate}}:</a>
-  
-    </div>
-    <div class="group-col-left " style="margin-bottom:17px;margin-top: 17px!important;" >
-      <p class=" col-blue" style="margin-bottom: 15px!important;">
+      <p class=" col-blue col-8">
         {{totalTransactions}}
       </p>
-      <div style="width: 200px;">
+    </div>
 
-        <p class=" col-blue" style="margin-bottom: 15px!important;">
-          {{sendType|translate}}
-        </p>
-      </div>
-      
-      <p class=" col-blue" style="margin-bottom: 13px!important;">
-        {{totalImport}}
+    <div class="row" style="width:100%; margin-bottom: 5px;">
+      <a class="label col-4" style="font-size: 12;">
+        {{'SEND_TYPE'|translate}}:</a>
+      <p class=" col-blue col-8">
+        {{sendType|translate}}
       </p>
-      <p class=" col-blue" style="margin-bottom: 13px!important;">
+    </div>
+
+    <div class="row" style="width:100%; margin-bottom: 5px;">
+      <a class="label col-4" style="font-size: 12;">
+        {{'TOTAL_IMPORT'|translate}}:</a>
+      <p class=" col-blue col-8">
+        {{totalImport/1000 | number:'1.2':'es-Es'}}
+      </p>
+    </div>
+
+    <div class="row" style="width:100%; margin-bottom: 5px;">
+      <a class="label col-4" style="font-size: 12;">
+        {{'WARNINGS'|translate}}:</a>
+      <p class=" col-blue col-8">
         {{warnings}}
       </p>
-      <p *ngIf="dateSend else noData" class=" col-blue" style="margin-bottom: 13px!important">
+    </div>
+
+    <div class="row" style="width:100%; margin-bottom: 5px;">
+      <a class="label col-4" style="font-size: 12;">
+        {{'WHEN'|translate}}:
+      </a>
+      <p class="col-blue col-8" *ngIf="dateSend else noData">
         {{dateSend}}
       </p>
-      <ng-template #noData>
-        <p class=" col-blue" style="margin-bottom: 13px!important">
 
+      <ng-template #noData>
+        <p class=" col-blue col-8">
           {{'NOW'|translate}}
         </p>
       </ng-template>
-      <div *ngIf="concept != null else noConcept" style="width: 200px;">
-        <p class=" col-blue" style="margin-bottom: 15px!important;">
-          {{concept}}
-        </p>
-      </div>
-      <ng-template #noConcept>
-        <div  style="width: 200px;">
-          <p class=" col-blue" style="margin-bottom: 15px!important;">
-            {{"NO_CONCEPT" |translate}}
-          </p>
-        </div>
-      </ng-template>
-     
     </div>
-  </div>
-  <button   type="button" style="margin-left: 200px!important;margin-top: 30px;margin-bottom: 15px!important; padding-right: 30px;width: 198px; margin-bottom: 14px; "
-      color="primary" mat-raised-button name="button" (click)="send()">
-      <mat-icon>send</mat-icon>
-      {{'SEND_TRANSACTIONS'|translate}}
+
+    <div class="row" style="width:100%; margin-bottom: 5px;">
+      <a class="label col-4" style="font-size: 12;">
+        {{'CONCEPT'|translate}}:</a>
+      <p style="max-width: 50%;overflow-wrap: break-word;" class="col-blue col-8"
+        *ngIf="concept !=null else noConcept">
+        {{concept}}
+      </p>
+      <ng-template #noConcept>
+        <p style="max-width: 50%;" class=" col-blue col-8">
+          {{"NO_CONCEPT" |translate}}
+        </p>
+      </ng-template>
+    </div>
+  <button type="button"
+    style="margin-left: 200px!important;margin-top: 30px;margin-bottom: 15px!important; padding-right: 30px;width: 198px; margin-bottom: 14px; "
+    color="primary" mat-raised-button name="button" (click)="send()">
+    <mat-icon>send</mat-icon>
+    {{'SEND_TRANSACTIONS'|translate}}
   </button>
- 
+
 
 </div>

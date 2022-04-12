@@ -15,6 +15,7 @@ import { ActivateResume } from '../activate-resume/activate-resume.dia';
 import { DatePipe } from '@angular/common';
 import { SendTransactionsDia } from './send_transaction_modal/send_transactions_modal';
 import { TranslateService } from '@ngx-translate/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'new-massive-transactions',
@@ -44,9 +45,13 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public warnings: any;
   public scheduleDelivery = false;
   public scheduleDeliveryDate: String;
+  public limit = 72;
   public isEditName = false;
   public type: any;
   scheduleDeliveryDateCopy: String;
+  public formGroup = new FormGroup({
+    transactions_name: new FormControl("", Validators.maxLength(this.limit))
+  })
 
   constructor(
     public adminService: AdminService,
@@ -151,6 +156,9 @@ export class NewMassiveTransactionsComponent extends PageBase {
   }
 
   public saveEditConcept() {
+    if(this.formGroup.invalid){
+      return;
+    }
     this.changeCrud.editConcept(this.idOrNew, this.transactions_name).subscribe((resp) => {
       this.alerts.showSnackbar("EDITED_CONCEPT");
     });

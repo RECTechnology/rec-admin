@@ -10,12 +10,13 @@
           {{type|translate}}
           <code> {{status}}</code>
         </p>
-        <div class="center v">
-          <input type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="!isEditName"
-            placeholder="transactions name" style="margin: 0; padding: 4px 6px; max-width: 100%;width: 100%!important;">
+        <div [formGroup]="formGroup" class="center v">
+          <input formControlName = "transactions_name"type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="!isEditName"
+            placeholder="transactions_name" style="margin: 0; padding: 4px 6px; max-width: 100%;width: 100%!important;"><br>
+            <mat-error *ngIf="this.formGroup.get('transactions_name').invalid"><small>{{'CONCEPT_LENGTH' | translate: ({limit: this.limit})}}</small></mat-error>
 
           <div  *ngIf="delegate.status == 'draft' || delegate.status == 'pending_validation' || delegate.status == 'created' ">
-            <button mat-icon-button [disabled]="loading" matTooltip="{{'SAVE'|translate}}" *ngIf="isEditName"
+            <button mat-icon-button [disabled]="loading || this.formGroup.invalid" matTooltip="{{'SAVE'|translate}}" *ngIf="isEditName"
               (click)="saveEditConcept()">
               <i class="fa fa-save" *ngIf="!loading"></i>
               <div class="center h v">

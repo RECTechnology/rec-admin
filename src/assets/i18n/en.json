@@ -628,6 +628,7 @@
   "TRIED": "Tried",
   "TIMES": ".times",
   "DISABLE_USER": "DISABLE USER",
+  "CONCEPT_LENGTH":"Character limit exceeded ({{limit}})",
   "SURE_DISABLE_USER": "Are you sure you want to disable user {{user}}",
   "Is lemonway doc type?":"Id lemonway doc type?",
   "Lemonway doc type":"Lemonway doc type",

@@ -859,6 +859,7 @@
   "EMPRESA_ESTATUTOS_ESCR": "Estatutos o escrituras.",
   "EMPRESAS": "Empresas",
   "AUTONOMOS": "Autonomos",
+  "CONCEPT_LENGTH":"Límite de caracteres excedido ({{limit}})",
   "AUTONOMO_DNI_DELANTE": "DNI completo o solo la primera cara.",
   "AUTONOMO_DNI_DETRAS": "DNI segunda cara, si hay.",
   "AUTONOMO_RECIVO_BANCO": "Recibo del banco con el IBAN y el nombre del titular",

@@ -13,6 +13,7 @@ import { CsvUpload } from './components/csv-upload/csv-upload.dia';
 import { ActivateResume } from './components/activate-resume/activate-resume.dia';
 import { CreateTXsBlockChange } from './components/create_txs_block_change/create_txs_block_change.dia';
 import { NewMassiveTransactionsComponent } from './components/new_massive_transactions/new_massive_transactions.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const profileRoutes: Routes = [
   {
@@ -58,6 +59,7 @@ const profileRoutes: Routes = [
     BrowserModule,
     FormsModule,
     TranslateModule.forRoot(),
+    ReactiveFormsModule
   ],
 })
 export class ChangeDelegateModule { }
