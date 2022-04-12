@@ -3,7 +3,6 @@ import { Sort, SortDirection } from '@angular/material/sort';
 import { environment } from '../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
 export type TlHeaderType = (
     'text' | 'checkbox' | 'status' |
     'code' | 'date' | 'avatar' |
@@ -133,9 +132,10 @@ export class TableListTable implements AfterContentInit {
     }
     public onClickedItemAccount(entry: any) {
         if (this.options.onClickElement) {
-            this.options.onClickElement(`/accounts/edit/${entry.account.id}`);
+            this.options.onClickElement(`/accounts/${entry.id}`);
         }
     }
+    
     public getRowClass(entry: any) {
         if (this.options.getRowClass) {
             return this.options.getRowClass(entry);

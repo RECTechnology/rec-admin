@@ -20,6 +20,7 @@ import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
 import { ListAccountsParams } from 'src/interfaces/search';
 import { AddB2BModal } from './b2b-modal/b2b-modal';
 
+
 @Component({
   selector: 'b2b-component',
   templateUrl: './b2b.html',
@@ -37,10 +38,10 @@ export class B2BComponent extends TablePageBase {
   public tableOptions: TableListOptions = {
     optionsType: 'menu',
     onClick: (element) => {
-      this.router.navigate([`/accounts/edit/${element.id}`])
+      this.router.navigate([`/accounts/${element.id}`])
     },
     onClickElement: (element) => {
-      this.router.navigate([element]);
+      this.router.navigate([element])
     }
   };
   public itemOptions: TlItemOption[] = [
@@ -60,7 +61,7 @@ export class B2BComponent extends TablePageBase {
       accessor: (v) => (v.kyc_manager.dni ?? {}),
       sortable: false,
       title: 'USER',
-      type: 'code',
+      type: 'code'
     },
     {
       accessor: (v) => (v.kyc_manager.phone ?? {}),
