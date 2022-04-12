@@ -86,8 +86,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public changeDate(event) {
     var dateSupport: Date = new Date(event);
     var datepipe: DatePipe = new DatePipe('es');
-    this.scheduleDeliveryDate = datepipe.transform(dateSupport, 'yyyy-MM-ddThh:mm:ss');
-
+    this.scheduleDeliveryDate = datepipe.transform(dateSupport, 'yyyy-MM-ddThh:mm:ss-SS');
   }
 
   public canUploadFile() {
