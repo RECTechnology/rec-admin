@@ -145,10 +145,14 @@ export class AddDocumentDia extends BaseDialog {
     if (!data.user_id) {
       delete data.user_id;
     }
+    if(data.account){
+      delete data.account;
+    }
     if (!data.account_id) {
       delete data.account_id;
     }
     const call = !this.isEdit ? crud.create(data) : crud.update(this.item.id, UtilsService.sanitizeEntityForEdit(data));
+    console.log(data)
 
     call.subscribe(
       (resp) => {
