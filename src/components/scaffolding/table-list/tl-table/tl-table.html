@@ -23,7 +23,7 @@
                     header)}}</span>
 
                 <code *ngIf="header.type === 'code' && getEntry(entry, header)!= null "
-                    (click)="onClickedItemUser(entry)" [matTooltip]="header.tooltip && header.tooltip(entry)"
+                    (click)="header.title == 'USER' ? onClickedItemUser(entry) : onClickedItemAccount(entry)" [matTooltip]="header.tooltip && header.tooltip(entry)"
                     [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry, header)}}</code>
 
                 <a *ngIf="header.type === 'link'" href="javascript:;"
