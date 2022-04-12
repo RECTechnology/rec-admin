@@ -59,7 +59,7 @@ export class OffersTab {
       isEdit: false,
     }).subscribe((updated) => {
       if (updated != null ) {
-
+        console.log(updated)
         var date = new Date(updated.end);
         var formattedDate = date.toISOString();
         this.loading = true;
@@ -69,7 +69,7 @@ export class OffersTab {
           image: updated.image,
           type: updated.type,
           initial_price: updated.initial_price,
-          discount:updated.discount,
+          discount:updated.discount_percent,
 
           end : formattedDate,
           offer_price: updated.offer_price,
@@ -154,6 +154,7 @@ export class OffersTab {
           description : updated.description,
           image: updated.image,
           type: updated.type,
+          discount: updated.discount_percent,
           initial_price: updated.initial_price,
           end : formattedDate??null,
 

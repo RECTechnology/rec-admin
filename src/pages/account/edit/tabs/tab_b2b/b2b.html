@@ -25,7 +25,7 @@
         </button>
 
         <mat-menu #consMenu="matMenu" y-position="below" overlapTrigger="false">
-          <input [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="prodQuery"
+          <input autocomplete="off" [disabled]="loading" type="text" class="user-input small" style="width: 100%" [(ngModel)]="prodQuery"
             (click)="$event.stopPropagation()" #searchConsumed placeholder="{{'Search Products'|translate}}">
 
           <ng-template ngFor let-prod [ngForOf]="productList">
@@ -62,7 +62,7 @@
         </button>
 
         <mat-menu #prodMenu="matMenu" y-position="below" overlapTrigger="false">
-          <input [disabled]="loading" #searchProduced type="text" class="user-input small" style="width: 100%"
+          <input autocomplete="off" [disabled]="loading" #searchProduced type="text" class="user-input small" style="width: 100%"
             [(ngModel)]="actQuery" (click)="$event.stopPropagation()" placeholder="{{'Search Products'|translate}}">
 
           <ng-template ngFor let-prod [ngForOf]="productList">

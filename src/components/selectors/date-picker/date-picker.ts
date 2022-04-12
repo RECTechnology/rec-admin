@@ -1,7 +1,7 @@
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common'
-import { FormControl, Validators } from '@angular/forms';
+import { FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 /** @title Basic datepicker */
 @Component({
@@ -9,6 +9,13 @@ import { FormControl, Validators } from '@angular/forms';
     templateUrl: 'date-picker.html',
     styleUrls: [
         'date-picker.scss',
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => DatePicker),
+            multi: true
+        }
     ]
 })
 export class DatePicker {
@@ -19,7 +26,8 @@ export class DatePicker {
     @Input() public dateFormat: string;
     @Input() public locale: string = 'es';
     @Input() public isDisable: boolean = false;
-    @Input() public formControl = new FormControl('', [Validators.required]);
+    @Input() public formControlName: string;
+    @Input() public formGroup = new FormGroup({});
     @Output() public itemChanged: EventEmitter<any> = new EventEmitter();
     public date: any;
     public datepipe: DatePipe = new DatePipe(this.locale);
@@ -29,11 +37,15 @@ export class DatePicker {
             this.date = new Date(this.item);
         }
     }
-    ngOnChange() {
+
+    writeValue(date: Date): void {
+    }
+    registerOnChange(fn: () => void): void {
+    }
+    registerOnTouched(fn: () => void): void {
     }
 
     public setDate(data){        
-
         this.date = new Date(data.value);
         this.itemChanged.emit(this.date)
     }

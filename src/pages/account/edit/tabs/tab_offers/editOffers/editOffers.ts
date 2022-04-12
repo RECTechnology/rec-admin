@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from 'src/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,7 +12,7 @@ import {  FormControl, FormGroup, Validators } from '@angular/forms';
     selector: 'eddit-ofer',
     templateUrl: './editOffer.html',
 })
-export class EditOfferDia {
+export class EditOfferDia implements AfterViewChecked, OnInit {
     public item: any;
     public loading: boolean = false;
     public disabled: boolean = false;
@@ -27,12 +27,16 @@ export class EditOfferDia {
     public fg: FormGroup;
     public types = ['percentage', 'classic', 'free'];
     public offer_image;
-    public description = new FormControl('', [Validators.required]);
-    public offer_price = new FormControl('', [Validators.required]);
-    public discount_percent = new FormControl('', [Validators.required]);
-    public initial_price = new FormControl('', [Validators.required]);
-    public end = new FormControl('', [Validators.required]);
-    public type = new FormControl('', [Validators.required]);
+    public formGroup = new FormGroup({
+        description: new FormControl([Validators.required]),
+        offer_price: new FormControl([Validators.required]),
+        discount_percent: new FormControl([Validators.required]),
+        initial_price: new FormControl([Validators.required]),
+        end: new FormControl([Validators.required]),
+        type: new FormControl([Validators.required]),
+        active: new FormControl([Validators.required]),
+
+    })
     constructor(
         public dialogRef: MatDialogRef<EditOfferDia>,
         public us: UserService,
@@ -40,15 +44,41 @@ export class EditOfferDia {
         public activitiesCrud: ActivitiesCrud,
         public productsCrud: ProductsCrud,
         public alerts: AlertsService,
-    ) {
+        private readonly changeDetectorRef: ChangeDetectorRef
+    ) {}
 
+    ngAfterViewChecked(): void {
+        this.changeDetectorRef.detectChanges();
+      }
+
+    ngOnInit(): void {
+        this.setControlValid();
+        if(this.item.end){
+            this.formGroup.get('end').setValue(this.item.end)
+        }
     }
 
     public selectedType(event) {
         this.item.type = event;
+        if(this.item.type){
+            this.setControlValid();
+        }
+       
     }
-    public ngOnChanges() {
+
+    public setControlValid(){
+        if(this.item.type == 'classic'){
+            this.formGroup.get('discount_percent').setErrors(null);
+        }else if(this.item.type == 'percentage'){
+            this.formGroup.get('initial_price').setErrors(null)
+            this.formGroup.get('offer_price').setErrors(null)
+        }else if(this.item.type == 'free'){
+            this.formGroup.get('discount_percent').setErrors(null)
+            this.formGroup.get('initial_price').setErrors(null)
+            this.formGroup.get('offer_price').setErrors(null)
+        }  
     }
+
 
     public changeDate(event) {
         var dateSupport: Date = new Date(event);
@@ -73,48 +103,12 @@ export class EditOfferDia {
     }
 
     public add() {
-        if (this.checkData()) {
-            this.dialogRef.close({ ...this.item });
-        } else {
-            this.alerts.showSnackbar('NEED_DATA', 'ok');
+        if(this.formGroup.invalid || !this.formGroup.dirty){
+            return;
         }
+        this.dialogRef.close({ ...this.item });
+        
     }
-
-
-    public checkData() {
-        return this.checkTypes() && this.checkDescDate() && this.checkEndDate();
-    }
-
-    public checkTypes() {
-        this.type.markAsTouched();
-        return this.checkPercentageData() || this.checkClasicData() || this.checkFreeData()
-    }
-
-    public checkPercentageData() {
-        this.discount_percent.markAsTouched();
-        return this.item.discount_percent != null;
-    }
-
-    public checkClasicData() {
-        this.offer_price.markAsTouched();
-        this.initial_price.markAsTouched();
-        return this.item.initial_price != null && this.item.offer_price != null;
-    }
-
-    public checkFreeData() {
-        return this.item.type == 'free';
-    }
-
-    public checkEndDate() {
-        this.end.markAsTouched();
-        return this.item.end != null;
-    }
-
-    public checkDescDate() {
-        this.description.markAsTouched();
-        return this.item.description != null;
-    }
-
 
     public close(): void {
         this.dialogRef.close(false);

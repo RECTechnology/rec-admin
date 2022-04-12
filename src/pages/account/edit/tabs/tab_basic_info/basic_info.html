@@ -12,7 +12,7 @@
       <div class="col-lg-6 col-sm-12 marg-top-10">
         <mat-form-field>
           <mat-label>{{'Name' | translate}}</mat-label>
-          <input matInput formControlName="name" [(ngModel)]="accountCopy.name"/>
+          <input autocomplete="of" matInput formControlName="name" [(ngModel)]="accountCopy.name"/>
         </mat-form-field>
       </div>
 
@@ -21,11 +21,11 @@
         <div class="row">
             <mat-form-field class="col-lg-2 col-sm-2">
               <mat-label>{{'PHONE_PREFIX' | translate}}</mat-label>
-              <input type="text" matInput formControlName="prefix" [(ngModel)]="accountCopy.prefix"/>
+              <input autocomplete="of" type="text" matInput formControlName="prefix" [(ngModel)]="accountCopy.prefix"/>
             </mat-form-field>
             <mat-form-field class="col-lg-10 col-sm-10">
               <mat-label>{{'PHONE_NUMBER' | translate}}</mat-label>
-              <input type="text" matInput formControlName="phone" [(ngModel)]="accountCopy.phone"/>
+              <input autocomplete="of" type="text" matInput formControlName="phone" [(ngModel)]="accountCopy.phone"/>
               <mat-error *ngIf="formGroup.get('phone').invalid">Teléfono inválido</mat-error>
             </mat-form-field>
         </div>
@@ -34,14 +34,14 @@
       <!-- Email -->
         <mat-form-field class="col-lg-6 col-sm-12 marg-top-10">
           <mat-label>{{'EMAIL' | translate}}</mat-label>
-          <input type="email" matInput formControlName="email" [(ngModel)]="accountCopy.email"/>
+          <input autocomplete="of" type="email" matInput formControlName="email" [(ngModel)]="accountCopy.email"/>
           <mat-error *ngIf="formGroup.get('email').invalid">Email inválido</mat-error>
         </mat-form-field>
 
       <!-- Nif -->
         <mat-form-field class="col-lg-6 col-sm-12 marg-top-10">
           <mat-label>{{'NIF' | translate}}</mat-label>
-          <input type="text" matInput formControlName="cif" [(ngModel)]="accountCopy.cif"/>
+          <input autocomplete="of" type="text" matInput formControlName="cif" [(ngModel)]="accountCopy.cif"/>
           <mat-error *ngIf="formGroup.get('cif').invalid">NIF inválido</mat-error>
         </mat-form-field>
 
