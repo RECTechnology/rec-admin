@@ -17,7 +17,7 @@
           <div class="col-lg-6">
             <div class="group-col-left">
               <street-type-selector formControlName="street_type" label="STREET_TYPE" [disabled]="loading" [needsNone]="true" (itemChanged)="accountCopy.street_type = $event"
-              [item]="accountCopy.street_type" required></street-type-selector>
+              [item]="accountCopy.street_type"></street-type-selector>
             </div>
           </div>
             <mat-form-field class="col-lg-6" style="width: 100%;">
@@ -39,7 +39,7 @@
 
           <div class="col-lg-6">
             <div class="group-col-left">
-              <neighbourhood-selector formControlName="neighbourhood" label="NEIGHBOURHOOD" [disabled]="loading" [needsNone]="true"
+              <neighbourhood-selector formControlName="neighbourhood" label="NEIGHBOURHOOD" [disabled]="loading"
               (itemChanged)="accountCopy.neighbourhood_id = $event ? $event.id : null" [item]="accountCopy.neighbourhood">
               </neighbourhood-selector>
             </div>
