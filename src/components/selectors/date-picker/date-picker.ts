@@ -36,7 +36,10 @@ export class DatePicker {
         }
     }
     onBlur(){
-        this.onTouched();
+        if(this.onTouched){
+            this.onTouched();
+        }
+       
     }
     onChange!:(item: any) => void;
     onTouched: any = () => {};
@@ -55,6 +58,9 @@ export class DatePicker {
     public setDate(data){        
         this.date = new Date(data.value);
         this.itemChanged.emit(this.date)
-        this.onChange(this.date)
+        if(this.onChange){
+            this.onChange(this.date)
+        }
+       
     }
 }
