@@ -42,7 +42,7 @@ export class BasePicker {
   public selectItem(item) {
     this.itemChanged.emit(item)
     if(this.onChange){
-      this.onChange(this.itemChanged)
+      this.onChange(this.item)
     }
   }
 

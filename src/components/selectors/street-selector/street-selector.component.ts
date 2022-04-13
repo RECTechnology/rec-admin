@@ -40,7 +40,7 @@ export class StreetTypeSelector extends BaseSelectorComponent implements Control
         'via',
     ];
     public initialStreet: string = 'calle';
-    onChange!:(itemChanged: EventEmitter<any>) => void;
+    onChange!:(item: any) => void;
     writeValue(street: string): void {
         if(street){
             this.selectItem(street);

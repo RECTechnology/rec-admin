@@ -27,7 +27,7 @@ export class NeighbourhoodSelector extends BaseSelectorComponent implements Cont
     @Input() public value: any = '';
     @Input() public disabled: boolean = false;
     @Output() public valueChange = new EventEmitter<string>();
-    onChange!:(itemChanged: EventEmitter<any>) => void;
+    onChange!:(item: any) => void;
     writeValue(neighbourhood: string): void {
       this.selectItem(neighbourhood)
     }
