@@ -22,7 +22,7 @@
                                 </span>
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="formGroup.get('type').invalid"> {{'REQUIERED_TYPE' | translate}}
+                        <mat-error *ngIf="formGroup.get('type').invalid">{{'REQUIERED_TYPE' | translate}}
                         </mat-error>
                     </mat-form-field>
 
@@ -31,9 +31,8 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="group-col-left">
                     <strong class="small-text-2">{{'WHEN_FINISH' |translate}}</strong>
-                    <date-picker formControlName="end" [item]="item.end" (itemChanged)="changeDate($event)">
-                        <mat-error *ngIf="formGroup.get('end').invalid"> {{'REQUIERED_END' | translate}}</mat-error>
-                    </date-picker>
+                    <date-picker formControlName="end" [item]="item.end" (itemChanged)="changeDate($event)"></date-picker>
+                    <mat-error style="margin: 0;padding: 0;" *ngIf="formGroup.get('end').invalid && formGroup.get('end').touched"><small>{{'REQUIERED_END' | translate}}</small></mat-error>
                 </div>
             </div>
         </div>
