@@ -22,7 +22,7 @@ import { Account } from '../../../shared/entities/account.ent';
 export class AccountPickerComponent extends BaseSelectorComponent {
 
   @Input() filters: any = null;
-  onChange!:(itemChanged: EventEmitter<any>) => void;
+  onChange!:(item: any) => void;
     writeValue(account: Account): void {
         if(account){
             this.selectItem(account);
