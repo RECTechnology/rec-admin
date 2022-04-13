@@ -37,18 +37,18 @@
 
       <div class="group-col-left">
         <p class="small-text-2">{{'Amount'|translate}}: </p>
-        <input type="text" class="user-input small" [(ngModel)]="tx.amount" placeholder="{{'Amount to pay'|translate}}">
+        <input autocomplete="new-password" type="text" class="user-input small" [(ngModel)]="tx.amount" placeholder="{{'Amount to pay'|translate}}">
       </div>
 
       <div class="group-col-left">
         <p class="small-text-2">{{'Concept'|translate}}: </p>
-        <input type="text" class="user-input small" [(ngModel)]="tx.concept"
+        <input autocomplete="new-password" type="text" class="user-input small" [(ngModel)]="tx.concept"
           placeholder="{{'Concept for the payment'|translate}}">
       </div>
 
       <div class="group-col-left">
         <p class="small-text-2">{{'2FA Code'|translate}}: </p>
-        <input type="text" class="user-input small" [(ngModel)]="tx.sms_code" style="margin-bottom: 0">
+        <input  autocomplete="new-password" type="text" class="user-input small" [(ngModel)]="tx.sms_code" style="margin-bottom: 0">
         <p class="small-text">
           * {{'A 2fa code generated from your auth application'|translate}}
         </p>

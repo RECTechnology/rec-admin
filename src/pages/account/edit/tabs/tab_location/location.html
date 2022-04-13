@@ -22,7 +22,10 @@
           </div>
             <mat-form-field class="col-lg-6" style="width: 100%;">
               <mat-label>{{'Street' | translate}}</mat-label>
-              <input autocomplete="off" matInput type="text" placeholder="{{'Street' | translate}}" [(ngModel)]="accountCopy.street" formControlName="street">
+
+              <input autocomplete="street-address" matInput type="text" placeholder="{{'Street' | translate}}" [(ngModel)]="accountCopy.street" formControlName="street">
+
+             
             </mat-form-field>
       
             <mat-form-field class="col-lg-6" style="width: 70%; padding: 0 15px;">

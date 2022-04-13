@@ -19,7 +19,7 @@
                 <div [formGroup]="formGroup" class="group-col-left" style="width: 100%; padding-bottom: 5px;">
                     <mat-form-field>
                         <mat-label>{{'Name' | translate}}</mat-label>
-                        <input matInput placeholder="{{'Name' | translate}}" [(ngModel)]="item.name"
+                        <input autocomplete="off" matInput placeholder="{{'Name' | translate}}" [(ngModel)]="item.name"
                             formControlName="name" required>
                         <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
                     </mat-form-field>
@@ -27,7 +27,7 @@
                     <div class="group-col-left" style="width: 100%; padding-bottom: 5px;">
                         <mat-form-field>
                             <mat-label>{{'Description' | translate}}</mat-label>
-                            <input matInput formControlName="description" placeholder="{{'Description' | translate}}"
+                            <input autocomplete="off" matInput formControlName="description" placeholder="{{'Description' | translate}}"
                                 [(ngModel)]="item.description">
                         </mat-form-field>
                     </div>

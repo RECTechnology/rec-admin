@@ -15,14 +15,14 @@
     <form [formGroup]="formGroup">
       <mat-form-field class="col-lg-12" style="width: 100%; padding: 5px 15px;">
           <mat-label>{{"Name" | translate}}</mat-label>
-          <input matInput type="text" [(ngModel)]="item.name" formControlName="description" style="max-width: 100%;"
+          <input autocomplete="off" matInput type="text" [(ngModel)]="item.name" formControlName="description" style="max-width: 100%;"
           placeholder="{{'Name'|translate}}" [disabled]="loading" required>
           <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
       </mat-form-field>
 
       <mat-form-field  class="col-lg-12" style="width: 100%; padding: 5px 15px;">
           <mat-label>{{"Description" | translate}}</mat-label>
-          <input matInput type="text" [(ngModel)]="item.description" formControlName="name" style="max-width: 100%"
+          <input autocomplete="off" matInput type="text" [(ngModel)]="item.description" formControlName="name" style="max-width: 100%"
           placeholder="{{'Description'|translate}}" [disabled]="loading" required>
           <mat-error *ngIf="formGroup.get('description').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
       </mat-form-field>
@@ -37,7 +37,7 @@
     </div>
       <mat-form-field  *ngIf="isLemon" class="col-lg-12" style="width: 100%;  padding: 10px 15px;">
         <mat-label>{{"Lemonway doc type" | translate}}</mat-label>
-        <input matInput type="number" [formControl]="inputLength" [(ngModel)]="item.lemon_doctype" style="max-width: 100%;"
+        <input autocomplete="off" matInput type="number" [formControl]="inputLength" [(ngModel)]="item.lemon_doctype" style="max-width: 100%;"
         placeholder="{{'Lemonway doc type'|translate}}" [disabled]="loading" required>
         <mat-error *ngIf="inputLength.invalid">Min: 0 - Max: 19</mat-error>
     </mat-form-field>
