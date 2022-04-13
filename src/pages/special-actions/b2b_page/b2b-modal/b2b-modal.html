@@ -1,21 +1,23 @@
 <modal-header title="{{'SEND_CONFIRMATION'|translate}}" (click)="close()"></modal-header>
 
 
-<div class="group-col-left  " style="width: 529px!important; padding: 0!important">
+<div [formGroup]="formGroup" class="group-col-left  " style="width: 529px!important; padding: 0!important">
   
     
     
     <div style="width: 500px;margin-left:15px;">
-        <account-picker label="ACCOUNTS" [filters]="filter" [item]="account" (itemChanged)="setAccount($event);">
+        <account-picker formControlName="account" label="ACCOUNTS" [filters]="filter" [item]="account" (itemChanged)="setAccount($event);">
         </account-picker>   
     </div>
    
-  <div class="col-lg-6">
-    <input-field *ngIf="this.account && !this.account.rezero_b2b_username" style="width: 500px;" [(value)]="username" label="{{'USERNAME' | translate}}" placeholder="{{'A_USERNAME' | translate}}" [disabled]="loading">
-    </input-field>
-  </div>
+    <mat-form-field class="col-lg-6" *ngIf="this.account && !this.account.rezero_b2b_username" style="width: 500px;">
+      <mat-label>{{'USERNAME' | translate}}</mat-label>
+      <input formControlName="username" type="text" matInput  [(ngModel)]="username" placeholder="Name" />
+      <mat-error *ngIf="this.formGroup.get('username').invalid">{{'SUPPORTED_CHARACTERS_B2B_USERNAME' | translate}}</mat-error>
+    </mat-form-field>
+
   <button type="button" style="margin-left: 300px!important;margin-top: 30px;margin-bottom: 15px!important; padding-right: 30px;width: 198px; margin-bottom: 14px; padding-right: 10px;  "
-      color="primary" mat-raised-button name="button" (click)="send()">
+      color="primary" [disabled]="this.account && !this.account.rezero_b2b_username && !this.username && this.formGroup.invalid || !this.formGroup.dirty" mat-raised-button name="button" (click)="send()">
       <p class="text-small">
           <i class="fa fa-plus"></i>
           {{'ADD'|translate}}

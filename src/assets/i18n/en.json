@@ -630,6 +630,7 @@
   "DISABLE_USER": "DISABLE USER",
   "CONCEPT_LENGTH":"Character limit exceeded ({{limit}})",
   "SURE_DISABLE_USER": "Are you sure you want to disable user {{user}}",
+  "SUPPORTED_CHARACTERS_B2B_USERNAME":"Only letters, numbers, periods, hyphens and underscores are accepted. The name must have at least 3 characters",
   "Is lemonway doc type?":"Id lemonway doc type?",
   "Lemonway doc type":"Lemonway doc type",
   "ENABLE_USER": "ENABLE USER",
