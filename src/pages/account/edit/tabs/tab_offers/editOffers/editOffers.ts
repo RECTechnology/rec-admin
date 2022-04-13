@@ -28,13 +28,13 @@ export class EditOfferDia implements AfterViewChecked, OnInit {
     public types = ['percentage', 'classic', 'free'];
     public offer_image;
     public formGroup = new FormGroup({
-        description: new FormControl([Validators.required]),
-        offer_price: new FormControl([Validators.required]),
-        discount_percent: new FormControl([Validators.required]),
-        initial_price: new FormControl([Validators.required]),
-        end: new FormControl([Validators.required]),
-        type: new FormControl([Validators.required]),
-        active: new FormControl([Validators.required]),
+        description: new FormControl("",[Validators.required]),
+        offer_price: new FormControl("",[Validators.required]),
+        discount_percent: new FormControl("",[Validators.required]),
+        initial_price: new FormControl("",[Validators.required]),
+        end: new FormControl("",[Validators.required]),
+        type: new FormControl("",[Validators.required]),
+        active: new FormControl(),
 
     })
     constructor(

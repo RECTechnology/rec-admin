@@ -69,7 +69,7 @@ export class OffersTab {
           image: updated.image,
           type: updated.type,
           initial_price: updated.initial_price,
-          discount:updated.discount_percent,
+          discount:updated.discount,
 
           end : formattedDate,
           offer_price: updated.offer_price,
@@ -154,7 +154,7 @@ export class OffersTab {
           description : updated.description,
           image: updated.image,
           type: updated.type,
-          discount: updated.discount_percent,
+          discount: updated.discount,
           initial_price: updated.initial_price,
           end : formattedDate??null,
 

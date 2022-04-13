@@ -26,8 +26,6 @@ export class DatePicker {
     @Input() public dateFormat: string;
     @Input() public locale: string = 'es';
     @Input() public isDisable: boolean = false;
-    @Input() public formControlName: string;
-    @Input() public formGroup = new FormGroup({});
     @Output() public itemChanged: EventEmitter<any> = new EventEmitter();
     public date: any;
     public datepipe: DatePipe = new DatePipe(this.locale);
@@ -38,7 +36,10 @@ export class DatePicker {
         }
     }
 
-    writeValue(date: Date): void {
+    writeValue(date: any): void {
+        if(date){
+            this.date = date;
+        }
     }
     registerOnChange(fn: () => void): void {
     }

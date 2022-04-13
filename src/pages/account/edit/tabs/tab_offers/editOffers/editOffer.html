@@ -35,7 +35,8 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="group-col-left">
                     <strong class="small-text-2">{{'WHEN_FINISH' |translate}}</strong>
-                    <date-picker [formGroup]="formGroup" [formControlName]="'end'" [(ngModel)]="item.end" [item]="item.end" (itemChanged)="changeDate($event)">
+                    <date-picker formControlName="end" [(ngModel)]="item.end" [item]="item.end" (itemChanged)="changeDate($event)">
+                        <mat-error *ngIf="formGroup.get('end').invalid"> {{'REQUIERED_END' | translate}}</mat-error>
                     </date-picker>
                 </div>
             </div>
