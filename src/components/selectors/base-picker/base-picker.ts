@@ -21,7 +21,7 @@ export class BasePicker {
 
   @Output() itemChanged = new EventEmitter<any>();
   @Output() onSearch = new EventEmitter<any>();
-  @Input() onChange: (itemChanged) => void;
+  @Input() onChange: (item: any) => void;
 
   @ViewChild('search', { static: false }) public searchElement: ElementRef;
 
@@ -42,7 +42,7 @@ export class BasePicker {
   public selectItem(item) {
     this.itemChanged.emit(item)
     if(this.onChange){
-      this.onChange(this.item)
+      this.onChange(item)
     }
   }
 

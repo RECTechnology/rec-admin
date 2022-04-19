@@ -22,9 +22,9 @@ export class LocationTab {
   public formGroup = new FormGroup({
     address_number: new FormControl("", Validators.pattern(/^[0-9]*$/)),
     zip: new FormControl("", Validators.pattern(/^[0-9]*$/)),
-    street_type: new FormControl(""),
+    street_type: new FormControl(),
     street: new FormControl(""),
-    neighbourhood: new FormControl(""),
+    neighbourhood: new FormControl(),
     onMap: new FormControl(),
     latitude: new FormControl(),
     longitude: new FormControl()
@@ -36,7 +36,7 @@ export class LocationTab {
   public ngOnInit() {
     this.accountCopy = { ...this.account };
     this.formGroup.get('street_type').setValue(this.accountCopy.street_type),
-    this.formGroup.get('neighbourhood').setValue(this.accountCopy.street_type)
+    this.formGroup.get('neighbourhood').setValue(this.accountCopy.neighbourhood)
   }
 
   public changeMapVisibility(id, visible, i) {
@@ -52,8 +52,10 @@ export class LocationTab {
 
   public update() {
     if(this.formGroup.invalid || !this.formGroup.dirty){
+      console.log(this.formGroup)
       return;
     }
+    console.log(this.formGroup)
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
     delete changedProps.activity_main;
    
