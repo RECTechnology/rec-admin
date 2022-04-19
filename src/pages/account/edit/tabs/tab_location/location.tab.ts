@@ -18,6 +18,7 @@ export class LocationTab {
   public accountCopy: any = {};
   public error: string;
   public pageName = 'LOCATION';
+  public hasChanges: boolean = false;
 
   public formGroup = new FormGroup({
     address_number: new FormControl("", Validators.pattern(/^[0-9]*$/)),
@@ -52,12 +53,22 @@ export class LocationTab {
 
   public update() {
     if(this.formGroup.invalid || !this.formGroup.dirty){
-      console.log(this.formGroup)
       return;
     }
-    console.log(this.formGroup)
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
     delete changedProps.activity_main;
+
+    this.formGroup.valueChanges.subscribe(changes => {
+      if (changes){
+        this.hasChanges = true;
+      }
+    })
+
+    if(!this.hasChanges){
+      delete changedProps.neighbourhood_id;
+    }
+
+    this.hasChanges = false;
    
     if(changedProps.neighbourhood){
       delete changedProps.neighbourhood;
@@ -73,7 +84,6 @@ export class LocationTab {
     delete changedProps.kyc_manager;
     delete changedProps.schedule;
     delete changedProps.level;
-    console.log(changedProps)
     this.accountChanged.emit(changedProps);
   }
 }
