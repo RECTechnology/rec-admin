@@ -35,19 +35,32 @@ export class DatePicker {
             this.date = new Date(this.item);
         }
     }
-
+    onBlur(){
+        if(this.onTouched){
+            this.onTouched();
+        }
+       
+    }
+    onChange!:(item: any) => void;
+    onTouched: any = () => {};
     writeValue(date: any): void {
         if(date){
             this.date = date;
         }
     }
     registerOnChange(fn: () => void): void {
+        this.onChange = fn;  
     }
     registerOnTouched(fn: () => void): void {
+        this.onTouched = fn;
     }
 
     public setDate(data){        
         this.date = new Date(data.value);
         this.itemChanged.emit(this.date)
+        if(this.onChange){
+            this.onChange(this.date)
+        }
+       
     }
 }

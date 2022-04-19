@@ -12,22 +12,18 @@
                     <mat-form-field style="width: 100%">
                         <mat-select formControlName="type" [(ngModel)]="item.type" [disabled]="disabled"
                             (ngModelChange)="selectedType($event)">
-
-
                             <div class="padd-10 bordered-bottom sticky-top-center bg-white">
-                                <input autocomplete="off" #search color="primary" style="margin: 0 10px" class="search-input"
+                                <input [ngModelOptions]="{standalone:true}" autocomplete="off" #search color="primary" style="margin: 0 10px" class="search-input"
                                     [(ngModel)]="item.type" placeholder="{{'SEARCH'|translate}}">
                             </div>
-
                             <mat-option *ngFor="let type of types" [value]="type">
                                 <span *ngIf=" type!=null">
                                     {{type}}
                                 </span>
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngIf="formGroup.get('type').invalid"> {{'REQUIERED_TYPE' | translate}}
+                        <mat-error *ngIf="formGroup.get('type').invalid">{{'REQUIERED_TYPE' | translate}}
                         </mat-error>
-
                     </mat-form-field>
 
                 </div>
@@ -35,21 +31,16 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="group-col-left">
                     <strong class="small-text-2">{{'WHEN_FINISH' |translate}}</strong>
-                    <date-picker formControlName="end" [(ngModel)]="item.end" [item]="item.end" (itemChanged)="changeDate($event)">
-                        <mat-error *ngIf="formGroup.get('end').invalid"> {{'REQUIERED_END' | translate}}</mat-error>
-                    </date-picker>
+                    <date-picker formControlName="end" [item]="item.end" (itemChanged)="changeDate($event)"></date-picker>
+                    <mat-error style="margin: 0;padding: 0;" *ngIf="formGroup.get('end').invalid && formGroup.get('end').touched"><small>{{'REQUIERED_END' | translate}}</small></mat-error>
                 </div>
             </div>
         </div>
         <div *ngIf="item.type=='percentage'" style="margin-top: 20px;margin-left: 2px;">
             <div class="group-col-left" style="margin-bottom: 15px">
-                <mat-form-field style="width: 47%;">
-
-                    
-
+                <mat-form-field style="width: 47%;">  
                     <input autocomplete="off" matInput type="number" formControlName="discount_percent" style="max-width: 100%;"
                         [(ngModel)]="item.discount" placeholder="{{'DISCOUNT_PERCENT'|translate}}"
-
                         [disabled]="loading">
                     <mat-error *ngIf="formGroup.get('discount_percent').invalid"> {{'REQUIERED_DISCOUNT' | translate}}
                     </mat-error>
@@ -59,12 +50,8 @@
         <div *ngIf="item.type =='classic'" style="margin-top: 20px;margin-left: 2px;">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <mat-form-field style="width: 100%;">
-
-                       
-
+                    <mat-form-field style="width: 100%;">                       
                         <input autocomplete="off" matInput type="number" formControlName="initial_price" style="max-width: 100%"
-
                             [(ngModel)]="item.initial_price" placeholder="{{'INITIAL_PRICE'|translate}}"
                             [disabled]="loading">
                         <mat-error *ngIf="formGroup.get('initial_price').invalid"> {{'REQUIERED_INITIAL_PRICE' | translate}}
@@ -72,12 +59,8 @@
                     </mat-form-field>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <mat-form-field style="width: 100%;">
-
-                      
-
+                    <mat-form-field style="width: 100%;">                     
                         <input autocomplete="off" matInput formControlName="offer_price" type="number" style="max-width: 100%"
-
                             [(ngModel)]="item.offer_price" placeholder="{{'OFFER_PRICE'|translate}}"
                             [disabled]="loading">
                         <mat-error *ngIf="formGroup.get('offer_price').invalid"> {{'REQUIERED_OFFER_PRICE' | translate}}
@@ -87,13 +70,9 @@
             </div>
         </div>
         <div class="group-col-left form-group">
-            <mat-form-field style="max-width: 100%;width: 100%;">
-
-               
-
+            <mat-form-field style="max-width: 100%;width: 100%;">              
                 <input autocomplete="off" matInput type="text" formControlName="description" [(ngModel)]="item.description"
-
-                    placeholder="{{'DESCRIPTION'|translate}}" [disabled]="loading">
+                placeholder="{{'DESCRIPTION'|translate}}" [disabled]="loading">
                 <mat-error *ngIf="formGroup.get('description').invalid"> {{'REQUIERED_DESCRIPTION' | translate}}
                 </mat-error>
             </mat-form-field>
@@ -107,7 +86,7 @@
                     <strong class="small-text-2 ">{{'ACTIVE_OFFER' | translate}}</strong>
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <mat-checkbox color="primary" formControlName="active" [(ngModel)]="item.active">{{'Active' | translate}}
+                    <mat-checkbox  color="primary" formControlName="active" [(ngModel)]="item.active">{{'Active' | translate}}
                     </mat-checkbox>
                 </div>
             </div>
