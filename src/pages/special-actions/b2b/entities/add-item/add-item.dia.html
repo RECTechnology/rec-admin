@@ -67,9 +67,9 @@
                             </p>
                         </div>
 
-                        <!--  -->
-                        <activity-picker label="ACTIVITY" [showSelection]="false" [item]="item.default_producing_by"
-                                (itemChanged)="addConsumed($event)" ></activity-picker>
+                        <activity-picker label="ACTIVITY" [showSelection]="false"
+                        (itemChanged)="addConsumed($event)" ></activity-picker>
+
                     </div>
                     <div class="col-lg-6">
                         <p class="small-text-2">{{'ACTIVITIES_PRODUCED'|translate}}</p>
@@ -89,8 +89,7 @@
                             </p>
                         </div>
 
-                        <!--  -->
-                        <activity-picker [showSelection]="false"label="ACTIVITY"  
+                        <activity-picker [showSelection]="false" label="ACTIVITY"  
                         (itemChanged)="addProduced($event)" ></activity-picker>
                         
                     </div>

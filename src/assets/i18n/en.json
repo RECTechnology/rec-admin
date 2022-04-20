@@ -627,6 +627,7 @@
   "CODE": "Code",
   "TRIED": "Tried",
   "TIMES": ".times",
+  "Deleted activity": "Deleted activity",
   "DISABLE_USER": "DISABLE USER",
   "CONCEPT_LENGTH":"Character limit exceeded ({{limit}})",
   "SURE_DISABLE_USER": "Are you sure you want to disable user {{user}}",
