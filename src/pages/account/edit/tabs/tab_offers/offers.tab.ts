@@ -162,7 +162,7 @@ export class OffersTab {
   
         }).subscribe(
           (resp) => {
-            this.alerts.showSnackbar('UPDATED_OFFER' + offer.id, 'ok');
+            this.alerts.showSnackbar('UPDATED_OFFER' , 'ok');
             this.loading = false;
             this.getAllData();
 
