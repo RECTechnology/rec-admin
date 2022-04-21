@@ -874,6 +874,7 @@
   "Is lemonway doc type?":"Es un documento lemonway?",
   "Lemonway doc type":"Tipo de documento lemonway",
   "ADD_DOCUMENT_KIND": "añadir tipo de documento",
+  "Deleted activity": "Actividad borrada",
   "SUPPORTED_CHARACTERS_B2B_USERNAME":"Solo se aceptan, letras, números, puntos, guiones y guiones bajos. El nombre debe tener al menos 3 carácteres.",
   "Details": "Detalles",
   "NATIONALITY": "Nacionalidad",
