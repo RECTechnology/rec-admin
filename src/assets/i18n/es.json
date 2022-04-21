@@ -1388,7 +1388,9 @@
   "The file not contain any data":"El archivo no contiene ningún dato.",
   "Missing required headers":"Faltan encabezados obligatorios",
   "No valid data found":"No se encontraron datos válidos",
-  "CSV added successfully": "CSV añadido con éxito"
+  "CSV added successfully": "CSV añadido con éxito",
+  "CANCELING_TXS":"Cancelando bloque de txs",
+  "RETRYING_TXS":"Reintentando bloque de txs"
 
 
 }

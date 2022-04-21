@@ -213,11 +213,26 @@ export class NewMassiveTransactionsComponent extends PageBase {
   }
 
   public sendCancel() {
-    this.changeCrud.changeStatus(this.idOrNew, 'draft')
+    console.log("Im in sendCancel");
+    this.changeCrud.changeStatus(this.idOrNew, 'draft').subscribe(
+      (resp) => {
+        this.snackbar.open('CANCELING_TXS');
+      },
+      (err) => {
+        this.alerts.observableErrorSnackbar(err);
+      },
+    );
   }
 
   public sendRetry() {
-    this.changeCrud.changeStatus(this.idOrNew, 'scheduled')
+    this.changeCrud.changeStatus(this.idOrNew, 'scheduled').subscribe(
+      (resp) => {
+        this.snackbar.open('RETRYING_TXS');
+      },
+      (err) => {
+        this.alerts.observableErrorSnackbar(err);
+      },
+    );
   }
 
   public sendReport() {
