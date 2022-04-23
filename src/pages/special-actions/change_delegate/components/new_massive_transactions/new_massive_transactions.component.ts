@@ -47,6 +47,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public scheduleDeliveryDate: String;
   public limit = 72;
   public isEditName = false;
+  public edited = false;
   public type: any;
   scheduleDeliveryDateCopy: String;
   public formGroup = new FormGroup({
@@ -156,19 +157,30 @@ export class NewMassiveTransactionsComponent extends PageBase {
   }
 
   public saveEditConcept() {
-    if(this.formGroup.invalid){
+    this.changeIsEditName();
+    if(this.formGroup.invalid || this.edited == false){
       return;
     }
     this.changeCrud.editConcept(this.idOrNew, this.transactions_name).subscribe((resp) => {
       this.alerts.showSnackbar("EDITED_CONCEPT");
+      this.delegate.name = resp.name ?? this.transactions_name;
     });
-    this.changeIsEditName();
+   
   }
 
   public changeIsEditName() {
-    this.isEditName = !this.isEditName
+    this.isEditName = !this.isEditName;
+    this.formGroup.valueChanges.subscribe(resp => {
+      console.log(resp.transactions_name)
+      resp.transactions_name == this.delegate.name ?
+      this.edited = false :
+      this.edited = true;
+    })
+  }
 
-
+  public cancelEditName() {
+    this.isEditName = !this.isEditName;
+    this.transactions_name = this.delegate.name;
   }
 
   public changedPage($event) {
