@@ -1,5 +1,5 @@
 <mat-form-field [floatLabel]="'never'" style="width: 100%">
-    <input (blur)="onBlur()" matInput [disabled]="isDisable" matInput [value]="date" (dateChange)="setDate($event)" [placeholder]="label" [matDatepicker]="picker">
+    <input autocomplete="off" (blur)="onBlur()" matInput [disabled]="isDisable" matInput [value]="date" (dateChange)="setDate($event)" [placeholder]="label" [matDatepicker]="picker">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>

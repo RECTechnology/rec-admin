@@ -35,6 +35,7 @@ export class EditOfferDia implements AfterViewChecked, OnInit {
         end: new FormControl("",[Validators.required]),
         type: new FormControl("",[Validators.required]),
         active: new FormControl(),
+        file: new FormControl()
 
     })
     constructor(
@@ -56,6 +57,10 @@ export class EditOfferDia implements AfterViewChecked, OnInit {
         if(this.item.end){
             this.formGroup.get('end').setValue(this.item.end)
         }
+        if(!this.isEdit){
+            this.item.active = true;
+        }
+       
     }
 
     public selectedType(event) {
