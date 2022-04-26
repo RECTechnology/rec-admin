@@ -12,7 +12,7 @@
    
     <mat-form-field class="col-lg-6" *ngIf="this.account && !this.account.rezero_b2b_username" style="width: 500px;">
       <mat-label>{{'USERNAME' | translate}}</mat-label>
-      <input formControlName="username" type="text" matInput  [(ngModel)]="username" placeholder="Name" />
+      <input formControlName="username" type="text" matInput placeholder="Name" />
       <mat-error *ngIf="this.formGroup.get('username').invalid">{{'SUPPORTED_CHARACTERS_B2B_USERNAME' | translate}}</mat-error>
     </mat-form-field>
 

@@ -10,11 +10,10 @@
                 <div class="group-col-left">
                     <b class="small-text-2">{{'TYPE_OFFER' |translate}}</b>
                     <mat-form-field style="width: 100%">
-                        <mat-select formControlName="type" [(ngModel)]="item.type" [disabled]="disabled"
-                            (ngModelChange)="selectedType($event)">
+                        <mat-select formControlName="type" [disabled]="disabled">
                             <div class="padd-10 bordered-bottom sticky-top-center bg-white">
                                 <input [ngModelOptions]="{standalone:true}" autocomplete="off" #search color="primary" style="margin: 0 10px" class="search-input"
-                                    [(ngModel)]="item.type" placeholder="{{'SEARCH'|translate}}">
+                                [(ngModel)]="item.type" placeholder="{{'SEARCH'|translate}}">
                             </div>
                             <mat-option *ngFor="let type of types" [value]="type">
                                 <span *ngIf=" type!=null">
@@ -36,23 +35,21 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="item.type=='percentage'" style="margin-top: 20px;margin-left: 2px;">
+        <div *ngIf="this.formGroup.get('type').value =='percentage'" style="margin-top: 20px;margin-left: 2px;">
             <div class="group-col-left" style="margin-bottom: 15px">
                 <mat-form-field style="width: 47%;">  
-                    <input autocomplete="off" matInput type="number" formControlName="discount_percent" style="max-width: 100%;"
-                        [(ngModel)]="item.discount" placeholder="{{'DISCOUNT_PERCENT'|translate}}"
+                    <input autocomplete="off" matInput type="number" formControlName="discount" style="max-width: 100%;" placeholder="{{'DISCOUNT_PERCENT'|translate}}"
                         [disabled]="loading">
-                    <mat-error *ngIf="formGroup.get('discount_percent').invalid"> {{'REQUIERED_DISCOUNT' | translate}}
+                    <mat-error *ngIf="formGroup.get('discount').invalid"> {{'REQUIERED_DISCOUNT' | translate}}
                     </mat-error>
                 </mat-form-field>
             </div>
         </div>
-        <div *ngIf="item.type =='classic'" style="margin-top: 20px;margin-left: 2px;">
+        <div *ngIf="this.formGroup.get('type').value =='classic'" style="margin-top: 20px;margin-left: 2px;">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <mat-form-field style="width: 100%;">                       
-                        <input autocomplete="off" matInput type="number" formControlName="initial_price" style="max-width: 100%"
-                            [(ngModel)]="item.initial_price" placeholder="{{'INITIAL_PRICE'|translate}}"
+                        <input autocomplete="off" matInput type="number" formControlName="initial_price" style="max-width: 100%" placeholder="{{'INITIAL_PRICE'|translate}}"
                             [disabled]="loading">
                         <mat-error *ngIf="formGroup.get('initial_price').invalid"> {{'REQUIERED_INITIAL_PRICE' | translate}}
                         </mat-error>
@@ -60,8 +57,7 @@
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <mat-form-field style="width: 100%;">                     
-                        <input autocomplete="off" matInput formControlName="offer_price" type="number" style="max-width: 100%"
-                            [(ngModel)]="item.offer_price" placeholder="{{'OFFER_PRICE'|translate}}"
+                        <input autocomplete="off" matInput formControlName="offer_price" type="number" style="max-width: 100%" placeholder="{{'OFFER_PRICE'|translate}}"
                             [disabled]="loading">
                         <mat-error *ngIf="formGroup.get('offer_price').invalid"> {{'REQUIERED_OFFER_PRICE' | translate}}
                         </mat-error>
@@ -71,7 +67,7 @@
         </div>
         <div class="group-col-left form-group">
             <mat-form-field style="max-width: 100%;width: 100%;">              
-                <input autocomplete="off" matInput type="text" formControlName="description" [(ngModel)]="item.description"
+                <input autocomplete="off" matInput type="text" formControlName="description"
                 placeholder="{{'DESCRIPTION'|translate}}" [disabled]="loading">
                 <mat-error *ngIf="formGroup.get('description').invalid"> {{'REQUIERED_DESCRIPTION' | translate}}
                 </mat-error>
@@ -79,23 +75,26 @@
         </div>
         <div class="row" style="margin-bottom: 20px;">
             <div class="col-lg-12 col-sm-12 col-md-12 marg-b-20">
-                <file-selector formControlName="file" label='IMAGE' [(file)]="item.image" [isAvatar]="false"></file-selector>
+
+                <file-selector label='IMAGE' formControlName="image" [(file)]="item.image" [isAvatar]="false"></file-selector>
+       
             </div>
             <div class="col-lg-12 col-sm-12 col-md-12" style="margin-bottom: 20px;">
                 <div style="margin-top: 20px;">
                     <strong class="small-text-2 ">{{'ACTIVE_OFFER' | translate}}</strong>
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <mat-checkbox  color="primary" formControlName="active" [(ngModel)]="item.active">{{'Active' | translate}}
+                    <mat-checkbox  color="primary" formControlName="active">{{'Active' | translate}}
                     </mat-checkbox>
                 </div>
             </div>
             <div class="col-lg-12 col-sm-12 col-md-12">
                 <div style="margin-top: 20px;">
-                    <btn-loader (click)="add()" [disabled]="disabled || loading || formGroup.invalid || !formGroup.dirty" [loading]="loading"
+                    <btn-loader (click)="add()" [disabled]="disabled || loading || formGroup.invalid || !formGroup.dirty || !this.edited && this.isEdit" [loading]="loading"
                         text="{{'SAVE'|translate}}">
                     </btn-loader>
                     <p *ngIf="error" class="col-error small-text">{{error}}</p>
+                    <p *ngIf="!edited && isEdit" class="col-error small-text" style="margin-top: 10px!important">{{'NO_UPDATE' | translate}}</p>
                 </div>
             </div>
         </div>

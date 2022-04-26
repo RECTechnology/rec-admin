@@ -7,6 +7,7 @@ import { ProductsCrud } from 'src/services/crud/products/products.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Component({
     selector: 'add-item',
@@ -26,11 +27,13 @@ export class AddItemDia {
 
     public isProduct = false;
     public isEdit = false;
+    public edited = false;
     public activities = [];
     public formGroup = new FormGroup({
-        name_ca: new FormControl("", Validators.required),
-        name_es: new FormControl("", Validators.required),
-        name: new FormControl("", Validators.required),
+        name_ca: new FormControl(Validators.required),
+        name_es: new FormControl(Validators.required),
+        name: new FormControl(Validators.required),
+        parent: new FormControl()
     })
 
 
@@ -41,8 +44,9 @@ export class AddItemDia {
         name_es:"",
         name: "",
         activity: Activity,
-
     };
+
+    public itemCopy: any;
 
     public langMap = {
         cat: 'ca',
@@ -60,6 +64,18 @@ export class AddItemDia {
     ) {
         this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' }, this.langMap[this.us.lang])
             .subscribe((resp) =>this.setActivities(resp));
+    }
+
+    public ngOnInit() {
+        this.formGroup.get('name').setValue(this.item.name);
+        this.formGroup.get('name_ca').setValue(this.item.name_ca);
+        this.formGroup.get('name_es').setValue(this.item.name_es);
+        this.formGroup.get('parent').setValue(this.item.secondary_activity);
+        if(this.item.parent != null){
+            this.secondary_activity = this.item.parent;
+        }
+        this.check();
+       this.validation();
     }
 
     public setActivities(resp:any){
@@ -137,16 +153,23 @@ export class AddItemDia {
         this.deletedSubscriber(this.productsCrud.removeConsumedByToProduct(this.item.id, act.id));
     }
 
-    public ngOnInit() {
-
-        if(this.item.parent != null){
-            this.secondary_activity = this.item.parent;
-
+    public validation(){
+        this.itemCopy = {
+          name: this.item.name,
+          name_ca: this.item.name_ca,
+          name_es: this.item.name_es,
+          parent: this.item.secondary_activity
         }
-        this.check();
-       
-
-    }
+        const initialValue = this.itemCopy;
+        this.formGroup.valueChanges
+          .pipe(
+            debounceTime(100)
+          )
+          .subscribe(resp => {
+            this.edited = Object.keys(initialValue).some(key => this.formGroup.value[key] != 
+              initialValue[key])
+          })
+      }
     public selectParentActivity(item) {
         this.item = item;
     
@@ -160,13 +183,15 @@ export class AddItemDia {
       }
 
     public add() {
-        if( this.formGroup.invalid || this.loading || this.disabled ){
+        if( this.formGroup.invalid || this.loading || this.disabled || !this.formGroup.dirty || this.edited == false ){
             return;
         }
         if( this.secondary_activity !=null){
-             
             this.item.parent_id = this.secondary_activity.id;
         }
+        this.item.name = this.formGroup.get('name').value;
+        this.item.name_ca = this.formGroup.get('name_ca').value;
+        this.item.name_es = this.formGroup.get('name_es').value;
 
         this.item.name_ca = this.item.name_ca.trim();
         this.item.name_es = this.item.name_es.trim();

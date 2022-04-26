@@ -15,35 +15,35 @@
     <form [formGroup]="formGroup">
       <mat-form-field class="col-lg-12" style="width: 100%; padding: 5px 15px;">
           <mat-label>{{"Name" | translate}}</mat-label>
-          <input autocomplete="off" matInput type="text" [(ngModel)]="item.name" formControlName="description" style="max-width: 100%;"
-          placeholder="{{'Name'|translate}}" [disabled]="loading" required>
+          <input autocomplete="off" matInput type="text" formControlName="name" style="max-width: 100%;"
+          placeholder="{{'Name'|translate}}" required>
           <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
       </mat-form-field>
 
       <mat-form-field  class="col-lg-12" style="width: 100%; padding: 5px 15px;">
           <mat-label>{{"Description" | translate}}</mat-label>
-          <input autocomplete="off" matInput type="text" [(ngModel)]="item.description" formControlName="name" style="max-width: 100%"
-          placeholder="{{'Description'|translate}}" [disabled]="loading" required>
+          <input autocomplete="off" matInput type="text" formControlName="description" style="max-width: 100%"
+          placeholder="{{'Description'|translate}}" required>
           <mat-error *ngIf="formGroup.get('description').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
       </mat-form-field>
-    </form>
     <div class="col-lg-12" *ngIf="!isEdit">
       <mat-slide-toggle
-          [(ngModel)]="isLemon"
-          [checked]="isLemon"
-          [disabled]="loading">
+          formControlName="isLemon">
         <small>{{'Is lemonway doc type?' | translate}}</small>
       </mat-slide-toggle>
     </div>
-      <mat-form-field  *ngIf="isLemon" class="col-lg-12" style="width: 100%;  padding: 10px 15px;">
+      <mat-form-field  *ngIf="this.formGroup.get('isLemon').value" class="col-lg-12" style="width: 100%;  padding: 10px 15px;">
         <mat-label>{{"Lemonway doc type" | translate}}</mat-label>
-        <input autocomplete="off" matInput type="number" [formControl]="inputLength" [(ngModel)]="item.lemon_doctype" style="max-width: 100%;"
-        placeholder="{{'Lemonway doc type'|translate}}" [disabled]="loading" required>
-        <mat-error *ngIf="inputLength.invalid">Min: 0 - Max: 19</mat-error>
+        <input autocomplete="off" matInput type="number" formControlName="lemon_doctype" style="max-width: 100%;"
+        placeholder="{{'Lemonway doc type'|translate}}" required>
+        <mat-error *ngIf="this.formGroup.get('lemon_doctype').invalid">Min: 0 - Max: 19</mat-error>
     </mat-form-field>
+  </form>
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
+    <p *ngIf="!edited && isEdit" class="col-error small-text" style="margin-right: 10px!important">{{'NO_UPDATE' | translate}}</p>
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
-    <btn-loader [loading]="loading" [disabled]="disabled || loading || formGroup.invalid || inputLength.invalid && isLemon || !formGroup.dirty" [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()"></btn-loader>
+    <btn-loader [loading]="loading" [disabled]="disabled || loading || formGroup.invalid || !formGroup.dirty || this.edited == false"
+    [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()"></btn-loader>
   </div>
 </div>

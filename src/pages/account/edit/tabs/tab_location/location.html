@@ -22,10 +22,7 @@
           </div>
             <mat-form-field class="col-lg-6" style="width: 100%;">
               <mat-label>{{'Street' | translate}}</mat-label>
-
               <input autocomplete="street-address" matInput type="text" placeholder="{{'Street' | translate}}" [(ngModel)]="accountCopy.street" formControlName="street">
-
-             
             </mat-form-field>
       
             <mat-form-field class="col-lg-6" style="width: 70%; padding: 0 15px;">
@@ -84,9 +81,10 @@
 
       <div class="col-lg-12">
         <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
-          <btn-loader (click)="update()" [disabled]="loading || formGroup.invalid || !formGroup.dirty" [loading]="loading" text="{{'Update'|translate}}">
+          <btn-loader (click)="update()" [disabled]="loading || formGroup.invalid || !formGroup.dirty || !this.edited" [loading]="loading" text="{{'Update'|translate}}">
           </btn-loader>
           <p *ngIf="error">{{error}}</p>
+          <p style="color: red; margin-left: 10px!important;" *ngIf="!this.edited"> <small>{{'NO_UPDATE' | translate}}</small></p>
         </div>
       </div>
     </div>

@@ -12,11 +12,7 @@
       <div class="col-lg-6 col-sm-12 marg-top-10">
         <mat-form-field>
           <mat-label>{{'Name' | translate}}</mat-label>
-
-          <input autocomplete="new-password" matInput formControlName="name" [(ngModel)]="accountCopy.name"/>
-
-         
-
+          <input autocomplete="new-password" matInput formControlName="name"/>
         </mat-form-field>
       </div>
 
@@ -26,14 +22,11 @@
             <mat-form-field class="col-lg-2 col-sm-2">
               <mat-label>{{'PHONE_PREFIX' | translate}}</mat-label>
 
-              <input autocomplete="new-password" type="text" matInput formControlName="prefix" [(ngModel)]="accountCopy.prefix"/>
+              <input autocomplete="new-password" type="text" matInput formControlName="prefix"/>
             </mat-form-field>
             <mat-form-field class="col-lg-10 col-sm-10">
               <mat-label>{{'PHONE_NUMBER' | translate}}</mat-label>
-              <input autocomplete="tel" type="text" matInput formControlName="phone" [(ngModel)]="accountCopy.phone"/>
-
-           
-
+              <input autocomplete="tel" type="text" matInput formControlName="phone"/>
               <mat-error *ngIf="formGroup.get('phone').invalid">Teléfono inválido</mat-error>
             </mat-form-field>
         </div>
@@ -43,21 +36,14 @@
         <mat-form-field class="col-lg-6 col-sm-12 marg-top-10">
           <mat-label>{{'EMAIL' | translate}}</mat-label>
 
-          <input autocomplete="email" type="email" matInput formControlName="email" [(ngModel)]="accountCopy.email"/>
-
-         
-
+          <input autocomplete="email" type="email" matInput formControlName="email"/>
           <mat-error *ngIf="formGroup.get('email').invalid">Email inválido</mat-error>
         </mat-form-field>
 
       <!-- Nif -->
         <mat-form-field class="col-lg-6 col-sm-12 marg-top-10">
           <mat-label>{{'NIF' | translate}}</mat-label>
-
-          <input autocomplete="new-password" type="text" matInput formControlName="cif" [(ngModel)]="accountCopy.cif"/>
-
-         
-
+          <input autocomplete="new-password" type="text" matInput formControlName="cif"/>
           <mat-error *ngIf="formGroup.get('cif').invalid">NIF inválido</mat-error>
         </mat-form-field>
 
@@ -66,21 +52,21 @@
         <div class="row">
             <mat-form-field class="col-lg-6" >
               <mat-label>{{'TYPE' | translate}}</mat-label>
-              <mat-select (selectionChange)="setType($event.value)" [(ngModel)]="accountCopy.type" formControlName="account_type">
+              <mat-select (selectionChange)="setType($event.value)" formControlName="account_type">
                 <mat-option *ngFor="let account of ACCOUNT_TYPES" [value]="account">{{account}}</mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field *ngIf="accountCopy.type && accountCopy.type === 'COMPANY'" class="col-lg-6" >
               <mat-label>{{'SUBTYPE' | translate}}</mat-label>
-              <mat-select (selectionChange)="accountCopy.subtype = $event.value" [(ngModel)]="accountCopy.subtype" formControlName="account_subtype_company">
+              <mat-select (selectionChange)="accountCopy.subtype = $event.value" formControlName="account_subtype_company">
                 <mat-option *ngFor="let account of ACCOUNT_SUB_TYPES_COMPANY" value="{{account}}">{{account}}</mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field *ngIf="accountCopy.type && accountCopy.type === 'PRIVATE'" class="col-lg-6" >
               <mat-label>{{'SUBTYPE' | translate}}</mat-label>
-              <mat-select (selectionChange)="accountCopy.subtype = $event.value" [(ngModel)]="accountCopy.subtype" formControlName="account_subtype_private">
+              <mat-select (selectionChange)="accountCopy.subtype = $event.value" formControlName="account_subtype_private">
                 <mat-option *ngFor="let account of ACCOUNT_SUB_TYPES_PRIVATE" value="{{account}}">{{account}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -89,13 +75,13 @@
       
       <!-- Active -->
       
-        <mat-checkbox class="col-lg-3 col-sm-6 marg-top-10" style="padding-top: 10px;" color="primary" formControlName="active_account" [(ngModel)]="accountCopy.active" (change)="accountCopy.active = $event.checked"
+        <mat-checkbox class="col-lg-3 col-sm-6 marg-top-10" style="padding-top: 10px;" color="primary" formControlName="active_account" (change)="accountCopy.active = $event.checked"
           matTooltip="{{'ACCOUNT_ACTIVE_DESC'|translate}}" [disabled]="loading">{{'Account Active' | translate}}
         </mat-checkbox>
 
         <mat-form-field class="col-lg-3" style="padding-top: 10px;" >
           <mat-label>{{'TIER' | translate}}</mat-label>
-          <mat-select [(ngModel)]="accountCopy.level_id" (selectionChange)="accountCopy.level_id = $event.value" formControlName="tier">
+          <mat-select (selectionChange)="accountCopy.level_id = $event.value" formControlName="tier">
             <mat-option *ngFor="let tier of tiers" [value]="tier.value">{{tier.name}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -108,9 +94,10 @@
 
       <div class="col-lg-12 marg-top-10">
         <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
-          <btn-loader (click)="update()" [disabled]="loading || !formGroup.dirty || formGroup.invalid" [loading]="loading" text="{{'Update'|translate}}">
+          <btn-loader (click)="update()" [disabled]="loading || !formGroup.dirty || formGroup.invalid || !this.edited" [loading]="loading" text="{{'Update'|translate}}">
           </btn-loader>
           <p *ngIf="error">{{error}}</p>
+          <p style="color: red; margin-left: 10px!important;" *ngIf="!this.edited"> <small>{{'NO_UPDATE' | translate}}</small></p>
         </div>
       </div>
     </div>

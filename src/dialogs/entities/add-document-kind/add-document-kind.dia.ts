@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
@@ -8,6 +8,7 @@ import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 import { LemonDocumentKindsCrud } from 'src/services/crud/lemon_document_kinds/lemon_document_kinds';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Component({
   selector: 'add-document-kind',
@@ -15,22 +16,25 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 })
 export class AddDocumentKindDia extends BaseDialog {
   public isEdit = false;
+  public edited = false;
+  public itemCopy: any;
+  public itemType = 'Document Kind';
+  public validationErrors = [];
+  public formGroup = new FormGroup({
+    name: new FormControl(Validators.required),
+    description: new FormControl(Validators.required),
+    lemon_doctype: new FormControl(null, [Validators.min(0), Validators.max(19)]),
+    is_user_document: new FormControl(),
+    tiers: new FormControl([]),
+    isLemon: new FormControl(false)
+  })
   public item: DocumentKind = {
-    name: '',
-    description: '',
-    lemon_doctype: null,
-    is_user_document:'false',
+    name:  "",
+    description: "",
+    lemon_doctype:  0,
+    is_user_document:'',
     tiers: [],
   };
-  public itemType = 'Document Kind';
-  public isLemon = false;
-  public validationErrors = [];
-
-  public formGroup = new FormGroup({
-    name: new FormControl("", Validators.required),
-    description: new FormControl("", Validators.required)
-  })
-  public inputLength = new FormControl(null, [Validators.min(0), Validators.max(19)]);
 
   constructor(
     public dialogRef: MatDialogRef<AddDocumentKindDia>,
@@ -43,29 +47,68 @@ export class AddDocumentKindDia extends BaseDialog {
   }
 
   public ngOnInit() {
-    this.isLemon = this.inputLength.invalid != false;
+    this.formGroup.get('name').setValue(this.item.name);
+    this.formGroup.get('description').setValue(this.item.description);
+    this.formGroup.get('lemon_doctype').setValue(this.item.lemon_doctype);
+    this.formGroup.get('is_user_document').setValue(this.item.is_user_document);
+    if(this.isEdit){
+      this.formGroup.get('lemon_doctype').setErrors(null);
+    }
+    this.validation();
   }
 
+  public validation(){
+      this.itemCopy = {
+        name: this.item.name,
+        description: this.item.description
+      }
+      const initialValue = this.itemCopy;
+      this.formGroup.valueChanges
+        .pipe(
+          debounceTime(100)
+        )
+        .subscribe(resp => {
+          this.edited = Object.keys(initialValue).some(key => this.formGroup.value[key] != 
+            initialValue[key])
+            if(!resp.isLemon){
+              this.formGroup.get('lemon_doctype').setErrors(null);
+            }
+        })
+    }
+  
   public getCrud() {
-    return this.isLemon ? this.lemonDkCrud : this.dkCrud;
+    return this.formGroup.get('isLemon').value == true ? this.lemonDkCrud : this.dkCrud;
   }
 
 
   public proceed() {
-    if (this.loading || this.disabled || this.formGroup.invalid ||this.inputLength.invalid && this.isLemon
-      || !this.formGroup.dirty) {
+    if (this.loading || this.disabled || this.formGroup.invalid
+      || !this.formGroup.dirty || this.edited == false) {
       return;
     }
 
+    this.item.name = this.formGroup.get('name').value;
+    this.item.description = this.formGroup.get('description').value;
+    this.item.lemon_doctype = this.formGroup.get('lemon_doctype').value;
+
     const data = { ...this.item };
-    if (!this.isLemon) {
+    if (this.formGroup.get('isLemon').value != true) {
       delete data.lemon_doctype;
       data.is_user_document = "true";
+    }else {
+      data.is_user_document = "false";
     }
 
     if (data.tiers) {
       delete data.tiers;
     }
+
+    if(this.isEdit){
+      delete  data.lemon_doctype;
+      delete  data.is_user_document;
+    }
+
+    console.log(data)
 
     this.loading = true;
 
@@ -82,3 +125,7 @@ export class AddDocumentKindDia extends BaseDialog {
       }, UtilsService.handleValidationError.bind(this, this));
     } 
   }
+function input() {
+  throw new Error('Function not implemented.');
+}
+

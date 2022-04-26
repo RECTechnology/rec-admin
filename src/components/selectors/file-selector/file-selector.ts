@@ -27,11 +27,14 @@ export class FileSelector implements OnInit, ControlValueAccessor {
     @Output() public error = new EventEmitter<any>();
     @Input() public isAvatar = true;
     onTouch!: () => void;
-    onChange!:(fileChange: EventEmitter<any>) => void;
+    onChange!:(file:any) => void;
     isTouched: boolean = false;
    
-    writeValue(item: any): void {
-        item = this.file;
+
+    writeValue(file: any): void {
+        if(file){
+            this.file = file
+        }
     }
     registerOnChange(fn: () => void): void {
         this.onChange = fn
@@ -64,7 +67,7 @@ export class FileSelector implements OnInit, ControlValueAccessor {
                         this.isTouched = true;
                         if(this.onTouch && this.onChange){
                             this.onTouch();
-                            this.onChange(this.fileChange)
+                            this.onChange(resp)
                         }
                     }
                 } else {

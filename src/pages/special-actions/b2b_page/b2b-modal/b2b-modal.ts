@@ -23,7 +23,7 @@ export class AddB2BModal {
     public filter = {"rezero_b2b_access": "not_granted"};
     public formGroup = new FormGroup({
         username: new FormControl("", [Validators.minLength(3), Validators.required, Validators.pattern(/^[A-Za-z0-9\_\.\-]+$/), EmptyValidators.noWhiteSpace]),
-        account: new FormControl()
+        account: new FormControl("")
     })
     
 
@@ -34,13 +34,18 @@ export class AddB2BModal {
         public alerts: AlertsService,
     ) { }
 
-    ngOnInit() { }
+    public ngOnInit() {
+     }
 
     ngOnChanges() { }
     public send() {
         if(this.disabled || (!this.account.rezero_b2b_username && this.formGroup.invalid) || !this.formGroup.dirty){
             return;
         }
+
+        this.account = this.formGroup.get('account').value;
+        this.account.name = this.formGroup.get('username').value;
+      
         this.dialogRef.close({
             accountId:this.account.id,
             username:this.username ?? this.account.rezero_b2b_username

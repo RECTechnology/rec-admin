@@ -19,16 +19,14 @@
                 <div [formGroup]="formGroup" class="group-col-left" style="width: 100%; padding-bottom: 5px;">
                     <mat-form-field>
                         <mat-label>{{'Name' | translate}}</mat-label>
-                        <input autocomplete="off" matInput placeholder="{{'Name' | translate}}" [(ngModel)]="item.name"
-                            formControlName="name" required>
+                        <input autocomplete="off" matInput placeholder="{{'Name' | translate}}" formControlName="name" required>
                         <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
                     </mat-form-field>
 
                     <div class="group-col-left" style="width: 100%; padding-bottom: 5px;">
                         <mat-form-field>
                             <mat-label>{{'Description' | translate}}</mat-label>
-                            <input autocomplete="off" matInput formControlName="description" placeholder="{{'Description' | translate}}"
-                                [(ngModel)]="item.description">
+                            <input autocomplete="off" matInput formControlName="description" placeholder="{{'Description' | translate}}">
                         </mat-form-field>
                     </div>
                 </div>
@@ -37,9 +35,10 @@
 
         <div class="col-lg-12">
             <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
-                <btn-loader (click)="add()" [disabled]="disabled || loading || formGroup.invalid || !formGroup.dirty"
+                <btn-loader (click)="add()" [disabled]="disabled || loading || formGroup.invalid || !formGroup.dirty || this.edited == false"
                     [loading]="loading" text="{{'SAVE'|translate}}">
                 </btn-loader>
+                <p *ngIf="!edited && isEdit" class="col-error small-text" style="margin-left: 10px!important">{{'NO_UPDATE' | translate}}</p>
                 <p *ngIf="error" class="col-error small-text marg-left-10">{{error}}</p>
             </div>
         </div>
