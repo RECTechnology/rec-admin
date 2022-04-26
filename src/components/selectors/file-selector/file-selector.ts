@@ -30,7 +30,8 @@ export class FileSelector implements OnInit, ControlValueAccessor {
     onChange!:(fileChange: EventEmitter<any>) => void;
     isTouched: boolean = false;
    
-    writeValue(obj: any): void {
+    writeValue(item: any): void {
+        item = this.file;
     }
     registerOnChange(fn: () => void): void {
         this.onChange = fn
@@ -51,11 +52,6 @@ export class FileSelector implements OnInit, ControlValueAccessor {
 
     public openUpdateImage() {
         if (this.disabled) { return; }
-        if(!this.isTouched){
-            this.isTouched = true;
-            this.onTouch();
-            this.onChange(this.fileChange)
-        }
 
         return this.alerts.openModal(FileUpload, {
             hasSelectedImage: !!this.file,
@@ -64,6 +60,13 @@ export class FileSelector implements OnInit, ControlValueAccessor {
             (resp) => {
                 if (resp) {
                     this.fileChange.emit(resp);
+                    if(!this.isTouched){
+                        this.isTouched = true;
+                        if(this.onTouch && this.onChange){
+                            this.onTouch();
+                            this.onChange(this.fileChange)
+                        }
+                    }
                 } else {
                     this.fileChange.emit(this.file);
                 }
