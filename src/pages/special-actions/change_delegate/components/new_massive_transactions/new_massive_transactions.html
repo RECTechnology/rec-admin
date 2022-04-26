@@ -16,7 +16,7 @@
             <mat-error *ngIf="this.formGroup.get('transactions_name').invalid"><small>{{'CONCEPT_LENGTH' | translate: ({limit: this.limit})}}</small></mat-error>
 
           <div  *ngIf="delegate.status == 'draft' || delegate.status == 'pending_validation' || delegate.status == 'created' ">
-            <button mat-icon-button [disabled]="loading || this.formGroup.invalid" matTooltip="{{'SAVE'|translate}}" *ngIf="isEditName"
+            <button mat-icon-button [disabled]="loading || this.formGroup.invalid || this.edited == false" matTooltip="{{'SAVE'|translate}}" *ngIf="isEditName"
               (click)="saveEditConcept()">
               <i class="fa fa-save" *ngIf="!loading"></i>
               <div class="center h v">
@@ -25,7 +25,7 @@
               </div>
             </button>
             <button mat-icon-button [disabled]="loading" matTooltip="{{'CANCEL'|translate}}" *ngIf="isEditName"
-              (click)="changeIsEditName()">
+              (click)="cancelEditName()">
               <i class="fa fa-times"></i>
             </button>
             <button mat-icon-button [disabled]="loading" matTooltip="{{'EDIT'|translate}}" *ngIf="!isEditName"
@@ -188,19 +188,19 @@
       </button>
 
       <button *ngIf="delegate.status == 'scheduled' " mat-button color="#e05205" [disabled]="false"
-        style="margin-bottom: 60px!important;" (click)="sendCancel()">
-        <mat-icon>send</mat-icon>
+        style="margin-bottom: 60px!important;color: #E05205;" (click)="sendCancel()">
+        <mat-icon>schedule_send</mat-icon>
         {{'SEND_CANCEL'|translate}}
       </button>
 
       <button *ngIf="delegate.status == 'failed' " mat-button color="#e05205" [disabled]="false"
-        style="margin-bottom: 60px!important;" (click)="sendRetry()">
+        style="margin-bottom: 60px!important;color: #E05205;" (click)="sendRetry()">
         <mat-icon>reload</mat-icon>
         {{'RETRY_SEND'|translate}}
       </button>
 
       <button *ngIf="delegate.status == 'failed' " mat-button color="red" [disabled]="false"
-        style="margin-bottom: 60px!important;" (click)="sendReport()">
+        style="margin-bottom: 60px!important;color: #FF0000;" (click)="sendReport()">
         <mat-icon>denied</mat-icon>
         {{'MARK_AS_INCOMPLETE'|translate}}
       </button>
