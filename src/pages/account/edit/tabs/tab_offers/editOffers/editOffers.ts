@@ -116,8 +116,6 @@ export class EditOfferDia implements AfterViewChecked, OnInit {
             this.edited = Object.keys(initialValue).some(key => this.formGroup.value[key] != 
               initialValue[key])
             this.setControlValid();
-            console.log(resp)
-            console.log(this.itemCopy)
           })
       }
 
