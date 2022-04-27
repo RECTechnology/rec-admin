@@ -64,7 +64,7 @@
       <div>
 
     <div class="col-lg-12">
-      <file-selector [isAvatar]="true" [disabled]="isEdit && (!item.auto_fetched || !isLemon)" label="Select Document"
+      <file-selector [isAvatar]="false" [isDefaultButton]="true" [disabled]="isEdit && (!item.auto_fetched || !isLemon)" label="Select Document"
         [(file)]="item.content"></file-selector>
     </div>
 
