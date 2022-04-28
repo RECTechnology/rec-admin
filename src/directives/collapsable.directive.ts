@@ -23,7 +23,8 @@ export class CollapsableWhen {
         if (!this.handler) {
             this.handler = this.controles.addHandler(this.namePrivate, this.toggle.bind(this));
         }
-        this.collapsed = this.controles.isToggled(this.namePrivate);
+        this.collapsed = !this.controles.isToggled(this.namePrivate);
+        this.toggleCollapsedClass();
     }
 
     public ngOnDestroy() {
@@ -34,6 +35,10 @@ export class CollapsableWhen {
 
     public toggle(toggled) {
         this.collapsed = !toggled;
+        this.toggleCollapsedClass();
+    }
+
+    private toggleCollapsedClass(){
         if (this.collapsed) {
             this.elr.nativeElement.classList.add('collapsed');
         } else {
