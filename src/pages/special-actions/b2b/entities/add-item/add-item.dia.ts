@@ -62,7 +62,7 @@ export class AddItemDia {
         public productsCrud: ProductsCrud,
         public alerts: AlertsService,
     ) {
-        this.activitiesCrud.list({ offset: 0, limit: 100, sort: 'name', order: 'asc' }, this.langMap[this.us.lang])
+        this.activitiesCrud.search({ offset: 0, limit: 100, sort: 'name', order: 'asc' }, this.langMap[this.us.lang])
             .subscribe((resp) =>this.setActivities(resp));
     }
 

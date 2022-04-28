@@ -8,6 +8,7 @@ import { DocumentKindsCrud } from './document_kinds/document_kinds';
 import { DocumentCrud } from './documents/documents';
 import { TiersCrud } from './tiers/tiers.crud';
 import { OffersCrud } from './offers/offers.crud';
+import { ActivitiesV3Crud } from './activities/activitiesv3.crud';
 
 @NgModule({
     providers: [
@@ -20,6 +21,7 @@ import { OffersCrud } from './offers/offers.crud';
         DocumentKindsCrud,
         DocumentCrud,
         TiersCrud,
+        ActivitiesV3Crud
     ],
 })
 export class CrudModule { }
