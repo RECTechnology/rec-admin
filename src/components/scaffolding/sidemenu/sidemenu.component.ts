@@ -31,19 +31,20 @@ export class SidemenuComponent {
     public dialog: MatDialog,
     public app: AppService,
     public utils: UtilsService,
-  ) { }
+  ) {}
 
   public ngOnInit() {
     this.toggled = this.controles.isToggled('sidemenu');
-    this.handler = this.controles.addHandler('sidemenu', (toggled) => this.toggled = toggled);
+    this.handler = this.controles.addHandler('sidemenu', (toggled) => {
+      this.toggled = toggled;
+    });
     this.getApiVersion();
   }
 
   public getApiVersion() {
-    this.app.getInfo()
-      .subscribe((resp) => {
-        this.apiVersion = resp.data.version;
-      });
+    this.app.getInfo().subscribe((resp) => {
+      this.apiVersion = resp.data.version;
+    });
   }
 
   public ngOnDestroy() {
