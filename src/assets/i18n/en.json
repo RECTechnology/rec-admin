@@ -734,6 +734,7 @@
   "REQUIERED_END":"Requiered end date",
   "REQUIERED_TYPE":"Requiered type offer",
   "NEED_DATA":"Need required data",
+  "REQUIRED_DATA": "Required data is needed",
   "FIELD_REQUIRED":"This field is required",
   "CREATED_OFFER":"Created offer",
   "UPDATED_ACCOUNT":"Updated account correctly!",

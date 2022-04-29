@@ -23,6 +23,7 @@ export class DocumentKindPicker extends BaseSelectorComponent implements Control
   }
 
   onChange!:(item: any) => void;
+  onTouch!:() => void;
   writeValue(item: any): void {
       if(item){
           this.selectItem(item);
@@ -32,6 +33,7 @@ export class DocumentKindPicker extends BaseSelectorComponent implements Control
       this.onChange= fn;
   }
   registerOnTouched(fn: () => void): void {
+    this.onTouch = fn;
   }
 
   public getSearchObservable(query: string): Observable<any> {

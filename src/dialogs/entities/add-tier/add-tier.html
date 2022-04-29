@@ -1,20 +1,25 @@
 <modal-header title="{{'ADD_ITEM'|translate}}" (click)="close(false)"></modal-header>
 
-<div class="padd-20 modal-body" style="min-height: 300px">
+<div [formGroup]="formGroup" class="padd-20 modal-body" style="min-height: 300px">
   <div class="row">
     <div class="col-lg-12">
       <p style="padding-bottom: 15px">
         {{(!isEdit ? 'ADD_ITEM_DESC': 'EDIT_ITEM_DESC')|translate:({ type: itemType })}}
       </p>
     </div>
-    <div class="col-lg-12">
-      <input-field [(value)]="item.code" label="Code" [disabled]="loading"></input-field>
-    </div>
-    <div class="col-lg-12">
-      <input-field [(value)]="item.description" label="Description" [disabled]="loading"></input-field>
-    </div>
+      <mat-form-field class="col-lg-12" style="width: 100%; padding: 5px 15px;">
+        <mat-label>{{"Code" | translate}}</mat-label>
+        <input autocomplete="off" matInput type="text" formControlName="code" style="max-width: 100%;"
+        placeholder="{{'Code'|translate}}" required>
+        <mat-error *ngIf="formGroup.get('code').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+    </mat-form-field>
+      <mat-form-field class="col-lg-12" style="width: 100%; padding: 5px 15px;">
+        <mat-label>{{"Description" | translate}}</mat-label>
+        <input autocomplete="off" matInput type="text" formControlName="description" style="max-width: 100%;"
+        placeholder="{{'Description'|translate}}">
+    </mat-form-field>
     <div class="col-lg-12" style="margin-bottom: 8px;">
-      <input-field type="select" [(value)]="item.parent_id" label="Previous Tier" [disabled]="loading"
+      <input-field formControlName="parent_id" type="select" [(value)]="item.parent_id" label="Previous Tier" [disabled]="loading"
         [options]="tiers">
       </input-field>
       <p class="small-text">* Leave empty if this is a root Tier</p>
@@ -41,7 +46,7 @@
         <i class="fa fa-caret-down" style="margin-left: 8px"></i>
       </button>
       <mat-menu #actMenu="matMenu" y-position="below" overlapTrigger="false">
-        <input type="text" class="user-input small" style="width: 100%" [(ngModel)]="query"
+        <input [ngModelOptions]="{standalone:true}" type="text" class="user-input small" style="width: 100%" [(ngModel)]="query"
            (click)="$event.stopPropagation()" placeholder="{{'Search Document Kinds'|translate}}">
         <ng-template ngFor let-doc [ngForOf]="docKinds">
           <button *ngIf="item.document_kinds && !item.document_kinds.includes(doc)" mat-menu-item
@@ -62,7 +67,8 @@
     </div>
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
+    <p *ngIf="!edited && isEdit" class="col-error small-text" style="margin-right: 10px!important">{{'NO_UPDATE' | translate}}</p>
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
-    <btn-loader [loading]="loading" [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()"></btn-loader>
+    <btn-loader [disabled]="this.formGroup.invalid || !this.edited && this.isEdit" [loading]="loading" [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()"></btn-loader>
   </div>
 </div>

@@ -1,12 +1,21 @@
-import { Component, Input, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild, ElementRef, forwardRef } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AccountPickerComponent } from 'src/components/selectors/account-picker/account-picker.component';
 
 @Component({
   selector: 'input-field',
   templateUrl: './input-field.component.html',
+  providers: [
+    {
+        provide: NG_VALUE_ACCESSOR,
+        useExisting: forwardRef(() => InputFieldComponent),
+        multi: true
+    }
+]
 })
 export class InputFieldComponent {
   @Input() public label: string;
@@ -60,12 +69,34 @@ export class InputFieldComponent {
     }
   }
 
+  onChange!:(item: any) => void;
+  onTouch!:() => void;
+  writeValue(item: any): void {
+      if(item){
+          this.value = item;
+      }
+  }
+  registerOnChange(fn: () => void): void {
+      this.onChange= fn;
+  }
+  registerOnTouched(fn: () => void): void {
+    this.onTouch = fn;
+  }
+
   public changed($event) {
     if($event!= ''){
       this.valueChange.emit(isNaN($event) ? $event : +$event);
+      if(this.onChange){
+        this.onChange($event);
+      }
+      if(this.onTouch){
+        this.onTouch();
+      }
+    }else {
+      if(this.onChange){
+        this.onChange($event);
+      }
     }
-    
-
   }
 
   public setupDebouncedSearch(element) {

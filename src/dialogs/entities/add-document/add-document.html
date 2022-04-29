@@ -1,28 +1,25 @@
 <modal-header title="{{(isEdit ? 'EDIT_DOCUMENT': 'ADD_DOCUMENT')|translate}}" (click)="close(false)">
 </modal-header>
 
-<div class="padd-20 modal-body" style="min-height: 300px">
-  <validation-errors #errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"
-    style="border: 1px solid #ddd!important; width: 100%; margin-bottom: 15px;">
-  </validation-errors>
-
+<div [formGroup]="formGroup" class="padd-20 modal-body" style="min-height: 300px">
   <div class="row">
-    <div class="col-lg-12 space-between"  style= "padding-bottom: 10px;" matTooltip="{{'Filter by document_kind' | translate}}">
-      <document-kind-picker [needsNone]="true" [(item)]="item.kind" (itemChanged)="kindChanged($event)" label="DOCUMENT_KIND">
+    <div class="col-lg-12 space-between"  style= "padding-bottom: 5px;" matTooltip="{{'Filter by document_kind' | translate}}">
+      <document-kind-picker formControlName="kind" [needsNone]="true" [(item)]="item.kind" (itemChanged)="kindChanged($event)" label="DOCUMENT_KIND">
       </document-kind-picker>
+      <mat-error *ngIf="formGroup.get('kind').invalid && formGroup.get('kind').touched"><small>{{'FIELD_REQUIRED'| translate}}</small></mat-error>
     </div>
 
     <div class="col-lg-12" *ngIf="!disableAccountSelector"  style= "padding-bottom: 10px;" matTooltip="{{'Filter by account' | translate}}">
       <div class="group-col-left space-between" *ngIf="isEdit; else elseBlock" style="width :100%;">
         <div *ngIf="item.account_id != null;">
-          <account-picker style="margin: 0!important;" label="ACCOUNTS" [needsNone]="true" [disabled]="loading || disableAccountSelector || isEdit " [(item)]=" item.account"
+          <account-picker formControlName="account" style="margin: 0!important;" label="ACCOUNTS" [needsNone]="true" [disabled]="loading || disableAccountSelector || isEdit " [(item)]=" item.account"
             (itemChanged)="setAccount($event);">
           </account-picker>
         </div>
 
       </div>
       <ng-template #elseBlock>
-        <account-picker style="margin: 0!important;" label="ACCOUNTS" [needsNone]="true" [disabled]="loading || disableAccountSelector || isEdit " [(item)]=" item.account"
+        <account-picker formControlName="account" style="margin: 0!important;" label="ACCOUNTS" [needsNone]="true" [disabled]="loading || disableAccountSelector || isEdit " [(item)]=" item.account"
           (itemChanged)="setAccount($event);">
         </account-picker>
       </ng-template>
@@ -30,41 +27,45 @@
     <div *ngIf="!lwKind" class="col-lg-12" style= "padding-bottom: 10px;" matTooltip="{{'Filter by user' | translate}}">
       <div class="group-col-left space-between" *ngIf="isEdit; else elseBlock" style="width :100%">
         <div *ngIf="item.user_id != null">
-          <user-picker label="USERS" [needsNone]="true" [(item)]="item.user" [disabled]="isEdit" (itemChanged)="setUser($event);">
+          <user-picker formControlName="user" label="USERS" [needsNone]="true" [(item)]="item.user" [disabled]="isEdit" (itemChanged)="setUser($event);">
           </user-picker>
         </div>
       </div>
       <ng-template #elseBlock>
-        <user-picker label="USERS" [needsNone]="true" [(item)]="item.user" [disabled]="isEdit" (itemChanged)="setUser($event);">
+        <user-picker formControlName="user" label="USERS" [needsNone]="true" [(item)]="item.user" [disabled]="isEdit" (itemChanged)="setUser($event);">
         </user-picker>
       </ng-template>
     </div>
 
-    <div class="col-lg-12">
-      <input-field [(value)]="item.name" label="Name" [disabled]="loading"></input-field>
-    </div>
-
+    <mat-form-field class="col-lg-12" style="width: 100%; padding: 5px 15px;">
+      <mat-label>{{"Name" | translate}}</mat-label>
+      <input autocomplete="off" matInput type="text" formControlName="name" style="max-width: 100%;"
+      placeholder="{{'Name'|translate}}" required>
+      <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+    </mat-form-field>
+    
     <div class="col-lg-12 " *ngIf="!lwKind" style="padding-top: 15px;" matTooltip="{{'Filter by status' | translate}}">
-      <rec-status-selector *ngIf="!isLemon" label="Status" (itemChanged)="setType($event)"></rec-status-selector>
+      <rec-status-selector formControlName="status" [item]="item.status" *ngIf="!isLemon" label="Status" (itemChanged)="setType($event)"></rec-status-selector>
     </div>
 
-    <div *ngIf="!lwKind" class="col-lg-12" style="padding-top: 20px;">
-      <input-field *ngIf="!isLemon" [(value)]="item.status_text" label="{{'status_text'| translate}}" [disabled]="loading"
-        (valueChange)="changeStatusText($event)"></input-field>
-    </div>
+    <mat-form-field *ngIf="!lwKind" class="col-lg-12" style="width: 100%; padding: 5px 15px;">
+      <mat-label>{{"status_text" | translate}}</mat-label>
+      <input autocomplete="off" matInput type="text" formControlName="status_text" style="max-width: 100%;"
+      placeholder="{{'status_text'|translate}}">
+    </mat-form-field>
 
     <div class="col-lg-12 group-col-left marg-t-5">
       <span class="small-text-2 marg-b-1">
         {{'VALID_UNTIL'|translate}}
       </span>
 
-      <date-picker style="width: 40%" (itemChanged)="item.valid_until = $event">
+      <date-picker formControlName="valid_until" style="width: 40%" (itemChanged)="item.valid_until = $event">
       </date-picker>
     </div>
       <div>
 
     <div class="col-lg-12">
-      <file-selector [isAvatar]="false" [isDefaultButton]="true" [disabled]="isEdit && (!item.auto_fetched || !isLemon)" label="Select Document"
+      <file-selector formControlName="content" [isAvatar]="false" [isDefaultButton]="true" [disabled]="isEdit && (!item.auto_fetched || !isLemon)" label="Select Document"
         [(file)]="item.content"></file-selector>
     </div>
 
@@ -74,7 +75,10 @@
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
-    <btn-loader [loading]="loading" [disabled]="!item.name" [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()">
+    <p *ngIf="this.formGroup.dirty && this.formGroup.invalid" class="col-error small-text" style="margin-right: 10px!important">{{"REQUIRED_DATA" | translate}}</p>
+    <p *ngIf="!edited && isEdit" class="col-error small-text" style="margin-right: 10px!important">{{'NO_UPDATE' | translate}}</p>
+    <btn-loader [loading]="loading" [disabled]="this.formGroup.invalid || !this.edited || !this.formGroup.dirty"
+    [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()">
     </btn-loader>
   </div>
 </div>

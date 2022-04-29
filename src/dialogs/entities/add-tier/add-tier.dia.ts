@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
@@ -8,6 +8,8 @@ import { TiersCrud } from 'src/services/crud/tiers/tiers.crud';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 
 @Component({
   selector: 'add-tier',
@@ -15,6 +17,7 @@ import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kin
 })
 export class AddTierDia extends BaseDialog {
   public isEdit = false;
+  public edited = false;
   public item: Tier = {
     code: '',
     description: '',
@@ -23,8 +26,14 @@ export class AddTierDia extends BaseDialog {
   public itemCopy: Tier = {
     code: '',
     description: '',
+    parent_id: "",
     document_kinds: [],
   };
+  public formGroup = new FormGroup({
+    code: new FormControl("", Validators.required),
+    description: new FormControl(),
+    parent_id: new FormControl()
+  })
   public itemType = 'Tier';
   public docKinds: DocumentKind[] = [];
   public tiers: Tier[] = [];
@@ -42,12 +51,33 @@ export class AddTierDia extends BaseDialog {
 
   public ngOnInit() {
     this.itemCopy = Object.assign({}, this.item);
+    this.formGroup.get('code').setValue(this.item.code),
+    this.formGroup.get('description').setValue(this.item.description),
+    this.formGroup.get('parent_id').setValue(this.item.parent_id)
+
 
     if (this.isEdit) {
       this.getTier();
       this.search();
     }
     this.getTiers();
+    this.validation();
+  }
+
+  public validation(){
+    this.formGroup.valueChanges
+      .pipe(
+        debounceTime(100)
+      )
+      .subscribe(resp => {
+       
+        if(this.itemCopy.code != resp.code || this.itemCopy.description != resp.description 
+          || this.itemCopy.parent_id != resp.parent_id){
+            this.edited = true
+          }else {
+            this.edited = false
+          }
+      })
   }
 
   public getTier() {
@@ -99,9 +129,13 @@ export class AddTierDia extends BaseDialog {
   }
 
   public proceed() {
-    if (this.loading) {
+    if (this.loading || this.formGroup.invalid || !this.edited && this.isEdit) {
       return;
     }
+
+    this.item.code = this.formGroup.get('code').value;
+    this.item.description = this.formGroup.get('description').value;
+    this.item.parent_id = this.formGroup.get('parent_id').value;
 
     this.loading = true;
     let data: any = { ...this.item };

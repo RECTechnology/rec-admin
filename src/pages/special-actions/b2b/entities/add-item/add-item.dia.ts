@@ -70,10 +70,10 @@ export class AddItemDia {
         this.formGroup.get('name').setValue(this.item.name);
         this.formGroup.get('name_ca').setValue(this.item.name_ca);
         this.formGroup.get('name_es').setValue(this.item.name_es);
-        this.formGroup.get('parent').setValue(this.item.secondary_activity);
         if(this.item.parent != null){
             this.secondary_activity = this.item.parent;
         }
+        this.formGroup.get('parent').setValue(this.item.parent);
         this.check();
        this.validation();
     }
@@ -158,17 +158,24 @@ export class AddItemDia {
           name: this.item.name,
           name_ca: this.item.name_ca,
           name_es: this.item.name_es,
-          parent: this.item.secondary_activity
         }
+        const parent = this.item.parent;
         const initialValue = this.itemCopy;
         this.formGroup.valueChanges
           .pipe(
             debounceTime(100)
           )
           .subscribe(resp => {
-            this.edited = Object.keys(initialValue).some(key => this.formGroup.value[key] != 
-              initialValue[key])
+              if(parent){
+                this.edited = Object.keys(initialValue).some(key => resp[key] != 
+                    initialValue[key]) || parent.id != resp.parent.id;
+              }else {
+                this.edited = Object.keys(initialValue).some(key => resp[key] != 
+                    initialValue[key]) || parent != resp.parent;
+              }
+            
           })
+         
       }
     public selectParentActivity(item) {
         this.item = item;
