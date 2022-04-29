@@ -26,6 +26,7 @@ export class AddDocumentDia extends BaseDialog {
   public edited = false;
   public isLemon = false;
   public status_text = '';
+  public date: Date;
   public isUserSelectorEnabled: Boolean = false;
   public isAccountSelectorEnabled: Boolean = false;
   public lwKind: Boolean = false;
@@ -106,12 +107,15 @@ export class AddDocumentDia extends BaseDialog {
   }
 
   public validation(){
-    const date = new Date(this.item.valid_until);
+    if(this.item.valid_until){
+      this.date = new Date(this.item.valid_until);
+    }
+   
     const initialValue = {
       name: this.item.name ?? "",
       status: this.item.status,
       status_text: this.item.status_text ?? "",
-      valid_until: this.datepipe.transform(date, "yyyy-MM-ddT00:00:00+00:00"),
+      valid_until: this.datepipe.transform(this.date, "yyyy-MM-ddT00:00:00+00:00"),
       content: this.item.content
     }
     const kind =  this.item.kind_id;
@@ -125,8 +129,9 @@ export class AddDocumentDia extends BaseDialog {
         this.itemCopy.kind_id = resp.kind ? resp.kind.id : undefined;
         this.itemCopy.user_id = resp.user ? resp.user.id : undefined;
         this.itemCopy.account_id = resp.account ? resp.account.id : undefined;
-        resp.valid_until = this.datepipe.transform(resp.valid_until, "yyyy-MM-ddT00:00:00+00:00")
-    
+        if(resp.valid_until){
+          resp.valid_until = this.datepipe.transform(resp.valid_until, "yyyy-MM-ddT00:00:00+00:00")
+        }
         if(Object.keys(initialValue).some(key => resp[key] !=
           initialValue[key]) || (kind != this.itemCopy.kind_id) ||
           (account !=  this.itemCopy.account_id)
