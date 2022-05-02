@@ -76,7 +76,7 @@
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
     <p *ngIf="this.formGroup.dirty && this.formGroup.invalid" class="col-error small-text" style="margin-right: 10px!important">{{"REQUIRED_DATA" | translate}}</p>
-    <p *ngIf="!edited && isEdit" class="col-error small-text" style="margin-right: 10px!important">{{'NO_UPDATE' | translate}}</p>
+    <p *ngIf="!edited && isEdit" class="small-text" style="margin-right: 10px!important; color: rgba(0, 0, 0, 0.42);">{{'NO_UPDATE' | translate}}</p>
     <btn-loader [loading]="loading" [disabled]="this.formGroup.invalid || !this.edited || !this.formGroup.dirty"
     [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()">
     </btn-loader>

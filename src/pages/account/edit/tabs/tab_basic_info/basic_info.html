@@ -97,7 +97,7 @@
           <btn-loader (click)="update()" [disabled]="loading || !formGroup.dirty || formGroup.invalid || !this.edited" [loading]="loading" text="{{'Update'|translate}}">
           </btn-loader>
           <p *ngIf="error">{{error}}</p>
-          <p style="color: red; margin-left: 10px!important;" *ngIf="!this.edited"> <small>{{'NO_UPDATE' | translate}}</small></p>
+          <p style="color: rgba(0, 0, 0, 0.42); margin-left: 10px!important;" *ngIf="!this.edited"> <small>{{'NO_UPDATE' | translate}}</small></p>
         </div>
       </div>
     </div>

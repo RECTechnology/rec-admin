@@ -1,4 +1,4 @@
-<modal-header title="{{isEdit ? 'EDIT_DOCUMENT_KIND': 'ADD_DOCUMENT_KIND'|translate}}" (click)="close(false)">
+<modal-header title="{{(isEdit ? 'EDIT_DOCUMENT_KIND': 'ADD_DOCUMENT_KIND')|translate}}" (click)="close(false)">
 </modal-header>
 
 <div class="padd-20 modal-body" style="min-height: 300px">
@@ -41,7 +41,7 @@
   </form>
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
-    <p *ngIf="!edited && isEdit" class="col-error small-text" style="margin-right: 10px!important">{{'NO_UPDATE' | translate}}</p>
+    <p *ngIf="!edited && isEdit" class="small-text" style="margin-right: 10px!important; color: rgba(0, 0, 0, 0.42);">{{'NO_UPDATE' | translate}}</p>
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
     <btn-loader [loading]="loading" [disabled]="disabled || loading || formGroup.invalid || !formGroup.dirty || this.edited == false"
     [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()"></btn-loader>

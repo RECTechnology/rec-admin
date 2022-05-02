@@ -89,12 +89,12 @@
                 </div>
             </div>
             <div class="col-lg-12 col-sm-12 col-md-12">
-                <div style="margin-top: 20px;">
+                <div  class="group-row-left" style="margin-top: 10px;">
                     <btn-loader (click)="add()" [disabled]="disabled || loading || formGroup.invalid || !formGroup.dirty || !this.edited && this.isEdit" [loading]="loading"
                         text="{{'SAVE'|translate}}">
                     </btn-loader>
                     <p *ngIf="error" class="col-error small-text">{{error}}</p>
-                    <p *ngIf="!edited && isEdit" class="col-error small-text" style="margin-top: 10px!important">{{'NO_UPDATE' | translate}}</p>
+                    <p *ngIf="!edited && isEdit" class="small-text" style="margin-top: 10px!important; margin-left: 10px!important; color: rgba(0, 0, 0, 0.42);">{{'NO_UPDATE' | translate}}</p>
                 </div>
             </div>
         </div>

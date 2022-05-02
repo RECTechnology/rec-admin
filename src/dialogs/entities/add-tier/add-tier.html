@@ -67,7 +67,7 @@
     </div>
   </div>
   <div class="group-row-left center v" style="margin-top: 20px; justify-content: flex-end">
-    <p *ngIf="!edited && isEdit" class="col-error small-text" style="margin-right: 10px!important">{{'NO_UPDATE' | translate}}</p>
+    <p *ngIf="!edited && isEdit" class="small-text" style="margin-right: 10px!important; color: rgba(0, 0, 0, 0.42);">{{'NO_UPDATE' | translate}}</p>
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
     <btn-loader [disabled]="this.formGroup.invalid || !this.edited && this.isEdit" [loading]="loading" [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()"></btn-loader>
   </div>

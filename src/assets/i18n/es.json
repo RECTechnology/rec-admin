@@ -982,6 +982,7 @@
   "NEW_NEIGBORHOOD": "Nuevo barrio",
   "EDIT_NEIGBORHOOD": "Editar barrio",
   "NEW_ACTIVITY": "Nueva actividad",
+  "EDIT_DOCUMENT_KIND":"editar tipo de documento",
   "SAVE": "Guardar",
   "INPUT_REQUIRED": "Campo Requerido: {{field}}",
   "FIELD_REQUIRED":"Este campo es requerido",
