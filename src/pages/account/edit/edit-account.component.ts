@@ -102,6 +102,7 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
 
     if (Object.keys(changedProps).length) {
       this.loading = true;
+      console.log(changedProps)
       this.crudAccounts.update(this.account_id, changedProps).subscribe({
         next: this.onUpdateOk.bind(this),
         error: this.onUpdateError.bind(this),

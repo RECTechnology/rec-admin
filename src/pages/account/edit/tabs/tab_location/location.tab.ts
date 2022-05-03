@@ -103,18 +103,6 @@ export class LocationTab {
 
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
     delete changedProps.activity_main;
-
-    this.formGroup.valueChanges.subscribe(changes => {
-      if (changes){
-        this.hasChanges = true;
-      }
-    })
-
-    if(!this.hasChanges){
-      delete changedProps.neighbourhood_id;
-    }
-
-    this.hasChanges = false;
    
     if(changedProps.neighbourhood){
       delete changedProps.neighbourhood;
