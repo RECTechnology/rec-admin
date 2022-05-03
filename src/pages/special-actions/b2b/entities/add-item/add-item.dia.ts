@@ -8,6 +8,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Activity } from 'src/shared/entities/translatable/activity.ent';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { EmptyValidators } from '../../../../../components/validators/EmptyValidators';
 
 @Component({
     selector: 'add-item',
@@ -30,9 +31,9 @@ export class AddItemDia {
     public edited = false;
     public activities = [];
     public formGroup = new FormGroup({
-        name_ca: new FormControl(Validators.required),
-        name_es: new FormControl(Validators.required),
-        name: new FormControl(Validators.required),
+        name_ca: new FormControl("",[Validators.required, EmptyValidators.noWhitespaceValidator]),
+        name_es: new FormControl("",[Validators.required, EmptyValidators.noWhitespaceValidator]),
+        name: new FormControl("",[Validators.required, EmptyValidators.noWhitespaceValidator]),
         parent: new FormControl()
     })
 
