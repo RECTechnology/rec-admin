@@ -10,5 +10,12 @@ export class EmptyValidators {
         }
        
     }
+    static noWhitespaceValidator(control: AbstractControl) : ValidationErrors | null {
+        if(control.value){
+            const isWhitespace = (control.value).trim().length === 0;
+            const isValid = !isWhitespace;
+            return isValid ? null : { 'whitespace': true };
+        }
+    }
 }/*import { EmptyValidators} from 'src/components/validators/EmptyValidators';
 */

@@ -10,6 +10,7 @@ import { DocumentKind } from 'src/shared/entities/document_kind.ent';
 import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kinds';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { EmptyValidators } from 'src/components/validators/EmptyValidators';
 
 @Component({
   selector: 'add-tier',
@@ -30,7 +31,7 @@ export class AddTierDia extends BaseDialog {
     document_kinds: [],
   };
   public formGroup = new FormGroup({
-    code: new FormControl("", Validators.required),
+    code: new FormControl("", [Validators.required, EmptyValidators.noWhitespaceValidator]),
     description: new FormControl(),
     parent_id: new FormControl()
   })

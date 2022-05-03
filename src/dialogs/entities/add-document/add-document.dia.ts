@@ -51,7 +51,7 @@ export class AddDocumentDia extends BaseDialog {
     kind: new FormControl(null, Validators.required),
     account: new FormControl({}),
     user: new FormControl({}),
-    name: new FormControl("", [Validators.required, Validators.minLength(1)]),
+    name: new FormControl("", [Validators.required, EmptyValidators.noWhitespaceValidator]),
     status: new FormControl(""),
     status_text: new FormControl(""),
     valid_until: new FormControl(null),

@@ -26,7 +26,7 @@ export class AddNeighbourhoodDia {
     public itemCopy: any;
 
     public formGroup = new FormGroup({
-        name: new FormControl("",[Validators.required, this.noWhitespaceValidator]),
+        name: new FormControl("",[Validators.required, EmptyValidators.noWhitespaceValidator]),
         description: new FormControl()
     })
 
@@ -36,11 +36,6 @@ export class AddNeighbourhoodDia {
         public translate: TranslateService,
     ) {}
 
-    public noWhitespaceValidator(control: FormControl) {
-        const isWhitespace = (control.value || '').trim().length === 0;
-        const isValid = !isWhitespace;
-        return isValid ? null : { 'whitespace': true };
-    }
 
     public ngOnInit() {
         console.log(this.item)

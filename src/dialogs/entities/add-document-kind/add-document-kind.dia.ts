@@ -9,6 +9,7 @@ import { DocumentKindsCrud } from 'src/services/crud/document_kinds/document_kin
 import { LemonDocumentKindsCrud } from 'src/services/crud/lemon_document_kinds/lemon_document_kinds';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { EmptyValidators } from '../../../components/validators/EmptyValidators';
 
 @Component({
   selector: 'add-document-kind',
@@ -21,8 +22,8 @@ export class AddDocumentKindDia extends BaseDialog {
   public itemType = 'Document Kind';
   public validationErrors = [];
   public formGroup = new FormGroup({
-    name: new FormControl(Validators.required),
-    description: new FormControl(Validators.required),
+    name: new FormControl("",[Validators.required, EmptyValidators.noWhitespaceValidator]),
+    description: new FormControl("", [Validators.required, EmptyValidators.noWhitespaceValidator]),
     lemon_doctype: new FormControl(null, [Validators.min(0), Validators.max(19)]),
     is_user_document: new FormControl(),
     tiers: new FormControl([]),
