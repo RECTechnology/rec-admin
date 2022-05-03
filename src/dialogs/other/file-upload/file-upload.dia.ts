@@ -18,6 +18,7 @@ export class FileUpload {
   public noImageName: string = 'profile_default_image';
   public selectedImage;
   public progress = 0;
+  public isDefaultButton: boolean = false;
 
   public extension;
   public isImage = true;

@@ -60,6 +60,7 @@ export class FileSelector implements OnInit, ControlValueAccessor {
         return this.alerts.openModal(FileUpload, {
             hasSelectedImage: !!this.file,
             selectedImage: this.file,
+            isDefaultButton: this.isDefaultButton
         }).subscribe(
             (resp) => {
                 if (resp) {

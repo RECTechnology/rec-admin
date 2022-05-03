@@ -441,6 +441,7 @@
   "ACTIVITIES_PRODUCED": "Activities Produced",
   "ACTIVITIES_CONSUMED": "Activities Consumed",
   "ACTIVITY_PRODUCED": "Activity Produced",
+  "SELECT_UPLOAD": "Select a file from your computer",
   "ACTIVITY_CONSUMED": "Activity Consumed",
   "NO_ITEMS": "There are no items",
   "NEW_PRODUCT": "New Product",

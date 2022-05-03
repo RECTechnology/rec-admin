@@ -1007,6 +1007,7 @@
   "Mail": "Correo",
   "Processed": "Procesado",
   "EDIT_MAIL": "Editar Correo",
+  "SELECT_UPLOAD": "Selecciona un archivo de tu ordenador",
   "CREATE_MAIL": "Crear Correo",
   "CREATE_DELIVERY": "Crear Entrega",
   "Account Email": "Correo Cuenta",
