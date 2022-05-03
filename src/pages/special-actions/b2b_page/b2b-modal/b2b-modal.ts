@@ -22,7 +22,7 @@ export class AddB2BModal {
     public username = null;
     public filter = {"rezero_b2b_access": "not_granted"};
     public formGroup = new FormGroup({
-        username: new FormControl("", [Validators.minLength(3), Validators.required, Validators.pattern(/^[A-Za-z0-9\_\.\-]+$/), EmptyValidators.noWhiteSpace]),
+        username: new FormControl(null, [Validators.minLength(3), Validators.required, Validators.pattern(/^[A-Za-z0-9\_\.\-]+$/), EmptyValidators.noWhiteSpace]),
         account: new FormControl("")
     })
     
