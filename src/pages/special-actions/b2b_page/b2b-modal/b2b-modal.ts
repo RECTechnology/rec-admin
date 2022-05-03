@@ -44,7 +44,7 @@ export class AddB2BModal {
         }
 
         this.account = this.formGroup.get('account').value;
-        this.account.name = this.formGroup.get('username').value;
+        this.username = this.formGroup.get('username').value;
       
         this.dialogRef.close({
             accountId:this.account.id,
