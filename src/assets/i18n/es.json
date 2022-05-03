@@ -987,6 +987,7 @@
   "INPUT_REQUIRED": "Campo Requerido: {{field}}",
   "FIELD_REQUIRED":"Este campo es requerido",
   "REQUIRED_DATA": "Faltan campos obligatorios",
+  "NO_FILE": "Ningún archivo subido",
   "UsersAndAccounts": "Usuarios",
   "EDIT_ITEM": "Editar Elemento",
   "ACTIVITY_DESC": "Editar este ítem podría causar efectos colaterales, solo debes editar un ítem por causas como errores ortográficos, si no es el caso, por favor, comuníquelo antes a “desarrollo@rec.barcelona” para obtener autorización y que el coordinador técnico esté al corriente de este cambio",

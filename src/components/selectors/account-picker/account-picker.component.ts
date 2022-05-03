@@ -23,6 +23,7 @@ export class AccountPickerComponent extends BaseSelectorComponent {
 
   @Input() filters: any = null;
   onChange!:(item: any) => void;
+  onTouch!: () => void;
     writeValue(account: Account): void {
         if(account){
             this.selectItem(account);
@@ -32,6 +33,7 @@ export class AccountPickerComponent extends BaseSelectorComponent {
         this.onChange= fn;
     }
     registerOnTouched(fn: () => void): void {
+      this.onTouch = fn;
     }
 
   constructor( private accountsCrud: AccountsCrud){

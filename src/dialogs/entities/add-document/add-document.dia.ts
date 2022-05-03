@@ -38,6 +38,7 @@ export class AddDocumentDia extends BaseDialog {
     content: '',
     valid_until: null
   };
+  public paymentAccount: any;
   //(idChange)="search();"
   public itemCopy: Document = {
     name: '',
@@ -54,7 +55,7 @@ export class AddDocumentDia extends BaseDialog {
     status: new FormControl(""),
     status_text: new FormControl(""),
     valid_until: new FormControl(null),
-    content: new FormControl(null)
+    content: new FormControl(null, Validators.required)
   })
   public itemType = 'Document';
   public docKinds = [];
@@ -83,6 +84,7 @@ export class AddDocumentDia extends BaseDialog {
       this.accountCrud.find(this.item.account_id)
       .subscribe( account => {
         this.item.account = account.data;
+        this.formGroup.get("account").setValue(account.data);
       })
     }
     if(this.item.user){
@@ -91,6 +93,7 @@ export class AddDocumentDia extends BaseDialog {
         this.item.user = user.data;
       })
     }
+    this.paymentAccount = this.item.account ? this.item.account.lw_balance : null;
     this.formGroup.get("kind").setValue(this.item.kind);
     this.formGroup.get("account").setValue(this.item.account);
     this.formGroup.get("user").setValue(this.item.user);
@@ -126,6 +129,14 @@ export class AddDocumentDia extends BaseDialog {
         debounceTime(100)
       )
       .subscribe(resp => {
+        if(this.lwKind && !this.formGroup.get('account').value){
+          this.formGroup.get('account').setValidators(Validators.required);
+          this.formGroup.get('account').setErrors({required:true});
+        }else{
+          this.formGroup.get('account').clearValidators();
+          this.formGroup.get('account').setErrors(null);
+        }
+        this.paymentAccount = this.formGroup.get('account').value ? this.formGroup.get('account').value.lw_balance : undefined;
         this.itemCopy.kind_id = resp.kind ? resp.kind.id : undefined;
         this.itemCopy.user_id = resp.user ? resp.user.id : undefined;
         this.itemCopy.account_id = resp.account ? resp.account.id : undefined;
@@ -140,24 +151,7 @@ export class AddDocumentDia extends BaseDialog {
           }else {
             this.edited = false
           }
-          console.log(resp)
-          console.log(initialValue)
       })
-      
-  }
-
-  public setUser($event) {
-    if ($event) {
-      this.item.account = null;
-      this.item.account_id = null;
-    }
-  }
-
-  public setAccount($event) {
-    if ($event) {
-      this.item.user = null;
-      this.item.user_id = null;
-    }
   }
 
   public setType(type) {
@@ -181,7 +175,7 @@ export class AddDocumentDia extends BaseDialog {
 
   public getCrud(data) {
     let kind = data.kind;
-    const isLemon = kind != undefined && kind.lemon_doctype !== null && kind.lemon_doctype !== undefined;
+    const isLemon = kind != undefined && kind.lemon_doctype !== null && kind.lemon_doctype !== undefined || this.lwKind && !this.paymentAccount;
 
     return isLemon ? this.lemonDocCrud : this.docCrud;
   }

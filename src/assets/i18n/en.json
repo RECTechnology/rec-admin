@@ -267,6 +267,7 @@
   "SEARCH_FOR_TX": "Search for transactions",
   "FOUND_X_TX": "Found a total of {{amount}} transactions.",
   "EXPORT_FILENAME": "Exported file name",
+  "NO_FILE": "Any file upload",
   "EXPORT_AS_CSV": "Export as CSV",
   "EXPORT": "Export",
   "MUST_CHANGE_PASS": "We've increased security measures and strong passwords is one of them. Please change your password",

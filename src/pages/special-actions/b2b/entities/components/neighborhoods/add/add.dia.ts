@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { UserService } from 'src/services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { EmptyValidators } from '../../../../../../../components/validators/EmptyValidators';
 
 @Component({
     selector: 'add-neighborhoods',
@@ -25,7 +26,7 @@ export class AddNeighbourhoodDia {
     public itemCopy: any;
 
     public formGroup = new FormGroup({
-        name: new FormControl([Validators.required, this.noWhitespaceValidator]),
+        name: new FormControl("",[Validators.required, this.noWhitespaceValidator]),
         description: new FormControl()
     })
 
