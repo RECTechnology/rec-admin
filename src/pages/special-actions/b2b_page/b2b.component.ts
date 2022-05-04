@@ -167,6 +167,7 @@ export class B2BComponent extends TablePageBase {
             },
             (error) => {
               this.loading = false;
+              this.alerts.showSnackbar('Error: ' + error.message, 'ok');
             },
           );
         }
