@@ -420,6 +420,7 @@
   "Year": "Año",
   "Proof Of Residence Document": "Documento de prueba de residencia",
   "Document": "Documento",
+  "NO_LW_ACCOUNT": "Cuenta no vinculada a LW",
   "API_CLIENTS_DESC": "Las integraciones de API son claves de API utilizadas en una integración personalizada o etiquetada en blanco y todas las transacciones realizadas en esta integración tienen una tarifa para el distribuidor.",
   "Value is aproximate": "El valor es aproximado",
   "ERROR_GENERAL": "Parece que hay algún problema. Inténtalo de nuevo más tarde o ponte en contacto con el equipo de soporte.",

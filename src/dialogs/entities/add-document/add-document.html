@@ -19,7 +19,7 @@
           <account-picker formControlName="account" style="margin: 0!important;" label="ACCOUNTS" [needsNone]="true" [disabled]="loading || disableAccountSelector || isEdit " [(item)]=" item.account">
           </account-picker>
           <mat-error *ngIf="formGroup.get('account').invalid && formGroup.get('account').touched && lwKind"><small>{{'FIELD_REQUIRED'| translate}}</small></mat-error>
-          <mat-error *ngIf="!formGroup.get('account').invalid && lwKind && !paymentAccount"><small>La cuenta no tiene sistema de pago</small></mat-error>
+          <mat-error *ngIf="!formGroup.get('account').invalid && lwKind && !paymentAccount"><small>{{'NO_LW_ACCOUNT' | translate}}</small></mat-error>
         </div>
 
       </div>
@@ -27,7 +27,7 @@
         <account-picker formControlName="account" style="margin: 0!important;" label="ACCOUNTS" [needsNone]="true" [disabled]="loading || disableAccountSelector || isEdit " [(item)]=" item.account">
         </account-picker>
         <mat-error *ngIf="formGroup.get('account').invalid && formGroup.get('account').touched"><small>{{'FIELD_REQUIRED'| translate}}</small></mat-error>
-        <mat-error *ngIf="!formGroup.get('account').invalid && lwKind && !paymentAccount"><small>La cuenta no tiene sistema de pago</small></mat-error>
+        <mat-error *ngIf="!formGroup.get('account').invalid && lwKind && !paymentAccount"><small>{{'NO_LW_ACCOUNT' | translate}}</small></mat-error>
       </ng-template>
     </div>
     <div *ngIf="!lwKind" class="col-lg-12" style= "padding-bottom: 10px;" matTooltip="{{'Filter by user' | translate}}">
@@ -82,7 +82,7 @@
     <p class="col-error small-text" style="margin-right: 10px!important">{{error}}</p>
     <p *ngIf="this.formGroup.dirty && this.formGroup.invalid" class="col-error small-text" style="margin-right: 10px!important">{{"REQUIRED_DATA" | translate}}</p>
     <p *ngIf="!edited && isEdit" class="small-text" style="margin-right: 10px!important; color: rgba(0, 0, 0, 0.42);">{{'NO_UPDATE' | translate}}</p>
-    <btn-loader [loading]="loading" [disabled]="this.formGroup.invalid || !this.edited || !this.formGroup.dirty"
+    <btn-loader [loading]="loading" [disabled]="this.formGroup.invalid || !this.edited || !this.formGroup.dirty || lwKind && !paymentAccount"
     [text]="isEdit ? 'EDIT': 'ADD'" (click)="proceed()">
     </btn-loader>
   </div>
