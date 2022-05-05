@@ -8,7 +8,7 @@
         </button>
     </tl-header>
     <tl-subheader>
-        <div class="center v" >
+        <div style="width: auto;" class="center v" >
             <div style="padding: 10px" matTooltip="{{'Filter by document_kind' | translate}}">
                 <document-kind-picker [needsNone]="true" [item]="productKindFilter" label="DOCUMENT_KIND"
                     (itemChanged)="selectDocKind($event)"></document-kind-picker>
