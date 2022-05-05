@@ -39,7 +39,7 @@
                         <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
                     </mat-form-field>
 
-                    <div *ngIf="!isProduct" style="width: 100%">
+                    <div *ngIf="!isProduct" style="width: 100%; padding: 10px;">
                         <activity-picker label="PARENT_ACTIVITY" formControlName="parent" [item]="secondary_activity" [parent]="'null'" (itemChanged)="selectActivity($event)">
                         </activity-picker>
                     </div>
