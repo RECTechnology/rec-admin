@@ -70,7 +70,7 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
         
         this.loading = true;
         this.crud.search({
-            dir: this.sortDir,
+            order: this.sortDir,
             limit: this.limit,
             offset: this.offset,
             search: query || this.query || '',
@@ -113,7 +113,7 @@ export class NeighborhoodsTabComponent extends EntityTabBase<Neighborhood> {
                       )
                       .subscribe(
                         (resp) => {
-                          this.alerts.showSnackbar('UPDATED_PRODUCT' + neighborhood.id, 'ok');
+                          this.alerts.showSnackbar('UPDATED_NEIGHBOURHOOD', 'ok');
                           this.loading = false;
                           this.search();
                         },

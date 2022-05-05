@@ -42,14 +42,24 @@ export class AddB2BModal {
         if(this.disabled || (!this.account.rezero_b2b_username && this.formGroup.invalid) || !this.formGroup.dirty){
             return;
         }
+        this.loading = true;
 
         this.account = this.formGroup.get('account').value;
         this.username = this.formGroup.get('username').value;
-      
-        this.dialogRef.close({
-            accountId:this.account.id,
-            username:this.username ?? this.account.rezero_b2b_username
-        });
+        this.crudAccounts.update(this.account.id,{rezero_b2b_access:'granted',rezero_b2b_username:this.username ?? this.account.rezero_b2b_username}).subscribe(
+            (resp: any) => {
+            this.dialogRef.close(resp); 
+              this.alerts.showSnackbar(
+                "ADDED_TO_B2B",
+                'OK'
+              );
+            this.loading = false; 
+            },
+            (error) => {
+              this.alerts.showSnackbar('Error: ' + error.message, 'ok');
+              this.loading = false;
+            },
+          );
     }
     public setAccount(event) {
         if (event) {

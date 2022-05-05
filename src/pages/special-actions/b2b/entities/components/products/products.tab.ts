@@ -228,7 +228,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   }
 
   public deleteProduct(product) {
-    this.confirm('DELETE_PRODUCT' + product.id, 'SURE_DELETE_THAT.').subscribe(
+    this.confirm('DELETE_PRODUCT?', 'SURE_DELETE_THAT').subscribe(
       (del) => {
         if (del) {
           this.crud.remove(product.id).subscribe(

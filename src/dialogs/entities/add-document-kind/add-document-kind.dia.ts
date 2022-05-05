@@ -109,8 +109,6 @@ export class AddDocumentKindDia extends BaseDialog {
       delete  data.is_user_document;
     }
 
-    console.log(data)
-
     this.loading = true;
 
     const crud = this.getCrud();

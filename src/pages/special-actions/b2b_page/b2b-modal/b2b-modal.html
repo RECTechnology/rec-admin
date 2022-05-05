@@ -5,7 +5,7 @@
   
     
     
-    <div style="width: 500px;margin-left:15px;">
+    <div style="width: 500px;margin-left:15px; margin-top: 10px;">
         <account-picker formControlName="account" label="ACCOUNTS" [filters]="filter" [item]="account" (itemChanged)="setAccount($event);">
         </account-picker>   
     </div>
@@ -16,13 +16,9 @@
       <mat-error *ngIf="this.formGroup.get('username').invalid">{{'SUPPORTED_CHARACTERS_B2B_USERNAME' | translate}}</mat-error>
     </mat-form-field>
 
-  <button type="button" style="margin-left: 300px!important;margin-top: 30px;margin-bottom: 15px!important; padding-right: 30px;width: 198px; margin-bottom: 14px; padding-right: 10px;  "
+  <btn-loader [loading]="loading" text='ADD' type="button" style="margin-left: 300px!important;margin-top: 30px;margin-bottom: 15px!important; padding-right: 30px;width: 198px; margin-bottom: 14px; padding-right: 10px;  "
       color="primary" [disabled]="this.account && !this.account.rezero_b2b_username && !this.username && this.formGroup.invalid || !this.formGroup.dirty" mat-raised-button name="button" (click)="send()">
-      <p class="text-small">
-          <i class="fa fa-plus"></i>
-          {{'ADD'|translate}}
-      </p>
-  </button>
+    </btn-loader>
   
  
 

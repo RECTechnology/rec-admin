@@ -4,6 +4,8 @@ import { MySnackBarSevice } from 'src/bases/snackbar-base';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ConfirmationMessage } from 'src/dialogs/other/confirmation-message/confirmation.dia';
+import { ConvertToLangPipe } from '../../pipes/convert-to-lang/convert-to-lang.pipe';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,7 @@ export class AlertsService {
   constructor(
     public snackbar: MySnackBarSevice,
     public dialog: MatDialog,
+    public translateService: TranslateService
   ) { }
 
   public showSnackbar(message, buttonText = 'ok', opts: MatSnackBarConfig = {}) {
@@ -43,8 +46,8 @@ export class AlertsService {
   public confirmDeletion(itemName = 'Item', trailing?: string, showConfirm = true) {
     return showConfirm ? this.showConfirmation(
       'DELETE_CONFIRM',
-      {},
-      'Delete ' + itemName + '?',
+      {itemName:  this.translateService.instant(itemName)},
+      'DELETE_ITEM?',
       
       {
         btnConfirmText: 'Delete',
