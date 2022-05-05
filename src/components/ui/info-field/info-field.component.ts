@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'info-field',
   templateUrl: './info-field.component.html',
   styles: [
-    `:host  { display: block; width: auto; height; auto; }`,
+    `:host  { display: block; width: auto; height: auto; }`,
   ],
 })
 export class InfoFieldComponent {

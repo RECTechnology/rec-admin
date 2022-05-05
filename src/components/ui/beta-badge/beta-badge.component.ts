@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styles: [`
     .beta-badge {
       padding: 5px 15px;
-      border-
     }
   `],
 })

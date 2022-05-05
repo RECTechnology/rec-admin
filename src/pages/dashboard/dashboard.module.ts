@@ -8,22 +8,19 @@ import { ExportTxsDia } from './dialogs/export-txs/export-txs.dia';
 import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
-  declarations: [
-    ExportTxsDia,
-    DashboardComponent,
-  ],
-  entryComponents: [
-    ExportTxsDia,
-  ],
-  exports: [
-    RouterModule,
-    DashboardComponent,
-  ],
-  imports: [
-    SharedModule,
-    BrowserModule,
-    FormsModule,
-    TranslateModule.forRoot(),
-  ],
+    declarations: [
+        ExportTxsDia,
+        DashboardComponent,
+    ],
+    exports: [
+        RouterModule,
+        DashboardComponent,
+    ],
+    imports: [
+        SharedModule,
+        BrowserModule,
+        FormsModule,
+        TranslateModule.forRoot(),
+    ]
 })
 export class DashboardModule { }

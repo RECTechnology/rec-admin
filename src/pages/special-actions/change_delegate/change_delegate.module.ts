@@ -34,32 +34,26 @@ const profileRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    ChangeDelegateComponent,
-    TxsBlockHeaderComponent,
-    NewTXsBlockComponent,
-    NewMassiveTransactionsComponent,
-    CreateTXsBlockChange,
-    SelectAccountsDia,
-    CsvUpload,
-    ActivateResume,
-  ],
-  entryComponents: [
-    SelectAccountsDia,
-    CsvUpload,
-    ActivateResume,
-    CreateTXsBlockChange,
-  ],
-  exports: [
-    RouterModule,
-  ],
-  imports: [
-    RouterModule.forRoot(profileRoutes),
-    SharedModule,
-    BrowserModule,
-    FormsModule,
-    TranslateModule.forRoot(),
-    ReactiveFormsModule
-  ],
+    declarations: [
+        ChangeDelegateComponent,
+        TxsBlockHeaderComponent,
+        NewTXsBlockComponent,
+        NewMassiveTransactionsComponent,
+        CreateTXsBlockChange,
+        SelectAccountsDia,
+        CsvUpload,
+        ActivateResume,
+    ],
+    exports: [
+        RouterModule,
+    ],
+    imports: [
+        RouterModule.forRoot(profileRoutes),
+        SharedModule,
+        BrowserModule,
+        FormsModule,
+        TranslateModule.forRoot(),
+        ReactiveFormsModule
+    ]
 })
 export class ChangeDelegateModule { }

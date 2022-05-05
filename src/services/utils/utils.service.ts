@@ -300,8 +300,10 @@ export class UtilsService {
   }
 
   public downloadBlob(blob: Blob, name = 'file') {
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob);
+    let newVariable: any = window.navigator;
+
+    if (window.navigator && newVariable.msSaveOrOpenBlob) {
+      newVariable.msSaveOrOpenBlob(blob);
       return;
     }
 

@@ -22,23 +22,20 @@ const userRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    UserComponent,
-    UserDetailsTab,
-    EnabledDisabledAccountsTab,
-    UserDocumentsTab,
-  ],
-  entryComponents: [
-    UserComponent,
-  ],
-  exports: [RouterModule, UserComponent],
-  imports: [
-    RouterModule.forRoot(userRoutes),
-    SharedModule,
-    BrowserModule,
-    FormsModule,
-    TranslateModule.forRoot(),
-    CountryPickerModule,
-  ],
+    declarations: [
+        UserComponent,
+        UserDetailsTab,
+        EnabledDisabledAccountsTab,
+        UserDocumentsTab,
+    ],
+    exports: [RouterModule, UserComponent],
+    imports: [
+        RouterModule.forRoot(userRoutes),
+        SharedModule,
+        BrowserModule,
+        FormsModule,
+        TranslateModule.forRoot(),
+        CountryPickerModule,
+    ]
 })
 export class UsersModule {}

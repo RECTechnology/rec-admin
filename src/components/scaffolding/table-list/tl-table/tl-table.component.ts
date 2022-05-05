@@ -223,8 +223,7 @@ export class TableListTable implements AfterContentInit {
     public navigateTo(data: { link?: string, params?: any } = {}) {
         this.router.navigate([data.link], {
             queryParams: data.params,
-            queryParamsHandling: 'merge',
-            preserveQueryParams: true,
+            queryParamsHandling: 'preserve',
         });
     }
 }
