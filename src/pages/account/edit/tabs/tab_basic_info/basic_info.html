@@ -21,13 +21,13 @@
         <div class="row">
             <mat-form-field class="col-lg-2 col-sm-2">
               <mat-label>{{'PHONE_PREFIX' | translate}}</mat-label>
-
               <input autocomplete="new-password" type="text" matInput formControlName="prefix"/>
+              <mat-error *ngIf="formGroup.get('prefix').invalid">{{'PHONE_PREFIX_INVALID' | translate}}</mat-error>
             </mat-form-field>
             <mat-form-field class="col-lg-10 col-sm-10">
               <mat-label>{{'PHONE_NUMBER' | translate}}</mat-label>
               <input autocomplete="tel" type="text" matInput formControlName="phone"/>
-              <mat-error *ngIf="formGroup.get('phone').invalid">Teléfono inválido</mat-error>
+              <mat-error *ngIf="formGroup.get('phone').invalid">{{'PHONE_NUMBER_INVALID' | translate}}</mat-error>
             </mat-form-field>
         </div>
       </div>
@@ -35,16 +35,15 @@
       <!-- Email -->
         <mat-form-field class="col-lg-6 col-sm-12 marg-top-10">
           <mat-label>{{'EMAIL' | translate}}</mat-label>
-
           <input autocomplete="email" type="email" matInput formControlName="email"/>
-          <mat-error *ngIf="formGroup.get('email').invalid">Email inválido</mat-error>
+          <mat-error *ngIf="formGroup.get('email').invalid">{{'EMAIL_INVALID' | translate}}</mat-error>
         </mat-form-field>
 
       <!-- Nif -->
         <mat-form-field class="col-lg-6 col-sm-12 marg-top-10">
           <mat-label>{{'NIF' | translate}}</mat-label>
           <input autocomplete="new-password" type="text" matInput formControlName="cif"/>
-          <mat-error *ngIf="formGroup.get('cif').invalid">NIF inválido</mat-error>
+          <mat-error *ngIf="formGroup.get('cif').invalid">{{'NIF_INVALID' | translate}}</mat-error>
         </mat-form-field>
 
       <!-- Types -->

@@ -25,7 +25,7 @@ export class BasicInfoTab implements OnInit {
   public error: string;
   public pageName = 'BASIC_INFO';
   public formGroup = new FormGroup({
-    prefix: new FormControl(""),
+    prefix: new FormControl("", Validators.pattern(/^[0-9]*$/)),
     phone: new FormControl("", Validators.pattern(/^[0-9]*$/)),
     name: new FormControl(""),
     email: new FormControl("", Validators.email),
