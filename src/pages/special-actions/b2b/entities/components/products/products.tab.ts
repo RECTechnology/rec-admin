@@ -176,7 +176,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
                 )
                 .subscribe(
                   (resp) => {
-                    this.alerts.showSnackbar('UPDATED_PRODUCT' + product.id, 'ok');
+                    this.alerts.showSnackbar('UPDATED_PRODUCT', 'ok');
                     this.loading = false;
                     this.search();
                   },

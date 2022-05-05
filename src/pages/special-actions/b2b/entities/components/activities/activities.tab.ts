@@ -82,7 +82,7 @@ export class ActivitiesTabComponent extends EntityTabBase<Activity> {
                                 upc_code: updated.upc_code,
                             }, 'en').subscribe(
                                 (resp) => {
-                                    this.alerts.showSnackbar('Updated Activity: ' + activity.id, 'ok');
+                                    this.alerts.showSnackbar('Updated Activity', 'ok');
                                     this.search();
                                     this.loading = false;
                                 },
