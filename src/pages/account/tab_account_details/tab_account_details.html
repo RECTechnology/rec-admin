@@ -8,7 +8,7 @@
         <div class="row" style="margin-top: 20px; padding: 0 15px">
           <div style="margin-bottom: 15px" class="col-lg-4 col-sm-12 group-col-left">
             <strong class="small-text" style="margin-bottom: 6px;">{{'Name'|translate}} </strong>
-            <span class="small-text-2">{{companyService.selectedCompany.name}}</span>
+            <span class="small-text-2">{{companyService.selectedCompany.name || ('Not filled'|translate)}}</span>
           </div>
 
           <div style="margin-bottom: 15px" class="col-lg-4 col-sm-12 group-col-left">

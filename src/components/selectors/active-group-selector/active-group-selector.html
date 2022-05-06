@@ -1,6 +1,7 @@
 <base-picker [showSelection]="showSelection" [items]="items" [item]="item" [label]="label" (onSearch)="search($event)"
   (itemChanged)="selectItem($event)" [hasSearch]="false" [isLoading]="isLoading">
   <ng-template let-item>
-    {{item.name}}
+    <avatar *ngIf="item.name.trim() != ''" [account]="item"></avatar>
+    <avatar *ngIf="item.name.trim() == ''">{{'Account' | translate}}</avatar>
   </ng-template>
 </base-picker>
