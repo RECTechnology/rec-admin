@@ -8,12 +8,12 @@
       </tl-header>
 
       <tl-subheader>
-        <div style="padding: 8px 15px;">
-          <mat-checkbox #checkBox style="margin-right: 8px" color="primary" [checked]="active"
+        <div class="row" style="padding: 8px 15px; margin: 0;">
+          <mat-checkbox #checkBox style="margin-right: 15px; margin-top: 20px;" color="primary" [checked]="active"
             (change)="addActive($event)">
             <span class="small-text">{{'Active'|translate}}</span>
           </mat-checkbox>
-          <mat-radio-group aria-label="Select an option" [(ngModel)]="type" (change)="changedType()">
+          <mat-radio-group style="margin-top: 20px;" aria-label="Select an option" [(ngModel)]="type" (change)="changedType()">
             <mat-radio-button style="margin-right: 10px" value="COMPANY" color="primary">
               <span class="small-text">{{'Company'|translate}}</span>
             </mat-radio-button>
@@ -24,12 +24,10 @@
               <span class="small-text">{{'All'|translate}}</span>
             </mat-radio-button>
           </mat-radio-group>
-
-          <mat-checkbox style="margin-left: 15px; margin-right: 20px;" color="primary" [(ngModel)]="onlyExchanges"
+          <mat-checkbox color="primary" [(ngModel)]="onlyExchanges" style="margin-right: 15px; margin-top: 20px;"
             (ngModelChange)="onlyExchangesChange()">
             <span class="small-text">{{'EXCHANGERS' | translate}}</span>
           </mat-checkbox>
-
           <campaign-selector [needsNone]="true" label="CAMPAIGN" [item]="campaignFilter" (itemChanged)="campaignFilterChanged($event)"></campaign-selector>
         </div>
       </tl-subheader>
