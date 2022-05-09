@@ -67,7 +67,7 @@ export abstract class EntityTabBase<T> {
         if (!sort.active || sort.direction === '') {
             this.sortedData = this.data.slice();
             this.sortID = 'id';
-            this.sortDir = 'desc';
+            this.sortDir = 'asc';
         } else {
             this.sortID = sort.active;
             this.sortDir = sort.direction;

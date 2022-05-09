@@ -115,9 +115,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   public search(query?) {
     this.loading = true;
 
-    if (this.sortElementsToRevise) {
-      this.sortID = 'status';
-    }
+    this.sortElementsToRevise ? this.sortID = 'status' : this.sortID = null;
 
     const default_consuming_by = this.activityConsumedFilter ? [this.activityConsumedFilter.id] : null;
     const default_producing_by = this.activityProducedFilter ? [this.activityProducedFilter.id] : null;
