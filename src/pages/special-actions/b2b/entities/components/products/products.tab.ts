@@ -55,12 +55,12 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
     this.route.queryParams.subscribe((params) => {
       this.limit = params.limit ?? 10;
       this.offset = params.offset;
-      this.sortDir = params.sortDir;
+      this.sortDir = params.sortDir ?? 'asc';
       this.sortID = params.sortID;
       this.query = params.query;
 
       if (params.sortElementsToRevise != null) {
-        this.sortElementsToRevise = params.sortElementsToRevise == 'true';
+        params.sortElementsToRevise == 'true';
       }
 
       for (let activity of this.activities) {
@@ -82,6 +82,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
     this.addToQueryParams({
       sortElementsToRevise: this.sortElementsToRevise,
     });
+    this.sortID = 'id';
     this.search();
   }
 
@@ -115,7 +116,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   public search(query?) {
     this.loading = true;
 
-    this.sortElementsToRevise ? this.sortID = 'status' : this.sortID = null;
+    this.sortElementsToRevise ? this.sortID = 'status' : this.sortID = this.sortID;
 
     const default_consuming_by = this.activityConsumedFilter ? [this.activityConsumedFilter.id] : null;
     const default_producing_by = this.activityProducedFilter ? [this.activityProducedFilter.id] : null;
