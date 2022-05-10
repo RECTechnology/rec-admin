@@ -9,6 +9,7 @@ import { forkJoin } from 'rxjs';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { LANG_MAP } from 'src/data/consts';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   providers: [
@@ -23,6 +24,8 @@ export class EditUserData {
   public loading = false;
   public error = '';
   public lang: any = 'esp';
+  public prefix = new FormControl("", Validators.pattern(/^[0-9]*$/));
+  public phone = new FormControl("", Validators.pattern(/^[0-9]*$/));
  
   public langMap = {
     cat: 'ca',
@@ -47,6 +50,8 @@ export class EditUserData {
 
   public ngOnInit() {
     this.getUser();
+    this.prefix.setValue(this.userCopy.prefix);
+    this.phone.setValue(this.userCopy.phone);
   }
 
   public close(user = null): void {
