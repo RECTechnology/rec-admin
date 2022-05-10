@@ -73,7 +73,7 @@
     <div class="col-lg-12">
       <file-selector formControlName="content" [isAvatar]="false" [isDefaultButton]="true" [disabled]="isEdit && (!item.auto_fetched || !isLemon)" label="Select Document"
         [(file)]="item.content"></file-selector>
-        <span *ngIf="this.formGroup.get('content').value"><small style="font-size: 11px;">{{this.formGroup.get('content').value}}</small></span>
+        <span *ngIf="this.formGroup.get('content').value"><a href="{{this.formGroup.get('content').value}}" target="_blank" style="font-size: 13px; color:rgb(0, 152, 219)">{{'SEE_FILE' | translate}}</a></span>
         <mat-error *ngIf="formGroup.get('content').invalid"><small>{{'NO_FILE'| translate}}</small></mat-error>
     </div>
 
