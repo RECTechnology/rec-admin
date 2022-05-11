@@ -31,6 +31,7 @@ export abstract class BaseSelectorComponent {
     }
     if(simpleChanges["item"].currentValue != simpleChanges["item"].previousValue){
       this.item = simpleChanges["item"].currentValue;
+      this.ensureCurrentItemIsOnList();
       this.setInitialValue();
     }
   }
@@ -53,6 +54,16 @@ export abstract class BaseSelectorComponent {
     }
   }
 
+  public ensureCurrentItemIsOnList(){
+        // Esto esta aqui porque si en la primera llamada no existe `this.item` no se mostraria en el selector
+        // Por tanto si `this.item` no existe en la lista que recibimos, simplemente lo añadimos para que aparezca
+        // Asi podemos listar 10 inicialmente sin problemas
+        //Se debe pasar un objeto a this.item
+        if (this.item && !this.items.some((it) => it.id == this.item.id)) {
+          this.items.unshift(this.item);
+        }
+  }
+
   public setSelectedItem(item) {
     this.item = item;
     this.selectItem(item);
@@ -73,13 +84,7 @@ export abstract class BaseSelectorComponent {
           this.items = [];
         }
 
-        // Esto esta aqui porque si en la primera llamada no existe `this.item` no se mostraria en el selector
-        // Por tanto si `this.item` no existe en la lista que recibimos, simplemente lo añadimos para que aparezca
-        // Asi podemos listar 10 inicialmente sin problemas
-        //Se debe pasar un objeto a this.item
-        if (this.item && !this.items.some((it) => it.id == this.item.id)) {
-          this.items.unshift(this.item);
-        }
+        this.ensureCurrentItemIsOnList();
 
         this.setInitialValue();
       },
