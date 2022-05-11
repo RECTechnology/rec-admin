@@ -41,9 +41,12 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
   }
 
   public switchSides() {
-    const temp = this.originAccountId;
+    const tempId = this.originAccountId;
+    const temp = this.originAccount;
     this.originAccountId = this.targetAccountId;
-    this.targetAccountId = temp;
+    this.originAccount = this.targetAccount;
+    this.targetAccountId = tempId;
+    this.targetAccount = temp;
 
     this.ngOnInit();
   }
@@ -67,7 +70,7 @@ export class CreateLemonWallet2WalletOutDia extends BaseDialog {
       return;
     }
 
-    if (!this.originAccountId) {
+    if (!this.originAccount) {
       return this.validationErrors.push({ property: 'Origin Account', message: 'Origin account is required' });
     } else if (!this.targetAccount) {
       return this.validationErrors.push({ property: 'Target Account', message: 'Target account is required' });

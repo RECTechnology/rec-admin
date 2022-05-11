@@ -27,7 +27,7 @@
       <div class="group-row-left center v space-between" style="margin-bottom: 15px;">
         <div style="width: 45%">
           <p class="small-text-2">{{'ORIGIN_ACCOUNT'|translate}}: </p>
-          <account-picker label="ACCOUNTS" [disabled]="loading"
+          <account-picker label="ACCOUNTS" [disabled]="loading" 
             (itemChanged)="originAccount = $event" [item]="originAccount"></account-picker>
         </div>
         <div>
@@ -37,7 +37,7 @@
         </div>
         <div style="width: 45%">
           <p class="small-text-2" style="position: relative;">{{'TARGET_ACCOUNT'|translate}}:</p>
-          <account-picker label="ACCOUNTS"[(id)]="targetAccountId" [item]="targetAccount" [disabled]="loading"
+          <account-picker label="ACCOUNTS" [item]="targetAccount" [disabled]="loading"
             (itemChanged)="targetAccount = $event">
           </account-picker>
         </div>
