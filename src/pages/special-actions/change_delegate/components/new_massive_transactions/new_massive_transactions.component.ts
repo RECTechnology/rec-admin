@@ -128,7 +128,6 @@ export class NewMassiveTransactionsComponent extends PageBase {
         this.readonly = this.delegate.status != 'draft';
       }
 
-
     });
 
   }
@@ -218,8 +217,9 @@ export class NewMassiveTransactionsComponent extends PageBase {
         this.changeCrud.startTransactions(this.delegate.id, {
           status: 'scheduled',
           scheduled_at: this.scheduleDeliveryDate
-
         }).subscribe()
+        this.snackbar.open('SENDING_TXS');
+        this.syncData();   
       }
     });
   }
@@ -229,6 +229,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
     this.changeCrud.changeStatus(this.idOrNew, 'draft').subscribe(
       (resp) => {
         this.snackbar.open('CANCELING_TXS');
+        this.syncData();
       },
       (err) => {
         this.alerts.observableErrorSnackbar(err);
@@ -240,6 +241,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
     this.changeCrud.changeStatus(this.idOrNew, 'scheduled').subscribe(
       (resp) => {
         this.snackbar.open('RETRYING_TXS');
+        this.syncData();
       },
       (err) => {
         this.alerts.observableErrorSnackbar(err);

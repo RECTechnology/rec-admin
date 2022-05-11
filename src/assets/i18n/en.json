@@ -790,7 +790,8 @@
   "DELETED_USER_SYSTEM":"Deleted user from system",
   "ERROR_DELETING_USER":"Error deleting user: ",
   "VALIDATED_USER_WHIT_NUMBER":"Validated user with number: ",
-  "CANCELING_TXS":"Canceling txs block",
+  "CANCELING_TXS":"Cancelling txs block",
+  "SENDING_TXS": "Sending txs block",
   "RETRYING_TXS":"Retrying txs block"
 
 

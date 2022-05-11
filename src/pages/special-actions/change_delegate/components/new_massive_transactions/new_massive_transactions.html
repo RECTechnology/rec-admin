@@ -128,7 +128,7 @@
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="!dataLoading">
           <tr *ngFor="let data of sortedData; let i = index; trackBy: trackByFn">
             <td>{{data.id}}</td>
             <td>
@@ -181,29 +181,36 @@
         </date-picker>
       </div>
 
-      <button *ngIf="delegate.status == 'draft' " mat-button color="primary" [disabled]="false"
-        style="margin-bottom: 60px!important;" (click)="openSendTxsModal()">
-        <mat-icon>send</mat-icon>
-        {{'SEND_TRANSACTIONS'|translate}}
-      </button>
+      <div class="center h v bg-white-opaque" style="width: 100%;height: 100px" *ngIf="dataLoading">
+        <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+        </mat-progress-spinner>
+      </div>
 
-      <button *ngIf="delegate.status == 'scheduled' " mat-button color="#e05205" [disabled]="false"
-        style="margin-bottom: 60px!important;color: #E05205;" (click)="sendCancel()">
-        <mat-icon>schedule_send</mat-icon>
-        {{'SEND_CANCEL'|translate}}
-      </button>
+      <div *ngIf="!dataLoading">
+        <button *ngIf="delegate.status == 'draft' " mat-button color="primary" [disabled]="false"
+          style="margin-bottom: 60px!important;" (click)="openSendTxsModal()">
+          <mat-icon>send</mat-icon>
+          {{'SEND_TRANSACTIONS'|translate}}
+        </button>
 
-      <button *ngIf="delegate.status == 'failed' " mat-button color="#e05205" [disabled]="false"
-        style="margin-bottom: 60px!important;color: #E05205;" (click)="sendRetry()">
-        <mat-icon>reload</mat-icon>
-        {{'RETRY_SEND'|translate}}
-      </button>
+        <button *ngIf="delegate.status == 'scheduled' " mat-button color="#e05205" [disabled]="false"
+          style="margin-bottom: 60px!important;color: #E05205;" (click)="sendCancel()">
+          <mat-icon>schedule_send</mat-icon>
+          {{'SEND_CANCEL'|translate}}
+        </button>
 
-      <button *ngIf="delegate.status == 'failed' " mat-button color="red" [disabled]="false"
-        style="margin-bottom: 60px!important;color: #FF0000;" (click)="sendReport()">
-        <mat-icon>denied</mat-icon>
-        {{'MARK_AS_INCOMPLETE'|translate}}
-      </button>
+        <button *ngIf="delegate.status == 'failed' " mat-button color="#e05205" [disabled]="false"
+          style="margin-bottom: 60px!important;color: #E05205;" (click)="sendRetry()">
+          <mat-icon>reload</mat-icon>
+          {{'RETRY_SEND'|translate}}
+        </button>
+
+        <button *ngIf="delegate.status == 'failed' " mat-button color="red" [disabled]="false"
+          style="margin-bottom: 60px!important;color: #FF0000;" (click)="sendReport()">
+          <mat-icon>denied</mat-icon>
+          {{'MARK_AS_INCOMPLETE'|translate}}
+        </button>
+      </div>
 
     </div>
   </div>
