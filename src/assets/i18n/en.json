@@ -792,7 +792,8 @@
   "VALIDATED_USER_WHIT_NUMBER":"Validated user with number: ",
   "CANCELING_TXS":"Cancelling txs block",
   "SENDING_TXS": "Sending txs block",
-  "RETRYING_TXS":"Retrying txs block"
+  "RETRYING_TXS":"Retrying txs block",
+  "No file uploaded": "No file uploaded"
 
 
 

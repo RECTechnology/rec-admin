@@ -13,7 +13,7 @@ export class FileUpload {
   public brand = environment.Brand;
   public error = '';
   public title: string = '';
-  public selectedImageName: string = 'none';
+  public selectedImageName: string = 'No file uploaded';
   public hasSelectedImage: boolean = false;
   public noImageName: string = 'profile_default_image';
   public selectedImage;
