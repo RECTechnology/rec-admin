@@ -22,18 +22,18 @@
           </div>
             <mat-form-field class="col-lg-6" style="width: 100%;">
               <mat-label>{{'Street' | translate}}</mat-label>
-              <input autocomplete="street-address" matInput type="text" placeholder="{{'Street' | translate}}" [(ngModel)]="accountCopy.street" formControlName="street">
+              <input autocomplete="street-address" matInput type="text" placeholder="{{'Street' | translate}}" formControlName="street">
             </mat-form-field>
       
             <mat-form-field class="col-lg-6" style="width: 70%; padding: 0 15px;">
               <mat-label>{{'NUMBER' | translate}}</mat-label>
-              <input autocomplete="off" matInput type="text" placeholder="{{'NUMBER'| translate}}" [(ngModel)]="accountCopy.address_number" formControlName="address_number">
+              <input autocomplete="off" matInput type="text" placeholder="{{'NUMBER'| translate}}" formControlName="address_number">
               <mat-error *ngIf="formGroup.get('address_number').invalid">{{'NUMBER_BELOW_0' | translate}}</mat-error>
             </mat-form-field>
 
             <mat-form-field class="col-lg-6" style="width: 100%;">
               <mat-label>{{'ZIP' | translate}}</mat-label>
-              <input autocomplete="off" matInput type="text" placeholder="{{'ZIP' | translate}}" [(ngModel)]="accountCopy.zip" formControlName="zip">
+              <input autocomplete="off" matInput type="text" placeholder="{{'ZIP' | translate}}" formControlName="zip">
               <mat-error *ngIf="formGroup.get('zip').invalid">{{'NUMBER_BELOW_0' | translate}}</mat-error>
             </mat-form-field>
 
@@ -54,11 +54,11 @@
           <div class="row">
               <mat-form-field class="col-lg-6" style="width: 100%;">
                 <mat-label>{{'Latitude' | translate}}</mat-label>
-                <input autocomplete="off" matInput type="number" placeholder="{{'Latitude' | translate}}" [(ngModel)]="accountCopy.latitude" formControlName="latitude">
+                <input autocomplete="off" matInput type="number" placeholder="{{'Latitude' | translate}}" formControlName="latitude">
               </mat-form-field>
               <mat-form-field class="col-lg-6" style="width: 100%;">
                 <mat-label>{{'Longitude' | translate}}</mat-label>
-                <input autocomplete="off" matInput type="number" placeholder="{{'Longitude' | translate}}" [(ngModel)]="accountCopy.longitude" formControlName="longitude">
+                <input autocomplete="off" matInput type="number" placeholder="{{'Longitude' | translate}}" formControlName="longitude">
               </mat-form-field>
           </div>
         </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="col-lg-12">
               <div class="group-col-left">
-                <mat-slide-toggle formControlName="onMap" color="primary" [disabled]="loading" [(ngModel)]="accountCopy.on_map"
+                <mat-slide-toggle formControlName="onMap" color="primary" [disabled]="loading"
                   (change)="changeMapVisibility(accountCopy.id, $event, 0)">
                 </mat-slide-toggle>
               </div>

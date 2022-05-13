@@ -19,14 +19,14 @@
                 <form [formGroup]="formGroup">
                     <mat-form-field style="width: 100%; padding: 10px;">
                         <mat-label>{{"Catalan" | translate}}</mat-label>
-                        <input autocomplete="off" matInput type="text" [(ngModel)]="item.name_ca" formControlName="name_ca" style="max-width: 100%;"
+                        <input autocomplete="off" matInput type="text" formControlName="name_ca" style="max-width: 100%;"
                         placeholder="{{'Catalan'|translate}}" [disabled]="loading" (blur)="check()" required>
                         <mat-error *ngIf="formGroup.get('name_ca').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
                     </mat-form-field>
         
                     <mat-form-field class="group-col-left" style="width: 100%; padding: 10px;">
                         <mat-label>{{"Spanish" | translate}}</mat-label>
-                        <input autocomplete="off" matInput type="text" [(ngModel)]="item.name_es" formControlName="name_es" style="max-width: 100%"
+                        <input autocomplete="off" matInput type="text" formControlName="name_es" style="max-width: 100%"
                         placeholder="{{'Español'|translate}}" [disabled]="loading" (blur)="check()" required>
                         <mat-error *ngIf="formGroup.get('name_es').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
                     </mat-form-field>
@@ -34,7 +34,7 @@
                 
                     <mat-form-field class="group-col-left" style="width: 100%; padding: 10px;">
                         <mat-label>{{"English" | translate}}</mat-label>
-                        <input autocomplete="off" matInput type="text" [(ngModel)]="item.name" formControlName="name" style="max-width: 100%"
+                        <input autocomplete="off" matInput type="text" formControlName="name" style="max-width: 100%"
                         placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()" required>
                         <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
                     </mat-form-field>
