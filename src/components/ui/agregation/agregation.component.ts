@@ -5,7 +5,7 @@ import { ControlesService } from '../../../services/controles/controles.service'
   selector: 'dash-agregation',
   styles: [
     `.title { text-transform: uppercase; font-size: 12px; opacity: 0.6; text-align: center; }`,
-    `.value { font-size: 24px; font-weigh: 200}`,
+    `.value { font-size: 23px; font-weigh: 200}`,
     `.agregation {
       padding: 10px; display: flex; flex-direction: column;
       border-radius: 4px;
