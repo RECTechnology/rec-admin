@@ -10,15 +10,15 @@
     </p>
 
 
-    <input (blur)="onTouch()" autocomplete="new-password" *ngIf="isNormalInput && ngModel" [required]="isRequired" #input [disabled]="disabled" [type]="type"
+    <input autocomplete="new-password" *ngIf="isNormalInput && ngModel" [required]="isRequired" #input [disabled]="disabled" [type]="type"
         class="user-input small" placeholder="{{placeholder|translate}}" [name]="name" [attr.minlength]="minlength"
         [attr.maxlength]="maxlength">
 
-    <input (blur)="onTouch()" autocomplete="new-password" *ngIf="isNormalInput && !ngModel && debounced" [required]="isRequired" #input ngModel [disabled]="disabled"
+    <input autocomplete="new-password" *ngIf="isNormalInput && !ngModel && debounced" [required]="isRequired" #input ngModel [disabled]="disabled"
         [type]="type" class="user-input small" placeholder="{{placeholder|translate}}" [name]="name"
         [attr.minlength]="minlength" [attr.maxlength]="maxlength">
 
-    <input (blur)="onTouch()" autocomplete="new-password" *ngIf="isNormalInput && !ngModel && !debounced" [required]="isRequired" [disabled]="disabled" [type]="type"
+    <input autocomplete="new-password" *ngIf="isNormalInput && !ngModel && !debounced" [required]="isRequired" [disabled]="disabled" [type]="type"
         class="user-input small" [ngModel]="value" (ngModelChange)="changed($event)"
         placeholder="{{placeholder|translate}}" [name]="name" [attr.minlength]="minlength" [attr.maxlength]="maxlength">
 
