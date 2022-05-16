@@ -41,7 +41,6 @@ export class CreateTXsBlockChange extends BaseDialog {
     if (this.time && this.date) {
       this.schedule = new Date(this.date + ' ' + this.time).toISOString();
     }
-    console.log(this.delegateType)
 
     this.close({
       schedule: this.schedule,

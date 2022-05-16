@@ -43,7 +43,6 @@ export abstract class BaseSelectorComponent {
     * (javascript si el objeto es igual pero se copia, ya no lo trata como igual, por eso tenemos que comprobarlo por id)
     */
   public setInitialValue() {
-    console.log("setInitialValue", this.item)
     const selectedItemId = (this.item && this.item.id) || this.item;
 
     if (selectedItemId !== null) {

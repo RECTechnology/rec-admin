@@ -38,7 +38,6 @@ export class AddNeighbourhoodDia {
 
 
     public ngOnInit() {
-        console.log(this.item)
         this.formGroup.get('name').setValue(this.item.name);
         this.formGroup.get('description').setValue(this.item.description);
         this.validation();

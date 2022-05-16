@@ -170,7 +170,6 @@ export class NewMassiveTransactionsComponent extends PageBase {
   public changeIsEditName() {
     this.isEditName = !this.isEditName;
     this.formGroup.valueChanges.subscribe(resp => {
-      console.log(resp.transactions_name)
       resp.transactions_name == this.delegate.name ?
       this.edited = false :
       this.edited = true;
@@ -225,7 +224,6 @@ export class NewMassiveTransactionsComponent extends PageBase {
   }
 
   public sendCancel() {
-    console.log("Im in sendCancel");
     this.changeCrud.changeStatus(this.idOrNew, 'draft').subscribe(
       (resp) => {
         this.snackbar.open('CANCELING_TXS');

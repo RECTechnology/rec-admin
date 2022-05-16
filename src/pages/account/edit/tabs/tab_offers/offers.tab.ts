@@ -59,7 +59,6 @@ export class OffersTab {
       isEdit: false,
     }).subscribe((updated) => {
       if (updated != null ) {
-        console.log(updated)
         var date = new Date(updated.end);
         var formattedDate = date.toISOString();
         this.loading = true;
