@@ -211,7 +211,8 @@ export class NewMassiveTransactionsComponent extends PageBase {
       totalImport: this.totalImport,
       dateSend: this.scheduleDeliveryDateCopy,
       concept: this.transactions_name
-    }).subscribe((send) => {
+    }).subscribe(
+      (send) => {
       if (send) {
         this.changeCrud.startTransactions(this.delegate.id, {
           status: 'scheduled',
@@ -220,7 +221,11 @@ export class NewMassiveTransactionsComponent extends PageBase {
         this.snackbar.open('SENDING_TXS');
         this.syncData();   
       }
-    });
+      },
+      (err) => {
+        this.alerts.observableErrorSnackbar(err);
+      }
+    );
   }
 
   public sendCancel() {
