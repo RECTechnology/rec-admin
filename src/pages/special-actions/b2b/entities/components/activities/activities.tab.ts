@@ -42,7 +42,7 @@ export class ActivitiesTabComponent extends EntityTabBase<Activity> {
     public search(query?) {
         
         this.loading = true;
-        this.crudV3.search({
+        this.crud.search({
             order: this.sortDir,
             limit: this.limit,
             offset: this.offset,

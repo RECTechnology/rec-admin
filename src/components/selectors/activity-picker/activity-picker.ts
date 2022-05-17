@@ -62,7 +62,7 @@ export class ActivityPicker extends BaseSelectorComponent implements ControlValu
           if(this.sendedItems){
             return this.items
           }else{
-            return resp.data;
+            return resp.data.elements;
           }
         }),
       );

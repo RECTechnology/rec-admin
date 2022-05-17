@@ -99,7 +99,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
         this.langMap[this.us.lang],
       )
       .subscribe((resp) => {
-        this.activities = resp.data;
+        this.activities = resp.data.elements;
         this.getDataQuery();
       });
   }
