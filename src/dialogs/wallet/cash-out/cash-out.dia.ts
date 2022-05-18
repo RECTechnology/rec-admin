@@ -10,6 +10,7 @@ type CashOutTxData = {amount: number, concept: string, receiver: Account, sender
 @Component({
   selector: 'cash-out',
   templateUrl: './cash-out.html',
+  styleUrls: ['cash-out.css']
 })
 
 export class CashOutDia extends BaseDialog {
