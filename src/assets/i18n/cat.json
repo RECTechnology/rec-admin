@@ -34,6 +34,7 @@
   "CHANGE Responsible ACCOUNT KYC": "CANVIAR EL RESPONSABLE KYC",
   "Are you sure you want be the KYC responsible of this account?": "Estàs segur que vols ser el KYC responsable d'aquest compte?",
   "Yes": "Si",
+  "Total Neighbourhoods": "Tots els barris",
   "Existing User": "Usuari Existent",
   "SANDBOX_DESC": "<b> Xip-Chap </ b> sandbox és un <b> entorn </ b> simulat <b> per provar </ b> l'API, on tot està simulat (monedes, usuaris, comptes. ..) ",
   "DOCS_DESC": "<b> Documentació </ b> explica com interactuar amb les <b> API REST de Xip Chap </ b>, utilitzant els diferents mecanismes i opcions d'autenticació.",

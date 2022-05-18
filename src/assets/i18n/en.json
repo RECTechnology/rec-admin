@@ -230,6 +230,8 @@
   "I_PER_PAGE": "Items per page",
   "NEXT_PAGE": "Next page",
   "PREV_PAGE": "Previous page",
+  "LAST_PAGE": "Last page",
+  "FIRST_PAGE": "First page",
   "MAIL_SENT_TO": "Mail sent to user",
   "CHECK_MAIL_AND_FOLLOW_INSTRUCTIONS": "Check the email and follow the instructions",
   "NOTIFY_ON_LOGIN": "Notify on login",
@@ -587,6 +589,8 @@
   "SHORTCUT:HELP_SCREEN": "Open shortcuts help",
   "SHORTCUT:TABLE:NEXT_PAGE": "Next Page (On any table)",
   "SHORTCUT:TABLE:PREV_PAGE": "Previous Page (On any table)",
+  "SHORTCUT:TABLE:LAST_PAGE": "Last Page (On any table)",
+  "SHORTCUT:TABLE:FIRST_PAGE": "First Page (On any table)",
 
   "VALIDATE_WITHDRAWAL": "Validate Withdrawal",
   "BACK_TO_LOGIN": "Back to Login",

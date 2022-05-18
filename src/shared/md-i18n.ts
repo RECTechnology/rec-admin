@@ -13,11 +13,13 @@ export class CustomMatPaginatorIntl extends MatPaginatorIntl {
   }
 
   public getAndInitTranslations() {
-    this.translate.get(['I_PER_PAGE', 'NEXT_PAGE', 'PREV_PAGE'])
+    this.translate.get(['I_PER_PAGE', 'NEXT_PAGE', 'PREV_PAGE','LAST_PAGE','FIRST_PAGE'])
       .subscribe((translation) => {
         this.itemsPerPageLabel = translation.I_PER_PAGE;
         this.nextPageLabel = translation.NEXT_PAGE;
         this.previousPageLabel = translation.PREV_PAGE;
+        this.firstPageLabel=translation.FIRST_PAGE;
+        this.lastPageLabel = translation.LAST_PAGE;
         this.changes.next();
       });
   }
