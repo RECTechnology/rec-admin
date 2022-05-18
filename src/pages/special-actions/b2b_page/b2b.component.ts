@@ -104,6 +104,7 @@ export class B2BComponent extends TablePageBase {
   }
 
   public revokePermission(user) {
+      this.loading = true;
       this.crudAccounts.update(user.id,{rezero_b2b_access:'not_granted'}).subscribe(
         (resp: any) => {
           this.alerts.showSnackbar(
@@ -115,11 +116,13 @@ export class B2BComponent extends TablePageBase {
         },
         (error) => {
           this.loading = false;
+          this.alerts.observableErrorSnackbar(error);
         },
       );
   }
 
   public grantPermission(user) {
+    this.loading = true;
     this.crudAccounts.update(user.id,{rezero_b2b_access:'granted'}).subscribe(
       (resp: any) => {
         this.alerts.showSnackbar(
@@ -130,6 +133,7 @@ export class B2BComponent extends TablePageBase {
       },
       (error) => {
         this.loading = false;
+        this.alerts.observableErrorSnackbar(error);
       },
     );
   }
