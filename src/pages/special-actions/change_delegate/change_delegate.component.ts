@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { PageBase } from '../../../bases/page-base';
+import { PageBase, TablePageBase } from '../../../bases/page-base';
 import { LoginService } from '../../../services/auth/auth.service';
 import { UtilsService } from '../../../services/utils/utils.service';
 import { ControlesService } from '../../../services/controles/controles.service';
@@ -19,7 +19,7 @@ import { NewDelegateChange } from './components/create_txs_block_change/create_t
   styleUrls: ['./change_delegate.css'],
   templateUrl: './change_delegate.html',
 })
-export class ChangeDelegateComponent extends PageBase implements OnInit {
+export class ChangeDelegateComponent extends TablePageBase implements OnInit {
   public pageName = 'Change Delegate';
   public status = null;
 
@@ -46,7 +46,7 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
     public changeDataCrud: DelegatedChangesDataCrud,
     public alerts: AlertsService,
   ) {
-    super();
+    super(router);
   }
 
   public ngOnInit() {
@@ -56,7 +56,9 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
   public search(query?: string) {
     this.loadingList = true;
     this.changeCrud
-      .list({
+      .search({
+        order: this.sortDir,
+        sort: this.sortID,
         offset: this.offset,
         limit: this.limit,
         query,
@@ -158,23 +160,5 @@ export class ChangeDelegateComponent extends PageBase implements OnInit {
       },
     );
     return;
-  }
-
-  public sortData(sort: Sort): void {
-    const data = this.delegateChanges.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-
-    this.sortID = sort.active;
-    this.sortDir = sort.direction.toUpperCase();
-    this.search();
-  }
-
-  public changedPage($event) {
-    this.limit = $event.pageSize;
-    this.offset = this.limit * $event.pageIndex;
-    this.search();
   }
 }
