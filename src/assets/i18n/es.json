@@ -1394,6 +1394,7 @@
   "DELETE_ACTIVITY":"Borrar activity",
   "DELETE_PRODUCT":"Borrar producto",
   "Duplicated resource (duplicated entry)":"Producto duplicado/ya existente",
+  "Duplicated activity (duplicated entry)":"Actividad duplicada/ya existente",
   "SURE_DELETE_THAT":"Estás seguro de querer borrar esto? No hay vuelta atrás.",
   "Validation error": "Error de validación",
   "Rezero Username is not set": "El nombre de usuario de rezero no está configurado",

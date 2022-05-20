@@ -95,9 +95,11 @@ export class AddItemDia {
                 this.loading = false;
             },
             (error) => {
-                this.alerts.showSnackbar(error.message, 'ok');
                 if(error.message=="Duplicated resource (duplicated entry)"){
+                    this.alerts.showSnackbar("Duplicated activity (duplicated entry)", 'ok');
                     this.item.default_consuming_by.pop();
+                }else {
+                    this.alerts.showSnackbar(error.message, 'ok');
                 }
                 this.loading = false;
             });

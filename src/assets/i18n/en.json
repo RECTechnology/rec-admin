@@ -430,6 +430,7 @@
   "NO_LW_ACCOUNT": "Account not linked to LW",
   "DELETE_ITEM?": "Delete {{itemName}}?",
   "Duplicated resource (duplicated entry)":"Duplicated resource (duplicated entry)",
+  "Duplicated activity (duplicated entry)":"Duplicated activity (duplicated entry)",
   "NEIGBORHOOD": "Neighborhood",
   "NO-NEIGHBOURHOOD":"There are no neighborhoods yet",
   "Primary email no es válido": "Invalid primary email",
