@@ -100,7 +100,7 @@ export class B2BSendComponent extends TablePageBase {
     public search(query?) {
         this.loading = true;
         this.mailing.search({
-            dir: this.sortDir,
+            order: this.sortDir,
             limit: this.limit,
             offset: this.offset,
             search: query || this.query,
