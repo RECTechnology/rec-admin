@@ -64,7 +64,9 @@ export class AdminService extends BaseService2 {
     }
 
     public checkIfUserNeedsToVote(user = null) {
-        return user.treasure_validations.length > 0;
+        if(user.treasure_validations){
+            return user.treasure_validations.length > 0;
+        }
     }
 
     public getWithdrawals() {
