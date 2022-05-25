@@ -13,18 +13,26 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { Currencies } from 'src/shared/entities/currency/currency';
 import { environment } from 'src/environments/environment';
+import { TablePageBase } from '../../../bases/page-base';
+import { LoginService } from '../../../services/auth/auth.service';
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { WithdrawalCrud } from '../../../services/crud/withdrawals/withdrawals.crud';
 
 @Component({
   selector: 'treasure_account',
   styleUrls: ['./treasure_account.css'],
   templateUrl: './treasure_account.html',
 })
-export class TreasureAccount implements AfterContentInit {
+export class TreasureAccount extends TablePageBase implements AfterContentInit {
+  public pageName = 'Withdrawals';
+  public withdrawals: any[] = [];
   public treasureAmount = 100;
   public amount = 0;
   public concept = '';
   public error = '';
   public loading = false;
+  public loadingList = false;
   public btnDisabled = false;
   public offset = 0;
   public limit = 10;
@@ -83,13 +91,19 @@ export class TreasureAccount implements AfterContentInit {
 
   constructor(
     public controles: ControlesService,
+    public crud: WithdrawalCrud,
     public ws: WalletService,
     public us: UserService,
     public as: AdminService,
     public dialog: MatDialog,
     public alerts: AlertsService,
     public crudAccounts: AccountsCrud,
-  ) {}
+    public ls: LoginService,
+    public router: Router,
+    public titleService: Title
+  ) {
+    super(router);
+  }
 
   public ngAfterContentInit() {
     this.reset();
@@ -108,17 +122,31 @@ export class TreasureAccount implements AfterContentInit {
       });
   }
 
-  public getList() {
-    this.as.getWithdrawals().subscribe(
-      (resp) => {
-        this.withdrawalList = resp.data.elements;
-        this.sortedData = this.withdrawalList.slice();
-        this.activeWithdrawal = this.sortedData[0];
-      },
-      (err) => {
-        return;
-      },
-    );
+  public search() {
+    this.loadingList = true;
+    this.crud
+      .search({
+        order: this.sortDir,
+        sort: this.sortID,
+        offset: this.offset,
+        limit: this.limit,
+      })
+      .subscribe(
+        (resp) => {
+          this.withdrawals = resp.data.elements.map((el) => {
+            el.data = [];
+            return el;
+          });
+
+          this.total = resp.data.total;
+          this.sortedData = this.withdrawals.slice();
+          this.loadingList = false;
+        },
+        (error) => {
+          this.alerts.showSnackbar(error.message, 'ok');
+          this.loadingList = false;
+        },
+      );
   }
 
   public sendRecs() {
@@ -154,7 +182,7 @@ export class TreasureAccount implements AfterContentInit {
     this.loading = false;
     this.btnDisabled = false;
     this.check();
-    this.getList();
+    this.search();
   }
 
   public checkAmount() {
@@ -197,12 +225,5 @@ export class TreasureAccount implements AfterContentInit {
       .subscribe((result) => {
         return;
       });
-  }
-
-  public changedPage($evt) {
-    return;
-  }
-  public sortData($evt?) {
-    return;
   }
 }

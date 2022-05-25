@@ -55,6 +55,7 @@ export class ChangeDelegateComponent extends TablePageBase implements OnInit {
 
   public search(query?: string) {
     this.loadingList = true;
+    this.loading = true;
     this.changeCrud
       .search({
         order: this.sortDir,
@@ -73,10 +74,12 @@ export class ChangeDelegateComponent extends TablePageBase implements OnInit {
           this.total = resp.data.total;
           this.sortedData = this.delegateChanges.slice();
           this.loadingList = false;
+          this.loading = false;
         },
         (error) => {
           this.alerts.showSnackbar(error.message, 'ok');
           this.loadingList = false;
+          this.loading = false;
         },
       );
   }
