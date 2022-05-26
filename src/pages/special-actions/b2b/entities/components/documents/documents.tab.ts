@@ -40,13 +40,13 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     {
       accessor: (v) => (v.user ? v.user.username : null),
       sortable: false,
-      title: 'User',
+      title: 'USER',
       type: 'code',
     },
     {
       accessor: (v) => (v.account ? v.account : {}),
       sortable: false,
-      title: 'Account',
+      title: 'ACCOUNT',
       type: 'avatar',
     },
     TlHeaders.DocumentKind,

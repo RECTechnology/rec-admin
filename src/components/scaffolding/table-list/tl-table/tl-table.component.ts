@@ -132,7 +132,8 @@ export class TableListTable implements AfterContentInit {
     }
     public onClickedItemAccount(entry: any) {
         if (this.options.onClickElement) {
-            this.options.onClickElement(`/accounts/${entry.id}`);
+            const accountId = entry.account ? entry.account.id : entry.id;
+            this.options.onClickElement(`/accounts/${accountId}`);
         }
     }
     
