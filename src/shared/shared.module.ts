@@ -50,6 +50,7 @@ import { TxDetails } from 'src/dialogs/wallet/tx_details/tx_details.dia';
 import { CopyClipboardDirective } from 'src/directives/clipboard.directive';
 import { CollapsableWhen } from 'src/directives/collapsable.directive';
 import { AccountsPage } from 'src/pages/accounts/accounts.component';
+import { RatingsPage } from 'src/pages/ratings/ratings.component';
 import { LoginComponent } from 'src/pages/login/login.component';
 import { MapComponent } from 'src/pages/map/map.component';
 import { OrganizationsComponent } from 'src/pages/organizations/organizations.component';
@@ -121,6 +122,8 @@ import { AddB2BModal} from 'src/pages/special-actions/b2b_page/b2b-modal/b2b-mod
 import { ActiveGroupSelector } from '../components/selectors/active-group-selector/active-group-selector';
 import { RecStatusSelector } from '../components/selectors/rec-status-selector/rec-status-selector';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { AvatarBadges } from '../components/ui/avatar-badges/avatar-badges.component';
+import { BadgesSelector } from '../components/selectors/badges-selector/badges-selector';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -180,6 +183,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
         OrganizationsComponent,
         LoginComponent,
         AccountsPage,
+        RatingsPage,
         UsersPage,
         CampaignReportsAccount,
         TableListHeader,
@@ -204,6 +208,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
         EscapeHtmlPipe,
         AccountPickerComponent,
         Avatar,
+        AvatarBadges,
         BadgeComponent,
         InfoFieldComponent,
         BetaBadgeComponent,
@@ -226,6 +231,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
         CopiableComponent,
         ValidateWithdrawalComponent,
         CampaignSelector,
+        BadgesSelector,
         UserPickerComponent,
         ActiveGroupSelector,
         ...DIALOGS,
@@ -266,10 +272,12 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
         NeighborhoodsTabComponent,
         NeighbourhoodSelector,
         CampaignSelector,
+        BadgesSelector,
         ConvertToLangPipe,
         EscapeHtmlPipe,
         CampaignReportsAccount,
         Avatar,
+        AvatarBadges,
         BadgeComponent,
         InfoFieldComponent,
         BetaBadgeComponent,
@@ -291,6 +299,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
         MaskPipe,
         AppPage,
         CampaignSelector,
+        BadgesSelector,
         UserPickerComponent,
         ActiveGroupSelector,
         ...DIALOGS,

@@ -1,4 +1,4 @@
-<div class="avatar">
+<div class="avatar" (click)="onClick()">
   <div class="account-image center h column" [ngClass]="{
       'company-border': account && account.type == 'COMPANY',
       'private-border': account && account.type == 'PRIVATE'

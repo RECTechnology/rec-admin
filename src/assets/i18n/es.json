@@ -33,6 +33,7 @@
   "CHANGE RESPONSIBLE ACCOUNT KYC": "CAMBIAR EL RESPONSABLE KYC",
   "Are you sure you want be the KYC responsible of this account?": "¿Estás seguro de que quieres ser el KYC responsable de esta cuenta?",
   "Yes": "Si",
+  "SI": "SI",
   "Existing User": "Usuario Existente",
   "SANDBOX_DESC": "<b>Chip-Chap</b> sandbox es un <b>entorno</b> simulado <b>para probar</b> la API, donde todo está simulado (monedas, usuarios, cuentas ...)",
   "DOCS_DESC": "<b>Documentación</b> explica cómo interactuar con las <b>API REST de Chip Chap</b>, utilizando los diferentes mecanismos y opciones de autenticación.",
@@ -104,6 +105,10 @@
   "Last Name": "Apellido",
   "Amount": "Importe",
   "Date": "Fecha",
+  "Commerce": "Comercio",
+  "Attribute": "Cualidad",
+  "Filter by attribute": "Filtrar por cualidad",
+  "Rating": "Calificación",
   "Service": "Servicio",
   "NO_TX": "No hay transacciones todavía.",
   "Error Title": "Título Del Error",
@@ -142,6 +147,7 @@
   "LASTNAME": "Apellido",
   "USERNAME": "Nombre de usuario",
   "Verify": "Validar",
+  "Filter by commerce": "Filtrar por comercio",
   "EMAIL": "Email",
   "EMAIL_INVALID": "Email inválido",
   "Extended Info": "Información Extendida",
@@ -1436,7 +1442,8 @@
   "CSV added successfully": "CSV añadido con éxito",
   "CANCELING_TXS":"Cancelando bloque de txs",
   "SENDING_TXS": "Enviando bloque de txs",
-  "RETRYING_TXS":"Reintentando bloque de txs"
+  "RETRYING_TXS":"Reintentando bloque de txs",
+  "Ratings": "Calificaciones"
 
 
 }

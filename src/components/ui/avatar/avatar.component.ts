@@ -12,7 +12,7 @@ export class Avatar {
   @Input() public account: Account;
   @Input() public size: number = 20;
   @Input() public description: boolean = false;
-  @Input() public link: boolean = true;
+  @Input() public link: boolean = false;
 
   @Input() public nameAccessor: string = 'name';
   @Input() public imageAccessor: string = 'company_image';
@@ -26,6 +26,8 @@ export class Avatar {
   public onClick() {
     if (this.link) {
       this.router.navigate([`/accounts/${this.account.id}`]);
+    }else {
+      return;
     }
   }
 }

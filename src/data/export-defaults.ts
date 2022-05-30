@@ -55,3 +55,22 @@ export const OrgsExportDefaults: KvpItem[] = [
     { key: 'dni', value: '$.kyc_manager.dni', active: true },
     { key: 'phone', value: '$.phone', active: true },
 ];
+
+export const QualificationExportDefaults: KvpItem[] = [
+    { key: 'id', value: '$.id', active: true },
+    { key: 'value', value: '$.value', active: true },
+    { key: 'created', value: '$.created', active: true },
+    { key: 'updated', value: '$.updated', active: true },
+    { key: 'status', value: '$.status', active: true },
+    { key: 'badge_id', value: '$.badge.id', active: true },
+    { key: 'account_id', value: '$.account.id', active: true },
+    { key: 'account_name', value: '$.account.name', active: true },
+    { key: 'account_name_es', value: '$.account.name_es', active: true },
+    { key: 'account_name_ca', value: '$.account.name_ca', active: true },
+    { key: 'reviewer_name', value: '$.reviewer.name', active: true },
+    { key: 'reviewer_name_es', value: '$.reviewer.name_es', active: true },
+    { key: 'reviewer_name_ca', value: '$.reviewer.name_ca', active: true },
+    { key: 'badge_name', value: '$.badge.name', active: true },
+    { key: 'badge_name_es', value: '$.badge.name_es', active: true },
+    { key: 'badge_name_ca', value: '$.badge.name_ca', active: true },
+];

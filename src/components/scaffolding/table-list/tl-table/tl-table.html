@@ -51,12 +51,17 @@
                     </mat-slide-toggle>
                 </div>
                 <div *ngIf="header.type === 'avatar' && getEntry(entry, header).id != null"
-                    (click)="onClickedItemAccount(entry)">
-                    <avatar [account]="getEntry(entry, header)"
+                    (click)="onClickedItemAccount(entry)" style="cursor: pointer;">
+                    <avatar [link]="true" [account]="getEntry(entry, header)"
                         [imageAccessor]="getEntry(entry, header).company_image ? 'company_image': 'profile_image'"
                         [matTooltip]="header.tooltip && header.tooltip(entry)">
                     </avatar>
                 </div>
+                <div *ngIf="header.type === 'avatar-badges' && getEntry(entry, header).id != null">
+                <avatar-badges [badge]="getEntry(entry, header)"
+                    [matTooltip]="header.tooltip && header.tooltip(entry)">
+                </avatar-badges>
+            </div>
 
                 <div *ngIf="header.type === 'image'" [matTooltip]="header.tooltip && header.tooltip(entry)">
                     <img src="{{getEntry(entry, header.image) || '../../../assets/resources/img/User-default.png'}}"
@@ -65,7 +70,7 @@
                 </div>
 
                 <span *ngIf="!header.type" [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry,
-                    header)}}</span>
+                    header) | translate}}</span>
             </td>
             <td *ngIf="itemOptions && itemOptions.length && options && options.optionsType === 'menu'"
                 (click)="$event.stopPropagation()">

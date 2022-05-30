@@ -37,6 +37,11 @@ export const SIDEMENU_ITEMS = [
     route: '/transactions',
   },
   {
+    name: 'Ratings',
+    route: '/ratings',
+    icon: 'fa-star',
+  },
+  {
     name: 'REC_ENTITIES',
     icon: 'fa-cog',
     route: '/b2b/settings',
@@ -57,8 +62,6 @@ export const SIDEMENU_ITEMS = [
     icon: 'fa-exchange',
     route: '/b2b',
   },
-  
-  
   {
     name: 'CREATE_RECS',
     icon: 'fa-cash-register',

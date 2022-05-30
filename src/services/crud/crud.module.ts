@@ -9,7 +9,10 @@ import { DocumentCrud } from './documents/documents';
 import { TiersCrud } from './tiers/tiers.crud';
 import { OffersCrud } from './offers/offers.crud';
 import { ActivitiesV3Crud } from './activities/activitiesv3.crud';
+import { BadgesCrud } from './badges/badges.crud';
+import { QualificationsCrud } from './qualifications/qualifications.crud';
 import { WithdrawalCrud } from './withdrawals/withdrawals.crud';
+
 
 @NgModule({
     providers: [
@@ -23,6 +26,8 @@ import { WithdrawalCrud } from './withdrawals/withdrawals.crud';
         DocumentCrud,
         TiersCrud,
         ActivitiesV3Crud,
+        BadgesCrud,
+        QualificationsCrud,
         WithdrawalCrud
     ],
 })

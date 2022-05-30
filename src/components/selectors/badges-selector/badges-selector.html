@@ -1,0 +1,6 @@
+<base-picker [needsNone]="needsNone" [showSelection]="showSelection" [items]="items" [item]="item" [label]="label" (onSearch)="search($event)"
+  (itemChanged)="selectItem($event)" [isLoading]="isLoading">
+  <ng-template let-item>
+    {{item | tolang}}
+  </ng-template>
+</base-picker>
