@@ -6,6 +6,7 @@ import { Product } from './translatable/product.ent';
 import { Tier } from './tier.ent';
 import { Pos } from './pos.ent';
 import { Campaign } from './campaign.ent';
+import { Badge } from './badge.ent';
 
 export type AccountType = 'PRIVATE' | 'COMPANY';
 export type AccountSubtype = 'RETAILER' | 'WHOLESALE' | 'NORMAL' | 'BMINCOME' | 'INFANCIA21';
@@ -26,6 +27,7 @@ export interface Account {
   association: string;
   activities: Activity[];
   campaigns: Campaign[];
+  badges: Badge[];
   activityMain: any;
   subActivity: any;
   consuming_products: Product[];

@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { Badge } from '../../../shared/entities/badge.ent';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Component, Input } from "@angular/core";
 })
 
 export class AvatarBadges {
-    @Input() public badge: any;
+    @Input() public badge: Badge;
     @Input() public size: number = 20;
 
     constructor(){

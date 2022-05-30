@@ -247,6 +247,7 @@
   "Label": "Nota",
   "Token": "Token",
   "NO_ITEMS_YET": "Aún no hay elementos",
+  "Attributes": "Cualidades",
   "ADD_NEW_TOKEN": "Agregar nueva dirección {{value}}",
   "SENDER_MUST_MATCH": "* <b> EL TITULAR </b> de la cuenta bancaria emisora <b>DEBE COINCIDIR</b> con el <b> PROPIETARIO </b> de la cuenta en Chip-Chap, de lo contrario los fondos serán devueltos.",
   "Sender Id":"ID Remitente",

@@ -51,8 +51,8 @@
                     </mat-slide-toggle>
                 </div>
                 <div *ngIf="header.type === 'avatar' && getEntry(entry, header).id != null"
-                    (click)="onClickedItemAccount(entry)" style="cursor: pointer;">
-                    <avatar [link]="true" [account]="getEntry(entry, header)"
+                    (click)="onClickedItemAccount(entry)">
+                    <avatar style="cursor: pointer;" [link]="true" [account]="getEntry(entry, header)"
                         [imageAccessor]="getEntry(entry, header).company_image ? 'company_image': 'profile_image'"
                         [matTooltip]="header.tooltip && header.tooltip(entry)">
                     </avatar>
