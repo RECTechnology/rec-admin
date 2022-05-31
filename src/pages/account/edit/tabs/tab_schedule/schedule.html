@@ -16,7 +16,7 @@
 
       <div class="col-lg-8"></div>
 
-      <div class="col-lg-6">
+      <div class="col-lg-8">
         <schedule-day-row *ngFor="let day of schedule.days; let i = index" [day]="day" [weekday]="i"
           [opens24Hours]="schedule.opens24Hours" [closed]="schedule.isClosed"
           [isNotAvailable]="schedule.isNotAvailable"></schedule-day-row>
