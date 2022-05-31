@@ -19,8 +19,8 @@
             <button mat-icon-button [disabled]="loading || this.formGroup.invalid || this.edited == false" matTooltip="{{'SAVE'|translate}}" *ngIf="isEditName"
               (click)="saveEditConcept()">
               <i class="fa fa-save" *ngIf="!loading"></i>
-              <div class="center h v">
-                <mat-progress-spinner [diameter]="16" color="primary" mode="indeterminate" *ngIf="loading">
+              <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="dataLoading">
+                <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
                 </mat-progress-spinner>
               </div>
             </button>
@@ -108,13 +108,13 @@
             <th mat-sort-header="id">
               {{'#'|translate}}
             </th>
-            <th mat-sort-header="sender">
+            <th>
               {{'SENDER'|translate}}
             </th>
-            <th mat-sort-header="exchanger">
+            <th>
               {{'EXCHANGER'|translate}}
             </th>
-            <th mat-sort-header="beneficiary">
+            <th>
               {{'BENEFICIARY'|translate}}
             </th>
             <th mat-sort-header="amount">
@@ -123,12 +123,12 @@
             <th mat-sort-header="status">
               {{'STATUS'|translate}}
             </th>
-            <th mat-sort-header="txId">
+            <th>
               {{'Tx id'|translate}}
             </th>
           </tr>
         </thead>
-        <tbody *ngIf="!dataLoading">
+        <tbody>
           <tr *ngFor="let data of sortedData; let i = index; trackBy: trackByFn">
             <td>{{data.id}}</td>
             <td>
@@ -160,7 +160,7 @@
       <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !dataLoading">
         <p class="small-text-2">{{'NO_DATA_YET'|translate}}</p>
       </div>
-      <div class="center h v bg-white-opaque" style="width: 100%;height: 100px" *ngIf="dataLoading">
+      <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="dataLoading">
         <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
         </mat-progress-spinner>
       </div>

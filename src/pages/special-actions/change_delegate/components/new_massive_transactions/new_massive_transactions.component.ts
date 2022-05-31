@@ -1,7 +1,7 @@
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { PageBase } from '../../../../../bases/page-base';
+import { PageBase, TablePageBase } from '../../../../../bases/page-base';
 import { LoginService } from '../../../../../services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilsService } from '../../../../../services/utils/utils.service';
@@ -22,7 +22,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './new_massive_transactions.html',
   styleUrls: ['./new_massive_transactions.scss']
 })
-export class NewMassiveTransactionsComponent extends PageBase {
+export class NewMassiveTransactionsComponent extends TablePageBase {
   public pageName = 'New Massive Transactions';
   public delegate: any = {};
   public idOrNew = null;
@@ -69,7 +69,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
 
 
   ) {
-    super();
+    super(router);
   }
 
   public ngOnInit() {
@@ -86,7 +86,7 @@ export class NewMassiveTransactionsComponent extends PageBase {
 
   public syncData() {
     this.getDelegate();
-    this.getDelegateData();
+    this.search();
   }
 
   public changeDate(event) {
@@ -132,10 +132,10 @@ export class NewMassiveTransactionsComponent extends PageBase {
 
   }
 
-  public getDelegateData() {
+  public search() {
     this.dataLoading = true;
     this.changeDataCrud
-      .list({
+      .search({
         delegated_change_id: this.idOrNew,
         order: this.sortDir,
         sort: this.sortID,
@@ -180,13 +180,6 @@ export class NewMassiveTransactionsComponent extends PageBase {
     this.isEditName = !this.isEditName;
     this.transactions_name = this.delegate.name;
   }
-
-  public changedPage($event) {
-    this.limit = $event.pageSize;
-    this.offset = this.limit * $event.pageIndex;
-    this.getDelegateData();
-  }
-  
 
   public goToLog() {
     this.router.navigate([]).then(result => {
@@ -299,11 +292,5 @@ export class NewMassiveTransactionsComponent extends PageBase {
           this.router.navigate(['/change_delegate']);
         }
       }, this.alerts.observableErrorSnackbar);
-  }
-
-  public sortData(sort: Sort): void {
-    this.sortID = sort.active;
-    this.sortDir = sort.direction.toUpperCase();
-    this.getDelegateData();
   }
 }
