@@ -57,6 +57,13 @@
                         [matTooltip]="header.tooltip && header.tooltip(entry)">
                     </avatar>
                 </div>
+                <div *ngIf="header.type === 'avatar-user' && getEntry(entry, header).id != null"
+                    (click)="onClickedItemUser(entry)">
+                    <avatar-user style="cursor: pointer;" [link]="true" [user]="getEntry(entry, header)"
+                        [imageAccessor]="getEntry(entry, header).company_image ? 'company_image': 'profile_image'"
+                        [matTooltip]="header.tooltip && header.tooltip(entry)">
+                    </avatar-user>
+                </div>
                 <div *ngIf="header.type === 'avatar-badges' && getEntry(entry, header).id != null">
                 <avatar-badges [badge]="getEntry(entry, header)"
                     [matTooltip]="header.tooltip && header.tooltip(entry)">

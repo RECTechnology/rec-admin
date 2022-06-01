@@ -124,6 +124,7 @@ import { RecStatusSelector } from '../components/selectors/rec-status-selector/r
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { AvatarBadges } from '../components/ui/avatar-badges/avatar-badges.component';
 import { BadgesSelector } from '../components/selectors/badges-selector/badges-selector';
+import { AvatarUser } from '../components/ui/avatar-user/avatar-user.component';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -209,6 +210,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
         AccountPickerComponent,
         Avatar,
         AvatarBadges,
+        AvatarUser,
         BadgeComponent,
         InfoFieldComponent,
         BetaBadgeComponent,

@@ -1,0 +1,10 @@
+<div class="avatar">
+    <div class="account-image center h column" [style.height]="size + 2 + 'px'" [style.width]="size + 2 + 'px'">
+  
+      <img src="{{user && user[imageAccessor] || Brand.account_default_image}}" [style.height]="size + 'px'"
+        [style.width]="size + 'px'">
+    </div>
+    <div>
+      <p class="name">{{user && user[nameAccessor] || ('Account'|translate)}}</p>
+    </div>
+  </div>

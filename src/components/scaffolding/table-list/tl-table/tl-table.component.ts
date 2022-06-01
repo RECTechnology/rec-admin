@@ -7,7 +7,8 @@ export type TlHeaderType = (
     'text' | 'checkbox' | 'status' |
     'code' | 'date' | 'avatar' |
     'button' | 'slidetoggle' |
-    'image' | 'number' | 'link' | 'avatar-badges'
+    'image' | 'number' | 'link' | 
+    'avatar-badges' | 'avatar-user'
 );
 
 export interface TlHeader {
@@ -126,7 +127,7 @@ export class TableListTable implements AfterContentInit {
     }
     public onClickedItemUser(entry: any) {
         if (this.options.onClickElement) {
-            const user = entry.user ?? entry.kyc_manager;
+            const user = entry.user ?? entry.kyc_manager ?? entry;
             this.options.onClickElement(`/users/${user.id}`);
         }
     }

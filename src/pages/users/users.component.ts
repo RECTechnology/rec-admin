@@ -41,7 +41,12 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
 
   public headers: TlHeader[] = [
     TlHeaders.Id,
-    TlHeaders.Avatar,
+    {
+      accessor: (user) => user ? user : null,
+      title: 'Name',
+      sort:'name',
+      type: 'avatar-user',
+  },
     TlHeaders.generate('username'),
     TlHeaders.Email,
     TlHeaders.Phone,

@@ -1,0 +1,25 @@
+:host {
+    display: inline-block;
+  }
+  .avatar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 6px;
+  
+    .account-image {
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+  
+    img {
+      border-radius: 50%;
+    }
+  
+    .name {
+      max-width: auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
