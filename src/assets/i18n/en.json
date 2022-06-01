@@ -66,6 +66,7 @@
   "TRANSACTIONS": "Transactions",
   "ADD_FUNDS": "Add Funds",
   "WITHDRAW": "Withdraw",
+  "NO_TRANSACTION_FOUND": "No transaction found with the entered ID",
   "EXCHANGE": "Exchange",
   "ADD_CURRENCY": "Add Currency",
   "Wallet2Wallet": "Wallet to Wallet",

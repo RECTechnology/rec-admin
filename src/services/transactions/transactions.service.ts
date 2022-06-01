@@ -88,39 +88,18 @@ export class TransactionService extends BaseService {
   public listTx(
     
     search = '', offset = 0,
-    limit = 10, sort = 'id',
+    limit?, sort = 'sender_id',
     order = 'desc', start_date?, finish_date?,
   ): Observable<any> {
 
     return this.get(null, {
-      finish_date, limit,
+      finish_date, limit, search,
       offset, order, sort, start_date,
-    }, `${API_URL}/admin/v1/transaction/list`).pipe(
-      map(
-        (resp) => {
-
-          const res = {
-            data: [],
-            total: resp.data.total,
-          };
-          res.data = resp.data.list.map((d) => {
-            const [
-              id,
-              sender_id, sender_type, sender_subtype,
-              receiver_id, receiver_type, receiver_subtype,
-              service, internal, status, amount, date,
-            ] = d;
-            return {
-              amount: (amount / 100000000).toFixed(2), date,
-              id, internal,
-              receiver_id, receiver_subtype, receiver_type,
-              sender_id, sender_subtype, sender_type,
-              service, status,
-            };
-          });
-          return res;
-        }),
-    );
+    }, `${API_URL}/admin/v3/transactions`).pipe(
+      map((resp) => {
+        resp.data.elements = resp.data.list.map(formatTX.bind(this));
+        return resp;
+      }));
   }
 
   public getVendorDataForAddress(address) {

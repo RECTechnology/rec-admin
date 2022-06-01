@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Sort } from '@angular/material/sort';
 
 import { LoginService } from '../../services/auth/auth.service';
@@ -11,12 +11,14 @@ import { TransactionService } from '../../services/transactions/transactions.ser
 import { TxDetails } from '../../dialogs/wallet/tx_details/tx_details.dia';
 import { getDateDMY } from '../../shared/utils.fns';
 import { CompanyService } from '../../services/company/company.service';
-import { PageBase, OnLogout, OnLogin, TablePageBase } from '../../bases/page-base';
+import { OnLogout, OnLogin, TablePageBase } from '../../bases/page-base';
 import { ExportTxsDia } from '../../dialogs/wallet/export-txs/export-txs.dia';
 import { CashOutDia } from '../../dialogs/wallet/cash-out/cash-out.dia';
 import { TxFilter } from '../../components/other/filter/filter';
 import Transaction from '../../shared/entities/transaction/transaction.ent';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import moment from 'moment';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'wallet',
@@ -27,10 +29,11 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 })
 export class WalletComponent extends TablePageBase implements OnInit, OnDestroy, OnLogout, OnLogin {
   public pageName = 'Wallet';
-  public sortID: string = 'id';
+  public sortID: string = 'sender_id';
   public sortDir: string = 'desc';
 
   public loadingTransactions: boolean = false;
+  public showClearParams: boolean = false;
   public default_currency: string = '';
   public refreshInterval: number = 25e3; // Miliseconds
   public totalWalletTransactions: number = 0;
@@ -38,8 +41,10 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
   public sortedData;
   public refreshObs;
   public filter;
+  public date = moment().subtract(1, 'year').toDate();
+  public datePipe = new DatePipe('es');
   public dateTo = getDateDMY(new Date(), '-');
-  public dateFrom = getDateDMY(new Date(Date.now() - (30 * 2 * 24 * 60 * 60 * 1000 * 4)), '-');
+  public dateFrom = this.datePipe.transform(this.date, 'yyyy-MM-dd');
   public querySub: any;
 
   constructor(
@@ -56,7 +61,6 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
   ) {
     super(router);
     this.filter = new TxFilter(this.router);
-    this.filter.reloader = this.getTransactions.bind(this); // Call for when filter changes
 
 
 
@@ -89,7 +93,6 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
       }
 
     });
-    this.search();
   }
   // Custom hooks
   public onLogout() {
@@ -101,10 +104,11 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
   }
 
   public addDateFromToQuery(event) {
-
     super.addToQueryParams({
       dateFrom: event + "",
     });
+    this.showClearParams = true;
+    this.getTransactions();
   }
   public addDateToToQuery(event) {
 
@@ -112,11 +116,12 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
     super.addToQueryParams({
       dateTo: this.dateTo,
     });
+    this.showClearParams = true;
+    this.getTransactions();
   }
   // Component Events
   public onInit() {
     this.default_currency = 'REC';
-    this.sortedData = this.txService.walletTransactions.slice();
     this.filter.filterOptions.status = this.filter.statuses;
   }
 
@@ -145,6 +150,7 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
   }
 
   public search() {
+    this.showClearParams = true;
     if (this.filter.search.match(/[abcdef0-9]{24}/i)) {
       this.openTxDetails(this.filter.search);
     }
@@ -172,23 +178,31 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
     });
   }
 
-  public sortData(sort: Sort): void {
-    const data = this.txService.walletTransactions.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      this.sortID = 'id';
-      this.sortDir = 'desc';
-      return;
-    }
+  public changedPage($event) {
+    this.limit = $event.pageSize;
+    this.offset = $event.pageIndex * this.limit;
 
-    this.sortID = sort.active;
-    this.sortDir = sort.direction.toUpperCase();
+
+    this.addToQueryParams({
+      limit: this.limit,
+      offset: this.offset,
+    });
     this.getTransactions();
   }
 
-  public changedPage($event) {
-    this.limit = $event.pageSize;
-    this.offset = this.limit * ($event.pageIndex);
+  public sortData(sort: Sort): void {
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = this.data.slice();
+      this.sortID = 'sender_id';
+      this.sortDir = 'desc';
+    } else {
+      this.sortID = sort.active;
+      this.sortDir = sort.direction;
+    }
+    this.addToQueryParams({
+      sortId: this.sortID,
+      sortDir: this.sortDir,
+    });
     this.getTransactions();
   }
 
@@ -206,12 +220,12 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
     this.loadingTransactions = true;
 
     this.txService.listTx(
-      this.filter.searchQuery, this.offset,
+      this.filter.search, this.offset,
       this.limit, this.sortID, this.sortDir,
       this.dateFrom, this.dateTo,
     ).subscribe((resp) => {
-      this.transactions = resp.data;
-      this.totalWalletTransactions = resp.total;
+      this.transactions = resp.data.list;
+      this.totalWalletTransactions = resp.data.total;
       this.txService.walletTransactions = this.transactions;
       this.sortedData = this.txService.walletTransactions.slice();
       this.loadingTransactions = false;
@@ -244,4 +258,20 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
       instance: dialogRef.componentInstance,
     };
   }
+
+  public clearQueryParams() {
+    this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: {
+          dateTo: null,
+          dateFrom: null
+        },
+        queryParamsHandling: 'merge',
+    });
+    this.dateFrom = this.datePipe.transform(this.date, 'yyyy-MM-dd');
+    this.dateTo =  getDateDMY(new Date(), '-');
+    this.filter.search = '';
+    this.getTransactions();
+    this.showClearParams = false;
+}
 }

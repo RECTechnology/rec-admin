@@ -8,10 +8,16 @@
         <p class="small-text col-blue" style="margin-right: 15px!important">{{'TRANSACTIONS'|translate}}</p>
         <input type="text" class="input radius-2" style="width: 75%"
           placeholder="{{'Search by id i.e: 5c1929ea5a5c980c8a3ded33'|translate}}..." [(ngModel)]="filter.search"
-          (keyup.enter)="search();" (keyup)="filter.filterModified = true;">
-        <button mat-icon-button style="margin-left: 8px" (click)="getTransactions()">
+          (keyup.enter)="search();">
+        <button mat-icon-button style="margin-left: 8px" (click)="getTransactions() && showClearParams = true">
           <span class="center h v">
             <i class="fa fa-search small-text-2"></i>
+          </span>
+        </button>
+        <button mat-icon-button style="margin-left: 8px" title="Clear filters" (click)="clearQueryParams()"
+          *ngIf="showClearParams">
+          <span class="center h v">
+            <i class="fa fa-times col-error small-text-2"></i>
           </span>
         </button>
         <button mat-icon-button style="margin-left: 8px; padding-right: 6px;" (click)="exportCSV()"
@@ -20,17 +26,11 @@
             <i class="fa fa-download small-text-2"></i>
           </span>
         </button>
-        <button mat-icon-button style="margin-left: 8px" title="Clear filters" (click)="filter.clearFilter()"
-          *ngIf="filter.filterModified">
-          <span class="center h v">
-            <i class="fa fa-times col-error small-text-2"></i>
-          </span>
-        </button>
         <button type="button" style="margin-left: 8px; padding-right: 10px; width: auto" color="primary"
           mat-raised-button (click)="sendRecs()" name="button">
           <p class="text-small" style="width: auto">
             <i class="fa fa-plus"></i>
-            {{'NEW_TX'|translate}}
+            {{'Transaction'|translate}}
           </p>
         </button>
       </div> 
@@ -38,36 +38,36 @@
         (dateFromChanged)="addDateFromToQuery($event)" [dateTo]="dateTo" (dateToChanged)="addDateToToQuery($event)"></tx-filters>
     </div>
     <div class="group-col-left" style="width: 100%;">
-      <table mdSort (mdSortChange)="sortData($event)" class="left-align">
+      <table matSort (matSortChange)="sortData($event)" class="left-align">
         <thead class="bordered stripped">
           <tr>
-            <th md-sort-header="sender_id" style="color: #555!important">
+            <th style="color: #555!important">
               {{'Sender Id'|translate}}
             </th>
-            <th md-sort-header="sender_type" style="color: #555!important">
+            <th style="color: #555!important">
               {{'Sender type'|translate}}
             </th>
 
-            <th md-sort-header="receiver_id" style="color: #555!important">
+            <th style="color: #555!important">
               {{'Receiver Id'|translate}}
             </th>
-            <th md-sort-header="receiver_type" style="color: #555!important">
+            <th style="color: #555!important">
               {{'Receiver type'|translate}}
             </th>
 
-            <th style="color: #555!important">
+            <th mat-sort-header="amount" style="color: #555!important">
               {{'Amount'|translate}}
             </th>
-            <th md-sort-header="method" style="color: #555!important">
+            <th mat-sort-header="method" style="color: #555!important">
               {{'Service'|translate}}
             </th>
-            <th md-sort-header="internal" style="color: #555!important">
+            <th mat-sort-header="internal" style="color: #555!important">
               {{'Internal'|translate}}
             </th>
-            <th md-sort-header="created" style="color: #555!important">
+            <th mat-sort-header="created" style="color: #555!important">
               {{'Date'|translate}}
             </th>
-            <th md-sort-header="status" style="color: #555!important">
+            <th mat-sort-header="status" style="color: #555!important">
               {{'Status'|translate}}
             </th>
             <th></th>
@@ -104,7 +104,7 @@
             </td>
             <td>
               <i>
-                <span>{{tx.date | date:'medium'}}</span>
+                <span>{{tx.created | date:'medium'}}</span>
               </i>
             </td>
             <td>
@@ -131,7 +131,8 @@
         </div>
       </table>
       <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !loading">
-        <p class="small-text-2">{{'NO_TRANSACTIONS_YET'|translate}}</p>
+        <p *ngIf="filter.search == ''" class="small-text-2">{{'NO_TRANSACTIONS_YET'|translate}}</p>
+        <p *ngIf="filter.search != ''" class="small-text-2">{{'NO_TRANSACTION_FOUND'|translate}}</p>
       </div>
       <mat-paginator [length]="totalWalletTransactions" style="width: 100%" [pageSize]="limit"
         (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
