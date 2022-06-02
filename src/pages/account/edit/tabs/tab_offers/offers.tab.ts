@@ -73,9 +73,8 @@ export class OffersTab {
           end : formattedDate,
           offer_price: updated.offer_price,
         }).subscribe(
-          (resp) => {
+          (resp: any) => {
             this.relationOffer(resp.data.id);
-
             this.loading = false;
           },
           (error) => {
@@ -83,9 +82,6 @@ export class OffersTab {
             this.loading = false;
           },
         );
-
-        
-
       }
     });
   }
