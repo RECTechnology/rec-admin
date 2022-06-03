@@ -90,7 +90,7 @@
                 [ngClass]="{'col-blue': tx.receiver_type === 'PRIVATE', 'col-orange': tx.receiver_type === 'COMPANY'}">{{tx.receiver_type}}</span>
             </td>
             <td>
-              <code>{{tx.amount|number}} Ɍ</code>
+              <code>{{tx.amount / 1e8 | number}} Ɍ</code>
             </td>
             <td>
               <span class="badge bg-gray small-text" style="text-transform: capitalize; min-width: 100px">
