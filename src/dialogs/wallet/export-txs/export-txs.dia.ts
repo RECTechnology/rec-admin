@@ -53,7 +53,7 @@ export class ExportTxsDia extends BaseDialog {
       this.limit, this.sortID,
       this.sortDir, this.dateFrom, this.dateTo,
     ).subscribe(async (resp) => {
-      this.data = resp.data.map((el) => {
+      this.data = resp.data.list.map((el) => {
         const date = moment(el.date);
         el.date = date.format();
         return el;
