@@ -44,9 +44,9 @@ export class BasePicker {
     this.itemChanged.emit(item)
     if(this.onChange){
       this.onChange(item)
-      if(this.onTouch){
-        this.onTouch();
-      }
+    }
+    if(this.onTouch){
+      this.onTouch();
     }
   }
 
