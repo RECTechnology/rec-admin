@@ -30,7 +30,6 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
   public readonly = false;
   public dateScheduled = '';
   public timeScheduled = '';
-  public transactions_name = '';
   public dataPassed = false;
   public sortedData = [];
   public dataLoading = true;
@@ -51,7 +50,7 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
   public type: any;
   scheduleDeliveryDateCopy: String;
   public formGroup = new FormGroup({
-    transactions_name: new FormControl("", Validators.maxLength(this.limit))
+    transactions_name: new FormControl({value: "", disabled: !this.isEditName}, Validators.maxLength(this.limit))
   })
 
   constructor(
@@ -81,7 +80,6 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
         this.syncData();
       }
     });
-
   }
 
   public syncData() {
@@ -115,7 +113,7 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
       this.warnings = this.delegate.statistics.scheduled.warnings ?? 0;
       this.scheduleAt = this.delegate.scheduled_at ?? 'YYYY-MM-DD HH:MM';
       this.status = this.delegate.status ?? 'noStatus';
-      this.transactions_name = this.delegate.name;
+      this.formGroup.get('transactions_name').setValue(this.delegate && this.delegate.name);
       this.type = this.delegate.type;
       if (this.delegate.scheduled_at) {
         const date = new Date(this.delegate.scheduled_at);
@@ -127,6 +125,8 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
         this.timeScheduled = parts.timeStr;
         this.readonly = this.delegate.status != 'draft';
       }
+      this.delegate && this.delegate.status == 'scheduled' ?
+      this.scheduleDelivery = true : this.scheduleDelivery = false;
 
     });
 
@@ -157,18 +157,21 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
 
   public saveEditConcept() {
     this.changeIsEditName();
-    if(this.formGroup.invalid || this.edited == false){
+    if(this.formGroup.invalid){
       return;
     }
-    this.changeCrud.editConcept(this.idOrNew, this.transactions_name).subscribe((resp) => {
+    this.changeCrud.editConcept(this.idOrNew, this.formGroup.get('transactions_name').value).subscribe((resp) => {
       this.alerts.showSnackbar("EDITED_CONCEPT");
-      this.delegate.name = resp.name ?? this.transactions_name;
+      this.delegate.name = resp.name ?? this.formGroup.get('transactions_name').value;
     });
-   
+    this.isEditName = false;
+    this.formGroup.get('transactions_name').disable();
   }
 
   public changeIsEditName() {
-    this.isEditName = !this.isEditName;
+    this.isEditName = true;
+    this.formGroup.get('transactions_name').enable();
+    this.edited = false;
     this.formGroup.valueChanges.subscribe(resp => {
       resp.transactions_name == this.delegate.name ?
       this.edited = false :
@@ -177,8 +180,9 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
   }
 
   public cancelEditName() {
-    this.isEditName = !this.isEditName;
-    this.transactions_name = this.delegate.name;
+    this.isEditName = false;
+    this.formGroup.get('transactions_name').setValue(this.delegate.name);
+    this.formGroup.get('transactions_name').disable();
   }
 
   public goToLog() {
@@ -196,14 +200,13 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
       this.scheduleDeliveryDateCopy = null;
       var datepipe: DatePipe = new DatePipe('es');
       this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss-SS');
-
     }
     this.alerts.openModal(SendTransactionsDia, {
       totalTransactions: this.total,
       sendType: this.type,
       totalImport: this.totalImport,
       dateSend: this.scheduleDeliveryDateCopy,
-      concept: this.transactions_name
+      concept: this.formGroup.get('transactions_name').value
     }).subscribe(
       (send) => {
       if (send) {

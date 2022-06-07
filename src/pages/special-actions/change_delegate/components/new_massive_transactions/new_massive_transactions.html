@@ -11,8 +11,8 @@
           <code> {{status}}</code>
         </p>
         <div [formGroup]="formGroup" class="center v">
-          <input formControlName = "transactions_name"type="text" class="small-text user-input" [(ngModel)]="transactions_name" [disabled]="!isEditName"
-            placeholder="transactions_name" style="margin: 0; padding: 4px 6px; max-width: 100%;width: 100%!important;"><br>
+          <input formControlName = "transactions_name" type="text" class="small-text user-input"
+            placeholder="{{'SET_CONCEPT' | translate}}" style="margin: 0; padding: 4px 6px; max-width: 100%;width: 100%!important;"><br>
             <mat-error *ngIf="this.formGroup.get('transactions_name').invalid"><small>{{'CONCEPT_LENGTH' | translate: ({limit: this.limit})}}</small></mat-error>
 
           <div  *ngIf="delegate.status == 'draft' || delegate.status == 'pending_validation' || delegate.status == 'created' ">
@@ -174,8 +174,9 @@
       <div
         *ngIf="delegate.status == 'draft' || delegate.status == 'scheduled' || delegate.status == 'in_progress' || delegate.status == 'failed'"
         class="group-row-left center h v">
-        <mat-checkbox style="margin-right: 15px;margin-left: 13px;" color="primary" [(ngModel)]="scheduleDelivery">
-          <p>{{'SCHEDULE_DELIVERY' | translate}}</p>
+        <mat-checkbox [disabled]="delegate.status != 'draft'" style="margin-right: 15px;margin-left: 13px;" color="primary" [(ngModel)]="scheduleDelivery">
+          <p *ngIf="delegate.status != 'scheduled'">{{'SCHEDULE_DELIVERY' | translate}}</p>
+          <p *ngIf="delegate.status == 'scheduled'">{{'SCHEDULED_DELIVERY' | translate}}</p>
         </mat-checkbox>
         <date-picker [isDisable]="delegate.status != 'draft'" [label]="scheduleAt" [item]="scheduleDeliveryDateCopy" (itemChanged)="changeDate($event)">
         </date-picker>
