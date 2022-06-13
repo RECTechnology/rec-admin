@@ -92,7 +92,12 @@
             [badge]="badge" style="margin: 10px 10px;">
             </avatar-badges>
           </div>
-          <div *ngIf="!companyService.selectedCompany.badges.length" class="group-row-left marg-top-10">
+
+          <!-- 
+            NOTE: We check than badges is not null to hotfix: https://github.com/QbitArtifacts/rec-admin/issues/677
+                  This is done because API still does not return badges, so it can be null for now. 
+          -->
+          <div *ngIf="!companyService.selectedCompany.badges || !companyService.selectedCompany.badges.length" class="group-row-left marg-top-10">
             <span class="small-text-2">{{'NO_ITEMS_YET' | translate}}</span>
           </div>
         </div>
