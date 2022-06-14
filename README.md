@@ -1,6 +1,6 @@
 
-[ng-img]: https://img.shields.io/badge/Version-v9.0.0-blue.svg
-[node-img]: https://img.shields.io/badge/Version-v14.17.2-blue.svg
+[ng-img]: https://img.shields.io/badge/Version-v13.3.4-blue.svg
+[node-img]: https://img.shields.io/badge/Version-v16.10.0-blue.svg
 [npm-img]: https://img.shields.io/badge/Version-v6.13.2-blue.svg
 [test-img]: https://github.com/QbitArtifacts/rec-admin/workflows/Test/badge.svg
 [stage-img]: https://github.com/QbitArtifacts/rec-admin/workflows/Test,%20Build%20and%20Deploy%20%5BSTAGE%5D/badge.svg
