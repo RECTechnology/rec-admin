@@ -11,33 +11,49 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { EventsService } from 'src/services/events/events.service';
+import { BasicInfoTab } from './tabs/tab_basic_info/basic_info.tab';
+import { LocationTab } from './tabs/tab_location/location.tab';
+import { CampaignsTab } from './tabs/tab_campaigns/campaigns.tab';
+import { MarketingTab } from './tabs/tab_marketing/marketing.tab';
+import { B2BTab } from './tabs/tab_b2b/b2b.tab';
+import { ScheduleTab } from './tabs/tab_schedule/schedule.tab';
+import { OffersTab } from './tabs/tab_offers/offers.tab';
 
 @Component({
   selector: 'edit-account',
   templateUrl: './edit-account.html',
 })
 export class EditAccountComponent extends PageBase implements OnInit, OnDestroy {
+  static readonly fieldByTab = {
+    [BasicInfoTab.tabName]: BasicInfoTab.fields,
+    [LocationTab.tabName]: LocationTab.fields,
+    [CampaignsTab.tabName]: CampaignsTab.fields,
+    [MarketingTab.tabName]: MarketingTab.fields,
+  };
+
   public pageName = 'Edit Account';
   public account_id = null;
   public queryParamsSub: any = null;
-  
+  public edited: boolean;
+  public shouldValidate = false;
+
   public currentTab = 0;
   public tab: string = '';
   public tabMap = {
-    info: 0,
-    location: 1,
-    marketing: 2,
-    campaigns: 3,
-    b2b: 4,
-    schedule: 5,
-    offers: 6,
-    0: 'info',
-    1: 'location',
-    2: 'marketing',
-    3: 'campaigns',
-    4: 'b2b',
-    5: 'schedule',
-    6: 'offers',
+    [BasicInfoTab.tabName]: 0,
+    [LocationTab.tabName]: 1,
+    [MarketingTab.tabName]: 2,
+    [CampaignsTab.tabName]: 3,
+    [B2BTab.tabName]: 4,
+    [ScheduleTab.tabName]: 5,
+    [OffersTab.tabName]: 6,
+    0: BasicInfoTab.tabName,
+    1: LocationTab.tabName,
+    2: MarketingTab.tabName,
+    3: CampaignsTab.tabName,
+    4: B2BTab.tabName,
+    5: ScheduleTab.tabName,
+    6: OffersTab.tabName
   };
 
   constructor(
@@ -107,27 +123,42 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
         error: this.onUpdateError.bind(this),
       });
     } else {
+      this.edited = false;
       this.alerts.showSnackbar('NO_UPDATE', 'ok');
     }
   }
 
   private onUpdateOk(_) {
     this.alerts.showSnackbar('UPDATED_ACCOUNT', 'ok');
+    this.edited = false;
     this.loading = false;
     this.loadAccount();
   }
 
-  
   private onUpdateError(error) {
+    const property = error.errors[0].property;
+
+    for(let tabName in EditAccountComponent.fieldByTab){
+      const tabField = EditAccountComponent.fieldByTab[tabName] as string[];
+      const containsProperty = tabField.includes(property);
+
+      if(containsProperty) {
+        this.changeTab(tabField);
+        this.shouldValidate = true;
+        break;
+      }
+    }
+
     this.alerts.showSnackbar(error.errors ? error.errors[0].message : error.message, 'ok');
     this.loading = false;
+    this.edited = true;
   }
 
   /* Called when tab change, so url changes also */
-  public changeUrl($event) {
+  public changeTab(tabIdOrName) {
     if (this.account_id) {
       this.router.navigate([], {
-        queryParams: { tab: this.tabMap[$event] },
+        queryParams: { tab: this.tabMap[tabIdOrName] },
         queryParamsHandling: 'merge',
       });
     }

@@ -12,6 +12,8 @@ import { OffersCrud } from 'src/services/crud/offers/offers.crud';
   styleUrls: ['./offers.scss'],
 })
 export class OffersTab {
+  static readonly tabName = 'offers';
+
   @Input() public id = '';
   @Input() public account: Account;
   @Output() public close: EventEmitter<any> = new EventEmitter();

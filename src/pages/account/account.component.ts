@@ -23,6 +23,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   public account_id = null;
   public sub: any = null;
   public pdfHtml = '';
+  
   public tab: string = '';
   public tabMap = {
     details: 0,

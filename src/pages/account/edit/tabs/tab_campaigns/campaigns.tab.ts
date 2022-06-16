@@ -10,6 +10,9 @@ import { MySnackBarSevice } from 'src/bases/snackbar-base';
   templateUrl: './campaigns.html',
 })
 export class CampaignsTab {
+  static readonly tabName = 'campaigns';
+  static readonly fields = ['campaign'];
+
   @Input() public id = '';
   @Input() public account: Account;
   @Input() public loading: boolean = false;

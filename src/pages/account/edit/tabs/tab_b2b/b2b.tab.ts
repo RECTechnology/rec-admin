@@ -17,6 +17,8 @@ import { AddActivityDia } from './AddActivity/addActivity';
   templateUrl: './b2b.html',
 })
 export class B2BTab {
+  static readonly tabName = 'b2b';
+
   @Input() public account: any;
   @Input() public loading: boolean = false;
   @Output() public accountChanged: EventEmitter<Partial<Account>> = new EventEmitter();

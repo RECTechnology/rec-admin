@@ -9,6 +9,9 @@ import { UtilsService } from 'src/services/utils/utils.service';
   templateUrl: './marketing.html',
 })
 export class MarketingTab {
+  static readonly tabName = 'marketing';
+  static readonly fields = ['public_image','description','offered_products'];
+
   @Input() public account: Account;
   @Input() public loading: boolean = false;
   @Output() public accountChanged: EventEmitter<Partial<Account>> = new EventEmitter();

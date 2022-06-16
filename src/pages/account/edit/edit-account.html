@@ -15,19 +15,19 @@
 
 
 <app-page [padding]="false">
-  <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)"
+  <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeTab($event)"
     *ngIf="companyService.selectedCompany">
 
 
     <mat-tab label="{{'BASIC_INFO'|translate}}">
     <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"></validation-errors>
-    <tab-basic-info [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
+    <tab-basic-info [isEdited]="edited" [shouldValidate]="shouldValidate" [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-basic-info>
     </mat-tab>
 
     <mat-tab label="{{'LOCATION'|translate}}">
       <validation-errors [errors]="validationErrors" *ngIf="validationErrors.length > 0"></validation-errors>
-      <tab-location [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
+      <tab-location [isEdited]="edited" [shouldValidate]="shouldValidate" [loading]="loading" [account]="companyService.selectedCompany" (accountChanged)="update($event)">
       </tab-location>
     </mat-tab>
 

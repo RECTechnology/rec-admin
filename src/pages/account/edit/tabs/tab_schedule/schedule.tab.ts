@@ -11,6 +11,8 @@ import { MySnackBarSevice } from 'src/bases/snackbar-base';
   templateUrl: './schedule.html',
 })
 export class ScheduleTab {
+  static readonly tabName = 'schedule';
+
   @Input() public account: Account;
   @Output() public close: EventEmitter<any> = new EventEmitter();
   @Input() public loading: boolean = false;

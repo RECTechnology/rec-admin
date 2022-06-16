@@ -32,6 +32,7 @@
   "____SIDEMENU___STRINGS____": "",
   "Company": "Company",
   "Wallet": "Wallet",
+  "INVALID_FIELDS":"Invalid field or fields",
   "My Accounts": "My Accounts",
   "POS": "POS",
   "Developers": "Developers",

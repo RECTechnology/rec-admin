@@ -3,23 +3,29 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { AdminService } from 'src/services/admin/admin.service';
-import { Neighborhood } from '../../../../../shared/entities/translatable/neighborhood.ent';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+
 
 @Component({
   selector: 'tab-location',
   templateUrl: './location.html',
 })
 export class LocationTab {
+  static readonly tabName = 'location';
+  static readonly fields = ['address_number', 'zip', 'street_type',
+    'street','neighbourhood','onMap','latitude','longitude'];
+
   @Input() public account: Account;
   @Input() public loading: boolean = false;
+  @Input() public isEdited: boolean;
+  @Input() public shouldValidate: boolean = false;
   @Output() public accountChanged: EventEmitter<Partial<Account>> = new EventEmitter();
 
   public accountCopy: any = {};
   public initialValue: any = {};
-  public edited: boolean = false;
   public error: string;
+  public edited: boolean;
   public pageName = 'LOCATION';
   public hasChanges: boolean = false;
 
@@ -49,6 +55,18 @@ export class LocationTab {
     this.formGroup.get('longitude').setValue(this.accountCopy.longitude);
     this.validation();
   }
+
+ public ngOnChanges(changes: SimpleChanges) {
+    // only run when property "data" changed
+    if (changes['isEdited']) {
+        this.edited = this.isEdited;
+    }
+
+    if (changes['shouldValidate'] && changes['shouldValidate'].currentValue) {
+      this.shouldValidate = changes['shouldValidate'].currentValue;
+      this.formGroup.markAllAsTouched();
+    }
+}
 
   public setInitialValue(){
     this.initialValue = {
@@ -85,13 +103,23 @@ export class LocationTab {
         'ok',
       );
       this.loading = false;
-    }, this.alerts.observableErrorSnackbar);
+      this.edited = false;
+    },
+    (error) => {
+      this.alerts.observableErrorSnackbar(error),
+      this.edited = true;
+      this.loading = false;});
   }
 
   public update() {
-    if(this.formGroup.invalid || !this.formGroup.dirty || !this.edited){
+    if(this.loading || this.formGroup.invalid || !this.formGroup.dirty || !this.edited){
+      if(this.formGroup.invalid){
+        this.formGroup.markAllAsTouched();
+        this.alerts.showSnackbar('INVALID_FIELDS', 'OK');
+      }
       return;
     }
+
     this.accountCopy.street = this.formGroup.get("street").value;
     this.accountCopy.zip = this.formGroup.get("zip").value;
     this.accountCopy.street_type = this.formGroup.get("street_type").value;
@@ -102,12 +130,12 @@ export class LocationTab {
     this.accountCopy.longitude = this.formGroup.get("longitude").value;
 
     const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
-    delete changedProps.activity_main;
    
-    if(changedProps.neighbourhood){
+    delete changedProps.activity_main;
+    if(changedProps.neighbourhood) {
       delete changedProps.neighbourhood;
     }
-    if(this.account.street_type !== "" && changedProps.street_type === null){
+    if(this.account.street_type !== "" && changedProps.street_type === null) {
       changedProps.street_type = "";
     }
     delete changedProps.name;
@@ -118,10 +146,11 @@ export class LocationTab {
     delete changedProps.kyc_manager;
     delete changedProps.schedule;
     delete changedProps.level;
-    this.accountChanged.emit(changedProps);
+    delete changedProps.pos;
 
+    this.accountChanged.emit(changedProps);
+    this.edited = this.isEdited;
     this.setInitialValue();
-    this.edited = false;
   }
 
 }
