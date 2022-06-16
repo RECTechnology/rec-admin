@@ -18,6 +18,7 @@ export class AddB2BModal {
     public loading: boolean = false;
     public disabled: boolean = false;
     public error: string;
+    public validationErrors = [];
     public account: Account;
     public username = null;
     public filter = {"rezero_b2b_access": "not_granted"};
@@ -56,8 +57,9 @@ export class AddB2BModal {
             this.loading = false; 
             },
             (error) => {
-              this.alerts.showSnackbar('Error: ' + error.message, 'ok');
-              this.loading = false;
+                this.validationErrors = error.errors;
+                this.alerts.observableErrorSnackbar(error);
+                this.loading = false;
             },
           );
     }
