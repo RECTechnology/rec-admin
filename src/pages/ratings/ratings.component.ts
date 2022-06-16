@@ -53,7 +53,8 @@ export class RatingsPage extends TablePageBase {
             accessor: (v) =>v.value ? 'SI' : 'NO',
             title: 'Rating',
             sortable: true,
-            sort:'value'
+            sort:'value',
+            type:'text'
         },
         TlHeaders.Created.extend({
             title: 'Date',

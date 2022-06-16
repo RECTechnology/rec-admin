@@ -18,6 +18,7 @@ import { LoginService } from '../../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { WithdrawalCrud } from '../../../services/crud/withdrawals/withdrawals.crud';
+import { TlHeaders } from '../../../data/tl-headers';
 
 @Component({
   selector: 'treasure_account',
@@ -41,10 +42,7 @@ export class TreasureAccount extends TablePageBase implements AfterContentInit {
   public withdrawalList = [];
   public sortedData = [];
   public headers: TlHeader[] = [
-    {
-      sort: 'id',
-      title: 'ID',
-    },
+    TlHeaders.Id,
     {
       sort: 'amount',
       title: 'Amount',

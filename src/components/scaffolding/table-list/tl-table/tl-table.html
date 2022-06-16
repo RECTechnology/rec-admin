@@ -77,7 +77,10 @@
                 </div>
 
                 <span *ngIf="!header.type" [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry,
-                    header) | translate}}</span>
+                    header)}}</span>
+                <span *ngIf="header.type === 'text'" [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry,
+                    header) | translate}}</span>    
+                
             </td>
             <td *ngIf="itemOptions && itemOptions.length && options && options.optionsType === 'menu'"
                 (click)="$event.stopPropagation()">
