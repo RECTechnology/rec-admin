@@ -125,14 +125,14 @@
             </td>
           </tr>
         </tbody>
-        <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loading">
+        <div class="abs-center center h v bg-white-opaque" style="width: 100%;" *ngIf="loadingTransactions">
           <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
           </mat-progress-spinner>
         </div>
       </table>
       <div class="center h v" style="width: 100%; padding: 15px 0" *ngIf="!sortedData.length && !loading">
-        <p *ngIf="filter.search == ''" class="small-text-2">{{'NO_TRANSACTIONS_YET'|translate}}</p>
-        <p *ngIf="filter.search != ''" class="small-text-2">{{'NO_TRANSACTION_FOUND'|translate}}</p>
+        <p *ngIf="filter.search == '' && !loadingTransactions" class="small-text-2">{{'NO_TRANSACTIONS_YET'|translate}}</p>
+        <p *ngIf="filter.search != '' && loadingTransactions" class="small-text-2">{{'NO_TRANSACTION_FOUND'|translate}}</p>
       </div>
       <mat-paginator [length]="totalWalletTransactions" style="width: 100%" [pageSize]="limit"
         (page)="changedPage($event)" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>

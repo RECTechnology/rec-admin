@@ -33,7 +33,7 @@ export class ChangeDelegateComponent extends TablePageBase implements OnInit {
   public total = 0;
 
   public validationErrors: any[] = [];
-  public loadingList = true;
+  public loadingList = false;
 
   constructor(
     public titleService: Title,
