@@ -2,8 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [3.25.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.24.0...v3.25.1) (2022-06-21)
-
 ### [3.24.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.24.0...v3.24.1) (2022-06-21)
 
 ### [3.20.1](https://github.com/QbitArtifacts/rec-admin/compare/v3.20.0...v3.20.1) (2022-01-21)
