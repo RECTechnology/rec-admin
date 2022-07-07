@@ -75,14 +75,14 @@
         </thead>
         <tbody>
           <tr *ngFor="let tx of sortedData; let i = index; trackBy: trackByFn">
-            <td>
+            <td class="onHover" style="cursor: pointer;" (click)="eventClick($event)">
               {{tx.sender_id}}
             </td>
             <td>
               <span
                 [ngClass]="{'col-blue': tx.sender_type === 'PRIVATE', 'col-orange': tx.sender_type === 'COMPANY'}">{{tx.sender_type}}</span>
             </td>
-            <td>
+            <td class="onHover" style="cursor: pointer;" (click)="eventClick($event)">
               {{tx.receiver_id}}
             </td>
             <td>
@@ -112,16 +112,10 @@
               <span class="circle bg-{{tx.status}}" *ngIf="utils.isMobileDevice"></span>
             </td>
             <td>
-              <button mat-button [matMenuTriggerFor]="actions" class="icon-btn-small" mat-icon-button>
-                <span class="center h v">
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-              </button>
-              <mat-menu #actions="matMenu">
-                <button mat-menu-item (click)="openTxDetails(tx.id)">
-                  <p class="small-text">{{'View Details'|translate}}</p>
-                </button>
-              </mat-menu>
+              <button mat-icon-button class="icon-btn-small" (click)="openTxDetails(tx)"
+              title="{{'View Details'|translate}}">
+                <p class="small-text"><i class="fa fa-eye"></i></p>
+              </button>  
             </td>
           </tr>
         </tbody>

@@ -1450,7 +1450,21 @@
   "CANCELING_TXS":"Cancelando bloque de txs",
   "SENDING_TXS": "Enviando bloque de txs",
   "RETRYING_TXS":"Reintentando bloque de txs",
-  "Ratings": "Calificaciones"
+  "Ratings": "Calificaciones",
+  "Receiver":"Receptor",
+  "RECEIVER_ADDRESS":"Dirección receptor",
+  "SENDER_ADDRESS":"Dirección emisor",
+  "DO_REFUND":"Realizar devolución",
+  "REFUNDS_RECORD": "Historial de devoluciones",
+  "Copied text": "Texto copiado",
+  "MAX_IMPORT":"Importe máximo",
+  "VISIBLE_RECEIVER": "¿Oculto en cuenta destino?",
+  "VISIBLE_SENDER": "¿Oculto en cuenta origen?",
+  "Hide": "Ocultar",
+  "TX_EDITED": "Transacción editada correctamente!",
+  "The security code is incorrect.": "El código 2FA es incorrecto",
+  "Amount is greater than available for refund": "El importe es mayor que el disponible para la devolución",
+  "REFUND_CORRECTLY": "Devolución enviada correctamente!"
 
 
 }

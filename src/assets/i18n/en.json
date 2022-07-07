@@ -804,7 +804,18 @@
   "CANCELING_TXS":"Cancelling txs block",
   "SENDING_TXS": "Sending txs block",
   "RETRYING_TXS":"Retrying txs block",
-  "No file uploaded": "No file uploaded"
+  "No file uploaded": "No file uploaded",
+  "RECEIVER_ADDRESS":"Receiver address",
+  "SENDER_ADDRESS":"Sender address",
+  "DO_REFUND":"Refund",
+  "Sender": "Emisor",
+  "REFUNDS_RECORD": "Refunds record",
+  "MAX_IMPORT":"Maximum amount",
+  "VISIBLE_RECEIVER": "Hidden in destination account?",
+  "VISIBLE_SENDER": "Hidden in origin account?",
+  "TX_EDITED": "Transaction successfully edited!",
+  "REFUND_CORRECTLY": "Refund sent successfully!"
+
 
 
 

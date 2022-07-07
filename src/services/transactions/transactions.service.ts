@@ -8,54 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
-
-function formatTX(tx) {
-  const new_tx = new Transaction();
-
-  // new_tx.actions = this.getActionsForTransaction(tx);
-  new_tx.scaled = (tx.amount / Math.pow(10, tx.scale)).toFixed(tx.scale);
-  new_tx.isIn = tx.total > 0;
-  new_tx.unitsScaled = this.ws.scaleNum(tx.amount, tx.scale);
-  new_tx.method = tx.method;
-  new_tx.id = tx.id;
-  new_tx.pay_out_info = tx.pay_out_info;
-  new_tx.pay_in_info = tx.pay_in_info;
-  new_tx.data_in = tx.data_in;
-  new_tx.service = tx.service;
-  new_tx.scale = tx.scale;
-  new_tx.status = tx.status;
-  new_tx.type = tx.type;
-  new_tx.updated = tx.updated;
-  new_tx.internal = tx.internal;
-  new_tx.created = tx.created;
-  new_tx.fixed_fee = tx.fixed_fee;
-  new_tx.variable_fee = tx.variable_fee;
-  new_tx.amount = tx.amount;
-  new_tx.total = tx.total;
-  new_tx.currency = tx.currency;
-  new_tx.ip = tx.ip;
-
-  if (new_tx.type === 'exchange') {
-    const dt = tx.data_in;
-
-    new_tx.scales = {
-      from: dt.from,
-      to: dt.to,
-    };
-
-    const fromScale = this.ws.getScaleForCurrency(new_tx.scales.from);
-    const toScale = this.ws.getScaleForCurrency(new_tx.scales.to);
-
-    if (new_tx.pay_in_info) {
-      const actualPrice = 1 / (new_tx.pay_in_info.price * Math.pow(10, fromScale - toScale));
-      new_tx.actual_price = actualPrice.toFixed(toScale);
-    } else if (new_tx.pay_out_info) {
-      const actualPrice = 1 * (new_tx.pay_out_info.price / Math.pow(10, toScale - fromScale));
-      new_tx.actual_price = actualPrice.toFixed(toScale);
-    }
-  }
-  return new_tx;
-}
+import { formatTX } from '../../shared/entities/transaction/transaction.ent';
 
 @Injectable()
 export class TransactionService extends BaseService {
@@ -100,6 +53,17 @@ export class TransactionService extends BaseService {
         resp.data.elements = resp.data.list.map(formatTX.bind(this));
         return resp;
       }));
+  }
+
+  public refundTx(concept, sec_code, txid, amount, internal_in, internal_out){
+    return this.post({
+      amount, sec_code, txid, concept, internal_in, internal_out
+    }, null, `${API_URL}/admin/v3/transaction/refund`);
+  }
+
+  public updateTx(id, data:any){
+    const url = `${API_URL}/admin/v1/transaction/${id}`;
+    return this.put(data, null, url);
   }
 
   public getVendorDataForAddress(address) {
@@ -157,10 +121,10 @@ export class TransactionService extends BaseService {
     return this.get(null, data, `${API_URL}/user/v2/wallet/transactions`);
   }
 
-  public sendTx(sender, receiver, concept, sec_code, amount) {
+  public sendTx(sender, receiver, concept, sec_code, amount, internal_in, internal_out) {
     return this.post({
-      amount, concept, receiver, sec_code, sender,
-    }, null, `${API_URL}/admin/v1/third/rec`);
+      amount, concept, receiver, sec_code, sender, internal_in, internal_out
+    }, null, `${API_URL}/admin/v3/third/rec`);
   }
 
   /**

@@ -1,4 +1,4 @@
-<base-picker [needsNone]="needsNone" [showSelection]="showSelection" [items]="items" [item]="item" [label]="label" (onSearch)="search($event)"
+<base-picker [needsNone]="needsNone" [showSelection]="showSelection" [disabled]="disabled" [items]="items" [item]="item" [label]="label" (onSearch)="search($event)"
   (itemChanged)="selectItem($event)" [onTouch]="onTouch" [onChange]="onChange" [isLoading]="isLoading">
   <ng-template let-item>
    <code style="color: #0098db;">{{item.id}}</code> - <avatar [account]="item"></avatar> - <small style="color: #828282">{{item.cif}}</small>

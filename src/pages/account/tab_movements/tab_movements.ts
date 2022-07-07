@@ -64,7 +64,12 @@ export class MovementsTab implements AfterContentInit {
   public openTxDetails(transaction) {
     const dialogRef = this.dialog.open(TxDetails);
     dialogRef.componentInstance.transaction = transaction;
-    return dialogRef.afterClosed();
+    dialogRef.componentInstance.isFromAccountMovements = true;
+    return dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.search();
+      }
+    });
   }
 
   public search() {
@@ -87,6 +92,7 @@ export class MovementsTab implements AfterContentInit {
 
   public sendRecs() {
     const dialogRef = this.dialog.open(CashOutDia);
+    dialogRef.componentInstance.isRefund = false;
     dialogRef.componentInstance.tx.receiver = null;
     dialogRef.componentInstance.tx.sender = this.companyService.selectedCompany;
     dialogRef.afterClosed().subscribe((resp) => {

@@ -29,7 +29,7 @@ import { DatePipe } from '@angular/common';
 })
 export class WalletComponent extends TablePageBase implements OnInit, OnDestroy, OnLogout, OnLogin {
   public pageName = 'Wallet';
-  public sortID: string = 'sender_id';
+  public sortID: string = 'created';
   public sortDir: string = 'desc';
 
   public loadingTransactions: boolean = false;
@@ -103,6 +103,10 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
     this.getTransactions();
   }
 
+  public eventClick(e){
+    this.router.navigate([`/accounts/${Number(e.target.innerHTML)}`]);
+  }
+
   public addDateFromToQuery(event) {
     super.addToQueryParams({
       dateFrom: event + "",
@@ -157,16 +161,15 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
   }
 
   // Open tx details modal
-  public openTxDetails(id): void {
-    this.getTx(id)
-      .subscribe((resp: Transaction) => {
-        this.createModal(TxDetails, {
-          transaction: resp,
-        });
-      }, (error) => {
-        this.alerts.showSnackbar('ERROR_FINDING_TRANSACTION' + error, 'ok');
-      });
-
+  public openTxDetails(transaction) {
+    const dialogRef = this.dialog.open(TxDetails);
+    dialogRef.componentInstance.transaction = transaction;
+    dialogRef.componentInstance.isFromAccountMovements = false;
+    return dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.getTransactions();
+      }
+    });
   }
 
   public sendRecs() {
@@ -193,7 +196,7 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
   public sortData(sort: Sort): void {
     if (!sort.active || sort.direction === '') {
       this.sortedData = this.data.slice();
-      this.sortID = 'sender_id';
+      this.sortID = 'created';
       this.sortDir = 'desc';
     } else {
       this.sortID = sort.active;
