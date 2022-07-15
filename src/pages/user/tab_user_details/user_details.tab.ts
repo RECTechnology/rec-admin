@@ -51,6 +51,7 @@ export class UserDetailsTab implements OnInit {
       }
     }
   }
+  
 
   private processRoles() {
     const tmp = this.user.roles;

@@ -121,10 +121,11 @@ import { SendTransactionsDia} from 'src/pages/special-actions/change_delegate/co
 import { AddB2BModal} from 'src/pages/special-actions/b2b_page/b2b-modal/b2b-modal';
 import { ActiveGroupSelector } from '../components/selectors/active-group-selector/active-group-selector';
 import { RecStatusSelector } from '../components/selectors/rec-status-selector/rec-status-selector';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { AvatarBadges } from '../components/ui/avatar-badges/avatar-badges.component';
 import { BadgesSelector } from '../components/selectors/badges-selector/badges-selector';
 import { AvatarUser } from '../components/ui/avatar-user/avatar-user.component';
+import { UserCode } from 'src/components/ui/user-code/user-code';
+
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -211,6 +212,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
         Avatar,
         AvatarBadges,
         AvatarUser,
+        UserCode,
         BadgeComponent,
         InfoFieldComponent,
         BetaBadgeComponent,
@@ -279,6 +281,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
         EscapeHtmlPipe,
         CampaignReportsAccount,
         Avatar,
+        UserCode,
         AvatarBadges,
         BadgeComponent,
         InfoFieldComponent,

@@ -25,7 +25,8 @@ export class Avatar {
 
   public onClick() {
     if (this.link) {
-      this.router.navigate([`/accounts/${this.account.id}`]);
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([`/accounts/${this.account.id}`]));
     }else {
       return;
     }

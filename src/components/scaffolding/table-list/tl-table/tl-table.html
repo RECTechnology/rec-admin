@@ -22,6 +22,9 @@
                     [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry,
                     header)}}</span>
 
+                <span *ngIf="header.type === 'user-code' && getEntry(entry, header)">
+                    <user-code [user]="getEntry(entry, header)"></user-code></span>
+
                 <code *ngIf="header.type === 'code' && getEntry(entry, header)!= null "
                     (click)="header.title == 'USER' ? onClickedItemUser(entry) : onClickedItemAccount(entry)" [matTooltip]="header.tooltip && header.tooltip(entry)"
                     [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry, header)}}</code>

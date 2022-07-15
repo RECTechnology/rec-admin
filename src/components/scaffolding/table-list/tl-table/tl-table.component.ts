@@ -8,7 +8,7 @@ export type TlHeaderType = (
     'code' | 'date' | 'avatar' |
     'button' | 'slidetoggle' |
     'image' | 'number' | 'link' | 
-    'avatar-badges' | 'avatar-user'
+    'avatar-badges' | 'avatar-user' | 'user-code'
 );
 
 export interface TlHeader {
