@@ -1,4 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter, ContentChild, ElementRef, ViewChild, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ContentChild,
+  ElementRef,
+  ViewChild,
+  SimpleChanges,
+} from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
@@ -16,7 +26,7 @@ export class BasePicker {
   @Input() label = 'Selector';
   @Input() isLoading = false;
   @Input() needsNone = false;
-  @Input() showSelection  = true;
+  @Input() showSelection = true;
   @Input() hasSearch = true;
 
   @Output() itemChanged = new EventEmitter<any>();
@@ -33,7 +43,7 @@ export class BasePicker {
 
   ngAfterContentInit() {
     setTimeout(() => {
-      if(this.hasSearch){
+      if (this.hasSearch) {
         this.setupDebouncedSearch(this.searchElement.nativeElement);
       }
       this.search();
@@ -41,12 +51,19 @@ export class BasePicker {
   }
 
   public selectItem(item) {
-    this.itemChanged.emit(item)
-    if(this.onChange){
-      this.onChange(item)
+    this.itemChanged.emit(item);
+    if (this.onChange) {
+      this.onChange(item);
     }
-    if(this.onTouch){
+    if (this.onTouch) {
       this.onTouch();
+    }
+  }
+
+  public inputKeyDown($event) {
+    // Prevent select from closing when typing " " Space
+    if ($event.code === 'Space') {
+      $event.stopPropagation();
     }
   }
 
@@ -55,11 +72,13 @@ export class BasePicker {
     fromEvent(element, 'keyup')
       .pipe(
         map((event: any) => event.target.value),
-        debounceTime(250),
         distinctUntilChanged(),
+        debounceTime(300),
       )
       .subscribe((text: string) => {
-        this.search(text);
+        if (text.trim() != '') {
+          this.search(text);
+        }
       });
   }
 
