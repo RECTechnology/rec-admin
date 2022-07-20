@@ -11,8 +11,8 @@
 
 <div class="modal-body group-col-left padd-20" style="width: auto">
   <div class="row" style="width: 100%">
-    <div class="col-lg-12">
-      <p style="margin-bottom: 15px">{{'Send RECs'|translate}}</p>
+    <div class="col-lg-12" style="margin-bottom: 15px">
+      <p>{{'Send RECs'|translate}}</p>
     </div>
     <div class="col-lg-12" *ngIf="validationErrors.length > 0">
       <validation-errors [errors]="validationErrors" style="border-bottom: 1px solid #ddd!important; width: 100%">
@@ -49,7 +49,7 @@
 
       <div *ngIf="isRefund" class="group-row-left space-between marg-bottom-20">
         <div style="width: 70%;">
-          <p class="small-text-2">{{'Amount'|translate}}:</p>
+          <p class="small-text-2">{{'Amount'|translate}}</p>
           <input [disabled]="isMaxAmount" autocomplete="new-password" type="text" class="user-input small" [(ngModel)]="tx.amount" placeholder="{{'Amount to pay'|translate}}">
         </div>
         <div style="width: 25%; margin-left:10px">
@@ -60,30 +60,37 @@
 
       <div *ngIf="!isRefund" class="group-row-left space-between marg-bottom-20">
         <div style="width: 100%;">
-          <p class="small-text-2">{{'Amount'|translate}}:</p>
+          <p class="small-text-2">{{'Amount'|translate}}</p>
           <input [disabled]="maxAmount" autocomplete="new-password" type="text" class="user-input small" [(ngModel)]="tx.amount" placeholder="{{'Amount to pay'|translate}}">
         </div>
       </div>
 
       <div class="group-col-left marg-bottom-20">
-        <p class="small-text-2">{{'Concept'|translate}}: </p>
+        <p class="small-text-2">{{'Concept'|translate}} </p>
         <input autocomplete="new-password" type="text" class="user-input small" [(ngModel)]="tx.concept"
           placeholder="{{'Concept for the payment'|translate}}">
       </div>
 
-      <div class="group-row-left space-between marg-bottom-20">
-        <div style="width: 50%;">
-          <p class="small-text-2">{{'VISIBLE_SENDER'|translate}}:</p>
-          <mat-slide-toggle color="primary" [(ngModel)]="tx.internal_in"></mat-slide-toggle>
+      <div class="group-col-left marg-bottom-20">
+        <div class="group-col-left" style="margin-bottom: 5px;">
+          <p class="small-text-2">{{'Hide'|translate}} </p>
         </div>
-        <div style="width: 50%;">
-          <p class="small-text-2">{{'VISIBLE_RECEIVER'|translate}}</p>
-          <mat-slide-toggle color="primary" [(ngModel)]="tx.internal_out"></mat-slide-toggle>
+        <div class="col-lg-12">
+          <div class="group-row-left center v space-between">
+            <div class="row" style="width: 40%;">  
+              <mat-slide-toggle style="margin-right: 5px;" color="primary" [(ngModel)]="tx.internal_in"></mat-slide-toggle>
+              <p class="small-text-2">{{'VISIBLE_SENDER'|translate}}</p>
+            </div>
+            <div class="row" style="width: 40%;">
+              <mat-slide-toggle style="margin-right: 5px;" color="primary" [(ngModel)]="tx.internal_out"></mat-slide-toggle>
+              <p class="small-text-2">{{'VISIBLE_RECEIVER'|translate}}</p>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="group-col-left marg-bottom-20">
-        <p class="small-text-2">{{'2FA Code'|translate}}: </p>
+        <p class="small-text-2">{{'2FA Code'|translate}} </p>
         <input  autocomplete="new-password" type="text" class="user-input small" [(ngModel)]="tx.sms_code" style="margin-bottom: 0">
         <p class="small-text">
           * {{'A 2fa code generated from your auth application'|translate}}

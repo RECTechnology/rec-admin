@@ -30,8 +30,9 @@
         <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Updated'|translate}}</b>
         <b>{{transaction.updated | date: 'medium'}}</b>
       </div>
-      <div class="small-text-2 marg-bottom-10" *ngIf="transaction.ip">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hide' | translate}}</b>
+      <div class="small-text-2 marg-bottom-10">
+        <b *ngIf="isFromAccountMovements" style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hide' | translate}}</b>
+        <b *ngIf="!isFromAccountMovements" style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hidden' | translate}}</b>
         <mat-slide-toggle *ngIf="isFromAccountMovements" color="primary" (change)="updateInternal()" [(ngModel)]="transaction.internal"></mat-slide-toggle>
         <b *ngIf="!isFromAccountMovements">{{transaction.internal}}</b>
       </div>
@@ -188,8 +189,9 @@
           <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Updated'|translate}}</b>
           <b>{{transaction.updated | date: 'medium'}}</b>
         </div>
-        <div class="small-text-2 marg-bottom-10" *ngIf="transaction.ip">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hide' | translate}}</b>
+        <div class="small-text-2 marg-bottom-10">
+          <b *ngIf="isFromAccountMovements" style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hide' | translate}}</b>
+          <b *ngIf="!isFromAccountMovements" style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hidden' | translate}}</b>
           <mat-slide-toggle *ngIf="isFromAccountMovements" color="primary" (change)="updateInternal()" [(ngModel)]="transaction.internal"></mat-slide-toggle>
           <b *ngIf="!isFromAccountMovements">{{transaction.internal}}</b>
         </div>
