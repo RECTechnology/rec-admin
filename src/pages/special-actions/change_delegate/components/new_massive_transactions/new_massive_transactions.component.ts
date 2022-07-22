@@ -202,9 +202,10 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
     } else {
       this.changeDate(null);
       this.scheduleDeliveryDateCopy = null;
-      var datepipe: DatePipe = new DatePipe('es');
+      var datepipe: DatePipe = new DatePipe('es', 'GMT +0');
+      var datepipeFormat: DatePipe = new DatePipe('es', 'GMT +2');
       this.scheduleDeliveryDateCopy = datepipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ss-SS');
-      this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ss');
+      this.scheduleDeliveryDate = datepipeFormat.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ss');
     }
     this.alerts.openModal(SendTransactionsDia, {
       totalTransactions: this.total,
