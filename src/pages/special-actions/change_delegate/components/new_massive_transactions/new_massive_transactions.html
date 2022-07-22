@@ -178,8 +178,11 @@
           <p *ngIf="delegate.status != 'scheduled'">{{'SCHEDULE_DELIVERY' | translate}}</p>
           <p *ngIf="delegate.status == 'scheduled'">{{'SCHEDULED_DELIVERY' | translate}}</p>
         </mat-checkbox>
-        <date-picker [isDisable]="delegate.status != 'draft'" [label]="scheduleAt" [item]="scheduleDeliveryDateCopy" (itemChanged)="changeDate($event)">
-        </date-picker>
+        <!-- <date-picker [isDisable]="delegate.status != 'draft'" [label]="scheduleAt" [item]="scheduleDeliveryDateCopy" (itemChanged)="changeDate($event)">
+        </date-picker> -->
+        <mat-form-field>
+          <input matInput type="datetime-local" [disabled]="delegate.status != 'draft'" [(ngModel)]="scheduleDeliveryDate" (ngModelChange)="changeDate($event)">
+        </mat-form-field>
       </div>
 
       <div class="center h v bg-white-opaque" style="width: 100%;height: 100px" *ngIf="dataLoading">

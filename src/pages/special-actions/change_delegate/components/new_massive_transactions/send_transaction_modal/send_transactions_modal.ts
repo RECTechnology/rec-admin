@@ -20,6 +20,7 @@ export class SendTransactionsDia {
     public warnings=0;
     public dateSend:any;
     public concept="Concept";
+    public scheduled: boolean = false;
 
   
 
@@ -39,9 +40,7 @@ export class SendTransactionsDia {
     ngOnChanges() { }
 
     public send() {
-       
-            this.dialogRef.close(true);
-        
+        this.dialogRef.close(true);
     }
     public close(): void {
         this.dialogRef.close(false);

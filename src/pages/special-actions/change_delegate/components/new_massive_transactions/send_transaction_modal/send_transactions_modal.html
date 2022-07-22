@@ -22,7 +22,7 @@
       <a class="label col-4" style="font-size: 12;">
         {{'TOTAL_IMPORT'|translate}}:</a>
       <p class=" col-blue col-8">
-        {{totalImport/1000 | number:'1.2':'es-Es'}}
+        {{totalImport/100 | number:'1.2':'es-Es'}}
       </p>
     </div>
 
@@ -38,7 +38,7 @@
       <a class="label col-4" style="font-size: 12;">
         {{'WHEN'|translate}}:
       </a>
-      <p class="col-blue col-8" *ngIf="dateSend else noData">
+      <p class="col-blue col-8" *ngIf="scheduled else noData">
         {{dateSend}}
       </p>
 

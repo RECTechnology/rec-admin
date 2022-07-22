@@ -43,12 +43,13 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
   public failedTx: any;
   public warnings: any;
   public scheduleDelivery = false;
-  public scheduleDeliveryDate: String;
+  public scheduleDeliveryDate: string;
+  public scheduleDeliveryDateFormat:string;
   public limit = 72;
   public isEditName = false;
   public edited = false;
   public type: any;
-  scheduleDeliveryDateCopy: String;
+  scheduleDeliveryDateCopy: string;
   public formGroup = new FormGroup({
     transactions_name: new FormControl({value: "", disabled: !this.isEditName}, Validators.maxLength(this.limit))
   })
@@ -90,7 +91,9 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
   public changeDate(event) {
     var dateSupport: Date = new Date(event);
     var datepipe: DatePipe = new DatePipe('es');
-    this.scheduleDeliveryDate = datepipe.transform(dateSupport, 'yyyy-MM-ddThh:mm:ss-SS');
+    var datepipeFormat: DatePipe = new DatePipe('es', 'GMT +0');
+    this.scheduleDeliveryDate = datepipe.transform(dateSupport, 'yyyy-MM-ddTHH:mm:ss');
+    this.scheduleDeliveryDateFormat = datepipeFormat.transform(dateSupport, 'yyyy-MM-ddTHH:mm:ss-SS');
   }
 
   public canUploadFile() {
@@ -118,6 +121,7 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
       if (this.delegate.scheduled_at) {
         const date = new Date(this.delegate.scheduled_at);
         const parts = this.utils.parseDateToParts(date);
+        this.changeDate(date);
 
         this.dataPassed = this.utils.hasDatePassed(date);
 
@@ -194,25 +198,28 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
   public openSendTxsModal() {
 
     if (this.scheduleDelivery) {
-      this.scheduleDeliveryDateCopy = this.scheduleDeliveryDate;
+      this.scheduleDeliveryDateCopy = this.scheduleDeliveryDateFormat;
     } else {
       this.changeDate(null);
       this.scheduleDeliveryDateCopy = null;
       var datepipe: DatePipe = new DatePipe('es');
-      this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddThh:mm:ss-SS');
+      this.scheduleDeliveryDateCopy = datepipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ss-SS');
+      this.scheduleDeliveryDate = datepipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ss');
     }
     this.alerts.openModal(SendTransactionsDia, {
       totalTransactions: this.total,
       sendType: this.type,
       totalImport: this.totalImport,
-      dateSend: this.scheduleDeliveryDateCopy,
-      concept: this.formGroup.get('transactions_name').value
+      dateSend: this.scheduleDeliveryDate,
+      concept: this.formGroup.get('transactions_name').value,
+      warnings: this.warnings,
+      scheduled: this.scheduleDelivery
     }).subscribe(
       (send) => {
       if (send) {
         this.changeCrud.startTransactions(this.delegate.id, {
           status: 'scheduled',
-          scheduled_at: this.scheduleDeliveryDate
+          scheduled_at: this.scheduleDeliveryDateCopy
         }).subscribe()
         this.snackbar.open('SENDING_TXS');
         this.syncData();   
