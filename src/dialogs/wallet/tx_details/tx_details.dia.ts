@@ -96,6 +96,7 @@ export class TxDetails extends BaseDialog implements OnInit {
     this.close();
     const dialogRef = this.dialog.open(CashOutDia);
     const txType = this.transaction.pay_in_info ?? this.transaction.pay_out_info;
+    dialogRef.componentInstance.payment_order = this.transaction && this.transaction.payment_order_id ? true : false;
     dialogRef.componentInstance.isRefund = true;
     dialogRef.componentInstance.maxAmount = this.scaleNum(this.transaction.amount, this.transaction.scale);
     dialogRef.componentInstance.isMaxAmount = true;

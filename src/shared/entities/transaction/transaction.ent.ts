@@ -55,6 +55,8 @@ export default class Transaction {
 
   public internal: boolean = false;
 
+  public payment_order_id?: string = null;
+
   constructor() {
 
   }
@@ -69,6 +71,7 @@ export function formatTX(tx) {
   new_tx.unitsScaled = this.ws.scaleNum(tx.amount, tx.scale);
   new_tx.method = tx.method;
   new_tx.id = tx.id;
+  new_tx.payment_order_id = tx.payment_order_id;
   new_tx.group = tx.group;
   new_tx.refund_txs = tx.refund_txs;
   new_tx.refund_parent_transaction = tx.refund_parent_transaction;

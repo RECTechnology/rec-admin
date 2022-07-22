@@ -27,6 +27,7 @@ export class CashOutDia extends BaseDialog {
   public available: number = 0;
   public refundSender: string;
   public refundReceiver: string;
+  public payment_order: boolean = false;
   public txid: string;
   public loading = false;
   public maxAmount: string;
@@ -52,6 +53,7 @@ export class CashOutDia extends BaseDialog {
       this.tx.concept = `Devolución a ${this.refundReceiver || '????'}`; 
       this.isMaxAmount ? this.tx.amount =  Number(this.maxAmount) - Number(this.refundAmount) : this.tx.amount = 0;
     }
+    console.log(this.payment_order)
   }
 
   public changeBooleanValues(){
@@ -98,6 +100,12 @@ export class CashOutDia extends BaseDialog {
   }
 
   public doRefund(){
+    if(this.payment_order){
+      this.alerts.showSnackbar('NO_TPV_REFUND', 'OK', {
+        panelClass: ['red-snackbar']
+      })
+      return;
+    }
     this.changeBooleanValues();
     this.loading = true;
     this.txService.refundTx(

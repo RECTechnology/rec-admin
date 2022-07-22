@@ -814,7 +814,8 @@
   "VISIBLE_RECEIVER": "Hidden in destination account?",
   "VISIBLE_SENDER": "Hidden in origin account?",
   "TX_EDITED": "Transaction successfully edited!",
-  "REFUND_CORRECTLY": "Refund sent successfully!"
+  "REFUND_CORRECTLY": "Refund sent successfully!",
+  "NO_TPV_REFUND": "ERROR: POS refunds can only be made from the POS section of the account"
 
 
 
