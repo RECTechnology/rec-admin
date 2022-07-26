@@ -19,14 +19,7 @@
     <div class="row marg-bottom-10">
         <p class="col-md-1 small-text">{{'SEARCH_LABEL' | translate}}</p>
         <div class="col-md-11">
-            <input type="text" class="input border-radius-2" [(ngModel)]="search" placeholder="{{'SEARCH'|translate}}">
-        </div>
-    </div>
-    <div class="row marg-bottom-10">
-        <p class="col-md-1 small-text">{{'LINES' | translate}}</p>
-        <div class="col-md-11">
-            <input type="number" class="input border-radius-2" [ngModel]="lines"
-                (ngModelChange)="linesChanged.emit($event)" placeholder="{{'LINES'|translate}}" step="1">
+            <input type="text" class="input border-radius-2" [(ngModel)]="search" (ngModelChange)="queryChanged.emit($event)" placeholder="{{'SEARCH'|translate}}">
         </div>
     </div>
 </div>
@@ -36,7 +29,7 @@
         <ng-container *ngFor="let log of logs">
             <div [copy-clipboard]="log.type + ' ' + log.log" class="log-view-log"
                 *ngIf="!search || log.log && log.log.toLowerCase().includes(search.toLowerCase())">
-                <p>{{log.date | date}} {{log.type}}: {{log.log}}</p>
+                <p>{{log.created | date: 'medium'}} - {{log.type}}: {{log.log}}</p>
             </div>
         </ng-container>
     </div>
