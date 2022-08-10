@@ -76,9 +76,7 @@ export class BasePicker {
         debounceTime(300),
       )
       .subscribe((text: string) => {
-        if (text.trim() != '') {
           this.search(text);
-        }
       });
   }
 
