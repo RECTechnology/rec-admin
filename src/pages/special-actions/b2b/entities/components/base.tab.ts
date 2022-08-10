@@ -16,7 +16,7 @@ export abstract class EntityTabBase<T> {
     public limit = 10;
     public offset = 0;
     public total = 0;
-    public sortDir = 'asc';
+    public sortDir = 'desc';
     public sortID = 'id';
     public loading = false;
     public route?: ActivatedRoute;
@@ -67,7 +67,7 @@ export abstract class EntityTabBase<T> {
         if (!sort.active || sort.direction === '') {
             this.sortedData = this.data.slice();
             this.sortID = 'id';
-            this.sortDir = 'asc';
+            this.sortDir = 'desc';
         } else {
             this.sortID = sort.active;
             this.sortDir = sort.direction;
