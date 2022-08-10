@@ -470,6 +470,7 @@
   "NEW_ACTIVITY": "New Activity",
   "SAVE": "Save",
   "INPUT_REQUIRED": "Field required: {{field}}",
+  "NO_DESCRIPTION": "No description available",
   "UsersAndAccounts": "Users",
   "EDIT_ITEM": "Edit Item",
   "ACTIVITY_DESC": "Editing this item could cause collateral effects, you should only edit an item for reasons such as spelling errors, if this is not the case, please, report it before “development@rec.barcelona” to obtain authorization and the technical coordinator is aware of this change",
