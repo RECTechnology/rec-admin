@@ -31,6 +31,6 @@
     </tl-subheader>
     <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)" [headers]="headers" [data]="sortedData"
         [itemOptions]="itemOptions" noItemsMessage="There are no items yet" [options]="tableOptions" [limit]="limit"
-        [total]="total" (onChangePage)="changedPage($event)" showLoader="true">
+        [total]="total" [pageIndex]="offset" (onChangePage)="changedPage($event)" showLoader="true">
     </tl-table>
 </div>

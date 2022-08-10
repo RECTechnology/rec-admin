@@ -112,7 +112,9 @@ export class RatingsPage extends TablePageBase {
         this.accountFilter = event;
         this.addToQueryParams({
           accountId: event ? event.id : null,
+          offset: 0
         });
+        this.offset = 0;
         this.search();
       }
 
@@ -120,7 +122,9 @@ export class RatingsPage extends TablePageBase {
         this.companyFilter = event;
         this.addToQueryParams({
           companyId: event ? event.id : null,
+          offset: 0
         });
+        this.offset = 0;
         this.search();
       }
 
@@ -128,7 +132,9 @@ export class RatingsPage extends TablePageBase {
       this.badgeFilter = event;
       this.addToQueryParams({
         badgeId: event ? event.id : null,
+        offset: 0
       });
+      this.offset = 0;
       this.search();
     }
 
@@ -142,7 +148,4 @@ export class RatingsPage extends TablePageBase {
       });
      
     }
-
-
-    
 }

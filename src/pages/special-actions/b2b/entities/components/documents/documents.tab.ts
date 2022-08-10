@@ -161,26 +161,32 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
   }
 
   public filterStatus(status) {
-    this.addToQueryParams({
-
-      status: status,
-    });
     this.statusFilter = status;
     this.lwStatusFilter = null;
+    this.addToQueryParams({
+      status: status,
+      offset: 0
+    });
+    this.offset = 0;
     this.search();
   }
 
   public filterLwStatus(status) {
     this.lwStatusFilter = status;
     this.statusFilter = null;
-
+    this.addToQueryParams({
+      offset: 0
+    });
+    this.offset = 0;
     this.search();
   }
   public addUserIdQuery(event) {
     this.userFilter = event;
     this.addToQueryParams({
       userId: event ? event.id : null,
+      offset: 0
     });
+    this.offset = 0;
     this.search();
   }
 
@@ -188,7 +194,9 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     this.accountFilter = event;
     this.addToQueryParams({
       accountId: event ? event.id : null,
+      offset: 0
     });
+    this.offset = 0;
     this.search();
   }
 
@@ -196,8 +204,9 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     this.productKindFilter = doc;
     this.addToQueryParams({
       documentKindId: doc ? doc.id : null,
+      offset: 0
     });
-
+    this.offset = 0;
     this.search();
   }
 
