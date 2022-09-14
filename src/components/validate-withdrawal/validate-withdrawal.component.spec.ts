@@ -1,6 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppModule } from 'src/app/app.module';
 
 import { ValidateWithdrawalComponent } from './validate-withdrawal.component';
+import { AppService } from '../../services/app/app.service';
 
 describe('ValidateWithdrawalComponent', () => {
   let component: ValidateWithdrawalComponent;
@@ -8,9 +11,11 @@ describe('ValidateWithdrawalComponent', () => {
 
   afterEach(() => {
     TestBed.resetTestingModule();
-  }); beforeEach(async(() => {
+  }); beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ ValidateWithdrawalComponent ]
+      imports: [AppModule, HttpClientTestingModule],
+      declarations: [ ValidateWithdrawalComponent ],
+      providers: [AppService]
     })
     .compileComponents();
   }));

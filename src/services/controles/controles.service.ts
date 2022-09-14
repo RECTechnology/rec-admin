@@ -5,8 +5,8 @@ type ToggleFn = (toggled: boolean) => void;
 
 @Injectable()
 export class ControlesService {
-  private handlers = new Map<string, ToggleFn[]>();
-  private toggles = {
+  public handlers = new Map<string, ToggleFn[]>();
+  public toggles = {
     sidemenu: true,
     UsersAndAccounts: true,
   };

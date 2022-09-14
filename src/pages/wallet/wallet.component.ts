@@ -19,6 +19,7 @@ import Transaction from '../../shared/entities/transaction/transaction.ent';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import moment from 'moment';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'wallet',
@@ -31,7 +32,6 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
   public pageName = 'Wallet';
   public sortID: string = 'created';
   public sortDir: string = 'desc';
-
   public loadingTransactions: boolean = false;
   public showClearParams: boolean = false;
   public default_currency: string = '';
@@ -61,8 +61,6 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
   ) {
     super(router);
     this.filter = new TxFilter(this.router);
-
-
 
     // Gets the query parameters
     this.querySub = this.route.queryParams
