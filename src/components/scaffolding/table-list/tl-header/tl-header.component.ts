@@ -75,7 +75,7 @@ export class TableListHeader {
                     this.search();
                 }
             });
-        }, 100);
+        }, 500);
     }
 
     public searchChanged() {
@@ -102,11 +102,19 @@ export class TableListHeader {
             this.queryChange.emit(text);
 
             // Add query params for deeplinking
-            if (this.options.deepLinkQuery) {
+            if (this.options.deepLinkQuery && text != '') {
                 this.router.navigate([], {
                     relativeTo: this.route,
                     queryParams: {
                         query: this.query,
+                    },
+                    queryParamsHandling: 'merge',
+                });
+            }else {
+                this.router.navigate([], {
+                    relativeTo: this.route,
+                    queryParams: {
+                        query: null
                     },
                     queryParamsHandling: 'merge',
                 });

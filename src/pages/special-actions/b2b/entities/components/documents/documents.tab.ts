@@ -46,7 +46,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     {
       accessor: (v) => (v.account ? v.account : {}),
       sortable: false,
-      title: 'ACCOUNT',
+      title: 'Account',
       type: 'avatar',
     },
     TlHeaders.DocumentKind,
@@ -123,15 +123,13 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
       this.search();
     });
     this.search();
-
   }
 
   ngOnInit() {
     this.dkCrud.list({ sort: 'name', dir: 'asc', limit: 100 }).subscribe((resp) => {
       this.documentKinds = resp.data.elements;
-      this.getQueryData();
     });
-
+    this.getQueryData();
   }
 
   public getQueryData() {
@@ -142,6 +140,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
       this.sortDir = params.sortDir;
       this.sortID = params.sortID;
       this.query = params.query;
+
       if(this.accountFilter == null){
         this.accountFilter = params.accountId ?? null;
       }
@@ -157,41 +156,47 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
           this.productKindFilter = document;
         }
       }
-
     });
     this.search();
   }
 
   public filterStatus(status) {
-    this.addToQueryParams({
-
-      status: status,
-    });
     this.statusFilter = status;
     this.lwStatusFilter = null;
+    this.addToQueryParams({
+      status: status,
+      offset: 0
+    });
+    this.offset = 0;
     this.search();
   }
 
   public filterLwStatus(status) {
     this.lwStatusFilter = status;
     this.statusFilter = null;
-
+    this.addToQueryParams({
+      offset: 0
+    });
+    this.offset = 0;
     this.search();
   }
   public addUserIdQuery(event) {
     this.userFilter = event;
     this.addToQueryParams({
       userId: event ? event.id : null,
+      offset: 0
     });
+    this.offset = 0;
     this.search();
-
   }
 
   public addAccountIdQuery(event) {
     this.accountFilter = event;
     this.addToQueryParams({
       accountId: event ? event.id : null,
+      offset: 0
     });
+    this.offset = 0;
     this.search();
   }
 
@@ -199,8 +204,9 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
     this.productKindFilter = doc;
     this.addToQueryParams({
       documentKindId: doc ? doc.id : null,
+      offset: 0
     });
-
+    this.offset = 0;
     this.search();
   }
 
@@ -213,7 +219,8 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
   public addItem() {
     super.addItem({
       item: {
-        account_id: this.accountFilter,
+        account_id: this.accountFilter ? this.accountFilter.id : null,
+        user_id: this.userFilter ? this.userFilter.id : null
       },
       disableAccountSelector: this.disableAccountFilter,
     });
@@ -244,6 +251,7 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
         },
         (error) => {
           this.loading = false;
+          this.alerts.observableErrorSnackbar(error);
         },
       );
 

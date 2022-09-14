@@ -13,6 +13,7 @@ import { AlertsService } from '../../../services/alerts/alerts.service';
 @Component({
   selector: 'tx-details',
   templateUrl: './tx-details.html',
+  styleUrls: ['./tx_details.scss']
 })
 export class TxDetails extends BaseDialog implements OnInit {
   public transaction: any = {};

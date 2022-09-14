@@ -30,7 +30,7 @@
         <mat-error *ngIf="!formGroup.get('account').invalid && lwKind && !paymentAccount"><small>{{'NO_LW_ACCOUNT' | translate}}</small></mat-error>
       </ng-template>
     </div>
-    <div *ngIf="!lwKind" class="col-lg-12" style= "padding-bottom: 10px;" matTooltip="{{'Filter by user' | translate}}">
+    <div *ngIf="!lwKind" class="col-lg-12" style= "padding-bottom: 5px;" matTooltip="{{'Filter by user' | translate}}">
       <div class="group-col-left space-between" *ngIf="isEdit; else elseBlock" style="width :100%">
         <div *ngIf="item.user_id != null">
           <user-picker formControlName="user" label="USERS" [needsNone]="true" [(item)]="item.user" [disabled]="isEdit">
@@ -43,18 +43,18 @@
       </ng-template>
     </div>
 
-    <mat-form-field class="col-lg-12" style="width: 100%; padding: 5px 15px;">
+    <mat-form-field class="col-lg-12" style="width: 100%; padding: 0px 15px 5px;">
       <mat-label>{{"Name" | translate}}</mat-label>
       <input autocomplete="off" matInput type="text" formControlName="name" style="max-width: 100%;"
       placeholder="{{'Name'|translate}}" required>
       <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
     </mat-form-field>
     
-    <div class="col-lg-12 " *ngIf="!lwKind" style="padding: 5px 15px;" matTooltip="{{'Filter by status' | translate}}">
+    <div class="col-lg-12 " *ngIf="!lwKind" style="padding: 0px 15px 5px;" matTooltip="{{'Filter by status' | translate}}">
       <rec-status-selector formControlName="status" [item]="item.status" *ngIf="!isLemon" label="Status" (itemChanged)="setType($event)"></rec-status-selector>
     </div>
 
-    <mat-form-field *ngIf="!lwKind" class="col-lg-12" style="width: 100%; padding: 5px 15px;">
+    <mat-form-field *ngIf="!lwKind" class="col-lg-12" style="width: 100%; padding: 0px 15px 5px;">
       <mat-label>{{"status_text" | translate}}</mat-label>
       <input autocomplete="off" matInput type="text" formControlName="status_text" style="max-width: 100%;"
       placeholder="{{'status_text'|translate}}">

@@ -15,3 +15,12 @@ mat-icon {
 .label {
   color: #555!important;margin-right: 5px;font-size: 14px;
 }
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-width: thin;
+  cursor: pointer;
+}

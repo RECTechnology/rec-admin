@@ -18,21 +18,21 @@
           <mat-icon>file_copy</mat-icon>
         </button>
       </p>
-      <p class="small-text-1 badge bg-blue" style="text-transform: uppercase; border-radius: 15px; font-size: 10px;">{{transaction.method}} - {{transaction.type}}</p>
+      <p class="small-text-1 badge bg-blue badge_style" >{{transaction.method}} - {{transaction.type}}</p>
     </div>
 
     <div class="group-col-left padd-20">
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Created'|translate}}</b>
+        <b class="parent_field_style">{{'Created'|translate}}</b>
         <b>{{transaction.created | date: 'medium'}}</b>
       </div>
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Updated'|translate}}</b>
+        <b class="parent_field_style">{{'Updated'|translate}}</b>
         <b>{{transaction.updated | date: 'medium'}}</b>
       </div>
       <div class="small-text-2 marg-bottom-10">
-        <b *ngIf="isFromAccountMovements" style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hide' | translate}}</b>
-        <b *ngIf="!isFromAccountMovements" style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hidden' | translate}}</b>
+        <b *ngIf="isFromAccountMovements" class="parent_field_style">{{'Hide' | translate}}</b>
+        <b *ngIf="!isFromAccountMovements" class="parent_field_style">{{'Hidden' | translate}}</b>
         <mat-slide-toggle *ngIf="isFromAccountMovements" color="primary" (change)="updateInternal()" [(ngModel)]="transaction.internal"></mat-slide-toggle>
         <b *ngIf="!isFromAccountMovements">{{transaction.internal}}</b>
       </div>
@@ -40,28 +40,31 @@
     <!--PAY-IN-INFO-->
     <div class="center v space-between bord-bottom" *ngIf="transaction.type == 'in'">
       <b class="small-text-2">Extra in info</b>
-      <p class="small-text-1 badge bg-blue" style="text-transform: uppercase; border-radius: 15px;  font-size: 10px;">{{transaction.status}}</p>
+      <p class="small-text-1 badge bg-blue badge_style">{{transaction.status}}</p>
     </div>
 
     <div class="group-col-left padd-20" *ngIf="transaction.type == 'in'">
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Sender' | translate}}</b>
+        <b class="parent_field_style">{{'Sender' | translate}}</b>
         <b *ngIf="transaction.pay_in_info.name_sender">{{transaction.pay_in_info.name_sender}}
-        <span *ngIf="transaction.pay_in_info.sender" style="color:#0098DB;">
-        <span style="color: #3B3B3B;">(</span><span  (click)="redirectToAccount($event)" style="font-weight:500;  cursor: pointer;">{{transaction.pay_in_info.sender}}</span><span style="color: #3B3B3B;">)</span></span></b>
+        <span *ngIf="transaction.pay_in_info.sender_id" style="color:#0098DB;">
+        <span style="color: #3B3B3B;">(</span><span  (click)="redirectToAccount($event)" style="font-weight:500;  cursor: pointer;">{{transaction.pay_in_info.sender_id}}</span><span style="color: #3B3B3B;">)</span></span></b>
+        <b *ngIf="!transaction.pay_in_info.name_sender">{{'Account | translate}}
+        <span *ngIf="transaction.pay_in_info.sender_id" style="color:#0098DB;">
+        <span style="color: #3B3B3B;">(</span><span  (click)="redirectToAccount($event)" style="font-weight:500;  cursor: pointer;">{{transaction.pay_in_info.sender_id}}</span><span style="color: #3B3B3B;">)</span></span></b>
       </div>
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Receiver' | translate}}</b>
+        <b class="parent_field_style">{{'Receiver' | translate}}</b>
         <b *ngIf="groupAccount && groupAccount.name">{{groupAccount.name}}
         <span *ngIf="transaction.group" style="color:#0098DB;">
         <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.group}}</span><span style="color: #3B3B3B;">)</span></span></b>
       </div>
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Amount'|translate}} </b>
-        <span class="monospace" style="color: #0098DB;">{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
+        <b class="parent_field_style">{{'Amount'|translate}} </b>
+        <span class="monospace blue_badge_color" >{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
       </div>
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Concept'|translate}}</b>
+        <b class="parent_field_style">{{'Concept'|translate}}</b>
         <b>{{transaction.pay_in_info.concept || 'No concept'}}</b>
       </div>     
     </div>
@@ -85,35 +88,38 @@
         <b>{{transaction.pay_in_info.txid}}</b>
       </div>
       <div *ngIf="transaction.pay_in_info.address" class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'SENDER_ADDRESS'|translate}}</b>
+        <b class="parent_field_style">{{'SENDER_ADDRESS'|translate}}</b>
         <b>{{transaction.pay_in_info.address}}</b>
       </div>
     </div>
     <!--PAY-OUT-INFO-->
     <div class="center v space-between bord-bottom" *ngIf="transaction.type == 'out'">
       <b class="small-text-2">Extra out info</b>
-      <p class="small-text-1 badge bg-blue" style="text-transform: uppercase; border-radius: 15px;  font-size: 10px;">{{transaction.status}}</p>
+      <p class="small-text-1 badge bg-blue badge_style">{{transaction.status}}</p>
     </div>
 
     <div class="group-col-left padd-20" *ngIf="transaction.type == 'out'">
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Receiver' | translate}}</b>
+        <b class="parent_field_style">{{'Receiver' | translate}}</b>
         <b *ngIf="transaction.pay_out_info.name_receiver">{{transaction.pay_out_info.name_receiver}}
-        <span *ngIf="transaction.pay_out_info.receiver" style="color:#0098DB;">
-        <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.pay_out_info.receiver}}</span><span style="color: #3B3B3B;">)</span></span></b>
+        <span *ngIf="transaction.pay_out_info.receiver_id" style="color:#0098DB;">
+        <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.pay_out_info.receiver_id}}</span><span style="color: #3B3B3B;">)</span></span></b>
+        <b *ngIf="!transaction.pay_out_info.name_receiver">{{'Account' | translate}}
+        <span *ngIf="transaction.pay_out_info.receiver_id" style="color:#0098DB;">
+        <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.pay_out_info.receiver_id}}</span><span style="color: #3B3B3B;">)</span></span></b>
       </div>
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Sender' | translate}}</b>
+        <b class="parent_field_style">{{'Sender' | translate}}</b>
         <b *ngIf="groupAccount && groupAccount.name">{{groupAccount.name}}
         <span *ngIf="transaction.group" style="color:#0098DB;">
         <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.group}}</span><span style="color: #3B3B3B;">)</span></span></b>
       </div>
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Amount'|translate}} </b>
-        <span class="monospace" style="color: #0098DB;">{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
+        <b class="parent_field_style">{{'Amount'|translate}} </b>
+        <span class="monospace blue_badge_color" >{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
       </div>
       <div class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Concept'|translate}}</b>
+        <b class="parent_field_style">{{'Concept'|translate}}</b>
         <b>{{transaction.pay_out_info.concept || 'No concept'}}</b>
       </div>     
     </div>
@@ -137,7 +143,7 @@
         <b>{{transaction.pay_out_info.txid}}</b>
       </div>
       <div *ngIf="transaction.pay_out_info.address" class="small-text-2 marg-bottom-10">
-        <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'RECEIVER_ADDRESS'|translate}}</b>
+        <b class="parent_field_style">{{'RECEIVER_ADDRESS'|translate}}</b>
         <b>{{transaction.pay_out_info.address}}</b>
       </div>
     </div>
@@ -177,21 +183,21 @@
             <mat-icon>file_copy</mat-icon>
           </button>
         </p>
-        <p class="small-text-1 badge bg-blue" style="text-transform: uppercase; border-radius: 15px; font-size: 10px;">{{transaction.method}} - {{transaction.type}}</p>
+        <p class="small-text-1 badge bg-blue badge_style" >{{transaction.method}} - {{transaction.type}}</p>
       </div>
   
       <div class="group-col-left padd-20">
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Created'|translate}}</b>
+          <b class="parent_field_style">{{'Created'|translate}}</b>
           <b>{{transaction.created | date: 'medium'}}</b>
         </div>
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Updated'|translate}}</b>
+          <b class="parent_field_style">{{'Updated'|translate}}</b>
           <b>{{transaction.updated | date: 'medium'}}</b>
         </div>
         <div class="small-text-2 marg-bottom-10">
-          <b *ngIf="isFromAccountMovements" style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hide' | translate}}</b>
-          <b *ngIf="!isFromAccountMovements" style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Hidden' | translate}}</b>
+          <b *ngIf="isFromAccountMovements" class="parent_field_style">{{'Hide' | translate}}</b>
+          <b *ngIf="!isFromAccountMovements" class="parent_field_style">{{'Hidden' | translate}}</b>
           <mat-slide-toggle *ngIf="isFromAccountMovements" color="primary" (change)="updateInternal()" [(ngModel)]="transaction.internal"></mat-slide-toggle>
           <b *ngIf="!isFromAccountMovements">{{transaction.internal}}</b>
         </div>
@@ -199,28 +205,31 @@
       <!--PAY-IN-INFO-->
       <div class="center v space-between bord-bottom" *ngIf="transaction.type == 'in'">
         <b class="small-text-2">Extra in info</b>
-        <p class="small-text-1 badge bg-blue" style="text-transform: uppercase; border-radius: 15px;  font-size: 10px;">{{transaction.status}}</p>
+        <p class="small-text-1 badge bg-blue badge_style">{{transaction.status}}</p>
       </div>
   
       <div class="group-col-left padd-20" *ngIf="transaction.type == 'in'">
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Sender' | translate}}</b>
+          <b class="parent_field_style">{{'Sender' | translate}}</b>
           <b *ngIf="transaction.pay_in_info.name_sender">{{transaction.pay_in_info.name_sender}}
-          <span *ngIf="transaction.pay_in_info.sender" style="color:#0098DB;">
-          <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.pay_in_info.sender}}</span><span style="color: #3B3B3B;">)</span></span></b>
+          <span *ngIf="transaction.pay_in_info.sender_id" style="color:#0098DB;">
+          <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.pay_in_info.sender_id}}</span><span style="color: #3B3B3B;">)</span></span></b>
+          <b *ngIf="!transaction.pay_in_info.name_sender">{{'Account | translate}}
+          <span *ngIf="transaction.pay_in_info.sender_id" style="color:#0098DB;">
+          <span style="color: #3B3B3B;">(</span><span  (click)="redirectToAccount($event)" style="font-weight:500;  cursor: pointer;">{{transaction.pay_in_info.sender_id}}</span><span style="color: #3B3B3B;">)</span></span></b>
         </div>
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Receiver' | translate}}</b>
+          <b class="parent_field_style">{{'Receiver' | translate}}</b>
           <b *ngIf="groupAccount && groupAccount.name">{{groupAccount.name}}
           <span *ngIf="transaction.group" style="color:#0098DB;">
           <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.group}}</span><span style="color: #3B3B3B;">)</span></span></b>
         </div>
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Amount'|translate}} </b>
-          <span class="monospace" style="color: #0098DB;">{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
+          <b class="parent_field_style">{{'Amount'|translate}} </b>
+          <span class="monospace blue_badge_color" >{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
         </div>
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Concept'|translate}}</b>
+          <b class="parent_field_style">{{'Concept'|translate}}</b>
           <b>{{transaction.pay_in_info.concept || 'No concept'}}</b>
         </div>     
       </div>
@@ -244,35 +253,38 @@
           <b>{{transaction.pay_in_info.txid}}</b>    
         </div>
         <div *ngIf="transaction.pay_in_info.address" class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'SENDER_ADDRESS'|translate}}</b>
+          <b class="parent_field_style">{{'SENDER_ADDRESS'|translate}}</b>
           <b>{{transaction.pay_in_info.address}}</b>
         </div>
       </div>
       <!--PAY-OUT-INFO-->
       <div class="center v space-between bord-bottom" *ngIf="transaction.type == 'out'">
         <b class="small-text-2">Extra out info</b>
-        <p class="small-text-1 badge bg-blue" style="text-transform: uppercase; border-radius: 15px;  font-size: 10px;">{{transaction.status}}</p>
+        <p class="small-text-1 badge bg-blue badge_style">{{transaction.status}}</p>
       </div>
   
       <div class="group-col-left padd-20" *ngIf="transaction.type == 'out'">
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Receiver' | translate}}</b>
+          <b class="parent_field_style">{{'Receiver' | translate}}</b>
           <b *ngIf="transaction.pay_out_info.name_receiver">{{transaction.pay_out_info.name_receiver}}
-          <span *ngIf="transaction.pay_out_info.receiver" style="color:#0098DB;">
-          <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.pay_out_info.receiver}}</span><span style="color: #3B3B3B;">)</span></span></b>
+          <span *ngIf="transaction.pay_out_info.receiver_id" style="color:#0098DB;">
+          <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.pay_out_info.receiver_id}}</span><span style="color: #3B3B3B;">)</span></span></b>
+          <b *ngIf="!transaction.pay_out_info.name_receiver">{{'Account' | translate}}
+          <span *ngIf="transaction.pay_out_info.receiver_id" style="color:#0098DB;">
+          <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.pay_out_info.receiver_id}}</span><span style="color: #3B3B3B;">)</span></span></b>
         </div>
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Sender' | translate}}</b>
+          <b class="parent_field_style">{{'Sender' | translate}}</b>
           <b  *ngIf="groupAccount && groupAccount.name">{{groupAccount.name}}
           <span *ngIf="transaction.group" style="color:#0098DB;">
           <span style="color: #3B3B3B;">(</span><span (click)="redirectToAccount($event)" style="font-weight:500; cursor: pointer;">{{transaction.group}}</span><span style="color: #3B3B3B;">)</span></span></b>
         </div>
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Amount'|translate}} </b>
-          <span class="monospace" style="color: #0098DB;">{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
+          <b class="parent_field_style">{{'Amount'|translate}} </b>
+          <span class="monospace blue_badge_color" >{{scaleNum(transaction.amount, transaction.scale) | number}} {{transaction.currency}}</span>
         </div>
         <div class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'Concept'|translate}}</b>
+          <b class="parent_field_style">{{'Concept'|translate}}</b>
           <b>{{transaction.pay_out_info.concept || 'No concept'}}</b>
         </div>     
       </div>
@@ -296,7 +308,7 @@
           <b>{{transaction.pay_out_info.txid}}</b>
         </div>
         <div *ngIf="transaction.pay_out_info.address" class="small-text-2 marg-bottom-10">
-          <b style="color:#3B3B3B; font-weight:100; text-transform:uppercase; margin-right: 10px;">{{'RECEIVER_ADDRESS'|translate}}</b>
+          <b class="parent_field_style">{{'RECEIVER_ADDRESS'|translate}}</b>
           <b>{{transaction.pay_out_info.address}}</b>
         </div>
       </div>

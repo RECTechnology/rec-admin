@@ -107,6 +107,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   public sortData(sort: MatSort) {
     if (!sort.active || sort.direction === '') {
       this.sortElementsToRevise = true;
+      sort.direction = 'asc';
     } else if (sort.active !== 'status') {
       this.sortElementsToRevise = false;
     }

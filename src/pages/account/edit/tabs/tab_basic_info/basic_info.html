@@ -58,14 +58,14 @@
 
             <mat-form-field *ngIf="accountCopy.type && accountCopy.type === 'COMPANY'" class="col-lg-6" >
               <mat-label>{{'SUBTYPE' | translate}}</mat-label>
-              <mat-select (selectionChange)="accountCopy.subtype = $event.value" formControlName="account_subtype_company">
+              <mat-select (selectionChange)="this.subtypeCompanyAccount = $event.value" formControlName="account_subtype_company">
                 <mat-option *ngFor="let account of ACCOUNT_SUB_TYPES_COMPANY" value="{{account}}">{{account}}</mat-option>
               </mat-select>
             </mat-form-field>
 
             <mat-form-field *ngIf="accountCopy.type && accountCopy.type === 'PRIVATE'" class="col-lg-6" >
               <mat-label>{{'SUBTYPE' | translate}}</mat-label>
-              <mat-select (selectionChange)="accountCopy.subtype = $event.value" formControlName="account_subtype_private">
+              <mat-select (selectionChange)="this.subtypePrivateAccount = $event.value" formControlName="account_subtype_private">
                 <mat-option *ngFor="let account of ACCOUNT_SUB_TYPES_PRIVATE" value="{{account}}">{{account}}</mat-option>
               </mat-select>
             </mat-form-field>

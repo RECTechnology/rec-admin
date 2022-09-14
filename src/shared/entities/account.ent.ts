@@ -9,7 +9,7 @@ import { Campaign } from './campaign.ent';
 import { Badge } from './badge.ent';
 
 export type AccountType = 'PRIVATE' | 'COMPANY';
-export type AccountSubtype = 'RETAILER' | 'WHOLESALE' | 'NORMAL' | 'BMINCOME' | 'INFANCIA21';
+export type AccountSubtype = 'RETAILER' | 'WHOLESALE' | 'NORMAL' | 'BMINCOME' | 'INFANCIA21'|'XECCULTURAL';
 
 export interface Category {
   id: 6;
@@ -98,12 +98,14 @@ export class Account implements Account {
   public static SUBTYPE_COMPANY_NORMAL: AccountSubtype = 'NORMAL';
   public static SUBTYPE_COMPANY_BMINCOME: AccountSubtype = 'BMINCOME';
   public static SUBTYPE_COMPANY_INFANCIA21: AccountSubtype = 'INFANCIA21';
+  public static SUBTYPE_COMPANY_XECCULTURAL: AccountSubtype = 'XECCULTURAL';
 
   public static ACCOUNT_TYPES = [Account.TYPE_COMPANY, Account.TYPE_PRIVATE];
   public static ACCOUNT_SUB_TYPES_PRIVATE = [
     Account.SUBTYPE_COMPANY_NORMAL,
     Account.SUBTYPE_COMPANY_BMINCOME,
     Account.SUBTYPE_COMPANY_INFANCIA21,
+    Account.SUBTYPE_COMPANY_XECCULTURAL
   ];
   public static ACCOUNT_SUB_TYPES_COMPANY = [Account.SUBTYPE_COMPANY_WHOLESALE, Account.SUBTYPE_COMPANY_RETAILER];
 

@@ -2,5 +2,7 @@
   (itemChanged)="selectItem($event)" [isLoading]="isLoading">
   <ng-template let-item>
     {{item | tolang}}
+    <span *ngIf="!item.name">{{'Account' | translate}}</span>
+    <span *ngIf="item && item.dni"> - {{item.dni}}</span>
   </ng-template>
 </base-picker>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { UserService } from '../../../services/user.service';
 import BaseDialog from '../../../bases/dialog-base';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Document } from 'src/shared/entities/document.ent';
@@ -13,9 +12,10 @@ import { User } from 'src/shared/entities/user.ent';
 import { AccountsCrud } from '../../../services/crud/accounts/accounts.crud';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
-import { Account } from '../../../shared/entities/account.ent';
 import { EmptyValidators } from '../../../components/validators/EmptyValidators';
 import { DatePipe } from '@angular/common';
+import { UsersCrud } from 'src/services/crud/users/users.crud';
+import { Account } from '../../../shared/entities/account.ent';
 
 @Component({
   selector: 'add-document',
@@ -36,7 +36,8 @@ export class AddDocumentDia extends BaseDialog {
     kind_id: null,
     account_id: null,
     content: '',
-    valid_until: null
+    valid_until: null,
+    user_id: null
   };
   public paymentAccount: any;
   //(idChange)="search();"
@@ -66,7 +67,7 @@ export class AddDocumentDia extends BaseDialog {
 
   constructor(
     public dialogRef: MatDialogRef<AddDocumentDia>,
-    private us: UserService,
+    private usersCrud: UsersCrud,
     public alerts: AlertsService,
     public docCrud: DocumentCrud,
     public lemonDocCrud: LemonwayDocumentCrud,
@@ -87,21 +88,24 @@ export class AddDocumentDia extends BaseDialog {
         this.formGroup.get("account").setValue(account.data);
       })
     }
-    if(this.item.user){
-      this.accountCrud.find(this.item.user.id)
+    if(this.item.user_id){
+      this.usersCrud.find(this.item.user_id)
       .subscribe( user => {
         this.item.user = user.data;
+        this.formGroup.get("account").setValue(user.data);
       })
     }
     this.paymentAccount = this.item.account ? this.item.account.lw_balance : null;
-    this.formGroup.get("kind").setValue(this.item.kind);
-    this.formGroup.get("account").setValue(this.item.account);
-    this.formGroup.get("user").setValue(this.item.user);
-    this.formGroup.get("name").setValue(this.item.name ?? "");
-    this.formGroup.get("status").setValue(this.item.status);
-    this.formGroup.get("status_text").setValue(this.item.status_text ?? "");
-    this.formGroup.get("valid_until").setValue(this.item.valid_until);
-    this.formGroup.get("content").setValue(this.item.content);
+    this.formGroup.patchValue({
+      'kind': this.item.kind,
+      'account': this.item.account,
+      'user': this.item.user,
+      'name': this.item.name ?? "",
+      'status': this.item.status,
+      'status_text': this.item.status_text ?? "",
+      'valid_until': this.item.valid_until,
+      'content': this.item.content
+    })
 
     this.itemCopy = Object.assign({}, this.item);
     //this.user= Object.assign({}, item.user);
@@ -110,10 +114,10 @@ export class AddDocumentDia extends BaseDialog {
   }
 
   public validation(){
+    
     if(this.item.valid_until){
       this.date = new Date(this.item.valid_until);
     }
-   
     const initialValue = {
       name: this.item.name ?? "",
       status: this.item.status,
@@ -139,7 +143,7 @@ export class AddDocumentDia extends BaseDialog {
         this.paymentAccount = this.formGroup.get('account').value ? this.formGroup.get('account').value.lw_balance : undefined;
         this.itemCopy.kind_id = resp.kind ? resp.kind.id : undefined;
         this.itemCopy.user_id = resp.user ? resp.user.id : undefined;
-        this.itemCopy.account_id = resp.account ? resp.account.id : undefined;
+        this.itemCopy.account_id = resp.account && resp.account.type ? resp.account.id : undefined;
         if(resp.valid_until){
           resp.valid_until = this.datepipe.transform(resp.valid_until, "yyyy-MM-ddT00:00:00+00:00")
         }
@@ -152,6 +156,7 @@ export class AddDocumentDia extends BaseDialog {
             this.edited = false
           }
       })
+      
   }
 
   public setType(type) {

@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="group-col-left padd-20">
-    <p>{{bussiness.description || 'NO_DESCRIPTION'}}</p>
+    <p>{{bussiness.description || 'NO_DESCRIPTION' | translate}}</p>
 
     <b style="margin-top: 15px">{{'SCHEDULE'|translate}}</b>
     <div *ngIf="bussiness.schedule" style="width: 100%;">
@@ -49,17 +49,6 @@
 
     <div *ngIf="!bussiness.schedule" style="width: 100%; margin-top: 15px">
       <i>{{'NO_SCHEDULE'|translate}}</i>
-    </div>
-
-    <b style="margin-top: 15px">{{'OFFERS'|translate}}</b>
-    <div *ngIf="bussiness.offers.length" style="width: 100%">
-      <div *ngFor="let offer of bussiness.offers">
-
-      </div>
-    </div>
-
-    <div *ngIf="!bussiness.offers.length" style="width: 100%; margin-top: 15px">
-      <i>{{'NO_OFFERS'|translate}}</i>
     </div>
   </div>
 </div>

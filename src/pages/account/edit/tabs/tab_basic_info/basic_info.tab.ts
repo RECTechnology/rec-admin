@@ -64,13 +64,7 @@ export class BasicInfoTab implements OnInit {
     this.formGroup.get('email').setValue(this.account.email);
     this.formGroup.get('cif').setValue(this.account.cif);
     this.formGroup.get('account_type').setValue(this.account.type);
-    if (this.account.type == 'COMPANY') {
-      this.formGroup.get('account_subtype_company').setValue(this.account.subtype);
-      this.subtypeCompanyAccount = this.accountCopy.subtype;
-    } else {
-      this.formGroup.get('account_subtype_private').setValue(this.account.subtype);
-      this.subtypePrivateAccount = this.accountCopy.subtype;
-    }
+    this.setSubtypes();
     this.formGroup.get('active_account').setValue(this.account.active);
     this.formGroup.get('tier').setValue(this.account.level_id);
     this.formGroup.get('image').setValue(this.account.company_image);
@@ -98,8 +92,8 @@ export class BasicInfoTab implements OnInit {
       email: this.accountCopy.email,
       cif: this.accountCopy.cif,
       account_type: this.accountCopy.type,
-      account_subtype_company: this.subtypeCompanyAccount,
-      account_subtype_private: this.subtypePrivateAccount,
+      account_subtype_company: this.accountCopy.type == 'COMPANY' ? this.accountCopy.subtype : '',
+      account_subtype_private: this.accountCopy.type == 'PRIVATE' ? this.accountCopy.subtype : '',
       active_account: this.accountCopy.active,
       tier: this.accountCopy.level_id,
       image: this.accountCopy.company_image,
@@ -129,8 +123,20 @@ export class BasicInfoTab implements OnInit {
 
     if (type === 'COMPANY') {
       this.accountCopy.subtype = this.ACCOUNT_SUB_TYPES_COMPANY[0];
+      this.formGroup.get('account_subtype_company').setValue(this.ACCOUNT_SUB_TYPES_COMPANY[0]);
+      this.formGroup.get('account_subtype_private').setValue('');
     } else if (type === 'PRIVATE') {
       this.accountCopy.subtype = this.ACCOUNT_SUB_TYPES_PRIVATE[0];
+      this.formGroup.get('account_subtype_company').setValue('');
+      this.formGroup.get('account_subtype_private').setValue(this.ACCOUNT_SUB_TYPES_COMPANY[0]);
+    }
+  }
+
+  public setSubtypes(){
+    if (this.account.type == 'COMPANY') {
+      this.formGroup.get('account_subtype_company').setValue(this.account.subtype);
+    } else {
+      this.formGroup.get('account_subtype_private').setValue(this.account.subtype);
     }
   }
 
