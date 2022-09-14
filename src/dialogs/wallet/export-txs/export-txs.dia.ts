@@ -48,29 +48,38 @@ export class ExportTxsDia extends BaseDialog {
     this.loading = true;
     this.filter.getFilterData(0, 100000, this.dateFrom, this.dateTo);
 
-    this.txService.listTx(
-      this.filter.search, this.offset,
-      this.limit, this.sortID,
-      this.sortDir, this.dateFrom, this.dateTo,
-    ).subscribe(async (resp) => {
-      this.data = resp.data.list.map((el) => {
-        const date = moment(el.date);
-        el.date = date.format();
-        return el;
-      });
-      this.foundTxs = this.data.length;
-      this.loading = false;
-      this.preview = this.getFormatted(this.data);
-    }, (error) => {
-      this.loading = false;
-      this.error = error.message;
-    });
+    this.txService
+      .listTx(this.filter.search, this.offset, this.limit, this.sortID, this.sortDir, this.dateFrom, this.dateTo)
+      .subscribe(
+        async (resp) => {
+          this.data = resp.data.list.map((el) => {
+            const date = moment(el.date);
+            el.date = date.format();
+            if (el.pay_out_info) {
+              el['pay_out_info.concept'] = el.pay_out_info.concept ?? '';
+              delete el.pay_out_info;
+            }
+            return el;
+          });
+          this.foundTxs = this.data.length;
+          this.loading = false;
+          this.preview = this.getFormatted(this.data);
+        },
+        (error) => {
+          this.loading = false;
+          this.error = error.message;
+        },
+      );
   }
 
   public changedDate(dn, $event) {
     const d = $event.target.value;
-    if (dn === 'from') { this.dateFrom = d; }
-    if (dn === 'to') { this.dateTo = d; }
+    if (dn === 'from') {
+      this.dateFrom = d;
+    }
+    if (dn === 'to') {
+      this.dateTo = d;
+    }
     this.filter.filterModified = true;
     this.filter.reloader();
   }
@@ -86,11 +95,9 @@ export class ExportTxsDia extends BaseDialog {
 
   public export(type) {
     const name = this.fileName || 'test-csv';
-    const data = this.data.sort(
-      (a: any, b: any) => {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      },
-    );
+    const data = this.data.sort((a: any, b: any) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
 
     const formatted = this.getFormatted(data);
     const ctype = type === 'csv' ? 'text/csv' : 'application/json';
@@ -139,7 +146,6 @@ export class ExportTxsDia extends BaseDialog {
       str += line + '\r\n';
     }
     return str;
-
   }
 
   public close(): void {
