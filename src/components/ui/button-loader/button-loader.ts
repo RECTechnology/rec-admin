@@ -4,6 +4,13 @@ import { ControlesService } from '../../../services/controles/controles.service'
 @Component({
   selector: 'btn-loader',
   templateUrl: './button-loader.html',
+  styles: [
+    `
+      :host {
+        width: '100%';
+      }
+    `,
+  ],
 })
 export class ButtonLoader {
   @Output() public clicked: EventEmitter<any> = new EventEmitter<any>();
@@ -13,9 +20,7 @@ export class ButtonLoader {
   @Input() public text = '';
   @Input() public color = 'primary';
 
-  constructor(
-    private controles: ControlesService,
-  ) { }
+  constructor(private controles: ControlesService) {}
 
   public onClick() {
     this.clicked.emit();

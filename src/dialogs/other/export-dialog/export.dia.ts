@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { AlertsService } from 'src/services/alerts/alerts.service';
+import { ExportSentDialog } from '../export-sent-dialog/export-sent.dia';
 
 @Component({
   selector: 'export-dialog',
@@ -11,12 +14,16 @@ export class ExportDialog implements OnInit {
   public filters: any = {};
   public list: any = [];
   public defaultExports: any = [];
-  public fileName: string = '';
   public error: string = '';
   public errorLarge: string = '';
   public showAllError = false;
   public hidden = true;
-  public fn: ((v?: any) => Observable<any>) = () => new Observable();
+  public formGroup = new FormGroup({
+    email: new FormControl(null, Validators.required),
+    fileName: new FormControl({}),
+  });
+
+  public fn: (v?: any) => Observable<any> = () => new Observable();
 
   // tslint:disable-next-line: member-ordering
   public csvData: string = null;
@@ -25,24 +32,17 @@ export class ExportDialog implements OnInit {
   public loading = false;
 
   // tslint:disable-next-line: member-ordering
-  constructor(
-    public dialogRef: MatDialogRef<ExportDialog>,
-  ) {
-  }
+  constructor(public dialogRef: MatDialogRef<ExportDialog>, public alerts: AlertsService) {}
 
   public reset() {
     this.list = [...this.defaultExports];
   }
 
   public ngOnInit() {
-    this.fileName = [
-      'export',
-      '-',
-      (this.entityName),
-      '-',
-      (new Date().toLocaleString().replace(/\s/g, '-')),
-      '.csv',
-    ].join('').toLowerCase();
+    const fileName = ['export', '-', this.entityName, '-', new Date().toLocaleString().replace(/\s/g, '-'), '.csv']
+      .join('')
+      .toLowerCase();
+    this.formGroup.get('fileName').setValue(fileName);
   }
 
   public changedItems($event) {
@@ -66,27 +66,35 @@ export class ExportDialog implements OnInit {
     const field_map = this.getFieldMap();
 
     this.loading = true;
-    this.fn({ ...this.filters, field_map }).subscribe((resp) => {
-      this.loading = false;
-      this.download(resp, 'text/csv', this.fileName);
-    }, (error) => {
-      this.errorLarge = (error.message || 'Error');
-      this.error = this.errorLarge.substr(0, 86);
-      this.loading = false;
-    });
+    this.fn({ ...this.filters, field_map, email: this.formGroup.get('email').value }).subscribe(
+      (resp) => {
+        this.loading = false;
+        this.close();
+        this.showConfirmation();
+      },
+      (error) => {
+        this.errorLarge = error.message || 'Error';
+        this.error = this.errorLarge.substr(0, 86);
+        this.loading = false;
+      },
+    );
   }
 
-  public download(data, mimeType, fileName) {
-    const a = document.createElement('a');
-    a.setAttribute('style', 'display:none;');
-    document.body.appendChild(a);
-    const blob = new Blob([data], { type: mimeType });
-    const url = window.URL.createObjectURL(blob);
-    a.href = url;
-    a.download = fileName;
-    a.click();
-    this.close();
+  public showConfirmation() {
+    return this.alerts.openModal(ExportSentDialog);
   }
+
+  // public download(data, mimeType, fileName) {
+  //   const a = document.createElement('a');
+  //   a.setAttribute('style', 'display:none;');
+  //   document.body.appendChild(a);
+  //   const blob = new Blob([data], { type: mimeType });
+  //   const url = window.URL.createObjectURL(blob);
+  //   a.href = url;
+  //   a.download = fileName;
+  //   a.click();
+  //   this.close();
+  // }
 
   public close(confirmed = false): void {
     this.dialogRef.close(confirmed);

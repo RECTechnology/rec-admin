@@ -1206,5 +1206,10 @@
   "The file not contain any data":"L'arxiu no conté cap dada.",
   "Missing required headers":"Falten encapçalats obligatoris",
   "No valid data found":"No es van trobar dades vàlides",
-  "CSV added successfully": "CSV afegit amb èxit"
+  "CSV added successfully": "CSV afegit amb èxit",
+
+  "SET_EMAIL_EXPORT": "Introdueix el teu email per poder enviar les dades que vols exportar.",
+  "HOW_TO_USE": "Com usar",
+  "EXPORT_SENT": "PETICIÓ ENVIADA",
+  "EXPORT_SENT_DESC": "La teva petició està sent processant. Aquest procés pot trigar uns minuts, en acabar rebràs un email amb les dades adjuntes. Si us plau no oblidis <b>revisar la teva safata d'spam</b>"
 }

@@ -7,7 +7,6 @@
   </button>
 </div>
 <div class="group-col-left padd-20 modal-body" style="max-width: 80vw; min-width: 60vw; width: auto">
-
   <p class="col-gray small-text-2">
     {{'EXPORT_TXS_AS_CSV'|translate}}
   </p>
@@ -24,9 +23,8 @@
       </p>
       <div class="group-row-left w-100 center v" style="margin-top: 10px">
         <div style="position: relative;width: 80%">
-          <input type="text" id="fileName" class="input radius-2 w-100"
-            style="max-width: 100%; padding-right: 80px" placeholder="{{'Enter a filename'|translate}}..."
-            [(ngModel)]="fileName">
+          <input type="text" id="fileName" class="input radius-2 w-100" style="max-width: 100%; padding-right: 80px"
+            placeholder="{{'Enter a filename'|translate}}..." [(ngModel)]="fileName">
 
           <button mat-button [matMenuTriggerFor]="exportFormat" id="fileNameLabel" style="margin-right: 0!important">
             <span>.{{exportType}}</span>

@@ -1,38 +1,51 @@
-<div class="kvp">
-    <div>
+<div class="kvp" style="width: 100%">
+    <!-- <div>
         <p class="small-text">{{'KVP_DESC'|translate}}</p>
         <p class="small-text">{{'KVP_DESC_JSON'|translate}} <a target="_blank"
                 href="https://github.com/Galbar/JsonPath-PHP#jsonpath-example">JsonPath</a></p>
-    </div>
-    <div *ngIf="hidden" class="kvp-hidden-items padd-10 center v">
+    </div> -->
+    <div *ngIf="hidden" class="kvp-hidden-items padd-10 center v space-between">
         <p class="small-text">{{'KVP_ITEMS_HIDDEN'|translate}}</p>
-        <button mat-button matTooltip="Show and edit items" (click)="unhide()" style="margin-right: 10px">
-            <span class="center h v">
-                <i class="fas fa-edit"></i><span class="small-text">{{'EDIT'|translate}}</span>
-            </span>
-        </button>
-    </div>
-    <div *ngIf="!hidden" class="kvp-list-container">
-        <div style="border-bottom: 1px solid #ddd" class="center v padd-10">
-            <p class="small-text">{{'KVP_ITEMS_SHOWN'|translate}}</p>
-            <button mat-button matTooltip="Show and edit items" (click)="hide()" style="margin-right: 10px">
+        <div>
+            <button mat-button matTooltip="Show items" (click)="unhide()" style="margin-right: 10px">
                 <span class="center h v">
-                    <i class="fas fa-eye-slash"></i><span class="small-text">{{'HIDE'|translate}}</span>
+                    <i class="fas fa-edit marg-right-6"></i> <span class="small-text">{{'EDIT'|translate}}</span>
                 </span>
             </button>
+            <a target="_blank" title="{{'HOW_TO_USE'|translate}}"
+                href="https://github.com/Galbar/JsonPath-PHP#jsonpath-example">
+                <i class="fa fa-circle-info"></i>
+            </a>
+        </div>
+    </div>
+    <div *ngIf="!hidden" class="kvp-list-container">
+        <div style="border-bottom: 1px solid #ddd" class="center v padd-10 space-between">
+            <p class="small-text">{{'KVP_ITEMS_SHOWN'|translate}}</p>
+            <div>
+                <button mat-button matTooltip="Hide items" (click)="hide()" style="margin-right: 10px">
+                    <span class="center h v">
+                        <i class="fas fa-eye-slash marg-right-6"></i> <span
+                            class="small-text">{{'HIDE'|translate}}</span>
+                    </span>
+                </button>
+                <a target="_blank" title="{{'HOW_TO_USE'|translate}}"
+                    href="https://github.com/Galbar/JsonPath-PHP#jsonpath-example">
+                    <i class="fa fa-circle-info"></i>
+                </a>
+            </div>
         </div>
         <kvp-item *ngFor="let item of items; let i = index; trackBy: trackByFn" [key]="item.key" [value]="item.value"
             [active]="item.active" (onChange)="changed(i, $event)" (onRemove)="removeItem(i)" (onUp)="moveItem(i, -1)"
             (onDown)="moveItem(i, 1)" [canRemove]="items.length > 1" [canMoveDown]="i < items.length-1"
             [canMoveUp]="i > 0">
         </kvp-item>
-        <div class="center v">
+        <div class="center v marg-top-15">
             <button mat-button (click)="reset()" [disabled]="loading"
                 style="height: 100%;width: 50%; padding: 10px 0; margin:0">
                 <span class="center h v">{{'RESET_DEFAULTS'|translate}}</span>
             </button>
             <button mat-button (click)="newItem()" style="height: 100%;width: 50%; padding: 10px 0; margin:0">
-                <span class="center h v"><i class="fas fa-plus"></i> {{'ADD'|translate}}</span>
+                <span class="center h v"> <i class="fas fa-plus marg-right-6"></i> {{'ADD'|translate}}</span>
             </button>
         </div>
     </div>

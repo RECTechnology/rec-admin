@@ -25,7 +25,12 @@ export interface KvpItem {
 @Component({
   selector: 'kvp-list',
   styles: [
-    `:host{display: block}`,
+    `
+      :host {
+        display: block;
+        width: 100%;
+      }
+    `,
   ],
   templateUrl: './kvp-list.html',
 })

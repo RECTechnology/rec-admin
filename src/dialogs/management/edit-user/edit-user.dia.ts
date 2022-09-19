@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
@@ -12,9 +11,7 @@ import { LANG_MAP } from 'src/data/consts';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  providers: [
-    CompanyService,
-  ],
+  providers: [CompanyService],
   selector: 'edit-user',
   templateUrl: './edit-user.html',
 })
@@ -24,9 +21,9 @@ export class EditUserData {
   public loading = false;
   public error = '';
   public lang: any = 'esp';
-  public prefix = new FormControl("", Validators.pattern(/^[0-9]*$/));
-  public phone = new FormControl("", Validators.pattern(/^[0-9]*$/));
- 
+  public prefix = new FormControl('', Validators.pattern(/^[0-9]*$/));
+  public phone = new FormControl('', Validators.pattern(/^[0-9]*$/));
+
   public langMap = {
     cat: 'ca',
     en: 'en',
@@ -35,7 +32,11 @@ export class EditUserData {
     esp: 'es',
   };
 
-  public genders = [{ name: 'MALE', value: 'M' }, { name: 'FEMALE', value: 'F' }, { name: 'NON_BINARI', value: 'NB' },];
+  public genders = [
+    { name: 'MALE', value: 'M' },
+    { name: 'FEMALE', value: 'F' },
+    { name: 'NON_BINARI', value: 'NB' },
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<EditUserData>,
@@ -46,7 +47,7 @@ export class EditUserData {
     public dialog: MatDialog,
     public usersCrud: UsersCrud,
     public alerts: AlertsService,
-  ) { } 
+  ) {}
 
   public ngOnInit() {
     this.getUser();
@@ -59,15 +60,14 @@ export class EditUserData {
   }
 
   public getUser() {
-    this.usersCrud.find(this.user.id)
-      .subscribe((resp) => {
-        this.user = resp.data;
-        this.user.kyc_validations.lastName = this.user.kyc_validations.last_name;
-        this.user.locale = LANG_MAP[this.user.locale] || LANG_MAP.es;
-        this.lang = this.langMap[this.user.locale];
-        this.userCopy = { ...this.user };
-        this.userCopy.kyc_validations = { ...this.user.kyc_validations };
-      });
+    this.usersCrud.find(this.user.id).subscribe((resp) => {
+      this.user = resp.data;
+      this.user.kyc_validations.lastName = this.user.kyc_validations.last_name;
+      this.user.locale = LANG_MAP[this.user.locale] || LANG_MAP.es;
+      this.lang = this.langMap[this.user.locale];
+      this.userCopy = { ...this.user };
+      this.userCopy.kyc_validations = { ...this.user.kyc_validations };
+    });
   }
 
   public async update() {
@@ -85,6 +85,10 @@ export class EditUserData {
       changedProps.locale = this.langMap[this.userCopy.locale.abrev];
     }
 
+    if (changedPropsKyc.date_birth) {
+      changedPropsKyc.date_birth = new Date(changedPropsKyc.date_birth).toISOString();
+    }
+
     if (changedPropsKyc.last_name) {
       changedPropsKyc.lastName = changedPropsKyc.last_name;
       delete changedPropsKyc.last_name;
@@ -99,7 +103,8 @@ export class EditUserData {
       const resp = await this.confirmChangePhone();
       if (resp) {
         try {
-          await this.adminService.updateUserPhone(id, changedProps.prefix, changedProps.phone)
+          await this.adminService
+            .updateUserPhone(id, changedProps.prefix, changedProps.phone)
             .toPromise()
             .then(() => {
               return this.alerts.showSnackbar('PHONE_CHANGED', 'ok');
@@ -108,7 +113,7 @@ export class EditUserData {
         } catch (error) {
           return this.alerts.showSnackbar(error.message, 'ok');
         }
-      }else{
+      } else {
         return;
       }
       delete changedProps.prefix;
@@ -118,33 +123,30 @@ export class EditUserData {
     if (kycId && Object.keys(changedPropsKyc).length) {
       promises.push(this.adminService.updateUserKyc(kycId, changedPropsKyc));
     }
-    
-    if (promises.length) {
-      forkJoin(promises)
-        .subscribe((resp) => {
 
+    if (promises.length) {
+      forkJoin(promises).subscribe(
+        (resp) => {
           this.alerts.showSnackbar('SAVED_CORRECTLY', 'ok');
           this.close();
-        }, (error) => {
+        },
+        (error) => {
           this.alerts.showSnackbar(error.message, 'ok');
           this.close();
-        });
+        },
+      );
     } else {
-
       this.alerts.showSnackbar('NO_UPDATE', 'ok');
     }
   }
 
   public confirmChangePhone() {
-    return this.alerts.showConfirmation(
-      `CHANGE_PHONE_DESC`,
-      {},
-      'Change phone for user ' + this.user.name,
-      {
+    return this.alerts
+      .showConfirmation(`CHANGE_PHONE_DESC`, {}, 'Change phone for user ' + this.user.name, {
         btnConfirmText: 'Change',
         status: 'error',
-      },
-    ).toPromise();
+      })
+      .toPromise();
   }
 
   public setLanguage($event) {
