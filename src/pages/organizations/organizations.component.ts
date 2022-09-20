@@ -243,7 +243,7 @@ export class OrganizationsComponent extends TablePageBase {
       defaultExports: [...this.defaultExportKvp],
       entityName: 'Organizations',
       filters: data,
-      fn: this.accountsCrud.export.bind(this.accountsCrud),
+      fn: this.accountsCrud.exportEmail.bind(this.accountsCrud),
       list: [...this.defaultExportKvp],
     });
   }

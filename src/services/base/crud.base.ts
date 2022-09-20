@@ -19,6 +19,7 @@ export class CrudBaseService<T> extends BaseService2 {
   public static PATH_LIST = '';
   public static PATH_SEARCH = '/search';
   public static PATH_EXPORT = '/export';
+  public static PATH_EXPORT_EMAIL = '/export_email'
   public static PATH_IMPORT = '/import';
 
   public static ROLE_USER: CrudRole = 'user';
@@ -114,6 +115,12 @@ export class CrudBaseService<T> extends BaseService2 {
     const url = [...this.getUrlBase(), CrudBaseService.PATH_EXPORT];
     this.log(`export ${this.tName}`, exportOptions);
     return this.get(url, exportOptions, { Accept: '*/*' }, { responseType: 'text' });
+  }
+
+  public exportEmail(exportOptions: any) {
+    const url = [...this.getUrlBase(), CrudBaseService.PATH_EXPORT_EMAIL];
+    this.log(`export with email ${this.tName}`, exportOptions);
+    return this.post(url, exportOptions);
   }
 
   public import(importOptions: { csv: string }) {

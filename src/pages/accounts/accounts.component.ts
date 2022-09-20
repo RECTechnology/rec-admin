@@ -198,7 +198,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public exportCall(opts) {
-    return this.crudAccounts.export(opts);
+    return this.crudAccounts.exportEmail(opts);
   }
 
   public export() {
@@ -211,7 +211,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
       defaultExports: [...this.defaultExportKvp],
       entityName: 'Accounts',
       filters: data,
-      fn: this.crudAccounts.export.bind(this.crudAccounts),
+      fn: this.crudAccounts.exportEmail.bind(this.crudAccounts),
       list: [...this.defaultExportKvp],
     });
   }

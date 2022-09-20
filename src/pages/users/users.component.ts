@@ -136,7 +136,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
       defaultExports: [...this.defaultExportKvp],
       entityName: 'Users',
       filters: data,
-      fn: this.usersCrud.export.bind(this.usersCrud),
+      fn: this.usersCrud.exportEmail.bind(this.usersCrud),
       list: [...this.defaultExportKvp],
     });
   }
