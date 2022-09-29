@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AlertsService } from 'src/services/alerts/alerts.service';
+import { UserService } from 'src/services/user.service';
 import { ExportSentDialog } from '../export-sent-dialog/export-sent.dia';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'export-dialog',
@@ -16,6 +18,7 @@ export class ExportDialog implements OnInit {
   public defaultExports: any = [];
   public error: string = '';
   public errorLarge: string = '';
+  public qbitMail: string = 'inbox@rec.qbitartifacts.com'
   public showAllError = false;
   public hidden = true;
   public formGroup = new FormGroup({
@@ -32,13 +35,19 @@ export class ExportDialog implements OnInit {
   public loading = false;
 
   // tslint:disable-next-line: member-ordering
-  constructor(public dialogRef: MatDialogRef<ExportDialog>, public alerts: AlertsService) {}
+  constructor(
+    public dialogRef: MatDialogRef<ExportDialog>,
+    public alerts: AlertsService,
+    public us: UserService) {}
 
   public reset() {
     this.list = [...this.defaultExports];
   }
 
   public ngOnInit() {
+    
+    this.setDefaultMail();
+    
     const fileName = ['export', '-', this.entityName, '-', new Date().toLocaleString().replace(/\s/g, '-'), '.csv']
       .join('')
       .toLowerCase();
@@ -78,6 +87,16 @@ export class ExportDialog implements OnInit {
         this.loading = false;
       },
     );
+  }
+
+  public setDefaultMail() {
+    if(environment.production == false) {
+      this.formGroup.get('email').setValue(this.qbitMail);
+    } else {
+      if(this.us.userData && this.us.userData.email) {
+        this.formGroup.get('email').setValue(this.us.userData.email);
+      }
+    }
   }
 
   public showConfirmation() {
