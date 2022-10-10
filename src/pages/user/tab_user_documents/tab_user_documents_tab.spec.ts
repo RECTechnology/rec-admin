@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { WalletComponent } from "./wallet.component";
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AppService } from '../../services/app/app.service';
-import { AppModule } from '../../app/app.module';
+import { AppService } from '../../../services/app/app.service';
+import { AppModule } from '../../../app/app.module';
+import { UserDocumentsTab } from './tab_user_document';
 
 
 
-describe('WalletComponent tests', () => {
+describe('Users Page tests', () => {
 
     
-    let component: WalletComponent;
-    let fixture: ComponentFixture<WalletComponent>;
+    let component: UserDocumentsTab;
+    let fixture: ComponentFixture<UserDocumentsTab>;
 
     afterEach(() =>{
         TestBed.resetTestingModule();
@@ -24,13 +24,12 @@ describe('WalletComponent tests', () => {
         })
         .compileComponents();
 
-        fixture = TestBed.createComponent(WalletComponent);
+        fixture = TestBed.createComponent(UserDocumentsTab);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
-        expect(component.getTitle()).toBe('REC Admin | Wallet');
     });
 });

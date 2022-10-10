@@ -1,20 +1,21 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEvent } from "@angular/common/http";
 import { LoginService } from "../auth/auth.service";
 import { UserService } from "../user.service";
 import { AdminService } from "./admin.service";
 import { NotificationService } from '../notifications/notifications.service';
 import { CompanyService } from '../company/company.service';
-import { of } from 'rxjs';
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { inject, TestBed, getTestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from "@angular/common/http/testing";
 import { AppModule } from '../../app/app.module';
 
 let httpClientSpy: jasmine.SpyObj<HttpClient>;
+let injector: TestBed;
 let adminService: AdminService;
 let userService: UserService;
 let ls: LoginService;
 let ns: NotificationService;
 let cs: CompanyService;
+let httpMock: HttpTestingController;
 
 describe('AdminService', () => {
     beforeEach(() => {
@@ -23,14 +24,18 @@ describe('AdminService', () => {
             imports: [AppModule, HttpClientTestingModule ],
             providers: [UserService, AdminService, LoginService, NotificationService, CompanyService]
         })
+        injector = getTestBed();
         userService = testModule.inject<UserService>(UserService);
         adminService = new AdminService(httpClientSpy, userService, ls, ns, cs);
+        adminService = injector.inject(AdminService);
+        httpMock = injector.inject(HttpTestingController);
         
     });
 
 
 
     afterEach(() => {
+        httpMock.verify();
         httpClientSpy.get.calls.reset();
         httpClientSpy.post.calls.reset();
         httpClientSpy.put.calls.reset();
@@ -41,35 +46,34 @@ describe('AdminService', () => {
         expect(adminService).toBeTruthy();
     });
 
-    it('Should return expected payment orders(HttpClient called once)', (done: DoneFn) => {
+    it('Should return expected payment orders(HttpClient called once)', () => {
 
-        const expectedPaymentOrders = 
-        [
-            {
-                access_key: "4487d886sasas46a37f829d48f0cdaaas6fa8d3a25ed3",
-                amount: '100',
-                concept:'1234',
-                created: "2020-05-11T13:57:19+00:00"
-            },
-            {
-                access_key: "44dsds87dsdsdd886sasas46a37f829d48f0cdaaas6fa8d3a25ed3",
-                amount: '100',
-                concept:'123ss4',
-                created: "2020-05-11T13:57:19+00:00"
-            }];
+            const expectedPaymentOrders = 
+            [
+                {
+                    access_key: "4487d886sasas46a37f829d48f0cdaaas6fa8d3a25ed3",
+                    amount: '100',
+                    concept:'1234',
+                    created: "2020-05-11T13:57:19+00:00"
+                },
+                {
+                    access_key: "44dsds87dsdsdd886sasas46a37f829d48f0cdaaas6fa8d3a25ed3",
+                    amount: '100',
+                    concept:'123ss4',
+                    created: "2020-05-11T13:57:19+00:00"
+                }];
 
-         httpClientSpy.get.and.returnValue(of(expectedPaymentOrders));
+               
+    
+             adminService.listPaymentOrders(12, {}).subscribe((res) => {
+                expect(res).toEqual(expectedPaymentOrders);
+             });
 
-         adminService.listPaymentOrders(12, {}).subscribe({
-            next: paymentOrders => {
-                expect(paymentOrders).toEqual(expectedPaymentOrders);
-                done();
-            },
-            error: done.fail
-         });
-         expect(httpClientSpy.get.calls.count())
-        .withContext('one call')
-        .toBe(1);
+             const mockReq = httpMock.expectOne(`/admin/v3/payment_orders?pos_id=12`); 
+
+            expect(mockReq.request.method).toBe('GET');
+            expect(mockReq.request.responseType).toBe('json');  
+
     });
 });
   

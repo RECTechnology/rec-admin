@@ -131,7 +131,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public afterContentInit() {
-    const roles = this.us.userData.group_data.roles;
+    const roles: string[] = this.us.userData.group_data.roles;
     this.canAddUser = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY');
   }
 
