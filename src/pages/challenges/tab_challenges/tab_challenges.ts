@@ -98,7 +98,7 @@ export class ChallengesTab extends TablePageBase {
     }   
 
     public addItem() {
-        const dialogRef = this.dialog.open(AddChallengeDia);
+        const dialogRef = this.dialog.open(AddChallengeDia, {disableClose: true});
         dialogRef.afterClosed().subscribe((challenge) => {
             if (challenge) {
                 this.alerts.showSnackbar('Reto creado correctamente!');
@@ -108,7 +108,11 @@ export class ChallengesTab extends TablePageBase {
     }
 
     public editItem( challengeItem ) {
-        const dialogRef = this.dialog.open(AddChallengeDia);
+        if(challengeItem.status === 'closed'){
+            this.alerts.showSnackbar('CHALLENGE_CLOSED');
+            return;
+        }
+        const dialogRef = this.dialog.open(AddChallengeDia, {disableClose: true});
         dialogRef.componentInstance.challenge = challengeItem;
         dialogRef.componentInstance.isEdit = true;
         dialogRef.afterClosed().subscribe((challenge) => {

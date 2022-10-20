@@ -1,4 +1,4 @@
-<modal-header title="{{(isEdit ? 'EDIT_REWARD': 'ADD_REWARD')|translate}}" (click)="close(false)">
+<modal-header title="{{(isEdit ? 'EDIT_REWARD': 'ADD_REWARD')|translate}}" (close)="close(false)">
 </modal-header>
 
 <div [formGroup]="formGroup" class="padd-20 modal-body" style="min-height: 300px; width: 100%;">

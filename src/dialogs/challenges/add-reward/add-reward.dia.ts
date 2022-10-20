@@ -41,6 +41,7 @@ export class AddRewardsDia extends BaseDialog {
     public crud: RewardsCrud
   ) {
     super();
+    dialogRef.disableClose = true;
   }
 
   public ngOnInit() {

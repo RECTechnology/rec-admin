@@ -8,4 +8,5 @@ export class ModalHeaderComponent {
   @Input() public title: string;
   @Input() public status: string = 'blue';
   @Output() public click: EventEmitter<any> = new EventEmitter();
+  @Output() public close: EventEmitter<any> = new EventEmitter();
 }

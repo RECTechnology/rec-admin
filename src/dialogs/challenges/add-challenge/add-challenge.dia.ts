@@ -10,6 +10,7 @@ import { RewardsCrud } from 'src/services/crud/reward/reward.crud';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { ChallengeCrud } from 'src/services/crud/challenges/challenges.crud';
+import { Reward } from '../../../shared/entities/reward.ent';
 
 @Component({
   selector: 'add-challenge',
@@ -27,6 +28,7 @@ export class AddChallengeDia extends BaseDialog {
   public isRecharge = false;
   public data: any = null;
   public rewards: any = null;
+  public rewardsFiltered: any = null;
   public challengeCopy: Challenge;
   public challenge: Challenge = {
     id: null,
@@ -72,6 +74,7 @@ export class AddChallengeDia extends BaseDialog {
     public challengeCrud: ChallengeCrud,
   ) {
     super();
+    dialogRef.disableClose = true;
   }
 
   public ngOnInit() {
@@ -95,7 +98,6 @@ export class AddChallengeDia extends BaseDialog {
       this.challengeCopy = Object.assign({}, this.challenge);
       this.validation();
     }
-  
   }
 
   public getRewards(query?: string) {
@@ -111,6 +113,7 @@ export class AddChallengeDia extends BaseDialog {
             (resp) => {
                 this.data = resp.data.elements;
                 this.rewards = this.data.slice();
+                this.filterRewards(this.rewards);
                 this.loading = false;
               },
               (error) => {
@@ -166,6 +169,11 @@ export class AddChallengeDia extends BaseDialog {
     var dateSupport: Date = new Date(event);
     var datepipe: DatePipe = new DatePipe('es');
     this.formGroup.get('finish_date').setValue(datepipe.transform(dateSupport, 'yyyy-MM-ddT00:00:00+00:00'));
+  }
+
+  public filterRewards(rewards){
+    this.rewardsFiltered = rewards.filter( reward => !reward.hasOwnProperty('challenge'));
+    return this.rewardsFiltered;
   }
 
   public actionChanged($event){

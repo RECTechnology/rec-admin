@@ -80,7 +80,7 @@ export class RewardsTab extends TablePageBase {
     }   
     
     public addItem() {
-        const dialogRef = this.dialog.open(AddRewardsDia);
+        const dialogRef = this.dialog.open(AddRewardsDia, {disableClose: true});
         dialogRef.afterClosed().subscribe((reward) => {
             if (reward) {
                 this.alerts.showSnackbar('Premio creado correctamente!');
@@ -94,7 +94,7 @@ export class RewardsTab extends TablePageBase {
             this.alerts.showSnackbar('REWARD_EDIT_ADVISE');
             return;
         }
-        const dialogRef = this.dialog.open(AddRewardsDia);
+        const dialogRef = this.dialog.open(AddRewardsDia, {disableClose: true});
         dialogRef.componentInstance.reward = rewardItem;
         dialogRef.componentInstance.isEdit = true;
         dialogRef.afterClosed().subscribe((reward) => {
