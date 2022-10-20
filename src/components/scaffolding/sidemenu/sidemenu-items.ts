@@ -37,6 +37,11 @@ export const SIDEMENU_ITEMS = [
     route: '/transactions',
   },
   {
+    name: 'CHALLENGES',
+    route: '/challenges',
+    icon: 'fa-people-group',
+  },
+  {
     name: 'Ratings',
     route: '/ratings',
     icon: 'fa-star',

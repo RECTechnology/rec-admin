@@ -37,7 +37,7 @@ export const AccountsExportDefaults: KvpItem[] = [
     { key: 'neighbourhood_id', value: '$.neighbourhood.id', active: true },
     { key: 'neighbourhood_name', value: '$.neighbourhood.name', active: true },
     { key: 'activities', value: '$.activities[*].name_es', active: true },
- { key: 'activity_main_name', value: '$.activity_main.name_es', active: true },
+    { key: 'activity_main_name', value: '$.activity_main.name_es', active: true },
     { key: 'activity_main_id', value: '$.activity_main.id', active: true },
    
 ];
@@ -73,4 +73,18 @@ export const QualificationExportDefaults: KvpItem[] = [
     { key: 'badge_name', value: '$.badge.name', active: true },
     { key: 'badge_name_es', value: '$.badge.name_es', active: true },
     { key: 'badge_name_ca', value: '$.badge.name_ca', active: true },
+];
+
+export const AccountChallengesExportDefaults: KvpItem[] = [
+    { key: 'challenge-id', value: '$.challenge.id', active: true },
+    { key: 'challenge-title', value: '$.challenge.title', active: true },
+    { key: 'challenge-start-date', value: '$.challenge.start_date', active: true },
+    { key: 'user-id', value: '$.account.kyc_manager.id', active: true },
+    { key: 'account-id', value: '$.account.id', active: true },
+    { key: 'account-name', value: '$.account.name', active: true },
+    { key: 'account-cif', value: '$.account.cif', active: true },
+    { key: 'account-type', value: '$.account.type', active: true },
+    { key: 'account-subtype', value: '$.account.subtype', active: true },
+    { key: 'account-neighborhood', value: '$.account.neighborhood', active: true },
+    { key: 'challenge-completed', value: '$.account_challenges.created', active: true },
 ];

@@ -126,6 +126,12 @@ import { BadgesSelector } from '../components/selectors/badges-selector/badges-s
 import { AvatarUser } from '../components/ui/avatar-user/avatar-user.component';
 import { UserCode } from 'src/components/ui/user-code/user-code';
 import { ExportSentDialog } from 'src/dialogs/other/export-sent-dialog/export-sent.dia';
+import { ChallengesPage } from '../pages/challenges/challenges.component';
+import { RewardsTab } from '../pages/challenges/tab_rewards/tab_rewards';
+import { ChallengesTab } from 'src/pages/challenges/tab_challenges/tab_challenges';
+import { AddChallengeDia } from 'src/dialogs/challenges/add-challenge/add-challenge.dia';
+import { AddRewardsDia } from 'src/dialogs/challenges/add-reward/add-reward.dia';
+import { RewardSelector } from '../components/selectors/reward-selector/reward-selector';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -140,6 +146,8 @@ const DIALOGS = [
   CreateLemonWallet2WalletOutDia,
   EditAccountsDia,
   AddUserDia,
+  AddChallengeDia,
+  AddRewardsDia,
   EditUserData,
   ConfirmationMessage,
   InfoMessage,
@@ -152,6 +160,7 @@ const DIALOGS = [
   CashOutTesoroDia,
   TxDetails,
   AddDocumentKindDia,
+  AddChallengeDia,
   AddDocumentDia,
   AddTierDia,
   RefundOrderDia,
@@ -171,6 +180,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     CCInput,
     CCInputEditable,
     LangSelector,
+    RewardSelector,
     FilterComponent,
     Agregation,
     DashChart,
@@ -186,6 +196,9 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     OrganizationsComponent,
     LoginComponent,
     AccountsPage,
+    ChallengesPage,
+    RewardsTab,
+    ChallengesTab,
     RatingsPage,
     UsersPage,
     CampaignReportsAccount,
@@ -267,6 +280,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     B2BSettingsComponent,
     B2BComponent,
     LogStatusSelector,
+    RewardSelector,
     LogViewComponent,
     LogPage,
     SendTransactionsDia,

@@ -18,6 +18,7 @@ import { CampaignReportsAccount } from 'src/pages/special-actions/campaing_repor
 import { LogPage } from 'src/pages/special-actions/change_delegate/components/log_page/log_page';
 import { B2BComponent } from 'src/pages/special-actions/b2b_page/b2b.component';
 import { RatingsPage } from '../pages/ratings/ratings.component';
+import { ChallengesPage } from '../pages/challenges/challenges.component';
 
 const ROUTES: Routes = [
   // Public Routes - user shouldn't be authenticated to accesss them
@@ -104,6 +105,11 @@ const ROUTES: Routes = [
   {
     path: 'ratings',
     component: RatingsPage,
+    canActivate: [IsLoggedInGuard],
+  },
+  {
+    path: 'challenges',
+    component: ChallengesPage,
     canActivate: [IsLoggedInGuard],
   }
 ];

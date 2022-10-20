@@ -1,0 +1,26 @@
+<div style="height: 100%">
+    <div class="row" style="margin: 0; padding: 20px;">
+        <div class="col-lg-12 bg-white" style="min-height: 200px;padding: 0">
+            <validation-errors [errors]="validationErrors" *ngIf="validationErrors && validationErrors.length > 0"
+                style="border: 1px solid #ddd!important; width: 100%; margin-bottom: 15px;">
+            </validation-errors>
+            <div class="row" style="margin: 0;">
+                <mat-card class="col-lg-12" style="min-height: 200px;padding: 0">
+                    <tl-header title="{{'CHALLENGES' | translate}}" [options]="headerOpts" (onSearch)="search()">
+                        <icon-btn (click)="export()" matTooltip="{{'EXPORT_ACCOUNTS_CHALLENGES'|translate}}" icon="fa-download"></icon-btn>
+                        <button type="button" color="primary" mat-raised-button name="button" (click)="addItem()">
+                            <p class="text-small">
+                                <i class="fa fa-plus"></i> {{'CHALLENGES'|translate}}
+                            </p>
+                        </button>
+                    </tl-header>
+
+                    <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)"
+                    [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total" [options]="tableOptions"
+                    [pageIndex]="offset" (onChangePage)="changedPage($event)" [itemOptions]="itemOptions">
+                    </tl-table>
+                </mat-card>
+            </div>
+        </div>    
+    </div>    
+</div>    

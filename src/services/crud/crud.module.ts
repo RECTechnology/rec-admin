@@ -12,13 +12,17 @@ import { ActivitiesV3Crud } from './activities/activitiesv3.crud';
 import { BadgesCrud } from './badges/badges.crud';
 import { QualificationsCrud } from './qualifications/qualifications.crud';
 import { WithdrawalCrud } from './withdrawals/withdrawals.crud';
+import { ChallengeCrud } from './challenges/challenges.crud';
+import { RewardsCrud } from './reward/reward.crud';
 
 
 @NgModule({
     providers: [
         AccountsCrud,
         OffersCrud,
+        ChallengeCrud,
         ProductsCrud,
+        RewardsCrud,
         ActivitiesCrud,
         NeighborhoodsCrud,
         UsersCrud,

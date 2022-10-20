@@ -35,6 +35,7 @@ export class AlertsService {
         status: 'error',
         opts: {},
         trailing: null,
+        secondMessage: null
       },
       message,
       data:data,
@@ -43,7 +44,7 @@ export class AlertsService {
     });
   }
 
-  public confirmDeletion(itemName = 'Item', trailing?: string, showConfirm = true) {
+  public confirmDeletion(itemName = 'Item', trailing?: string, showConfirm = true, secondMessage?: string) {
     return showConfirm ? this.showConfirmation(
       'DELETE_CONFIRM',
       {itemName:  this.translateService.instant(itemName)},
@@ -52,6 +53,7 @@ export class AlertsService {
       {
         btnConfirmText: 'Delete',
         trailing,
+        secondMessage
       },
     ) : of(true);
   }

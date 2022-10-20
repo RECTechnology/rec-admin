@@ -30,6 +30,7 @@ export class CrudBaseService<T> extends BaseService2 {
   public static ROLE_SADMIN: CrudRole = 'super_admin';
 
   public basePath: string = '';
+  public exportPath: string = '';
   public userRole: string = CrudBaseService.ROLE_ADMIN;
   public version: string = 'v3';
   public cached: any = [];
@@ -118,7 +119,8 @@ export class CrudBaseService<T> extends BaseService2 {
   }
 
   public exportEmail(exportOptions: any) {
-    const url = [...this.getUrlBase(), CrudBaseService.PATH_EXPORT_EMAIL];
+    const url = this.exportPath !== '' ? [...this.getExportUrlBase(), CrudBaseService.PATH_EXPORT_EMAIL] : 
+    [...this.getUrlBase(), CrudBaseService.PATH_EXPORT_EMAIL];
     this.log(`export with email ${this.tName}`, exportOptions);
     return this.post(url, exportOptions);
   }
@@ -135,6 +137,10 @@ export class CrudBaseService<T> extends BaseService2 {
 
   public getUrlBase() {
     return ['/', this.userRole, '/', this.version, this.basePath];
+  }
+
+  public getExportUrlBase() {
+    return ['/', this.userRole, '/', this.version, this.exportPath];
   }
 
   public itemMapper() {

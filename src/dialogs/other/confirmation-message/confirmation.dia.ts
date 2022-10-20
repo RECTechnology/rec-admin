@@ -8,6 +8,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 export class ConfirmationMessage {
   public message: string = 'Are you sure you want to do that?';
+  public secondMessage: string;
   public trailing: string;
   public status: string = 'blue';
   public title: string = 'blue';

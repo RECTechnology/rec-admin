@@ -26,6 +26,7 @@ export class FileSelector implements OnInit, ControlValueAccessor {
     @Output() public fileChange = new EventEmitter<any>();
     @Output() public error = new EventEmitter<any>();
     @Input() public isAvatar = true;
+    @Input() public bigger = true;
     @Input() public isDefaultButton = false;
     onTouch!: () => void;
     onChange!:(file:any) => void;

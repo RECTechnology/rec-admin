@@ -1,0 +1,15 @@
+<header-nav></header-nav>
+<app-page class="challenges" [padding]="false">
+    <mat-tab-group [(selectedIndex)]="currentTab" (selectedIndexChange)="changeUrl($event)">
+      <mat-tab label="{{'CHALLENGES'|translate}}">
+        <challenges_tab></challenges_tab>
+      </mat-tab>
+      <mat-tab label="{{'REWARDS'|translate}}">
+        <rewards_tab></rewards_tab>
+      </mat-tab>
+    </mat-tab-group>
+    <!-- <div class="center h v padd-30" *ngIf="!companyService.selectedCompany" style="width: 100%">
+      <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px">
+      </mat-progress-spinner>
+    </div> -->
+  </app-page>

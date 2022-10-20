@@ -9,6 +9,10 @@
     <p class="marg-left-10" *ngIf="trailing">{{trailing|translate}}</p>
   </div>
 
+  <div class="group-row-left">
+    <p class="mt-1" *ngIf="secondMessage" style="font-size: 13px; color: #828282">{{secondMessage|translate}}</p>
+  </div>
+
   <div class="group-row-left" style="width: 100%; justify-content: flex-end; margin-top: 25px">
     <button type="button" mat-button name="button" (click)="close(false)" style="margin-right: 10px">
       {{btnCancelText|translate}}

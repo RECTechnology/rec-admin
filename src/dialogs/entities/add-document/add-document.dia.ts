@@ -15,7 +15,6 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { EmptyValidators } from '../../../components/validators/EmptyValidators';
 import { DatePipe } from '@angular/common';
 import { UsersCrud } from 'src/services/crud/users/users.crud';
-import { Account } from '../../../shared/entities/account.ent';
 
 @Component({
   selector: 'add-document',

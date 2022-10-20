@@ -8,6 +8,20 @@ export const TlOptionEdit = (action: (any) => any, additional?: TlItemOption): T
     ...(additional || {}),
 });
 
+export const TlOptionExport = (action: (any) => any, additional?: TlItemOption): TlItemOption => new TlItemOption({
+    callback: action,
+    text: 'Export',
+    icon: 'fa-download',
+    ...(additional || {}),
+});
+
+export const TlOptionExportAccountsChallenges = (action: (any) => any, additional?: TlItemOption): TlItemOption => new TlItemOption({
+    callback: action,
+    text: 'EXPORT_ACCOUNTS_CHALLENGES',
+    icon: 'fa-download',
+    ...(additional || {}),
+});
+
 // tslint:disable-next-line: variable-name
 export const TlOptionView = (action: (any) => any, additional?: TlItemOption): TlItemOption => new TlItemOption({
     callback: action,
@@ -42,5 +56,7 @@ export const TlItemOptions = {
     View: TlOptionView,
     Delete: TlOptionDelete,
     Grant: TlOptionGrantPermission,
-    Revoke:TlOptionRevokePermission
+    Revoke:TlOptionRevokePermission,
+    Export: TlOptionExport,
+    ExportAccountChallenges: TlOptionExportAccountsChallenges
 };

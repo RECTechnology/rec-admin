@@ -136,10 +136,6 @@ export class OffersTab {
 
     }).subscribe((updated) => {
     
-      
-
-        
-     
       if (updated) {
         this.loading = true;
         var date = new Date(updated.end);
