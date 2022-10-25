@@ -18,6 +18,11 @@
           {{'None' | translate}}
         </span>
       </mat-option>
+      <mat-option *ngIf="any" [value]="null">
+        <span>
+          {{'Any' | translate}}
+        </span>
+      </mat-option>
       <mat-option *ngFor="let item of items" [value]="item">
         <ng-template *ngIf="item" [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{$implicit: item}">
         </ng-template>

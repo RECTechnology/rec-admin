@@ -11,6 +11,7 @@ export abstract class BaseSelectorComponent {
   @Input() public hasParent = true;
   @Input() public sendedItems = false;
   @Input() public needsNone = false;
+  @Input() public any = false;
   @Input() public label = 'SELECTOR';
   @Input() showSelection = true;
 

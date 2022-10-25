@@ -84,7 +84,7 @@
   "Edited Document Kind correctly!":"Editat tipus de document correctament!",
   "Organization is shown in map":"La organització es mostrada en el mapa",
   "Organization is hidden from map":"La organització está oculta en el mapa ",
-  "REWARD_EDIT_ADVISE": "No es pot editar un premi que estigui vinculat amb un repte que ha estat obert",
+  "REWARD_EDIT_ADVISE": "No es pot editar un premi relacionat amb un repte obert/tancat",
   "About": "Quant a",
   "Report Error": "Informar Error",
   "Tier level for account": "Nivell tier per al compte",

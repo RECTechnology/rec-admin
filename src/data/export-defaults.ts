@@ -86,5 +86,5 @@ export const AccountChallengesExportDefaults: KvpItem[] = [
     { key: 'account-type', value: '$.account.type', active: true },
     { key: 'account-subtype', value: '$.account.subtype', active: true },
     { key: 'account-neighborhood', value: '$.account.neighborhood', active: true },
-    { key: 'challenge-completed', value: '$.account_challenges.created', active: true },
+    { key: 'challenge-completed', value: '$.account_challenges.challenge.created', active: true },
 ];

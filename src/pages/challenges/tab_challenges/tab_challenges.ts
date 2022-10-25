@@ -102,8 +102,8 @@ export class ChallengesTab extends TablePageBase {
         dialogRef.afterClosed().subscribe((challenge) => {
             if (challenge) {
                 this.alerts.showSnackbar('Reto creado correctamente!');
-                this.search();
             }
+            this.search();
         });
     }
 
@@ -118,8 +118,8 @@ export class ChallengesTab extends TablePageBase {
         dialogRef.afterClosed().subscribe((challenge) => {
             if (challenge) {
                 this.alerts.showSnackbar('Reto editado correctamente!');
-                this.search();
             }
+            this.search();
         });
     }
 

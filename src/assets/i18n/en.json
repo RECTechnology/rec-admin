@@ -497,7 +497,7 @@
   "URL_CHALLENGE_ADVISE": "Artist promotion URL, if any",
   "OPEN_CHALLENGE_ADVISE": "The challenge is open, you can only edit the end date",
   "EXPORT_ACCOUNTS_CHALLENGES": "Export accounts that have completed the challenge",
-  "REWARD_EDIT_ADVISE": "You cannot edit a prize that is linked to a challenge that has been opened",
+  "REWARD_EDIT_ADVISE": "You cannot edit a reward that is related to a challenge open/closed",
   "ADD_REWARD": "Add reward",
   "NO_ALLOW_REWARDS": "* No rewards available or not assigned to a challenge",
   "EDIT_REWARD": "Edit reward",

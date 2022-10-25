@@ -1,4 +1,5 @@
 import { Account } from "./account.ent";
+import { Badge } from "./badge.ent";
 import { Reward } from './reward.ent';
 import { Activity } from './translatable/activity.ent';
 
@@ -19,6 +20,7 @@ export interface Challenge {
     status?: string;
     start_date?: string;
     finish_date?: string;
+    badges?: Badge[];
 }
 
 export class Challenge implements Challenge {

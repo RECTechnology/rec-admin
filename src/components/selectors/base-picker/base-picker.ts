@@ -26,6 +26,7 @@ export class BasePicker {
   @Input() label = 'Selector';
   @Input() isLoading = false;
   @Input() needsNone = false;
+  @Input() any = false;
   @Input() showSelection = true;
   @Input() hasSearch = true;
 

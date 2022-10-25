@@ -76,7 +76,7 @@
         <mat-form-field floatLabel="always">  
           <input formControlName="amount_required" autocomplete="off" matInput type="number" style="max-width: 100%;"
               [disabled]="loading">
-              <mat-error *ngIf="formGroup.get('amount_required').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+          <mat-error *ngIf="formGroup.get('amount_required').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
         </mat-form-field>
       </div>
 
@@ -85,7 +85,7 @@
         <mat-form-field floatLabel="always">  
           <input formControlName="threshold" autocomplete="off" matInput type="number" style="max-width: 100%;"
               [disabled]="loading">
-              <mat-error *ngIf="formGroup.get('threshold').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+          <mat-error *ngIf="formGroup.get('threshold').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
         </mat-form-field>
       </div>
 
@@ -94,26 +94,21 @@
         <mat-form-field floatLabel="always">  
           <input formControlName="amount_required" autocomplete="off" matInput type="number" style="max-width: 100%;"
               [disabled]="loading">
-              <mat-error *ngIf="formGroup.get('amount_required').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+          <mat-error *ngIf="formGroup.get('amount_required').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
         </mat-form-field>
       </div>
     </div>
 
-    <!-- <div class="col-lg-12">
-      <p style="color: black; font-size: 14px; font-weight: 400;">{{'Cualidad de las tiendas' |translate}}</p>
-      <mat-form-field floatLabel="always" style="width: 100%">
-        <mat-select>
-            <div class="padd-10 bordered-bottom sticky-top-center bg-white">
-                <input autocomplete="off" #search color="primary" style="margin: 0 10px" class="search-input"
-                placeholder="{{'SEARCH'|translate}}">
-            </div>
-            <mat-option>
-                <span>
-                </span>
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-    </div> -->
+    <div *ngIf="isBuy" class="col-lg-12">
+      <div style="padding-left: 5px; width: 100%;">
+      <div class="col-lg-12" style="width: 100%;">
+        <p style="color: black; font-size: 14px; font-weight: 400;">{{'Cualidad de las tiendas' |translate}} *</p>
+        <badges-selector formControlName="badge" [label]="badgeLabel" (itemChanged)="changeLabel($event)" style="font-size: 14px;" [any]="true"
+        [disabled]="disabledSelectors" [item]="challenge.badges && challenge.badges[0]">
+        </badges-selector>
+      </div>
+      </div>  
+    </div>
 
     <div class="col-lg-12 space-between"  style= "padding-bottom: 5px; color: #0098DB;">
       <p>{{'Reward' | translate}}</p>
@@ -121,7 +116,8 @@
     <div style="padding-left: 20px; width: 100%;">
       <div class="col-lg-12" style="width: 95%;">
         <reward-selector [disabled]="disabledSelectors" label="" formControlName="token_reward" [item]="challenge.token_reward"></reward-selector>
-        <p *ngIf="!this.isEdit && !this.rewardsFiltered && !this.loading" class="small-text" style="margin-right: 5px!important;">{{"NO_ALLOW_REWARDS" | translate}}</p>
+        <p *ngIf="!this.isEdit && this.rewardsFiltered && this.rewardsFiltered.length < 1 && !this.loading" 
+        class="small-text" style="margin-right: 5px!important;">{{"NO_ALLOW_REWARDS" | translate}}</p>
       </div>
     </div>
   </div>
