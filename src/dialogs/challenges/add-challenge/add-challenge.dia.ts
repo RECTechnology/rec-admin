@@ -96,12 +96,16 @@ export class AddChallengeDia extends BaseDialog {
         'finish_date': this.challenge.finish_date,
         'threshold': this.challenge.threshold ?? 0,
         'action': this.challenge.action,
-        'amount_required': this.challenge.amount_required ?? 0,
+        'amount_required': this.convertToRecs(this.challenge.amount_required) ?? 0,
         'token_reward': this.challenge.token_reward,
         'badge': this.challenge.badges[0] 
       })
       this.challengeCopy = Object.assign({}, this.challenge);
-      this.badgeLabel = '';
+      if(this.formGroup.get('badge').value) {
+        this.badgeLabel = '';
+      }else {
+        this.badgeLabel = 'Any';
+      }
       this.validation();
     }
   }
@@ -234,8 +238,6 @@ export class AddChallengeDia extends BaseDialog {
     }else if(this.formGroup.get('action').value === 'recharge'){
         this.formGroup.get('threshold').setErrors(null);
         this.formGroup.get('threshold').setValue(0);
-        this.formGroup.get('badge').setValue('');
-        this.formGroup.get('badge').setErrors(null);
     }  
   }
 
@@ -260,7 +262,8 @@ export class AddChallengeDia extends BaseDialog {
   public editBadge( challengeId ){
     this.challengeCrud.deleteBadge(String(challengeId), String(this.challenge.badges[0].id))
       .subscribe(resp => {
-        this.challengeCrud.addBadge(this.formGroup.get('badge').value, String(challengeId))
+        if(this.formGroup.get('badge').value){
+          this.challengeCrud.addBadge(this.formGroup.get('badge').value, String(challengeId))
           .subscribe(resp => {
             this.dialogRef.close({ ...this.challenge });
             this.loading = false;
@@ -269,7 +272,10 @@ export class AddChallengeDia extends BaseDialog {
             this.alerts.showSnackbar(error.message);
             this.loading = false;
           })
-          ) 
+          )
+        }else {
+          this.dialogRef.close({ ...this.challenge });
+        }
       },
       (error => {
         this.alerts.showSnackbar(error.message);
@@ -279,7 +285,8 @@ export class AddChallengeDia extends BaseDialog {
   }
 
   public addBadge( badge: Badge, id: string ) {
-    this.challengeCrud.addBadge(badge, String(id))
+    if(badge) {
+      this.challengeCrud.addBadge(badge, String(id))
       .subscribe(resp => {
         this.dialogRef.close({ ...this.challenge });
       },
@@ -289,6 +296,9 @@ export class AddChallengeDia extends BaseDialog {
         this.loading = false;
       })
     )
+    }else {
+      this.dialogRef.close({ ...this.challenge });
+    }
   }              
   
   public addItem( challenge ) {
