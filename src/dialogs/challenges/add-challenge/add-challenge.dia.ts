@@ -27,7 +27,8 @@ export class AddChallengeDia extends BaseDialog {
   public badgeLabel: string = 'Any';
   public challengeType = 'challenge';
   public challengeStatus = 'scheduled';
-  public isRecharge = false;
+  public isSpend = false;
+  public actionId: number;
   public data: any = null;
   public rewards: any = null;
   public rewardsFiltered: any = null;
@@ -50,9 +51,9 @@ export class AddChallengeDia extends BaseDialog {
     badges: null,
   }
   public types = [
-    {label: 'Gasta X RECs', action: 'recharge'},
-    {label: 'Realiza X compras', action: 'buy'},
-    {label: 'Envía X RECs', action: 'send'}
+    {label: 'Gasta X RECs', action: 'buy', id: 1},
+    {label: 'Realiza X compras', action: 'buy', id: 2},
+    {label: 'Envía X RECs', action: 'send', id: 3}
   ];
 
   public formGroup = new FormGroup({
@@ -61,10 +62,10 @@ export class AddChallengeDia extends BaseDialog {
     description: new FormControl('', [Validators.required, EmptyValidators.noWhitespaceValidator]),
     start_date: new FormControl('', [Validators.required]),
     finish_date: new FormControl('', [Validators.required]),
-    threshold: new FormControl(0, [Validators.required]),
+    threshold: new FormControl(0, [Validators.required, Validators.min(1)]),
     action: new FormControl('', Validators.required),
     badge: new FormControl(''),
-    amount_required: new FormControl(0, Validators.required),
+    amount_required: new FormControl(0, [Validators.required, Validators.min(0.1)]),
     token_reward: new FormControl('', Validators.required)
   })
   public itemType = 'Challenge';
@@ -83,7 +84,6 @@ export class AddChallengeDia extends BaseDialog {
 
   public ngOnInit() {
     this.getRewards();
-    this.setControlValid();
     this.setInitialAction();
     this.openChallenge();
     
@@ -95,7 +95,7 @@ export class AddChallengeDia extends BaseDialog {
         'start_date': this.challenge.start_date,
         'finish_date': this.challenge.finish_date,
         'threshold': this.challenge.threshold ?? 0,
-        'action': this.challenge.action,
+        'action': this.actionId,
         'amount_required': this.convertToRecs(this.challenge.amount_required) ?? 0,
         'token_reward': this.challenge.token_reward,
         'badge': this.challenge.badges[0] 
@@ -186,6 +186,24 @@ export class AddChallengeDia extends BaseDialog {
       })
   }
 
+  public setActionId(){
+    if(this.challenge.action === 'buy' && this.challenge.threshold !== 0){
+      this.actionId = 2;
+    }else if(this.challenge.action === 'buy' && this.challenge.threshold === 0){
+      this.actionId = 1;
+    }else if(this.challenge.action === 'send'){
+      this.actionId = 3;
+    }
+  }
+
+  public getActionFromId(id){
+    let action = '';
+    this.types.map(type => {
+      if(type.id === Number(id)) action = type.action;
+    })
+    return action;
+  }
+
   public changeStartDate(event) {
     var dateSupport: Date = new Date(event);
     var datepipe: DatePipe = new DatePipe('es');
@@ -204,58 +222,51 @@ export class AddChallengeDia extends BaseDialog {
   }
 
   public actionChanged($event){
-    if($event.value === 'buy'){
+    if($event.value === 2){
+      this.formGroup.get('amount_required').setValue(0);
+      this.formGroup.get('amount_required').setErrors(null);
       this.isBuy = true;
       this.isSend = false;
-      this.isRecharge = false;
-      this.setControlValid();
+      this.isSpend = false;
     }
-    if($event.value === 'send'){
+    if($event.value === 3){
+      this.formGroup.get('threshold').setValue(0);
+      this.formGroup.get('threshold').setErrors(null);
       this.isBuy = false;
       this.isSend = true;
-      this.isRecharge = false;
-      this.setControlValid();
+      this.isSpend = false;
     }
-    if($event.value === 'recharge'){
+    if($event.value === 1){
+      this.formGroup.get('threshold').setValue(0);
+      this.formGroup.get('threshold').setErrors(null);
       this.isBuy = false;
       this.isSend = false;
-      this.isRecharge = true;
-      this.setControlValid();
+      this.isSpend = true;
     }
-  }
-
-  public setControlValid(){
-    if(this.formGroup.get('action').value === 'buy'){
-        this.formGroup.get('amount_required').setErrors(null);
-        this.formGroup.get('amount_required').setValue(0);
-
-    }else if(this.formGroup.get('action').value === 'send'){
-        this.formGroup.get('threshold').setErrors(null);
-        this.formGroup.get('threshold').setValue(0);
-        this.formGroup.get('badge').setValue('');
-        this.formGroup.get('badge').setErrors(null);
-
-    }else if(this.formGroup.get('action').value === 'recharge'){
-        this.formGroup.get('threshold').setErrors(null);
-        this.formGroup.get('threshold').setValue(0);
-    }  
   }
 
   public setInitialAction() {
-    if(this.challenge.action === 'buy'){
+    this.setActionId();
+    if(this.challenge.action === 'buy' && this.challenge.threshold !== 0){
+        this.formGroup.get('amount_required').setValue(0);
+        this.formGroup.get('amount_required').setErrors(null);
         this.isBuy = true;
         this.isSend = false;
-        this.isRecharge = false;
+        this.isSpend = false;
 
     }else if(this.challenge.action === 'send'){
+        this.formGroup.get('threshold').setValue(0);
+        this.formGroup.get('threshold').setErrors(null);
         this.isBuy = false;
         this.isSend = true;
-        this.isRecharge = false;
+        this.isSpend = false;
 
-    }else if(this.challenge.action === 'recharge') {
+    }else if(this.challenge.action === 'buy' && this.challenge.threshold === 0) {
+        this.formGroup.get('threshold').setValue(0);
+        this.formGroup.get('threshold').setErrors(null);
         this.isBuy = false;
         this.isSend = false;
-        this.isRecharge = true;
+        this.isSpend = true;
     }
   }
 
@@ -363,11 +374,11 @@ export class AddChallengeDia extends BaseDialog {
     this.challenge.title = this.formGroup.get('title').value;
     this.challenge.start_date = this.formGroup.get('start_date').value;
     this.challenge.finish_date = this.formGroup.get('finish_date').value;
-    this.challenge.action = this.formGroup.get('action').value;
+    this.challenge.action = this.getActionFromId(this.formGroup.get('action').value);
     this.challenge.amount_required = this.convertToSatoshis(this.formGroup.get('amount_required').value);
     this.challenge.token_reward_id = this.formGroup.get('token_reward').value.id;
     this.challenge.threshold = this.formGroup.get('threshold').value;
-    this.challenge.owner_id = environment.novactId;
+    this.challenge.owner_id = environment.adminId;
     this.challenge.type = this.challengeType;
     this.challenge.status = this.challengeStatus;
 
