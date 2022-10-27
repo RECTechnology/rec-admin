@@ -1487,5 +1487,6 @@
     "The security code is incorrect.": "The security code is incorrect.",
     "Amount is greater than available for refund": "Amount is greater than available for refund",
     "REFUND_CORRECTLY": "Refund sent successfully!",
-    "NO_TPV_REFUND": "ERROR: POS refunds can only be made from the POS section of the account"
+    "NO_TPV_REFUND": "ERROR: POS refunds can only be made from the POS section of the account",
+    "MORE_THAN_0": "Must be greater than 0"
 }
