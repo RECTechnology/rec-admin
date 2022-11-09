@@ -14,4 +14,4 @@ export const Colors = {
     }
 }
 
-export const theme = Colors[environment.Brand.name];
+export const theme = Colors.hasOwnProperty(environment.Brand.name) ?  Colors[environment.Brand.name] : Colors['REC'];
