@@ -1,6 +1,6 @@
 <mat-card>
   <button class="abs-top-right" color="primary" mat-icon-button (click)="selectTimeframe(selectedTimeframe)">
-    <i class="fa fa-refresh"></i>
+    <i class="fa fa-refresh color-primary"></i>
   </button>
 
   <div class="row">
@@ -10,7 +10,7 @@
     <div class="col-lg-2" *ngIf="timeframes && timeframes.length">
       <div class="group-col-left center h v space-around" style="height: 100%">
         <button mat-raised-button (click)="selectTimeframe(timeframe)"
-          color="{{timeframe === selectedTimeframe ? 'primary': ''}}" *ngFor="let timeframe of timeframes"
+          class="{{timeframe === selectedTimeframe ? 'background-color-primary': ''}}" *ngFor="let timeframe of timeframes"
           style="width: 100%; margin-bottom: 10px; padding: 0 6px!important;">
           {{timeframe.name|translate}}
         </button>

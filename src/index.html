@@ -11,7 +11,7 @@
   <meta name="theme-color" content="#0098db">
   <meta name="theme-color" content="#1976d2">
   
-  <link rel="shortcut icon" href="https://rec.barcelona/wp-content/uploads/2018/04/favicon_16_rec_simbol.png"
+  <link id="favicon" rel="shortcut icon" href="https://rec.barcelona/wp-content/uploads/2018/04/favicon_16_rec_simbol.png"
     type="image/x-icon">
   <style async>
     @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
@@ -233,15 +233,29 @@
   <app-rec-admin>
     <div class="loading_screen">
       <div class="loading">
-        <img src="assets/resources/logo_round.png" alt="" id="logo" style="height: 100px;margin-right: 20px">
+        <img alt="" id="logo" style="height: 100px;margin-right: 20px">
         <div class="circles">
-          <i class="fa fa-circle animated d3"></i>
-          <i class="fa fa-circle animated d2"></i>
-          <i class="fa fa-circle animated d1"></i>
+          <i class="fa fa-circle animated d3 color-primary"></i>
+          <i class="fa fa-circle animated d2 color-primary"></i>
+          <i class="fa fa-circle animated d1 color-primary"></i>
         </div>
       </div>
     </div>
+    <script>
+        if(__env.Brand.name === 'REC') {
+          document.getElementById('logo').setAttribute('src', "assets/resources/logo_round.png");
+        }else {
+          document.getElementById('favicon').setAttribute('href', __env.Brand.logo);
+          document.getElementById('logo').setAttribute('src', __env.Brand.loading_logo_url);
+      }
+    </script>
   </app-rec-admin>
+
+  <script>
+   if(__env.Brand.name !== 'REC'){
+    document.querySelector('body').classList.add(__env.Brand.name)
+   }
+  </script>
 
   <script defer src="assets/resources/vendor/raphael.min.js"></script>
   <script defer src="assets/resources/vendor/jquery.min.js"></script>

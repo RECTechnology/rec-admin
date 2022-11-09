@@ -10,8 +10,8 @@
         </a>
 
         <div class="center h column" style="margin: 20px 0">
-          <p class="text-center upper-case" style="font-size: 13px; line-height: 1.2">{{'ECONOMIC_CITIZEN_RESOURCES'|translate}}</p>
-          <i class="small-text text-center marg-top-8">{{'START_NEIGHBOURHOOD'|translate}}</i>
+          <p *ngIf="Brand.name === 'REC'" class="text-center upper-case" style="font-size: 13px; line-height: 1.2">{{'ECONOMIC_CITIZEN_RESOURCES'|translate}}</p>
+          <i *ngIf="Brand.name === 'REC'" class="small-text text-center marg-top-8">{{'START_NEIGHBOURHOOD'|translate}}</i>
         </div>
       </div>
     </div>

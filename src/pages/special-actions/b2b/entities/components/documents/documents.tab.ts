@@ -32,7 +32,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DocumentTabComponent extends EntityTabBase<Document> {
   public entityName = 'Document';
   public documentKinds: DocumentKind[] = [];
-  public STATUS_TYPES = Document.REC_STATUS_TYPES;
+  public STATUS_TYPES = Document.STATUS_TYPES;
   public status;
   public headers: TlHeader[] = [
     TlHeaders.Id,
@@ -53,9 +53,9 @@ export class DocumentTabComponent extends EntityTabBase<Document> {
 
     TlHeaders.Name,
     TlHeaders.StatusCustom((el: any) => ({
-      'col-success': el === Document.REC_STATUS_APROVED,
-      'col-error': el === Document.REC_STATUS_DECLINED,
-      'col-warning': el === Document.REC_STATUS_SUBMITTED || el === Document.REC_STATUS_EXPIRED,
+      'col-success': el === Document.STATUS_TYPES[2],
+      'col-error': el === Document.STATUS_TYPES[1],
+      'col-warning': el === Document.STATUS_TYPES[0] || el === Document.STATUS_TYPES[3],
     })),
     TlHeaders.Created.extend({
       title: 'VALID_UNTIL',

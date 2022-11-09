@@ -11,6 +11,7 @@ import { TransactionService } from 'src/services/transactions/transactions.servi
 import { DashboardService, DashboardValidIntervals } from 'src/services/dashboard/dashboard.service';
 import { DashChart } from 'src/components/ui/dash-chart/dash-chart.component';
 import { map } from 'rxjs/internal/operators/map';
+import { Colors, theme } from '../../theme/theme';
 
 declare const Morris;
 
@@ -35,9 +36,9 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   @ViewChild('registerChart') public registerChart: DashChart;
   @ViewChild('txChart') public txChart: DashChart;
 
-  public txColors = ['#e05206', '#de8657'];
-  public regColors = ['#0098db', '#de8657'];
-  public neighColors = ['#0098db', '#9ed7f1', '#e05206', '#f0ab87', '#0555a5'];
+  public txColors = theme.txColors;
+  public regColors = theme.regColors;
+  public neighColors = theme.neighColors;
   public refreshInterval: number = 60; // Miliseconds
   public refreshObs: any;
   public refreshEnabled = true;
@@ -86,7 +87,7 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
   public updateDonutChart(data?) {
     document.getElementById('donut').innerHTML = '';
     const donut = new Morris.Donut({
-      colors: ['#0098db', '#9ed7f1', '#e05206', '#f0ab87', '#0555a5'],
+      colors: theme.neighColors,
       data: data || [
         { label: 'Barrio 1', value: 12 },
         { label: 'Barrio 2', value: 30 },

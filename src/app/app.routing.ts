@@ -18,6 +18,7 @@ import { CampaignReportsAccount } from 'src/pages/special-actions/campaing_repor
 import { LogPage } from 'src/pages/special-actions/change_delegate/components/log_page/log_page';
 import { B2BComponent } from 'src/pages/special-actions/b2b_page/b2b.component';
 import { RatingsPage } from '../pages/ratings/ratings.component';
+import { HideShowB2b, HideShowMail, HideShowQualifications, HideShowReports } from '../services/guards/show_components.guard';
 import { ChallengesPage } from '../pages/challenges/challenges.component';
 
 const ROUTES: Routes = [
@@ -79,13 +80,13 @@ const ROUTES: Routes = [
   {
     path: 'rec/mailing',
     component: B2BSendComponent,
-    canActivate: [IsLoggedInGuard],
+    canActivate: [IsLoggedInGuard, HideShowMail],
   },
   {
     path: 'rec/mailing/:id_or_new',
     component: SendMail,
     canActivate: [IsLoggedInGuard],
-    canDeactivate: [PendingChangesGuard],
+    canDeactivate: [PendingChangesGuard, HideShowMail],
   },
   {
     path: 'b2b/settings',
@@ -95,17 +96,17 @@ const ROUTES: Routes = [
   {
     path: 'b2b',
     component: B2BComponent,
-    canActivate: [IsLoggedInGuard],
+    canActivate: [IsLoggedInGuard, HideShowB2b],
   },
   {
     path: 'campaign_reports',
     component: CampaignReportsAccount,
-    canActivate: [IsLoggedInGuard],
+    canActivate: [IsLoggedInGuard, HideShowReports],
   },
   {
     path: 'ratings',
     component: RatingsPage,
-    canActivate: [IsLoggedInGuard],
+    canActivate: [IsLoggedInGuard, HideShowQualifications],
   },
   {
     path: 'challenges',

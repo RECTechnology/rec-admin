@@ -19,7 +19,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class RecStatusSelector extends BaseSelectorComponent  implements ControlValueAccessor {
 
-  public recStatuses= Document.REC_STATUS_TYPES;
+  public recStatuses= Document.STATUS_TYPES;
 
   onChange!:(item: any) => void;
   writeValue(item: any): void {

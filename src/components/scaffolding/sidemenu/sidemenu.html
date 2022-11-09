@@ -51,7 +51,7 @@
 
           <!-- Item -->
           <li class="menu-item" (click)="clickedItem()"
-            *ngIf="item.type == 'item' || !item.type"
+            *ngIf="item.type == 'item' && !item.hide || !item.type && !item.hide"
             [ngClass]="{'center h': !toggled}" [routerLink]="item.route"
             routerLinkActive="active">
             <i class="fa fa-lg fa-fw {{item.icon}}"></i>

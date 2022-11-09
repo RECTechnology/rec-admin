@@ -63,12 +63,24 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
+  //to add new theme
+  public setTheme() {
+    if(this.Brand.name === 'REC') {
+      document.getElementById('logo').setAttribute('src', "assets/resources/logo_round.png");
+      return;
+    }
+    document.querySelector('body').classList.add(this.Brand.name);
+    document.getElementById('favicon').setAttribute('href', this.Brand.logo);
+    document.getElementById('logo').setAttribute('src', this.Brand.logo);
+  }
+
   public ngOnInit() {
     this.aas.doAuth().subscribe((response) => {
       return;
     });
 
     this.title.setTitle(this.Brand.name);
+    // this.setTheme();
 
     /* Check if device is movile and open/close sidemenu based on that */
     this.isMobile = this.utils.isMobileDevice = this.utils.isMobile();

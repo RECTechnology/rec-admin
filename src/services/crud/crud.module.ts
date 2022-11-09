@@ -12,9 +12,9 @@ import { ActivitiesV3Crud } from './activities/activitiesv3.crud';
 import { BadgesCrud } from './badges/badges.crud';
 import { QualificationsCrud } from './qualifications/qualifications.crud';
 import { WithdrawalCrud } from './withdrawals/withdrawals.crud';
+import { ConfigurationSettingsCrud } from './config_settings/configuration_settings';
 import { ChallengeCrud } from './challenges/challenges.crud';
 import { RewardsCrud } from './reward/reward.crud';
-
 
 @NgModule({
     providers: [
@@ -32,7 +32,8 @@ import { RewardsCrud } from './reward/reward.crud';
         ActivitiesV3Crud,
         BadgesCrud,
         QualificationsCrud,
-        WithdrawalCrud
+        WithdrawalCrud,
+        ConfigurationSettingsCrud
     ],
 })
 export class CrudModule { }

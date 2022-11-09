@@ -14,6 +14,7 @@ import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { IsLoggedInGuard, IsNotLoggedInGuard } from 'src/services/guards/login.guard';
 import { ControlesService } from 'src/services/controles/controles.service';
+import { ConfigSettings } from 'src/services/configuration_settings/configuration_settings.service';
 import { TransactionService } from 'src/services/transactions/transactions.service';
 import { WalletService } from 'src/services/wallet/wallet.service';
 import { UtilsService } from 'src/services/utils/utils.service';
@@ -45,8 +46,16 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { getLocale } from 'src/shared/utils.fns';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
+import {
+  MatInputModule
+} from '@angular/material/input';
+import{ HideShowB2b, 
+  HideShowMail, 
+  HideShowQualifications, 
+  HideShowReports
+} from 'src/services/guards/show_components.guard';
 import { Observable } from 'rxjs';
+
 
 registerLocaleData(localeCat);
 registerLocaleData(localeCa);
@@ -103,8 +112,13 @@ const imports = [
   providers: [
     LoginService,
     UserService,
+    ConfigSettings,
     AppAuthService,
     IsLoggedInGuard,
+    HideShowReports,
+    HideShowMail,
+    HideShowQualifications,
+    HideShowB2b,
     ControlesService,
     TransactionService,
     IsLoggedInGuard,
