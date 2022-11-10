@@ -1486,5 +1486,6 @@
     "REWARDS": "Premios",
     "HOW_TO_USE": "Como usar",
     "EXPORT_SENT": "PETICIÓN ENVIADA",
-    "EXPORT_SENT_DESC": "Tu petición está siendo procesando. Este proceso puede tardar unos minutos, al finalizar recibirás un email con los datos adjunto. Por favor no olvides <b>revisar tu bandeja de spam</b>"
+    "EXPORT_SENT_DESC": "Tu petición está siendo procesando. Este proceso puede tardar unos minutos, al finalizar recibirás un email con los datos adjunto. Por favor no olvides <b>revisar tu bandeja de spam</b>",
+    "PANEL_TITLE": "laROSA Admin"
 }
