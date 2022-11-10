@@ -1488,5 +1488,6 @@
     "Amount is greater than available for refund": "El importe es mayor que el disponible para la devolución",
     "REFUND_CORRECTLY": "Devolución enviada correctamente!",
     "NO_TPV_REFUND": "ERROR: Las devoluciones de TPV solamente pueden realizarse desde el apartado TPV de la cuenta",
-    "MORE_THAN_0": "Debe ser mayor de 0"
+    "MORE_THAN_0": "Debe ser mayor de 0",
+    "PANEL_TITLE": "REC Admin"
 }
