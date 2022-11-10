@@ -242,17 +242,17 @@
       </div>
     </div>
     <script>
-        if(__env.Brand.name === 'REC') {
+        if(__env.Brand.name === 'rec') {
           document.getElementById('logo').setAttribute('src', "assets/resources/logo_round.png");
         }else {
-          document.getElementById('favicon').setAttribute('href', __env.Brand.logo);
+          document.getElementById('favicon').setAttribute('href', __env.Brand.favicon);
           document.getElementById('logo').setAttribute('src', __env.Brand.loading_logo_url);
       }
     </script>
   </app-rec-admin>
 
   <script>
-   if(__env.Brand.name !== 'REC'){
+   if(__env.Brand.name !== 'rec'){
     document.querySelector('body').classList.add(__env.Brand.name)
    }
   </script>
