@@ -1486,5 +1486,6 @@
     "REWARDS": "Rewards",
     "HOW_TO_USE": "How to use",
     "EXPORT_SENT": "REQUEST SENT",
-    "EXPORT_SENT_DESC": "Your request is being processed. This process may take a few minutes, at the end you will receive an email with the attached data. Please don't forget to <b>check your spam box</b>"
+    "EXPORT_SENT_DESC": "Your request is being processed. This process may take a few minutes, at the end you will receive an email with the attached data. Please don't forget to <b>check your spam box</b>",
+    "PANEL_TITLE": "laROSA Admin"
 }
