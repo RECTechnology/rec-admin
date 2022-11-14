@@ -13,6 +13,7 @@ import { LoginService } from 'src/services/auth/auth.service';
 import { EventsService } from 'src/services/events/events.service';
 import { PageBase } from 'src/bases/page-base';
 import { OnDestroy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   providers: [SmsService],
@@ -49,14 +50,15 @@ export class UserComponent extends PageBase implements OnInit, OnDestroy {
     public crudUsers: UsersCrud,
     public alerts: AlertsService,
     public events: EventsService,
+    translateService: TranslateService,
   ) {
-    super();
+    super(translateService);
   }
 
   public ngOnInit() {
     super.ngOnInit();
     this.events.registerEvent('user:update').subscribe(this.loadUser.bind(this));
-    
+
     // Gets the query parameters and gets 'tab' param
     this.sub = this.route.queryParams.subscribe((params) => {
       this.tab = params.tab || 'details';

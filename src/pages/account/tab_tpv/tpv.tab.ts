@@ -10,6 +10,7 @@ import { LoginService } from 'src/services/auth/auth.service';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { Pos } from 'src/shared/entities/pos.ent';
 import { CompanyService } from 'src/services/company/company.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'tpv-tab',
@@ -40,7 +41,10 @@ export class TpvTab extends TablePageBase {
     public admin: AdminService,
     public events: EventsService,
     public companyService: CompanyService,
-  ) { super(router); }
+    public translate: TranslateService,
+  ) {
+    super(router, translate);
+  }
 
   public ngOnInit() {
     const pos = this.companyService.selectedCompany.pos;
@@ -53,12 +57,11 @@ export class TpvTab extends TablePageBase {
   }
 
   public delete() {
-    this.alerts.showConfirmation('SURE_DELETE_TPV',{}, 'DELETE_TPV')
-      .subscribe((resp) => {
-        if (resp) {
-          this.deleteTpv();
-        }
-      });
+    this.alerts.showConfirmation('SURE_DELETE_TPV', {}, 'DELETE_TPV').subscribe((resp) => {
+      if (resp) {
+        this.deleteTpv();
+      }
+    });
   }
 
   public toggleEditUrl() {
@@ -73,14 +76,13 @@ export class TpvTab extends TablePageBase {
     this.isActive = evt.checked;
 
     if (evt.checked === false) {
-      this.alerts.showConfirmation('SURE_DEACTIVATE_TPV',{}, 'DEACTIVATE_TPV')
-        .subscribe((resp) => {
-          if (resp) {
-            this.updateTpv({ active: false });
-          } else {
-            this.isActive = true;
-          }
-        });
+      this.alerts.showConfirmation('SURE_DEACTIVATE_TPV', {}, 'DEACTIVATE_TPV').subscribe((resp) => {
+        if (resp) {
+          this.updateTpv({ active: false });
+        } else {
+          this.isActive = true;
+        }
+      });
     } else {
       this.isActive = true;
       this.updateTpv({ active: true });
@@ -89,30 +91,29 @@ export class TpvTab extends TablePageBase {
 
   public deleteTpv() {
     this.loading = true;
-    this.admin.deletePos(this.account.pos?.id)
-      .subscribe((resp) => {
-        this.loading = false;
-        this.alerts.showSnackbar('DELETED_POS');
-        this.events.fireEvent('account:update');
-        this.ngOnInit();
-      }, UtilsService.handleValidationError.bind(this, this));
+    this.admin.deletePos(this.account.pos?.id).subscribe((resp) => {
+      this.loading = false;
+      this.alerts.showSnackbar('DELETED_POS');
+      this.events.fireEvent('account:update');
+      this.ngOnInit();
+    }, UtilsService.handleValidationError.bind(this, this));
   }
 
   public createTpv() {
     this.loading = true;
-    this.admin.createPos(this.account.id)
-      .subscribe((resp) => {
-        this.loading = false;
-        this.alerts.showSnackbar('CREATED_POS');
-        this.account.pos = resp.data;
-        this.validationErrors = [];
-        this.ngOnInit();
-      }, UtilsService.handleValidationError.bind(this, this));
+    this.admin.createPos(this.account.id).subscribe((resp) => {
+      this.loading = false;
+      this.alerts.showSnackbar('CREATED_POS');
+      this.account.pos = resp.data;
+      this.validationErrors = [];
+      this.ngOnInit();
+    }, UtilsService.handleValidationError.bind(this, this));
   }
 
   public updateTpv(additionalData: any = {}) {
     this.loading = true;
-    this.admin.editPos(this.account.pos?.id, { notification_url: this.notification_url, ...additionalData })
+    this.admin
+      .editPos(this.account.pos?.id, { notification_url: this.notification_url, ...additionalData })
       .subscribe((resp) => {
         this.alerts.showSnackbar('UPDATED_POS');
         this.loading = false;

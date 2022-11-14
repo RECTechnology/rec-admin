@@ -2,9 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import {
-  TlHeader, TableListOptions,
-} from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
+import { TlHeader, TableListOptions } from 'src/components/scaffolding/table-list/tl-table/tl-table.component';
 import { TablePageBase } from 'src/bases/page-base';
 import { ControlesService } from 'src/services/controles/controles.service';
 import { LoginService } from 'src/services/auth/auth.service';
@@ -12,9 +10,8 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { CreateLemonWallet2WalletOutDia } from 'src/dialogs/lemonway/create-lemonway-w2w-out/create-lemon-w2w-out.dia';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { UtilsService } from 'src/services/utils/utils.service';
-import {
-  LW_ERROR_P2P, processLwTx,
-} from 'src/data/lw-constants';
+import { LW_ERROR_P2P, processLwTx } from 'src/data/lw-constants';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lw-w2w-tab',
@@ -32,7 +29,8 @@ export class LwTabWalletToWallet extends TablePageBase {
       sort: 'ID',
       title: 'ID',
       type: 'code',
-    }, {
+    },
+    {
       sort: 'DEB',
       title: 'Amount',
       type: 'number',
@@ -43,24 +41,29 @@ export class LwTabWalletToWallet extends TablePageBase {
       statusClass(el) {
         return el < 0 ? 'col-error' : '';
       },
-    }, {
+    },
+    {
       sort: 'SEN',
       title: 'Envia',
-    }, {
+    },
+    {
       sort: 'REC',
       title: 'Recibe',
-    }, {
+    },
+    {
       sort: 'STATUS',
       title: 'Status',
       type: 'code',
       tooltip(el) {
         return el.status_text + ' (' + el.STATUS + ')';
       },
-    }, {
+    },
+    {
       sort: 'DATE',
       title: 'Date',
       type: 'date',
-    }, {
+    },
+    {
       sort: 'MSG',
       title: 'Concept',
     },
@@ -79,21 +82,26 @@ export class LwTabWalletToWallet extends TablePageBase {
     public alerts: AlertsService,
     public accCrud: AccountsCrud,
     public route: ActivatedRoute,
-  ) { super(router); }
+    public translate: TranslateService,
+  ) {
+    super(router, translate);
+  }
 
   public ngOnInit() {
     this.loading = true;
-    this.accCrud.lwGetWallet(this.id)
-      .subscribe((resp) => {
+    this.accCrud.lwGetWallet(this.id).subscribe(
+      (resp) => {
         this.lwInfo = resp.data;
         this.getP2PTxs();
         this.loading = false;
-      }, (err) => {
+      },
+      (err) => {
         if (err.errors) {
           this.error = UtilsService.normalizeLwError(err.errors).pop();
         }
         this.loading = false;
-      });
+      },
+    );
     super.ngOnInit();
   }
 
@@ -103,24 +111,23 @@ export class LwTabWalletToWallet extends TablePageBase {
 
   public getP2PTxs() {
     this.loading = true;
-    this.accCrud.lwGetP2PList([this.lwInfo.ID])
-      .subscribe((resp) => {
-        this.total = resp.data.COUNT;
-        this.sortedDataP2P = resp.data.TRANS.reverse()
-          .map(processLwTx)
-          .map((el) => {
-            el.status_text = LW_ERROR_P2P[el.STATUS];
-            el.isOut = el.SEN === this.lwInfo.ID;
-            if (el.isOut) {
-              el.CRED = -Number(el.CRED);
-            }
-            if (el.isOut) {
-              el.DEB = -Number(el.DEB);
-            }
-            return el;
-          });
-        this.loading = false;
-      });
+    this.accCrud.lwGetP2PList([this.lwInfo.ID]).subscribe((resp) => {
+      this.total = resp.data.COUNT;
+      this.sortedDataP2P = resp.data.TRANS.reverse()
+        .map(processLwTx)
+        .map((el) => {
+          el.status_text = LW_ERROR_P2P[el.STATUS];
+          el.isOut = el.SEN === this.lwInfo.ID;
+          if (el.isOut) {
+            el.CRED = -Number(el.CRED);
+          }
+          if (el.isOut) {
+            el.DEB = -Number(el.DEB);
+          }
+          return el;
+        });
+      this.loading = false;
+    });
   }
 
   public newWallet2WalletOut() {

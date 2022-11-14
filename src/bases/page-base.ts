@@ -3,11 +3,12 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { BaseComponent } from './base-component';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, Inject, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoginService } from '../services/auth/auth.service';
 import { Sort } from '@angular/material/sort';
 import { UtilsService } from 'src/services/utils/utils.service';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface PageBase {
   route?: ActivatedRoute;
@@ -59,8 +60,11 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   public loading = true;
   public validationErrors = [];
   public validationErrorName = '';
-
   public alerts: AlertsService;
+
+  constructor(public translate: TranslateService) {
+    super();
+  }
 
   public ngOnInit() {
     if (typeof this.onLogout === 'function') {
@@ -80,7 +84,8 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
     }
 
     this.loading = false;
-    this.setTitle(this.Brand.title + ' | ' + this.pageName);
+    const translateTitle = this.translate.instant(this.Brand.title);
+    this.setTitle(translateTitle + ' | ' + this.pageName);
   }
 
   public setTitle(title: string): void {
@@ -105,7 +110,7 @@ export abstract class PageBase extends BaseComponent implements AfterContentInit
   template: '',
 })
 export abstract class TablePageBase extends PageBase {
-  public sortID: string = 'id'; 
+  public sortID: string = 'id';
   public sortDir: string = 'desc';
   public query: string = '';
   public offset: number = 0;
@@ -123,8 +128,8 @@ export abstract class TablePageBase extends PageBase {
 
   public abstract search(query?: string): any;
 
-  constructor(public router: Router) {
-    super();
+  constructor(public router: Router, public translateService: TranslateService) {
+    super(translateService);
   }
 
   // Searches and cancels previous Observable if there is one
@@ -151,7 +156,6 @@ export abstract class TablePageBase extends PageBase {
   public changedPage($event) {
     this.limit = $event.pageSize;
     this.offset = $event.pageIndex * this.limit;
-
 
     this.addToQueryParams({
       limit: this.limit,

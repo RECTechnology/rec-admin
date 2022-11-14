@@ -19,6 +19,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
 import { ListAccountsParams } from 'src/interfaces/search';
 import { AddB2BModal } from './b2b-modal/b2b-modal';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -85,8 +86,9 @@ export class B2BComponent extends TablePageBase {
     public crudAccounts: AccountsCrud,
     public alerts: AlertsService,
     protected campaignsService: CampaignsCrud,
+    public translateService: TranslateService,
   ) {
-    super(router);
+    super(router, translateService);
   }
 
   ngOnInit() {

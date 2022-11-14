@@ -2,10 +2,7 @@ import { Component, AfterContentInit } from '@angular/core';
 import { WalletService } from '../../../services/wallet/wallet.service';
 import { ControlesService } from '../../../services/controles/controles.service';
 import { AdminService } from '../../../services/admin/admin.service';
-import {
-  TlItemOption,
-  TlHeader,
-} from '../../../components/scaffolding/table-list/tl-table/tl-table.component';
+import { TlItemOption, TlHeader } from '../../../components/scaffolding/table-list/tl-table/tl-table.component';
 import { MatDialog } from '@angular/material/dialog';
 import { VoteWithdrawal } from '../../../dialogs/vote-withdrawal/vote-withdrawal.dia';
 import { UserService } from '../../../services/user.service';
@@ -19,6 +16,7 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { WithdrawalCrud } from '../../../services/crud/withdrawals/withdrawals.crud';
 import { TlHeaders } from '../../../data/tl-headers';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'treasure_account',
@@ -98,26 +96,23 @@ export class TreasureAccount extends TablePageBase implements AfterContentInit {
     public crudAccounts: AccountsCrud,
     public ls: LoginService,
     public router: Router,
-    public titleService: Title
+    public titleService: Title,
+    public translateService: TranslateService,
   ) {
-    super(router);
+    super(router, translateService);
   }
 
   public ngAfterContentInit() {
     this.reset();
     this.getCentralAccountData();
-    this.needsToVote = this.as.checkIfUserNeedsToVote(
-      this.us.userData,
-    );
+    this.needsToVote = this.as.checkIfUserNeedsToVote(this.us.userData);
   }
 
   public getCentralAccountData() {
-    this.crudAccounts
-      .find(+environment.novactId)
-      .subscribe(({ data }) => {
-        this.caBalance = data.getBalance('REC');
-        this.caName = data.name;
-      });
+    this.crudAccounts.find(+environment.novactId).subscribe(({ data }) => {
+      this.caBalance = data.getBalance('REC');
+      this.caName = data.name;
+    });
   }
 
   public search() {
@@ -150,10 +145,7 @@ export class TreasureAccount extends TablePageBase implements AfterContentInit {
   public sendRecs() {
     this.loading = true;
 
-    const scaledAmount = WalletService.scaleNum(
-      this.amount,
-      Currencies.REC.scale,
-    );
+    const scaledAmount = WalletService.scaleNum(this.amount, Currencies.REC.scale);
 
     this.as
       .createWithdrawal({
@@ -212,9 +204,7 @@ export class TreasureAccount extends TablePageBase implements AfterContentInit {
   }
 
   public vote(withdrawal) {
-    const validation = withdrawal.validations.filter(
-      (el) => el.validator.id === this.us.userData.id,
-    );
+    const validation = withdrawal.validations.filter((el) => el.validator.id === this.us.userData.id);
     return this.alerts
       .openModal(VoteWithdrawal, {
         withdrawal,

@@ -25,6 +25,7 @@ import { TlItemOptions } from 'src/data/tl-item-options';
 import { AccountsExportDefaults } from 'src/data/export-defaults';
 import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'accounts',
@@ -79,15 +80,15 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     public crudAccounts: AccountsCrud,
     public alerts: AlertsService,
     protected campaignsService: CampaignsCrud,
+    public translate: TranslateService,
   ) {
-    super(router);
+    super(router, translate);
   }
 
   ngOnInit() {
     super.ngOnInit();
 
     this.route.queryParams.subscribe((params) => {
-
       this.accountID = params.id;
       this.openDetails = params.details;
       this.limit = params.limit ?? 10;
@@ -127,8 +128,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.search();
   }
 
-  ngOnChange() {
-  }
+  ngOnChange() {}
 
   public afterContentInit() {
     const roles: string[] = this.us.userData.group_data.roles;
@@ -139,7 +139,7 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     this.campaignFilter = campaignFilter;
     super.addToQueryParams({
       campaignFilter: this.campaignFilter ? this.campaignFilter.id : null,
-      offset: 0
+      offset: 0,
     });
     this.offset = 0;
     this.search();
@@ -147,7 +147,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
 
   public getCleanParams(query?: string) {
     let data: ListAccountsParams = {
-
       active: this.active ? 1 : 0,
       field_map: {},
       limit: this.limit,
@@ -178,11 +177,10 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   }
 
   public search(query: string = this.query) {
-
     const data: any = this.getCleanParams(query);
     this.loading = true;
     this.query = query;
-    this.searchObs = this.crudAccounts.list(data,'all').subscribe(
+    this.searchObs = this.crudAccounts.list(data, 'all').subscribe(
       (resp: any) => {
         this.data = resp.data.elements;
         this.total = resp.data.total;
@@ -222,7 +220,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
     super.addToQueryParams({
       type: this.type,
     });
-
   }
 
   public viewAccount(account, tab = 'details') {

@@ -20,7 +20,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'new-massive-transactions',
   templateUrl: './new_massive_transactions.html',
-  styleUrls: ['./new_massive_transactions.scss']
+  styleUrls: ['./new_massive_transactions.scss'],
 })
 export class NewMassiveTransactionsComponent extends TablePageBase {
   public pageName = 'New Massive Transactions';
@@ -44,15 +44,15 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
   public warnings: any;
   public scheduleDelivery = false;
   public scheduleDeliveryDate: string;
-  public scheduleDeliveryDateFormat:string;
+  public scheduleDeliveryDateFormat: string;
   public limit = 72;
   public isEditName = false;
   public edited = false;
   public type: any;
   scheduleDeliveryDateCopy: string;
   public formGroup = new FormGroup({
-    transactions_name: new FormControl({value: "", disabled: !this.isEditName}, Validators.maxLength(this.limit))
-  })
+    transactions_name: new FormControl({ value: '', disabled: !this.isEditName }, Validators.maxLength(this.limit)),
+  });
 
   constructor(
     public adminService: AdminService,
@@ -66,10 +66,8 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
     public snackbar: MySnackBarSevice,
     public alerts: AlertsService,
     public translate: TranslateService,
-
-
   ) {
-    super(router);
+    super(router, translate);
   }
 
   public ngOnInit() {
@@ -97,9 +95,8 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
   }
 
   public canUploadFile() {
-    return this.delegate.status == 'created' 
+    return this.delegate.status == 'created';
   }
-
 
   public getDelegate() {
     this.changeCrud.find(this.idOrNew).subscribe((resp) => {
@@ -129,11 +126,10 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
         this.timeScheduled = parts.timeStr;
         this.readonly = this.delegate.status != 'draft';
       }
-      this.delegate && this.delegate.status == 'scheduled' ?
-      this.scheduleDelivery = true : this.scheduleDelivery = false;
-
+      this.delegate && this.delegate.status == 'scheduled'
+        ? (this.scheduleDelivery = true)
+        : (this.scheduleDelivery = false);
     });
-
   }
 
   public search() {
@@ -161,11 +157,11 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
 
   public saveEditConcept() {
     this.changeIsEditName();
-    if(this.formGroup.invalid){
+    if (this.formGroup.invalid) {
       return;
     }
     this.changeCrud.editConcept(this.idOrNew, this.formGroup.get('transactions_name').value).subscribe((resp) => {
-      this.alerts.showSnackbar("EDITED_CONCEPT");
+      this.alerts.showSnackbar('EDITED_CONCEPT');
       this.delegate.name = resp.name ?? this.formGroup.get('transactions_name').value;
     });
     this.isEditName = false;
@@ -176,11 +172,9 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
     this.isEditName = true;
     this.formGroup.get('transactions_name').enable();
     this.edited = false;
-    this.formGroup.valueChanges.subscribe(resp => {
-      resp.transactions_name == this.delegate.name ?
-      this.edited = false :
-      this.edited = true;
-    })
+    this.formGroup.valueChanges.subscribe((resp) => {
+      resp.transactions_name == this.delegate.name ? (this.edited = false) : (this.edited = true);
+    });
   }
 
   public cancelEditName() {
@@ -190,13 +184,12 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
   }
 
   public goToLog() {
-    this.router.navigate([]).then(result => {
+    this.router.navigate([]).then((result) => {
       window.open('/txs_blocks/massive/' + this.idOrNew + '/logs?id=' + this.idOrNew, '_blank');
-    })
+    });
   }
 
   public openSendTxsModal() {
-
     if (this.scheduleDelivery) {
       this.scheduleDeliveryDateCopy = this.scheduleDeliveryDateFormat;
     } else {
@@ -207,29 +200,33 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
       this.scheduleDeliveryDateCopy = datepipe.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ss-SS');
       this.scheduleDeliveryDate = datepipeFormat.transform(Date.now(), 'yyyy-MM-ddTHH:mm:ss');
     }
-    this.alerts.openModal(SendTransactionsDia, {
-      totalTransactions: this.total,
-      sendType: this.type,
-      totalImport: this.totalImport,
-      dateSend: this.scheduleDeliveryDate,
-      concept: this.formGroup.get('transactions_name').value,
-      warnings: this.warnings,
-      scheduled: this.scheduleDelivery
-    }).subscribe(
-      (send) => {
-      if (send) {
-        this.changeCrud.startTransactions(this.delegate.id, {
-          status: 'scheduled',
-          scheduled_at: this.scheduleDeliveryDateCopy
-        }).subscribe()
-        this.snackbar.open('SENDING_TXS');
-        this.syncData();   
-      }
-      },
-      (err) => {
-        this.alerts.observableErrorSnackbar(err);
-      }
-    );
+    this.alerts
+      .openModal(SendTransactionsDia, {
+        totalTransactions: this.total,
+        sendType: this.type,
+        totalImport: this.totalImport,
+        dateSend: this.scheduleDeliveryDate,
+        concept: this.formGroup.get('transactions_name').value,
+        warnings: this.warnings,
+        scheduled: this.scheduleDelivery,
+      })
+      .subscribe(
+        (send) => {
+          if (send) {
+            this.changeCrud
+              .startTransactions(this.delegate.id, {
+                status: 'scheduled',
+                scheduled_at: this.scheduleDeliveryDateCopy,
+              })
+              .subscribe();
+            this.snackbar.open('SENDING_TXS');
+            this.syncData();
+          }
+        },
+        (err) => {
+          this.alerts.observableErrorSnackbar(err);
+        },
+      );
   }
 
   public sendCancel() {
@@ -270,7 +267,7 @@ export class NewMassiveTransactionsComponent extends TablePageBase {
     );
   }
 
-  public newImport() { 
+  public newImport() {
     this.alerts.openModal(CsvUpload, {}).subscribe((resp) => {
       if (resp) {
         this.dataLoading = true;

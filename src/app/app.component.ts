@@ -7,10 +7,7 @@ import { AppService } from 'src/services/app/app.service';
 import { environment } from 'src/environments/environment';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { ControlesService } from 'src/services/controles/controles.service';
-import {
-  LoginService,
-  AppAuthService,
-} from 'src/services/auth/auth.service';
+import { LoginService, AppAuthService } from 'src/services/auth/auth.service';
 import { UserService } from 'src/services/user.service';
 import { IdleNotification } from 'src/dialogs/other/idle-notification/idle.dia';
 import { AlertsService } from 'src/services/alerts/alerts.service';
@@ -56,17 +53,20 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private getLocale() {
     switch (this.us.lang) {
-      case 'en': return 'en-GB';
+      case 'en':
+        return 'en-GB';
       case 'ca':
-      case 'es': return 'es-ES';
-      default: return 'es-ES';
+      case 'es':
+        return 'es-ES';
+      default:
+        return 'es-ES';
     }
   }
 
   //to add new theme
   public setTheme() {
-    if(this.Brand.name === 'REC') {
-      document.getElementById('logo').setAttribute('src', "assets/resources/logo_round.png");
+    if (this.Brand.name === 'REC') {
+      document.getElementById('logo').setAttribute('src', 'assets/resources/logo_round.png');
       return;
     }
     document.querySelector('body').classList.add(this.Brand.name);
@@ -78,8 +78,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.aas.doAuth().subscribe((response) => {
       return;
     });
-
-    this.title.setTitle(this.translate.instant(this.Brand.title));
     // this.setTheme();
 
     /* Check if device is movile and open/close sidemenu based on that */
@@ -126,24 +124,19 @@ export class AppComponent implements OnInit, OnDestroy {
           this.us.userData = profile;
 
           const roles = profile.group_data.roles;
-          this.us.isAdmin =
-            roles.includes('ROLE_ADMIN') ||
-            roles.includes('ROLE_COMPANY');
+          this.us.isAdmin = roles.includes('ROLE_ADMIN') || roles.includes('ROLE_COMPANY');
 
           MySentry.setUser(profile);
 
           if (!this.us.isSuperAdmin()) {
             this.us.logout();
-            this.alerts.showSnackbar(
-              "DONT_NECESSARI_PERMISSION",
-              'OK'
-            );
+            this.alerts.showSnackbar('DONT_NECESSARI_PERMISSION', 'OK');
             return;
           }
         },
         (error) => {
           return;
-        }
+        },
       );
     });
   }
@@ -151,10 +144,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public setupLang() {
     const browserLang = this.translate.getBrowserLang();
     const localSavedLang = localStorage.getItem('lang');
-    let currentLang =
-      localSavedLang !== 'undefined'
-        ? localSavedLang
-        : browserLang || 'en';
+    let currentLang = localSavedLang !== 'undefined' ? localSavedLang : browserLang || 'en';
 
     if (!['es', 'cat', 'en'].includes(currentLang)) {
       currentLang = 'en';
@@ -193,16 +183,12 @@ export class AppComponent implements OnInit, OnDestroy {
     document.onmousemove = onAction.bind(this);
     document.onkeypress = onAction.bind(this);
 
-    this.idleObs = interval(1e3).subscribe((x) =>
-      this.utils.checkIdleTime()
-    );
+    this.idleObs = interval(1e3).subscribe((x) => this.utils.checkIdleTime());
   }
 
   private showIdleMessage(): void {
     this.idleModal = this.dialog.open(IdleNotification);
-    this.idleModal
-      .afterClosed()
-      .subscribe((resp) => (this.idleModal = null));
+    this.idleModal.afterClosed().subscribe((resp) => (this.idleModal = null));
   }
 
   private closeIdleMessage(): void {

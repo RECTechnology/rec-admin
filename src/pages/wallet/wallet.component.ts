@@ -20,12 +20,11 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'wallet',
-  styleUrls: [
-    '../../pages/wallet/wallet.css',
-  ], 
+  styleUrls: ['../../pages/wallet/wallet.css'],
   templateUrl: '../../pages/wallet/wallet.html',
 })
 export class WalletComponent extends TablePageBase implements OnInit, OnDestroy, OnLogout, OnLogin {
@@ -58,38 +57,31 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
     public ls: LoginService,
     public companyService: CompanyService,
     public alerts: AlertsService,
+    translateService: TranslateService,
   ) {
-    super(router);
+    super(router, translateService);
     this.filter = new TxFilter(this.router);
 
     // Gets the query parameters
-    this.querySub = this.route.queryParams
-      .subscribe((params) => {
-        if (params) {
-          for (const k in params) {
-            if (k !== 'account') {
-              this.filter.addFilter(k, params[k], {});
-            }
+    this.querySub = this.route.queryParams.subscribe((params) => {
+      if (params) {
+        for (const k in params) {
+          if (k !== 'account') {
+            this.filter.addFilter(k, params[k], {});
           }
         }
-        this.getTransactions();
-      });
+      }
+      this.getTransactions();
+    });
   }
   ngOnInit() {
-
-
     this.route.queryParams.subscribe((params) => {
-
-
       if (params.dateFrom != null) {
-        this.dateFrom = getDateDMY(new Date(params.dateFrom), '-');;
-
+        this.dateFrom = getDateDMY(new Date(params.dateFrom), '-');
       }
       if (params.dateTo != null) {
-        this.dateTo = getDateDMY(new Date(params.dateTo), '-');;
-
+        this.dateTo = getDateDMY(new Date(params.dateTo), '-');
       }
-
     });
   }
   // Custom hooks
@@ -101,19 +93,18 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
     this.getTransactions();
   }
 
-  public eventClick(e){
+  public eventClick(e) {
     this.router.navigate([`/accounts/${Number(e.target.innerHTML)}`]);
   }
 
   public addDateFromToQuery(event) {
     super.addToQueryParams({
-      dateFrom: event + "",
+      dateFrom: event + '',
     });
     this.showClearParams = true;
     this.getTransactions();
   }
   public addDateToToQuery(event) {
-
     this.dateTo = event;
     super.addToQueryParams({
       dateTo: this.dateTo,
@@ -137,8 +128,12 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
 
   public changedDate(dn, $event) {
     const d = $event.target.value;
-    if (dn === 'from') { this.dateFrom = d; }
-    if (dn === 'to') { this.dateTo = d; }
+    if (dn === 'from') {
+      this.dateFrom = d;
+    }
+    if (dn === 'to') {
+      this.dateTo = d;
+    }
     this.getTransactions();
   }
 
@@ -163,8 +158,8 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
     const dialogRef = this.dialog.open(TxDetails);
     dialogRef.componentInstance.transaction = transaction;
     dialogRef.componentInstance.isFromAccountMovements = false;
-    return dialogRef.afterClosed().subscribe(result => {
-      if(result){
+    return dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         this.getTransactions();
       }
     });
@@ -182,7 +177,6 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
   public changedPage($event) {
     this.limit = $event.pageSize;
     this.offset = $event.pageIndex * this.limit;
-
 
     this.addToQueryParams({
       limit: this.limit,
@@ -220,18 +214,16 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
     this.loading = true;
     this.loadingTransactions = true;
 
-    this.txService.listTx(
-      this.filter.search, this.offset,
-      this.limit, this.sortID, this.sortDir,
-      this.dateFrom, this.dateTo,
-    ).subscribe((resp) => {
-      this.transactions = resp.data.list;
-      this.totalWalletTransactions = resp.data.total;
-      this.txService.walletTransactions = this.transactions;
-      this.sortedData = this.txService.walletTransactions.slice();
-      this.loadingTransactions = false;
-      this.loading = false;
-    });
+    this.txService
+      .listTx(this.filter.search, this.offset, this.limit, this.sortID, this.sortDir, this.dateFrom, this.dateTo)
+      .subscribe((resp) => {
+        this.transactions = resp.data.list;
+        this.totalWalletTransactions = resp.data.total;
+        this.txService.walletTransactions = this.transactions;
+        this.sortedData = this.txService.walletTransactions.slice();
+        this.loadingTransactions = false;
+        this.loading = false;
+      });
   }
 
   public createModal(component: any, data = {}): any {
@@ -244,10 +236,10 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
       }
     }
     if ('walletComponent' in dialogRef.componentInstance) {
-      dialogRef.componentInstance.walletComponent = (this as never);
+      dialogRef.componentInstance.walletComponent = this as never;
     }
     if ('dialog' in dialogRef.componentInstance) {
-      dialogRef.componentInstance.dialog = (this.dialog as never);
+      dialogRef.componentInstance.dialog = this.dialog as never;
     }
     dialogRef.afterClosed().subscribe((resp) => {
       dialogRef = null;
@@ -262,17 +254,17 @@ export class WalletComponent extends TablePageBase implements OnInit, OnDestroy,
 
   public clearQueryParams() {
     this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: {
-          dateTo: null,
-          dateFrom: null
-        },
-        queryParamsHandling: 'merge',
+      relativeTo: this.route,
+      queryParams: {
+        dateTo: null,
+        dateFrom: null,
+      },
+      queryParamsHandling: 'merge',
     });
     this.dateFrom = this.datePipe.transform(this.date, 'yyyy-MM-dd');
-    this.dateTo =  getDateDMY(new Date(), '-');
+    this.dateTo = getDateDMY(new Date(), '-');
     this.filter.search = '';
     this.getTransactions();
     this.showClearParams = false;
-}
+  }
 }

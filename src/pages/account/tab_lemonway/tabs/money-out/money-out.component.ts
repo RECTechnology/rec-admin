@@ -9,92 +9,99 @@ import { Title } from '@angular/platform-browser';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { CreateLemonWithdrawalDia } from 'src/dialogs/lemonway/create-lemon-withdrawal/create-lemon-withdrawal.dia';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-    selector: 'lw-money-out-tab',
-    templateUrl: './money-out.html',
+  selector: 'lw-money-out-tab',
+  templateUrl: './money-out.html',
 })
 export class LwTabMoneyOut extends TablePageBase {
-    @Input() public id = '';
-    @Input() public lwInfo: any = {};
-    public withdrawals = [];
-    public pageName = 'Lemonway';
-    public loading = true;
-    public headers: TlHeader[] = [
-        {
-            sort: 'ID',
-            title: 'ID',
-            type: 'code',
-        }, {
-            sort: 'DEB',
-            title: 'Amount',
-            type: 'number',
-            suffix: '€',
-            accessor: (el) => {
-                return el.DEB;
-            },
-            statusClass(value) {
-                return 'col-error';
-            },
-        }, {
-            sort: 'INT_STATUS',
-            title: 'Status',
-            type: 'code',
-            tooltip(el) {
-                return el.status_text + ' (' + el.INT_STATUS + ')';
-            },
-        }, {
-            sort: 'DATE',
-            title: 'Date',
-            type: 'date',
-        }, {
-            sort: 'MSG',
-            title: 'Concept',
-        },
-    ];
-    public tableOptions: Partial<TableListOptions> = {
-        sortEnabled: false,
-    };
-    public error = null;
+  @Input() public id = '';
+  @Input() public lwInfo: any = {};
+  public withdrawals = [];
+  public pageName = 'Lemonway';
+  public loading = true;
+  public headers: TlHeader[] = [
+    {
+      sort: 'ID',
+      title: 'ID',
+      type: 'code',
+    },
+    {
+      sort: 'DEB',
+      title: 'Amount',
+      type: 'number',
+      suffix: '€',
+      accessor: (el) => {
+        return el.DEB;
+      },
+      statusClass(value) {
+        return 'col-error';
+      },
+    },
+    {
+      sort: 'INT_STATUS',
+      title: 'Status',
+      type: 'code',
+      tooltip(el) {
+        return el.status_text + ' (' + el.INT_STATUS + ')';
+      },
+    },
+    {
+      sort: 'DATE',
+      title: 'Date',
+      type: 'date',
+    },
+    {
+      sort: 'MSG',
+      title: 'Concept',
+    },
+  ];
+  public tableOptions: Partial<TableListOptions> = {
+    sortEnabled: false,
+  };
+  public error = null;
 
-    constructor(
-        public controles: ControlesService,
-        public router: Router,
-        public ls: LoginService,
-        public titleService: Title,
-        public alerts: AlertsService,
-        public accCrud: AccountsCrud,
-        public route: ActivatedRoute,
-    ) { super(router); }
+  constructor(
+    public controles: ControlesService,
+    public router: Router,
+    public ls: LoginService,
+    public titleService: Title,
+    public alerts: AlertsService,
+    public accCrud: AccountsCrud,
+    public route: ActivatedRoute,
+    public translateService: TranslateService,
+  ) {
+    super(router, translateService);
+  }
 
-    public ngAfterContentInit() {
+  public ngAfterContentInit() {
+    this.search();
+  }
+
+  public search() {
+    this.getMoneyTxs();
+  }
+
+  public newWithdrawal() {
+    return this.alerts
+      .openModal(CreateLemonWithdrawalDia, {
+        id: this.id,
+      })
+      .subscribe((resp) => {
         this.search();
-    }
+      });
+  }
 
-    public search() {
-        this.getMoneyTxs();
-    }
-
-    public newWithdrawal() {
-        return this.alerts.openModal(CreateLemonWithdrawalDia, {
-            id: this.id,
-        }).subscribe((resp) => {
-            this.search();
-        });
-    }
-
-    public getMoneyTxs() {
-        this.loading = true;
-        this.accCrud.lwGetMoneyTxList([this.lwInfo.ID])
-            .subscribe((resp) => {
-                this.total = resp.data.COUNT;
-                this.sortedData = resp.data.TRANS
-                    .map(processLwTx)
-                    .map((el) => {
-                        el.status_text = LW_ERROR_MONEY_OUT[el.INT_STATUS];
-                        return el;
-                    });
-                this.loading = false;
-            });
-    }
+  public getMoneyTxs() {
+    this.loading = true;
+    this.accCrud.lwGetMoneyTxList([this.lwInfo.ID]).subscribe((resp) => {
+      this.total = resp.data.COUNT;
+      this.sortedData = resp.data.TRANS.map(processLwTx).map((el) => {
+        el.status_text = LW_ERROR_MONEY_OUT[el.INT_STATUS];
+        return el;
+      });
+      this.loading = false;
+    });
+  }
 }

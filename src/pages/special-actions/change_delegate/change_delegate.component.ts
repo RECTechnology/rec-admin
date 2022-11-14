@@ -13,6 +13,7 @@ import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delega
 import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/delegated_changes_data';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { NewDelegateChange } from './components/create_txs_block_change/create_txs_block_change.dia';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'change_delegate',
@@ -45,8 +46,9 @@ export class ChangeDelegateComponent extends TablePageBase implements OnInit {
     public changeCrud: DelegatedChangesCrud,
     public changeDataCrud: DelegatedChangesDataCrud,
     public alerts: AlertsService,
+    public translate: TranslateService,
   ) {
-    super(router);
+    super(router, translate);
   }
 
   public ngOnInit() {

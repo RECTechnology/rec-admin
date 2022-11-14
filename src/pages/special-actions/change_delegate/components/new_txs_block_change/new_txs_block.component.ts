@@ -16,6 +16,7 @@ import { DelegatedChangesDataCrud } from 'src/services/crud/delegated_changes/de
 import { DelegatedChangesCrud } from 'src/services/crud/delegated_changes/delegated_changes';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { Account } from 'src/shared/entities/account.ent';
+import { TranslateService } from '@ngx-translate/core';
 
 const mapAccount = (e) => {
   e.selected = true;
@@ -73,8 +74,9 @@ export class NewTXsBlockComponent extends PageBase {
     public changeCrud: DelegatedChangesCrud,
     public changeDataCrud: DelegatedChangesDataCrud,
     public alerts: AlertsService,
+    public translateService: TranslateService,
   ) {
-    super();
+    super(translateService);
   }
 
   public ngOnInit() {

@@ -24,6 +24,7 @@ import { User } from 'src/shared/entities/user.ent';
 import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
 import { UsersExportDefaults } from 'src/data/export-defaults';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'users',
@@ -42,11 +43,11 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
   public headers: TlHeader[] = [
     TlHeaders.Id,
     {
-      accessor: (user) => user ? user : null,
+      accessor: (user) => (user ? user : null),
       title: 'Name',
-      sort:'name',
+      sort: 'name',
       type: 'avatar-user',
-  },
+    },
     TlHeaders.generate('username'),
     TlHeaders.Email,
     TlHeaders.Phone,
@@ -72,13 +73,13 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
     public ls: LoginService,
     public usersCrud: UsersCrud,
     public alerts: AlertsService,
+    public translateService: TranslateService,
   ) {
-    super(router);
+    super(router, translateService);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-
       this.limit = params.limit ?? 10;
       this.offset = params.offset;
       this.sortDir = params.sortDir;
@@ -122,8 +123,8 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
       });
   }
 
-  public openViewDetails(user,tab = "details") {
-    this.router.navigate([`/users/${user.id}`],{ queryParams: { tab } });
+  public openViewDetails(user, tab = 'details') {
+    this.router.navigate([`/users/${user.id}`], { queryParams: { tab } });
   }
 
   public export() {
@@ -155,7 +156,7 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
           this.sortedData = this.companyService.companyUsers.slice();
           this.showing = this.companyService.companyUsers.length;
           this.total = resp.data.total;
-          console.log(this.sortedData)
+          console.log(this.sortedData);
           this.loading = false;
         },
         (error) => {

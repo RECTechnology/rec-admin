@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PageBase } from 'src/bases/page-base';
 import { LoginService } from 'src/services/auth/auth.service';
 import { Title } from '@angular/platform-browser';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'b2b-settings',
@@ -34,8 +35,9 @@ export class B2BSettingsComponent extends PageBase {
         public router: Router,
         public ls: LoginService,
         public titleService: Title,
-    ) {
-        super();
+        public translate: TranslateService,
+        ) {
+        super(translate);
         this.route.queryParams
             .subscribe((params) => {
                 this.tab = params.tab || 'activities';

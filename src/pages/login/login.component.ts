@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { LoginService, AppAuthService } from '../../services/auth/auth.service';
@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { environment } from '../../environments/environment';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AppService } from 'src/services/app/app.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'login',
@@ -40,24 +41,31 @@ export class LoginComponent implements OnInit {
     public zone: NgZone,
     public alerts: AlertsService,
     public app: AppService,
-  ) { }
+    public translate: TranslateService,
+  ) {}
 
   public ngOnInit() {
-    this.titleService.setTitle(this.Brand.title + ' | Login');
-
     /* This is actually not needed, but is a good way of checking if API is working */
     this.aas.doAuth().subscribe(
-      (resp) => { return; },
+      (resp) => {
+        return;
+      },
       (error) => {
         if (error) {
           this.errorMessage = 'There has been an error, please try again later.';
         } else {
           this.gotToken = true;
         }
-      });
+      },
+    );
 
-    this.app.getInfo()
-      .subscribe((resp) => this.apiVersion = resp.data.version);
+    this.app.getInfo().subscribe((resp) => (this.apiVersion = resp.data.version));
+  }
+
+  ngAfterContentInit() {
+    setTimeout(() => {
+      this.titleService.setTitle(this.translate.instant(this.Brand.title) + ' | Login');
+    }, 500);
   }
 
   public retry() {
@@ -72,22 +80,24 @@ export class LoginComponent implements OnInit {
 
       // Do login
       const sub = this.loginService.login(
-        this.credentials.username, this.credentials.password, this.credentials.two_fa,
+        this.credentials.username,
+        this.credentials.password,
+        this.credentials.two_fa,
       );
 
-      sub.subscribe((token) => {
-        const tokens: any = JSON.parse(JSON.stringify(token));
-        tokens.created = new Date();
+      sub.subscribe(
+        (token) => {
+          const tokens: any = JSON.parse(JSON.stringify(token));
+          tokens.created = new Date();
 
-        const loginDate = Date.now().toString();
+          const loginDate = Date.now().toString();
 
-        this.us.tokens = tokens;
-        localStorage.setItem('user.tokens', JSON.stringify(tokens));
-        localStorage.setItem('session_status', 'active');
-        localStorage.setItem('login_date', loginDate);
+          this.us.tokens = tokens;
+          localStorage.setItem('user.tokens', JSON.stringify(tokens));
+          localStorage.setItem('session_status', 'active');
+          localStorage.setItem('login_date', loginDate);
 
-        this.us.getProfile()
-          .subscribe(
+          this.us.getProfile().subscribe(
             (resp) => {
               this.us.setData(resp);
 
@@ -120,21 +130,25 @@ export class LoginComponent implements OnInit {
               localStorage.removeItem('user.tokens');
               localStorage.removeItem('session_status');
               localStorage.removeItem('login_date');
-            });
-      }, (error) => {
-        this.errorMessage = error ? error.error_description : 'error';
-        this.loading = false;
-        this.disabled = false;
-      });
-    } else { this.errorMessage = 'Please, username and password are required'; }
+            },
+          );
+        },
+        (error) => {
+          this.errorMessage = error ? error.error_description : 'error';
+          this.loading = false;
+          this.disabled = false;
+        },
+      );
+    } else {
+      this.errorMessage = 'Please, username and password are required';
+    }
   }
 
   // Check if fields are correct
   private validFields(): boolean {
-    if (
-      !this.credentials.username ||
-      !this.credentials.password
-    ) { return false; }
+    if (!this.credentials.username || !this.credentials.password) {
+      return false;
+    }
     return true;
   }
 }

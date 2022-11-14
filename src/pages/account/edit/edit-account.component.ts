@@ -18,6 +18,7 @@ import { MarketingTab } from './tabs/tab_marketing/marketing.tab';
 import { B2BTab } from './tabs/tab_b2b/b2b.tab';
 import { ScheduleTab } from './tabs/tab_schedule/schedule.tab';
 import { OffersTab } from './tabs/tab_offers/offers.tab';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'edit-account',
@@ -69,8 +70,9 @@ export class EditAccountComponent extends PageBase implements OnInit, OnDestroy 
     public crudAccounts: AccountsCrud,
     public alerts: AlertsService,
     public events: EventsService,
+    public translate: TranslateService,
   ) {
-    super();
+    super(translate);
   }
 
   public ngOnInit() {

@@ -15,6 +15,7 @@ import { Title } from '@angular/platform-browser';
 import { LoginService } from 'src/services/auth/auth.service';
 import { TlItemOptions } from 'src/data/tl-item-options';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'campaing_reports',
@@ -44,9 +45,9 @@ export class CampaignReportsAccount extends TablePageBase implements AfterConten
     public alerts: AlertsService,
     public crudAccounts: AccountsCrud,
     public router: Router,
-
+    public translate: TranslateService,
   ) {
-    super(router);
+    super(router, translate);
   }
 
   ngAfterContentInit(): void {}

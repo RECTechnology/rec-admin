@@ -22,6 +22,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
 import { OrgsExportDefaults } from 'src/data/export-defaults';
+import { TranslateService } from '@ngx-translate/core';
 
 const FILTERS = {
   only_offers: 0,
@@ -91,8 +92,9 @@ export class OrganizationsComponent extends TablePageBase {
     public as: AdminService,
     public accountsCrud: AccountsCrud,
     public alerts: AlertsService,
+    public translate: TranslateService,
   ) {
-    super(router);
+    super(router, translate);
     this.lang = this.langMap[us.lang];
     // this.search();
   }

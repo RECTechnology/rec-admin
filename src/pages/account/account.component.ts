@@ -11,6 +11,7 @@ import { UtilsService } from 'src/services/utils/utils.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { EventsService } from 'src/services/events/events.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'account',
@@ -55,8 +56,9 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     public crudAccounts: AccountsCrud,
     public alerts: AlertsService,
     public events: EventsService,
+    public translate: TranslateService,
   ) {
-    super();
+    super(translate);
   }
 
   public ngOnInit() {

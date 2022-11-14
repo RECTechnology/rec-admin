@@ -7,11 +7,10 @@ import { LoginService } from 'src/services/auth/auth.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { UtilsService } from 'src/services/utils/utils.service';
-import {
-  WALLET_STATUS_MAP, IBAN_STATUS_MAP,
-} from 'src/data/lw-constants';
+import { WALLET_STATUS_MAP, IBAN_STATUS_MAP } from 'src/data/lw-constants';
 import { EventsService } from 'src/services/events/events.service';
 import { AddIbanDia } from 'src/dialogs/entities/add-iban/add-iban.dia';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lemonway-tab',
@@ -47,26 +46,30 @@ export class LemonWayTab extends TablePageBase {
     public accCrud: AccountsCrud,
     public route: ActivatedRoute,
     public events: EventsService,
-  ) { super(router); }
+    public translate: TranslateService,
+  ) {
+    super(router, translate);
+  }
 
   public ngOnInit() {
     this.loading = true;
-    this.accCrud.lwGetWallet(this.id)
-      .subscribe((resp) => {
+    this.accCrud.lwGetWallet(this.id).subscribe(
+      (resp) => {
         this.lwInfo = resp.data;
         this.loading = false;
-      }, (err) => {
+      },
+      (err) => {
         if (err.errors) {
           this.error = UtilsService.normalizeLwError(err.errors).pop();
         }
         this.loading = false;
-      });
+      },
+    );
 
-    this.route.queryParams
-      .subscribe((params) => {
-        const tab = params.ltab || 'withdrawals';
-        this.currentTab = this.tabMap[tab] || 0;
-      });
+    this.route.queryParams.subscribe((params) => {
+      const tab = params.ltab || 'withdrawals';
+      this.currentTab = this.tabMap[tab] || 0;
+    });
 
     super.ngOnInit();
   }
@@ -85,11 +88,13 @@ export class LemonWayTab extends TablePageBase {
   }
 
   public newIBAN() {
-    return this.alerts.openModal(AddIbanDia, {
-      id: this.id,
-    }).subscribe((resp) => {
-      this.search();
-    });
+    return this.alerts
+      .openModal(AddIbanDia, {
+        id: this.id,
+      })
+      .subscribe((resp) => {
+        this.search();
+      });
   }
 
   public newWithdrawal() {

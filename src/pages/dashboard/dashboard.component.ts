@@ -12,6 +12,7 @@ import { DashboardService, DashboardValidIntervals } from 'src/services/dashboar
 import { DashChart } from 'src/components/ui/dash-chart/dash-chart.component';
 import { map } from 'rxjs/internal/operators/map';
 import { Colors, theme } from '../../theme/theme';
+import { TranslateService } from '@ngx-translate/core';
 
 declare const Morris;
 
@@ -53,8 +54,9 @@ export class DashboardComponent extends PageBase implements OnDestroy, OnLogout 
     public companyService: CompanyService,
     public tx: TransactionService,
     public dashService: DashboardService,
+    public translate: TranslateService,
   ) {
-    super();
+    super(translate);
   }
 
   public ngAfterViewInit() {
