@@ -39,8 +39,13 @@ jobs:
       - name: Push Docker image
         run: docker push reg.rallf.com:8443/rec-admin:stable
         
-      - name: Deploy
+      - name: Deploy REC
         uses: joelwmale/webhook-action@1.0.1
         env:
           WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_PROD }}
           data: ""
+      - name: Deploy ROSA
+        uses: joelwmale/webhook-action@1.0.1
+        env:
+          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_PROD_ROSA }}
+          data: ""    
