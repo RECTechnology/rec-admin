@@ -79,7 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
       return;
     });
 
-    this.title.setTitle(this.Brand.name);
+    this.title.setTitle(this.translate.instant(this.Brand.title));
     // this.setTheme();
 
     /* Check if device is movile and open/close sidemenu based on that */

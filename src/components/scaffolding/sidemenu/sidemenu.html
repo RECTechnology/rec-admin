@@ -13,7 +13,7 @@
     </button>
     <a routerLink="/dashboard" class="col-white text-mid-small"
       style="width: 120px" *ngIf="toggled">
-      {{brand.header_title}}
+      {{brand.title | translate}}
     </a>
   </div>
   <div class="content bg-white h-100" [ngClass]="{'small': !toggled}"
