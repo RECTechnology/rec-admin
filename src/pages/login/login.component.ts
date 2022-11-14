@@ -97,11 +97,14 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('session_status', 'active');
           localStorage.setItem('login_date', loginDate);
 
+          console.log('get profile');
           this.us.getProfile().subscribe(
             (resp) => {
+              console.log('got profile');
               this.us.setData(resp);
 
               if (!this.us.isSuperAdmin()) {
+                console.log('not superadmin');
                 this.us.logout();
                 this.disabled = false;
                 this.loading = false;
@@ -109,6 +112,7 @@ export class LoginComponent implements OnInit {
                 return;
               }
 
+              console.log(' superadmin');
               setTimeout(async (x) => {
                 // reset tokens as they have accepted and they can login now
                 this.us.tokens = tokens;
@@ -123,7 +127,9 @@ export class LoginComponent implements OnInit {
               this.loginService.isLoggedIn_ = true;
             },
             (error) => {
+              console.log(' error', error);
               this.errorMessage = error ? error.error_description : 'error';
+              this.alerts.showSnackbar(this.errorMessage, 'OK');
               this.loading = false;
               this.disabled = false;
               this.us.tokens = null;

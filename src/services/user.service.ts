@@ -19,11 +19,8 @@ export class UserService {
   public progressObserver;
   @Output() public onLogout: EventEmitter<any> = new EventEmitter();
 
-  constructor(
-    private http: HttpClient,
-    private xhr: XHR,
-  ) {
-    this.uploadprogress$ = new Observable((observer) => this.progressObserver = observer);
+  constructor(private http: HttpClient, private xhr: XHR) {
+    this.uploadprogress$ = new Observable((observer) => (this.progressObserver = observer));
   }
 
   public getGroupId(): string {
@@ -32,7 +29,7 @@ export class UserService {
 
   public _isAdmin(): boolean {
     const roles = this.userData.group_data.roles;
-    return this.isAdmin = roles.includes('ROLE_ADMIN');
+    return (this.isAdmin = roles.includes('ROLE_ADMIN'));
   }
 
   public isSuperAdmin(): boolean {
@@ -50,8 +47,8 @@ export class UserService {
 
   public getHeaders(ctype?): HttpHeaders {
     return new HttpHeaders({
-      'accept': 'application/json',
-      'authorization': 'Bearer ' + this.tokens.access_token,
+      accept: 'application/json',
+      authorization: 'Bearer ' + this.tokens.access_token,
       'content-type': ctype || 'application/json',
     });
   }
@@ -62,16 +59,11 @@ export class UserService {
 
   public addUserToAccount(account_id, user_dni, role): Observable<any> {
     const headers = this.getHeaders();
-    const options = ({ headers });
+    const options = { headers };
 
-    return this.http.post(
-      `${API_URL}/manager/v1/groups/${account_id}`,
-      { user_dni, role },
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
+    return this.http
+      .post(`${API_URL}/manager/v1/groups/${account_id}`, { user_dni, role }, options)
+      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
   public getCurrency() {
@@ -80,16 +72,17 @@ export class UserService {
 
   public getProfile(): Observable<any> {
     const headers = this.getHeaders();
-    const options = ({ headers, method: 'GET' });
+    const options = { headers, method: 'GET' };
 
-    return this.http.get(
-      `${API_URL}/user/v1/account`,
-      options,
-    ).pipe(
+    return this.http.get(`${API_URL}/user/v1/account`, options).pipe(
       map((res: any) => {
         const body = res;
-        body.data.group_data.wallets[0].available = body.data.group_data.wallets[0].available / 100000000;
-        body.data.group_data.wallets[0].balance = body.data.group_data.wallets[0].balance / 100000000;
+        if (!body.data.group_data.wallets || !body.data.group_data.wallets[0]) {
+          body.data.group_data.wallets = [{ available: 0, balance: 0 }];
+        } else {
+          body.data.group_data.wallets[0].available = body.data.group_data.wallets[0].available / 100000000;
+          body.data.group_data.wallets[0].balance = body.data.group_data.wallets[0].balance / 100000000;
+        }
 
         try {
           const parsed = JSON.parse(body.data.kyc_validations.phone);
@@ -107,30 +100,20 @@ export class UserService {
 
   public updateProfile(data) {
     const headers = this.getHeaders();
-    const options = ({ headers, method: 'PUT' });
+    const options = { headers, method: 'PUT' };
 
-    return this.http.put(
-      `${API_URL}/user/v1/account`,
-      data,
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
+    return this.http
+      .put(`${API_URL}/user/v1/account`, data, options)
+      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
   public updateKyc(data) {
     const headers = this.getHeaders('application/x-www-form-urlencoded');
-    const options = ({ headers, method: 'POST' });
+    const options = { headers, method: 'POST' };
 
-    return this.http.post(
-      `${API_URL}/user/v1/save_kyc`,
-      data,
-      options,
-    ).pipe(
-      map(this.extractData),
-      catchError(this.handleError.bind(this)),
-    );
+    return this.http
+      .post(`${API_URL}/user/v1/save_kyc`, data, options)
+      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
   public uploadFileWithProgress(file): Observable<any> {
