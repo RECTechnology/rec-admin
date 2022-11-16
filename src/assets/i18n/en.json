@@ -1528,5 +1528,6 @@
     "package_challenges_name": "Challenges",
     "package_nft_wallet_name": "NFT Wallet",
     "package_qualifications_name": "Qualifications",
-    "package_reports_name": "Reports"
+    "package_reports_name": "Reports",
+    "config_default_funding_amount_description": "Amount of Matic to recharge. When there is a wallet without funds, generate a Matic tx."
 }
