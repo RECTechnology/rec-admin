@@ -1516,6 +1516,6 @@
     "config_threshold_description": "Porcentaje mínimo de calificaciones positivas que ha de obtener la cualidad de un comercio para que este reciba el sello. ",
     "config_c2b_tab_participa_description": "Apartado para visualizar los retos activos de la plataforma y los premios que has conseguido",
     "config_map_badges_filter_status_description": "Muestra/Oculta el filtro cualidades del mapa de la app. Este filtro devuelve los comercios que poseen sello de la cualidad seleccionada ",
-    "config_qualifications_system_status_description": "Activa/Desactiva el sistema de calificar las cualidades de un comercio después de cada compra. ",
+    "config_qualifications_system_status_description": "Activa/Desactiva el sistema de calificar las cualidades de un comercio después de cada compra.",
     "config_profile_pis_status_description": "Muestra/Oculta las estadísticas Paraula, Impuls i Sabiessa del perfil de los usuarios en la plataforma “Connecta”."
 }
