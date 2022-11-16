@@ -1515,5 +1515,16 @@
     "config_c2b_tab_participa_description": "Apartado para visualizar los retos activos de la plataforma y los premios que has conseguido",
     "config_map_badges_filter_status_description": "Muestra/Oculta el filtro cualidades del mapa de la app. Este filtro devuelve los comercios que poseen sello de la cualidad seleccionada ",
     "config_qualifications_system_status_description": "Activa/Desactiva el sistema de calificar las cualidades de un comercio después de cada compra. ",
-    "config_profile_pis_status_description": "Muestra/Oculta las estadísticas Paraula, Impuls i Sabiessa del perfil de los usuarios en la plataforma “Connecta”."
+    "config_profile_pis_status_description": "Muestra/Oculta las estadísticas Paraula, Impuls i Sabiessa del perfil de los usuarios en la plataforma “Connecta”.",
+    "platform_admin_panel_name": "Admin Panel",
+    "platform_app_name": "App",
+    "platform_api_name": "API",
+    "platform_senfake_name": "Rezero B2B",
+    "package_b2b_atarca_name": "B2B Atarca",
+    "package_badges_name": "Sellos",
+    "package_bulk_mailing_name": "Emails masivos",
+    "package_challenges_name": "Retos",
+    "package_nft_wallet_name": "Wallet NFT",
+    "package_qualifications_name": "Calificaciones",
+    "package_reports_name": "Informes"
 }

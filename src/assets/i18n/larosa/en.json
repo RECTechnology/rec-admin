@@ -1515,5 +1515,16 @@
     "config_c2b_tab_participa_description": "Section to view the active challenges of the platform and the rewards you have won",
     "config_map_badges_filter_status_description": "Show/Hide the qualities filter of the app map. This filter returns the businesses that have the badge of the selected quality",
     "config_qualifications_system_status_description": "Activate/Deactivate the system to qualify the qualities of a business after each purchase.",
-    "config_profile_pis_status_description": "Show/Hide the Paraula, Impuls and Sabiessa statistics from the user profile on the “Connecta” platform."
+    "config_profile_pis_status_description": "Show/Hide the Paraula, Impuls and Sabiessa statistics from the user profile on the “Connecta” platform.",
+    "platform_admin_panel_name": "Admin Panel",
+    "platform_app_name": "App",
+    "platform_api_name": "API",
+    "platform_senfake_name": "Rezero B2B",
+    "package_b2b_atarca_name": "B2B Atarca",
+    "package_badges_name": "Badges",
+    "package_bulk_mailing_name": "Massive emails",
+    "package_challenges_name": "Challenges",
+    "package_nft_wallet_name": "NFT Wallet",
+    "package_qualifications_name": "Qualifications",
+    "package_reports_name": "Reports"
 }
