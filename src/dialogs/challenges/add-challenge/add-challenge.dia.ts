@@ -16,12 +16,15 @@ import { Badge } from '../../../shared/entities/badge.ent';
 @Component({
   selector: 'add-challenge',
   templateUrl: './add-challenge.html',
+  styleUrls: ['./add-challenge.scss'],
 })
 export class AddChallengeDia extends BaseDialog {
   public isEdit = false;
   public edited = true;
   public isBuy = false;
   public isSend = false;
+  public start_date: string;
+  public finish_date: string;
   public disabledEndDate = false;
   public disabledSelectors = false;
   public badgeLabel: string = 'Any';
@@ -62,7 +65,7 @@ export class AddChallengeDia extends BaseDialog {
     description: new FormControl('', [Validators.required, EmptyValidators.noWhitespaceValidator]),
     start_date: new FormControl('', [Validators.required]),
     finish_date: new FormControl('', [Validators.required]),
-    threshold: new FormControl(0, [Validators.required, Validators.min(1)]),
+    threshold: new FormControl(0, [Validators.required]),
     action: new FormControl('', Validators.required),
     badge: new FormControl(''),
     amount_required: new FormControl(0, [Validators.required, Validators.min(0.1)]),
@@ -92,8 +95,8 @@ export class AddChallengeDia extends BaseDialog {
         'cover_image': this.challenge.cover_image,
         'title': this.challenge.title,
         'description': this.challenge.description,
-        'start_date': this.challenge.start_date,
-        'finish_date': this.challenge.finish_date,
+        'start_date': this.formatDate(this.challenge.start_date),
+        'finish_date': this.formatDate(this.challenge.finish_date),
         'threshold': this.challenge.threshold ?? 0,
         'action': this.actionId,
         'amount_required': this.convertToRecs(this.challenge.amount_required) ?? 0,
@@ -133,6 +136,12 @@ export class AddChallengeDia extends BaseDialog {
         );
   }
 
+  public formatDate(date: string){
+    var datepipe: DatePipe = new DatePipe('es');
+    var dateItem = new Date(date);
+    return datepipe.transform(dateItem, 'yyyy-MM-ddTHH:mm:ss');
+  }
+
   public openChallenge() {
       if(this.challenge.status === 'open' && this.isEdit) {
         this.formGroup.disable();
@@ -159,8 +168,8 @@ export class AddChallengeDia extends BaseDialog {
 
   public validation(){
     var datepipe: DatePipe = new DatePipe('es');
-    this.challengeCopy.start_date = datepipe.transform(this.challengeCopy.start_date, 'yyyy-MM-ddT00:00:00+00:00');
-    this.challengeCopy.finish_date = datepipe.transform(this.challengeCopy.finish_date, 'yyyy-MM-ddT00:00:00+00:00');
+    this.challengeCopy.start_date = datepipe.transform(this.challengeCopy.start_date, 'yyyy-MM-ddTHH:mm:ss');
+    this.challengeCopy.finish_date = datepipe.transform(this.challengeCopy.finish_date, 'yyyy-MM-ddTHH:mm:ss');
     const initialValue = {
       title: this.challengeCopy.title,
       description: this.challengeCopy.description,
@@ -179,8 +188,8 @@ export class AddChallengeDia extends BaseDialog {
       )
       .subscribe(resp => {
         var datepipe: DatePipe = new DatePipe('es');
-        resp.start_date = datepipe.transform(resp.start_date, 'yyyy-MM-ddT00:00:00+00:00')
-        resp.finish_date = datepipe.transform(resp.finish_date, 'yyyy-MM-ddT00:00:00+00:00')
+        resp.start_date = datepipe.transform(resp.start_date, 'yyyy-MM-ddTHH:mm:ss')
+        resp.finish_date = datepipe.transform(resp.finish_date, 'yyyy-MM-ddTHH:mm:ss')
         this.edited = Object.keys(initialValue).some(key => resp[key] != 
           initialValue[key]);  
       })
@@ -205,15 +214,17 @@ export class AddChallengeDia extends BaseDialog {
   }
 
   public changeStartDate(event) {
-    var dateSupport: Date = new Date(event);
+    var dateSupport: Date = new Date(event.target.value);
     var datepipe: DatePipe = new DatePipe('es');
-    this.formGroup.get('start_date').setValue(datepipe.transform(dateSupport, 'yyyy-MM-ddT00:00:00+00:00'));
+    this.formGroup.get('start_date').setValue(datepipe.transform(dateSupport, 'yyyy-MM-ddTHH:mm:ss'));
+    this.start_date = dateSupport.toISOString();
   }
 
   public changeFinishDate(event) {
-    var dateSupport: Date = new Date(event);
+    var dateSupport: Date = new Date(event.target.value);
     var datepipe: DatePipe = new DatePipe('es');
-    this.formGroup.get('finish_date').setValue(datepipe.transform(dateSupport, 'yyyy-MM-ddT00:00:00+00:00'));
+    this.formGroup.get('finish_date').setValue(datepipe.transform(dateSupport, 'yyyy-MM-ddTHH:mm:ss'));
+    this.finish_date = dateSupport.toISOString();
   }
 
   public filterRewards(rewards){
@@ -372,8 +383,8 @@ export class AddChallengeDia extends BaseDialog {
     this.challenge.cover_image = this.formGroup.get('cover_image').value;
     this.challenge.description = this.formGroup.get('description').value;
     this.challenge.title = this.formGroup.get('title').value;
-    this.challenge.start_date = this.formGroup.get('start_date').value;
-    this.challenge.finish_date = this.formGroup.get('finish_date').value;
+    this.challenge.start_date = this.start_date;
+    this.challenge.finish_date = this.finish_date;
     this.challenge.action = this.getActionFromId(this.formGroup.get('action').value);
     this.challenge.amount_required = this.convertToSatoshis(this.formGroup.get('amount_required').value);
     this.challenge.token_reward_id = this.formGroup.get('token_reward').value.id;

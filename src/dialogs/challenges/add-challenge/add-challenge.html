@@ -41,13 +41,19 @@
     <div class="group-row-left space-between" style="width:95%; padding-left: 20px;">
       <div class="col-lg-5" style="width: 95%;">
         <p style="color: black; font-size: 14px; font-weight: 400;">{{"Start_Date" |translate}} *</p>
-        <date-picker [isDisable]="disabledSelectors" formControlName="start_date" [item]="challenge.start_date" (itemChanged)="changeStartDate($event)"></date-picker>
+        <!-- <date-picker [isDisable]="disabledSelectors" formControlName="start_date" [item]="challenge.start_date" (itemChanged)="changeStartDate($event)"></date-picker> -->
+        <mat-form-field>
+          <input matInput type="datetime-local" [disabled]="disabledSelectors" formControlName="start_date" (change)="changeStartDate($event)">
+        </mat-form-field>
         <mat-error style="font-size:14px" *ngIf="formGroup.get('start_date').touched && formGroup.get('start_date').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
       </div>
 
       <div class="col-lg-5" style="width: 95%;">
         <p style="color: black; font-size: 14px; font-weight: 400;">{{"End_Date" |translate}} *</p>
-        <date-picker [isDisable]="disabledEndDate" formControlName="finish_date" [item]="challenge.finish_date" (itemChanged)="changeFinishDate($event)"></date-picker>
+        <!-- <date-picker [isDisable]="disabledEndDate" formControlName="finish_date" [item]="challenge.finish_date" (itemChanged)="changeFinishDate($event)"></date-picker> -->
+        <mat-form-field>
+          <input matInput type="datetime-local" [disabled]="disabledSelectors" formControlName="finish_date" (change)="changeFinishDate($event)">
+        </mat-form-field>
         <mat-error style="font-size:14px" *ngIf="formGroup.get('finish_date').touched && formGroup.get('finish_date').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
       </div>
     </div>
