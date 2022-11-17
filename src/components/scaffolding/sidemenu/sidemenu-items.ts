@@ -96,4 +96,9 @@ export const SIDEMENU_ITEMS = [
     icon: 'fa-envelope-open-text',
     hide: true
   },
+  {
+    name: 'PARAMETRIZATION',
+    route: '/parametrization',
+    icon: 'fa-sliders',
+  },
 ];

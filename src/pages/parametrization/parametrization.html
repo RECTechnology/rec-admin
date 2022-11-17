@@ -1,0 +1,67 @@
+<header-nav></header-nav>
+<app-page>
+    <div class="row" style="margin: 0;">
+        <mat-card class="col-lg-12" style="padding: 0">
+            <tl-header title="{{'Parametrization' | translate}}" (onSearch)="search($event)"
+                (selectValueChange)="addPackageFilter($event)" filtersText="FILTER_BY_PACKAGE"
+                [filterOptions]="this.packagesCopy" [options]="{ deepLinkQuery: true, input: true, filters: true }">
+            </tl-header>
+
+            <div class="row" style="margin: 0;overflow: hidden; height: calc(100% - 32px)">
+                <div style="border-right: 2px solid #E0E0E0; margin: 10px 0 0 0; height: max-content;" class="col-lg-2 padd-20">
+                    <div style="padding-bottom: 40px;">
+                        <p (click)="addPlatformFilter('')"
+                            [ngClass]="{'primary-color': (this.platformFilter && this.platformFilter == '')}"
+                            style="cursor: pointer;">{{'ALL_PLATFORMS' | translate}}</p>
+                    </div>
+                    <div *ngFor="let item of platforms" style="padding-bottom: 40px;">
+                        <a [ngClass]="{'primary-color': this.platformFilter && this.platformFilter == item}"
+                            class="item" (click)="addPlatformFilter(item)"
+                            style="color:#828282; text-transform: uppercase; cursor: pointer;">{{'platform_' + item +
+                            '_name' | translate}}</a>
+                    </div>
+                </div>
+                <div *ngIf="mockDataCopy && mockDataCopy.length > 0; else elseBlock" class="col-lg-10 padd-20 content-wrapper">
+                    <div class="inner-content-wrapper" *ngFor="let item of packages">
+                        <h4 style="text-transform: capitalize; margin-bottom: 20px; font-weight: 600;">{{item | translate}}</h4>
+                        <div *ngFor="let item of getItemsForPackage(item)">
+                            <div class="row">
+                                <b class="col-lg-8">{{'config_' + item.name + '_name' | translate}}</b>
+                            </div>
+                            <div class="row">
+                                <p class="col-lg-8" style="color:#828282; padding-bottom: 20px;">{{'config_' + item.name
+                                    + '_description' | translate}}</p>
+                                <p class="col-lg-2">{{'platform_' + item.platform + '_name' | translate}}</p>
+                                <mat-slide-toggle class="col-lg-2" *ngIf="item.type === 'boolean'" color="primary"
+                                    [checked]="item.value === 'enabled' ? true : false"
+                                    (change)="updateSetting(item.id, item.value === 'enabled' ? 'disabled' : 'enabled')">
+                                </mat-slide-toggle>
+                                <mat-form-field *ngIf="item.type === 'int'" style="max-width: 10%; width: auto; margin-top: -20px;" class="col-lg-2">
+                                    <input matInput [value]="item.value" (blur)="updateSetting(item.id, $event.target.value)">
+                                </mat-form-field>
+                                <mat-form-field *ngIf="item.type === 'double'" style="max-width: 10%; width: auto; margin-top: -20px;" class="col-lg-2">
+                                    <input matInput [value]="item.value" (blur)="updateSetting(item.id, $event.target.value)">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-template #elseBlock>
+                    <div *ngIf="!loading" class="col-lg-9 padd-20">
+                        <b style="padding-bottom: 10px;">{{'NO_SEARCH_RESULT' | translate}}</b>
+                        <p style="color:#828282; padding-bottom: 20px; padding-top: 10px;">
+                            {{'CONFIG_SETTINGS_EMPTY_DESCRIPTION' | translate}}
+                        </p>
+                    </div>
+                </ng-template>
+            </div>
+
+            <div *ngIf="loading" class="abs-center center h v bg-white-opaque" style="width: 100%;">
+                <mat-progress-spinner [diameter]="40" color="primary" mode="indeterminate"
+                    style="width: 40px; height: 40px">
+                </mat-progress-spinner>
+            </div>
+        </mat-card>
+    </div>
+</app-page>

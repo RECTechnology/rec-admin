@@ -1,0 +1,15 @@
+.content-wrapper {
+    overflow-y: auto;
+    // height: 100%;
+    height: inherit;
+
+    .inner-content-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.mat-card {
+    height: 85vh;
+    overflow-y: hidden;
+}

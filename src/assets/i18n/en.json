@@ -1067,6 +1067,7 @@
     "CHALLENGES": "Challenges",
     "REWARDS": "Rewards",
     "CONFIRM_DELETE_REWARD": "Only those prizes that are not associated as prizes of a challenge can be eliminated. If you want to delete a prize associated with a challenge, you must first delete the challenge or assign it as a prize a different prize in order to delete it.",
+    "All_platforms": "All platforms",
     "Reward": "Reward",
     "Start_Date": "Start Date",
     "End_Date": " End Date",

@@ -3,10 +3,20 @@
         {{title|translate}}
     </p>
 
-    <input autocomplete="off" id="tl-header-search-bar" *ngIf="options.input" #search type="text" class="{{inputClass}}"
-        style="max-width: 70%;margin: 0 15px" placeholder="{{searchPlaceholder|translate}}...">
+    <div *ngIf="options.filters" class="group-row-left">
+        <p class="small-text" style="margin-right: 10px!important; margin-bottom: 10px!important;">{{this.filtersText | translate}}</p>
+        <input-field style="font-size: 14px;" type="select" placeholder="None" (valueChange)="valueChange($event)"
+            [options]="filterOptions">
+        </input-field>
+    </div>
+    
+    <input autocomplete="off" id="tl-header-search-bar" *ngIf="options.input && !options.filters" #search type="text" class="{{inputClass}}"
+        style="max-width: 70%;margin: 0 15px;" placeholder="{{searchPlaceholder|translate}}...">
 
     <div class="group-row-left">
+        <input autocomplete="off" id="tl-header-search-bar" *ngIf="options.input && options.filters" #search type="text" class="{{inputClass}}"
+        style="max-width: 100%;margin: 0 5px;" placeholder="{{searchPlaceholder|translate}}...">
+
         <div *ngIf="options.input && options.search">
             <raised-btn icon="fa-search" [text]="searchPlaceholder" (click)="search();"></raised-btn>
         </div>

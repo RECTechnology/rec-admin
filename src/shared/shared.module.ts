@@ -132,6 +132,8 @@ import { ChallengesTab } from 'src/pages/challenges/tab_challenges/tab_challenge
 import { AddChallengeDia } from 'src/dialogs/challenges/add-challenge/add-challenge.dia';
 import { AddRewardsDia } from 'src/dialogs/challenges/add-reward/add-reward.dia';
 import { RewardSelector } from '../components/selectors/reward-selector/reward-selector';
+import { ParametrizationComponent } from '../pages/parametrization/parametrization.component';
+import { ConfigurationSettingsCrud } from '../services/crud/config_settings/configuration_settings';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -196,6 +198,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     OrganizationsComponent,
     LoginComponent,
     AccountsPage,
+    ParametrizationComponent,
     ChallengesPage,
     RewardsTab,
     ChallengesTab,
@@ -347,6 +350,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     AlertsService,
     LemonDocumentKindsCrud,
     LemonwayDocumentCrud,
+    ConfigurationSettingsCrud,
     EventsService,
     IbansCrud,
     CampaignsCrud,

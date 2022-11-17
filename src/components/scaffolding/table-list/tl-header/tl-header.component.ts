@@ -12,6 +12,7 @@ export interface TableListHeaderOptions {
     newItem?: boolean;
     showOptions?: boolean;
     deepLinkQuery?: boolean;
+    filters?: boolean;
 }
 
 const defaultOptions: TableListHeaderOptions = {
@@ -21,6 +22,7 @@ const defaultOptions: TableListHeaderOptions = {
     newItem: false,
     showOptions: false,
     deepLinkQuery: false,
+    filters: false
 };
 
 @Component({
@@ -31,14 +33,18 @@ export class TableListHeader {
     @Input() public options: TableListHeaderOptions = {};
     @Input() public title: string = 'TableList';
     @Input() public query: string = '';
+    @Input() public option: string = '';
     @Input() public searchPlaceholder: string = 'Search';
     @Input() public inputClass = 'input border-radius-2';
+    @Input() public filtersText = '';
+    @Input() public filterOptions = [];
     @Input() public newItemText = '';
     @Input() public newItemIcon = 'fa-plus';
     @Input() public searching = false;
 
     @Output() public onSearch: EventEmitter<string>;
     @Output() public queryChange: EventEmitter<string>;
+    @Output() public selectValueChange: EventEmitter<string>;
     @Output() public onAdd: EventEmitter<any>;
 
     @ViewChild('search') public searchElement: ElementRef;
@@ -48,6 +54,7 @@ export class TableListHeader {
         public route: ActivatedRoute,
     ) {
         this.onSearch = new EventEmitter<string>();
+        this.selectValueChange = new EventEmitter<string>();
         this.queryChange = new EventEmitter<string>();
         this.onAdd = new EventEmitter<any>();
 
@@ -89,6 +96,10 @@ export class TableListHeader {
 
     public addItem() {
         this.onAdd.emit();
+    }
+
+    public valueChange($event){
+        this.selectValueChange.emit($event)
     }
 
     public setupDebouncedSearch(element) {

@@ -20,6 +20,7 @@ import { B2BComponent } from 'src/pages/special-actions/b2b_page/b2b.component';
 import { RatingsPage } from '../pages/ratings/ratings.component';
 import { HideShowB2b, HideShowMail, HideShowQualifications, HideShowReports } from '../services/guards/show_components.guard';
 import { ChallengesPage } from '../pages/challenges/challenges.component';
+import { ParametrizationComponent } from '../pages/parametrization/parametrization.component';
 
 const ROUTES: Routes = [
   // Public Routes - user shouldn't be authenticated to accesss them
@@ -111,6 +112,11 @@ const ROUTES: Routes = [
   {
     path: 'challenges',
     component: ChallengesPage,
+    canActivate: [IsLoggedInGuard],
+  },
+  {
+    path: 'parametrization',
+    component: ParametrizationComponent,
     canActivate: [IsLoggedInGuard],
   }
 ];
