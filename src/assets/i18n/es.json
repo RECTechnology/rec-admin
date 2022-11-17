@@ -1068,7 +1068,6 @@
     "REWARDS": "Premios",
     "CONFIRM_DELETE_REWARD": "Solamente pueden eliminarse aquellos premios que no estan asociados como premios de un reto. Si deseas borrar un premio asociado a un reto, primero deberás borrar el reto o bien asignarle como premio otro premio distinto para poder borrar este.",
     "Reward": "Premio",
-    "All_platforms": "Todas las plataformas",
     "Start_Date": "Fecha inicio",
     "End_Date": "Fecha fin",
     "Challenge": "Reto",
@@ -1533,5 +1532,8 @@
     "config_default_funding_amount_description": "Cantidad de Matic a recargar. Cuando hay algún wallet sin fondos, generear una tx de Matic.",
     "CONFIG_EDITED_CORRECTLY": "Configuración editada correctamente",
     "NO_SEARCH_RESULT": "No hemos encontrado ningún resultado",
-    "CONFIG_SETTINGS_EMPTY_DESCRIPTION": "Si realizaste una búsqueda de texto compruebe la ortografía o pruebe con otras palabras clave en el idioma que tenga seleccionado"
+    "CONFIG_SETTINGS_EMPTY_DESCRIPTION": "Si realizaste una búsqueda de texto compruebe la ortografía o pruebe con otras palabras clave en el idioma que tenga seleccionado",
+    "All_platforms": "Todas las plataformas",
+    "PARAMETRIZATION": "Parametrización",
+    "FILTER_BY_PACKAGE": "Filtrar por paquete"
 }
