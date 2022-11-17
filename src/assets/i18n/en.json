@@ -1067,7 +1067,6 @@
     "CHALLENGES": "Challenges",
     "REWARDS": "Rewards",
     "CONFIRM_DELETE_REWARD": "Only those prizes that are not associated as prizes of a challenge can be eliminated. If you want to delete a prize associated with a challenge, you must first delete the challenge or assign it as a prize a different prize in order to delete it.",
-    "All_platforms": "All platforms",
     "Reward": "Reward",
     "Start_Date": "Start Date",
     "End_Date": " End Date",
@@ -1533,5 +1532,8 @@
     "config_default_funding_amount_description": "Amount of Matic to recharge. When there is a wallet without funds, generate a Matic tx.",
     "CONFIG_EDITED_CORRECTLY": "Setting edited correctly",
     "NO_SEARCH_RESULT": "We could not find any results",
-    "CONFIG_SETTINGS_EMPTY_DESCRIPTION": "If you did a text search check the spelling or try other keywords in the language you have selected"
+    "CONFIG_SETTINGS_EMPTY_DESCRIPTION": "If you did a text search check the spelling or try other keywords in the language you have selected",
+    "All_platforms": "All platforms",
+    "PARAMETRIZATION": "Parametrization",
+    "FILTER_BY_PACKAGE": "Filter by package"
 }
