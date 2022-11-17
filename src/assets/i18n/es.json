@@ -1529,5 +1529,8 @@
     "package_nft_wallet_name": "Wallet NFT",
     "package_qualifications_name": "Calificaciones",
     "package_reports_name": "Informes",
-    "config_default_funding_amount_description": "Cantidad de Matic a recargar. Cuando hay algún wallet sin fondos, generear una tx de Matic."
+    "config_default_funding_amount_description": "Cantidad de Matic a recargar. Cuando hay algún wallet sin fondos, generear una tx de Matic.",
+    "CONFIG_EDITED_CORRECTLY": "Configuración editada correctamente",
+    "NO_SEARCH_RESULT": "No hemos encontrado ningún resultado",
+    "CONFIG_SETTINGS_EMPTY_DESCRIPTION": "Si realizaste una búsqueda de texto compruebe la ortografía o pruebe con otras palabras clave en el idioma que tenga seleccionado"
 }
