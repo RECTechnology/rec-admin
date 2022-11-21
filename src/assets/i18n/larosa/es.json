@@ -1527,7 +1527,7 @@
     "Want to use sandbox": "Quieres usar sandbox",
     "Want to view API docs": "Quieres ver la documentación de la API",
     "EXCHANGERS_LIST": "Lista de negocios que intercambian recs.",
-    "All_platforms": "Todas las plataformas",
     "FILTER_BY_PACKAGE": "Filtrar por paquete",
-    "PARAMETRIZATION": "Parametrización"
+    "PARAMETRIZATION": "Parametrización",
+    "All_platforms": "Todas las plataformas"
 }
