@@ -1527,7 +1527,7 @@
     "Want to use sandbox": "",
     "Want to view API docs": "",
     "EXCHANGERS_LIST": "",
-    "All_platforms": "All platforms",
-    "FILTER_BY_PACKAGE": "Filter by package",
-    "PARAMETRIZATION": "Parametrization"
+    "FILTER_BY_PACKAGE": "",
+    "PARAMETRIZATION": "Parametrization",
+    "All_platforms": ""
 }
