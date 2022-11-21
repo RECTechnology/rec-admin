@@ -52,7 +52,7 @@
         <p style="color: black; font-size: 14px; font-weight: 400;">{{"End_Date" |translate}} *</p>
         <!-- <date-picker [isDisable]="disabledEndDate" formControlName="finish_date" [item]="challenge.finish_date" (itemChanged)="changeFinishDate($event)"></date-picker> -->
         <mat-form-field>
-          <input matInput type="datetime-local" [disabled]="disabledSelectors" formControlName="finish_date" (change)="changeFinishDate($event)">
+          <input matInput type="datetime-local" [disabled]="disabledEndDate" formControlName="finish_date" (change)="changeFinishDate($event)">
         </mat-form-field>
         <mat-error style="font-size:14px" *ngIf="formGroup.get('finish_date').touched && formGroup.get('finish_date').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
       </div>

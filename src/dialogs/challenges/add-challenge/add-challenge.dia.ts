@@ -145,6 +145,7 @@ export class AddChallengeDia extends BaseDialog {
   public openChallenge() {
       if(this.challenge.status === 'open' && this.isEdit) {
         this.formGroup.disable();
+        this.formGroup.get('finish_date').enable(); 
         this.disabledSelectors = true;
         this.alerts.showSnackbar('OPEN_CHALLENGE_ADVISE', 'ok')
       }
