@@ -1533,7 +1533,6 @@
     "CONFIG_EDITED_CORRECTLY": "Setting edited correctly",
     "NO_SEARCH_RESULT": "We could not find any results",
     "CONFIG_SETTINGS_EMPTY_DESCRIPTION": "If you did a text search check the spelling or try other keywords in the language you have selected",
-    "All_platforms": "All platforms",
     "PARAMETRIZATION": "Parametrization",
     "FILTER_BY_PACKAGE": "Filter by package"
 }
