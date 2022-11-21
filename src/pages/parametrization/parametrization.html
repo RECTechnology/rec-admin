@@ -10,12 +10,12 @@
             <div class="row" style="margin: 0;overflow: hidden; height: calc(100% - 32px)">
                 <div style="border-right: 2px solid #E0E0E0; margin: 10px 0 0 0; height: max-content;" class="col-lg-2 padd-20">
                     <div style="padding-bottom: 40px;">
-                        <p (click)="addPlatformFilter('')"
-                            [ngClass]="{'primary-color': (this.platformFilter && this.platformFilter == '')}"
-                            style="cursor: pointer;">{{'ALL_PLATFORMS' | translate}}</p>
+                        <a  [ngClass]="{'color-primary': !this.platformFilter}"
+                            (click)="addPlatformFilter('')"
+                            style="cursor: pointer; color:black;">{{'ALL_PLATFORMS' | translate}}</a>
                     </div>
                     <div *ngFor="let item of platforms" style="padding-bottom: 40px;">
-                        <a [ngClass]="{'primary-color': this.platformFilter && this.platformFilter == item}"
+                        <a [ngClass]="{'color-primary': this.platformFilter && this.platformFilter == item}"
                             class="item" (click)="addPlatformFilter(item)"
                             style="color:#828282; text-transform: uppercase; cursor: pointer;">{{'platform_' + item +
                             '_name' | translate}}</a>
