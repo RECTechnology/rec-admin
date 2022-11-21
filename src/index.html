@@ -242,7 +242,7 @@
       </div>
     </div>
     <script>
-        if(__env.Brand.name === 'rec') {
+        if(__env.Brand.name === 'REC') {
           document.getElementById('logo').setAttribute('src', "assets/resources/logo_round.png");
         }else {
           document.getElementById('favicon').setAttribute('href', __env.Brand.favicon);
@@ -252,7 +252,7 @@
   </app-rec-admin>
 
   <script>
-   if(__env.Brand.name !== 'rec'){
+   if(__env.Brand.name !== 'REC'){
     document.querySelector('body').classList.add(__env.Brand.name)
    }
   </script>
