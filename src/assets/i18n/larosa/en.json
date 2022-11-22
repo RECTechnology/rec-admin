@@ -1526,8 +1526,10 @@
     "WANT_TO_DEVELOP_WITH_CHIPCHAP": "",
     "Want to use sandbox": "",
     "Want to view API docs": "",
-    "EXCHANGERS_LIST": "",
-    "FILTER_BY_PACKAGE": "",
+    "EXCHANGERS_LIST": "List of organizacións that exchange ROSES.",
+    "FILTER_BY_PACKAGE": "Filter by package",
     "PARAMETRIZATION": "Parametrization",
-    "All_platforms": ""
+    "ALL_PLATFORMS": "All platforms",
+    "config_menu_item_challenges_name": "Challenge menu item",
+    "config_menu_item_challenges_description": "Section to manage the challenges and prizes of the platform"
 }
