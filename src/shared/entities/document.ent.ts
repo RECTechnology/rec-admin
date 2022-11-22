@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { User } from 'src/shared/entities/user.ent'
 import { Account } from './account.ent';
 import { DocumentKind } from './document_kind.ent';
@@ -48,13 +49,13 @@ export class Document implements Document {
     public static STATUS_WRONG_NAME = 'wrong_name';
 
     public static REC_STATUS_TYPES = {
-        rec : [
+        REC : [
             Document.REC_STATUS_SUBMITTED,
             Document.REC_STATUS_DECLINED,
             Document.REC_STATUS_APROVED,
             Document.REC_STATUS_EXPIRED
         ],
-        la_rosa : [
+        laROSA : [
             Document.ROSA_STATUS_SUBMITTED,
             Document.ROSA_STATUS_DECLINED,
             Document.ROSA_STATUS_APROVED,
@@ -63,7 +64,7 @@ export class Document implements Document {
         
     };
 
-    public static STATUS_TYPES = this.REC_STATUS_TYPES['la_rosa'];
+    public static STATUS_TYPES = this.REC_STATUS_TYPES.hasOwnProperty(environment.Brand.name) ? this.REC_STATUS_TYPES[environment.Brand.name] : this.REC_STATUS_TYPES['REC'];
     
 
     public static ALL_STATUSES = [
