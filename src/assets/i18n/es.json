@@ -1535,5 +1535,7 @@
     "CONFIG_SETTINGS_EMPTY_DESCRIPTION": "Si realizaste una búsqueda de texto compruebe la ortografía o pruebe con otras palabras clave en el idioma que tenga seleccionado",
     "PARAMETRIZATION": "Parametrización",
     "FILTER_BY_PACKAGE": "Filtrar por paquete",
-    "ALL_PLATFORMS": "Todas las plataformas"
+    "ALL_PLATFORMS": "Todas las plataformas",
+    "config_menu_item_challenges_name": "Item menú retos",
+    "config_menu_item_challenges_description": "Apartado para administrar los retos y premios de la plataforma"
 }
