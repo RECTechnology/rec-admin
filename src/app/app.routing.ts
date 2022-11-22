@@ -18,7 +18,7 @@ import { CampaignReportsAccount } from 'src/pages/special-actions/campaing_repor
 import { LogPage } from 'src/pages/special-actions/change_delegate/components/log_page/log_page';
 import { B2BComponent } from 'src/pages/special-actions/b2b_page/b2b.component';
 import { RatingsPage } from '../pages/ratings/ratings.component';
-import { HideShowB2b, HideShowMail, HideShowQualifications, HideShowReports } from '../services/guards/show_components.guard';
+import { HideShowMenuItem } from '../services/guards/show_components.guard';
 import { ChallengesPage } from '../pages/challenges/challenges.component';
 import { ParametrizationComponent } from '../pages/parametrization/parametrization.component';
 
@@ -81,13 +81,19 @@ const ROUTES: Routes = [
   {
     path: 'rec/mailing',
     component: B2BSendComponent,
-    canActivate: [IsLoggedInGuard, HideShowMail],
+    canActivate: [IsLoggedInGuard, HideShowMenuItem],
+    data: {
+      item: 'menu_item_email'
+    }
   },
   {
     path: 'rec/mailing/:id_or_new',
     component: SendMail,
     canActivate: [IsLoggedInGuard],
-    canDeactivate: [PendingChangesGuard, HideShowMail],
+    canDeactivate: [PendingChangesGuard, HideShowMenuItem],
+    data: {
+      item: 'menu_item_emal'
+    }
   },
   {
     path: 'b2b/settings',
@@ -97,22 +103,34 @@ const ROUTES: Routes = [
   {
     path: 'b2b',
     component: B2BComponent,
-    canActivate: [IsLoggedInGuard, HideShowB2b],
+    canActivate: [IsLoggedInGuard, HideShowMenuItem],
+    data: {
+      item: 'menu_item_b2b'
+    }
   },
   {
     path: 'campaign_reports',
     component: CampaignReportsAccount,
-    canActivate: [IsLoggedInGuard, HideShowReports],
+    canActivate: [IsLoggedInGuard, HideShowMenuItem],
+    data: {
+      item: 'menu_item_reports'
+    }
   },
   {
     path: 'ratings',
     component: RatingsPage,
-    canActivate: [IsLoggedInGuard, HideShowQualifications],
+    canActivate: [IsLoggedInGuard, HideShowMenuItem],
+    data: {
+      item: 'menu_item_qualifications'
+    }
   },
   {
     path: 'challenges',
     component: ChallengesPage,
-    canActivate: [IsLoggedInGuard],
+    canActivate: [IsLoggedInGuard, HideShowMenuItem],
+    data: {
+      item: 'menu_item_challenges'
+    }
   },
   {
     path: 'parametrization',

@@ -49,12 +49,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   MatInputModule
 } from '@angular/material/input';
-import{ HideShowB2b, 
-  HideShowMail, 
-  HideShowQualifications, 
-  HideShowReports
-} from 'src/services/guards/show_components.guard';
 import { Observable } from 'rxjs';
+import { HideShowMenuItem } from '../services/guards/show_components.guard';
 
 
 registerLocaleData(localeCat);
@@ -115,10 +111,7 @@ const imports = [
     ConfigSettings,
     AppAuthService,
     IsLoggedInGuard,
-    HideShowReports,
-    HideShowMail,
-    HideShowQualifications,
-    HideShowB2b,
+    HideShowMenuItem,
     ControlesService,
     TransactionService,
     IsLoggedInGuard,

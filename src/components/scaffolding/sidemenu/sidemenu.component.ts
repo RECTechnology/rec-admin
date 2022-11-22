@@ -60,52 +60,17 @@ export class SidemenuComponent {
 
   public extractItems(){
     if(this.configService.configuration_items){
-      this.configService.configuration_items.map( item => {
-        if(item.name === 'menu_item_email' && item.value === 'disabled'){
+      this.configService.configuration_items.map( itemConfig => {
+        if(itemConfig.value === 'disabled') {
           this.items = this.items.filter(item => {
-            return item.name !== 'REC_MAILING';
+            return item.item !== itemConfig.name;
           })
         }else {
           this.items.map(item => {
-            if(item.name === 'REC_MAILING'){
+            if(item.item === itemConfig.name){
               item.hide = false;
             }
-          })
-        }
-        if(item.name === 'menu_item_b2b' && item.value === 'disabled'){
-          this.items = this.items.filter(item => {
-            return item.name !== 'B2B';
-          })
-        }
-        else {
-          this.items.map(item => {
-            if(item.name === 'B2B'){
-              item.hide = false;
-            }
-          })
-        }
-        if(item.name === 'menu_item_qualifications' && item.value === 'disabled'){
-          this.items = this.items.filter(item => {
-            return item.name !== 'Ratings';
-          })
-        }
-        else {
-          this.items.map(item => {
-            if(item.name === 'Ratings'){
-              item.hide = false;
-            }
-          })
-        }
-        if(item.name === 'menu_item_reports' && item.value === 'disabled'){
-          this.items = this.items.filter(item => {
-            return item.name !== 'CAMPAIGN_REPORTS';
-          })
-        }else {
-          this.items.map(item => {
-            if(item.name === 'CAMPAIGN_REPORTS'){
-              item.hide = false;
-            }
-          })
+          }) 
         }
       })
     }
