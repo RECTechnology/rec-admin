@@ -1529,5 +1529,7 @@
     "EXCHANGERS_LIST": "Lista de negocios que intercambian recs.",
     "FILTER_BY_PACKAGE": "Filtrar por paquete",
     "PARAMETRIZATION": "Parametrización",
-    "All_platforms": "Todas las plataformas"
+    "ALL_PLATFORMS": "Todas las plataformas",
+    "config_menu_item_challenges_name": "Item menú retos",
+    "config_menu_item_challenges_description": "Apartado para administrar los retos y premios de la plataforma"
 }
