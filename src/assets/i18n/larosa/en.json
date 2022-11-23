@@ -1531,5 +1531,6 @@
     "PARAMETRIZATION": "Parametrization",
     "ALL_PLATFORMS": "All platforms",
     "config_menu_item_challenges_name": "",
-    "config_menu_item_challenges_description": ""
+    "config_menu_item_challenges_description": "",
+    "config_default_funding_amount_description": "Amount of Matic to recharge. When there is a wallet without funds, generate a Matic tx."
 }
