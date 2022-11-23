@@ -1530,6 +1530,6 @@
     "FILTER_BY_PACKAGE": "Filter by package",
     "PARAMETRIZATION": "Parametrization",
     "ALL_PLATFORMS": "All platforms",
-    "config_menu_item_challenges_name": "Challenge menu item",
-    "config_menu_item_challenges_description": "Section to manage the challenges and prizes of the platform"
+    "config_menu_item_challenges_name": "",
+    "config_menu_item_challenges_description": ""
 }
