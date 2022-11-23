@@ -1531,5 +1531,6 @@
     "PARAMETRIZATION": "Parametrización",
     "ALL_PLATFORMS": "Todas las plataformas",
     "config_menu_item_challenges_name": "Item menú retos",
-    "config_menu_item_challenges_description": "Apartado para administrar los retos y premios de la plataforma"
+    "config_menu_item_challenges_description": "Apartado para administrar los retos y premios de la plataforma",
+    "config_default_funding_amount_description": "Cantidad de Matic a recargar. Cuando hay algún wallet sin fondos, generear una tx de Matic."
 }
