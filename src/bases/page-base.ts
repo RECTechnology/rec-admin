@@ -147,6 +147,8 @@ export abstract class TablePageBase extends PageBase {
     if (this.autoRefresh) {
       this.refreshInterval = setInterval(this.search.bind(this), this.refreshInterval);
     }
+    const translateTitle = this.translate.instant(this.Brand.title);
+    this.setTitle(translateTitle + ' | ' + this.pageName);
   }
 
   public ngOnDestroy() {

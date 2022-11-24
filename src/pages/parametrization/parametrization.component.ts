@@ -1,8 +1,10 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
+import { environment } from "src/environments/environment";
 import { AlertsService } from "src/services/alerts/alerts.service";
 import { ConfigurationSettingsCrud } from '../../services/crud/config_settings/configuration_settings';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'ParametrizationComponent',
@@ -12,12 +14,16 @@ import { ConfigurationSettingsCrud } from '../../services/crud/config_settings/c
 
 export class ParametrizationComponent {
     
+    public pageName = 'Parametrization';
+    public Brand: any = environment.Brand;
     public itemValue: any;
     public loading = false;
     public mockData: any = [];
     public platformFilter: string = '';
     public packageFilter: string = '';
     public nameFilter: string = '';
+    public adminPlatform = 'admin_panel';
+    public urlLocation = 'parametrization';
     public mockDataCopy: any;
     public platforms: string[] = [];
     public packages: string[] = [];
@@ -28,11 +34,15 @@ export class ParametrizationComponent {
         public route: ActivatedRoute,
         public translateService: TranslateService,
         public crud: ConfigurationSettingsCrud,
-        public alertsService: AlertsService
+        public alertsService: AlertsService,
+        public translate: TranslateService,
+        public titleService: Title
         ){}
 
     ngOnInit(){
         this.getConfigSettings();
+        const translateTitle = this.translate.instant(this.Brand.title);
+        this.setTitle(translateTitle + ' | ' + this.pageName);
     }
 
     //api methods (get config settings and update settings)
@@ -49,11 +59,18 @@ export class ParametrizationComponent {
         })
     }
 
-    public updateSetting(id, itemValue){
+    public setTitle(title: string): void {
+        this.titleService.setTitle(title);
+      }
+
+    public updateSetting(id, itemValue, item){
         this.loading = true;
         this.crud.update(id, {value: itemValue}).subscribe(res => {
             this.crud.search().subscribe(resp => {
                 this.mockData = resp.data.elements;
+                if(item.platform === this.adminPlatform){
+                    this.reloadPage();
+                    }
                 this.loading = false;
             },error => {
                 this.loading = false;
@@ -74,6 +91,12 @@ export class ParametrizationComponent {
         })
     }
 
+    public reloadPage(){
+        this.router.navigate(['/', this.urlLocation]).then(() =>
+            window.location.reload()
+        );
+    }
+
     public getItemsForPackage(packageItem){
         return Array.from(this.mockDataCopy.filter(item => {
             return `package_${item.package.name}_name` === packageItem;
@@ -83,12 +106,12 @@ export class ParametrizationComponent {
     public getPackages(){
         this.packages = [];
         this.mockDataCopy.map(item => {
-            if(!this.packages.includes(`package_${item.package.name}_name`)){
+            if(item.package && !this.packages.includes(`package_${item.package.name}_name`)){
                 this.packages.unshift(`package_${item.package.name}_name`);
             }
         })
         this.mockData.map(item => {
-            if(!this.packagesCopy.includes(`package_${item.package.name}_name`)){
+            if(item.package && !this.packagesCopy.includes(`package_${item.package.name}_name`)){
                 this.packagesCopy.unshift(`package_${item.package.name}_name`);
             }
         })

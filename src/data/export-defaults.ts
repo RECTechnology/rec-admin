@@ -30,6 +30,7 @@ export const AccountsExportDefaults: KvpItem[] = [
     { key: 'street_type', value: '$.street_type', active: true },
     { key: 'street', value: '$.street', active: true },
     { key: 'address_number', value: '$.address_number', active: true },
+    { key: 'zip', value: '$.zip', active: true },
     { key: 'dni', value: '$.kyc_manager.dni', active: true },
     { key: 'phone', value: '$.phone', active: true },
     { key: 'alias', value: '$.kyc_manager.active_card.alias', active: true },
