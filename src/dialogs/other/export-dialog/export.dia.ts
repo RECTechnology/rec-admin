@@ -75,7 +75,7 @@ export class ExportDialog implements OnInit {
     const field_map = this.getFieldMap();
 
     this.loading = true;
-    this.fn({ ...this.filters, field_map, email: this.formGroup.get('email').value }).subscribe(
+    this.fn({ filters: this.filters, field_map, email: this.formGroup.get('email').value }).subscribe(
       (resp) => {
         this.loading = false;
         this.close();
