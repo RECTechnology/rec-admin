@@ -1530,7 +1530,13 @@
     "FILTER_BY_PACKAGE": "Filter by package",
     "PARAMETRIZATION": "Parametrization",
     "ALL_PLATFORMS": "All platforms",
-    "config_menu_item_challenges_name": "",
+    "config_menu_item_challenges_name": "Challenge menu item",
     "config_menu_item_challenges_description": "",
-    "config_default_funding_amount_description": "Amount of Matic to recharge. When there is a wallet without funds, generate a Matic tx."
+    "config_default_funding_amount_description": "Amount of Matic to recharge. When there is a wallet without funds, generate a Matic tx.",
+    "config_map_init_lat_name": "Map initial latitud",
+    "config_map_init_lon_name": "Initial map longitude",
+    "config_map_init_lat_description": "Set the initial latitude in which the app's map will be positioned at startup",
+    "config_map_init_lon_description": "Sets the initial longitude that the app's map will be positioned at on startup",
+    "config_map_init_zoom_name": "Initial map zoom",
+    "config_map_init_zoom_description": "Set the initial zoom that the app map uses when it starts up"
 }
