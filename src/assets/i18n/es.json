@@ -1537,5 +1537,11 @@
     "FILTER_BY_PACKAGE": "Filtrar por paquete",
     "ALL_PLATFORMS": "Todas las plataformas",
     "config_menu_item_challenges_name": "Item menú retos",
-    "config_menu_item_challenges_description": "Apartado para administrar los retos y premios de la plataforma"
+    "config_menu_item_challenges_description": "Apartado para administrar los retos y premios de la plataforma",
+    "config_map_init_lat_name": "Latitud inicial mapa",
+    "config_map_init_lat_description": "Establece la latitud inicial en la que será posicionado el mapa de la app al iniciarse",
+    "config_map_init_lon_name": "Longitud inicial mapa",
+    "config_map_init_lon_description": "Establece la longitud inicial en la que será posicionado el mapa de la app al iniciarse",
+    "config_map_init_zoom_name": "Zoom inicial mapa",
+    "config_map_init_zoom_description": "Establece el zoom inicial que utulizará el el mapa de la app al iniciarse"
 }
