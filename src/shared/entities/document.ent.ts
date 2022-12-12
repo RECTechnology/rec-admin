@@ -1,4 +1,3 @@
-import { environment } from 'src/environments/environment';
 import { User } from 'src/shared/entities/user.ent'
 import { Account } from './account.ent';
 import { DocumentKind } from './document_kind.ent';
@@ -30,41 +29,26 @@ export class Document implements Document {
     public static STATUS_ARCHIVED = 'archived';
     
 
-    public static REC_STATUS_SUBMITTED = 'rec_submitted';
-    public static REC_STATUS_DECLINED = 'rec_declined';
-    public static REC_STATUS_APROVED = 'rec_approved';
-    public static REC_STATUS_EXPIRED = 'rec_expired';
-
-    public static ROSA_STATUS_SUBMITTED = 'rosa_submitted';
-    public static ROSA_STATUS_DECLINED = 'rosa_declined';
-    public static ROSA_STATUS_APROVED = 'rosa_approved';
-    public static ROSA_STATUS_EXPIRED = 'rosa_expired';
+    public static APP_STATUS_SUBMITTED = 'app_submitted';
+    public static APP_STATUS_DECLINED = 'app_declined';
+    public static APP_STATUS_APROVED = 'app_approved';
+    public static APP_STATUS_EXPIRED = 'app_expired';
 
     public static STATUS_ON_HOLD = 'on_hold';
     public static STATUS_NOT_VERIFIED = 'unverified';
     public static STATUS_NOT_READABLE = 'unreadable';
     public static STATUS_EXPIRED = 'expired';
-    public static STATUS_REC_EXPIRED = 'rec_expired';
+    public static STATUS_REC_EXPIRED = 'app_expired';
     public static STATUS_WRONG_TYPE = 'wrong_type';
     public static STATUS_WRONG_NAME = 'wrong_name';
 
-    public static REC_STATUS_TYPES = {
-        REC : [
-            Document.REC_STATUS_SUBMITTED,
-            Document.REC_STATUS_DECLINED,
-            Document.REC_STATUS_APROVED,
-            Document.REC_STATUS_EXPIRED
-        ],
-        laROSA : [
-            Document.ROSA_STATUS_SUBMITTED,
-            Document.ROSA_STATUS_DECLINED,
-            Document.ROSA_STATUS_APROVED,
-            Document.ROSA_STATUS_EXPIRED
-        ]
-        
-    };
+    public static STATUS_TYPES = [
+        Document.APP_STATUS_SUBMITTED,
+        Document.APP_STATUS_DECLINED,
+        Document.APP_STATUS_APROVED,
+        Document.APP_STATUS_EXPIRED
+    ];
 
-    public static STATUS_TYPES = this.REC_STATUS_TYPES.hasOwnProperty(environment.Brand.name) ? this.REC_STATUS_TYPES[environment.Brand.name] : this.REC_STATUS_TYPES['REC'];
     
 
     public static ALL_STATUSES = [
@@ -80,11 +64,10 @@ export class Document implements Document {
         Document.STATUS_EXPIRED,
         Document.STATUS_WRONG_TYPE,
         Document.STATUS_WRONG_NAME,
-        this.STATUS_TYPES[0],
-        this.STATUS_TYPES[1],
-        this.STATUS_TYPES[2],
-        this.STATUS_TYPES[3],
-
+        Document.APP_STATUS_SUBMITTED,
+        Document.APP_STATUS_DECLINED,
+        Document.APP_STATUS_APROVED,
+        Document.APP_STATUS_EXPIRED
     ];
 
     

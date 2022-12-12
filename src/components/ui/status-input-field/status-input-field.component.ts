@@ -7,7 +7,7 @@ import { Document } from 'src/shared/entities/document.ent';
   templateUrl: './status-input-field.component.html',
 })
 export class StatusInputFieldComponent extends InputFieldComponent {
-  public REC_STATUSES = Document.REC_STATUS_TYPES;
+  public REC_STATUSES = Document.STATUS_TYPES;
 
   @Input() public label: string;
   @Input() public value: any = '';
