@@ -18,6 +18,7 @@ export class ParametrizationComponent {
     public Brand: any = environment.Brand;
     public itemValue: any;
     public loading = false;
+    public canUpdate: boolean = false;
     public mockData: any = [];
     public platformFilter: string = '';
     public packageFilter: string = '';
@@ -64,6 +65,16 @@ export class ParametrizationComponent {
       }
 
     public updateSetting(id, itemValue, item){
+        var numRegex = /^\d+$/;
+        var doubleRegex = /^[+-]?(?:\d*\.)?\d+$/;
+        if(item.type === 'int' && !numRegex.test(itemValue)){
+            this.alertsService.showSnackbar('ONLY_POSITIVE_INTEGERS');
+            return;
+        }
+        if(item.type === 'double' && !doubleRegex.test(itemValue)){
+            this.alertsService.showSnackbar('ONLY_DOUBLE_AND_INTEGERS_WITHOUT_COMMA');
+            return;
+        }
         this.loading = true;
         this.crud.update(id, {value: itemValue}).subscribe(res => {
             this.crud.search().subscribe(resp => {
