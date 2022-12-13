@@ -1543,5 +1543,6 @@
     "config_map_init_lon_name": "Longitud inicial mapa",
     "config_map_init_lon_description": "Establece la longitud inicial en la que será posicionado el mapa de la app al iniciarse",
     "config_map_init_zoom_name": "Zoom inicial mapa",
-    "config_map_init_zoom_description": "Establece el zoom inicial que utulizará el el mapa de la app al iniciarse"
+    "config_map_init_zoom_description": "Establece el zoom inicial que utulizará el el mapa de la app al iniciarse",
+    "package_app_map_name": "Mapa app"
 }
