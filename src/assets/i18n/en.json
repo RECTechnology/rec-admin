@@ -1538,10 +1538,11 @@
     "ALL_PLATFORMS": "All platforms",
     "config_menu_item_challenges_name": "Challenge menu item",
     "config_menu_item_challenges_description": "Section to manage the challenges and prizes of the platform",
-    "config_map_init_lat_name": "Map initial latitud",
-    "config_map_init_lat_description": "Set the initial latitude in which the app's map will be positioned at startup",
-    "config_map_init_lon_name": "Initial map longitude ",
-    "config_map_init_lon_description": "Sets the initial longitude that the app's map will be positioned at on startup",
+    "config_map_init_lat_name": "Initial latitude of the map",
+    "config_map_init_lat_description": "Establishes the initial latitude at which the map of the app will be positioned at startup",
+    "config_map_init_lon_name": "Initial map length",
+    "config_map_init_lon_description": "Sets the initial length at which the app map will be positioned at startup",
     "config_map_init_zoom_name": "Initial map zoom",
-    "config_map_init_zoom_description": "Set the initial zoom that the app map uses when it starts up"
+    "config_map_init_zoom_description": "Set the initial zoom that will use the app map when launched",
+    "package_app_map_name": "Map app"
 }
