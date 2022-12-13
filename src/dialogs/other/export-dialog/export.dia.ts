@@ -98,7 +98,7 @@ export class ExportDialog implements OnInit {
   }
 
   public setDefaultMail() {
-    if(!window.location.href.includes('admin.rec.barcelona')) {
+    if(!window.location.href.includes('admin.rec.barcelona') || !window.location.href.includes('admin.larosa.santfeliu.cat')) {
       this.formGroup.get('email').setValue(this.qbitMail);
     } else {
       if(this.us.userData && this.us.userData.email) {
