@@ -55,6 +55,9 @@ export class ExportTxsDia extends BaseDialog {
           this.data = resp.data.list.map((el) => {
             const date = moment(el.date);
             el.date = date.format();
+            if(el.payment_order_id){
+              delete el.payment_order_id;
+            }
             if (el.pay_out_info) {
               el['pay_out_info.concept'] = el.pay_out_info.concept ?? '';
               delete el.pay_out_info;
