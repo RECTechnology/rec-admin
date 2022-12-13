@@ -15,6 +15,7 @@ export class ExportDialog implements OnInit {
   public entityName: string = 'Export';
   public filters: any = {};
   public list: any = [];
+  public disabledLimitFiled: boolean = true;
   public defaultExports: any = [];
   public error: string = '';
   public errorLarge: string = '';
@@ -24,6 +25,8 @@ export class ExportDialog implements OnInit {
   public formGroup = new FormGroup({
     email: new FormControl(null, Validators.required),
     fileName: new FormControl({}),
+    limit: new FormControl({value: null, disabled: this.disabledLimitFiled}),
+    all: new FormControl({value: true}),
   });
 
   public fn: (v?: any) => Observable<any> = () => new Observable();
@@ -67,10 +70,15 @@ export class ExportDialog implements OnInit {
     }
     return map;
   }
-
+  
   public export() {
     this.hidden = true;
     this.error = null;
+    if(this.formGroup.get('all').value){
+      this.filters.limit = 100000;
+    }else {
+      this.filters.limit = this.formGroup.get('limit').value;
+    }
 
     const field_map = this.getFieldMap();
 
@@ -114,6 +122,15 @@ export class ExportDialog implements OnInit {
   //   a.click();
   //   this.close();
   // }
+
+  public enableDisableLimitFiled() {
+    if(this.formGroup.get('all').value){
+      this.formGroup.get('limit').disable();
+      this.formGroup.get('limit').setValue(null);
+    }else {
+      this.formGroup.get('limit').enable();
+    }
+  }
 
   public close(confirmed = false): void {
     this.dialogRef.close(confirmed);

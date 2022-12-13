@@ -148,7 +148,6 @@ export class AccountsPage extends TablePageBase implements AfterContentInit {
   public getCleanParams(query?: string) {
     let data: ListAccountsParams = {
       active: this.active ? 1 : 0,
-      field_map: {},
       limit: this.limit,
       offset: this.offset,
       order: this.sortDir,
