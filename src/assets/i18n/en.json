@@ -1544,5 +1544,7 @@
     "config_map_init_lon_description": "Sets the initial length at which the app map will be positioned at startup",
     "config_map_init_zoom_name": "Initial map zoom",
     "config_map_init_zoom_description": "Set the initial zoom that will use the app map when launched",
-    "package_app_map_name": "Map app"
+    "package_app_map_name": "Map app",
+    "ONLY_POSITIVE_INTEGERS": "Error: Only positive integers are allowed",
+    "ONLY_DOUBLE_AND_INTEGERS_WITHOUT_COMMA": "Error: Only integers and decimal numbers separated by period are allowed"
 }
