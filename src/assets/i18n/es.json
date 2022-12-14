@@ -1544,5 +1544,7 @@
     "config_map_init_lon_description": "Establece la longitud inicial en la que será posicionado el mapa de la app al iniciarse",
     "config_map_init_zoom_name": "Zoom inicial mapa",
     "config_map_init_zoom_description": "Establece el zoom inicial que utulizará el el mapa de la app al iniciarse",
-    "package_app_map_name": "Mapa app"
+    "package_app_map_name": "Mapa app",
+    "ONLY_POSITIVE_INTEGERS": "Error: solo se permiten números enteros positivos",
+    "ONLY_DOUBLE_AND_INTEGERS_WITHOUT_COMMA": "Error: solo se permiten números enteros y decimales separados por punto"
 }
