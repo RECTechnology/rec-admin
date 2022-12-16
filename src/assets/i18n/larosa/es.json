@@ -1538,5 +1538,15 @@
     "config_map_init_lat_description": "Establece la latitud inicial en la que será posicionado el mapa de la app al iniciarse",
     "config_map_init_lon_description": "Establece la longitud inicial en la que será posicionado el mapa de la app al iniciarse",
     "config_map_init_zoom_name": "Zoom inicial mapa",
-    "config_map_init_zoom_description": "Establece el zoom inicial que utilizará el el mapa de la app al iniciarse"
+    "config_map_init_zoom_description": "Establece el zoom inicial que utilizará el el mapa de la app al iniciarse",
+    "EXPORT_LIMIT_Accounts": "Cantidad de cuentas a exportar",
+    "ALL_ITEMS_Accounts": "Exportar todas la cuentas",
+    "EXPORT_LIMIT_Users": "Cantidad de usuarios a exportar",
+    "ALL_ITEMS_Users": "Exportar todos los usuarios",
+    "EXPORT_LIMIT_Organizations": "Cantidad de organizaciones a exportar",
+    "ALL_ITEMS_Organizations": "Exportar todas las organizaciones",
+    "EXPORT_LIMIT_AccountChallenge": "Cantidad de retos de cuentas a exportar",
+    "ALL_ITEMS_AccountChallenge": "Exportar todos los retos de cuentas",
+    "EXPORT_LIMIT_Qualifications": "Cantidad de calificaciones a exportar",
+    "ALL_ITEMS_Qualifications": "Exportar todas las calificaciones"
 }
