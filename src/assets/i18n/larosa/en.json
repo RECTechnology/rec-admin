@@ -1538,5 +1538,15 @@
     "config_map_init_lat_description": "Establishes the initial latitude at which the map of the app will be positioned at startup",
     "config_map_init_lon_description": "Sets the initial length at which the app map will be positioned at startup",
     "config_map_init_zoom_name": "Initial map zoom",
-    "config_map_init_zoom_description": "Set the initial zoom that will use the app map when launched"
+    "config_map_init_zoom_description": "Set the initial zoom that will use the app map when launched",
+    "EXPORT_LIMIT_Accounts": "Number of accounts to export",
+    "ALL_ITEMS_Accounts": "Export all accounts",
+    "EXPORT_LIMIT_Users": "Number of users to export",
+    "ALL_ITEMS_Users": "Export all users",
+    "EXPORT_LIMIT_Organizations": "Number of organizations to export",
+    "ALL_ITEMS_Organizations": "Export all organizations",
+    "EXPORT_LIMIT_AccountChallenge": "Number of account challenge to export",
+    "ALL_ITEMS_AccountChallenge": "Export all account challenge",
+    "EXPORT_LIMIT_Qualifications": "Number of qualifications to export",
+    "ALL_ITEMS_Qualifications": "Export all qualifications"
 }
