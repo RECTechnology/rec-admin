@@ -17,6 +17,7 @@ export class ParametrizationComponent {
     public pageName = 'Parametrization';
     public Brand: any = environment.Brand;
     public itemValue: any;
+    public limit: number = 500;
     public loading = false;
     public canUpdate: boolean = false;
     public mockData: any = [];
@@ -49,7 +50,7 @@ export class ParametrizationComponent {
     //api methods (get config settings and update settings)
     public getConfigSettings(){
         this.loading = true;
-        this.crud.search().subscribe(resp => {
+        this.crud.search({limit: this.limit}).subscribe(resp => {
             this.mockData = resp.data.elements;
             this.mockDataCopy = [...this.mockData];
             this.getPlatforms();

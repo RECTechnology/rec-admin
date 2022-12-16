@@ -16,15 +16,15 @@
             <input autocomplete="fileName" matInput formControlName="fileName"/>
             <mat-error *ngIf="formGroup.get('fileName').invalid">{{'FIELD_REQUIRED' | translate}}</mat-error>
         </mat-form-field>
-        <div class="row" style="display: flex; justify-content: space-between;">
-            <mat-form-field class="col-4" style="width: 100%; padding-bottom: 10px" floatLabel="always">
+        <div class="row">
+            <mat-form-field class="col-5" style="width: 100%; padding-bottom: 10px" floatLabel="always">
                 <mat-label>{{'EXPORT_LIMIT_' + this.entityName | translate}}</mat-label>
-                <input autocomplete="number" type="number" matInput formControlName="limit"/>
-                <mat-error *ngIf="formGroup.get('limit').invalid">{{'FIELD_REQUIRED' | translate}}</mat-error>
+                <input matTooltip="{{'EXPORT_LIMIT_' + this.entityName | translate}}" autocomplete="number" type="number" matInput formControlName="limit"/>
+                <mat-error *ngIf="formGroup.get('limit').invalid">{{'Exportar todas las cuentas' | translate}}</mat-error>
             </mat-form-field>
 
             <div class="col-6 marg-top-20">
-                <mat-checkbox color="primary" formControlName="all" (change)="enableDisableLimitFiled()">{{'ALL_ITEMS_' + this.entityName | translate}}</mat-checkbox>
+                <mat-checkbox color="primary" formControlName="all" (change)="enableDisableLimitFiled()"><p style="font-size: 14px;">{{'ALL_ITEMS_' + this.entityName | translate}}</p></mat-checkbox>
             </div>
         </div>
     </form>
