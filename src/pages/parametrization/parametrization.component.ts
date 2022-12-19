@@ -18,6 +18,7 @@ export class ParametrizationComponent {
     public Brand: any = environment.Brand;
     public itemValue: any;
     public limit: number = 500;
+    public oldValue: any = null;
     public loading = false;
     public canUpdate: boolean = false;
     public mockData: any = [];
@@ -65,15 +66,17 @@ export class ParametrizationComponent {
         this.titleService.setTitle(title);
       }
 
-    public updateSetting(id, itemValue, item){
+    public updateSetting(id, itemValue, item, $event){
         var numRegex = /^\d+$/;
         var doubleRegex = /^[+-]?(?:\d*\.)?\d+$/;
         if(item.type === 'int' && !numRegex.test(itemValue)){
             this.alertsService.showSnackbar('ONLY_POSITIVE_INTEGERS');
+            $event.target.value = this.oldValue;
             return;
         }
         if(item.type === 'double' && !doubleRegex.test(itemValue)){
             this.alertsService.showSnackbar('ONLY_DOUBLE_AND_INTEGERS_WITHOUT_COMMA');
+            $event.target.value = this.oldValue;
             return;
         }
         this.loading = true;
@@ -91,6 +94,11 @@ export class ParametrizationComponent {
         }, (error) => {
             this.loading = false;
             this.alertsService.showSnackbar(error.message);
+            if(item.type === 'boolean'){
+                $event.source.checked = !($event.source.checked);
+            }else {
+                $event.target.value = this.oldValue;
+            }
         })
     }
 

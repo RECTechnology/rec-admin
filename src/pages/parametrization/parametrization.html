@@ -34,13 +34,13 @@
                                 <p class="col-lg-2">{{'platform_' + item.platform + '_name' | translate}}</p>
                                 <mat-slide-toggle class="col-lg-2" *ngIf="item.type === 'boolean'" color="primary"
                                     [checked]="item.value === 'enabled' ? true : false"
-                                    (change)="updateSetting(item.id, item.value === 'enabled' ? 'disabled' : 'enabled', item)">
+                                    (change)="updateSetting(item.id, item.value === 'enabled' ? 'disabled' : 'enabled', item, $event)">
                                 </mat-slide-toggle>
                                 <mat-form-field *ngIf="item.type === 'int'" style="max-width: 10%; width: auto; margin-top: -20px;" class="col-lg-2">
-                                    <input matInput [value]="item.value" (blur)="updateSetting(item.id, $event.target.value, item)">
+                                    <input matInput [value]="item.value" (focus)="this.oldValue = item.value" (blur)="updateSetting(item.id, $event.target.value, item, $event)">
                                 </mat-form-field>
                                 <mat-form-field *ngIf="item.type === 'double'" style="max-width: 10%; width: auto; margin-top: -20px;" class="col-lg-2">
-                                    <input matInput [value]="item.value" (blur)="updateSetting(item.id, $event.target.value, item)">
+                                    <input matInput [value]="item.value" (focus)="this.oldValue = item.value" (blur)="updateSetting(item.id, $event.target.value, item, $event)">
                                 </mat-form-field>
                             </div>
                         </div>
