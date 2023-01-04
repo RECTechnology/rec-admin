@@ -116,11 +116,47 @@ export class MovementsTab implements AfterContentInit {
       this.txService.getTxForAccount(
         accountID, this.offset,
         this.limit, this.dateFrom,
-        this.dateTo, this.sortID, this.sortDir,
+        this.dateTo, this.sortID, this.sortDir,'all','all','all'
       ).subscribe(async (resp) => {
         this.data = resp.data.elements.map((el) => {
           const created = moment(el.created);
           el.created = created.format();
+
+          if (el.pay_out_info) {
+            el['pay_out_info.concept'] = el.pay_out_info.concept ?? '';
+            el['pay_out_info.receiver_id'] = el.pay_out_info.receiver_id ?? '';
+            el['pay_out_info.receiver_type'] = el.pay_out_info.receiver_type ?? '';
+            el['pay_out_info.receiver_subtype'] = el.pay_out_info.receiver_subtype ?? '';
+          }else {
+            el['pay_out_info.concept'] = '';
+            el['pay_out_info.receiver_id'] = '';
+            el['pay_out_info.receiver_type'] = '';
+            el['pay_out_info.receiver_subtype'] = '';
+          }
+
+          if (el.pay_in_info) {
+            el['pay_in_info.concept'] = el.pay_in_info.concept ?? '';
+            el['pay_in_info.sender_id'] = el.pay_in_info.sender_id ?? '';
+            el['pay_in_info.sender_type'] = el.pay_in_info.sender_type ?? '';
+            el['pay_in_info.sender_subtype'] = el.pay_in_info.sender_subtype ?? '';
+          }else {
+            el['pay_in_info.concept'] = '';
+            el['pay_in_info.sender_id'] = '';
+            el['pay_in_info.sender_type'] = '';
+            el['pay_in_info.sender_subtype'] = '';
+          }
+      
+          delete el.pay_out_info;
+          delete el.pay_in_info;
+          delete el.actions;
+          delete el.scaled;
+          delete el.isIn;
+          delete el.unitsScaled;
+          delete el.scales;
+          delete el.actual_price;
+          delete el.payment_order_id;
+          delete el.refund_txs;
+          delete el.refund_parent_transaction;
 
           const updated = moment(el.updated);
           el.updated = updated.format();

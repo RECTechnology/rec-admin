@@ -1,11 +1,55 @@
 /* tslint:disable */
 export default class Transaction {
 
+  public created: string = null;
+
+  public updated: string = null;
+
+  public id: string = null;
+
+  public user: number = 0;
+
+  public group: number = 0;
+
+  public service: string = null;
+
+  public method: string = null;
+
+  public ip: string = null;
+
+  public status: string = null;
+
+  public version: number = 0;
+
+  public data_in: object = {};
+
+  public currency: string = '';
+
   public amount: number = 0;
+
+  public variable_fee: number = 0;
+
+  public fixed_fee: number = 0;
 
   public total: number = 0;
 
-  public currency: string = '';
+  public scale: number = 0;
+
+  public max_notification_tries: number = 0;
+
+  public notification_tries: number = 0;
+
+  public internal: boolean = false;
+
+  public deleted: boolean = false;
+
+  public notified: boolean = false;
+
+  public type: string = null;
+
+  public client_data: [] = [];
+
+  public group_data: string = '';
 
   public scaled: number | string = 0;
 
@@ -13,47 +57,19 @@ export default class Transaction {
 
   public unitsScaled: number = 0;
 
-  public id: string = null;
-
-  public group: number = 0;
-
   public pay_out_info?: PayOutInfo = null;
 
   public pay_in_info?: PayInInfo = null;
 
-  public data_in: object = {};
-
-  public refund_txs: [];
+  public refund_txs: [] = [];
 
   public refund_parent_transaction: Transaction;
-
-  public service: string = null;
-
-  public ip: string = null;
-
-  public scale: number = 0;
-
-  public status: string = null;
-
-  public type: string = null;
-
-  public updated: string = null;
-
-  public created: string = null;
-
-  public fixed_fee: number = 0;
-
-  public variable_fee: number = 0;
-
-  public method: string = null;
 
   public actions: any = { enabled: [], disabled: [] };
 
   public scales: Scales = { from: '', to: '' };
 
   public actual_price?: number | string = 0;
-
-  public internal: boolean = false;
 
   public payment_order_id?: string = null;
 
@@ -71,6 +87,14 @@ export function formatTX(tx) {
   new_tx.unitsScaled = this.ws.scaleNum(tx.amount, tx.scale);
   new_tx.method = tx.method;
   new_tx.id = tx.id;
+  new_tx.user = tx.user;
+  new_tx.version = tx.version;
+  new_tx.notification_tries = tx.notification_tries;
+  new_tx.max_notification_tries = tx.max_notification_tries;
+  new_tx.deleted = tx.deleted;
+  new_tx.notified = tx.notified;
+  new_tx.client_data = tx.client_data;
+  new_tx.group_data = tx.group_data;
   new_tx.payment_order_id = tx.payment_order_id;
   new_tx.group = tx.group;
   new_tx.refund_txs = tx.refund_txs;
