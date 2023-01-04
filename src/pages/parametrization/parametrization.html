@@ -8,7 +8,7 @@
             </tl-header>
 
             <div class="row" style="margin: 0;overflow: hidden; height: calc(100% - 32px)">
-                <div style="border-right: 2px solid #E0E0E0; margin: 10px 0 0 0; height: max-content;" class="col-lg-2 padd-20">
+                <div style="border-right: 2px solid #E0E0E0; margin: 35px 0 0 0; height: max-content;" class="col-lg-2 padd-20">
                     <div style="padding-bottom: 40px;">
                         <a  [ngClass]="{'color-primary': !this.platformFilter}"
                             (click)="addPlatformFilter('')"
@@ -23,7 +23,7 @@
                 </div>
                 <div *ngIf="mockDataCopy && mockDataCopy.length > 0; else elseBlock" class="col-lg-10 padd-20 content-wrapper">
                     <div class="inner-content-wrapper" *ngFor="let item of packages">
-                        <h4 style="text-transform: capitalize; margin-bottom: 20px; font-weight: 600;">{{item | translate}}</h4>
+                        <h4 style="text-transform: capitalize; margin: 35px 0 20px 0; font-weight: 600;">{{item | translate}}</h4>
                         <div *ngFor="let item of getItemsForPackage(item)">
                             <div class="row">
                                 <b class="col-lg-8">{{'config_' + item.name + '_name' | translate}}</b>
