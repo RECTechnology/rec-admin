@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { formatTX } from '../../shared/entities/transaction/transaction.ent';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class TransactionService extends BaseService {
@@ -21,6 +22,7 @@ export class TransactionService extends BaseService {
   public alerts: any[] = [];
   public totalWalletTransactions = 0;
   public scales: any[] = [];
+  public currency = 'rec';
 
   constructor(
     http: HttpClient,
@@ -122,9 +124,10 @@ export class TransactionService extends BaseService {
   }
 
   public sendTx(sender, receiver, concept, sec_code, amount, internal_in, internal_out) {
+    environment.Brand.name === 'REC' ? this.currency = 'rec' : this.currency = 'rosa';
     return this.post({
       amount, concept, receiver, sec_code, sender, internal_in, internal_out
-    }, null, `${API_URL}/admin/v3/third/rec`);
+    }, null, `${API_URL}/admin/v3/third/${this.currency}`);
   }
 
   /**

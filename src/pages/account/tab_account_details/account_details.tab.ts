@@ -20,6 +20,7 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
   public account_id = null;
   public Brand: any = environment.Brand;
   public address = '';
+  public balance = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,6 +44,10 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
 
   public setUp() {
     this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
+    this.balance = environment.Brand.name === 'REC' ? 
+    this.companyService.selectedCompany.getBalance('REC') : 
+    this.companyService.selectedCompany.getBalance('ROSA');
+
   }
 
   public openEditAccount() {

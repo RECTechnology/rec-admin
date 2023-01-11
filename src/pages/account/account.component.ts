@@ -12,6 +12,7 @@ import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { EventsService } from 'src/services/events/events.service';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'account',
@@ -24,6 +25,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
   public account_id = null;
   public sub: any = null;
   public pdfHtml = '';
+  public balance = 0;
   
   public tab: string = '';
   public tabMap = {
@@ -76,6 +78,7 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
       this.account_id = params.id;
       this.pageName = 'Account (' + this.account_id + ')';
       this.loadAccount();
+      
     });
   }
 
@@ -89,6 +92,9 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     this.crudAccounts.find(this.account_id)
       .subscribe((resp: any) => {
         this.companyService.selectedCompany = resp.data;
+        this.balance = environment.Brand.name === 'REC' ? 
+        this.companyService.selectedCompany.getBalance('REC') : 
+        this.companyService.selectedCompany.getBalance('ROSA');
 
         this.loading = false;
       }, (error) => {

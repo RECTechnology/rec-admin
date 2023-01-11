@@ -1,6 +1,7 @@
 import { TlHeader } from '../components/scaffolding/table-list/tl-table/tl-table.component';
 import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
+import { environment } from '../environments/environment';
 
 // tslint:disable-next-line: variable-name
 export const TlHeaderId: TlHeader = new TlHeader({
@@ -121,7 +122,7 @@ export const TlHeaderAccountType: TlHeader = new TlHeader({
 
 // tslint:disable-next-line: variable-name
 export const TlHeaderAccountAmountREC: TlHeader = new TlHeader({
-    accessor: (account: Account) => account.getBalance('REC'),
+    accessor: (account: Account) => environment.Brand.name === 'REC' ? account.getBalance('REC') : account.getBalance('ROSA'),
     sortable: false,
     title: 'Amount',
     type: 'number',
