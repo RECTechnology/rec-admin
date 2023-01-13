@@ -145,8 +145,20 @@ export class MovementsTab implements AfterContentInit {
             el['pay_in_info.sender_type'] = '';
             el['pay_in_info.sender_subtype'] = '';
           }
+
+          if (el.payment_order_id) {
+            el['payment_order_id'] = el.payment_order_id ?? '';
+          }else {
+            el['payment_order_id'] = '';
+          }
       
           delete el.pay_out_info;
+          delete el.receiver_id;
+          delete el.receiver_type;
+          delete el.receiver_subtype;
+          delete el.sender_id;
+          delete el.sender_type;
+          delete el.sender_subtype;
           delete el.pay_in_info;
           delete el.actions;
           delete el.scaled;
@@ -154,7 +166,6 @@ export class MovementsTab implements AfterContentInit {
           delete el.unitsScaled;
           delete el.scales;
           delete el.actual_price;
-          delete el.payment_order_id;
           delete el.refund_txs;
           delete el.refund_parent_transaction;
 

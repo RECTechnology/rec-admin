@@ -51,6 +51,18 @@ export default class Transaction {
 
   public group_data: string = '';
 
+  public receiver_id?: string = null;
+
+  public receiver_type?: string = null;
+
+  public receiver_subtype?: string = null;
+
+  public sender_id?: string = null;
+
+  public sender_type?: string = null;
+
+  public sender_subtype?: string = null;
+
   public scaled: number | string = 0;
 
   public isIn: boolean = false;
@@ -95,6 +107,12 @@ export function formatTX(tx) {
   new_tx.notified = tx.notified;
   new_tx.client_data = tx.client_data;
   new_tx.group_data = tx.group_data;
+  new_tx.receiver_id = tx.receiver_id;
+  new_tx.receiver_type = tx.receiver_type;
+  new_tx.receiver_subtype = tx.receiver_subtype;
+  new_tx.sender_id = tx.sender_id;
+  new_tx.sender_type = tx.sender_type;
+  new_tx.sender_subtype = tx.sender_subtype;
   new_tx.payment_order_id = tx.payment_order_id;
   new_tx.group = tx.group;
   new_tx.refund_txs = tx.refund_txs;

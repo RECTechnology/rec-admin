@@ -52,14 +52,33 @@ export class ExportTxsDia extends BaseDialog {
       .listTx(this.filter.search, this.offset, this.limit, this.sortID, this.sortDir, this.dateFrom, this.dateTo)
       .subscribe(
         async (resp) => {
-          this.data = resp.data.list.map((el) => {
+          this.data = resp.data.elements.map((el) => {
             const date = moment(el.date);
             el.date = date.format();
             
             if (el.pay_out_info) {
               el['pay_out_info.concept'] = el.pay_out_info.concept ?? '';
-              delete el.pay_out_info;
+            }else {
+              el['pay_out_info.concept'] = '';
             }
+
+            if (el.payment_order_id) {
+              el['payment_order_id'] = el.payment_order_id ?? '';
+            }else {
+              el['payment_order_id'] = '';
+            }
+        
+            delete el.pay_out_info;
+            delete el.pay_in_info;
+            delete el.actions;
+            delete el.scaled;
+            delete el.isIn;
+            delete el.unitsScaled;
+            delete el.scales;
+            delete el.actual_price;
+            delete el.refund_txs;
+            delete el.refund_parent_transaction;
+
             return el;
           });
           this.foundTxs = this.data.length;
