@@ -92,9 +92,9 @@ export class AccountComponent extends PageBase implements OnInit, OnDestroy {
     this.crudAccounts.find(this.account_id)
       .subscribe((resp: any) => {
         this.companyService.selectedCompany = resp.data;
-        this.balance = environment.Brand.name === 'REC' ? 
-        this.companyService.selectedCompany.getBalance('REC') : 
-        this.companyService.selectedCompany.getBalance('ROSA');
+        this.balance = environment.crypto_currency ? 
+        this.companyService.selectedCompany.getBalance(environment.crypto_currency) : 
+        this.companyService.selectedCompany.getBalance('REC');
 
         this.loading = false;
       }, (error) => {

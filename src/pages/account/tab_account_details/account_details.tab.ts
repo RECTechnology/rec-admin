@@ -44,9 +44,9 @@ export class AccountDetailsTab implements OnDestroy, OnInit {
 
   public setUp() {
     this.address = this.utils.constructAddressString(this.companyService.selectedCompany);
-    this.balance = environment.Brand.name === 'REC' ? 
-    this.companyService.selectedCompany.getBalance('REC') : 
-    this.companyService.selectedCompany.getBalance('ROSA');
+    this.balance = environment.crypto_currency ? 
+    this.companyService.selectedCompany.getBalance(environment.crypto_currency) : 
+    this.companyService.selectedCompany.getBalance('REC');
 
   }
 

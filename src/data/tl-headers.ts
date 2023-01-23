@@ -122,7 +122,7 @@ export const TlHeaderAccountType: TlHeader = new TlHeader({
 
 // tslint:disable-next-line: variable-name
 export const TlHeaderAccountAmountREC: TlHeader = new TlHeader({
-    accessor: (account: Account) => environment.Brand.name === 'REC' ? account.getBalance('REC') : account.getBalance('ROSA'),
+    accessor: (account: Account) => environment.crypto_currency ? account.getBalance(environment.crypto_currency) : account.getBalance('REC'),
     sortable: false,
     title: 'Amount',
     type: 'number',

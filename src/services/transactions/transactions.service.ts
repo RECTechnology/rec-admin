@@ -124,7 +124,7 @@ export class TransactionService extends BaseService {
   }
 
   public sendTx(sender, receiver, concept, sec_code, amount, internal_in, internal_out) {
-    environment.Brand.name === 'REC' ? this.currency = 'rec' : this.currency = 'rosa';
+    environment.crypto_currency ? this.currency = environment.crypto_currency : this.currency = 'rec';
     return this.post({
       amount, concept, receiver, sec_code, sender, internal_in, internal_out
     }, null, `${API_URL}/admin/v3/third/${this.currency}`);
