@@ -1596,5 +1596,13 @@
     "STATUS_CAMPAIGN_DETAILS": "Detalles del estado",
     "SAVE_CHANGES": "Guardar cambios",
     "SAVE_CHANGES_DESCRIPTION": "Has realizado cambios en el formulario que no han sido guardados.",
-    "CONTINUE_WITHOUT_SAVING": "Continuar sin guardar"
+    "CONTINUE_WITHOUT_SAVING": "Continuar sin guardar",
+    "PARTICIPANTS": "Participantes",
+    "CAMPAIGN_PARTICIPANTS_INFO": "Usuarios particulares adheridos a la campaña",
+    "Participate": "Participan",
+    "NOT_PARTICIPATE": "No participan",
+    "BONIFICATIONS": "Bonificaciones",
+    "CAMPAIGN_BONIFICATIONS_INFO": "Emitidas desde la cuenta que admin. la campaña",
+    "Bonificated": "Bonificados",
+    "NOT_BONIFICATED": "No bonificados"
 }
