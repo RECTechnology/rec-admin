@@ -1593,5 +1593,8 @@
     "HIDE_ENDED": "Ocultar finalizadas",
     "MIN_RECHARGE": "Min. recarga",
     "MAX_RECHARGE": "Max. bonificación",
-    "STATUS_CAMPAIGN_DETAILS": "Detalles del estado"
+    "STATUS_CAMPAIGN_DETAILS": "Detalles del estado",
+    "SAVE_CHANGES": "Guardar cambios",
+    "SAVE_CHANGES_DESCRIPTION": "Has realizado cambios en el formulario que no han sido guardados.",
+    "CONTINUE_WITHOUT_SAVING": "Continuar sin guardar"
 }
