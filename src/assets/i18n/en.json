@@ -1596,5 +1596,13 @@
     "STATUS_CAMPAIGN_DETAILS": "Status details",
     "SAVE_CHANGES": "Save changes",
     "SAVE_CHANGES_DESCRIPTION": "You have made changes to the form that have not been saved.",
-    "CONTINUE_WITHOUT_SAVING": "Continue without saving"
+    "CONTINUE_WITHOUT_SAVING": "Continue without saving",
+    "PARTICIPANTS": "Participants",
+    "CAMPAIGN_PARTICIPANTS_INFO": "Private users adhering to the campaign",
+    "Participate": "Participate",
+    "NOT_PARTICIPATE": "Not participate",
+    "BONIFICATIONS": "Bonifications",
+    "CAMPAIGN_BONIFICATIONS_INFO": "Issued from the account who admin. the campaign",
+    "Bonificated": "Bonificated",
+    "NOT_BONIFICATED": "Not bonificated"
 }
