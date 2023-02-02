@@ -1589,5 +1589,8 @@
     "HIDE_ENDED": "Hide ended",
     "MIN_RECHARGE": "Min. recharge",
     "MAX_RECHARGE": "Max. bonification",
-    "STATUS_CAMPAIGN_DETAILS": "Status details"
+    "STATUS_CAMPAIGN_DETAILS": "Status details",
+    "SAVE_CHANGES": "Save changes",
+    "SAVE_CHANGES_DESCRIPTION": "You have made changes to the form that have not been saved.",
+    "CONTINUE_WITHOUT_SAVING": "Continue without saving"
 }
