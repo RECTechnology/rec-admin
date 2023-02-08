@@ -1,0 +1,28 @@
+<header-nav></header-nav>
+<app-page>
+    <div class="row" style="margin: 0;">
+        <mat-card class="col-lg-12" style="padding: 0; min-height: 500px;">
+            <tl-header title="{{'Campaigns' | translate}}" [options]="headerOpts" (onSearch)="search()">
+                <button type="button" color="primary" mat-raised-button name="button" (click)="addItem()">
+                    <p class="text-small">
+                        <i class="fa fa-plus"></i> {{'CAMPAIGNS'|translate}}
+                    </p>
+                </button>
+            </tl-header>
+            <tl-subheader>
+                <div class="row" style="padding: 8px 15px; margin: 0;">
+                    <mat-checkbox #checkBox style="margin-right: 15px;" color="primary"
+                    (change)="hideEnded($event)">
+                        <span class="small-text">{{'HIDE_ENDED'|translate}}</span>
+                    </mat-checkbox>
+                </div>
+            </tl-subheader>
+
+            <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)"
+            [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total"
+            [pageIndex]="offset" (onChangePage)="changedPage($event)" [options]="tableOptions" 
+            [itemOptions]="itemOptions">
+            </tl-table>
+        </mat-card>
+    </div>    
+</app-page>

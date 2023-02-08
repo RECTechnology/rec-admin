@@ -13,6 +13,9 @@ export class FileUpload {
   public brand = environment.Brand;
   public error = '';
   public title: string = '';
+  public canUpload: boolean = false;
+  public width: number;
+  public heigth: number;
   public selectedImageName: string = 'No file uploaded';
   public hasSelectedImage: boolean = false;
   public noImageName: string = 'profile_default_image';
@@ -55,7 +58,21 @@ export class FileUpload {
       this.isImage = /jpg|jpeg|png|svg/.test(this.selectedImageName);
       this.extension = file.name.split('.').pop();
 
-      reader.onload = (e: any) => this.selectedImage = e.target.result;
+      reader.onload = (e: any) => {
+        const image = new Image();
+        this.selectedImage = e.target.result;
+        this.canUpload = true;
+        image.src = e.target.result;
+        image.onload = () => {
+          if(this.isImage){
+            if((this.width < Number(image.width)) || 
+            (this.heigth < Number(image.height))){
+              this.canUpload = false;
+              this.error = "IMAGE_WIDTH_NOT_VALID";
+            }
+          }
+        }
+      } 
       reader.readAsDataURL(file);
     } else {
       this.hasSelectedImage = false;
@@ -63,7 +80,8 @@ export class FileUpload {
   }
 
   public uploadFile() {
-    this.us.uploadFileWithProgress(this.file)
+    if(this.canUpload){
+      this.us.uploadFileWithProgress(this.file)
       .subscribe(
         (resp) => {
           this.close(resp.data.src);
@@ -73,6 +91,9 @@ export class FileUpload {
           this.error = error.message;
         },
       );
+    }else {
+      this.alerts.showSnackbar(this.error);
+    }
   }
 
   public close(confirmed): void {

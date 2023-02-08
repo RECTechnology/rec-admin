@@ -51,6 +51,7 @@ import {
 } from '@angular/material/input';
 import { Observable } from 'rxjs';
 import { HideShowMenuItem } from '../services/guards/show_components.guard';
+import { CampaignsModule } from '../pages/campaigns/campaign/campaign.module';
 
 
 registerLocaleData(localeCat);
@@ -84,6 +85,7 @@ const imports = [
   WalletModule,
   ChangeDelegateModule,
   AccountModule,
+  CampaignsModule,
   UsersModule,
   MatInputModule,
   TranslateModule.forRoot({

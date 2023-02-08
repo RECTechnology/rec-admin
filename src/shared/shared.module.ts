@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { QuillModule } from 'ngx-quill';
+import {MatStepperModule} from '@angular/material/stepper';
 import { ModalHeaderComponent } from 'src/components/scaffolding/modal-header/modal-header.component';
 import { AppPage } from 'src/components/scaffolding/page/page-component';
 import { TableListHeader } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
@@ -134,10 +135,18 @@ import { AddRewardsDia } from 'src/dialogs/challenges/add-reward/add-reward.dia'
 import { RewardSelector } from '../components/selectors/reward-selector/reward-selector';
 import { ParametrizationComponent } from '../pages/parametrization/parametrization.component';
 import { ConfigurationSettingsCrud } from '../services/crud/config_settings/configuration_settings';
+import { CampaignsPage } from '../pages/campaigns/campaigns.component';
+import { AddCampaignDia } from 'src/dialogs/campaigns/add-campaign.dia';
+import { SaveChangesMessage } from 'src/dialogs/other/save-changes/save-changes.dia';
+import { AccountIdTableColumn } from 'src/components/ui/account_id/account_id.component';
+import { StatusWithTimeComponent } from '../components/ui/status_with_time/status_with_time.component';
+import { StatusCampaignsDetailsComponent } from '../components/ui/status_campaign_details/status-campaigns-details.component';
+import { ExportCampaignsUsers } from 'src/dialogs/campaigns/export-campaigns/export-campaigns.dia';
 
 const DIALOGS = [
   BussinessDetailsDia,
   ExportDialog,
+  ExportCampaignsUsers,
   VoteWithdrawal,
   AddItemDia,
   AddNeighbourhoodDia,
@@ -149,6 +158,7 @@ const DIALOGS = [
   EditAccountsDia,
   AddUserDia,
   AddChallengeDia,
+  AddCampaignDia,
   AddRewardsDia,
   EditUserData,
   ConfirmationMessage,
@@ -204,6 +214,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     ChallengesTab,
     RatingsPage,
     UsersPage,
+    CampaignsPage,
     CampaignReportsAccount,
     TableListHeader,
     TableListSubHeader,
@@ -215,6 +226,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     LogViewComponent,
     LogPage,
     SendTransactionsDia,
+    SaveChangesMessage,
     AddB2BModal,
     TranslatableListComponent,
     ProductsTabComponent,
@@ -229,6 +241,9 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     Avatar,
     AvatarBadges,
     AvatarUser,
+    AccountIdTableColumn,
+    StatusWithTimeComponent,
+    StatusCampaignsDetailsComponent,
     UserCode,
     BadgeComponent,
     InfoFieldComponent,
@@ -287,6 +302,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     LogViewComponent,
     LogPage,
     SendTransactionsDia,
+    SaveChangesMessage,
     AddB2BModal,
     TranslatableListComponent,
     ProductsTabComponent,
@@ -301,6 +317,9 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     Avatar,
     UserCode,
     AvatarBadges,
+    AccountIdTableColumn,
+    StatusWithTimeComponent,
+    StatusCampaignsDetailsComponent,
     BadgeComponent,
     InfoFieldComponent,
     BetaBadgeComponent,
@@ -338,6 +357,7 @@ const DIRECTIVES = [CollapsableWhen, CopyClipboardDirective];
     AgmCoreModule,
     CrudModule,
     QuillModule,
+    MatStepperModule
   ],
   providers: [
     CompanyService,

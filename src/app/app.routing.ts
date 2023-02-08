@@ -21,6 +21,7 @@ import { RatingsPage } from '../pages/ratings/ratings.component';
 import { HideShowMenuItem } from '../services/guards/show_components.guard';
 import { ChallengesPage } from '../pages/challenges/challenges.component';
 import { ParametrizationComponent } from '../pages/parametrization/parametrization.component';
+import { CampaignsPage } from '../pages/campaigns/campaigns.component';
 
 const ROUTES: Routes = [
   // Public Routes - user shouldn't be authenticated to accesss them
@@ -131,6 +132,11 @@ const ROUTES: Routes = [
     data: {
       item: 'menu_item_challenges'
     }
+  },
+  {
+    path: 'campaigns',
+    component: CampaignsPage,
+    canActivate: [IsLoggedInGuard],
   },
   {
     path: 'parametrization',

@@ -1,0 +1,69 @@
+<div class="modal-header bg-blue">
+    <span>{{'EXPORT_CAMPAIGN_USERS_AS_CSV'|translate}}</span>
+    <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+      <span class="center h v">
+        <i class="fa fa-times col-white"></i>
+      </span>
+    </button>
+  </div>
+  <div class="group-col-left padd-20 modal-body" style="max-width: 60vw; min-width: 50vw; width: auto">
+    <p class="col-gray small-text-2">
+      {{'EXPORT_CAMPAIGN_USERS_AS_CSV'|translate}}
+    </p>
+  
+    <div class="w-100" style="background: #fafafa; border: 1px solid #ddd;">
+  
+      <div class="group-col-left padd-10" style="padding-top: 15px">
+        <p class="small-text-2 col-gray">
+          {{'EXPORT_FILENAME'|translate}}:
+        </p>
+        <div class="group-row-left w-100 center v" style="margin-top: 10px">
+          <div style="position: relative;width: 80%">
+            <input type="text" id="fileName" class="input radius-2 w-100" style="max-width: 100%; padding-right: 80px"
+              placeholder="{{'Enter a filename'|translate}}..." [(ngModel)]="fileName">
+  
+            <button mat-button [matMenuTriggerFor]="exportFormat" id="fileNameLabel" style="margin-right: 0!important">
+              <span>.{{exportType}}</span>
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <mat-menu #exportFormat="matMenu">
+              <button mat-menu-item *ngFor="let type of exportTypes" (click)="exportType = type">
+                <p class="small-text">
+                  {{type}}
+                </p>
+              </button>
+            </mat-menu>
+          </div>
+          <button mat-raised-button (click)="export(exportType)" [disabled]="!fileName || !foundUsers"
+            style="margin-left: 8px!important; padding-right: 10px!important">
+            <i class="fa fa-download"></i> {{'EXPORT'|translate}}
+          </button>
+        </div>
+      </div>
+  
+      <div class="group-row-left center v w-100 padd-10" style="padding-top: 10px">
+        <button mat-raised-button color="primary" (click)="getCampaignsUsers()">
+          {{'SEARCH_FOR_CAMPAIGN_USERS'|translate}}
+        </button>
+        <mat-progress-spinner style="margin-left: 10px" [diameter]="25" mode="indeterminate" color="primary"
+          *ngIf="loading">
+        </mat-progress-spinner>
+        <p class="small-text-2 col-{{foundUsers > 0 ? 'success': 'error'}}" style="margin-left: 10px!important"
+          *ngIf="foundUsers !== null">
+          {{'FOUND_USERS'|translate:({amount: foundUsers})}}
+        </p>
+        <p class="col-error small-text" *ngIf="error">{{error|translate}}</p>
+      </div>
+  
+      <div class="group-col-left v w-100 padd-10" style="padding-top: 10px" *ngIf="data">
+        <p class="small-text-2 col-gray">
+          {{'PREVIEW'|translate}} (10/{{foundUsers}}):
+        </p>
+        <code
+          style="max-height: 200px; max-width: 100%; width: 100%; padding: 15px; overflow-y: auto; overflow-x: auto; font-family: monospace; white-space:pre">
+          {{preview}}
+        </code>
+      </div>
+  
+    </div>
+  </div>

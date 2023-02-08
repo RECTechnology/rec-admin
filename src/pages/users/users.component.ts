@@ -155,7 +155,6 @@ export class UsersPage extends TablePageBase implements AfterContentInit {
           this.sortedData = this.companyService.companyUsers.slice();
           this.showing = this.companyService.companyUsers.length;
           this.total = resp.data.total;
-          console.log(this.sortedData);
           this.loading = false;
         },
         (error) => {

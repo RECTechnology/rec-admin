@@ -1,0 +1,55 @@
+.mat-step-header {
+    pointer-events: none!important;
+    font-size: 10px;
+}
+.mat-step-header .mat-step-icon {
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+    transform: rotate(270deg);
+    background-color: #BDBDBD;
+}
+.create_campaign-sidebar {
+    position: relative;
+    width: 170px;
+    height: 100%;
+    min-height: 500px;
+    background-color: #F2F2F2;
+}
+.create-campaign-sidebar-item {
+    margin-top: 78px;
+    font-size: 14px;
+    cursor: pointer !important;
+}
+.create-campaig-sidebar-list{
+    top: -15px;
+    left: 45px;
+    list-style: none;
+    align-items: center;
+}
+.mat-horizontal-stepper-header-container {
+    transform: rotate(90deg)!important;
+    position: absolute;
+    top: 155px;
+    right: 99%;
+}
+.mat-step-header:hover{
+    background-color: transparent !important;
+}
+.mat-step-header.cdk-program-focused {
+    background-color: transparent !important;
+  }
+.mat-step-header.cdk-mouse-focused{
+    background-color: transparent !important;
+}
+.mat-step-header.cdk-focused{
+    background-color: transparent !important;
+}
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+    cursor: pointer;
+  }

@@ -22,8 +22,28 @@
                     [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">{{getEntry(entry,
                     header)}}</span>
 
+                <div *ngIf="header.type === 'status-campaigns-details'"
+                    [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">
+                    <status-campaigns-details [initDate]="getHeaderData(entry, header, 0)"
+                    [endDate]="getHeaderData(entry, header, 1)" [bonusEnabled]="getHeaderData(entry, header, 2)"
+                    [endingAlert]="getHeaderData(entry, header, 3)"></status-campaigns-details>
+                </div>    
+
                 <span *ngIf="header.type === 'user-code' && getEntry(entry, header)">
                     <user-code [user]="getEntry(entry, header)"></user-code></span>
+
+                <div style="cursor: pointer;" *ngIf="header.type === 'account_id' && getEntry(entry, header)!= null "
+                    [matTooltip]="header.tooltip && header.tooltip(entry)"
+                    [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">
+                    <account-id style="cursor: pointer;" [link]="true" [account_id]="getEntry(entry, header)"></account-id>
+                </div>   
+                
+                <div *ngIf="header.type === 'status-with-time' && getEntry(entry, header)!= null "
+                    [matTooltip]="header.tooltip && header.tooltip(entry)"
+                    [ngClass]="header.statusClass ? header.statusClass(getEntry(entry, header, false)): ''">
+                    <status-with-time activeColor="#53A808" finishedColor="#BDBDBD" createdColor="#828282"
+                    [start_time]="getHeaderData(entry, header, 0)" [finish_time]="getHeaderData(entry, header, 1)"></status-with-time>
+                </div>    
 
                 <code *ngIf="header.type === 'code' && getEntry(entry, header)!= null "
                     (click)="header.title == 'USER' ? onClickedItemUser(entry) : onClickedItemAccount(entry)" [matTooltip]="header.tooltip && header.tooltip(entry)"
@@ -80,7 +100,7 @@
                 </div>
 
                 <span *ngIf="!header.type" [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry,
-                    header)}}</span>
+                    header)}} <span *ngIf="header.suffix">{{header.suffix}}</span></span>
                 <span *ngIf="header.type === 'text'" [matTooltip]="header.tooltip && header.tooltip(entry)">{{getEntry(entry,
                     header) | translate}}</span>    
                 

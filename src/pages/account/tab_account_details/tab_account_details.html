@@ -85,14 +85,14 @@
         </div>
       </div>
       <div *ngIf="companyService.selectedCompany.type == 'COMPANY'" class="group-row-left" style="margin-top: 15px; border-top: 1px solid #ddd">
-        <div class="group-col-left">
-          <strong class="marg-top-20">{{'Attributes'|translate}}</strong>
-          <div class="group-row-left">
+        <div class="row">
+          <strong class="col-lg-12 marg-top-20 ">{{'Attributes'|translate}}</strong>
+          <div class="col-lg-12" >
             <avatar-badges *ngFor="let badge of companyService.selectedCompany.badges"
             [badge]="badge" style="margin: 10px 10px;">
             </avatar-badges>
           </div>
-          <div *ngIf="!companyService.selectedCompany.badges.length" class="group-row-left marg-top-10">
+          <div *ngIf="!companyService.selectedCompany.badges.length" class="col-lg-12 marg-top-10">
             <span class="small-text-2">{{'NO_ITEMS_YET' | translate}}</span>
           </div>
         </div>

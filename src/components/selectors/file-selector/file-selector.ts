@@ -23,6 +23,8 @@ export class FileSelector implements OnInit, ControlValueAccessor {
     @Input() public disabled: boolean = false;
     @Input() public changeBtnText: string = 'CHANGE';
     @Input() public file: any;
+    @Input() width: number;
+    @Input() height: number;
     @Output() public fileChange = new EventEmitter<any>();
     @Output() public error = new EventEmitter<any>();
     @Input() public isAvatar = true;
@@ -61,7 +63,9 @@ export class FileSelector implements OnInit, ControlValueAccessor {
         return this.alerts.openModal(FileUpload, {
             hasSelectedImage: !!this.file,
             selectedImage: this.file,
-            isDefaultButton: this.isDefaultButton
+            isDefaultButton: this.isDefaultButton,
+            width: this.width,
+            heigth: this.height
         }).subscribe(
             (resp) => {
                 if (resp) {

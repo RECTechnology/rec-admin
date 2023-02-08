@@ -10,10 +10,10 @@ export class CampaignsCrud extends CrudBaseService<Campaign> {
     super(http, us);
     this.basePath = '/campaigns';
     this.mapItems = true;
+    this.version = 'v3';
   }
 
   public mapper(item) {
-    console.log({ item });
     return new Campaign(item);
   }
 }

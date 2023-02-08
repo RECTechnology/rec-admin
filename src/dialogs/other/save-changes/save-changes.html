@@ -1,0 +1,21 @@
+<modal-header [status]="status" title="¿{{title|translate: data}}?" (click)="close(false, 'close')">
+  <i *ngIf="headerIcon" class="fa fa-{{headerIcon}}" style="margin-right: -130px"></i>
+</modal-header>
+
+<div class="group-col-left padd-20" style="width: 400px;">
+
+  <div class="group-row-left">
+    <p [innerHTML]="message | translate : data"></p>
+    <p *ngIf="trailing">{{trailing|translate}}</p>
+  </div>
+
+  <div class="group-row-left space-between" style="width: 100%; margin-top: 25px">
+    <button style="padding: 0!important" type="button" mat-button name="button" color="warn" (click)="close(true, 'not-save')">
+      {{btnCancelText|translate}}
+    </button>
+    <button type="button" mat-raised-button *ngIf="confirmBtnShown" color="{{'primary'}}" name="button"
+      (click)="close(true, 'save')">
+      <b>{{btnConfirmText|translate}}</b>
+    </button>
+  </div>
+</div>

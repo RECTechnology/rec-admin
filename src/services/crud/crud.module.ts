@@ -15,10 +15,13 @@ import { WithdrawalCrud } from './withdrawals/withdrawals.crud';
 import { ConfigurationSettingsCrud } from './config_settings/configuration_settings';
 import { ChallengeCrud } from './challenges/challenges.crud';
 import { RewardsCrud } from './reward/reward.crud';
+import { AccountCampaignsCrud } from './account_campaigns/account-campaigns.crud';
+import { CampaignUsersCrud } from './user_campaigns/user-campaigns.crud';
 
 @NgModule({
     providers: [
         AccountsCrud,
+        AccountCampaignsCrud,
         OffersCrud,
         ChallengeCrud,
         ProductsCrud,
@@ -33,7 +36,8 @@ import { RewardsCrud } from './reward/reward.crud';
         BadgesCrud,
         QualificationsCrud,
         WithdrawalCrud,
-        ConfigurationSettingsCrud
+        ConfigurationSettingsCrud,
+        CampaignUsersCrud
     ],
 })
 export class CrudModule { }

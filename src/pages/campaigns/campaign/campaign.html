@@ -1,0 +1,97 @@
+<header-nav>
+    <icon-btn icon="fa-angle-left" (click)="goBack()" class="icon-btn-small"></icon-btn>
+    <div class="group-row-left center v" *ngIf="campaign && campaign.id">
+        <p style="font-size: 18px;">{{campaign.name}}</p>
+    </div>
+</header-nav>
+
+<app-page [padding]="false">
+
+    <div class="row" style="margin: 0; padding: 20px;">
+        <div class="col-lg-9" style="padding: 0 20px 0 0!important;">
+            <mat-card style="height: 100%; min-height: 520px;">
+                <tl-header title="{{'PARTICIPANT_USERS' | translate}}" [options]="headerOpts" (onSearch)="searchWrapper($event)">
+                    <icon-btn (click)="export()" matTooltip="{{'EXPORT_AS_CSV'|translate}}" icon="fa-download"></icon-btn>
+                </tl-header>
+                <tl-table [loading]="loading" [sort]="true" (onSort)="sortData($event)"
+                [headers]="headers" [data]="sortedData" [limit]="limit" [total]="total"
+                [pageIndex]="offset" (onChangePage)="changedPage($event)" [options]="tableOptions">
+                </tl-table>
+            </mat-card>
+        </div>
+       
+
+        <div class="col-lg-3" style="width: 100%;">
+            <div class="row">
+                <mat-card class="col-lg-12" style="min-height: 520px; height: 100%; min-width: 250px; width: 100%; margin-bottom: 20px;">
+                    <div style="width: 100%;">
+                        <h5
+                            style="font-size: 20px; font-weight: 200; margin-bottom: 10px;text-transform: uppercase;">
+                            {{'PARTICIPANTS' | translate}}
+                        </h5>
+                        <button (click)="this.updateDonutParticipantsChart(this.donutParticipantsData, this.totalUsers)" class="abs-top-right" color="primary" mat-icon-button>
+                            <i class="fa fa-refresh color-primary"></i>
+                        </button>
+                        <p style="font-size: 14px; color: #828282;">{{'CAMPAIGN_PARTICIPANTS_INFO' | translate}}</p>
+
+                        <div id="campaign-participants-donut" style="width: 100%;"></div>
+                        <mat-progress-spinner *ngIf="loading" [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px;">
+                        </mat-progress-spinner>
+
+                        <div class="group-col-left">
+                            <div
+                              style="margin-right: 10px; padding-bottom:6px; width: 100%">
+                              <p class="group-row-left"
+                                style="width: 100%;">
+                                <span><i style="margin-right: 5px;" class="fa fa-square" [style.color]="regColors[0]"></i>
+                                  {{totalUsersOnCampaign}} </span> <span> - </span> <span>{{'Participate' | translate}}</span>
+                              </p>
+                              <p class="group-row-left"
+                                style="width: 100%;">
+                                <span><i style="margin-right: 5px;" class="fa fa-square" [style.color]="regColors[1]"></i>
+                                  {{totalUsersNotInCampaign}} </span> <span> - </span> <span>{{'NOT_PARTICIPATE' | translate}}</span>
+                              </p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+                <mat-card class="col-lg-12" style="min-height: 520px; min-width: 250px; width:100%;">
+                    <div style="width: 100%;">
+                        <h5
+                            style="font-size: 20px; font-weight: 200; margin-bottom: 10px;text-transform: uppercase;">
+                            {{'BONIFICATIONS' | translate}}
+                        </h5>
+                        <button (click)="this.updateDonutBonificationsChart(
+                            this.convertToRecs(this.donutBonificationsData), 
+                            (this.convertToRecs(this.totalAccumulatedBonus) + this.managerAccountBalance
+                          ))" 
+                        class="abs-top-right" color="primary" mat-icon-button>
+                            <i class="fa fa-refresh color-primary"></i>
+                        </button>
+                        <p style="font-size: 14px; color: #828282;">{{'CAMPAIGN_BONIFICATIONS_INFO' | translate}}</p>
+
+                        <div id="campaign-bonus-donut" style="width: 100%;"></div>
+                        <mat-progress-spinner *ngIf="loading" [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px;">
+                        </mat-progress-spinner>
+
+                        <div class="group-col-left">
+                            <div
+                              style="margin-right: 10px; padding-bottom:6px; width: 100%">
+                              <p class="group-row-left"
+                                style="width: 100%;">
+                                <span><i style="margin-right: 5px;" class="fa fa-square" [style.color]="regColors[0]"></i>
+                                  {{convertToRecs(totalAccumulatedBonus) | number: '1.2-2'}} </span> <span> - </span> <span>{{'Bonificated' | translate}}</span>
+                              </p>
+                              <p class="group-row-left"
+                                style="width: 100%;">
+                                <span><i style="margin-right: 5px;" class="fa fa-square" [style.color]="regColors[1]"></i>
+                                  {{managerAccountBalance | number: '1.2-2'}} </span> <span> - </span> <span>{{'Available' | translate}}</span>
+                              </p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</app-page>

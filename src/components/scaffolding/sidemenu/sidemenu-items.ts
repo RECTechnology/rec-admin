@@ -65,6 +65,13 @@ export const SIDEMENU_ITEMS = [
     hide: true
   },
   {
+    name: 'Campaigns',
+    route: '/campaigns',
+    item: '',
+    icon: 'fa-bullhorn',
+    hide: false
+  },
+  {
     name: 'REC_ENTITIES',
     icon: 'fa-cog',
     item: '',

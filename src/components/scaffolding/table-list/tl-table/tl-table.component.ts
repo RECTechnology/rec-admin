@@ -8,7 +8,8 @@ export type TlHeaderType = (
     'code' | 'date' | 'avatar' |
     'button' | 'slidetoggle' |
     'image' | 'number' | 'link' | 
-    'avatar-badges' | 'avatar-user' | 'user-code'
+    'avatar-badges' | 'avatar-user' | 'user-code' |
+    'account_id' | 'status-with-time' | 'status-campaigns-details'
 );
 
 export interface TlHeader {
@@ -17,6 +18,7 @@ export interface TlHeader {
     title: string;
     type?: TlHeaderType;
     accessor?: string | ((el: any) => any);
+    data?: any[];
     avatar?: TlHeader;
     image?: TlHeader;
     translate?: boolean;
@@ -137,6 +139,13 @@ export class TableListTable implements AfterContentInit {
             this.options.onClickElement(`/accounts/${accountId}`);
         }
     }
+
+    public onClickedAccountId(entry: any) {
+        if (this.options.onClickElement) {
+            const accountId = entry;
+            this.options.onClickElement(`/accounts/${accountId}`);
+        }
+    }
     
     public getRowClass(entry: any) {
         if (this.options.getRowClass) {
@@ -172,6 +181,23 @@ export class TableListTable implements AfterContentInit {
 
         const resVal = (translate && header.translate) ? this.translate.instant(val) : val;
         return resVal;
+    }
+
+    public getHeaderData(entry, header: TlHeader, position: number) {
+        let val = [];
+        if (!header.data) {
+            val = [];
+        } else if( header.data ) {
+            header.data.map((item) => {
+                val = [...val, entry[item]]; 
+            })
+        }
+        if(val[position]){
+            return val[position];
+        }else {
+            return;
+        }
+        
     }
 
     public trackByFn(index, item) {
