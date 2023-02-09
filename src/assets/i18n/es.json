@@ -1604,5 +1604,14 @@
     "BONIFICATIONS": "Bonificaciones",
     "CAMPAIGN_BONIFICATIONS_INFO": "Emitidas desde la cuenta que admin. la campaña",
     "Bonificated": "Bonificados",
-    "NOT_BONIFICATED": "No bonificados"
+    "NOT_BONIFICATED": "No bonificados",
+    "NOT_A_VALID_URL": "La URL no es correcta. Introduce una url válida",
+    "\nNOT_NUMBERS_BELOW_0": "No se permiten números negativos",
+    "NOT_NUMBERS_BELOW_0_AND_0": "No se pemiten números negativos ni 0",
+    "IMAGE_WIDTH_NOT_VALID": "El tamaño de la imagen no es válido",
+    "CAMPAIGN_REMOVED_SUCCESSFULLY": "Campaña borrada correctamente",
+    "Campaign with joined in users can not be removed": "Una campaña con usuarios adheridos no se puede borrar",
+    "PARTICIPANT_USERS": "Usuarios participantes",
+    "BONUS_SPENT": "Bonificación gastada",
+    "BONUS_OBTAINED": "Bonificación obtenida"
 }
