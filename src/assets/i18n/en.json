@@ -1604,5 +1604,14 @@
     "BONIFICATIONS": "Bonifications",
     "CAMPAIGN_BONIFICATIONS_INFO": "Issued from the account who admin. the campaign",
     "Bonificated": "Bonificated",
-    "NOT_BONIFICATED": "Not bonificated"
+    "NOT_BONIFICATED": "Not bonificated",
+    "NOT_A_VALID_URL": "The url is not valid",
+    "\nNOT_NUMBERS_BELOW_0": "Numbers below 0 not allowed",
+    "NOT_NUMBERS_BELOW_0_AND_0": "Numbers below 0 and 0 not allowed",
+    "IMAGE_WIDTH_NOT_VALID": "Image width not valid",
+    "CAMPAIGN_REMOVED_SUCCESSFULLY": "Campaign removed succesfully",
+    "Campaign with joined in users can not be removed": "Campaign with joined in users can not be removed",
+    "PARTICIPANT_USERS": "Participant users",
+    "BONUS_SPENT": "Bonus spent",
+    "BONUS_OBTAINED": "Bonus obtained"
 }
