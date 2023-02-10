@@ -4,6 +4,7 @@ import { CampaignsCrud } from 'src/services/crud/campaigns/campaigns.service';
 import { Campaign } from 'src/shared/entities/campaign.ent';
 import { AccountsCrud } from 'src/services/crud/accounts/accounts.crud';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
+import { CompanyService } from 'src/services/company/company.service';
 
 @Component({
   selector: 'tab-campaigns',
@@ -19,16 +20,21 @@ export class CampaignsTab {
   @Output() public close: EventEmitter<any> = new EventEmitter();
 
   public pageName = 'CAMPAIGNS';
+  public showV2Campaigns: boolean = false;
+  public campaignsV1: Campaign[] = [];
+  public campaignsV2: Campaign[] = [];
   public campaigns: Campaign[] = [];
 
   constructor(
     public campaignsService: CampaignsCrud,
     public accountsCrud: AccountsCrud,
     public snackbar: MySnackBarSevice,
+    public companyService: CompanyService
   ) {}
 
   public ngOnInit() {
     this.getAllCampaigns();
+    console.log(this.companyService.selectedCompany)
   }
 
   public getAllCampaigns() {
@@ -37,11 +43,22 @@ export class CampaignsTab {
       (resp) => {
         this.campaigns = resp.data.elements;
         this.loading = false;
+        this.manageCampaigns(this.campaigns);
       },
       (err) => {
         this.loading = false;
       },
     );
+  }
+
+  public isAccountInCampaign(outterCampaign){
+    return this.companyService.selectedCompany.campaigns ? 
+      this.companyService.selectedCompany.campaigns.some(campaign => campaign.id === outterCampaign.id) : false;
+  }
+
+  public manageCampaigns(campaigns){
+    this.campaignsV1 = campaigns.filter(campaign => campaign.version === 0);
+    this.campaignsV2 = campaigns.filter(campaign => campaign.version !== 0);
   }
 
   public isCampaignActiveForAccount(campaign: Campaign): boolean {

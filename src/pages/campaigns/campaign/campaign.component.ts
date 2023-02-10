@@ -9,7 +9,6 @@ import { TablePageBase } from '../../../bases/page-base';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { TableListOptions, TlHeader } from '../../../components/scaffolding/table-list/tl-table/tl-table.component';
-import { TlHeaders } from 'src/data/tl-headers';
 import { LoginService } from 'src/services/auth/auth.service';
 import { TableListHeaderOptions } from 'src/components/scaffolding/table-list/tl-header/tl-header.component';
 import { CampaignUsersCrud } from '../../../services/crud/user_campaigns/user-campaigns.crud';
@@ -24,6 +23,7 @@ declare const Morris;
 @Component({
     selector: 'campaign',
     templateUrl: './campaign.html',
+    styleUrls: ['./campaign.scss']
   })
   
 
@@ -46,6 +46,7 @@ declare const Morris;
     public managerAccountBalance: number = 0;
     public tab: string = '';
     public subscriptionParams: Subscription;
+    public screenWindow: Window;
     public allUsersSubscription: Subscription;
     public campaignSubscription: Subscription;
     public getCampaigUsersSubscription: Subscription;
@@ -77,28 +78,38 @@ declare const Morris;
     }
 
     public headers: TlHeader[] = [
-      TlHeaders.Id,
+      {
+        title: 'ID',
+        accessor: 'id',
+        sort: 'id',
+        sortable: false
+      },
       {
         title: 'Name',
         accessor: 'name',
-        sort: 'name'
+        sort: 'name',
+        sortable: false
       },
       {
         title: 'User',
         accessor: 'username',
-        sort: 'username'
+        sort: 'username',
+        sortable: false,
+        type: 'code'
       },
       {
         title: 'Phone',
         accessor: 'phone',
-        sort: 'phone'
+        sort: 'phone',
+        sortable: false
       },
       {
         title: 'BONUS_OBTAINED',
         suffix: 'R',
         accessor: (el) => el.accumulated_bonus ? 
         this.convertToRecs(el.accumulated_bonus) : 0,
-        sort: 'accumulated_bonus'
+        sort: 'accumulated_bonus',
+        sortable: false
       },
       {
         title: 'BONUS_SPENT',
@@ -106,6 +117,7 @@ declare const Morris;
         this.convertToRecs(el.spent_bonus) : 0,
         sort: 'spent_bonus',
         suffix: 'R',
+        sortable: false
       }
     ]
 
@@ -116,6 +128,9 @@ declare const Morris;
       this.filters = {'campaign_id': this.campaign_id};
       this.pageName = 'Campaign (' + this.campaign_id + ')';
     });
+    this.screenWindow = window;
+    console.log(window.innerWidth)
+    console.log(window.innerHeight)
     }
 
     public ngOnDestroy() {

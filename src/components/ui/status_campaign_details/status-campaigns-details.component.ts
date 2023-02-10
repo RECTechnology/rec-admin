@@ -9,13 +9,11 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/cor
 
 export class StatusCampaignsDetailsComponent implements OnInit, OnChanges {
 
-    @Input() endDate: string;
-    @Input() initDate: string;
+    @Input() status: string;
     @Input() bonusEnabled: boolean;
     @Input() endingAlert: boolean;
 
-    public init_time: number;
-    public end_time: number;
+    
     public created: boolean = false;
     public active: boolean = false;
     public finished: boolean = false;
@@ -30,40 +28,29 @@ export class StatusCampaignsDetailsComponent implements OnInit, OnChanges {
         if(changes.endingAlert){
             this.bonusEnabled = changes.endingAlert.currentValue;
         }
-        if(changes.initDate){
-            this.init_time = this.getTime(changes.initDate.currentValue);
-        }
-        if(changes.endDate){
-            this.end_time = this.getTime(changes.endDate.currentValue);
-        }
-          this.getStatus(this.init_time, this.end_time);
+        if(changes.status){
+            this.status = changes.status.currentValue
+        } 
+        this.getStatus(this.status);  
     }
 
     ngOnInit(){
-        this.init_time = this.getTime(this.initDate);
-        this.end_time = this.getTime(this.endDate);
-        this.getStatus(this.init_time, this.end_time);
+        this.getStatus(this.status);
     }
 
-    public getTime(date: string){
-        var dateItem = new Date(date);
-        return dateItem.getTime();
-    }
-
-    public getStatus(init_time: number, end_time: number){
-        let timeNow = Date.now();
+    public getStatus(status: string){
         
-        if(init_time >  timeNow){
+        if(status === 'created'){
             this.created = true;
             this.active = false;
             this.finished = false;
         }
-        if(timeNow > init_time && timeNow < end_time){
+        if(status === 'active'){
             this.created = false;
             this.active = true;
             this.finished = false;
         }
-        if(timeNow > end_time){
+        if(status === 'finished'){
             this.created = false;
             this.active = false;
             this.finished = true;

@@ -2,7 +2,7 @@
 <app-page>
     <div class="row" style="margin: 0;">
         <mat-card class="col-lg-12" style="padding: 0; min-height: 500px;">
-            <tl-header title="{{'Campaigns' | translate}}" [options]="headerOpts" (onSearch)="search()">
+            <tl-header title="{{pageName | translate}}" [options]="headerOpts" (onSearch)="searchByFilters(this.selectedStatuses)">
                 <button type="button" color="primary" mat-raised-button name="button" (click)="addItem()">
                     <p class="text-small">
                         <i class="fa fa-plus"></i> {{'CAMPAIGNS'|translate}}
@@ -10,11 +10,18 @@
                 </button>
             </tl-header>
             <tl-subheader>
-                <div class="row" style="padding: 8px 15px; margin: 0;">
-                    <mat-checkbox #checkBox style="margin-right: 15px;" color="primary"
-                    (change)="hideEnded($event)">
-                        <span class="small-text">{{'HIDE_ENDED'|translate}}</span>
-                    </mat-checkbox>
+                <div class="row" style="padding: 5px 15px; margin: 0;">
+                    <mat-form-field>
+                        <mat-select placeholder="Filtar por estado" multiple [formControl]="selectedStatuses" (selectionChange)="searchByFilters($event)">
+                            <mat-select-trigger>
+                                {{(selectedStatuses.value.length > 0 ? selectedStatuses.value[0].label : '') | translate}}
+                                <span *ngIf="selectedStatuses.value?.length > 1" class="example-additional-selection">
+                                  (+{{selectedStatuses.value.length - 1}})
+                                </span>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let status of statuses" [value]="status">{{status.label | translate}}</mat-option>
+                        </mat-select>    
+                    </mat-form-field>
                 </div>
             </tl-subheader>
 

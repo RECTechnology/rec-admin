@@ -1,0 +1,7 @@
+<modal-header [status]="status" *ngIf="title" style="color: white;" title="{{title|translate}}" (click)="close(false)"></modal-header>
+
+<div class="group-col-left padd-20">
+    <span style="max-width: 500px;" *ngIf="message">
+      {{message|translate}}
+    </span>
+</div>

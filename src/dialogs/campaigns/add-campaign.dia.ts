@@ -11,6 +11,7 @@ import { SaveChangesMessage } from '../other/save-changes/save-changes.dia';
 import { CampaignsCrud } from '../../services/crud/campaigns/campaigns.service';
 import { AccountsCrud } from '../../services/crud/accounts/accounts.crud';
 import { Account } from "src/shared/entities/account.ent";
+import { GenericDialog } from '../other/generic-dialog/generic-dialog';
 
 
 
@@ -34,6 +35,7 @@ import { Account } from "src/shared/entities/account.ent";
     public imageWidth: number = 500;
     public imageHeight: number = 500;
     public init_date: string;
+    public version: number = null;
     public end_date: string;
     public campaignId: number;
     private subscription: Subscription;
@@ -59,24 +61,24 @@ import { Account } from "src/shared/entities/account.ent";
     public formGroup: FormGroup = this.fb.group({
       formArray: this.fb.array([
         this.fb.group({
-          url_tos: ['', Validators.required],
+          url_tos: ['', [Validators.required, Validators.pattern(/^((http|https|ftp):\/\/)/)]],
           name: [''],
-          redeemable_percentage: [null, [Validators.required, Validators.pattern("[0-9]+")]],
+          redeemable_percentage: [null, [Validators.required, Validators.min(1)]],
           init_date:[null, Validators.required],
           end_date:[null, Validators.required]
         }),
         this.fb.group({
-          min: [null, [Validators.required, Validators.pattern("[0-9]+")]],
-          max: [null, [Validators.required, Validators.pattern("[0-9]+")]],
+          min: [null, [Validators.required, Validators.min(0)]],
+          max: [null, [Validators.required, Validators.min(0.01)]],
           campaign_account: [null, Validators.required]
         }),
         this.fb.group({
           image_url: [''],
-          video_promo_url: [''],
-          promo_url: ['']
+          video_promo_url: ['', Validators.pattern(/^((http|https|ftp):\/\/)/)],
+          promo_url: ['', Validators.pattern(/^((http|https|ftp):\/\/)/)]
         }),
         this.fb.group({
-          bonus_ending_threshold: [null, Validators.required],
+          bonus_ending_threshold: [null, [Validators.required,Validators.min(1e-12)]],
         }),
       ])
     });
@@ -263,15 +265,17 @@ import { Account } from "src/shared/entities/account.ent";
 
     public ifIsEditManageCampaigData(validate:boolean, index?: number){
       if(this.isEdit){
+        if(this.version != 0){
+          this.pageArrays[1].min = this.convertToRecs(this.pageArrays[1].min);
+          this.pageArrays[1].max = this.convertToRecs(this.pageArrays[1].max);
+        }
+        this.pageArrays[3].bonus_ending_threshold = this.convertToRecs(this.pageArrays[3].bonus_ending_threshold);
+        
         for(let i = 0; i < this.pageArrays.length; i++){
           (this.formGroup.controls.formArray as FormGroup).controls[i].patchValue({
             ...this.pageArrays[i]
           })
         }
-
-        (this.formGroup.controls.formArray as FormGroup).controls[3].patchValue({
-          'bonus_ending_threshold': this.convertToRecs((this.formGroup.controls.formArray as FormGroup).controls[3].get('bonus_ending_threshold').value)
-        });
 
         (this.formGroup.controls.formArray as FormGroup).controls[0].patchValue({
           'init_date': this.formatDate((this.formGroup.controls.formArray as FormGroup).controls[0].get('init_date').value),
@@ -324,6 +328,14 @@ import { Account } from "src/shared/entities/account.ent";
         if(this.campaignData[3].bonus_ending_threshold){
           this.campaignData[3].bonus_ending_threshold = this.convertToSatoshis(this.campaignData[3].bonus_ending_threshold);
         } 
+        if(this.version != 0){
+          if(this.campaignData[1].max){
+            this.campaignData[1].max = this.convertToSatoshis(this.campaignData[1].max);
+          } 
+          if(this.campaignData[1].min){
+            this.campaignData[1].min = this.convertToSatoshis(this.campaignData[1].min);
+          } 
+        }
 
       }else{
         this.campaignData = {...(this.formGroup.controls.formArray as FormGroup).value[0], 
@@ -346,9 +358,24 @@ import { Account } from "src/shared/entities/account.ent";
           if(this.campaignData.bonus_ending_threshold){
             this.campaignData.bonus_ending_threshold = this.convertToSatoshis(this.campaignData.bonus_ending_threshold);
           }
+          if(this.version != 0){
+            if(this.campaignData.max){
+              this.campaignData.max = this.convertToSatoshis(this.campaignData.max);
+            } 
+            if(this.campaignData.min){
+              this.campaignData.min = this.convertToSatoshis(this.campaignData.min);
+            } 
+          }
 
           this.campaignData = {...this.campaignData, tos: '', bonus_enabled: 1, balance: 0}
       }
+    }
+
+    public openInfoDialog(){
+      const dialogRef = this.dialog.open(GenericDialog, { disableClose: false });
+      dialogRef.componentInstance.title = 'INFORMATION';
+      dialogRef.componentInstance.message = 'CAMPAIGN_VIDEO_URL_INFORMATION_MESSAGE';
+      dialogRef.componentInstance.status = 'yellow'
     }
 
     public getCampaignDataToEdit(campaign, data: string[]){

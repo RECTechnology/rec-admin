@@ -12,7 +12,7 @@ import { AlertsService } from 'src/services/alerts/alerts.service';
 export class FileUpload {
   public brand = environment.Brand;
   public error = '';
-  public title: string = '';
+  public title: string = 'UPLOAD_FILE';
   public canUpload: boolean = false;
   public width: number;
   public heigth: number;

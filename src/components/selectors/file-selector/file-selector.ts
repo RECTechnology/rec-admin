@@ -24,6 +24,7 @@ export class FileSelector implements OnInit, ControlValueAccessor {
     @Input() public changeBtnText: string = 'CHANGE';
     @Input() public file: any;
     @Input() width: number;
+    @Input() infoFooter: string;
     @Input() height: number;
     @Output() public fileChange = new EventEmitter<any>();
     @Output() public error = new EventEmitter<any>();

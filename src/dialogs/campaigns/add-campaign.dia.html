@@ -21,7 +21,7 @@
             </ul>
         </div>
 </div>
-<div class="col-lg-9 col-7" style="margin-top:25px;">
+<div class="col-lg-9 col-7" style="margin-top:25px; margin-left: -20px;">
     <validation-errors [errors]="validationErrors" *ngIf="validationErrors && validationErrors.length > 0"
         style="border: 1px solid #ddd!important; width: 100%; margin-bottom: 15px;">
     </validation-errors>
@@ -40,7 +40,7 @@
         </ng-template>
         <mat-step formGroupName="0" [stepControl]="formArray?.get([0])" class="color-primary" state="edit">
             <div class="row">
-                <div class="col-lg-12"  style= "padding: 0!important; color: #0098DB;">
+                <div class="col-lg-12 color-primary" style= "padding: 0!important;">
                     <p>{{'Basic Info' | translate}}</p>
                 </div>
                 <div class="col-lg-12 mt-3" style="width: 100%; padding: 0px 15px 0px 0px;">
@@ -48,7 +48,8 @@
                     <p style="color: rgb(92, 91, 91); font-size: 12px; font-weight: 200;">{{'URL_CONDITION_CAMPAIGN_INFO'|translate}}</p>
                     <mat-form-field style="padding: 0" style="width: 100%;" floatLabel="always" >
                       <input formControlName="url_tos" autocomplete="off" matInput type="text" style="max-width: 100%; font-size:14px">
-                      <mat-error *ngIf="formArray?.get([0]).get('url_tos').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+                      <mat-error *ngIf="formArray?.get([0]).get('url_tos').invalid && formArray?.get([0]).get('url_tos').errors.required">{{'FIELD_REQUIRED'| translate}}</mat-error>
+                      <mat-error *ngIf="formArray?.get([0]).get('url_tos').errors && formArray?.get([0]).get('url_tos').errors.pattern">{{'NOT_A_VALID_URL'| translate}}</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -100,7 +101,7 @@
         </mat-step>
         <mat-step class="color-primary" formGroupName="1" [stepControl]="formArray?.get([1])" [state]="stepper.selectedIndex == 1 ? 'edit':'number'">
             <div class="row">
-                <div class="col-lg-12"  style= "padding: 0!important; color: #0098DB;">
+                <div class="col-lg-12 color-primary"  style= "padding: 0!important;">
                     <p>{{'Specific Info' | translate}}</p>
                 </div>
             </div>
@@ -112,7 +113,7 @@
                         <mat-form-field style="padding: 0" style="width: 100%;" floatLabel="always" >
                             <input formControlName="min" autocomplete="off" matInput type="number" style="max-width: 100%; font-size:14px">
                             <mat-error *ngIf="formArray?.get([1]).get('min').invalid && formArray?.get([1]).get('min').errors.required">{{'FIELD_REQUIRED'| translate}}</mat-error>
-                            <mat-error *ngIf="formArray?.get([1]).get('min').errors && formArray?.get([1]).get('min').errors.pattern">{{'ONLY_INTEGER_NUMBERS'| translate}}</mat-error>
+                            <mat-error *ngIf="formArray?.get([1]).get('min').errors && formArray?.get([1]).get('min').errors.min">{{'NOT_NUMBERS_BELOW_0'| translate}}</mat-error>
                         </mat-form-field>
                     </div>
 
@@ -122,7 +123,7 @@
                         <mat-form-field style="padding: 0" style="width: 100%;" floatLabel="always" >
                             <input formControlName="max" autocomplete="off" matInput type="number" style="max-width: 100%; font-size:14px; margin-top: 27px;">
                             <mat-error *ngIf="formArray?.get([1]).get('max').invalid && formArray?.get([1]).get('max').errors.required">{{'FIELD_REQUIRED'| translate}}</mat-error>
-                            <mat-error *ngIf="formArray?.get([1]).get('max').errors && formArray?.get([1]).get('max').errors.pattern">{{'ONLY_INTEGER_NUMBERS'| translate}}</mat-error>
+                            <mat-error *ngIf="formArray?.get([1]).get('max').errors && formArray?.get([1]).get('max').errors.min">{{'NOT_NUMBERS_BELOW_0_AND_0'| translate}}</mat-error>
                         </mat-form-field>
                     </div>
                 </div>
@@ -149,28 +150,37 @@
         </mat-step>
         <mat-step class="color-primary" formGroupName="2" [stepControl]="formArray?.get([2])" [state]="stepper.selectedIndex == 2 ? 'edit':'number'">
             <div class="row">
-                <div class="col-lg-12"  style= "padding: 0!important; color: #0098DB;">
+                <div class="col-lg-12 color-primary"  style= "padding: 0!important;">
                     <p>{{'Optional Info' | translate}}</p>
                 </div>
-                <div class="col-lg-5 mt-3" style="width: 100%; padding: 10px 35px 0px 0px;">
+                <div class="col-lg-5 mt-3" style="width: 100%; padding:8px 35px 0px 0px;">
                     <p style="color: black; font-size: 14px; font-weight: 400;">{{"CAMPAIGN_IMAGE" | translate}}</p>
                     <p style="color: rgb(92, 91, 91); font-size: 12px; font-weight: 200;">{{'CAMPAIGN_IMAGE_INFO'|translate}}</p>
-                    <file-selector [width]="imageWidth" [height]="imageHeight" formControlName="image_url" [bigger]="false" label="" [isAvatar]="false" [(file)]="campaign.image_url"></file-selector>
+                    <file-selector 
+                        [width]="imageWidth" [height]="imageHeight" formControlName="image_url" 
+                        [bigger]="false" label="" [isAvatar]="false" [(file)]="campaign.image_url"
+                        infoFooter="NO_MORE_THAN_500PX">
+                    </file-selector>
                 </div>
                 <div class="col-lg-7 mt-3">
                     <div class="row">
-                        <div class="col-lg-12 mt-3" style="width: 100%; padding: 0px 15px 0px 0px;">
+                        <div class="col-lg-12 mt-2" style="width: 100%; padding: 0px 15px 0px 0px;">
                             <p style="color: black; font-size: 14px; font-weight: 400;">{{"URL_PROMOTION_CAMPAIGN" | translate}}</p>
                             <p style="color: rgb(92, 91, 91); font-size: 12px; font-weight: 200;">{{'URL_PROMOTION_CAMPAIGN_INFO'|translate}}</p>
                             <mat-form-field style="padding: 0" style="width: 100%;" floatLabel="always" >
                             <input formControlName="promo_url" autocomplete="off" matInput type="text" style="max-width: 100%; font-size:14px">
+                            <mat-error *ngIf="formArray?.get([2]).get('promo_url').errors && formArray?.get([2]).get('promo_url').errors.pattern">{{'NOT_A_VALID_URL'| translate}}</mat-error>
                             </mat-form-field>
                         </div>
                         <div class="col-lg-12 mt-3" style="width: 100%; padding: 0px 15px 0px 0px;">
-                            <p style="color: black; font-size: 14px; font-weight: 400;">{{"URL_VIDEO_PROMOTION_CAMPAIGN" | translate}}</p>
+                            <div class="d-flex">
+                                <p style="color: black; font-size: 14px; font-weight: 400;margin-right: 10px!important;">{{"URL_VIDEO_PROMOTION_CAMPAIGN" | translate}}</p>
+                                <mat-icon matTooltip="{{'GO_TO_CAMPAIGN_VIDEO_URL_INFO' | translate}}" (click)="openInfoDialog()" class="color-primary" style="cursor: pointer;">info</mat-icon>
+                            </div>
                             <p style="color: rgb(92, 91, 91); font-size: 12px; font-weight: 200;">{{'URL_VIDEO_PROMOTION_CAMPAIGN_INFO'|translate}}</p>
                             <mat-form-field style="padding: 0" style="width: 100%;" floatLabel="always" >
                             <input formControlName="video_promo_url" autocomplete="off" matInput type="text" style="max-width: 100%; font-size:14px">
+                            <mat-error *ngIf="formArray?.get([2]).get('video_promo_url').errors && formArray?.get([2]).get('video_promo_url').errors.pattern">{{'NOT_A_VALID_URL'| translate}}</mat-error>
                             </mat-form-field>
                         </div>
                     </div>
@@ -188,7 +198,7 @@
         </mat-step>
         <mat-step class="container color-primary" formGroupName="3" [stepControl]="formArray?.get([3])" [state]="stepper.selectedIndex == 3 ? 'edit':'number'">
             <div class="row">
-                <div class="col-lg-12"  style= "padding: 0!important; color: #0098DB;">
+                <div class="col-lg-12 color-primary"  style= "padding: 0!important;">
                     <p>{{'Closing Info' | translate}}</p>
                 </div>
 
@@ -197,7 +207,8 @@
                     <p style="color: rgb(92, 91, 91); font-size: 12px; font-weight: 200;">{{'BONIFICATION_THRESHOLD_CAMPAIGN_INFO'|translate}}</p>
                     <mat-form-field style="padding: 0" style="width: 100%;" floatLabel="always" >
                       <input formControlName="bonus_ending_threshold" autocomplete="off" matInput type="number" style="max-width: 100%; font-size:14px">
-                      <mat-error *ngIf="formArray?.get([3]).get('bonus_ending_threshold').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
+                      <mat-error *ngIf="formArray?.get([3]).get('bonus_ending_threshold').invalid && formArray?.get([3]).get('bonus_ending_threshold').errors.required">{{'FIELD_REQUIRED'| translate}}</mat-error>
+                      <mat-error *ngIf="formArray?.get([3]).get('bonus_ending_threshold').errors && formArray?.get([3]).get('bonus_ending_threshold').errors.min">{{'NOT_NUMBERS_BELOW_0_AND_0'| translate}}</mat-error>
                     </mat-form-field>
                 </div>
             </div>

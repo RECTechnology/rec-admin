@@ -65,7 +65,7 @@ export const SIDEMENU_ITEMS = [
     hide: true
   },
   {
-    name: 'Campaigns',
+    name: 'CAMPAIGNS',
     route: '/campaigns',
     item: '',
     icon: 'fa-bullhorn',

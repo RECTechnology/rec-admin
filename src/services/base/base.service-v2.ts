@@ -122,10 +122,16 @@ export class BaseService2 {
       for (const key in params) {
         if (key) {
           let param = params[key];
-          if (String(param).toString() === '[object Object]') {
-            param = JSON.stringify(param);
+          if (param instanceof Array) {
+            for (let item of param) {
+              searchParams = searchParams.append(key + '[]', item);
+            }
+          } else {
+            if (String(param).toString() === '[object Object]') {
+              param = JSON.stringify(param);
+            }
+            searchParams = searchParams.append(key, param);
           }
-          searchParams = searchParams.append(key, param);
         }
       }
     }

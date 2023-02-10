@@ -142,6 +142,7 @@ import { AccountIdTableColumn } from 'src/components/ui/account_id/account_id.co
 import { StatusWithTimeComponent } from '../components/ui/status_with_time/status_with_time.component';
 import { StatusCampaignsDetailsComponent } from '../components/ui/status_campaign_details/status-campaigns-details.component';
 import { ExportCampaignsUsers } from 'src/dialogs/campaigns/export-campaigns/export-campaigns.dia';
+import { GenericDialog } from 'src/dialogs/other/generic-dialog/generic-dialog';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -163,6 +164,7 @@ const DIALOGS = [
   EditUserData,
   ConfirmationMessage,
   InfoMessage,
+  GenericDialog,
   FileUpload,
   IdleNotification,
   ManageSms,
