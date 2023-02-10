@@ -1618,8 +1618,9 @@
     "ADD_CAMPAIGN": "Create campaign",
     "CAMPAIGN_VIDEO_URL_INFORMATION_MESSAGE": "The URL you enter must be EMBED. For example, this is a typical YouTube URL: https://www.youtube.com/watch?v=i3zi6iGapbs, for it to be EMBED, it will need to be changed to https://www.youtube.com/embed/i3zi6iGapbs. What needs to be done is to replace 'watch?v=' with 'embed' so that the video is displayed correctly on the mobile device.",
     "INFORMATION": "Information",
-    "NO_MORE_THAN_500PX": "The maximum size allowed is 500px X 500px",
+    "NO_MORE_THAN_500PX": "Maximum size allowed is 500px X 500px",
     "NOT_NUMBERS_BELOW_0": "Negative numbers not allowed",
     "CREATED_F": "Created",
-    "CANNOT_DELETE_V1_CAMPAIGN": "Unable to delete closed-loop campaign"
+    "CANNOT_DELETE_V1_CAMPAIGN": "Unable to delete closed-loop campaign",
+    "GO_TO_CAMPAIGN_VIDEO_URL_INFO": "View information about how the video URL should be"
 }
