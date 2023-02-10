@@ -1618,8 +1618,9 @@
     "ADD_CAMPAIGN": "Crear campaña",
     "CAMPAIGN_VIDEO_URL_INFORMATION_MESSAGE": "La URL que se introduzca debe ser EMBED. Por ejemplo, esta es una URL típica de YouTube: https://www.youtube.com/watch?v=i3zi6iGapbs, para que sea EMBED, deberá cambiarse por https://www.youtube.com/embed/i3zi6iGapbs. Lo que hay que hacer es sustituir 'watch?v=' por 'embed' para que el video se muestre correctamente en el dispositivo móvil.",
     "INFORMATION": "Información",
-    "NO_MORE_THAN_500PX": "La imagen debe ser como máximo de 500px X 500px",
+    "NO_MORE_THAN_500PX": "Tamaño máximo de 500px X 500px",
     "NOT_NUMBERS_BELOW_0": "No se permiten números negativos",
     "CREATED_F": "Creada",
-    "CANNOT_DELETE_V1_CAMPAIGN": "No se pueden borrar las campañas de circuito cerrado"
+    "CANNOT_DELETE_V1_CAMPAIGN": "No se pueden borrar las campañas de circuito cerrado",
+    "GO_TO_CAMPAIGN_VIDEO_URL_INFO": "Ver información sobre como ha de ser la URL del vídeo"
 }
