@@ -1623,5 +1623,7 @@
     "CREATED_F": "Creada",
     "CANNOT_DELETE_V1_CAMPAIGN": "No se pueden borrar las campañas de circuito cerrado",
     "GO_TO_CAMPAIGN_VIDEO_URL_INFO": "Ver información sobre como ha de ser la URL del vídeo",
-    "CANNOT_SHOW_CAMPAIG_INFO": "No se puede mostrar información de esta campaña"
+    "CANNOT_SHOW_CAMPAIG_INFO": "No se puede mostrar información de esta campaña",
+    "STILL_NOT_ACTIVATED": "Todavía no está activada",
+    "REMOVED_CAMPAIGN_SUCCESSFULLY": "Campaña borrada correctamente"
 }
