@@ -1622,5 +1622,6 @@
     "NOT_NUMBERS_BELOW_0": "Negative numbers not allowed",
     "CREATED_F": "Created",
     "CANNOT_DELETE_V1_CAMPAIGN": "Unable to delete closed-loop campaign",
-    "GO_TO_CAMPAIGN_VIDEO_URL_INFO": "View information about how the video URL should be"
+    "GO_TO_CAMPAIGN_VIDEO_URL_INFO": "View information about how the video URL should be",
+    "CANNOT_SHOW_CAMPAIG_INFO": "Cannot show this campaign information"
 }
