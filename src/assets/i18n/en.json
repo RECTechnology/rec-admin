@@ -1623,5 +1623,7 @@
     "CREATED_F": "Created",
     "CANNOT_DELETE_V1_CAMPAIGN": "Unable to delete closed-loop campaign",
     "GO_TO_CAMPAIGN_VIDEO_URL_INFO": "View information about how the video URL should be",
-    "CANNOT_SHOW_CAMPAIG_INFO": "Cannot show this campaign information"
+    "CANNOT_SHOW_CAMPAIG_INFO": "Cannot show this campaign information",
+    "STILL_NOT_ACTIVATED": "Still not activated",
+    "REMOVED_CAMPAIGN_SUCCESSFULLY": "Removed campaign successfully"
 }
