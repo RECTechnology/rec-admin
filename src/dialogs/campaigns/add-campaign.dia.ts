@@ -190,6 +190,7 @@ import { GenericDialog } from '../other/generic-dialog/generic-dialog';
       this.crud.create(this.campaignData).subscribe(resp => {
         if(resp){
           this.dialogRef.close(true);
+          this.alerts.showSnackbar('CAMPAIGN_CREATED_SUCCESSFULLY');
         }
       }, (error) => {
         if(error.message){

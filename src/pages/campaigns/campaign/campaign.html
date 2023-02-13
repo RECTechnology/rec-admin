@@ -71,7 +71,7 @@
                         <p style="font-size: 14px; color: #828282;">{{'CAMPAIGN_BONIFICATIONS_INFO' | translate}}</p>
 
                         <div id="campaign-bonus-donut" 
-                        [ngClass]="{'donutWidthSmall': screenWindow.innerWidth < 1300 && screenWindow.innerHeight < 700}" 
+                        [ngClass]="{'donutWidthSmall': screenWindow.innerWidth < 1500 && screenWindow.innerHeight < 900}" 
                         style="width: 100%;"></div>
                         <mat-progress-spinner *ngIf="loading" [diameter]="40" color="primary" mode="indeterminate" style="width: 40px; height: 40px;">
                         </mat-progress-spinner>

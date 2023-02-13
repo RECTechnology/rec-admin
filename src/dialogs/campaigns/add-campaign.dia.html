@@ -1,7 +1,7 @@
 <modal-header title="{{(isEdit ? 'EDIT_CAMPAIGN': 'ADD_CAMPAIGN')|translate}}" (close)="close(false)">
 </modal-header>
 
-<div [formGroup]="formGroup" class="modal-body" style="min-height: 500px; height: auto!important; width: auto!important; max-width: 850px; padding: 0!important;">
+<div [formGroup]="formGroup" class="modal-body" style="min-height: 510px; height: auto!important; width: auto!important; max-width: 850px; padding: 0!important;">
     <div class="row">
     <div class="col-lg-3 col-4">
         <div class="row create_campaign-sidebar" style="width: 100%;">
@@ -70,7 +70,7 @@
                         <mat-form-field style="padding: 0" style="width: 100%;" floatLabel="always" >
                             <input type="number" formControlName="redeemable_percentage" autocomplete="off" matInput style="max-width: 100%; font-size:14px">
                             <mat-error *ngIf="formArray?.get([0]).get('redeemable_percentage').invalid && formArray?.get([0]).get('redeemable_percentage').errors.required">{{'FIELD_REQUIRED'| translate}}</mat-error>
-                            <mat-error *ngIf="formArray?.get([0]).get('redeemable_percentage').errors && formArray?.get([0]).get('redeemable_percentage').errors.pattern">{{'ONLY_INTEGER_NUMBERS'| translate}}</mat-error>
+                            <mat-error *ngIf="formArray?.get([0]).get('redeemable_percentage').errors && formArray?.get([0]).get('redeemable_percentage').errors.min">{{'NOT_NUMBERS_BELOW_0'| translate}}</mat-error>
                         </mat-form-field>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                 <div class="col-lg-12 color-primary"  style= "padding: 0!important;">
                     <p>{{'Optional Info' | translate}}</p>
                 </div>
-                <div class="col-lg-5 mt-3" style="width: 100%; padding:8px 35px 0px 0px;">
+                <div class="col-lg-5 mt-2" style="width: 100%; padding:8px 35px 0px 0px;">
                     <p style="color: black; font-size: 14px; font-weight: 400;">{{"CAMPAIGN_IMAGE" | translate}}</p>
                     <p style="color: rgb(92, 91, 91); font-size: 12px; font-weight: 200;">{{'CAMPAIGN_IMAGE_INFO'|translate}}</p>
                     <file-selector 
@@ -162,7 +162,7 @@
                         infoFooter="NO_MORE_THAN_500PX">
                     </file-selector>
                 </div>
-                <div class="col-lg-7 mt-3">
+                <div class="col-lg-7 mt-2">
                     <div class="row">
                         <div class="col-lg-12 mt-2" style="width: 100%; padding: 0px 15px 0px 0px;">
                             <p style="color: black; font-size: 14px; font-weight: 400;">{{"URL_PROMOTION_CAMPAIGN" | translate}}</p>
@@ -175,7 +175,7 @@
                         <div class="col-lg-12 mt-3" style="width: 100%; padding: 0px 15px 0px 0px;">
                             <div class="d-flex">
                                 <p style="color: black; font-size: 14px; font-weight: 400;margin-right: 10px!important;">{{"URL_VIDEO_PROMOTION_CAMPAIGN" | translate}}</p>
-                                <mat-icon matTooltip="{{'GO_TO_CAMPAIGN_VIDEO_URL_INFO' | translate}}" (click)="openInfoDialog()" class="color-primary" style="cursor: pointer;">info</mat-icon>
+                                <mat-icon matTooltip="{{'GO_TO_CAMPAIGN_VIDEO_URL_INFO' | translate}}" (click)="openInfoDialog()" style="cursor: pointer;color: #f4b04f">info</mat-icon>
                             </div>
                             <p style="color: rgb(92, 91, 91); font-size: 12px; font-weight: 200;">{{'URL_VIDEO_PROMOTION_CAMPAIGN_INFO'|translate}}</p>
                             <mat-form-field style="padding: 0" style="width: 100%;" floatLabel="always" >
@@ -186,7 +186,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row align-items-end" style="margin-top: 20px;">
+            <div class="row align-items-end" style="margin-top: 10px;">
                 <div class="col-auto mr-auto" style="padding: 0!important;">
                     <p *ngIf="!isEdit" class="color-primary" style="cursor: pointer;" (click)="stepper.previous()">{{'Back' | translate}}</p>
                 </div>

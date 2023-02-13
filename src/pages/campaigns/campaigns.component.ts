@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TablePageBase } from 'src/bases/page-base';
@@ -14,7 +14,6 @@ import { TlHeaders } from 'src/data/tl-headers';
 import { TlItemOptions } from 'src/data/tl-item-options';
 import { DatePipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
-import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'campaigns',
@@ -24,6 +23,7 @@ import { HttpParams } from '@angular/common/http';
 export class CampaignsPage extends TablePageBase {
   public pageName = 'CAMPAIGNS';
   public campaignData: {};
+  public timeout: any;
   public statuses: any[] = [
     {label: 'Active', value: 'active'},
     {label: 'CREATED_F', value: 'created'},
@@ -58,17 +58,17 @@ export class CampaignsPage extends TablePageBase {
   public headers: TlHeader[] = [
     TlHeaders.Id,
     {
-      title: 'Admin',
-      accessor: 'campaign_account',
-      sortable: true,
-      sort: 'campaign_account',
-      type:'account_id'
-    },
-    {
       title: 'Name',
       accessor: (el) => el.name != "" ? el.name : 'Campaña',
       sortable: true,
       sort: 'name'
+    },
+    {
+      title: 'Admin',
+      accessor: 'campaign_account',
+      sortable: false,
+      sort: 'campaign_account',
+      type:'account_id'
     },
     {
       title: 'BONIFICATION',
@@ -95,13 +95,14 @@ export class CampaignsPage extends TablePageBase {
       title: 'Status',
       data: ['status'],
       sort: 'end_date',
-      sortable: true,
+      sortable: false,
       tooltip: (entry) => `Inicio: ${this.formatDate(entry.init_date)}  / Fin: ${this.formatDate(entry.end_date)}`,
       type: 'status-with-time'
     },
     {
       title:'STATUS_CAMPAIGN_DETAILS',
       sort: 'bonus_enabled',
+      sortable: false,
       data: ['status', 'bonus_enabled', 'ending_alert'],
       type: 'status-campaigns-details'
     }
@@ -149,10 +150,7 @@ export class CampaignsPage extends TablePageBase {
   public addItem() {
     const dialogRef = this.dialog.open(AddCampaignDia, { disableClose: true });
     dialogRef.afterClosed().subscribe((created) => {
-      if (created) {
-        this.alerts.showSnackbar('CAMPAIGN_CREATED_SUCCESSFULLY');
-        this.search();
-      }
+          this.search();
     });
   }
 
