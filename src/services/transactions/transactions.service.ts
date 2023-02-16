@@ -127,7 +127,7 @@ export class TransactionService extends BaseService {
     environment.crypto_currency ? this.currency = environment.crypto_currency : this.currency = 'rec';
     return this.post({
       amount, concept, receiver, sec_code, sender, internal_in, internal_out
-    }, null, `${API_URL}/admin/v3/third/${this.currency}`);
+    }, null, `${API_URL}/admin/v3/third/${this.currency.toLowerCase()}`);
   }
 
   /**
