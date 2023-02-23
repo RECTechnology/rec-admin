@@ -1,16 +1,16 @@
 <div class="row" style="height: 50px">
     <div class="col-lg-4">
         <div class="group-row-left center" style="height: 100%;">
-            <mat-checkbox class="col-lg-8" *ngIf="!opens24Hours && !closed && !isNotAvailable" color="primary" [(ngModel)]="day.opens"
-                style="margin-bottom: 10px">
+            <mat-checkbox class="col-lg-8" *ngIf="!opens24Hours && !closed && !isNotAvailable" color="primary"
+                [(ngModel)]="day.opens" style="margin-bottom: 10px">
                 <b class="small-text-2">{{getWeekdayName(weekday) | translate}}</b>
             </mat-checkbox>
-            <mat-checkbox *ngIf="opens24Hours" [disabled]="false" color="primary" [(ngModel)]="day.opens" [checked]="true"
-                >
+            <mat-checkbox *ngIf="opens24Hours" [disabled]="false" color="primary" [(ngModel)]="day.opens"
+                [checked]="true">
                 <b class="small-text-2">{{getWeekdayName(weekday) | translate}}</b>
             </mat-checkbox>
-            <mat-checkbox class="col-lg-8" *ngIf="closed || isNotAvailable" [disabled]="true" [checked]="false" color="primary"
-               >
+            <mat-checkbox class="col-lg-8" *ngIf="closed || isNotAvailable" [disabled]="true" [checked]="false"
+                color="primary">
                 <b class="small-text-2">{{getWeekdayName(weekday) | translate}}</b>
             </mat-checkbox>
         </div>
@@ -36,23 +36,26 @@
 
     <div *ngIf="!opens24Hours && !closed && !isNotAvailable" class="col-lg-4">
         <div class="group-row-left center">
-            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.firstOpen" 
+            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.firstOpen"
                 placeholder="First Open" />
 
             <div class="padd-h-10 marg-bottom-10">
                 <mat-icon>arrow_right</mat-icon>
             </div>
-            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.firstClose" placeholder="First Close"/>
+            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.firstClose"
+                placeholder="First Close" />
         </div>
     </div>
 
     <div *ngIf="!opens24Hours && !closed && !isNotAvailable" class="col-lg-4">
         <div class="group-row-left  center">
-            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.secondOpen" placeholder="Second Open"/>
+            <input type="time" class="user-input small" [disabled]="!day.opens || !day.firstClose"
+                [(ngModel)]="day.secondOpen" placeholder="Second Open" />
             <div class="padd-h-10 marg-bottom-10">
                 <mat-icon>arrow_right</mat-icon>
             </div>
-            <input type="time" class="user-input small" [disabled]="!day.opens" [(ngModel)]="day.secondClose" placeholder="Second Close"/>
+            <input type="time" class="user-input small" [disabled]="!day.opens || !day.firstClose"
+                [(ngModel)]="day.secondClose" placeholder="Second Close" />
         </div>
     </div>
 </div>
