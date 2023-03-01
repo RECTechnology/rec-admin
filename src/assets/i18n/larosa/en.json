@@ -1597,5 +1597,6 @@
     "NOT_PARTICIPATE": "Not participate",
     "Participate": "Participate",
     "CAMPAIGN_PARTICIPANTS_INFO": "Private users adhering to the campaign",
-    "PARTICIPANTS": "Participants"
+    "PARTICIPANTS": "Participants",
+    "NO_BONUS_LEFT": "No bonus left"
 }
