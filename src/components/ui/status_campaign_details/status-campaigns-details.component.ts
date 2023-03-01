@@ -26,12 +26,18 @@ export class StatusCampaignsDetailsComponent implements OnInit, OnChanges {
             this.bonusEnabled = changes.bonusEnabled.currentValue;
         }
         if(changes.endingAlert){
-            this.bonusEnabled = changes.endingAlert.currentValue;
+            this.endingAlert = changes.endingAlert.currentValue;
         }
         if(changes.status){
             this.status = changes.status.currentValue
         } 
-        this.getStatus(this.status);  
+        this.getStatus(this.status); 
+        console.log({
+            status: this.status,
+            bonusEnabled: this.bonusEnabled,
+
+        });
+
     }
 
     ngOnInit(){
