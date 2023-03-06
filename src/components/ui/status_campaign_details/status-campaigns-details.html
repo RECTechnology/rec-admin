@@ -1,5 +1,5 @@
 <p *ngIf="created">{{'STILL_NOT_ACTIVATED' | translate}}</p>
 <p *ngIf="active && !endingAlert && bonusEnabled">{{'SENDING_BONUS' | translate}}</p>
-<p *ngIf="active && endingAlert">{{'FEW_BONUSES_LEFT' | translate}}</p>
-<p *ngIf="active && !bonusEnabled && !endingAlert">{{'NO_BONUS_LEFT' | translate}}</p>
+<p *ngIf="active && endingAlert && bonusEnabled">{{'FEW_BONUSES_LEFT' | translate}}</p>
+<p *ngIf="active && !bonusEnabled">{{'NO_BONUS_LEFT' | translate}}</p>
 <p *ngIf="finished">{{'END_DATE_REACHED' | translate}}</p>
