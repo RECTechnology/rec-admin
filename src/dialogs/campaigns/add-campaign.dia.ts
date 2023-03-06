@@ -193,8 +193,8 @@ import { GenericDialog } from '../other/generic-dialog/generic-dialog';
           this.alerts.showSnackbar('CAMPAIGN_CREATED_SUCCESSFULLY');
         }
       }, (error) => {
+        this.loading = false;
         if(error.message){
-          this.loading = false;
           this.alerts.showSnackbar(error.message); 
           this.validationErrors.push(error);
         }
@@ -254,13 +254,17 @@ import { GenericDialog } from '../other/generic-dialog/generic-dialog';
           this.updated = true;
           this.alerts.showSnackbar('CAMPAIGN_UPDATED_SUCCESSFULLY');
         }
+        this.loading = false;
       }, (error) => {
-        if(error.message){
+        console.log('errir', error);
+        this.loading = false;
+        if(error.errors){
+          this.alerts.showSnackbar(error.errors[0].message);
+        }
+        else if(error.message){
           this.alerts.showSnackbar(error.message);
           this.validationErrors.push(error);
         }
-        this.loading = false;
-        
       });
     }
 
