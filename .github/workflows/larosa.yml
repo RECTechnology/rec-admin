@@ -1,24 +1,23 @@
-name: Test, Build and Deploy [SANDBOX]
+name: Build and Deploy [LAROSA PROD]
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '^v[0-9]+\.[0-9]+\.[0-9]+(-larosa)?$'
 
 jobs:
   dev:
-    if: "!github.event.release.release"
+    if: "!github.event.release.prerelease"
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - name: Obtaining the code
         uses: actions/checkout@v1
-
       - name: Login to Docker
         env:
           REGISTRY: reg.rallf.com:8443
           USER: ${{secrets.DOCKER_USERNAME}}
           PASS: ${{secrets.DOCKER_PASSWORD}}
         run: docker login -u ${USER} -p ${PASS} reg.rallf.com:8443
-
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -30,17 +29,14 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
       - name: Build Docker image
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: docker build . -t reg.rallf.com:8443/rec-admin:sandbox
-
+        run: docker build . -t reg.rallf.com:8443/rec-admin:stable
       - name: Push Docker image
-        run: docker push reg.rallf.com:8443/rec-admin:sandbox
-
-      - name: Deploy
+        run: docker push reg.rallf.com:8443/rec-admin:stable
+      - name: Deploy ROSA
         uses: joelwmale/webhook-action@1.0.1
         env:
-          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_SANDBOX }}
-          data: ""
+          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_PROD_ROSA }}
+          data: ""    
