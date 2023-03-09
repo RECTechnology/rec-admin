@@ -7,7 +7,6 @@ on:
 
 jobs:
   dev:
-    if: "!github.event.release.release"
     runs-on: ubuntu-latest
     steps: 
       - name: Obtaining the code
