@@ -3,7 +3,7 @@ name: Build and Deploy [LAROSA]
 on:
   push:
     tags:
-      - '^v[0-9]+\.[0-9]+\.[0-9]+(-larosa)?$'
+      - 'v[0-9]+.[0-9]+.[0-9]+(-larosa)?'
 
 jobs:
   dev:
@@ -38,4 +38,4 @@ jobs:
         uses: joelwmale/webhook-action@1.0.1
         env:
           WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_LAROSA }}
-          data: ""    
+          data: ""
