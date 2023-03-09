@@ -1,4 +1,4 @@
-name: Build and Deploy [LAROSA PROD]
+name: Build and Deploy [LAROSA]
 
 on:
   push:
@@ -31,11 +31,11 @@ jobs:
       - name: Build Docker image
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: docker build . -t reg.rallf.com:8443/rec-admin:stable
+        run: docker build . -t reg.rallf.com:8443/rec-admin:larosa
       - name: Push Docker image
-        run: docker push reg.rallf.com:8443/rec-admin:stable
+        run: docker push reg.rallf.com:8443/rec-admin:larosa
       - name: Deploy ROSA
         uses: joelwmale/webhook-action@1.0.1
         env:
-          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_PROD_ROSA }}
+          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_LAROSA }}
           data: ""    

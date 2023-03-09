@@ -1,4 +1,4 @@
-name:  Build and Deploy [REC STABLE]
+name:  Build and Deploy [STABLE]
 
 on:
   push:
