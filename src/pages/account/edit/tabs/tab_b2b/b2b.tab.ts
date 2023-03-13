@@ -69,24 +69,21 @@ export class B2BTab {
 
   public ngOnInit() {
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
-    
-    this.main_alone_activity = this.account.activity_main ??  null;
-    
+
+    this.main_alone_activity = this.account.activity_main ?? null;
+
     this.main_alone_activity_id = this.main_activity ? this.main_activity.id : null;
-    if(this.main_alone_activity){
-      if(this.main_alone_activity.parent != undefined && this.main_alone_activity.parent != null){
+    if (this.main_alone_activity) {
+      if (this.main_alone_activity.parent != undefined && this.main_alone_activity.parent != null) {
         this.secondary_activity = this.account.activity_main;
-        this.main_alone_activity=this.account.activity_main.parent;
-  
+        this.main_alone_activity = this.account.activity_main;
       }
     }
 
-   
-    
     this.activitiesSelected = this.account.activities;
     this.accountCopy = { ...this.account };
     delete this.accountCopy.kyc_validations;
-    
+
     this.setupDebounce(this.searchConsumed.nativeElement);
     this.setupDebounce(this.searchProduced.nativeElement);
   }
@@ -94,8 +91,7 @@ export class B2BTab {
   public selectParentActivity(item) {
     this.main_alone_activity = item;
     this.main_alone_activity_id = this.main_alone_activity ? this.main_alone_activity.id : null;
-   
-    
+
     this.accountCopy.activity_main_id = item.id;
     // Aqui seteamos secondary_activity a null, para que tengan que volver a seleccionar una subactivity
     // Esto se hace porque cuando se selecciona un parent diferente, las subactivities son otras, por lo que tenemos que resetear el campo
@@ -139,30 +135,34 @@ export class B2BTab {
     }, this.alerts.observableErrorSnackbar.bind(this.alerts));
   }
 
-  public addActivityModal(){
-    this.alerts.openModal(AddActivityDia, {
-      item: Object.assign({}, ),
-      userId: false,
-    }).subscribe((updated) => {
-      if(updated){
-        if (updated.main_activity != null || updated.secondary_activity != null) {
-          this.main_activity = updated.main_activity;
-          this.main_activity_id =updated.main_activity ? updated.main_activity.id : null;
-          this.secondary_activity = updated.secondary_activity;
-           
-          this.accountCopy.activity_main_id = updated.main_activity_id;
-          this.crudAccounts.addActivity(this.account.id, this.secondary_activity?this.secondary_activity.id:this.main_activity_id).subscribe(() => {
-            this.alerts.showSnackbar('ADDED_ACTIVITY', 'ok');
-  
-            this.activitiesSelected.push(this.secondary_activity?this.secondary_activity:this.main_activity);
-            this.loading = false;
-          }, this.alerts.observableErrorSnackbar.bind(this.alerts));
-                
-  
+  public addActivityModal() {
+    this.alerts
+      .openModal(AddActivityDia, {
+        item: Object.assign({}),
+        userId: false,
+      })
+      .subscribe((updated) => {
+        if (updated) {
+          if (updated.main_activity != null || updated.secondary_activity != null) {
+            this.main_activity = updated.main_activity;
+            this.main_activity_id = updated.main_activity ? updated.main_activity.id : null;
+            this.secondary_activity = updated.secondary_activity;
+
+            this.accountCopy.activity_main_id = updated.main_activity_id;
+            this.crudAccounts
+              .addActivity(
+                this.account.id,
+                this.secondary_activity ? this.secondary_activity.id : this.main_activity_id,
+              )
+              .subscribe(() => {
+                this.alerts.showSnackbar('ADDED_ACTIVITY', 'ok');
+
+                this.activitiesSelected.push(this.secondary_activity ? this.secondary_activity : this.main_activity);
+                this.loading = false;
+              }, this.alerts.observableErrorSnackbar.bind(this.alerts));
+          }
         }
-      }
-      
-    });
+      });
   }
 
   public addConsumed(product) {
