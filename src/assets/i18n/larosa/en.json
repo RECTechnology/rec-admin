@@ -1598,5 +1598,6 @@
     "Participate": "Participate",
     "CAMPAIGN_PARTICIPANTS_INFO": "Private users adhering to the campaign",
     "PARTICIPANTS": "Participants",
-    "NO_BONUS_LEFT": "No bonus left"
+    "NO_BONUS_LEFT": "",
+    "INVALID_URL": "URL is incorrect (e.g: https://test.com)"
 }
