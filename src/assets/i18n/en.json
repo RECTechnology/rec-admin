@@ -1626,5 +1626,6 @@
     "CANNOT_SHOW_CAMPAIG_INFO": "Cannot show this campaign information",
     "STILL_NOT_ACTIVATED": "Still not activated",
     "REMOVED_CAMPAIGN_SUCCESSFULLY": "Removed campaign successfully",
-    "NO_BONUS_LEFT": "No bonus left"
+    "NO_BONUS_LEFT": "No bonus left",
+    "INVALID_URL": "URL is incorrect (e.g: https://test.com)"
 }
