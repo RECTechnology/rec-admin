@@ -1598,5 +1598,6 @@
     "Participate": "Participan",
     "CAMPAIGN_PARTICIPANTS_INFO": "Usuarios particulares adheridos a la campaña",
     "PARTICIPANTS": "Participantes",
-    "NO_BONUS_LEFT": "No quedan bonificaciones"
+    "NO_BONUS_LEFT": "No quedan bonificaciones",
+    "INVALID_URL": "La URL es incorrecta (e.g: https://test.com)"
 }
