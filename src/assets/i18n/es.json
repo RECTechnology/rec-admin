@@ -1626,5 +1626,6 @@
     "CANNOT_SHOW_CAMPAIG_INFO": "No se puede mostrar información de esta campaña",
     "STILL_NOT_ACTIVATED": "Todavía no está activada",
     "REMOVED_CAMPAIGN_SUCCESSFULLY": "Campaña borrada correctamente",
-    "NO_BONUS_LEFT": "No quedan bonificaciones"
+    "NO_BONUS_LEFT": "No quedan bonificaciones",
+    "INVALID_URL": "La URL es incorrecta (e.g: https://test.com)"
 }

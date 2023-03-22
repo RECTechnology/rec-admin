@@ -3,6 +3,10 @@ import { Account } from 'src/shared/entities/account.ent';
 import { AdminService } from 'src/services/admin/admin.service';
 import { AlertsService } from 'src/services/alerts/alerts.service';
 import { UtilsService } from 'src/services/utils/utils.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+const URL_REGEXP =
+  /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
 
 @Component({
   selector: 'tab-marketing',
@@ -10,7 +14,7 @@ import { UtilsService } from 'src/services/utils/utils.service';
 })
 export class MarketingTab {
   static readonly tabName = 'marketing';
-  static readonly fields = ['public_image','description','offered_products'];
+  static readonly fields = ['public_image', 'description', 'offered_products'];
 
   @Input() public account: Account;
   @Input() public loading: boolean = false;
@@ -20,8 +24,11 @@ export class MarketingTab {
   public error: string;
   public pageName = 'MARKETING';
 
-  constructor(private utils: UtilsService, public alerts: AlertsService, public as: AdminService) {}
+  public formGroup = new FormGroup({
+    web_url: new FormControl('', Validators.pattern(URL_REGEXP)),
+  });
 
+  constructor(private utils: UtilsService, public alerts: AlertsService, public as: AdminService) {}
 
   public ngOnInit() {
     this.accountCopy = { ...this.account };
