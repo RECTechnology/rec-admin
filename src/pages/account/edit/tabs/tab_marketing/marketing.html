@@ -26,8 +26,8 @@
       <div class="col-lg-6">
         <mat-form-field style="width: 100%; margin-bottom: 16px;" floatLabel="always">
           <mat-label>{{'WEB' | translate}}</mat-label>
-          <input type="url" matInput formControlName="web_url" />
-          <mat-error *ngIf="formGroup.get('web_url').invalid">{{'INVALID_URL' | translate}}</mat-error>
+          <input type="url" matInput formControlName="web" />
+          <mat-error *ngIf="formGroup.get('web').invalid">{{'INVALID_URL' | translate}}</mat-error>
         </mat-form-field>
       </div>
 

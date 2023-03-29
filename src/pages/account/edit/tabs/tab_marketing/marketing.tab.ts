@@ -25,21 +25,25 @@ export class MarketingTab {
   public pageName = 'MARKETING';
 
   public formGroup = new FormGroup({
-    web_url: new FormControl('', Validators.pattern(URL_REGEXP)),
+    web: new FormControl('', Validators.pattern(URL_REGEXP)),
   });
 
   constructor(private utils: UtilsService, public alerts: AlertsService, public as: AdminService) {}
 
   public ngOnInit() {
     this.accountCopy = { ...this.account };
+    this.formGroup.get('web').setValue(this.account.web);
   }
 
   public update() {
-    const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
-    delete changedProps.activity_main;
-    delete changedProps.kyc_manager;
-    delete changedProps.schedule;
-    delete changedProps.level;
-    this.accountChanged.emit(changedProps);
+    if (this.formGroup.valid) {
+      this.accountCopy.web = this.formGroup.get('web').value;
+      const changedProps: any = this.utils.deepDiff(this.accountCopy, this.account);
+      delete changedProps.activity_main;
+      delete changedProps.kyc_manager;
+      delete changedProps.schedule;
+      delete changedProps.level;
+      this.accountChanged.emit(changedProps);
+    }
   }
 }
