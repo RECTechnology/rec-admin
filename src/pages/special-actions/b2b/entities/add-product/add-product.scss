@@ -1,0 +1,35 @@
+::ng-deep div.col-lg-6 div.mat-form-field-infix {
+    width: 110px !important;
+}
+
+table {
+    box-shadow: none;
+    thead {
+        > th {
+            background: #e5f5fc;
+        }
+    }
+    th {
+        text-transform: none;
+    }
+    tbody {
+        th {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        tr {
+            text-transform: none;
+            background: none;
+        }
+    }
+}
+
+input {
+    // border-bottom: 1px solid #bdbdbd;
+    // width: 90%;
+}
+mat-form-field {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+}

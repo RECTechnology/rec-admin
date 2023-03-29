@@ -17,24 +17,11 @@
                     </mat-checkbox>
                 </div>
 
-                <!-- Activity consumed -->
-               
                 <div style="padding: 10px">
-
-                    <activity-picker [needsNone]="true" label="ACTIVITY_CONSUMED" [item]="activityConsumedFilter"
-                        (itemChanged)="selectActivityConsumedToFilter($event)" [parent]="'null'">
+                    <activity-picker [needsNone]="true" label="{{'FILTER_ACTIVITY'|translate}}" [item]="activityFilter"
+                        (itemChanged)="selectActivityToFilter($event)" [parent]="'null'">
                     </activity-picker>
                 </div>
-
-
-                <!-- Activity produced -->
-                <div style="padding: 10px">
-
-                    <activity-picker [needsNone]="true" label="ACTIVITY_PRODUCED" [item]="activityProducedFilter"
-                        (itemChanged)="selectActivityProducedToFilter($event)" [parent]="'null'">
-                    </activity-picker>
-                </div>
-                
             </tl-subheader>
             <translatable-list [hasStatus]="true" [(limit)]="limit" [total]="total" (onSort)="sortData($event)"
                 (aprove)="aproveProduct($event)" (changedPage)="changedPage($event)" [loading]="loading"

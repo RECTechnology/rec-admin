@@ -1,7 +1,7 @@
 import { of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { MySnackBarSevice } from 'src/bases/snackbar-base';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ConfirmationMessage } from 'src/dialogs/other/confirmation-message/confirmation.dia';
 import { ConvertToLangPipe } from '../../pipes/convert-to-lang/convert-to-lang.pipe';
@@ -66,7 +66,7 @@ export class AlertsService {
     return this.createModal(C, props, modalOptions).afterClosed();
   }
 
-  public createModal(C, props = {}, modalOptions = {}) {
+  public createModal(C, props = {}, modalOptions?: MatDialogConfig<any>) {
     const dialogRef = this.dialog.open(C, modalOptions);
 
     /**

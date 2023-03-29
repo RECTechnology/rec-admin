@@ -12,6 +12,7 @@ import { Activity } from 'src/shared/entities/translatable/activity.ent';
 import { UserService } from 'src/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { AddProductDia } from '../../add-product/add-product.dia';
 
 @Component({
   selector: 'tab-products',
@@ -22,8 +23,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   public entityName = 'Product';
   public productsColumns = ['id', 'cat', 'esp', 'eng', 'activities-consumed', 'activities-produced', 'actions'];
   public sortElementsToRevise = true;
-  public activityConsumedFilter = null;
-  public activityProducedFilter = null;
+  public activityFilter = null;
   public activities: Activity[] = [];
   public langMap = {
     cat: 'ca',
@@ -45,7 +45,6 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
     super(router);
     this.translate.onLangChange.subscribe(() => {
       this.search();
-      //this.getActivities();
     });
 
     this.getActivities();
@@ -64,11 +63,8 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
       }
 
       for (let activity of this.activities) {
-        if (activity.id == params.activityProducedFilterId) {
-          this.activityProducedFilter = activity;
-        }
-        if (activity.id == params.activityConsumedFilterId) {
-          this.activityConsumedFilter = activity;
+        if (activity.id == params.activityFilterId) {
+          this.activityFilter = activity;
         }
       }
       this.dataGetted = true;
@@ -116,46 +112,39 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
 
   public search(query?) {
     this.loading = true;
+    this.sortElementsToRevise ? (this.sortID = 'status') : (this.sortID = this.sortID);
+    const filters = {
+      order: this.sortDir,
+      limit: this.limit,
+      offset: this.offset,
+      sort: this.sortID,
+      activity_id: this.activityFilter ? this.activityFilter.id : null,
+    };
+    if (query || this.query) {
+      filters['search'] = query ?? this.query;
+    }
 
-    this.sortElementsToRevise ? this.sortID = 'status' : this.sortID = this.sortID;
-
-    const default_consuming_by = this.activityConsumedFilter ? [this.activityConsumedFilter.id] : null;
-    const default_producing_by = this.activityProducedFilter ? [this.activityProducedFilter.id] : null;
-
-    this.crud
-      .search(
-        {
-          order: this.sortDir,
-          limit: this.limit,
-          offset: this.offset,
-          search: query || this.query || '',
-          sort: this.sortID,
-          default_consuming_by,
-          default_producing_by,
-        },
-        'all',
-      )
-      .subscribe(
-        (resp) => {
-          this.data = resp.data.elements.map(this.mapTranslatedElement);
-          this.sortedData = this.data.slice();
-          this.total = resp.data.total;
-          this.list.updateData(this.data);
-          if (this.dataGetted) {
-            this.loading = false;
-          }
-        },
-        (error) => {
+    this.crud.search(filters, 'all').subscribe(
+      (resp) => {
+        this.data = resp.data.elements.map(this.mapTranslatedElement);
+        this.sortedData = this.data.slice();
+        this.total = resp.data.total;
+        this.list.updateData(this.data);
+        if (this.dataGetted) {
           this.loading = false;
-        },
-      );
+        }
+      },
+      (error) => {
+        this.loading = false;
+      },
+    );
   }
 
   public editProducts(product, skip = false) {
     this.confirm('WARNING', 'ACTIVITY_DESC', 'Edit', 'warning', skip).subscribe((proceed) => {
       if (proceed) {
         this.alerts
-          .openModal(AddItemDia, {
+          .openModal(AddProductDia, {
             isEdit: true,
             isProduct: true,
             item: Object.assign({}, product),
@@ -171,6 +160,9 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
                     name_ca: updated.name_ca,
                     name_es: updated.name_es,
                     name: updated.name,
+                    name_plural: updated.name_plural,
+                    name_ca_plural: updated.name_ca_plural,
+                    name_es_plural: updated.name_es_plural,
                   },
                   'en',
                 )
@@ -193,7 +185,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
 
   public addProduct() {
     this.alerts
-      .openModal(AddItemDia, {
+      .openModal(AddProductDia, {
         isEdit: false,
         isProduct: true,
         itemType: 'PRODUCT',
@@ -207,6 +199,9 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
                 name: created.name,
                 name_ca: created.name_ca,
                 name_es: created.name_es,
+                name_plural: created.name_plural,
+                name_ca_plural: created.name_ca_plural,
+                name_es_plural: created.name_es_plural,
                 description: '',
                 status: 'reviewed',
               },
@@ -228,19 +223,17 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
   }
 
   public deleteProduct(product) {
-    this.confirm('DELETE_PRODUCT?', 'SURE_DELETE_THAT').subscribe(
-      (del) => {
-        if (del) {
-          this.crud.remove(product.id).subscribe(
-            (resp) => {
-              this.alerts.showSnackbar('DELETED_PRODUCTS', 'ok');
-              this.search();
-            },
-            (error) => this.alerts.showSnackbar(error.message),
-          );
-        }
-      },
-    );
+    this.confirm('DELETE_PRODUCT?', 'SURE_DELETE_THAT').subscribe((del) => {
+      if (del) {
+        this.crud.remove(product.id).subscribe(
+          (resp) => {
+            this.alerts.showSnackbar('DELETED_PRODUCTS', 'ok');
+            this.search();
+          },
+          (error) => this.alerts.showSnackbar(error.message),
+        );
+      }
+    });
   }
 
   public aproveProduct(product) {
@@ -257,18 +250,10 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
     });
   }
 
-  public selectActivityConsumedToFilter(activity) {
-    this.activityConsumedFilter = activity;
+  public selectActivityToFilter(activity) {
+    this.activityFilter = activity;
     this.addToQueryParams({
-      activityConsumedFilterId: activity? activity.id:null,
-    });
-    this.search();
-  }
-
-  public selectActivityProducedToFilter(activity) {
-    this.activityProducedFilter = activity;
-    this.addToQueryParams({
-      activityProducedFilterId: activity? activity.id:null,
+      activityFilterId: activity ? activity.id : null,
     });
     this.search();
   }

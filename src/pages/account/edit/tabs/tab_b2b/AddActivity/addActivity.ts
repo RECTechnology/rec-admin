@@ -47,9 +47,6 @@ export class AddActivityDia {
         this.main_activity = item;
         this.main_activity_id = this.main_activity ? this.main_activity.id : null;
 
-
-
-
         // Aqui seteamos secondary_activity a null, para que tengan que volver a seleccionar una subactivity
         // Esto se hace porque cuando se selecciona un parent diferente, las subactivities son otras, por lo que tenemos que resetear el campo
         this.secondary_activity = null;

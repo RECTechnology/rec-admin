@@ -1,0 +1,145 @@
+<div class="modal-header bg-blue">
+    <span>{{(!isEdit ? 'ADD_PRODUCT': 'EDIT_PRODUCT') | translate}}</span>
+
+    <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+        <span class="center h v">
+            <i class="fa fa-times col-white"></i>
+        </span>
+    </button>
+</div>
+
+<div class="group-col-left modal-body" style="width: 100%!important; padding: 0!important">
+    <mat-tab-group style="width: 100%;">
+        <mat-tab label="{{'LANGUAGE'|translate}}">
+            <form [formGroup]="formGroup">
+                <div class="padd-20">
+                    <p class="small-text-3">{{'ADD_PRODUCT_LANGUAGE_DESC'|translate}}</p>
+                    <br>
+                    <table>
+                        <thead>
+                            <th>{{'LANGUAGE'|translate}}</th>
+                            <th>{{'SINGULAR'|translate}}</th>
+                            <th>{{'PLURAL'|translate}}</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>{{'SPANISH'|translate}}</th>
+                                <th>
+                                    <mat-form-field style="width: 100%; padding: 10px;">
+                                        <input autocomplete="off" matInput type="text" formControlName="name_es"
+                                            style="max-width: 100%;" [disabled]="loading" required>
+                                        <mat-error *ngIf="formGroup.get('name_es').invalid">{{'FIELD_REQUIRED'|
+                                            translate}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </th>
+                                <th>
+                                    <mat-form-field style="width: 100%; padding: 10px;">
+                                        <input autocomplete="off" matInput type="text" formControlName="name_es_plural"
+                                            style="max-width: 100%;" [disabled]="loading" required>
+                                        <mat-error *ngIf="formGroup.get('name_es_plural').invalid">{{'FIELD_REQUIRED'|
+                                            translate}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>{{'ENGLISH'|translate}}</th>
+                                <th>
+                                    <mat-form-field style="width: 100%; padding: 10px;">
+                                        <input autocomplete="off" matInput type="text" formControlName="name"
+                                            style="max-width: 100%;" [disabled]="loading" required>
+                                        <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'|
+                                            translate}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </th>
+                                <th>
+                                    <mat-form-field style="width: 100%; padding: 10px;">
+                                        <input autocomplete="off" matInput type="text" formControlName="name_plural"
+                                            style="max-width: 100%;" [disabled]="loading" required>
+                                        <mat-error *ngIf="formGroup.get('name_plural').invalid">{{'FIELD_REQUIRED'|
+                                            translate}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>{{'CATALAN'|translate}}</th>
+                                <th>
+                                    <mat-form-field style="width: 100%; padding: 10px;">
+                                        <input autocomplete="off" matInput type="text" formControlName="name_ca"
+                                            style="max-width: 100%;" [disabled]="loading" required>
+                                        <mat-error *ngIf="formGroup.get('name_ca').invalid">{{'FIELD_REQUIRED'|
+                                            translate}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </th>
+                                <th>
+                                    <mat-form-field style="width: 100%; padding: 10px;">
+                                        <input autocomplete="off" matInput type="text" formControlName="name_ca_plural"
+                                            style="max-width: 100%;" [disabled]="loading" required>
+                                        <mat-error *ngIf="formGroup.get('name_ca_plural').invalid">{{'FIELD_REQUIRED'|
+                                            translate}}
+                                        </mat-error>
+                                    </mat-form-field>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="group-row-right" style="margin-top: 20px; margin-bottom: 20px">
+                        <btn-loader (click)="openDupped()" text="{{'duped'|translate}}">
+                        </btn-loader>
+
+                        <btn-loader (click)="add()" [disabled]="disabled || loading || !itemsFilled()"
+                            [loading]="loading" text="{{(isEdit ? 'EDIT': 'CREATE')|translate}}">
+                        </btn-loader>
+                    </div>
+                </div>
+            </form>
+        </mat-tab>
+        <mat-tab label="{{'ACTIVITIES'|translate}}">
+            <div class="padd-20">
+                <p class="small-text-3">{{(isEdit ?
+                    'ADD_REMOVE_PRODUCT_ACTIVITIES_DESC':'ADD_PRODUCT_ACTIVITIES_DESC')|translate}}</p>
+                <br>
+                <div *ngIf="!isEdit" class="bg-blue-light padd-10 center v radius-5">
+                    <mat-icon style="margin-right: 8px;" color="primary">info</mat-icon>
+                    <p class="col-blue small-text">
+                        {{'ADD_ACTIVITIES_AFTER_ADD'|translate}}
+                    </p>
+                </div>
+                <div *ngIf="isEdit" class="row">
+                    <div class="col-lg-4">
+                        <activity-picker label="PARENT_ACTIVITY" [item]="main_activity"
+                            (itemChanged)="selectParentActivity($event)" [parent]="'null'">
+                        </activity-picker>
+                        <activity-picker label="DAUGHTER_ACTIVITIES" [item]="secondary_activity"
+                            (itemChanged)="selectActivity($event)" [parent]="main_activity_id">
+                        </activity-picker>
+                        <btn-loader (click)="addActivity(secondary_activity)"
+                            [disabled]="disabled || loading || !main_activity || !secondary_activity"
+                            [loading]="loading" text="{{'ADD_ACTIVITY'|translate}}">
+                        </btn-loader>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="activity-box-list" style="margin-top: 10px;">
+                            <ul *ngIf="activitiesSelected && activitiesSelected.length"
+                                style="list-style: none; margin: 0; padding: 0">
+                                <li class="activity-list-item small-text"
+                                    *ngFor="let act of activitiesSelected; let i = index">
+                                    {{act| tolang}}
+                                    <span class="icon fa fa-trash" (click)="deleteActivity(i)"></span>
+                                </li>
+                            </ul>
+                            <p class="small-text col-gray padd-10"
+                                *ngIf="activitiesSelected && !activitiesSelected.length">
+                                {{'NO_ITEMS'|translate}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

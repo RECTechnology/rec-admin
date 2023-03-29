@@ -69,10 +69,9 @@ export class B2BTab {
 
   public ngOnInit() {
     this.account.neighbourhood_id = this.account.neighbourhood ? this.account.neighbourhood.id : null;
-
     this.main_alone_activity = this.account.activity_main ?? null;
-
     this.main_alone_activity_id = this.main_activity ? this.main_activity.id : null;
+
     if (this.main_alone_activity) {
       if (this.main_alone_activity.parent != undefined && this.main_alone_activity.parent != null) {
         this.secondary_activity = this.account.activity_main;

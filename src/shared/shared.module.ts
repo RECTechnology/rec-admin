@@ -143,6 +143,8 @@ import { StatusWithTimeComponent } from '../components/ui/status_with_time/statu
 import { StatusCampaignsDetailsComponent } from '../components/ui/status_campaign_details/status-campaigns-details.component';
 import { ExportCampaignsUsers } from 'src/dialogs/campaigns/export-campaigns/export-campaigns.dia';
 import { GenericDialog } from 'src/dialogs/other/generic-dialog/generic-dialog';
+import { AddProductDia } from 'src/pages/special-actions/b2b/entities/add-product/add-product.dia';
+import { DuplicatedProduct } from 'src/pages/special-actions/b2b/entities/duplicated-product/duplicated-product.dia';
 
 const DIALOGS = [
   BussinessDetailsDia,
@@ -150,6 +152,8 @@ const DIALOGS = [
   ExportCampaignsUsers,
   VoteWithdrawal,
   AddItemDia,
+  AddProductDia,
+  DuplicatedProduct,
   AddNeighbourhoodDia,
   SendMail,
   CreateDelivery,

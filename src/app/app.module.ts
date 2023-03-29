@@ -46,13 +46,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { getLocale } from 'src/shared/utils.fns';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import {
-  MatInputModule
-} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { Observable } from 'rxjs';
 import { HideShowMenuItem } from '../services/guards/show_components.guard';
 import { CampaignsModule } from '../pages/campaigns/campaign/campaign.module';
-
 
 registerLocaleData(localeCat);
 registerLocaleData(localeCa);
@@ -71,6 +68,11 @@ export class CustomTranslationLoader implements TranslateLoader {
 }
 
 export function createTranslateLoader(http: HttpClient) {
+  if (environment.loadTranslationsLocal) {
+    const path = environment.Brand.name == 'larosa' ? 'assets/i18n/larosa/' : 'assets/i18n/';
+    console.debug('LOADING TRANSLATIONS FROM LOCAL FILES');
+    return new TranslateHttpLoader(http, path, '.json');
+  }
   return new CustomTranslationLoader(http);
 }
 

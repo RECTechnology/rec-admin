@@ -1,0 +1,68 @@
+<div class="modal-header bg-orange">
+    <span class="uppercase">{{'DUPLICATED_PRODUCT' | translate}}</span>
+
+    <button type="button" mat-icon-button class="icon-btn-small" name="button" (click)="close()" title="close">
+        <span class="center h v">
+            <i class="fa fa-times col-white"></i>
+        </span>
+    </button>
+</div>
+
+<div class="group-col-left modal-body" style="width: 100%!important; padding: 0!important">
+    <div class="padd-20">
+        <p class="small-text-2">{{'DUPLICATED_PRODUCT_DESC'|translate}}</p>
+        <p class="small-text-2 text-default marg-top-10">{{'MATCHES_FOUND'|translate}}: {{allItems}}</p>
+        <br>
+        <table>
+            <thead>
+                <th class="bold-dark">{{'LANGUAGE'|translate}}</th>
+                <th class="bold-dark">{{'SINGULAR'|translate}}</th>
+                <th class="bold-dark">{{'PLURAL'|translate}}</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="bold-dark">{{'SPANISH'|translate}}</th>
+                    <th class="default-text">{{items[currentItem].name_es}}</th>
+                    <th class="default-text">{{items[currentItem].name_es_plural}}</th>
+                </tr>
+                <tr>
+                    <th class="bold-dark">{{'ENGLISH'|translate}}</th>
+                    <th class="default-text">{{items[currentItem].name}}</th>
+                    <th class="default-text">{{items[currentItem].name_plural}}</th>
+                </tr>
+                <tr>
+                    <th class="bold-dark">{{'CATALAN'|translate}}</th>
+                    <th class="default-text">{{items[currentItem].name_ca}}</th>
+                    <th class="default-text">{{items[currentItem].name_ca_plural}}</th>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination group-row-right" style="width: 100%">
+            <span class="small-text default-text marg-right-10">
+                {{'ITEM'|translate}} {{currentItem+1}} {{'OF'|translate}} {{allItems}}
+            </span>
+            <div>
+                <button [disabled]="currentItem <= 0" (click)="prevItem()" type="button" mat-icon-button
+                    class="icon-btn-small" name="button">
+                    <span class="center h v">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
+                </button>
+                <button [disabled]="currentItem >= allItems" (click)="nextItem()" type="button" mat-icon-button
+                    class="icon-btn-small" name="button">
+                    <span class="center h v">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="group-row-right" style="margin-top: 20px; margin-bottom: 20px">
+            <button type="button" mat-button name="button" (click)="close()" style="margin-right: 10px">
+                {{'CANCEL'|translate}}
+            </button>
+
+            <btn-loader text="{{'IGNORE_AND_CREATE'|translate}}">
+            </btn-loader>
+        </div>
+    </div>
+</div>

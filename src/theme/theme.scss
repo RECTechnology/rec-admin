@@ -1,5 +1,5 @@
-@use '@angular/material' as mat;
-@import '@angular/material/theming';
+@use "@angular/material" as mat;
+@import "@angular/material/theming";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -41,14 +41,13 @@ $main-color-dark-sbox: #a89600; // the dark color of your brand
 $sidemenu-color: $main-color; // the color of your brand
 $sidemenu-color-dark: #222d31; // the dark color of your brand
 
-$main-color-la-rosa: #E61872;
+$main-color-la-rosa: #e61872;
 $main-color-la-rosa-dark: #be1e63;
 
-$secondary-color-la-rosa: #6BB900;
-
+$secondary-color-la-rosa: #6bb900;
 
 .laROSA {
-  $candy-app-primary: mat.define-palette(mat.$pink-palette);;
+  $candy-app-primary: mat.define-palette(mat.$pink-palette);
   $candy-app-error: mat.define-palette(mat.$red-palette);
   $candy-app-success: mat.define-palette(mat.$green-palette);
   $candy-app-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
@@ -58,11 +57,11 @@ $secondary-color-la-rosa: #6BB900;
   a {
     color: #6666;
   }
-  
+
   a:active {
     color: $main-color-la-rosa !important;
   }
-  
+
   a:hover,
   a:focus,
   a:visited {
@@ -77,11 +76,11 @@ $secondary-color-la-rosa: #6BB900;
     background-color: $main-color-la-rosa !important;
     color: white !important;
   }
-  
+
   .col-orange {
     color: $secondary-color-la-rosa;
   }
-  
+
   code {
     color: $main-color-la-rosa !important;
   }
@@ -90,7 +89,7 @@ $secondary-color-la-rosa: #6BB900;
     color: #fff !important;
   }
   .bg-yellow {
-    background: #f4b04f  !important;
+    background: #f4b04f !important;
   }
   .validate-btn {
     width: auto;
@@ -101,38 +100,38 @@ $secondary-color-la-rosa: #6BB900;
     font-size: 13px;
     border: none;
   }
-  
+
   .validate-btn:disabled {
     background: rgba(0, 0, 0, 0.12);
     pointer-events: none;
   }
-  
+
   .company.selected .company-card {
     border-color: $secondary-color-la-rosa !important;
     .company-checked {
       background: $secondary-color-la-rosa !important;
     }
   }
-  
+
   .sidemenu.company {
     background: $secondary-color-la-rosa !important;
   }
-  
+
   .company-border {
     border: 2px solid $secondary-color-la-rosa;
   }
-  
+
   .private-border {
     border: 2px solid $main-color-la-rosa;
   }
-  
+
   .sidemenu.collapsed.company .collapse-menu {
     background: $secondary-color-la-rosa !important;
   }
   .sidemenu.collapsed .collapse-menu {
     background: $main-color-la-rosa !important;
   }
-  
+
   .reseller-developers .item.active,
   .dropdown-developers .item.active,
   .menu-list .item.active {
@@ -140,7 +139,7 @@ $secondary-color-la-rosa: #6BB900;
     cursor: pointer !important;
     color: $main-color-la-rosa !important;
   }
-  
+
   .warn-well {
     background: #fbf5e5;
     border-left: 3px solid #f4b04f;
@@ -148,7 +147,7 @@ $secondary-color-la-rosa: #6BB900;
     margin: 20px 0 15px 0;
     width: 100%;
   }
-  
+
   .info-well {
     background: #e5f4fb;
     border-left: 3px solid $main-color-la-rosa;
@@ -156,7 +155,7 @@ $secondary-color-la-rosa: #6BB900;
     margin: 20px 0 15px 0;
     width: 100%;
   }
-  
+
   label .mat-button.mat-primary {
     background: #eaeaea !important;
   }
@@ -167,7 +166,7 @@ $secondary-color-la-rosa: #6BB900;
   .chat-window:hover {
     background: $main-color-la-rosa;
   }
-  
+
   .company-checked {
     background: $main-color-la-rosa;
     color: #fff;
@@ -186,7 +185,7 @@ $secondary-color-la-rosa: #6BB900;
   .sidemenu.collapsed {
     background: $sidemenu-color-dark;
   }
-  
+
   a {
     color: $main-color-la-rosa;
   }
@@ -200,11 +199,11 @@ $secondary-color-la-rosa: #6BB900;
   .search-input {
     border-bottom: 1px solid $main-color-la-rosa;
   }
-  
+
   .loading_screen {
     color: $main-color-la-rosa;
   }
-  
+
   .col-warning,
   .col-expired {
     color: #f4b04f !important;
@@ -219,7 +218,7 @@ $secondary-color-la-rosa: #6BB900;
   .col-purple {
     color: #531fce !important;
   }
-  
+
   .col-def {
     color: #ededed !important;
   }
@@ -232,18 +231,18 @@ $secondary-color-la-rosa: #6BB900;
   .col-blue-dark {
     color: $main-color-la-rosa;
   }
-  
+
   .col-gray {
     color: #666;
   }
-  
+
   .col-gray-light {
     color: #838282 !important;
   }
   .col-gray-lighter {
     color: #8a8a8a !important;
   }
-  
+
   .status-launched,
   .status-created,
   .status-pending,
@@ -270,7 +269,7 @@ $secondary-color-la-rosa: #6BB900;
   .status-disabled,
   .status-cancelled {
     color: #ef5350;
-  
+
     &:disabled {
       color: rgba(0, 0, 0, 0.26) !important;
     }
@@ -279,11 +278,19 @@ $secondary-color-la-rosa: #6BB900;
     background: #ef5350 !important;
     color: #fff;
   }
-  
+
+  .bg-orange {
+    background: #e05205 !important;
+    color: #fff !important;
+    span {
+      color: #fff !important;
+    }
+  }
+
   .bg-blue,
   .bg-sending,
   .bg-created {
-    background: $main-color-la-rosa!important;
+    background: $main-color-la-rosa !important;
     color: #fff;
   }
   .bg-blue.hoverable:hover {
@@ -297,13 +304,13 @@ $secondary-color-la-rosa: #6BB900;
   .bg-blue-dark {
     background: $main-color-la-rosa;
   }
-  
+
   .selected-wallet {
     /* border: 2px solid red; */
     border: 1px dashed lighten($main-color-la-rosa, 30%);
     background: rgba(lighten($main-color-la-rosa, 30%), 0.2);
   }
-  
+
   .sandbox {
     .sidemenu.collapsed .collapse-menu,
     .chat-window,
@@ -346,7 +353,7 @@ $secondary-color-la-rosa: #6BB900;
     .bg-blue-dark {
       background: $main-color-dark-sbox;
     }
-  
+
     .selected-wallet {
       /* border: 2px solid red; */
       border: 1px dashed lighten($main-color-sbox, 30%);
@@ -357,7 +364,7 @@ $secondary-color-la-rosa: #6BB900;
       background: $main-color-sbox !important;
     }
   }
-  
+
   .box {
     width: 100%;
     height: auto;
@@ -373,39 +380,39 @@ $secondary-color-la-rosa: #6BB900;
     padding: 0 !important;
     margin: 0 !important;
   }
-  
+
   .dark-theme .input {
     background: darken($color: #424242, $amount: 10);
     border: 1px solid lighten($color: #424242, $amount: 10);
     color: #fff;
   }
-  
+
   table {
     color: #666;
   }
-  
+
   table tr:nth-child(even) {
     background: #eee;
   }
-  
+
   table tr:nth-child(odd) {
     background: #fff;
   }
-  
+
   .dark-theme {
     table {
       color: #fff;
-  
+
       tr:nth-child(even) {
         background: lighten($color: #424242, $amount: 10);
       }
-  
+
       tr:nth-child(odd) {
         background: lighten($color: #424242, $amount: 0);
       }
     }
   }
-  
+
   .bordered {
     border: 1px solid #ddd !important;
   }
@@ -415,40 +422,40 @@ $secondary-color-la-rosa: #6BB900;
   .bordered-top {
     border-top: 1px solid #ddd !important;
   }
-  
+
   .dark-theme .bordered {
     border: 1px solid lighten($color: #424242, $amount: 10) !important;
   }
-  
+
   .dark-theme .bordered-bottom {
     border-bottom: 1px solid lighten($color: #424242, $amount: 10) !important;
   }
-  
+
   .dark-theme .bordered-top {
     border-top: 1px solid lighten($color: #424242, $amount: 10) !important;
   }
-  
+
   .mat-radio-label {
     padding-bottom: 0;
     margin-bottom: 0;
   }
-  
+
   translatable-list .mat-sort-header-container {
     justify-content: flex-start !important;
   }
-  
+
   .underline {
     text-decoration: underline;
   }
-  
+
   .bold {
     font-weight: bold;
   }
-  
+
   .col-orange {
     color: $secondary-color-la-rosa;
   }
-  
+
   code {
     color: $main-color-la-rosa;
   }
@@ -464,38 +471,38 @@ $secondary-color-la-rosa: #6BB900;
     font-size: 13px;
     border: none;
   }
-  
+
   .validate-btn:disabled {
     background: rgba(0, 0, 0, 0.12);
     pointer-events: none;
   }
-  
+
   .company.selected .company-card {
     border-color: $secondary-color-la-rosa !important;
     .company-checked {
       background: $secondary-color-la-rosa !important;
     }
   }
-  
+
   .sidemenu.company {
     background: $secondary-color-la-rosa !important;
   }
-  
+
   .company-border {
     border: 2px solid $secondary-color-la-rosa;
   }
-  
+
   .private-border {
     border: 2px solid $main-color-la-rosa;
   }
-  
+
   .sidemenu.collapsed.company .collapse-menu {
     background: $secondary-color-la-rosa !important;
   }
   .sidemenu.collapsed .collapse-menu {
     background: $main-color-la-rosa !important;
   }
-  
+
   .reseller-developers .item.active,
   .dropdown-developers .item.active,
   .menu-list .item.active {
@@ -503,7 +510,7 @@ $secondary-color-la-rosa: #6BB900;
     cursor: pointer !important;
     color: $main-color-la-rosa !important;
   }
-  
+
   .warn-well {
     background: #fbf5e5;
     border-left: 3px solid #f4b04f;
@@ -511,7 +518,7 @@ $secondary-color-la-rosa: #6BB900;
     margin: 20px 0 15px 0;
     width: 100%;
   }
-  
+
   .info-well {
     background: #e5f4fb;
     border-left: 3px solid $main-color-la-rosa;
@@ -519,7 +526,7 @@ $secondary-color-la-rosa: #6BB900;
     margin: 20px 0 15px 0;
     width: 100%;
   }
-  
+
   label .mat-button.mat-primary {
     background: #eaeaea !important;
   }
@@ -530,7 +537,7 @@ $secondary-color-la-rosa: #6BB900;
   .chat-window:hover {
     background: #0098db;
   }
-  
+
   .company-checked {
     background: $main-color-la-rosa;
     color: #fff;
@@ -549,7 +556,7 @@ $secondary-color-la-rosa: #6BB900;
   .sidemenu.collapsed {
     background: $sidemenu-color-dark;
   }
-  
+
   a {
     color: $main-color-la-rosa;
   }
@@ -563,11 +570,11 @@ $secondary-color-la-rosa: #6BB900;
   .search-input {
     border-bottom: 1px solid $main-color-la-rosa;
   }
-  
+
   .loading_screen {
     color: $main-color-la-rosa;
   }
-  
+
   .col-warning,
   .col-expired {
     color: #f4b04f !important;
@@ -579,7 +586,7 @@ $secondary-color-la-rosa: #6BB900;
   .col-started {
     color: #1f52ce !important;
   }
-  
+
   .col-def {
     color: #ededed !important;
   }
@@ -592,18 +599,18 @@ $secondary-color-la-rosa: #6BB900;
   .col-blue-dark {
     color: #0098db;
   }
-  
+
   .col-gray {
     color: #666;
   }
-  
+
   .col-gray-light {
     color: #838282 !important;
   }
   .col-gray-lighter {
     color: #8a8a8a !important;
   }
-  
+
   .status-launched,
   .status-created,
   .status-pending,
@@ -635,7 +642,7 @@ $secondary-color-la-rosa: #6BB900;
     background: #ef5350 !important;
     color: #fff;
   }
-  
+
   .bg-blue,
   .bg-sending,
   .bg-created {
@@ -653,13 +660,13 @@ $secondary-color-la-rosa: #6BB900;
   .bg-blue-dark {
     background: $main-color-la-rosa;
   }
-  
+
   .selected-wallet {
     /* border: 2px solid red; */
     border: 1px dashed lighten($main-color-la-rosa, 30%);
     background: rgba(lighten($main-color-la-rosa, 30%), 0.2);
   }
-  
+
   .sandbox {
     .sidemenu.collapsed .collapse-menu,
     .chat-window,
@@ -702,7 +709,7 @@ $secondary-color-la-rosa: #6BB900;
     .bg-blue-dark {
       background: $main-color-la-rosa;
     }
-  
+
     .selected-wallet {
       /* border: 2px solid red; */
       border: 1px dashed lighten($main-color-sbox, 30%);
@@ -713,7 +720,7 @@ $secondary-color-la-rosa: #6BB900;
       background: $main-color-sbox !important;
     }
   }
-  
+
   .box {
     width: 100%;
     height: auto;
@@ -729,7 +736,7 @@ $secondary-color-la-rosa: #6BB900;
     padding: 0 !important;
     margin: 0 !important;
   }
-  
+
   .dark-theme {
     .menu {
       background: #424242 !important;
@@ -741,63 +748,64 @@ $secondary-color-la-rosa: #6BB900;
       background: #2e2e2e !important;
     }
   }
-  
+
   .bg-dark {
     background-color: #787878 !important;
     color: #fefefe;
   }
-  
+
   .bg-white {
     background: #fff;
   }
-  
+
   .bg-error,
   .bg-blue,
   .bg-warning {
     color: #fff;
   }
-  
+
   .bg-white:not(.no-shadow) {
     box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.3) !important;
   }
-  
+
   .bg-white.active {
     background: #f1f1f1 !important;
     color: #666 !important;
   }
-  
+
   .bg-gray-light {
     background: #f3f3f3;
   }
-  
+
   .bg-gray {
     background: #dcdcdc;
     color: #676767;
   }
-  
+
   .bg-failed {
     background: #ef5350 !important;
     color: #fff !important;
   }
-  
+
   .bg-orange {
     background: $secondary-color-la-rosa;
+    color: #fff;
   }
-  
+
   .bg-green {
     background: none repeat scroll 0% 0% #67cea6 !important;
     color: #fff;
   }
-  
+
   .bg-success {
     background: #7cb342 !important;
     color: #fff !important;
   }
-  
+
   .no-bg {
     background: transparent !important;
   }
-  
+
   .bg-img {
     position: absolute;
     top: 0;
@@ -805,7 +813,7 @@ $secondary-color-la-rosa: #6BB900;
     width: 40px;
     height: auto;
   }
-  
+
   .space-around {
     justify-content: space-around;
   }
@@ -815,21 +823,19 @@ $secondary-color-la-rosa: #6BB900;
       color: $main-color-la-rosa;
     }
   }
-  
+
   .hotkey-dialog-header h4 {
     font-size: 16px;
     font-weight: 300;
     color: $main-color-la-rosa;
   }
-  
+
   .mat-form-field-wrapper {
     padding-bottom: 1.25em;
   }
-
 }
 
 @import "./bgs";
-
 
 a {
   color: #6666;
@@ -857,7 +863,7 @@ code {
   color: #fff !important;
 }
 .bg-yellow {
-  background: #f4b04f  !important;
+  background: #f4b04f !important;
 }
 .validate-btn {
   width: auto;
@@ -1558,6 +1564,7 @@ a {
 
 .bg-orange {
   background: #e05206;
+  color: #fff !important;
 }
 
 .bg-green {

@@ -1,0 +1,26 @@
+::ng-deep div.col-lg-6 div.mat-form-field-infix {
+    width: 110px !important;
+}
+
+table {
+    box-shadow: none;
+    thead {
+        > th {
+            background: #F2F2F2;
+        }
+    }
+    th {
+        text-transform: none;
+    }
+    tbody {
+        tr {
+            text-transform: none;
+            background: none;
+        }
+    }
+}
+.pagination {
+    background: #F2F2F2;
+    padding: 10px 0;
+}
+

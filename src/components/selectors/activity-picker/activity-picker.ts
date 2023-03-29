@@ -11,42 +11,38 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   templateUrl: './activity-picker.html',
   providers: [
     {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => ActivityPicker),
-        multi: true
-    }
-]
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ActivityPicker),
+      multi: true,
+    },
+  ],
 })
 export class ActivityPicker extends BaseSelectorComponent implements ControlValueAccessor {
   @Input() public parent: Activity;
 
-  onChange!:(item: any) => void;
-    writeValue(item: any): void {
-        if(item){
-            this.selectItem(item);
-        }
+  onChange!: (item: any) => void;
+  writeValue(item: any): void {
+    if (item) {
+      this.selectItem(item);
     }
-    registerOnChange(fn: () => void): void {
-        this.onChange= fn;
-    }
-    registerOnTouched(fn: () => void): void {
-    }
+  }
+  registerOnChange(fn: () => void): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: () => void): void {}
 
   constructor(private activitiesService: ActivitiesCrud) {
     super();
   }
-  ngOnInit(){
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     if ('item' in changes) {
       this.search();
-
     }
     if ('parent' in changes) {
       this.parent = changes['parent'].currentValue;
       this.search();
-
     }
   }
 
@@ -54,14 +50,14 @@ export class ActivityPicker extends BaseSelectorComponent implements ControlValu
     return this.activitiesService
       .search({
         search: query,
-        limit:300,
+        limit: 300,
         parent_id: this.parent,
       })
       .pipe(
         map((resp) => {
-          if(this.sendedItems){
-            return this.items
-          }else{
+          if (this.sendedItems) {
+            return this.items;
+          } else {
             return resp.data.elements;
           }
         }),

@@ -19,28 +19,30 @@
                 <form [formGroup]="formGroup">
                     <mat-form-field style="width: 100%; padding: 10px;">
                         <mat-label>{{"Catalan" | translate}}</mat-label>
-                        <input autocomplete="off" matInput type="text" formControlName="name_ca" style="max-width: 100%;"
-                        placeholder="{{'Catalan'|translate}}" [disabled]="loading" (blur)="check()" required>
+                        <input autocomplete="off" matInput type="text" formControlName="name_ca"
+                            style="max-width: 100%;" placeholder="{{'Catalan'|translate}}" [disabled]="loading"
+                            (blur)="check()" required>
                         <mat-error *ngIf="formGroup.get('name_ca').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
                     </mat-form-field>
-        
+
                     <mat-form-field class="group-col-left" style="width: 100%; padding: 10px;">
                         <mat-label>{{"Spanish" | translate}}</mat-label>
                         <input autocomplete="off" matInput type="text" formControlName="name_es" style="max-width: 100%"
-                        placeholder="{{'Español'|translate}}" [disabled]="loading" (blur)="check()" required>
+                            placeholder="{{'Español'|translate}}" [disabled]="loading" (blur)="check()" required>
                         <mat-error *ngIf="formGroup.get('name_es').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
                     </mat-form-field>
-                
-                
+
+
                     <mat-form-field class="group-col-left" style="width: 100%; padding: 10px;">
                         <mat-label>{{"English" | translate}}</mat-label>
                         <input autocomplete="off" matInput type="text" formControlName="name" style="max-width: 100%"
-                        placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()" required>
+                            placeholder="{{'English'|translate}}" [disabled]="loading" (blur)="check()" required>
                         <mat-error *ngIf="formGroup.get('name').invalid">{{'FIELD_REQUIRED'| translate}}</mat-error>
                     </mat-form-field>
 
                     <div *ngIf="!isProduct" style="width: 100%; padding: 10px;">
-                        <activity-picker label="PARENT_ACTIVITY" formControlName="parent" [item]="secondary_activity" [parent]="'null'" (itemChanged)="selectActivity($event)">
+                        <activity-picker label="PARENT_ACTIVITY" formControlName="parent" [item]="secondary_activity"
+                            [parent]="'null'" (itemChanged)="selectActivity($event)">
                         </activity-picker>
                     </div>
                 </form>
@@ -66,8 +68,8 @@
                             </p>
                         </div>
 
-                        <activity-picker label="ACTIVITY" [showSelection]="false"
-                        (itemChanged)="addConsumed($event)" ></activity-picker>
+                        <activity-picker label="ACTIVITY" [showSelection]="false" (itemChanged)="addConsumed($event)">
+                        </activity-picker>
 
                     </div>
                     <div class="col-lg-6">
@@ -88,9 +90,9 @@
                             </p>
                         </div>
 
-                        <activity-picker [showSelection]="false" label="ACTIVITY"  
-                        (itemChanged)="addProduced($event)" ></activity-picker>
-                        
+                        <activity-picker [showSelection]="false" label="ACTIVITY" (itemChanged)="addProduced($event)">
+                        </activity-picker>
+
                     </div>
                 </div>
             </div>
@@ -107,11 +109,13 @@
 
         <div class="col-lg-12">
             <div class="group-row-left" style="margin-top: 20px; margin-bottom: 20px">
-                <btn-loader (click)="add()" [disabled]="disabled || loading || formGroup.invalid || !this.formGroup.dirty || this.edited == false" [loading]="loading"
-                    text="{{'SAVE'|translate}}">
+                <btn-loader (click)="add()"
+                    [disabled]="disabled || loading || formGroup.invalid || !this.formGroup.dirty || this.edited == false"
+                    [loading]="loading" text="{{'SAVE'|translate}}">
                 </btn-loader>
                 <p *ngIf="error" class="col-error small-text marg-left-10">{{error}}</p>
-                <p *ngIf="!edited && isEdit" class="small-text" style="margin-left: 10px!important; color: rgba(0, 0, 0, 0.42);">{{'NO_UPDATE' | translate}}</p>
+                <p *ngIf="!edited && isEdit" class="small-text"
+                    style="margin-left: 10px!important; color: rgba(0, 0, 0, 0.42);">{{'NO_UPDATE' | translate}}</p>
             </div>
         </div>
     </div>
