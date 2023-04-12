@@ -196,7 +196,7 @@ export class AddProductDia {
     });
   }
 
-  public add() {
+  public async add() {
     if (this.formGroup.invalid || this.loading || this.disabled || !this.formGroup.dirty || this.edited == false) {
       return;
     }
@@ -214,12 +214,24 @@ export class AddProductDia {
     this.item.name_ca = this.item.name_ca.trim();
     this.item.name_es = this.item.name_es.trim();
     this.item.name = this.item.name.trim();
-    
+
     this.item.name_ca_plural = this.item.name_ca_plural.trim();
     this.item.name_es_plural = this.item.name_es_plural.trim();
     this.item.name_plural = this.item.name_plural.trim();
 
+    // const result = await this.checkDuplicates(this.item);
+    // if (result == true) {
+    //   this.openDupped();
+    // } else {
     this.dialogRef.close({ ...this.item });
+    // }
+  }
+
+  public async checkDuplicates(item): Promise<boolean> {
+    const result = await this.productsCrud.checkDuplicatedProduct(item).toPromise();
+    console.log(result);
+
+    return false;
   }
 
   public openDupped() {

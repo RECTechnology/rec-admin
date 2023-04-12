@@ -118,7 +118,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
       limit: this.limit,
       offset: this.offset,
       sort: this.sortID,
-      activity_id: this.activityFilter ? this.activityFilter.id : null,
+      activity: this.activityFilter ? this.activityFilter.id : null,
     };
     if (query || this.query) {
       filters['search'] = query ?? this.query;
@@ -126,7 +126,7 @@ export class ProductsTabComponent extends EntityTabBase<Product> {
 
     this.crud.search(filters, 'all').subscribe(
       (resp) => {
-        this.data = resp.data.elements.map(this.mapTranslatedElement);
+        this.data = (resp.data.elements ?? resp.data).map(this.mapTranslatedElement);
         this.sortedData = this.data.slice();
         this.total = resp.data.total;
         this.list.updateData(this.data);

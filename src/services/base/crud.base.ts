@@ -18,6 +18,7 @@ export interface CrudQueryOptions {
 export class CrudBaseService<T> extends BaseService2 {
   public static PATH_LIST = '';
   public static PATH_SEARCH = '/search';
+  public static PATH_SEARCH_ACTIVITY = '/searchActivity';
   public static PATH_EXPORT = '/export';
   public static PATH_EXPORT_EMAIL = '/export_email'
   public static PATH_IMPORT = '/import';
@@ -98,6 +99,14 @@ export class CrudBaseService<T> extends BaseService2 {
 
   public search(data: ListAccountsParams = {}, lang: RecLang = REC_LANGS.ALL): Observable<any> {
     const url = [...this.getUrlBase(), CrudBaseService.PATH_SEARCH];
+    this.log(`search ${this.tName}`, data);
+    return this.get(url, data, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null).pipe(
+      this.itemMapper(),
+    );
+  }
+
+  public searchActivity(data: ListAccountsParams = {}, lang: RecLang = REC_LANGS.ALL): Observable<any> {
+    const url = [...this.getUrlBase(), CrudBaseService.PATH_SEARCH_ACTIVITY];
     this.log(`search ${this.tName}`, data);
     return this.get(url, data, lang ? { 'Content-Language': lang, 'Accept-Language': lang } : null).pipe(
       this.itemMapper(),

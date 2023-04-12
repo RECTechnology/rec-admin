@@ -88,9 +88,6 @@
                         </tbody>
                     </table>
                     <div class="group-row-right" style="margin-top: 20px; margin-bottom: 20px">
-                        <btn-loader (click)="openDupped()" text="{{'duped'|translate}}">
-                        </btn-loader>
-
                         <btn-loader (click)="add()" [disabled]="disabled || loading || !itemsFilled()"
                             [loading]="loading" text="{{(isEdit ? 'EDIT': 'CREATE')|translate}}">
                         </btn-loader>

@@ -17,6 +17,11 @@ export class ProductsCrud extends CrudBaseService<Product> {
     return new Product(item);
   }
 
+  public checkDuplicatedProduct(data) {
+    const url = [...this.getUrlBase(), '/', 'exists'];
+    return this.post(url, data).pipe(this.itemMapper());
+  }
+
   public addActivityToProduct(product_id, activity_id) {
     const url = [...this.getUrlBase(), '/', product_id, '/', 'activities'];
     return this.post(url, { id: activity_id }).pipe(this.itemMapper());
