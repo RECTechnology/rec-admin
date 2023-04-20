@@ -1599,5 +1599,10 @@
     "CAMPAIGN_PARTICIPANTS_INFO": "Private users adhering to the campaign",
     "PARTICIPANTS": "Participants",
     "NO_BONUS_LEFT": "",
-    "INVALID_URL": "URL is incorrect (e.g: https://test.com)"
+    "INVALID_URL": "URL is incorrect (e.g: https://test.com)",
+    "ADD_PRODUCT": "",
+    "ADD_PRODUCT_LANGUAGE_DESC": "",
+    "ADD_PRODUCT_ACTIVITIES_DESC": "",
+    "ADD_ACTIVITIES_AFTER_ADD": "",
+    "ADD_REMOVE_PRODUCT_ACTIVITIES_DESC": ""
 }
