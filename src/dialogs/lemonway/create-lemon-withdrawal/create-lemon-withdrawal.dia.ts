@@ -8,6 +8,7 @@ import { Account } from 'src/shared/entities/account.ent';
 import { UtilsService } from 'src/services/utils/utils.service';
 import { WalletService } from 'src/services/wallet/wallet.service';
 import { Currencies } from 'src/shared/entities/currency/currency';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'create-lemon-withdrawal',
@@ -18,7 +19,7 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   public account: Account;
   public currentAmountREC: number = 0;
   public currentAmountEUR: number = 0;
-  public concept: string = 'Money-out NOVACT rec moneda ciutadana';
+  public concept: string = this.environment.crypto_currency ? `Money-out NOVACT ${environment.crypto_currency} moneda ciutadana` : `Error, crypto not found`;
   public amount: number;
   public otp: string;
   public lwInfo: any;
