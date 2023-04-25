@@ -19,7 +19,7 @@ export class CreateLemonWithdrawalDia extends BaseDialog {
   public account: Account;
   public currentAmountREC: number = 0;
   public currentAmountEUR: number = 0;
-  public concept: string = this.environment.crypto_currency ? `Money-out NOVACT ${environment.crypto_currency} moneda ciutadana` : `Error, crypto not found`;
+  public concept: string = `Money-out NOVACT ${environment.crypto_currency} moneda ciutadana`;
   public amount: number;
   public otp: string;
   public lwInfo: any;
