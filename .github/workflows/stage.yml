@@ -40,7 +40,7 @@ jobs:
         run: docker push reg.rallf.com:8443/rec-admin:master
 
       - name: Deploy
-        uses: joelwmale/webhook-action@1.0.1
+        uses: joelwmale/webhook-action@2.3.2
         env:
           WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_STAGE }}
           data: "Hello from github actions!"
